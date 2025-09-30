@@ -103,6 +103,7 @@ echo "installing AUR packages..."
 echo "================================"
 
 aur_packages=(
+    pacseek
 )
 paru -S --noconfirm "${aur_packages[@]}"
 
@@ -150,6 +151,8 @@ stow_packages=(
     kitty
     zsh
     htop
+    nvim
+    pacseek
 )
 
 for pkg in "${stow_packages[@]}"; do
