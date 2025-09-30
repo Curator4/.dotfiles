@@ -105,6 +105,9 @@ echo "================================"
 aur_packages=(
     pacseek
     starship
+    yazi
+    eza
+    ttf-hack-nerd
 )
 paru -S --noconfirm "${aur_packages[@]}"
 
