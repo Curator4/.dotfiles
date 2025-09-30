@@ -104,6 +104,7 @@ echo "================================"
 
 aur_packages=(
     pacseek
+    starship
 )
 paru -S --noconfirm "${aur_packages[@]}"
 
@@ -153,6 +154,7 @@ stow_packages=(
     htop
     nvim
     pacseek
+    starship
 )
 
 for pkg in "${stow_packages[@]}"; do
