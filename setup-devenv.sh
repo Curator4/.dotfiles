@@ -149,7 +149,6 @@ stow_packages=(
     hypr
     kitty
     zsh
-    obsidian
     htop
 )
 

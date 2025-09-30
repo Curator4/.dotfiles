@@ -1,22 +1,2 @@
-# Obsidian runtime/cache files
-obsidian/.config/obsidian/Cache/
-obsidian/.config/obsidian/Code Cache/
-obsidian/.config/obsidian/IndexedDB/
-obsidian/.config/obsidian/GPUCache/
-obsidian/.config/obsidian/DawnGraphiteCache/
-obsidian/.config/obsidian/DawnWebGPUCache/
-obsidian/.config/obsidian/Shared Dictionary/
-obsidian/.config/obsidian/WebStorage/
-obsidian/.config/obsidian/Local Storage/
-obsidian/.config/obsidian/Session Storage/
-obsidian/.config/obsidian/blob_storage/
-obsidian/.config/obsidian/Crashpad/
-obsidian/.config/obsidian/Cookies
-obsidian/.config/obsidian/Cookies-journal
-obsidian/.config/obsidian/Trust Tokens*
-obsidian/.config/obsidian/DIPS*
-obsidian/.config/obsidian/SharedStorage*
-obsidian/.config/obsidian/TransportSecurity
-obsidian/.config/obsidian/Network Persistent State
-obsidian/.config/obsidian/obsidian.log
-obsidian/.config/obsidian/Dictionaries/
+# Obsidian (config lives in vault, synced separately)
+obsidian/
