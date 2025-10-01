@@ -1,0 +1,7 @@
+file-history/
+projects/
+shell-snapshots/
+statsig/
+todos/
+history.jsonl
+.credentials.json

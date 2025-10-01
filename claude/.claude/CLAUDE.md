@@ -1,0 +1,3 @@
+- add to memory "always use paru instead of pacman for package management"
+- add to memory "use vim-style keybindings where possible"
+- add to memory "prefer osaka jade color scheme"
