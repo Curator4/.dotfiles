@@ -1,0 +1,30 @@
+# Cava config - Osaka Jade theme
+
+[general]
+framerate = 60
+bars = 0
+autosens = 1
+sensitivity = 100
+
+[input]
+method = pulse
+source = auto
+
+[output]
+method = ncurses
+channels = stereo
+mono_option = average
+
+[color]
+# Osaka Jade gradient
+gradient = 1
+gradient_count = 3
+gradient_color_1 = '#F76B15'  # orange
+gradient_color_2 = '#71CEAD'  # jade/teal
+gradient_color_3 = '#C1C497'  # light green-yellow
+
+[smoothing]
+monstercat = 1
+waves = 0
+gravity = 100
+integral = 77

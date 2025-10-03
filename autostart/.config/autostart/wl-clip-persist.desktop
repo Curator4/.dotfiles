@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=wl-clip-persist
+Exec=wl-clip-persist --clipboard both
+X-GNOME-Autostart-enabled=true

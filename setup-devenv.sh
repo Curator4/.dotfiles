@@ -34,7 +34,11 @@ packages=(
     
     # desktop/wm
     hyprland
+    hyprpaper
+    hyprlock
     kitty
+    rofi-wayland
+    uwsm
     
     # audio/bluetooth
     pipewire
@@ -65,7 +69,9 @@ packages=(
     man-db
     man-pages
     wl-clipboard
+    wl-clip-persist
     fastfetch
+    playerctl
     
     # hardware
     intel-ucode  # change to amd-ucode if amd cpu
@@ -108,6 +114,11 @@ aur_packages=(
     yazi
     eza
     ttf-hack-nerd
+    mpvpaper
+    ncspot
+    cava
+    mako
+    waybar
 )
 paru -S --noconfirm "${aur_packages[@]}"
 
@@ -153,11 +164,18 @@ cd "$HOME/.dotfiles"
 stow_packages=(
     hypr
     kitty
+    rofi
     zsh
     htop
     nvim
     pacseek
     starship
+    ncspot
+    cava
+    mako
+    waybar
+    yazi
+    git
 )
 
 for pkg in "${stow_packages[@]}"; do
