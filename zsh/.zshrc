@@ -6,6 +6,7 @@ alias ll='eza -l --icons --color=auto --group-directories-first'
 alias la='eza -la --icons --color=auto --group-directories-first'
 alias lt='eza -T --icons --color=auto --group-directories-first'
 alias y='yazi'
+alias gs='git status'
 alias themis='~/bin/journal-node'
 
 # Paru wrapper to change message
