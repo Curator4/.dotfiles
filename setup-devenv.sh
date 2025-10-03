@@ -72,6 +72,7 @@ packages=(
     wl-clip-persist
     fastfetch
     playerctl
+    noto-fonts-emoji
     
     # hardware
     intel-ucode  # change to amd-ucode if amd cpu
@@ -119,6 +120,8 @@ aur_packages=(
     cava
     mako
     waybar
+    rofimoji
+    wtype
 )
 paru -S --noconfirm "${aur_packages[@]}"
 
