@@ -170,6 +170,7 @@ stow_packages=(
     rofi
     zsh
     htop
+    btop
     nvim
     pacseek
     starship

@@ -76,7 +76,7 @@
     "custom/gpu": {
         "exec": "~/.config/waybar/scripts/gpu.sh",
         "interval": 5,
-        "on-click": "kitty -e nvidia-smi"
+        "on-click": "kitty -e watch -n 1 nvidia-smi"
     },
 
     "memory": {
