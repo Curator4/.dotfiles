@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Hyprpaper
+Exec=hyprpaper
+X-GNOME-Autostart-enabled=true
