@@ -1,0 +1,13 @@
+configuration {
+    modi: "drun,ssh";
+    show-icons: true;
+    display-drun: "Apps";
+    display-ssh: "SSH";
+    drun-display-format: "{name}";
+    font: "Hack Nerd Font 12";
+    sorting-method: "fzf";
+    matching: "fuzzy";
+    monitor: "DP-4";
+}
+
+@theme "osaka-jade"
