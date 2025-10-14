@@ -36,6 +36,7 @@ packages=(
     hyprland
     hyprpaper
     hyprlock
+    hyprshot
     kitty
     rofi-wayland
     uwsm
