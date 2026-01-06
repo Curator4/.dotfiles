@@ -1,0 +1,1607 @@
+[DEBUG] Getting matching hook commands for SessionStart with query: clear
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+[DEBUG] FileHistory: Added snapshot for bbd5305c-609c-4a26-8b62-7c0c24b00a4d, tracking 0 files
+[DEBUG] Rendering user message with 1 content blocks
+[DEBUG] Block 0: <command-name>/clear</command-name>
+            <command-message>clear</command-message>
+           ...
+[DEBUG] UserCommandMessage rendering: "clear" (args: "none")
+[DEBUG] isSkillFormat: false, prefix: "/"
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761736602622
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257551 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761736602622 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761736602635
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257534 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761736602635 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message e69768db-3079-4cbd-a1a2-a1a8378f7af2
+[DEBUG] FileHistory: Added snapshot for e69768db-3079-4cbd-a1a2-a1a8378f7af2, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761736628184
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257534 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761736628184 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761736628212
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257534 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761736628212 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761736628224
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257479 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761736628224 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 300aaa7b-3f60-4279-b2c9-821efe2a0269
+[DEBUG] FileHistory: Added snapshot for 300aaa7b-3f60-4279-b2c9-821efe2a0269, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761736837790
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257479 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761736837790 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761736837817
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257479 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761736837817 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761736837831
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257428 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761736837831 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message ba583209-db5e-4403-b519-01e5035afa5e
+[DEBUG] FileHistory: Added snapshot for ba583209-db5e-4403-b519-01e5035afa5e, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761736943022
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257428 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761736943022 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761736943051
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257428 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761736943051 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761736943062
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257408 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761736943062 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 603abfc0-8caa-4d43-b58c-01847ca19188
+[DEBUG] FileHistory: Added snapshot for 603abfc0-8caa-4d43-b58c-01847ca19188, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737039320
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257408 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737039320 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737039344
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257408 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737039344 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737039358
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257381 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737039358 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 1d9e9e1e-4b37-4db6-a1b4-ea8ab52e6da6
+[DEBUG] FileHistory: Added snapshot for 1d9e9e1e-4b37-4db6-a1b4-ea8ab52e6da6, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737142983
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257381 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737142983 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737143007
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257381 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737143007 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737143019
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257405 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737143019 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message e9c8e976-f4d7-4a4a-83bf-86912daa4128
+[DEBUG] FileHistory: Added snapshot for e9c8e976-f4d7-4a4a-83bf-86912daa4128, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737397180
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257405 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737397180 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Streaming aborted by user: Request was aborted.
+[ERROR] Error in non-streaming fallback: Request was aborted.
+[ERROR] Error: Error: Request was aborted.
+    at uy.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:357:3850)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737397213
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257405 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737397213 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737397225
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257443 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737397225 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Stream started - received first chunk
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message a5c2bb26-b844-4366-9b08-9d83cbd8460e
+[DEBUG] FileHistory: Added snapshot for a5c2bb26-b844-4366-9b08-9d83cbd8460e, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737432539
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257443 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737432539 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737432582
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257443 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737432582 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737432593
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257420 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737432593 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 4d28d416-4350-4c8c-affa-4a8a5568171e
+[DEBUG] FileHistory: Added snapshot for 4d28d416-4350-4c8c-affa-4a8a5568171e, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737483907
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257420 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737483907 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737483932
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257420 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737483932 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737483944
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257364 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737483944 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local, using native: false
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local, using native: false
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local, using native: false
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local, using native: false
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737505970
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257364 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737505970 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local, using native: false
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message c37cfd13-c351-4de3-a2d8-dd849b0a12e0
+[DEBUG] FileHistory: Added snapshot for c37cfd13-c351-4de3-a2d8-dd849b0a12e0, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737515995
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257364 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737515995 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737516038
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257364 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737516038 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737516051
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257364 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737516051 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 3748e261-8b58-484e-8a4f-75b015e1ce41
+[DEBUG] FileHistory: Added snapshot for 3748e261-8b58-484e-8a4f-75b015e1ce41, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737624697
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257364 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737624697 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737624720
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257364 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737624720 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737624733
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257406 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737624733 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message e617603b-2e59-4013-a54e-4d2db0838a0b
+[DEBUG] FileHistory: Added snapshot for e617603b-2e59-4013-a54e-4d2db0838a0b, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737862678
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257406 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737862678 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737862704
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257406 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737862704 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761737862715
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257371 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761737862715 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 7aabdf33-00b4-468d-885f-dd35cfcd5749
+[DEBUG] FileHistory: Added snapshot for 7aabdf33-00b4-468d-885f-dd35cfcd5749, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761738506533
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257371 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761738506533 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761738506570
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257371 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761738506570 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761738506581
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257378 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761738506581 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 25847589-865c-4818-80d5-f0c5976cd865
+[DEBUG] FileHistory: Added snapshot for 25847589-865c-4818-80d5-f0c5976cd865, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761739100314
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257378 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761739100314 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761739100341
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257378 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761739100341 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761739100352
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257429 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761739100352 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 0c817808-6f51-4f9e-9883-c92d419ce293
+[DEBUG] FileHistory: Added snapshot for 0c817808-6f51-4f9e-9883-c92d419ce293, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761739128085
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257429 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761739128085 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761739128121
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257429 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761739128121 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761739128134
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257397 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761739128134 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 5dc1edd8-2383-4786-b4f9-f770719f6a91
+[DEBUG] FileHistory: Added snapshot for 5dc1edd8-2383-4786-b4f9-f770719f6a91, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761739225204
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257397 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761739225204 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761739225234
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257397 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761739225234 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761739225245
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257418 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761739225245 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 4b7ea794-1a2c-4bc5-b8d1-44e33022f5ea
+[DEBUG] FileHistory: Added snapshot for 4b7ea794-1a2c-4bc5-b8d1-44e33022f5ea, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761739749365
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257418 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761739749365 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761739749388
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257418 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761739749388 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761739749399
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257571 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761739749399 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message fe80a331-1a5a-4f5b-a915-e74163618222
+[DEBUG] FileHistory: Added snapshot for fe80a331-1a5a-4f5b-a915-e74163618222, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761739822215
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257571 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761739822215 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761739822237
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257571 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761739822237 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761739822247
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257470 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761739822247 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 05fdcf8e-b625-410d-8647-5d1b4fcbc502
+[DEBUG] FileHistory: Added snapshot for 05fdcf8e-b625-410d-8647-5d1b4fcbc502, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761740025315
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257470 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761740025315 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761740025351
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257470 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761740025351 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761740025362
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257342 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761740025362 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local, using native: false
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local, using native: false
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message d7c9ce1d-6530-4768-83a9-6d7f1e297fa3
+[DEBUG] FileHistory: Added snapshot for d7c9ce1d-6530-4768-83a9-6d7f1e297fa3, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] npm view failed with code 1
+[DEBUG] npm stderr: (empty)
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761740238798
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257342 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761740238798 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761740238838
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257342 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761740238838 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761740238854
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257284 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761740238854 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local, using native: false
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 0dde6860-8dc4-4daa-8832-dab28ab930e1
+[DEBUG] FileHistory: Added snapshot for 0dde6860-8dc4-4daa-8832-dab28ab930e1, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761740258016
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257284 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761740258016 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761740258049
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257284 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761740258049 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761740258063
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257277 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761740258063 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 80d97bd6-c390-4aae-bcde-33291e2912b3
+[DEBUG] FileHistory: Added snapshot for 80d97bd6-c390-4aae-bcde-33291e2912b3, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761740312117
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257277 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761740312117 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761740312152
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257277 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761740312152 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761740312167
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257785 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761740312167 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message b6267606-be1a-4432-ba8d-116484d1976f
+[DEBUG] FileHistory: Added snapshot for b6267606-be1a-4432-ba8d-116484d1976f, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761741282330
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257785 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761741282330 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761741282353
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257785 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761741282353 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761741282366
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 258032 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761741282366 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message ad7b211b-a317-4c8a-84cb-debf5f5e4a9f
+[DEBUG] FileHistory: Added snapshot for ad7b211b-a317-4c8a-84cb-debf5f5e4a9f, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761741294914
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 258032 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761741294914 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761741298911
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 258032 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761741298911 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761741298935
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 258032 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761741298935 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 5d7c7654-6021-4963-8585-082b011ffc19
+[DEBUG] FileHistory: Added snapshot for 5d7c7654-6021-4963-8585-082b011ffc19, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761741308394
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 258032 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761741308394 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761741308423
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 258032 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761741308423 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761741308434
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257952 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761741308434 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761741308444
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257925 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761741308444 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 5fc6bfd7-dabe-4ff0-a16c-1d42a9b0f42b
+[DEBUG] FileHistory: Added snapshot for 5fc6bfd7-dabe-4ff0-a16c-1d42a9b0f42b, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761741729608
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257925 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761741729608 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761741729645
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257925 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761741729645 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761741729656
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257813 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761741729656 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 6695df25-95fd-451e-9c9e-c5feb9de5757
+[DEBUG] FileHistory: Added snapshot for 6695df25-95fd-451e-9c9e-c5feb9de5757, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761741858878
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257813 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761741858878 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761741858901
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257813 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761741858901 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761741858912
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257817 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761741858912 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 06434ae9-449c-4f5c-8b22-97ed6dc32887
+[DEBUG] FileHistory: Added snapshot for 06434ae9-449c-4f5c-8b22-97ed6dc32887, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761743178933
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257817 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761743178933 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761743178955
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257817 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761743178955 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761743178969
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257939 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761743178969 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 498766fd-964d-4276-b26e-ac1b5593dcab
+[DEBUG] FileHistory: Added snapshot for 498766fd-964d-4276-b26e-ac1b5593dcab, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761743327943
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257939 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761743327943 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761743327968
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257939 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761743327968 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761743327979
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257913 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761743327979 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 886c6819-5047-407f-ad3c-f4ecb1b0aa9b
+[DEBUG] FileHistory: Added snapshot for 886c6819-5047-407f-ad3c-f4ecb1b0aa9b, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761743360924
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257913 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761743360924 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761743360947
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257913 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761743360947 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761743360958
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257837 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761743360958 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 514a4dc1-bfe3-4f37-bdbb-10ec9a271bc3
+[DEBUG] FileHistory: Added snapshot for 514a4dc1-bfe3-4f37-bdbb-10ec9a271bc3, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761743638263
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257837 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761743638263 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761743638290
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257837 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761743638290 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761743638301
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257919 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761743638301 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 658d8729-1904-4163-8d28-43cdf38cebe7
+[DEBUG] FileHistory: Added snapshot for 658d8729-1904-4163-8d28-43cdf38cebe7, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761743796960
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257919 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761743796960 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761743796995
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 257919 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761743796995 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761743797006
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 258007 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761743797006 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message d34db2b4-3da9-42f5-a5b2-f3cf75d4802a
+[DEBUG] FileHistory: Added snapshot for d34db2b4-3da9-42f5-a5b2-f3cf75d4802a, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761745115950
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 258007 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761745115950 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761745115983
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 258007 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761745115983 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761745115994
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256599 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761745115994 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 53071003-4216-4170-a6d5-7cdac1e965aa
+[DEBUG] FileHistory: Added snapshot for 53071003-4216-4170-a6d5-7cdac1e965aa, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761745260536
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256599 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761745260536 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761745260571
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256599 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761745260571 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761745260582
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256609 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761745260582 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message ef53068d-7ee7-4cee-957d-4c18a02e15c1
+[DEBUG] FileHistory: Added snapshot for ef53068d-7ee7-4cee-957d-4c18a02e15c1, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761745278231
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256609 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761745278231 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761745278266
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256609 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761745278266 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761745278278
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256611 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761745278278 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message b4209766-4de7-4cd3-aa27-ae3af159b3a0
+[DEBUG] FileHistory: Added snapshot for b4209766-4de7-4cd3-aa27-ae3af159b3a0, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761745434041
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256611 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761745434041 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761745434063
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256611 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761745434063 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761745434076
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256681 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761745434076 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 37fdf1ff-a7be-43dd-80da-12b8526eeb51
+[DEBUG] FileHistory: Added snapshot for 37fdf1ff-a7be-43dd-80da-12b8526eeb51, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761745495074
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256681 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761745495074 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761745495096
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256681 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761745495096 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761745495108
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256696 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761745495108 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 4f9f4e17-47dc-4880-a204-4f7ef6e72357
+[DEBUG] FileHistory: Added snapshot for 4f9f4e17-47dc-4880-a204-4f7ef6e72357, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761747127464
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256696 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761747127464 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761747127490
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256696 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761747127490 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761747127501
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256673 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761747127501 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message c66ca4ab-91f7-4274-ab91-661e69555dfb
+[DEBUG] FileHistory: Added snapshot for c66ca4ab-91f7-4274-ab91-661e69555dfb, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761748526391
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256673 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761748526391 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761748526416
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256673 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761748526416 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761748526427
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256710 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761748526427 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 6538589f-18f8-4f0e-94a9-b5257427ac5a
+[DEBUG] FileHistory: Added snapshot for 6538589f-18f8-4f0e-94a9-b5257427ac5a, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761748809918
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256710 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761748809918 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761748809945
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256710 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761748809945 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761748809960
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256757 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761748809960 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message a3a3b6ec-6eaa-4594-897a-f96c55ee15cb
+[DEBUG] FileHistory: Added snapshot for a3a3b6ec-6eaa-4594-897a-f96c55ee15cb, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761748957036
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256757 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761748957036 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761748957057
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256757 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761748957057 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761748957067
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256768 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761748957067 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message b352acd7-1ddd-4e46-826e-a54077fb6a0b
+[DEBUG] FileHistory: Added snapshot for b352acd7-1ddd-4e46-826e-a54077fb6a0b, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761748995225
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256768 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761748995225 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761748995246
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256768 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761748995246 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761748995256
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256811 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761748995256 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 186b84f8-979f-4ffa-adef-52e77058deba
+[DEBUG] FileHistory: Added snapshot for 186b84f8-979f-4ffa-adef-52e77058deba, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761749072233
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256811 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761749072233 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761749072257
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256811 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761749072257 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761749072268
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256948 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761749072268 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message a1a5d7f5-d03a-428e-83c9-0d8cc75c19e6
+[DEBUG] FileHistory: Added snapshot for a1a5d7f5-d03a-428e-83c9-0d8cc75c19e6, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761749384160
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256948 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761749384160 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761749384196
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256948 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761749384196 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761749384208
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256973 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761749384208 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message c781956c-13df-41e4-99d6-1c721cfeda94
+[DEBUG] FileHistory: Added snapshot for c781956c-13df-41e4-99d6-1c721cfeda94, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[ERROR] Error streaming, falling back to non-streaming mode: terminated
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761750178953
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 256973 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761750178953 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761750178964
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 258143 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761750178964 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message d03fcbae-87fb-4fc5-977e-fb6229f71f65
+[DEBUG] FileHistory: Added snapshot for d03fcbae-87fb-4fc5-977e-fb6229f71f65, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761750283609
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 258143 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761750283609 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761750283643
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 258143 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761750283643 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761750283654
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 258011 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761750283654 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 63dac475-aa39-482a-a08c-b4ebd072f6ea
+[DEBUG] FileHistory: Added snapshot for 63dac475-aa39-482a-a08c-b4ebd072f6ea, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761750344392
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 258011 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761750344392 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761750344429
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 258011 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761750344429 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.91365.1761750344440
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 251456 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.91365.1761750344440 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically

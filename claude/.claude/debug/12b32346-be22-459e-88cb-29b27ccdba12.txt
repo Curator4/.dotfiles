@@ -1,0 +1,1131 @@
+2025-12-11T01:30:50.139Z [DEBUG] Watching for changes in setting files /home/curator/.claude/settings.json...
+2025-12-11T01:30:50.176Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2025-12-11T01:30:50.176Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2025-12-11T01:30:50.176Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2025-12-11T01:30:50.177Z [DEBUG] [LSP SERVER MANAGER] initialize() called
+2025-12-11T01:30:50.177Z [DEBUG] [LSP SERVER MANAGER] Calling getAllLspServers()
+2025-12-11T01:30:50.188Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2025-12-11T01:30:50.189Z [DEBUG] Total LSP servers loaded: 0
+2025-12-11T01:30:50.189Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2025-12-11T01:30:50.189Z [DEBUG] LSP manager initialized with 0 servers
+2025-12-11T01:30:50.189Z [DEBUG] LSP server manager initialized successfully
+2025-12-11T01:30:50.190Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2025-12-11T01:30:50.212Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (15.8ms): ldd /bin/ls 2>/dev/null
+2025-12-11T01:30:50.217Z [DEBUG] Loading skills from directories: managed=/etc/claude-code/.claude/skills, user=/home/curator/.claude/skills, project=[]
+2025-12-11T01:30:50.218Z [DEBUG] >>>>> getPluginSkills CALLED <<<<<
+2025-12-11T01:30:50.245Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (22.1ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-11T01:30:50.246Z [DEBUG] installed_plugins.json doesn't exist yet at /home/curator/.claude/plugins/installed_plugins.json, returning empty object
+2025-12-11T01:30:50.281Z [DEBUG] Creating shell snapshot for zsh (/usr/bin/zsh)
+2025-12-11T01:30:50.281Z [DEBUG] Looking for shell config file: /home/curator/.zshrc
+2025-12-11T01:30:50.281Z [DEBUG] Snapshots directory: /home/curator/.claude/shell-snapshots
+2025-12-11T01:30:50.282Z [DEBUG] Creating snapshot at: /home/curator/.claude/shell-snapshots/snapshot-zsh-1765416650281-dqfekc.sh
+2025-12-11T01:30:50.282Z [DEBUG] Shell binary exists: true
+2025-12-11T01:30:50.282Z [DEBUG] Execution timeout: 10000ms
+2025-12-11T01:30:50.288Z [DEBUG] Writing to temp file: /home/curator/.claude/todos/12b32346-be22-459e-88cb-29b27ccdba12-agent-12b32346-be22-459e-88cb-29b27ccdba12.json.tmp.29017.1765416650288
+2025-12-11T01:30:50.292Z [DEBUG] Temp file written successfully, size: 2 bytes
+2025-12-11T01:30:50.292Z [DEBUG] Renaming /home/curator/.claude/todos/12b32346-be22-459e-88cb-29b27ccdba12-agent-12b32346-be22-459e-88cb-29b27ccdba12.json.tmp.29017.1765416650288 to /home/curator/.claude/todos/12b32346-be22-459e-88cb-29b27ccdba12-agent-12b32346-be22-459e-88cb-29b27ccdba12.json
+2025-12-11T01:30:50.292Z [DEBUG] File /home/curator/.claude/todos/12b32346-be22-459e-88cb-29b27ccdba12-agent-12b32346-be22-459e-88cb-29b27ccdba12.json written atomically
+2025-12-11T01:30:50.299Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2025-12-11T01:30:50.299Z [DEBUG] Total plugin skills loaded: 0
+2025-12-11T01:30:50.299Z [DEBUG] Total plugin commands loaded: 0
+2025-12-11T01:30:50.299Z [DEBUG] Registered 0 hooks from 0 plugins
+2025-12-11T01:30:50.310Z [DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, duplicates removed: 0)
+2025-12-11T01:30:50.311Z [DEBUG] Attempting to auto-install official marketplace
+2025-12-11T01:30:50.316Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills
+2025-12-11T01:30:50.318Z [DEBUG] Total plugin agents loaded: 0
+2025-12-11T01:30:50.338Z [DEBUG] Git remote URL: git@github.com:curator4/io.git
+2025-12-11T01:30:50.338Z [DEBUG] Parsed repository: curator4/io from git@github.com:curator4/io.git
+2025-12-11T01:30:50.338Z [DEBUG] Parsed repository: curator4/io from URL: git@github.com:curator4/io.git
+2025-12-11T01:30:50.338Z [DEBUG] Path /home/curator/workspace/ai/io already tracked for repo curator4/io
+2025-12-11T01:30:50.338Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=/home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/x64-linux/rg)
+2025-12-11T01:30:50.411Z [DEBUG] Shell snapshot created successfully (11666 bytes)
+2025-12-11T01:30:50.510Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.29017.1765416650510
+2025-12-11T01:30:50.510Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T01:30:50.514Z [DEBUG] Temp file written successfully, size: 57824 bytes
+2025-12-11T01:30:50.514Z [DEBUG] Applied original permissions to temp file
+2025-12-11T01:30:50.514Z [DEBUG] Renaming /home/curator/.claude.json.tmp.29017.1765416650510 to /home/curator/.claude.json
+2025-12-11T01:30:50.514Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T01:30:50.516Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.29017.1765416650516
+2025-12-11T01:30:50.516Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T01:30:50.519Z [DEBUG] Temp file written successfully, size: 57868 bytes
+2025-12-11T01:30:50.519Z [DEBUG] Applied original permissions to temp file
+2025-12-11T01:30:50.519Z [DEBUG] Renaming /home/curator/.claude.json.tmp.29017.1765416650516 to /home/curator/.claude.json
+2025-12-11T01:30:50.519Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T01:30:50.521Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.29017.1765416650521
+2025-12-11T01:30:50.521Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T01:30:50.524Z [DEBUG] Temp file written successfully, size: 57893 bytes
+2025-12-11T01:30:50.524Z [DEBUG] Applied original permissions to temp file
+2025-12-11T01:30:50.524Z [DEBUG] Renaming /home/curator/.claude.json.tmp.29017.1765416650521 to /home/curator/.claude.json
+2025-12-11T01:30:50.524Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T01:30:50.539Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.29017.1765416650539
+2025-12-11T01:30:50.539Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T01:30:50.542Z [DEBUG] Temp file written successfully, size: 60337 bytes
+2025-12-11T01:30:50.542Z [DEBUG] Applied original permissions to temp file
+2025-12-11T01:30:50.542Z [DEBUG] Renaming /home/curator/.claude.json.tmp.29017.1765416650539 to /home/curator/.claude.json
+2025-12-11T01:30:50.542Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T01:30:50.806Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.29017.1765416650806
+2025-12-11T01:30:50.806Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T01:30:50.810Z [DEBUG] Temp file written successfully, size: 60411 bytes
+2025-12-11T01:30:50.810Z [DEBUG] Applied original permissions to temp file
+2025-12-11T01:30:50.810Z [DEBUG] Renaming /home/curator/.claude.json.tmp.29017.1765416650806 to /home/curator/.claude.json
+2025-12-11T01:30:50.810Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T01:30:50.812Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.29017.1765416650812
+2025-12-11T01:30:50.812Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T01:30:50.815Z [DEBUG] Temp file written successfully, size: 60447 bytes
+2025-12-11T01:30:50.815Z [DEBUG] Applied original permissions to temp file
+2025-12-11T01:30:50.815Z [DEBUG] Renaming /home/curator/.claude.json.tmp.29017.1765416650812 to /home/curator/.claude.json
+2025-12-11T01:30:50.815Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T01:30:50.885Z [DEBUG] Creating installed_plugins_v2.json from V1 and settings.json files
+2025-12-11T01:30:50.889Z [DEBUG] Saved 0 installed plugins to V2 file at /home/curator/.claude/plugins/installed_plugins_v2.json
+2025-12-11T01:30:50.889Z [DEBUG] Sync completed: 0 added, 0 updated in installed_plugins_v2.json
+2025-12-11T01:30:50.893Z [DEBUG] Saved 0 installed plugins to /home/curator/.claude/plugins/installed_plugins.json (schema version 1)
+2025-12-11T01:30:50.893Z [DEBUG] V1 file updated with 0 user-scope plugins
+2025-12-11T01:30:50.902Z [DEBUG] Initialized versioned plugins system with 0 plugins
+2025-12-11T01:30:50.906Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.29017.1765416650906
+2025-12-11T01:30:50.906Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T01:30:50.909Z [DEBUG] Temp file written successfully, size: 60447 bytes
+2025-12-11T01:30:50.909Z [DEBUG] Applied original permissions to temp file
+2025-12-11T01:30:50.909Z [DEBUG] Renaming /home/curator/.claude.json.tmp.29017.1765416650906 to /home/curator/.claude.json
+2025-12-11T01:30:50.909Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T01:30:50.916Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2025-12-11T01:30:50.916Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:30:50.916Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2025-12-11T01:30:50.932Z [DEBUG] Skills and commands included in Skill tool:
+2025-12-11T01:30:50.932Z [DEBUG] Slash commands included in SlashCommand tool:
+2025-12-11T01:30:50.985Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.29017.1765416650985
+2025-12-11T01:30:50.985Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T01:30:50.988Z [DEBUG] Temp file written successfully, size: 60374 bytes
+2025-12-11T01:30:50.988Z [DEBUG] Applied original permissions to temp file
+2025-12-11T01:30:50.988Z [DEBUG] Renaming /home/curator/.claude.json.tmp.29017.1765416650985 to /home/curator/.claude.json
+2025-12-11T01:30:50.988Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T01:30:50.991Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.29017.1765416650991
+2025-12-11T01:30:50.991Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T01:30:50.995Z [DEBUG] Temp file written successfully, size: 60374 bytes
+2025-12-11T01:30:50.995Z [DEBUG] Applied original permissions to temp file
+2025-12-11T01:30:50.995Z [DEBUG] Renaming /home/curator/.claude.json.tmp.29017.1765416650991 to /home/curator/.claude.json
+2025-12-11T01:30:50.995Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T01:30:51.007Z [DEBUG] performStartupChecks called
+2025-12-11T01:30:51.007Z [DEBUG] Trust not accepted for current directory - skipping plugin installations
+2025-12-11T01:30:51.018Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T01:30:51.020Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.29017.1765416651020
+2025-12-11T01:30:51.020Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T01:30:51.024Z [DEBUG] Temp file written successfully, size: 60447 bytes
+2025-12-11T01:30:51.024Z [DEBUG] Applied original permissions to temp file
+2025-12-11T01:30:51.024Z [DEBUG] Renaming /home/curator/.claude.json.tmp.29017.1765416651020 to /home/curator/.claude.json
+2025-12-11T01:30:51.024Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T01:30:51.025Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.29017.1765416651025
+2025-12-11T01:30:51.025Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T01:30:51.028Z [DEBUG] Temp file written successfully, size: 60495 bytes
+2025-12-11T01:30:51.028Z [DEBUG] Applied original permissions to temp file
+2025-12-11T01:30:51.028Z [DEBUG] Renaming /home/curator/.claude.json.tmp.29017.1765416651025 to /home/curator/.claude.json
+2025-12-11T01:30:51.028Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T01:30:51.030Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2025-12-11T01:30:51.040Z [DEBUG] Getting matching hook commands for SubagentStart with query: Explore
+2025-12-11T01:30:51.040Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:30:51.040Z [DEBUG] Matched 0 unique hooks for query "Explore" (0 before deduplication)
+2025-12-11T01:30:51.047Z [DEBUG] Getting matching hook commands for SubagentStart with query: Plan
+2025-12-11T01:30:51.047Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:30:51.047Z [DEBUG] Matched 0 unique hooks for query "Plan" (0 before deduplication)
+2025-12-11T01:30:51.074Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.29017.1765416651074
+2025-12-11T01:30:51.074Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T01:30:51.077Z [DEBUG] Temp file written successfully, size: 60676 bytes
+2025-12-11T01:30:51.077Z [DEBUG] Applied original permissions to temp file
+2025-12-11T01:30:51.077Z [DEBUG] Renaming /home/curator/.claude.json.tmp.29017.1765416651074 to /home/curator/.claude.json
+2025-12-11T01:30:51.077Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T01:30:51.114Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.29017.1765416651114
+2025-12-11T01:30:51.114Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T01:30:51.117Z [DEBUG] Temp file written successfully, size: 60676 bytes
+2025-12-11T01:30:51.118Z [DEBUG] Applied original permissions to temp file
+2025-12-11T01:30:51.118Z [DEBUG] Renaming /home/curator/.claude.json.tmp.29017.1765416651114 to /home/curator/.claude.json
+2025-12-11T01:30:51.118Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T01:30:51.855Z [DEBUG] Stream started - received first chunk
+2025-12-11T01:30:52.128Z [DEBUG] Stream started - received first chunk
+2025-12-11T01:30:53.133Z [ERROR] Failed to auto-install official marketplace: Invalid schema: name: Marketplace name cannot impersonate official Anthropic/Claude marketplaces. Names containing "official", "anthropic", or "claude" in official-sounding combinations are reserved.
+2025-12-11T01:30:53.147Z [ERROR] ConfigParseError: ConfigParseError: Invalid schema: name: Marketplace name cannot impersonate official Anthropic/Claude marketplaces. Names containing "official", "anthropic", or "claude" in official-sounding combinations are reserved.
+    at WFB (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1412:842)
+    at Ud1 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1412:2880)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async Ff (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1414:592)
+    at async ju2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4535:5768)
+2025-12-11T01:30:53.149Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.29017.1765416653149
+2025-12-11T01:30:53.149Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T01:30:53.153Z [DEBUG] Temp file written successfully, size: 60829 bytes
+2025-12-11T01:30:53.153Z [DEBUG] Applied original permissions to temp file
+2025-12-11T01:30:53.153Z [DEBUG] Renaming /home/curator/.claude.json.tmp.29017.1765416653149 to /home/curator/.claude.json
+2025-12-11T01:30:53.153Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T01:30:54.407Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-12-11T01:30:54.407Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:30:54.407Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T01:30:54.788Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T01:30:54.789Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T01:30:54.789Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T01:30:54.789Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T01:30:54.795Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T01:30:54.795Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T01:30:54.815Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-11T01:30:54.815Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:30:54.815Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T01:30:54.818Z [DEBUG] FileHistory: Added snapshot for 4111c22e-f4e7-4234-876a-1306ad5acbb9, tracking 0 files
+2025-12-11T01:30:54.841Z [DEBUG] Total plugin output styles loaded: 0
+2025-12-11T01:30:55.584Z [DEBUG] Stream started - received first chunk
+2025-12-11T01:30:56.928Z [DEBUG] Stream started - received first chunk
+2025-12-11T01:30:57.489Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-12-11T01:30:57.489Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:30:57.489Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T01:31:06.721Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-11T01:31:06.721Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:31:06.721Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T01:31:06.752Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (25.0ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-11T01:31:06.782Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (24.4ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-11T01:31:06.791Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.29017.1765416666791
+2025-12-11T01:31:06.791Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T01:31:06.795Z [DEBUG] Temp file written successfully, size: 60861 bytes
+2025-12-11T01:31:06.795Z [DEBUG] Applied original permissions to temp file
+2025-12-11T01:31:06.795Z [DEBUG] Renaming /home/curator/.claude.json.tmp.29017.1765416666791 to /home/curator/.claude.json
+2025-12-11T01:31:06.795Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T01:31:29.549Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T01:31:29.549Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T01:31:29.549Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T01:31:29.549Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T01:31:29.557Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T01:31:29.557Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T01:31:29.568Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-11T01:31:29.568Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:31:29.568Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T01:31:29.569Z [DEBUG] FileHistory: Making snapshot for message 4aa56936-bdf9-4b30-bd98-079daf83c89b
+2025-12-11T01:31:29.569Z [DEBUG] FileHistory: Added snapshot for 4aa56936-bdf9-4b30-bd98-079daf83c89b, tracking 0 files
+2025-12-11T01:31:30.406Z [DEBUG] Stream started - received first chunk
+2025-12-11T01:31:32.282Z [DEBUG] Stream started - received first chunk
+2025-12-11T01:31:41.119Z [DEBUG] executePreToolHooks called for tool: Glob
+2025-12-11T01:31:41.120Z [DEBUG] executePreToolHooks called for tool: Glob
+2025-12-11T01:31:41.125Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2025-12-11T01:31:41.125Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:31:41.125Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2025-12-11T01:31:41.125Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2025-12-11T01:31:41.125Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:31:41.125Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2025-12-11T01:31:41.144Z [DEBUG] Permission suggestions for Glob: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//home/curator/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-11T01:31:41.144Z [DEBUG] Permission suggestions for Glob: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//home/curator/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-11T01:31:41.162Z [DEBUG] executePermissionRequestHooks called for tool: Glob
+2025-12-11T01:31:41.162Z [DEBUG] executePermissionRequestHooks called for tool: Glob
+2025-12-11T01:31:41.173Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Glob
+2025-12-11T01:31:41.173Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:31:41.173Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2025-12-11T01:31:41.173Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Glob
+2025-12-11T01:31:41.173Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:31:41.173Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2025-12-11T01:31:47.175Z [DEBUG] Getting matching hook commands for Notification with query: permission_prompt
+2025-12-11T01:31:47.175Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:31:47.175Z [DEBUG] Matched 0 unique hooks for query "permission_prompt" (0 before deduplication)
+2025-12-11T01:31:49.596Z [DEBUG] Permission suggestions for Glob: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//home/curator/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-11T01:31:50.424Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T01:31:54.249Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2025-12-11T01:31:54.249Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:31:54.249Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2025-12-11T01:31:54.270Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2025-12-11T01:31:54.270Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:31:54.270Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2025-12-11T01:31:54.287Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T01:31:54.287Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T01:31:54.287Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T01:31:54.287Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T01:31:54.297Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T01:31:54.297Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T01:31:56.161Z [DEBUG] Stream started - received first chunk
+2025-12-11T01:31:58.876Z [DEBUG] executePreToolHooks called for tool: Grep
+2025-12-11T01:31:58.881Z [DEBUG] Getting matching hook commands for PreToolUse with query: Grep
+2025-12-11T01:31:58.881Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:31:58.881Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2025-12-11T01:31:58.892Z [DEBUG] Permission suggestions for Grep: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//home/curator/.dotfiles/nvim/.config/nvim/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-11T01:31:58.908Z [DEBUG] executePermissionRequestHooks called for tool: Grep
+2025-12-11T01:31:58.916Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Grep
+2025-12-11T01:31:58.916Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:31:58.916Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2025-12-11T01:31:59.469Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T01:31:59.509Z [DEBUG] Getting matching hook commands for PostToolUse with query: Grep
+2025-12-11T01:31:59.509Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:31:59.509Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2025-12-11T01:31:59.522Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T01:31:59.522Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T01:31:59.522Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T01:31:59.522Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T01:31:59.529Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T01:31:59.529Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T01:32:10.273Z [DEBUG] Stream started - received first chunk
+2025-12-11T01:32:13.213Z [DEBUG] executePreToolHooks called for tool: Read
+2025-12-11T01:32:13.213Z [DEBUG] executePreToolHooks called for tool: Read
+2025-12-11T01:32:13.220Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2025-12-11T01:32:13.220Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:32:13.220Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-11T01:32:13.220Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2025-12-11T01:32:13.220Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:32:13.220Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-11T01:32:13.236Z [DEBUG] Permission suggestions for Read: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//home/curator/.dotfiles/nvim/.config/nvim/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-11T01:32:13.237Z [DEBUG] Permission suggestions for Read: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//home/curator/.dotfiles/nvim/.config/nvim/lua/config/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-11T01:32:13.250Z [DEBUG] executePermissionRequestHooks called for tool: Read
+2025-12-11T01:32:13.251Z [DEBUG] executePermissionRequestHooks called for tool: Read
+2025-12-11T01:32:13.262Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Read
+2025-12-11T01:32:13.262Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:32:13.262Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-11T01:32:13.262Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Read
+2025-12-11T01:32:13.262Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:32:13.262Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-11T01:32:19.252Z [DEBUG] Getting matching hook commands for Notification with query: permission_prompt
+2025-12-11T01:32:19.252Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:32:19.252Z [DEBUG] Matched 0 unique hooks for query "permission_prompt" (0 before deduplication)
+2025-12-11T01:32:32.576Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2025-12-11T01:32:32.576Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:32:32.576Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-11T01:32:32.600Z [DEBUG] Permission suggestions for Read: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//home/curator/.dotfiles/nvim/.config/nvim/lua/config/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-11T01:32:33.173Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T01:32:33.197Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2025-12-11T01:32:33.197Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:32:33.197Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-11T01:32:33.210Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T01:32:33.210Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T01:32:33.210Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T01:32:33.210Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T01:32:33.218Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T01:32:33.218Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T01:32:36.799Z [DEBUG] Stream started - received first chunk
+2025-12-11T01:32:41.744Z [DEBUG] executePreToolHooks called for tool: Glob
+2025-12-11T01:32:41.749Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2025-12-11T01:32:41.749Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:32:41.749Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2025-12-11T01:32:41.761Z [DEBUG] Permission suggestions for Glob: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//home/curator/.dotfiles/nvim/.config/nvim/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-11T01:32:41.778Z [DEBUG] executePermissionRequestHooks called for tool: Glob
+2025-12-11T01:32:41.778Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Glob
+2025-12-11T01:32:41.778Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:32:41.778Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2025-12-11T01:32:42.889Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T01:32:42.920Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2025-12-11T01:32:42.920Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:32:42.920Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2025-12-11T01:32:42.934Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T01:32:42.934Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T01:32:42.934Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T01:32:42.934Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T01:32:42.942Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T01:32:42.942Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T01:32:45.085Z [DEBUG] Stream started - received first chunk
+2025-12-11T01:32:47.022Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-11T01:32:47.028Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-11T01:32:47.028Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:32:47.028Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T01:32:47.041Z [DEBUG] tree-sitter: WASM files not found
+2025-12-11T01:32:47.053Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-11T01:32:47.066Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-11T01:32:47.074Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-11T01:32:47.074Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:32:47.074Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T01:32:47.597Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T01:32:47.600Z [DEBUG] No session environment scripts found
+2025-12-11T01:32:47.643Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-11T01:32:47.643Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:32:47.643Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T01:32:47.656Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T01:32:47.656Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T01:32:47.656Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T01:32:47.656Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T01:32:47.664Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T01:32:47.664Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T01:32:49.010Z [DEBUG] Stream started - received first chunk
+2025-12-11T01:32:50.146Z [DEBUG] Stream started - received first chunk
+2025-12-11T01:32:54.056Z [DEBUG] executePreToolHooks called for tool: Write
+2025-12-11T01:32:54.062Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2025-12-11T01:32:54.062Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:32:54.062Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2025-12-11T01:32:54.077Z [DEBUG] Permission suggestions for Write: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  },
+  {
+    "type": "addDirectories",
+    "directories": [
+      "/home/curator/.dotfiles/nvim/.config/nvim/lua/plugins"
+    ],
+    "destination": "session"
+  }
+]
+2025-12-11T01:32:54.104Z [DEBUG] executePermissionRequestHooks called for tool: Write
+2025-12-11T01:32:54.116Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Write
+2025-12-11T01:32:54.116Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:32:54.116Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2025-12-11T01:32:55.067Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T01:32:55.077Z [DEBUG] FileHistory: Tracked file modification for /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/snacks.lua
+2025-12-11T01:32:55.092Z [DEBUG] Writing to temp file: /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/snacks.lua.tmp.29017.1765416775092
+2025-12-11T01:32:55.095Z [DEBUG] Temp file written successfully, size: 106 bytes
+2025-12-11T01:32:55.095Z [DEBUG] Renaming /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/snacks.lua.tmp.29017.1765416775092 to /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/snacks.lua
+2025-12-11T01:32:55.095Z [DEBUG] File /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/snacks.lua written atomically
+2025-12-11T01:32:55.104Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2025-12-11T01:32:55.104Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:32:55.104Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2025-12-11T01:32:55.117Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T01:32:55.117Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T01:32:55.117Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T01:32:55.117Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T01:32:55.128Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T01:32:55.128Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T01:32:57.479Z [DEBUG] Stream started - received first chunk
+2025-12-11T01:33:01.380Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-11T01:33:01.380Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:33:01.380Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T01:33:01.412Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (26.1ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-11T01:33:01.443Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (25.5ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-11T01:33:23.572Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T01:33:23.572Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T01:33:23.572Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T01:33:23.572Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T01:33:23.577Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T01:33:23.577Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T01:33:23.586Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-11T01:33:23.586Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:33:23.586Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T01:33:23.587Z [DEBUG] FileHistory: Making snapshot for message eaabb403-12ba-466f-bb25-c32a495d9b67
+2025-12-11T01:33:23.594Z [DEBUG] [SLOW OPERATION DETECTED] fs.writeFileSync (6.4ms)
+2025-12-11T01:33:23.594Z [DEBUG] FileHistory: Added snapshot for eaabb403-12ba-466f-bb25-c32a495d9b67, tracking 1 files
+2025-12-11T01:33:24.274Z [DEBUG] Stream started - received first chunk
+2025-12-11T01:33:25.982Z [DEBUG] Stream started - received first chunk
+2025-12-11T01:33:30.404Z [DEBUG] executePreToolHooks called for tool: Read
+2025-12-11T01:33:30.412Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2025-12-11T01:33:30.412Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:33:30.412Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-11T01:33:30.426Z [DEBUG] Permission suggestions for Read: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-11T01:33:30.439Z [DEBUG] executePermissionRequestHooks called for tool: Read
+2025-12-11T01:33:30.440Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Read
+2025-12-11T01:33:30.440Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:33:30.440Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-11T01:33:31.464Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T01:33:31.482Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2025-12-11T01:33:31.482Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:33:31.482Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-11T01:33:31.493Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T01:33:31.493Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T01:33:31.493Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T01:33:31.493Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T01:33:31.499Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T01:33:31.499Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T01:33:34.642Z [DEBUG] Stream started - received first chunk
+2025-12-11T01:33:37.376Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-12-11T01:33:37.381Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-12-11T01:33:37.381Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:33:37.381Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-11T01:33:37.392Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  },
+  {
+    "type": "addDirectories",
+    "directories": [
+      "/home/curator/.dotfiles/nvim/.config/nvim/lua/plugins"
+    ],
+    "destination": "session"
+  }
+]
+2025-12-11T01:33:37.410Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-12-11T01:33:37.421Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-12-11T01:33:37.421Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:33:37.421Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-11T01:33:37.947Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T01:33:37.948Z [DEBUG] Writing to temp file: /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/snacks.lua.tmp.29017.1765416817948
+2025-12-11T01:33:37.948Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T01:33:37.952Z [DEBUG] Temp file written successfully, size: 185 bytes
+2025-12-11T01:33:37.952Z [DEBUG] Applied original permissions to temp file
+2025-12-11T01:33:37.952Z [DEBUG] Renaming /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/snacks.lua.tmp.29017.1765416817948 to /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/snacks.lua
+2025-12-11T01:33:37.952Z [DEBUG] File /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/snacks.lua written atomically
+2025-12-11T01:33:37.971Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-12-11T01:33:37.971Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:33:37.971Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-11T01:33:37.987Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T01:33:37.987Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T01:33:37.987Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T01:33:37.987Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T01:33:37.998Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T01:33:37.998Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T01:33:40.063Z [DEBUG] Stream started - received first chunk
+2025-12-11T01:33:42.845Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-11T01:33:42.845Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T01:33:42.845Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T01:33:42.879Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (27.3ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-11T01:33:42.910Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (25.8ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-11T02:19:04.374Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:19:04.374Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:19:04.374Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:19:04.374Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:19:04.381Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:19:04.381Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:19:04.392Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-11T02:19:04.392Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:19:04.392Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T02:19:04.392Z [DEBUG] FileHistory: Making snapshot for message 82e4b74b-cef6-4ea8-bc4b-29a438acd7e9
+2025-12-11T02:19:04.396Z [DEBUG] FileHistory: Added snapshot for 82e4b74b-cef6-4ea8-bc4b-29a438acd7e9, tracking 1 files
+2025-12-11T02:19:05.485Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:19:06.717Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:19:11.094Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-11T02:19:11.101Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-11T02:19:11.101Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:19:11.101Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T02:19:12.088Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:19:12.108Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:19:13.090Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:19:13.227Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "golangci-lint run:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-11T02:19:13.241Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-11T02:19:13.250Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-11T02:19:13.250Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:19:13.250Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T02:19:14.504Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T02:19:14.525Z [DEBUG] Getting matching hook commands for PostToolUseFailure with query: Bash
+2025-12-11T02:19:14.525Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:19:14.525Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T02:19:14.540Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:19:14.540Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:19:14.540Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:19:14.540Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:19:14.546Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:19:14.546Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:19:16.288Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:19:19.561Z [DEBUG] executePreToolHooks called for tool: Read
+2025-12-11T02:19:19.566Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2025-12-11T02:19:19.566Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:19:19.566Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-11T02:19:19.580Z [DEBUG] Permission suggestions for Read: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-11T02:19:19.595Z [DEBUG] executePermissionRequestHooks called for tool: Read
+2025-12-11T02:19:19.596Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Read
+2025-12-11T02:19:19.596Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:19:19.596Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-11T02:19:20.237Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T02:19:20.255Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2025-12-11T02:19:20.255Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:19:20.256Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-11T02:19:20.266Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:19:20.266Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:19:20.266Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:19:20.266Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:19:20.276Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:19:20.276Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:19:22.437Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:19:28.041Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-12-11T02:19:28.045Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-12-11T02:19:28.045Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:19:28.045Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-11T02:19:28.057Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  },
+  {
+    "type": "addDirectories",
+    "directories": [
+      "/home/curator/.dotfiles/nvim/.config/nvim/lua/plugins"
+    ],
+    "destination": "session"
+  }
+]
+2025-12-11T02:19:28.072Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-12-11T02:19:28.082Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-12-11T02:19:28.082Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:19:28.082Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-11T02:19:28.607Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T02:19:28.608Z [DEBUG] Writing to temp file: /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/linting.lua.tmp.29017.1765419568608
+2025-12-11T02:19:28.608Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T02:19:28.611Z [DEBUG] Temp file written successfully, size: 339 bytes
+2025-12-11T02:19:28.611Z [DEBUG] Applied original permissions to temp file
+2025-12-11T02:19:28.611Z [DEBUG] Renaming /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/linting.lua.tmp.29017.1765419568608 to /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/linting.lua
+2025-12-11T02:19:28.611Z [DEBUG] File /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/linting.lua written atomically
+2025-12-11T02:19:28.620Z [DEBUG] FileHistory: Tracked file modification for /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/linting.lua
+2025-12-11T02:19:28.636Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-12-11T02:19:28.636Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:19:28.636Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-11T02:19:28.648Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:19:28.648Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:19:28.648Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:19:28.648Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:19:28.655Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:19:28.655Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:19:30.200Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:19:33.404Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-11T02:19:33.404Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:19:33.404Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T02:19:33.437Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (25.8ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-11T02:19:33.469Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (26.3ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-11T02:19:54.330Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:19:54.330Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:19:54.330Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:19:54.330Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:19:54.337Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:19:54.337Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:19:54.351Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-11T02:19:54.351Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:19:54.351Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T02:19:54.351Z [DEBUG] FileHistory: Making snapshot for message 8c52cb28-3eb3-4b85-99a9-a65d37ea8190
+2025-12-11T02:19:54.351Z [DEBUG] FileHistory: Added snapshot for 8c52cb28-3eb3-4b85-99a9-a65d37ea8190, tracking 2 files
+2025-12-11T02:19:55.081Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:19:55.885Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:20:01.213Z [DEBUG] executePreToolHooks called for tool: Grep
+2025-12-11T02:20:01.217Z [DEBUG] Getting matching hook commands for PreToolUse with query: Grep
+2025-12-11T02:20:01.217Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:20:01.217Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2025-12-11T02:20:01.230Z [DEBUG] Permission suggestions for Grep: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//home/curator/.dotfiles/nvim/.config/nvim/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-11T02:20:01.242Z [DEBUG] executePermissionRequestHooks called for tool: Grep
+2025-12-11T02:20:01.255Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Grep
+2025-12-11T02:20:01.255Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:20:01.255Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2025-12-11T02:20:07.244Z [DEBUG] Getting matching hook commands for Notification with query: permission_prompt
+2025-12-11T02:20:07.244Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:20:07.244Z [DEBUG] Matched 0 unique hooks for query "permission_prompt" (0 before deduplication)
+2025-12-11T02:20:09.143Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T02:20:09.169Z [DEBUG] Getting matching hook commands for PostToolUse with query: Grep
+2025-12-11T02:20:09.169Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:20:09.169Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2025-12-11T02:20:09.182Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:20:09.182Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:20:09.182Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:20:09.182Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:20:09.189Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:20:09.189Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:20:14.391Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:20:17.121Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-11T02:20:17.125Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-11T02:20:17.125Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:20:17.125Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T02:20:17.168Z [DEBUG] Getting matching hook commands for PostToolUseFailure with query: Bash
+2025-12-11T02:20:17.168Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:20:17.168Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T02:20:17.181Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:20:17.181Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:20:17.181Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:20:17.181Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:20:17.189Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:20:17.189Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:20:18.895Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:20:23.182Z [DEBUG] executePreToolHooks called for tool: Write
+2025-12-11T02:20:23.186Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2025-12-11T02:20:23.186Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:20:23.186Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2025-12-11T02:20:23.197Z [DEBUG] Permission suggestions for Write: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  },
+  {
+    "type": "addDirectories",
+    "directories": [
+      "/home/curator/.dotfiles/nvim/.config/nvim/lua/plugins"
+    ],
+    "destination": "session"
+  }
+]
+2025-12-11T02:20:23.214Z [DEBUG] executePermissionRequestHooks called for tool: Write
+2025-12-11T02:20:23.223Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Write
+2025-12-11T02:20:23.223Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:20:23.223Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2025-12-11T02:20:25.236Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T02:20:25.237Z [DEBUG] Writing to temp file: /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/conform.lua.tmp.29017.1765419625237
+2025-12-11T02:20:25.240Z [DEBUG] Temp file written successfully, size: 168 bytes
+2025-12-11T02:20:25.240Z [DEBUG] Renaming /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/conform.lua.tmp.29017.1765419625237 to /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/conform.lua
+2025-12-11T02:20:25.240Z [DEBUG] File /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/conform.lua written atomically
+2025-12-11T02:20:25.248Z [DEBUG] FileHistory: Tracked file modification for /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/conform.lua
+2025-12-11T02:20:25.264Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2025-12-11T02:20:25.264Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:20:25.264Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2025-12-11T02:20:25.278Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:20:25.278Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:20:25.278Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:20:25.278Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:20:25.284Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:20:25.284Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:20:27.449Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:20:30.692Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-11T02:20:30.692Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:20:30.692Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T02:20:30.726Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (27.5ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-11T02:20:30.757Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (23.8ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-11T02:20:51.063Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:20:51.063Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:20:51.063Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:20:51.063Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:20:51.069Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:20:51.069Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:20:51.079Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-11T02:20:51.079Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:20:51.079Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T02:20:51.079Z [DEBUG] FileHistory: Making snapshot for message d24f0ac2-a408-400d-a54f-0ae22295903d
+2025-12-11T02:20:51.079Z [DEBUG] FileHistory: Added snapshot for d24f0ac2-a408-400d-a54f-0ae22295903d, tracking 3 files
+2025-12-11T02:20:51.904Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:20:52.836Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:20:56.460Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-11T02:20:56.465Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-11T02:20:56.465Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:20:56.465Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T02:20:57.089Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:20:57.327Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:20:57.800Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "/home/curator/.local/opt/go/bin/gofmt:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-11T02:20:57.813Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-11T02:20:57.824Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-11T02:20:57.824Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:20:57.824Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T02:21:09.821Z [DEBUG] Getting matching hook commands for Notification with query: permission_prompt
+2025-12-11T02:21:09.822Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:21:09.822Z [DEBUG] Matched 0 unique hooks for query "permission_prompt" (0 before deduplication)
+2025-12-11T02:21:19.502Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T02:21:19.533Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-11T02:21:19.533Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:21:19.533Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T02:21:19.546Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:21:19.546Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:21:19.546Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:21:19.546Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:21:19.559Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:21:19.559Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:21:20.593Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:21:21.204Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:21:24.619Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-12-11T02:21:24.623Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-12-11T02:21:24.623Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:21:24.623Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-11T02:21:24.634Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  },
+  {
+    "type": "addDirectories",
+    "directories": [
+      "/home/curator/.dotfiles/nvim/.config/nvim/lua/plugins"
+    ],
+    "destination": "session"
+  }
+]
+2025-12-11T02:21:24.648Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-12-11T02:21:24.660Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-12-11T02:21:24.660Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:21:24.660Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-11T02:21:25.928Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T02:21:25.929Z [DEBUG] Writing to temp file: /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/conform.lua.tmp.29017.1765419685928
+2025-12-11T02:21:25.929Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T02:21:25.932Z [DEBUG] Temp file written successfully, size: 168 bytes
+2025-12-11T02:21:25.932Z [DEBUG] Applied original permissions to temp file
+2025-12-11T02:21:25.932Z [DEBUG] Renaming /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/conform.lua.tmp.29017.1765419685928 to /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/conform.lua
+2025-12-11T02:21:25.932Z [DEBUG] File /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/conform.lua written atomically
+2025-12-11T02:21:25.951Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-12-11T02:21:25.951Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:21:25.951Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-11T02:21:25.966Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:21:25.966Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:21:25.966Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:21:25.966Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:21:25.974Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:21:25.974Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:21:28.209Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:21:30.093Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-11T02:21:30.093Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:21:30.093Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T02:21:30.128Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (26.6ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-11T02:21:30.158Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (24.0ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-11T02:21:48.699Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:21:48.699Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:21:48.699Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:21:48.699Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:21:48.710Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:21:48.710Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:21:48.725Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-11T02:21:48.725Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:21:48.725Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T02:21:48.727Z [DEBUG] FileHistory: Making snapshot for message c8c2bc5f-dcd7-48c5-93b0-adaeb4873a22
+2025-12-11T02:21:48.730Z [DEBUG] FileHistory: Added snapshot for c8c2bc5f-dcd7-48c5-93b0-adaeb4873a22, tracking 3 files
+2025-12-11T02:21:49.925Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:21:50.203Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:21:54.371Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-11T02:21:54.375Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-11T02:21:54.375Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:21:54.375Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T02:21:55.026Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:21:55.255Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:21:55.585Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:21:55.870Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "gopls version:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-11T02:21:55.885Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-11T02:21:55.893Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-11T02:21:55.893Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:21:55.893Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T02:21:57.978Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T02:21:58.129Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-11T02:21:58.129Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:21:58.129Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T02:21:58.143Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:21:58.143Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:21:58.143Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:21:58.143Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:21:58.155Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:21:58.155Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:21:59.123Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:21:59.646Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:22:03.277Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-11T02:22:03.281Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-11T02:22:03.282Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:22:03.282Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T02:22:03.926Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:22:03.982Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:22:04.196Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "gopls check:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-11T02:22:04.209Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-11T02:22:04.216Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-11T02:22:04.216Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:22:04.216Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T02:22:04.885Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T02:22:05.116Z [DEBUG] Getting matching hook commands for PostToolUseFailure with query: Bash
+2025-12-11T02:22:05.116Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:22:05.116Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T02:22:05.134Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:22:05.134Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:22:05.134Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:22:05.134Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:22:05.141Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:22:05.141Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:22:06.617Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:22:11.597Z [DEBUG] executePreToolHooks called for tool: Write
+2025-12-11T02:22:11.602Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2025-12-11T02:22:11.602Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:22:11.602Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2025-12-11T02:22:11.615Z [DEBUG] Permission suggestions for Write: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  },
+  {
+    "type": "addDirectories",
+    "directories": [
+      "/home/curator/.dotfiles/nvim/.config/nvim/lua/plugins"
+    ],
+    "destination": "session"
+  }
+]
+2025-12-11T02:22:11.629Z [DEBUG] executePermissionRequestHooks called for tool: Write
+2025-12-11T02:22:11.646Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Write
+2025-12-11T02:22:11.646Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:22:11.646Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2025-12-11T02:22:12.195Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T02:22:12.196Z [DEBUG] Writing to temp file: /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/lsp.lua.tmp.29017.1765419732196
+2025-12-11T02:22:12.200Z [DEBUG] Temp file written successfully, size: 179 bytes
+2025-12-11T02:22:12.200Z [DEBUG] Renaming /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/lsp.lua.tmp.29017.1765419732196 to /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/lsp.lua
+2025-12-11T02:22:12.200Z [DEBUG] File /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/lsp.lua written atomically
+2025-12-11T02:22:12.208Z [DEBUG] FileHistory: Tracked file modification for /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/lsp.lua
+2025-12-11T02:22:12.226Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2025-12-11T02:22:12.226Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:22:12.226Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2025-12-11T02:22:12.240Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:22:12.240Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:22:12.240Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:22:12.240Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:22:12.247Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:22:12.247Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:22:14.671Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:22:18.317Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-11T02:22:18.317Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:22:18.317Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T02:22:18.353Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (27.6ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-11T02:22:18.386Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (24.6ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-11T02:22:59.599Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:22:59.599Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:22:59.599Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:22:59.599Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:22:59.602Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:22:59.602Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:22:59.613Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-11T02:22:59.613Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:22:59.613Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T02:22:59.613Z [DEBUG] FileHistory: Making snapshot for message 1ce3a9df-8117-43ed-88f8-bf389173733c
+2025-12-11T02:22:59.613Z [DEBUG] FileHistory: Added snapshot for 1ce3a9df-8117-43ed-88f8-bf389173733c, tracking 4 files
+2025-12-11T02:23:00.288Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:23:01.331Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:23:07.881Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-12-11T02:23:07.885Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-12-11T02:23:07.885Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:23:07.885Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-11T02:23:07.898Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  },
+  {
+    "type": "addDirectories",
+    "directories": [
+      "/home/curator/.dotfiles/nvim/.config/nvim/lua/plugins"
+    ],
+    "destination": "session"
+  }
+]
+2025-12-11T02:23:07.925Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-12-11T02:23:07.943Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-12-11T02:23:07.943Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:23:07.943Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-11T02:23:08.819Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T02:23:08.821Z [DEBUG] Writing to temp file: /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/lsp.lua.tmp.29017.1765419788821
+2025-12-11T02:23:08.821Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T02:23:08.824Z [DEBUG] Temp file written successfully, size: 466 bytes
+2025-12-11T02:23:08.824Z [DEBUG] Applied original permissions to temp file
+2025-12-11T02:23:08.824Z [DEBUG] Renaming /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/lsp.lua.tmp.29017.1765419788821 to /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/lsp.lua
+2025-12-11T02:23:08.824Z [DEBUG] File /home/curator/.dotfiles/nvim/.config/nvim/lua/plugins/lsp.lua written atomically
+2025-12-11T02:23:08.845Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-12-11T02:23:08.845Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:23:08.845Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-11T02:23:08.862Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:23:08.862Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:23:08.862Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:23:08.862Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:23:08.868Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:23:08.868Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:23:10.866Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:23:14.430Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-11T02:23:14.434Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-11T02:23:14.434Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:23:14.434Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T02:23:15.075Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:23:15.172Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:23:15.388Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "go mod tidy:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-11T02:23:15.401Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-11T02:23:15.409Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-11T02:23:15.409Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:23:15.409Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T02:23:19.814Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T02:23:19.868Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-11T02:23:19.868Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:23:19.868Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-11T02:23:19.883Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:23:19.883Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:23:19.883Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:23:19.883Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:23:19.892Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:23:19.892Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:23:20.859Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:23:21.693Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:23:24.241Z [DEBUG] executePreToolHooks called for tool: Read
+2025-12-11T02:23:24.249Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2025-12-11T02:23:24.249Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:23:24.249Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-11T02:23:24.275Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2025-12-11T02:23:24.275Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:23:24.275Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-11T02:23:24.289Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-11T02:23:24.289Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-11T02:23:24.289Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-11T02:23:24.289Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-11T02:23:24.300Z [DEBUG] [TeammateMailbox] getTeammateMailboxAttachments called: envAgentName=undefined, isTeamLead=false, resolved agentName=undefined, teamName=undefined
+2025-12-11T02:23:24.300Z [DEBUG] [TeammateMailbox] Not checking inbox - not a teammate or team lead
+2025-12-11T02:23:27.227Z [DEBUG] Stream started - received first chunk
+2025-12-11T02:23:35.931Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-11T02:23:35.931Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T02:23:35.931Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-11T02:23:35.963Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (24.9ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-11T02:23:36.001Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (29.0ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da

@@ -1,0 +1,349 @@
+2025-12-14T17:07:39.330Z [DEBUG] Watching for changes in setting files /home/curator/.claude/settings.json...
+2025-12-14T17:07:39.377Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2025-12-14T17:07:39.377Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2025-12-14T17:07:39.377Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2025-12-14T17:07:39.380Z [DEBUG] LSP server manager initialized successfully
+2025-12-14T17:07:39.381Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2025-12-14T17:07:39.391Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2025-12-14T17:07:39.406Z [DEBUG] Stats cache stale (2025-12-12), processing 2025-12-13 to 2025-12-13 in background
+2025-12-14T17:07:39.423Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (15.9ms): ldd /bin/ls 2>/dev/null
+2025-12-14T17:07:39.430Z [DEBUG] Loading skills from directories: managed=/etc/claude-code/.claude/skills, user=/home/curator/.claude/skills, project=[]
+2025-12-14T17:07:39.462Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (24.4ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-14T17:07:39.463Z [DEBUG] Loaded 0 installed plugins from /home/curator/.claude/plugins/installed_plugins.json
+2025-12-14T17:07:39.464Z [DEBUG] Official marketplace auto-install already attempted, skipping
+2025-12-14T17:07:39.499Z [DEBUG] Creating shell snapshot for zsh (/usr/bin/zsh)
+2025-12-14T17:07:39.500Z [DEBUG] Looking for shell config file: /home/curator/.zshrc
+2025-12-14T17:07:39.500Z [DEBUG] Snapshots directory: /home/curator/.claude/shell-snapshots
+2025-12-14T17:07:39.500Z [DEBUG] Creating snapshot at: /home/curator/.claude/shell-snapshots/snapshot-zsh-1765732059500-ttwdn4.sh
+2025-12-14T17:07:39.500Z [DEBUG] Shell binary exists: true
+2025-12-14T17:07:39.500Z [DEBUG] Execution timeout: 10000ms
+2025-12-14T17:07:39.506Z [DEBUG] Writing to temp file: /home/curator/.claude/todos/6bc8c71c-7ae7-474e-8bca-6262a7ac758e-agent-6bc8c71c-7ae7-474e-8bca-6262a7ac758e.json.tmp.84417.1765732059506
+2025-12-14T17:07:39.510Z [DEBUG] Temp file written successfully, size: 2 bytes
+2025-12-14T17:07:39.510Z [DEBUG] Renaming /home/curator/.claude/todos/6bc8c71c-7ae7-474e-8bca-6262a7ac758e-agent-6bc8c71c-7ae7-474e-8bca-6262a7ac758e.json.tmp.84417.1765732059506 to /home/curator/.claude/todos/6bc8c71c-7ae7-474e-8bca-6262a7ac758e-agent-6bc8c71c-7ae7-474e-8bca-6262a7ac758e.json
+2025-12-14T17:07:39.510Z [DEBUG] File /home/curator/.claude/todos/6bc8c71c-7ae7-474e-8bca-6262a7ac758e-agent-6bc8c71c-7ae7-474e-8bca-6262a7ac758e.json written atomically
+2025-12-14T17:07:39.520Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2025-12-14T17:07:39.520Z [DEBUG] Total plugin skills loaded: 0
+2025-12-14T17:07:39.520Z [DEBUG] Total plugin commands loaded: 0
+2025-12-14T17:07:39.520Z [DEBUG] Registered 0 hooks from 0 plugins
+2025-12-14T17:07:39.531Z [DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, duplicates removed: 0)
+2025-12-14T17:07:39.532Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills
+2025-12-14T17:07:39.535Z [DEBUG] Total plugin agents loaded: 0
+2025-12-14T17:07:39.555Z [DEBUG] Git remote URL: git@github.com:curator4/io.git
+2025-12-14T17:07:39.555Z [DEBUG] Parsed repository: curator4/io from git@github.com:curator4/io.git
+2025-12-14T17:07:39.555Z [DEBUG] Parsed repository: curator4/io from URL: git@github.com:curator4/io.git
+2025-12-14T17:07:39.555Z [DEBUG] Path /home/curator/workspace/ai/io already tracked for repo curator4/io
+2025-12-14T17:07:39.555Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=/home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/x64-linux/rg)
+2025-12-14T17:07:39.644Z [DEBUG] Shell snapshot created successfully (11666 bytes)
+2025-12-14T17:07:39.666Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-obsidian-vault/d82b549d-f315-41cd-bc67-fdba0cdba226.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-obsidian-vault/d82b549d-f315-41cd-bc67-fdba0cdba226.jsonl'
+    at xv (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:3878
+    at async Promise.all (index 4)
+    at async kTA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:9601
+    at async RY0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:203)
+    at async Qg2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:9099)
+2025-12-14T17:07:39.666Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-obsidian-vault/f378fe7b-d7b3-4c97-a6ea-d47ac9f799ff.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-obsidian-vault/f378fe7b-d7b3-4c97-a6ea-d47ac9f799ff.jsonl'
+    at xv (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:3878
+    at async Promise.all (index 6)
+    at async kTA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:9601
+    at async RY0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:203)
+    at async Qg2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:9099)
+2025-12-14T17:07:39.719Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-workspace-bootdev-docker-course/e3f3a834-9da9-4e94-972f-5a08f8e0c3fc.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-workspace-bootdev-docker-course/e3f3a834-9da9-4e94-972f-5a08f8e0c3fc.jsonl'
+    at xv (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:3878
+    at async Promise.all (index 9)
+    at async kTA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:9601
+    at async RY0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:203)
+    at async Qg2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:9099)
+2025-12-14T17:07:39.725Z [DEBUG] Stats cache saved successfully (lastComputedDate: 2025-12-13)
+2025-12-14T17:07:39.725Z [DEBUG] Stats cache updated with 2 new sessions
+2025-12-14T17:07:39.770Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84417.1765732059770
+2025-12-14T17:07:39.770Z [DEBUG] Preserving file permissions: 100600
+2025-12-14T17:07:39.773Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-14T17:07:39.773Z [DEBUG] Applied original permissions to temp file
+2025-12-14T17:07:39.773Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84417.1765732059770 to /home/curator/.claude.json
+2025-12-14T17:07:39.773Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-14T17:07:39.799Z [ERROR] AxiosError: AxiosError: Request failed with status code 401
+    at vj (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:56:1137)
+    at IncomingMessage.<anonymous> (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:57:9852)
+    at IncomingMessage.emit (node:events:520:35)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+    at FKA.request (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:59:2130)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async qsB (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1646:3619)
+2025-12-14T17:07:39.826Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84417.1765732059826
+2025-12-14T17:07:39.826Z [DEBUG] Preserving file permissions: 100600
+2025-12-14T17:07:39.829Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-14T17:07:39.829Z [DEBUG] Applied original permissions to temp file
+2025-12-14T17:07:39.829Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84417.1765732059826 to /home/curator/.claude.json
+2025-12-14T17:07:39.830Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-14T17:07:39.832Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84417.1765732059832
+2025-12-14T17:07:39.832Z [DEBUG] Preserving file permissions: 100600
+2025-12-14T17:07:39.836Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-14T17:07:39.836Z [DEBUG] Applied original permissions to temp file
+2025-12-14T17:07:39.836Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84417.1765732059832 to /home/curator/.claude.json
+2025-12-14T17:07:39.836Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-14T17:07:39.850Z [DEBUG] Failed to fetch Grove notice config: AxiosError: Request failed with status code 401
+2025-12-14T17:07:39.879Z [DEBUG] Initialized versioned plugins system with 0 plugins
+2025-12-14T17:07:39.882Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84417.1765732059882
+2025-12-14T17:07:39.882Z [DEBUG] Preserving file permissions: 100600
+2025-12-14T17:07:39.885Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-14T17:07:39.885Z [DEBUG] Applied original permissions to temp file
+2025-12-14T17:07:39.885Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84417.1765732059882 to /home/curator/.claude.json
+2025-12-14T17:07:39.885Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-14T17:07:39.892Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2025-12-14T17:07:39.892Z [DEBUG] Found 0 hook matchers in settings
+2025-12-14T17:07:39.892Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2025-12-14T17:07:39.907Z [DEBUG] Skills and commands included in Skill tool:
+2025-12-14T17:07:39.908Z [DEBUG] Slash commands included in SlashCommand tool:
+2025-12-14T17:07:39.949Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84417.1765732059949
+2025-12-14T17:07:39.949Z [DEBUG] Preserving file permissions: 100600
+2025-12-14T17:07:39.952Z [DEBUG] Temp file written successfully, size: 64660 bytes
+2025-12-14T17:07:39.952Z [DEBUG] Applied original permissions to temp file
+2025-12-14T17:07:39.952Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84417.1765732059949 to /home/curator/.claude.json
+2025-12-14T17:07:39.953Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-14T17:07:39.964Z [DEBUG] performStartupChecks called
+2025-12-14T17:07:39.964Z [DEBUG] Trust not accepted for current directory - skipping plugin installations
+2025-12-14T17:07:39.973Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-14T17:07:39.976Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84417.1765732059976
+2025-12-14T17:07:39.976Z [DEBUG] Preserving file permissions: 100600
+2025-12-14T17:07:39.978Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-14T17:07:39.978Z [DEBUG] Applied original permissions to temp file
+2025-12-14T17:07:39.978Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84417.1765732059976 to /home/curator/.claude.json
+2025-12-14T17:07:39.978Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-14T17:07:39.981Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2025-12-14T17:07:39.999Z [DEBUG] Getting matching hook commands for SubagentStart with query: Explore
+2025-12-14T17:07:39.999Z [DEBUG] Found 0 hook matchers in settings
+2025-12-14T17:07:39.999Z [DEBUG] Matched 0 unique hooks for query "Explore" (0 before deduplication)
+2025-12-14T17:07:40.006Z [DEBUG] Getting matching hook commands for SubagentStart with query: Plan
+2025-12-14T17:07:40.006Z [DEBUG] Found 0 hook matchers in settings
+2025-12-14T17:07:40.006Z [DEBUG] Matched 0 unique hooks for query "Plan" (0 before deduplication)
+2025-12-14T17:07:40.036Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84417.1765732060036
+2025-12-14T17:07:40.036Z [DEBUG] Preserving file permissions: 100600
+2025-12-14T17:07:40.039Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-14T17:07:40.039Z [DEBUG] Applied original permissions to temp file
+2025-12-14T17:07:40.039Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84417.1765732060036 to /home/curator/.claude.json
+2025-12-14T17:07:40.041Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-14T17:07:40.043Z [DEBUG] Summarizing all 58 messages (~39898 tokens)
+2025-12-14T17:07:40.083Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84417.1765732060083
+2025-12-14T17:07:40.083Z [DEBUG] Preserving file permissions: 100600
+2025-12-14T17:07:40.086Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-14T17:07:40.086Z [DEBUG] Applied original permissions to temp file
+2025-12-14T17:07:40.086Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84417.1765732060083 to /home/curator/.claude.json
+2025-12-14T17:07:40.086Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-14T17:07:40.735Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84417.1765732060735
+2025-12-14T17:07:40.735Z [DEBUG] Preserving file permissions: 100600
+2025-12-14T17:07:40.739Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-14T17:07:40.739Z [DEBUG] Applied original permissions to temp file
+2025-12-14T17:07:40.739Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84417.1765732060735 to /home/curator/.claude.json
+2025-12-14T17:07:40.739Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-14T17:07:41.395Z [ERROR] Error streaming, falling back to non-streaming mode: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wryfirgA6NvrtcnTEp"}
+2025-12-14T17:07:41.719Z [ERROR] Error in non-streaming fallback: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wrzte32jCvsFUwjUBy"}
+2025-12-14T17:07:41.720Z [ERROR] Error: Error: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wrzte32jCvsFUwjUBy"}
+    at I9.generate (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:458:10587)
+    at pR.makeStatusError (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:2195)
+    at pR.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:5419)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async feA.model (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11207)
+    at async feA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1220:18703)
+    at async xg2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11361)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3787
+    at async yd1 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:945:2037)
+    at async dYA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3757)
+2025-12-14T17:07:41.734Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-12-14T17:07:41.734Z [DEBUG] Found 0 hook matchers in settings
+2025-12-14T17:07:41.734Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-14T17:07:41.991Z [ERROR] Error streaming, falling back to non-streaming mode: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws1phXsT1hjzHka7Yf"}
+2025-12-14T17:07:42.225Z [ERROR] Error in non-streaming fallback: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws3LjdRcjMrSbuLZxq"}
+2025-12-14T17:07:42.225Z [ERROR] Error: Error: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws3LjdRcjMrSbuLZxq"}
+    at I9.generate (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:458:10587)
+    at pR.makeStatusError (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:2195)
+    at pR.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:5419)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async feA.model (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11207)
+    at async feA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1220:18703)
+    at async xg2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11361)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3545
+    at async yd1 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:945:2037)
+    at async Wh (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3516)
+2025-12-14T17:07:42.230Z [ERROR] Error streaming, falling back to non-streaming mode: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws3E2umKeC3oWQE5jT"}
+2025-12-14T17:07:42.285Z [DEBUG] Summarizing all 537 messages (~100977 tokens)
+2025-12-14T17:07:42.460Z [ERROR] Error in non-streaming fallback: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws4LGBBh6fuvBTXC4g"}
+2025-12-14T17:07:42.460Z [ERROR] Error: Error: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws4LGBBh6fuvBTXC4g"}
+    at I9.generate (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:458:10587)
+    at pR.makeStatusError (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:2195)
+    at pR.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:5419)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async feA.model (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11207)
+    at async feA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1220:18703)
+    at async xg2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11361)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3787
+    at async yd1 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:945:2037)
+    at async dYA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3757)
+2025-12-14T17:07:42.474Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-12-14T17:07:42.474Z [DEBUG] Found 0 hook matchers in settings
+2025-12-14T17:07:42.474Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-14T17:07:42.632Z [ERROR] Error streaming, falling back to non-streaming mode: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws4wUY41syQv2USMX7"}
+2025-12-14T17:07:42.821Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-14T17:07:42.821Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-14T17:07:42.821Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-14T17:07:42.821Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-14T17:07:42.844Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-14T17:07:42.844Z [DEBUG] Found 0 hook matchers in settings
+2025-12-14T17:07:42.844Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-14T17:07:42.845Z [DEBUG] FileHistory: Added snapshot for 04c899ea-0749-49c6-a1fb-af791b4ea062, tracking 0 files
+2025-12-14T17:07:42.870Z [DEBUG] Total plugin output styles loaded: 0
+2025-12-14T17:07:42.907Z [ERROR] Error in non-streaming fallback: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws6BdnoR7xjcniyjpP"}
+2025-12-14T17:07:42.907Z [ERROR] Error: Error: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws6BdnoR7xjcniyjpP"}
+    at I9.generate (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:458:10587)
+    at pR.makeStatusError (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:2195)
+    at pR.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:5419)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async feA.model (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11207)
+    at async feA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1220:18703)
+    at async xg2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11361)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3545
+    at async yd1 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:945:2037)
+    at async Wh (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3516)
+2025-12-14T17:07:42.909Z [DEBUG] Summarizing all 439 messages (~97634 tokens)
+2025-12-14T17:07:43.114Z [ERROR] Error streaming, falling back to non-streaming mode: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws75TxP6JogahoRZFz"}
+2025-12-14T17:07:43.219Z [ERROR] Error streaming, falling back to non-streaming mode: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws7TXzgZKuijHaf4uG"}
+2025-12-14T17:07:43.259Z [ERROR] Error streaming, falling back to non-streaming mode: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws7DteeXrk7BSQ8heR"}
+2025-12-14T17:07:43.344Z [ERROR] Error in non-streaming fallback: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws87y6Yge5sNwWWLBK"}
+2025-12-14T17:07:43.344Z [ERROR] Error: Error: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws87y6Yge5sNwWWLBK"}
+    at I9.generate (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:458:10587)
+    at pR.makeStatusError (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:2195)
+    at pR.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:5419)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async feA.model (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11207)
+    at async feA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1220:18703)
+    at async xg2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11361)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3545
+    at async yd1 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:945:2037)
+    at async Wh (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3516)
+2025-12-14T17:07:43.346Z [ERROR] SyntaxError: SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+    at JSON.parse (<anonymous>)
+    at file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:715
+    at B (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:8:6526)
+    at yWB (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:946:2834)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+2025-12-14T17:07:43.508Z [ERROR] Error in non-streaming fallback: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws8ghfNTpcv4VkB5mj"}
+2025-12-14T17:07:43.508Z [ERROR] Error: Error: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws8ghfNTpcv4VkB5mj"}
+    at I9.generate (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:458:10587)
+    at pR.makeStatusError (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:2195)
+    at pR.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:5419)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async feA.model (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11207)
+    at async feA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1220:18703)
+    at async xg2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11361)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3545
+    at async yd1 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:945:2037)
+    at async Wh (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3516)
+2025-12-14T17:07:43.511Z [DEBUG] Summarizing all 598 messages (~132850 tokens)
+2025-12-14T17:07:43.613Z [ERROR] Error in non-streaming fallback: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws8nuM8w7ec8qwHAfT"}
+2025-12-14T17:07:43.613Z [ERROR] Error: Error: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6ws8nuM8w7ec8qwHAfT"}
+    at I9.generate (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:458:10587)
+    at pR.makeStatusError (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:2195)
+    at pR.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:5419)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async feA.model (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11207)
+    at async feA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1220:18703)
+    at async xg2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11361)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3787
+    at async yd1 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:945:2037)
+    at async dYA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3757)
+2025-12-14T17:07:43.643Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84417.1765732063643
+2025-12-14T17:07:43.643Z [DEBUG] Preserving file permissions: 100600
+2025-12-14T17:07:43.646Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-14T17:07:43.646Z [DEBUG] Applied original permissions to temp file
+2025-12-14T17:07:43.646Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84417.1765732063643 to /home/curator/.claude.json
+2025-12-14T17:07:43.646Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-14T17:07:43.647Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-14T17:07:43.647Z [DEBUG] Found 0 hook matchers in settings
+2025-12-14T17:07:43.647Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-14T17:07:43.681Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (24.3ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-14T17:07:43.712Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (24.9ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-14T17:07:43.725Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84417.1765732063725
+2025-12-14T17:07:43.725Z [DEBUG] Preserving file permissions: 100600
+2025-12-14T17:07:43.728Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-14T17:07:43.728Z [DEBUG] Applied original permissions to temp file
+2025-12-14T17:07:43.728Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84417.1765732063725 to /home/curator/.claude.json
+2025-12-14T17:07:43.728Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-14T17:07:43.809Z [ERROR] Error streaming, falling back to non-streaming mode: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wsA2oyjahHgGqf8Bj6"}
+2025-12-14T17:07:44.061Z [ERROR] Error streaming, falling back to non-streaming mode: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wsAohPf9WmUJXJ5KPE"}
+2025-12-14T17:07:44.264Z [ERROR] Error in non-streaming fallback: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wsBJDQ8kSJbSTGQY4x"}
+2025-12-14T17:07:44.264Z [ERROR] Error: Error: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wsBJDQ8kSJbSTGQY4x"}
+    at I9.generate (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:458:10587)
+    at pR.makeStatusError (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:2195)
+    at pR.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:5419)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async feA.model (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11207)
+    at async feA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1220:18703)
+    at async xg2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11361)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3545
+    at async yd1 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:945:2037)
+    at async Wh (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3516)
+2025-12-14T17:07:44.267Z [DEBUG] Summarizing all 468 messages (~126963 tokens)
+2025-12-14T17:07:44.454Z [ERROR] Error in non-streaming fallback: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wsCG1MGWXWYx3bAp5d"}
+2025-12-14T17:07:44.454Z [ERROR] Error: Error: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wsCG1MGWXWYx3bAp5d"}
+    at I9.generate (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:458:10587)
+    at pR.makeStatusError (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:2195)
+    at pR.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:5419)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async feA.model (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11207)
+    at async feA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1220:18703)
+    at async xg2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11361)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3787
+    at async yd1 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:945:2037)
+    at async dYA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3757)
+2025-12-14T17:07:44.463Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-12-14T17:07:44.464Z [DEBUG] Found 0 hook matchers in settings
+2025-12-14T17:07:44.464Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-14T17:07:44.586Z [ERROR] Error streaming, falling back to non-streaming mode: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wsDGHBb2wshn2kcRic"}
+2025-12-14T17:07:44.910Z [ERROR] Error in non-streaming fallback: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wsEWwMFX748FLTvQCD"}
+2025-12-14T17:07:44.910Z [ERROR] Error: Error: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wsEWwMFX748FLTvQCD"}
+    at I9.generate (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:458:10587)
+    at pR.makeStatusError (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:2195)
+    at pR.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:5419)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async feA.model (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11207)
+    at async feA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1220:18703)
+    at async xg2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11361)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3545
+    at async yd1 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:945:2037)
+    at async Wh (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3516)
+2025-12-14T17:07:44.914Z [DEBUG] Summarizing all 417 messages (~102976 tokens)
+2025-12-14T17:07:45.213Z [ERROR] Error streaming, falling back to non-streaming mode: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wsG4TUeFqW622MaMCs"}
+2025-12-14T17:07:45.465Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (23.8ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-14T17:07:45.485Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-14T17:07:45.612Z [ERROR] Error in non-streaming fallback: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wsHHshb17DeQNKRprR"}
+2025-12-14T17:07:45.612Z [ERROR] Error: Error: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wsHHshb17DeQNKRprR"}
+    at I9.generate (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:458:10587)
+    at pR.makeStatusError (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:2195)
+    at pR.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:5419)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async feA.model (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11207)
+    at async feA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1220:18703)
+    at async xg2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11361)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3545
+    at async yd1 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:945:2037)
+    at async Wh (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3516)
+2025-12-14T17:07:45.615Z [DEBUG] Summarizing all 6 messages (~0 tokens)
+2025-12-14T17:07:45.834Z [ERROR] Error streaming, falling back to non-streaming mode: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wsJq9FemZE1sKMPD3p"}
+2025-12-14T17:07:46.205Z [ERROR] Error in non-streaming fallback: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wsKjiRaJb3yN4X9Txd"}
+2025-12-14T17:07:46.205Z [ERROR] Error: Error: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CW6wsKjiRaJb3yN4X9Txd"}
+    at I9.generate (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:458:10587)
+    at pR.makeStatusError (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:2195)
+    at pR.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:795:5419)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async feA.model (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11207)
+    at async feA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1220:18703)
+    at async xg2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:11361)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3545
+    at async yd1 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:945:2037)
+    at async Wh (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4235:3516)

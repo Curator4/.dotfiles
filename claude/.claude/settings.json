@@ -1,3 +1,7 @@
 {
-  "alwaysThinkingEnabled": false
+  "statusLine": {
+    "type": "command",
+    "command": "/home/curator/.claude/statusline-command.sh"
+  },
+  "alwaysThinkingEnabled": true
 }

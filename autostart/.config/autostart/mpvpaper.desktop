@@ -1,5 +1,5 @@
-[Desktop Entry]
-Type=Application
-Name=MPVpaper
-Exec=mpvpaper -o "loop --hwdec=auto" DP-4 /home/curator/pictures/wallpapers/live/osaka/greenhouse_dark_green_calm.mp4
-X-GNOME-Autostart-enabled=true
+#[Desktop Entry]
+#Type=Application
+#Name=MPVpaper
+#Exec=mpvpaper -o "loop --hwdec=auto" DP-4 /home/curator/pictures/wallpapers/live/osaka/greenhouse_dark_green_calm.mp4
+#X-GNOME-Autostart-enabled=true

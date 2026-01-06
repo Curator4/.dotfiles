@@ -1,0 +1,706 @@
+2025-12-05T16:22:00.383Z [DEBUG] Watching for changes in setting files /home/curator/.claude/settings.json...
+2025-12-05T16:22:00.427Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2025-12-05T16:22:00.427Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2025-12-05T16:22:00.427Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2025-12-05T16:22:00.427Z [DEBUG] [LSP SERVER MANAGER] initialize() called
+2025-12-05T16:22:00.427Z [DEBUG] [LSP SERVER MANAGER] Calling getAllLspServers()
+2025-12-05T16:22:00.441Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2025-12-05T16:22:00.442Z [DEBUG] Total LSP servers loaded: 0
+2025-12-05T16:22:00.453Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2025-12-05T16:22:00.453Z [DEBUG] LSP manager initialized with 0 servers
+2025-12-05T16:22:00.454Z [DEBUG] LSP server manager initialized successfully
+2025-12-05T16:22:00.454Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2025-12-05T16:22:00.477Z [DEBUG] Loading skills from directories: managed=/etc/claude-code/.claude/skills, user=/home/curator/.claude/skills, project=/home/curator/workspace/pnc/sia-receiver-prototype/.claude/skills
+2025-12-05T16:22:00.478Z [DEBUG] >>>>> getPluginSkills CALLED <<<<<
+2025-12-05T16:22:00.509Z [DEBUG] installed_plugins.json doesn't exist yet at /home/curator/.claude/plugins/installed_plugins.json, returning empty object
+2025-12-05T16:22:00.560Z [DEBUG] Creating shell snapshot for zsh (/usr/bin/zsh)
+2025-12-05T16:22:00.560Z [DEBUG] Looking for shell config file: /home/curator/.zshrc
+2025-12-05T16:22:00.560Z [DEBUG] Snapshots directory: /home/curator/.claude/shell-snapshots
+2025-12-05T16:22:00.561Z [DEBUG] Creating snapshot at: /home/curator/.claude/shell-snapshots/snapshot-zsh-1764951720560-a29xp4.sh
+2025-12-05T16:22:00.561Z [DEBUG] Shell binary exists: true
+2025-12-05T16:22:00.561Z [DEBUG] Execution timeout: 10000ms
+2025-12-05T16:22:00.567Z [DEBUG] Writing to temp file: /home/curator/.claude/todos/3c1fb619-e847-4f04-8850-b681b9334a3e-agent-3c1fb619-e847-4f04-8850-b681b9334a3e.json.tmp.84290.1764951720566
+2025-12-05T16:22:00.570Z [DEBUG] Temp file written successfully, size: 2 bytes
+2025-12-05T16:22:00.570Z [DEBUG] Renaming /home/curator/.claude/todos/3c1fb619-e847-4f04-8850-b681b9334a3e-agent-3c1fb619-e847-4f04-8850-b681b9334a3e.json.tmp.84290.1764951720566 to /home/curator/.claude/todos/3c1fb619-e847-4f04-8850-b681b9334a3e-agent-3c1fb619-e847-4f04-8850-b681b9334a3e.json
+2025-12-05T16:22:00.570Z [DEBUG] File /home/curator/.claude/todos/3c1fb619-e847-4f04-8850-b681b9334a3e-agent-3c1fb619-e847-4f04-8850-b681b9334a3e.json written atomically
+2025-12-05T16:22:00.575Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2025-12-05T16:22:00.575Z [DEBUG] Total plugin skills loaded: 0
+2025-12-05T16:22:00.575Z [DEBUG] Total plugin commands loaded: 0
+2025-12-05T16:22:00.575Z [DEBUG] Registered 0 hooks from 0 plugins
+2025-12-05T16:22:00.576Z [DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, duplicates removed: 0)
+2025-12-05T16:22:00.577Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills
+2025-12-05T16:22:00.588Z [DEBUG] Total plugin agents loaded: 0
+2025-12-05T16:22:00.608Z [DEBUG] Git remote URL: git@github.com:Pro-Network-Consult/sia-receiver-prototype.git
+2025-12-05T16:22:00.608Z [DEBUG] Parsed repository: Pro-Network-Consult/sia-receiver-prototype from git@github.com:Pro-Network-Consult/sia-receiver-prototype.git
+2025-12-05T16:22:00.608Z [DEBUG] Parsed repository: Pro-Network-Consult/sia-receiver-prototype from URL: git@github.com:Pro-Network-Consult/sia-receiver-prototype.git
+2025-12-05T16:22:00.611Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951720611
+2025-12-05T16:22:00.611Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:00.614Z [DEBUG] Temp file written successfully, size: 57913 bytes
+2025-12-05T16:22:00.615Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:00.615Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951720611 to /home/curator/.claude.json
+2025-12-05T16:22:00.615Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:00.615Z [DEBUG] Added /home/curator/workspace/pnc/sia-receiver-prototype to tracked paths for repo pro-network-consult/sia-receiver-prototype
+2025-12-05T16:22:00.641Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=/home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/x64-linux/rg)
+2025-12-05T16:22:00.685Z [DEBUG] Shell snapshot created successfully (11666 bytes)
+2025-12-05T16:22:00.727Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951720727
+2025-12-05T16:22:00.727Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:00.730Z [DEBUG] Temp file written successfully, size: 58204 bytes
+2025-12-05T16:22:00.730Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:00.730Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951720727 to /home/curator/.claude.json
+2025-12-05T16:22:00.730Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:00.786Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951720786
+2025-12-05T16:22:00.786Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:00.789Z [DEBUG] Temp file written successfully, size: 58204 bytes
+2025-12-05T16:22:00.789Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:00.789Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951720786 to /home/curator/.claude.json
+2025-12-05T16:22:00.789Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:00.791Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951720791
+2025-12-05T16:22:00.791Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:00.794Z [DEBUG] Temp file written successfully, size: 58204 bytes
+2025-12-05T16:22:00.794Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:00.794Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951720791 to /home/curator/.claude.json
+2025-12-05T16:22:00.794Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:00.796Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951720796
+2025-12-05T16:22:00.796Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:00.799Z [DEBUG] Temp file written successfully, size: 58239 bytes
+2025-12-05T16:22:00.799Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:00.799Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951720796 to /home/curator/.claude.json
+2025-12-05T16:22:00.799Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:00.800Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951720800
+2025-12-05T16:22:00.800Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:00.803Z [DEBUG] Temp file written successfully, size: 58239 bytes
+2025-12-05T16:22:00.803Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:00.803Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951720800 to /home/curator/.claude.json
+2025-12-05T16:22:00.803Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:00.888Z [DEBUG] Failed to fetch Grove notice config: AxiosError: Request failed with status code 401
+2025-12-05T16:22:00.918Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951720917
+2025-12-05T16:22:00.918Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:00.922Z [DEBUG] Temp file written successfully, size: 58239 bytes
+2025-12-05T16:22:00.922Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:00.922Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951720917 to /home/curator/.claude.json
+2025-12-05T16:22:00.922Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:00.930Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951720930
+2025-12-05T16:22:00.930Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:00.934Z [DEBUG] Temp file written successfully, size: 58239 bytes
+2025-12-05T16:22:00.934Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:00.934Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951720930 to /home/curator/.claude.json
+2025-12-05T16:22:00.934Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:00.936Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2025-12-05T16:22:00.936Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:00.936Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2025-12-05T16:22:00.953Z [DEBUG] Skills and commands included in Skill tool:
+2025-12-05T16:22:00.953Z [DEBUG] Slash commands included in SlashCommand tool:
+2025-12-05T16:22:00.992Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951720992
+2025-12-05T16:22:00.992Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:00.995Z [DEBUG] Temp file written successfully, size: 58134 bytes
+2025-12-05T16:22:00.995Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:00.995Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951720992 to /home/curator/.claude.json
+2025-12-05T16:22:00.995Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:00.998Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951720998
+2025-12-05T16:22:00.998Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:01.002Z [DEBUG] Temp file written successfully, size: 58134 bytes
+2025-12-05T16:22:01.002Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:01.002Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951720998 to /home/curator/.claude.json
+2025-12-05T16:22:01.002Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:01.017Z [DEBUG] performStartupChecks called
+2025-12-05T16:22:01.017Z [DEBUG] Starting background plugin installations
+2025-12-05T16:22:01.017Z [DEBUG] performBackgroundPluginInstallations called
+2025-12-05T16:22:01.027Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-05T16:22:01.031Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951721031
+2025-12-05T16:22:01.031Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:01.034Z [DEBUG] Temp file written successfully, size: 58239 bytes
+2025-12-05T16:22:01.034Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:01.034Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951721031 to /home/curator/.claude.json
+2025-12-05T16:22:01.034Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:01.039Z [DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+2025-12-05T16:22:01.049Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2025-12-05T16:22:01.076Z [DEBUG] Getting matching hook commands for SubagentStart with query: Explore
+2025-12-05T16:22:01.076Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:01.076Z [DEBUG] Matched 0 unique hooks for query "Explore" (0 before deduplication)
+2025-12-05T16:22:01.087Z [DEBUG] Getting matching hook commands for SubagentStart with query: Plan
+2025-12-05T16:22:01.087Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:01.087Z [DEBUG] Matched 0 unique hooks for query "Plan" (0 before deduplication)
+2025-12-05T16:22:01.123Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951721123
+2025-12-05T16:22:01.123Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:01.126Z [DEBUG] Temp file written successfully, size: 58239 bytes
+2025-12-05T16:22:01.126Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:01.126Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951721123 to /home/curator/.claude.json
+2025-12-05T16:22:01.126Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:01.217Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951721217
+2025-12-05T16:22:01.217Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:01.221Z [DEBUG] Temp file written successfully, size: 58239 bytes
+2025-12-05T16:22:01.221Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:01.221Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951721217 to /home/curator/.claude.json
+2025-12-05T16:22:01.221Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:01.233Z [ERROR] AxiosError: AxiosError: Request failed with status code 401
+    at bj (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:24:1137)
+    at IncomingMessage.<anonymous> (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:29:9858)
+    at IncomingMessage.emit (node:events:520:35)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+    at xVA.request (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:31:2130)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async oS2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:2149:5280)
+2025-12-05T16:22:01.558Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-05T16:22:01.558Z [DEBUG] AutoUpdater: Using local update method
+2025-12-05T16:22:02.019Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951722019
+2025-12-05T16:22:02.019Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:02.023Z [DEBUG] Temp file written successfully, size: 58239 bytes
+2025-12-05T16:22:02.023Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:02.023Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951722019 to /home/curator/.claude.json
+2025-12-05T16:22:02.023Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:02.744Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951722744
+2025-12-05T16:22:02.744Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:02.748Z [DEBUG] Temp file written successfully, size: 58239 bytes
+2025-12-05T16:22:02.748Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:02.748Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951722744 to /home/curator/.claude.json
+2025-12-05T16:22:02.748Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:03.451Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:22:04.077Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:22:05.660Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-12-05T16:22:05.660Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:05.660Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-05T16:22:05.791Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951725791
+2025-12-05T16:22:05.791Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:05.795Z [DEBUG] Temp file written successfully, size: 58239 bytes
+2025-12-05T16:22:05.795Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:05.795Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951725791 to /home/curator/.claude.json
+2025-12-05T16:22:05.795Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:06.598Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:22:07.593Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951727593
+2025-12-05T16:22:07.593Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:07.597Z [DEBUG] Temp file written successfully, size: 58155 bytes
+2025-12-05T16:22:07.597Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:07.597Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951727593 to /home/curator/.claude.json
+2025-12-05T16:22:07.597Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:10.433Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-12-05T16:22:10.433Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:10.433Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-05T16:22:30.732Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:22:30.732Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:22:30.739Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:22:30.739Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:22:30.777Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-05T16:22:30.777Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:30.777Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-05T16:22:30.780Z [DEBUG] FileHistory: Added snapshot for b1e75632-6d17-4553-beec-61c9cba49007, tracking 0 files
+2025-12-05T16:22:30.815Z [DEBUG] Total plugin output styles loaded: 0
+2025-12-05T16:22:31.480Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:22:32.491Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:22:35.610Z [DEBUG] executePreToolHooks called for tool: Read
+2025-12-05T16:22:35.614Z [DEBUG] executePreToolHooks called for tool: Read
+2025-12-05T16:22:35.617Z [DEBUG] executePreToolHooks called for tool: Read
+2025-12-05T16:22:35.620Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2025-12-05T16:22:35.620Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:35.620Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-05T16:22:35.620Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2025-12-05T16:22:35.620Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:35.620Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-05T16:22:35.620Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2025-12-05T16:22:35.620Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:35.620Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-05T16:22:35.677Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2025-12-05T16:22:35.677Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:35.677Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-05T16:22:35.678Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2025-12-05T16:22:35.678Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:35.678Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-05T16:22:35.678Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2025-12-05T16:22:35.678Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:35.678Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-05T16:22:35.735Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:22:35.735Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:22:35.739Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:22:35.739Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:22:38.387Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:22:42.153Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-05T16:22:42.162Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-05T16:22:42.162Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:42.162Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:22:42.176Z [DEBUG] tree-sitter: WASM files not found
+2025-12-05T16:22:42.928Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:22:43.025Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "go run:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-05T16:22:43.048Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-05T16:22:43.052Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-05T16:22:43.052Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:43.052Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:22:46.257Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-05T16:22:46.261Z [DEBUG] No session environment scripts found
+2025-12-05T16:22:46.573Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-05T16:22:46.573Z [DEBUG] AutoUpdater: Using local update method
+2025-12-05T16:22:46.871Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-05T16:22:46.871Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:46.871Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:22:46.908Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:22:46.908Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:22:46.917Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:22:46.917Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:22:47.085Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951767085
+2025-12-05T16:22:47.085Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:47.100Z [DEBUG] Temp file written successfully, size: 58155 bytes
+2025-12-05T16:22:47.100Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:47.100Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951767085 to /home/curator/.claude.json
+2025-12-05T16:22:47.100Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:47.858Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:22:49.223Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:22:51.611Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-05T16:22:51.619Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-05T16:22:51.619Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:51.619Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:22:52.393Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:22:52.490Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "go run:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-05T16:22:52.509Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-05T16:22:52.513Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-05T16:22:52.513Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:52.514Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:22:53.903Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-05T16:22:54.001Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-05T16:22:54.001Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:54.001Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:22:54.044Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:22:54.044Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:22:54.050Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:22:54.050Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:22:54.227Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-05T16:22:54.227Z [DEBUG] AutoUpdater: Using local update method
+2025-12-05T16:22:54.511Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:22:54.752Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951774752
+2025-12-05T16:22:54.752Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:22:54.755Z [DEBUG] Temp file written successfully, size: 58155 bytes
+2025-12-05T16:22:54.755Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:22:54.755Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951774752 to /home/curator/.claude.json
+2025-12-05T16:22:54.755Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:22:56.625Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:22:59.677Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-05T16:22:59.686Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-05T16:22:59.686Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:22:59.686Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:23:00.283Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:23:00.424Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "python3:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-05T16:23:00.446Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-05T16:23:00.449Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-05T16:23:00.449Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:23:00.449Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:23:06.443Z [DEBUG] Getting matching hook commands for Notification with query: permission_prompt
+2025-12-05T16:23:06.443Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:23:06.443Z [DEBUG] Matched 0 unique hooks for query "permission_prompt" (0 before deduplication)
+2025-12-05T16:23:10.876Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-05T16:23:11.013Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951791013
+2025-12-05T16:23:11.013Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:23:11.017Z [DEBUG] Temp file written successfully, size: 58155 bytes
+2025-12-05T16:23:11.017Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:23:11.017Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951791013 to /home/curator/.claude.json
+2025-12-05T16:23:11.017Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:23:11.025Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951791025
+2025-12-05T16:23:11.025Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:23:11.029Z [DEBUG] Temp file written successfully, size: 58155 bytes
+2025-12-05T16:23:11.029Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:23:11.029Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951791025 to /home/curator/.claude.json
+2025-12-05T16:23:11.029Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:23:11.219Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-05T16:23:11.219Z [DEBUG] AutoUpdater: Using local update method
+2025-12-05T16:23:11.802Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951791802
+2025-12-05T16:23:11.802Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:23:11.817Z [DEBUG] Temp file written successfully, size: 58155 bytes
+2025-12-05T16:23:11.817Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:23:11.817Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951791802 to /home/curator/.claude.json
+2025-12-05T16:23:11.817Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:23:17.648Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:23:17.648Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:23:17.658Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:23:17.658Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:23:17.680Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-05T16:23:17.680Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:23:17.680Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-05T16:23:17.683Z [DEBUG] FileHistory: Making snapshot for message 2e9fa793-afaa-439c-a034-260458dbefe2
+2025-12-05T16:23:17.683Z [DEBUG] FileHistory: Added snapshot for 2e9fa793-afaa-439c-a034-260458dbefe2, tracking 0 files
+2025-12-05T16:23:19.000Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:23:20.527Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:23:22.219Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-05T16:23:22.224Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-05T16:23:22.224Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:23:22.224Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:23:22.767Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:23:22.910Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "python3:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-05T16:23:22.932Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-05T16:23:22.937Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-05T16:23:22.937Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:23:22.937Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:23:25.840Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-05T16:23:25.897Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-05T16:23:25.897Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:23:25.897Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:23:25.940Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:23:25.940Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:23:25.947Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:23:25.947Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:23:26.154Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-05T16:23:26.154Z [DEBUG] AutoUpdater: Using local update method
+2025-12-05T16:23:26.677Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951806677
+2025-12-05T16:23:26.677Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:23:26.681Z [DEBUG] Temp file written successfully, size: 58155 bytes
+2025-12-05T16:23:26.681Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:23:26.681Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951806677 to /home/curator/.claude.json
+2025-12-05T16:23:26.681Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:23:26.884Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:23:28.226Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:23:29.866Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-05T16:23:29.874Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-05T16:23:29.874Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:23:29.874Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:23:30.980Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:23:31.150Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "go run:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-05T16:23:31.169Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-05T16:23:31.175Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-05T16:23:31.175Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:23:31.175Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:23:33.782Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-05T16:23:33.889Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-05T16:23:33.889Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:23:33.889Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:23:33.935Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:23:33.935Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:23:33.943Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:23:33.943Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:23:34.092Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-05T16:23:34.092Z [DEBUG] AutoUpdater: Using local update method
+2025-12-05T16:23:34.619Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951814619
+2025-12-05T16:23:34.619Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:23:34.623Z [DEBUG] Temp file written successfully, size: 58155 bytes
+2025-12-05T16:23:34.623Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:23:34.623Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951814619 to /home/curator/.claude.json
+2025-12-05T16:23:34.623Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:23:35.075Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:23:36.252Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:23:37.898Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-05T16:23:37.906Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-05T16:23:37.906Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:23:37.906Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:23:39.141Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:23:39.450Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "go run:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-05T16:23:39.469Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-05T16:23:39.473Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-05T16:23:39.473Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:23:39.473Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:23:42.718Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-05T16:23:42.816Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-05T16:23:42.816Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:23:42.816Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:23:42.862Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:23:42.862Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:23:42.869Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:23:42.869Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:23:43.033Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-05T16:23:43.033Z [DEBUG] AutoUpdater: Using local update method
+2025-12-05T16:23:43.558Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951823558
+2025-12-05T16:23:43.558Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:23:43.561Z [DEBUG] Temp file written successfully, size: 58155 bytes
+2025-12-05T16:23:43.561Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:23:43.562Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951823558 to /home/curator/.claude.json
+2025-12-05T16:23:43.562Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:23:43.944Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:23:48.674Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:23:50.449Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-05T16:23:50.449Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:23:50.449Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-05T16:24:05.321Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:24:05.321Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:24:05.327Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:24:05.327Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:24:05.351Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-05T16:24:05.351Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:24:05.351Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-05T16:24:05.354Z [DEBUG] FileHistory: Making snapshot for message 15e8043d-41b1-484b-b504-d458ea622d83
+2025-12-05T16:24:05.354Z [DEBUG] FileHistory: Added snapshot for 15e8043d-41b1-484b-b504-d458ea622d83, tracking 0 files
+2025-12-05T16:24:06.463Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:24:06.539Z [DEBUG] Streaming aborted by user: Request was aborted.
+2025-12-05T16:24:06.539Z [ERROR] Error in non-streaming fallback: Request was aborted.
+2025-12-05T16:24:06.540Z [ERROR] Error: Error: Request was aborted.
+    at RT.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1319:3939)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+2025-12-05T16:24:23.702Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:24:23.702Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:24:23.708Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:24:23.708Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:24:23.726Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-05T16:24:23.726Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:24:23.726Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-05T16:24:23.728Z [DEBUG] FileHistory: Making snapshot for message 38c85005-d0e6-4e93-aa88-9ff24edffcf0
+2025-12-05T16:24:23.728Z [DEBUG] FileHistory: Added snapshot for 38c85005-d0e6-4e93-aa88-9ff24edffcf0, tracking 0 files
+2025-12-05T16:24:24.883Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:24:26.667Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:24:28.497Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-05T16:24:28.505Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-05T16:24:28.505Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:24:28.505Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:24:29.510Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:24:29.632Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "./tools/deploy.sh:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-05T16:24:29.643Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-05T16:24:29.646Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-05T16:24:29.646Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:24:29.646Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:24:32.227Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-05T16:24:32.527Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-05T16:24:32.527Z [DEBUG] AutoUpdater: Using local update method
+2025-12-05T16:24:32.985Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951872985
+2025-12-05T16:24:32.985Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:24:32.988Z [DEBUG] Temp file written successfully, size: 58155 bytes
+2025-12-05T16:24:32.988Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:24:32.988Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951872985 to /home/curator/.claude.json
+2025-12-05T16:24:32.988Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:24:43.473Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-05T16:24:43.473Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:24:43.473Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:24:43.504Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:24:43.504Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:24:43.509Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:24:43.509Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:24:44.390Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:24:45.914Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:24:49.340Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-05T16:24:49.348Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-05T16:24:49.348Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:24:49.348Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:24:49.382Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-05T16:24:49.386Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-05T16:24:49.386Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:24:49.386Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:24:52.839Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-05T16:24:53.159Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-05T16:24:53.159Z [DEBUG] AutoUpdater: Using local update method
+2025-12-05T16:24:53.681Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951893681
+2025-12-05T16:24:53.681Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:24:53.685Z [DEBUG] Temp file written successfully, size: 58155 bytes
+2025-12-05T16:24:53.685Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:24:53.685Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951893681 to /home/curator/.claude.json
+2025-12-05T16:24:53.685Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:24:55.124Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-05T16:24:55.124Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:24:55.124Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:24:55.163Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:24:55.163Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:24:55.169Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:24:55.169Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:24:56.315Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:24:58.273Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:24:59.625Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-05T16:24:59.631Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-05T16:24:59.631Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:24:59.631Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:25:00.673Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:25:00.815Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:25:00.824Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:25:01.076Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "unzip:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-05T16:25:01.092Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-05T16:25:01.097Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-05T16:25:01.097Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:25:01.097Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:25:03.767Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-05T16:25:03.813Z [DEBUG] Getting matching hook commands for PostToolUseFailure with query: Bash
+2025-12-05T16:25:03.813Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:25:03.813Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:25:03.838Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:25:03.838Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:25:03.843Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:25:03.843Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:25:04.046Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-05T16:25:04.046Z [DEBUG] AutoUpdater: Using local update method
+2025-12-05T16:25:04.497Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951904497
+2025-12-05T16:25:04.497Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:25:04.501Z [DEBUG] Temp file written successfully, size: 58155 bytes
+2025-12-05T16:25:04.501Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:25:04.501Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951904497 to /home/curator/.claude.json
+2025-12-05T16:25:04.501Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:25:06.373Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:25:06.933Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-05T16:25:06.942Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-05T16:25:06.942Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:25:06.942Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:25:06.995Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-05T16:25:06.995Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:25:06.995Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:25:07.024Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:25:07.024Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:25:07.029Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:25:07.029Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:25:08.249Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:25:09.697Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:25:10.623Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-05T16:25:10.632Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-05T16:25:10.632Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:25:10.632Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:25:10.681Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-05T16:25:10.681Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:25:10.681Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:25:10.711Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:25:10.711Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:25:10.716Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:25:10.716Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:25:11.346Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:25:14.335Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:25:15.865Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-05T16:25:15.872Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-05T16:25:15.872Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:25:15.872Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:25:15.927Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-05T16:25:15.931Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-05T16:25:15.931Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:25:15.931Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:25:16.757Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-05T16:25:17.093Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-05T16:25:17.093Z [DEBUG] AutoUpdater: Using local update method
+2025-12-05T16:25:17.612Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.84290.1764951917612
+2025-12-05T16:25:17.612Z [DEBUG] Preserving file permissions: 100600
+2025-12-05T16:25:17.615Z [DEBUG] Temp file written successfully, size: 58155 bytes
+2025-12-05T16:25:17.616Z [DEBUG] Applied original permissions to temp file
+2025-12-05T16:25:17.616Z [DEBUG] Renaming /home/curator/.claude.json.tmp.84290.1764951917612 to /home/curator/.claude.json
+2025-12-05T16:25:17.616Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-05T16:25:19.014Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-05T16:25:19.014Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:25:19.014Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:25:19.056Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:25:19.056Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:25:19.063Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:25:19.063Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:25:19.907Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:25:21.381Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:25:24.642Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-05T16:25:24.642Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:25:24.642Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-05T16:25:36.862Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:25:36.862Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:25:36.871Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:25:36.871Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:25:36.893Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-05T16:25:36.893Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:25:36.893Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-05T16:25:36.895Z [DEBUG] FileHistory: Making snapshot for message 48d65f9b-da25-4bd8-b72c-50e730fb3e3d
+2025-12-05T16:25:36.895Z [DEBUG] FileHistory: Added snapshot for 48d65f9b-da25-4bd8-b72c-50e730fb3e3d, tracking 0 files
+2025-12-05T16:25:37.664Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:25:38.896Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:25:39.896Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-05T16:25:39.900Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-05T16:25:39.900Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:25:39.900Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:25:39.958Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-05T16:25:39.958Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:25:39.958Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:25:39.988Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:25:39.988Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:25:39.993Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:25:39.993Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:25:40.549Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:25:42.256Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:25:42.834Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-05T16:25:42.843Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-05T16:25:42.843Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:25:42.843Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:25:42.901Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-05T16:25:42.901Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:25:42.901Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-05T16:25:42.933Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-05T16:25:42.933Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-05T16:25:42.939Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-05T16:25:42.939Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-05T16:25:44.145Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:25:45.638Z [DEBUG] Stream started - received first chunk
+2025-12-05T16:25:47.193Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-05T16:25:47.193Z [DEBUG] Found 0 hook matchers in settings
+2025-12-05T16:25:47.193Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)

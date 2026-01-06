@@ -1,0 +1,618 @@
+2026-01-05T12:29:30.859Z [DEBUG] Watching for changes in setting files /home/curator/.claude...
+2026-01-05T12:29:30.906Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-01-05T12:29:30.907Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-01-05T12:29:30.907Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2026-01-05T12:29:30.912Z [DEBUG] LSP server manager initialized successfully
+2026-01-05T12:29:30.913Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2026-01-05T12:29:30.913Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2026-01-05T12:29:30.926Z [DEBUG] Stats cache stale (2025-12-25), processing 2025-12-26 to 2026-01-04 in background
+2026-01-05T12:29:30.943Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults_DEPRECATED (16.2ms): ldd /bin/ls 2>/dev/null
+2026-01-05T12:29:30.949Z [DEBUG] Loading skills from: managed=/etc/claude-code/.claude/skills, user=/home/curator/.claude/skills, project=[]
+2026-01-05T12:29:30.985Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults_DEPRECATED (25.4ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2026-01-05T12:29:30.986Z [DEBUG] Loaded 0 installed plugins from /home/curator/.claude/plugins/installed_plugins.json
+2026-01-05T12:29:31.027Z [DEBUG] Creating shell snapshot for zsh (/usr/bin/zsh)
+2026-01-05T12:29:31.027Z [DEBUG] Looking for shell config file: /home/curator/.zshrc
+2026-01-05T12:29:31.027Z [DEBUG] Snapshots directory: /home/curator/.claude/shell-snapshots
+2026-01-05T12:29:31.028Z [DEBUG] Creating snapshot at: /home/curator/.claude/shell-snapshots/snapshot-zsh-1767616171027-o1ur5t.sh
+2026-01-05T12:29:31.028Z [DEBUG] Shell binary exists: true
+2026-01-05T12:29:31.028Z [DEBUG] Execution timeout: 10000ms
+2026-01-05T12:29:31.033Z [DEBUG] Writing to temp file: /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json.tmp.124369.1767616171033
+2026-01-05T12:29:31.037Z [DEBUG] Temp file written successfully, size: 2 bytes
+2026-01-05T12:29:31.037Z [DEBUG] Renaming /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json.tmp.124369.1767616171033 to /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json
+2026-01-05T12:29:31.037Z [DEBUG] File /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json written atomically
+2026-01-05T12:29:31.040Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2026-01-05T12:29:31.040Z [DEBUG] Total plugin skills loaded: 0
+2026-01-05T12:29:31.040Z [DEBUG] Total plugin commands loaded: 0
+2026-01-05T12:29:31.040Z [DEBUG] Registered 0 hooks from 0 plugins
+2026-01-05T12:29:31.062Z [DEBUG] Total plugin agents loaded: 0
+2026-01-05T12:29:31.062Z [DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, legacy commands: 0)
+2026-01-05T12:29:31.063Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills
+2026-01-05T12:29:31.080Z [DEBUG] Git remote URL: git@github.com:Pro-Network-Consult/sia-receiver-prototype.git
+2026-01-05T12:29:31.081Z [DEBUG] Parsed repository: Pro-Network-Consult/sia-receiver-prototype from git@github.com:Pro-Network-Consult/sia-receiver-prototype.git
+2026-01-05T12:29:31.081Z [DEBUG] Parsed repository: Pro-Network-Consult/sia-receiver-prototype from URL: git@github.com:Pro-Network-Consult/sia-receiver-prototype.git
+2026-01-05T12:29:31.081Z [DEBUG] Path /home/curator/workspace/pnc/sia-receiver-prototype already tracked for repo pro-network-consult/sia-receiver-prototype
+2026-01-05T12:29:31.101Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=/home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/x64-linux/rg)
+2026-01-05T12:29:31.147Z [DEBUG] Shell snapshot created successfully (4314 bytes)
+2026-01-05T12:29:31.192Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-workspace-ai-io/fce7025f-82ba-4a93-bcff-f6f1b39b7ad7.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-workspace-ai-io/fce7025f-82ba-4a93-bcff-f6f1b39b7ad7.jsonl'
+    at kc (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3878
+    at async Promise.all (index 1)
+    at async ZfA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9601
+    at async pO0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:203)
+    at async tI9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9099)
+2026-01-05T12:29:31.192Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-workspace-ai-mcp-client-test/4db9bca3-b0ad-4a85-9f44-bb3cc5bd72db.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-workspace-ai-mcp-client-test/4db9bca3-b0ad-4a85-9f44-bb3cc5bd72db.jsonl'
+    at kc (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3878
+    at async Promise.all (index 2)
+    at async ZfA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9601
+    at async pO0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:203)
+    at async tI9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9099)
+2026-01-05T12:29:31.192Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-workspace-ai-mcp-server-diary/4399e5a6-8195-45dd-8b32-8b98916b798d.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-workspace-ai-mcp-server-diary/4399e5a6-8195-45dd-8b32-8b98916b798d.jsonl'
+    at kc (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3878
+    at async Promise.all (index 5)
+    at async ZfA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9601
+    at async pO0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:203)
+    at async tI9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9099)
+2026-01-05T12:29:31.192Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-workspace-ai-mcp-client-test/ca641990-d5c7-4c4e-a876-3f08168a7726.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-workspace-ai-mcp-client-test/ca641990-d5c7-4c4e-a876-3f08168a7726.jsonl'
+    at kc (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3878
+    at async Promise.all (index 3)
+    at async ZfA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9601
+    at async pO0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:203)
+    at async tI9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9099)
+2026-01-05T12:29:31.192Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-workspace-ai-mcp-server-diary/1083f498-a021-4531-9734-4fb369cbc4b8.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-workspace-ai-mcp-server-diary/1083f498-a021-4531-9734-4fb369cbc4b8.jsonl'
+    at kc (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3878
+    at async Promise.all (index 4)
+    at async ZfA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9601
+    at async pO0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:203)
+    at async tI9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9099)
+2026-01-05T12:29:31.192Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-workspace-ai-mcp-server-diary/88bae07f-2b71-4883-8f6d-f362850bfa68.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-workspace-ai-mcp-server-diary/88bae07f-2b71-4883-8f6d-f362850bfa68.jsonl'
+    at kc (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3878
+    at async Promise.all (index 6)
+    at async ZfA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9601
+    at async pO0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:203)
+    at async tI9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9099)
+2026-01-05T12:29:31.192Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-workspace-ai-mcp-server-diary/ed451c76-ce3a-4f2c-9a4e-8d40d84e830b.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-workspace-ai-mcp-server-diary/ed451c76-ce3a-4f2c-9a4e-8d40d84e830b.jsonl'
+    at kc (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3878
+    at async Promise.all (index 7)
+    at async ZfA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9601
+    at async pO0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:203)
+    at async tI9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9099)
+2026-01-05T12:29:31.192Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-workspace-ai-mcp-server-weather/9956b01a-38d1-45e9-a8ee-d42fa8035808.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-workspace-ai-mcp-server-weather/9956b01a-38d1-45e9-a8ee-d42fa8035808.jsonl'
+    at kc (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3878
+    at async Promise.all (index 8)
+    at async ZfA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9601
+    at async pO0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:203)
+    at async tI9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9099)
+2026-01-05T12:29:31.192Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-workspace-bootdev-learn-cicd-starter/6f012d55-2e06-4631-862f-22114d878ff1.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-workspace-bootdev-learn-cicd-starter/6f012d55-2e06-4631-862f-22114d878ff1.jsonl'
+    at kc (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3878
+    at async Promise.all (index 9)
+    at async ZfA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9601
+    at async pO0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:203)
+    at async tI9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9099)
+2026-01-05T12:29:31.192Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-workspace-bootdev-learn-cicd-starter/b7afaf04-e302-44cd-a43d-d0e2b55eb522.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-workspace-bootdev-learn-cicd-starter/b7afaf04-e302-44cd-a43d-d0e2b55eb522.jsonl'
+    at kc (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3878
+    at async Promise.all (index 10)
+    at async ZfA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9601
+    at async pO0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:203)
+    at async tI9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9099)
+2026-01-05T12:29:31.192Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-workspace-pnc-sia-receiver-prototype/1a667fd1-4947-4dac-b8dd-56a6745c2573.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-workspace-pnc-sia-receiver-prototype/1a667fd1-4947-4dac-b8dd-56a6745c2573.jsonl'
+    at kc (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3878
+    at async Promise.all (index 11)
+    at async ZfA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9601
+    at async pO0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:203)
+    at async tI9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9099)
+2026-01-05T12:29:31.192Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-workspace-pnc-sia-receiver-prototype/3c1fb619-e847-4f04-8850-b681b9334a3e.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-workspace-pnc-sia-receiver-prototype/3c1fb619-e847-4f04-8850-b681b9334a3e.jsonl'
+    at kc (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3878
+    at async Promise.all (index 12)
+    at async ZfA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9601
+    at async pO0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:203)
+    at async tI9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9099)
+2026-01-05T12:29:31.198Z [DEBUG] Stats cache saved successfully (lastComputedDate: 2026-01-04)
+2026-01-05T12:29:31.198Z [DEBUG] Stats cache updated with 1 new sessions
+2026-01-05T12:29:31.277Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.124369.1767616171277
+2026-01-05T12:29:31.277Z [DEBUG] Preserving file permissions: 100600
+2026-01-05T12:29:31.281Z [DEBUG] Temp file written successfully, size: 73053 bytes
+2026-01-05T12:29:31.281Z [DEBUG] Applied original permissions to temp file
+2026-01-05T12:29:31.281Z [DEBUG] Renaming /home/curator/.claude.json.tmp.124369.1767616171277 to /home/curator/.claude.json
+2026-01-05T12:29:31.281Z [DEBUG] File /home/curator/.claude.json written atomically
+2026-01-05T12:29:31.325Z [ERROR] AxiosError: AxiosError: Request failed with status code 401
+    at bx (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:56:1137)
+    at IncomingMessage.<anonymous> (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:57:9852)
+    at IncomingMessage.emit (node:events:520:35)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+    at fzA.request (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:59:2130)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async UT2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1845:3609)
+2026-01-05T12:29:31.374Z [DEBUG] Failed to fetch Grove notice config: AxiosError: Request failed with status code 401
+2026-01-05T12:29:31.405Z [DEBUG] Initialized versioned plugins system with 0 plugins
+2026-01-05T12:29:31.410Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.124369.1767616171410
+2026-01-05T12:29:31.410Z [DEBUG] Preserving file permissions: 100600
+2026-01-05T12:29:31.414Z [DEBUG] Temp file written successfully, size: 73053 bytes
+2026-01-05T12:29:31.414Z [DEBUG] Applied original permissions to temp file
+2026-01-05T12:29:31.414Z [DEBUG] Renaming /home/curator/.claude.json.tmp.124369.1767616171410 to /home/curator/.claude.json
+2026-01-05T12:29:31.414Z [DEBUG] File /home/curator/.claude.json written atomically
+2026-01-05T12:29:31.426Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2026-01-05T12:29:31.426Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T12:29:31.426Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2026-01-05T12:29:31.447Z [DEBUG] Skills and commands included in Skill tool:
+2026-01-05T12:29:31.499Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.124369.1767616171499
+2026-01-05T12:29:31.499Z [DEBUG] Preserving file permissions: 100600
+2026-01-05T12:29:31.502Z [DEBUG] Temp file written successfully, size: 72980 bytes
+2026-01-05T12:29:31.502Z [DEBUG] Applied original permissions to temp file
+2026-01-05T12:29:31.502Z [DEBUG] Renaming /home/curator/.claude.json.tmp.124369.1767616171499 to /home/curator/.claude.json
+2026-01-05T12:29:31.502Z [DEBUG] File /home/curator/.claude.json written atomically
+2026-01-05T12:29:31.516Z [DEBUG] Official marketplace auto-install skipped: already_attempted
+2026-01-05T12:29:31.517Z [DEBUG] performStartupChecks called
+2026-01-05T12:29:31.517Z [DEBUG] Starting background plugin installations
+2026-01-05T12:29:31.517Z [DEBUG] performBackgroundPluginInstallations called
+2026-01-05T12:29:31.526Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2026-01-05T12:29:31.528Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.124369.1767616171528
+2026-01-05T12:29:31.528Z [DEBUG] Preserving file permissions: 100600
+2026-01-05T12:29:31.532Z [DEBUG] Temp file written successfully, size: 72981 bytes
+2026-01-05T12:29:31.532Z [DEBUG] Applied original permissions to temp file
+2026-01-05T12:29:31.532Z [DEBUG] Renaming /home/curator/.claude.json.tmp.124369.1767616171528 to /home/curator/.claude.json
+2026-01-05T12:29:31.532Z [DEBUG] File /home/curator/.claude.json written atomically
+2026-01-05T12:29:31.534Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.124369.1767616171534
+2026-01-05T12:29:31.535Z [DEBUG] Preserving file permissions: 100600
+2026-01-05T12:29:31.538Z [DEBUG] Temp file written successfully, size: 73054 bytes
+2026-01-05T12:29:31.538Z [DEBUG] Applied original permissions to temp file
+2026-01-05T12:29:31.538Z [DEBUG] Renaming /home/curator/.claude.json.tmp.124369.1767616171534 to /home/curator/.claude.json
+2026-01-05T12:29:31.538Z [DEBUG] File /home/curator/.claude.json written atomically
+2026-01-05T12:29:31.540Z [DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+2026-01-05T12:29:31.541Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2026-01-05T12:29:31.559Z [DEBUG] Getting matching hook commands for SubagentStart with query: Explore
+2026-01-05T12:29:31.559Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T12:29:31.559Z [DEBUG] Matched 0 unique hooks for query "Explore" (0 before deduplication)
+2026-01-05T12:29:31.569Z [DEBUG] Getting matching hook commands for SubagentStart with query: Plan
+2026-01-05T12:29:31.569Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T12:29:31.569Z [DEBUG] Matched 0 unique hooks for query "Plan" (0 before deduplication)
+2026-01-05T12:29:31.597Z [DEBUG] [SLOW OPERATION DETECTED] fs.writeFileSync (5.1ms)
+2026-01-05T12:29:31.612Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.124369.1767616171612
+2026-01-05T12:29:31.612Z [DEBUG] Preserving file permissions: 100600
+2026-01-05T12:29:31.615Z [DEBUG] Temp file written successfully, size: 73235 bytes
+2026-01-05T12:29:31.615Z [DEBUG] Applied original permissions to temp file
+2026-01-05T12:29:31.615Z [DEBUG] Renaming /home/curator/.claude.json.tmp.124369.1767616171612 to /home/curator/.claude.json
+2026-01-05T12:29:31.615Z [DEBUG] File /home/curator/.claude.json written atomically
+2026-01-05T12:29:31.651Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.124369.1767616171651
+2026-01-05T12:29:31.651Z [DEBUG] Preserving file permissions: 100600
+2026-01-05T12:29:31.654Z [DEBUG] Temp file written successfully, size: 73235 bytes
+2026-01-05T12:29:31.654Z [DEBUG] Applied original permissions to temp file
+2026-01-05T12:29:31.654Z [DEBUG] Renaming /home/curator/.claude.json.tmp.124369.1767616171651 to /home/curator/.claude.json
+2026-01-05T12:29:31.654Z [DEBUG] File /home/curator/.claude.json written atomically
+2026-01-05T12:29:32.164Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.124369.1767616172164
+2026-01-05T12:29:32.165Z [DEBUG] Preserving file permissions: 100600
+2026-01-05T12:29:32.169Z [DEBUG] Temp file written successfully, size: 73235 bytes
+2026-01-05T12:29:32.169Z [DEBUG] Applied original permissions to temp file
+2026-01-05T12:29:32.169Z [DEBUG] Renaming /home/curator/.claude.json.tmp.124369.1767616172164 to /home/curator/.claude.json
+2026-01-05T12:29:32.169Z [DEBUG] File /home/curator/.claude.json written atomically
+2026-01-05T12:29:32.574Z [DEBUG] Successfully refreshed marketplace: claude-plugins-official
+2026-01-05T12:29:32.574Z [DEBUG] Plugin autoupdate: checking installed plugins
+2026-01-05T12:29:34.131Z [DEBUG] Stream started - received first chunk
+2026-01-05T12:29:34.244Z [DEBUG] Stream started - received first chunk
+2026-01-05T12:29:34.245Z [DEBUG] Stream started - received first chunk
+2026-01-05T12:29:34.444Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.124369.1767616174444
+2026-01-05T12:29:34.444Z [DEBUG] Preserving file permissions: 100600
+2026-01-05T12:29:34.448Z [DEBUG] Temp file written successfully, size: 73235 bytes
+2026-01-05T12:29:34.448Z [DEBUG] Applied original permissions to temp file
+2026-01-05T12:29:34.448Z [DEBUG] Renaming /home/curator/.claude.json.tmp.124369.1767616174444 to /home/curator/.claude.json
+2026-01-05T12:29:34.448Z [DEBUG] File /home/curator/.claude.json written atomically
+2026-01-05T12:29:37.126Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-05T12:29:37.126Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T12:29:37.126Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-05T12:29:41.437Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-05T12:29:41.437Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T12:29:41.437Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-05T17:40:40.660Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-05T17:40:40.660Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-05T17:40:40.660Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-05T17:40:40.660Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-05T17:40:40.686Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-05T17:40:40.686Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:40:40.686Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-05T17:40:40.688Z [DEBUG] FileHistory: Added snapshot for 2aa8a5e0-04c4-4e5a-8727-6a397ae989ab, tracking 0 files
+2026-01-05T17:40:40.716Z [DEBUG] Total plugin output styles loaded: 0
+2026-01-05T17:40:41.905Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:40:42.959Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:40:47.881Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-01-05T17:40:47.882Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-01-05T17:40:47.882Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-01-05T17:40:47.897Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-01-05T17:40:47.897Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:40:47.897Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-05T17:40:47.897Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-01-05T17:40:47.897Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:40:47.897Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-05T17:40:47.897Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-01-05T17:40:47.897Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:40:47.897Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-05T17:40:48.092Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-01-05T17:40:48.092Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:40:48.092Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-05T17:40:48.101Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-01-05T17:40:48.101Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:40:48.101Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-05T17:40:48.124Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-01-05T17:40:48.124Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:40:48.124Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-05T17:40:48.144Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-05T17:40:48.144Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-05T17:40:48.144Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-05T17:40:48.144Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-05T17:40:50.103Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:40:51.559Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-05T17:40:51.564Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-05T17:40:51.564Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:40:51.564Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-05T17:40:51.598Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-05T17:40:51.598Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:40:51.598Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-05T17:40:51.614Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-05T17:40:51.614Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-05T17:40:51.614Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-05T17:40:51.614Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-05T17:40:53.946Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:41:00.229Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-01-05T17:41:00.230Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-05T17:41:00.235Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-01-05T17:41:00.235Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:41:00.235Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-05T17:41:00.235Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-05T17:41:00.235Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:41:00.235Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-05T17:41:00.235Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-05T17:41:00.240Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-05T17:41:00.240Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:41:00.240Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-05T17:41:00.249Z [DEBUG] tree-sitter: WASM files not found
+2026-01-05T17:41:00.274Z [DEBUG] No session environment scripts found
+2026-01-05T17:41:00.296Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-05T17:41:00.296Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:41:00.296Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-05T17:41:00.325Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-01-05T17:41:00.325Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:41:00.325Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-05T17:41:00.331Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-05T17:41:00.331Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:41:00.331Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-05T17:41:00.366Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-05T17:41:00.366Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-05T17:41:00.366Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-05T17:41:00.366Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-05T17:41:01.190Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:41:02.469Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:41:09.037Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-05T17:41:09.037Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-05T17:41:09.043Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-05T17:41:09.043Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:41:09.043Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-05T17:41:09.043Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-05T17:41:09.043Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:41:09.043Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-05T17:41:09.169Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-05T17:41:09.169Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:41:09.169Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-05T17:41:09.595Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:41:09.881Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:41:09.882Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:41:10.055Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "find:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2026-01-05T17:41:10.086Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2026-01-05T17:41:10.105Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2026-01-05T17:41:10.105Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:41:10.105Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-05T17:41:16.101Z [DEBUG] Getting matching hook commands for Notification with query: permission_prompt
+2026-01-05T17:41:16.101Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:41:16.101Z [DEBUG] Matched 0 unique hooks for query "permission_prompt" (0 before deduplication)
+2026-01-05T17:41:33.500Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2026-01-05T17:41:33.550Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-05T17:41:33.550Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:41:33.550Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-05T17:41:33.568Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-05T17:41:33.568Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-05T17:41:33.568Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-05T17:41:33.568Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-05T17:41:34.125Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:41:37.166Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:41:44.706Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-05T17:41:44.706Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:41:44.706Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-05T17:41:44.742Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.124369.1767634904742
+2026-01-05T17:41:44.742Z [DEBUG] Preserving file permissions: 100600
+2026-01-05T17:41:44.745Z [DEBUG] Temp file written successfully, size: 73235 bytes
+2026-01-05T17:41:44.745Z [DEBUG] Applied original permissions to temp file
+2026-01-05T17:41:44.745Z [DEBUG] Renaming /home/curator/.claude.json.tmp.124369.1767634904742 to /home/curator/.claude.json
+2026-01-05T17:41:44.745Z [DEBUG] File /home/curator/.claude.json written atomically
+2026-01-05T17:41:48.884Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:41:59.135Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-05T17:41:59.135Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:41:59.135Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-05T17:43:19.044Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-05T17:43:19.044Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-05T17:43:19.044Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-05T17:43:19.044Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-05T17:43:19.062Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-05T17:43:19.062Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:43:19.062Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-05T17:43:19.063Z [DEBUG] FileHistory: Making snapshot for message 3bbd41ad-fbfd-4d83-85e0-3cb4398a4d2b
+2026-01-05T17:43:19.064Z [DEBUG] FileHistory: Added snapshot for 3bbd41ad-fbfd-4d83-85e0-3cb4398a4d2b, tracking 0 files
+2026-01-05T17:43:19.865Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:43:21.339Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:43:31.626Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-05T17:43:31.626Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:43:31.626Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-05T17:43:34.562Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:43:49.069Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-05T17:43:49.069Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:43:49.069Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-05T17:46:28.441Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-05T17:46:28.441Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-05T17:46:28.441Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-05T17:46:28.441Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-05T17:46:28.487Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-05T17:46:28.487Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:46:28.487Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-05T17:46:28.505Z [DEBUG] FileHistory: Making snapshot for message 3fd6a11f-8aae-4a48-a9ec-6e34ea015a5d
+2026-01-05T17:46:28.505Z [DEBUG] FileHistory: Added snapshot for 3fd6a11f-8aae-4a48-a9ec-6e34ea015a5d, tracking 0 files
+2026-01-05T17:46:29.234Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:46:30.623Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:46:41.144Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-05T17:46:41.165Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-05T17:46:41.165Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:46:41.165Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-05T17:46:41.188Z [DEBUG] Writing to temp file: /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json.tmp.124369.1767635201188
+2026-01-05T17:46:41.188Z [DEBUG] Preserving file permissions: 100600
+2026-01-05T17:46:41.194Z [DEBUG] [SLOW OPERATION DETECTED] fs.writeFileSync (5.4ms)
+2026-01-05T17:46:41.194Z [DEBUG] Temp file written successfully, size: 498 bytes
+2026-01-05T17:46:41.194Z [DEBUG] Applied original permissions to temp file
+2026-01-05T17:46:41.194Z [DEBUG] Renaming /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json.tmp.124369.1767635201188 to /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json
+2026-01-05T17:46:41.194Z [DEBUG] File /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json written atomically
+2026-01-05T17:46:41.206Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-05T17:46:41.206Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:46:41.206Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-05T17:46:41.229Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-05T17:46:41.229Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-05T17:46:41.229Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-05T17:46:41.229Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-05T17:46:43.653Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:46:45.177Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-05T17:46:45.182Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-05T17:46:45.182Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:46:45.182Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-05T17:46:45.746Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:46:45.924Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "cp:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2026-01-05T17:46:45.944Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2026-01-05T17:46:45.952Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2026-01-05T17:46:45.952Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:46:45.952Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-05T17:46:46.933Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2026-01-05T17:46:46.999Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-05T17:46:46.999Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:46:46.999Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-05T17:46:47.023Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-05T17:46:47.023Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-05T17:46:47.023Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-05T17:46:47.023Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-05T17:46:47.461Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:46:51.522Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:46:54.966Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-05T17:46:54.992Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-05T17:46:54.992Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:46:54.992Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-05T17:46:55.008Z [DEBUG] Writing to temp file: /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json.tmp.124369.1767635215008
+2026-01-05T17:46:55.008Z [DEBUG] Preserving file permissions: 100600
+2026-01-05T17:46:55.012Z [DEBUG] Temp file written successfully, size: 500 bytes
+2026-01-05T17:46:55.012Z [DEBUG] Applied original permissions to temp file
+2026-01-05T17:46:55.012Z [DEBUG] Renaming /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json.tmp.124369.1767635215008 to /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json
+2026-01-05T17:46:55.012Z [DEBUG] File /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json written atomically
+2026-01-05T17:46:55.020Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-05T17:46:55.020Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:46:55.020Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-05T17:46:55.042Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-05T17:46:55.042Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-05T17:46:55.042Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-05T17:46:55.042Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-05T17:46:57.052Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:47:30.646Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-05T17:47:30.652Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-05T17:47:30.652Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:47:30.652Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-05T17:47:30.672Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2026-01-05T17:47:30.741Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2026-01-05T17:47:30.817Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2026-01-05T17:47:30.817Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:47:30.817Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-05T17:47:36.750Z [DEBUG] Getting matching hook commands for Notification with query: permission_prompt
+2026-01-05T17:47:36.750Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:47:36.750Z [DEBUG] Matched 0 unique hooks for query "permission_prompt" (0 before deduplication)
+2026-01-05T17:47:37.569Z [DEBUG] Writing to temp file: /home/curator/workspace/pnc/sia-receiver-prototype/config.yaml.tmp.124369.1767635257569
+2026-01-05T17:47:37.569Z [DEBUG] Preserving file permissions: 100644
+2026-01-05T17:47:37.573Z [DEBUG] Temp file written successfully, size: 6212 bytes
+2026-01-05T17:47:37.573Z [DEBUG] Applied original permissions to temp file
+2026-01-05T17:47:37.573Z [DEBUG] Renaming /home/curator/workspace/pnc/sia-receiver-prototype/config.yaml.tmp.124369.1767635257569 to /home/curator/workspace/pnc/sia-receiver-prototype/config.yaml
+2026-01-05T17:47:37.573Z [DEBUG] File /home/curator/workspace/pnc/sia-receiver-prototype/config.yaml written atomically
+2026-01-05T17:47:37.589Z [DEBUG] [SLOW OPERATION DETECTED] fs.writeFileSync (6.4ms)
+2026-01-05T17:47:37.590Z [DEBUG] FileHistory: Tracked file modification for /home/curator/workspace/pnc/sia-receiver-prototype/config.yaml
+2026-01-05T17:47:37.617Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .yaml
+2026-01-05T17:47:37.618Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2026-01-05T17:47:37.632Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-05T17:47:37.632Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:47:37.632Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-05T17:47:37.723Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-05T17:47:37.723Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-05T17:47:37.723Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-05T17:47:37.723Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-05T17:47:40.257Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:47:44.883Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-05T17:47:44.889Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-05T17:47:44.889Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:47:44.889Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-05T17:47:44.909Z [DEBUG] Writing to temp file: /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json.tmp.124369.1767635264909
+2026-01-05T17:47:44.909Z [DEBUG] Preserving file permissions: 100600
+2026-01-05T17:47:44.912Z [DEBUG] Temp file written successfully, size: 502 bytes
+2026-01-05T17:47:44.912Z [DEBUG] Applied original permissions to temp file
+2026-01-05T17:47:44.912Z [DEBUG] Renaming /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json.tmp.124369.1767635264909 to /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json
+2026-01-05T17:47:44.912Z [DEBUG] File /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json written atomically
+2026-01-05T17:47:44.922Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-05T17:47:44.922Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:47:44.922Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-05T17:47:44.947Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-05T17:47:44.947Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-05T17:47:44.947Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-05T17:47:44.947Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-05T17:47:47.796Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:47:50.879Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-05T17:47:50.886Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-05T17:47:50.886Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:47:50.886Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-05T17:47:51.388Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:47:51.759Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "./tools/deploy.sh:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2026-01-05T17:47:51.774Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2026-01-05T17:47:51.781Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2026-01-05T17:47:51.781Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:47:51.781Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-05T17:47:53.604Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2026-01-05T17:48:08.724Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-05T17:48:08.724Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:48:08.724Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-05T17:48:08.757Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-05T17:48:08.757Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-05T17:48:08.757Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-05T17:48:08.757Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-05T17:48:09.504Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:48:10.736Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:48:12.895Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-05T17:48:12.923Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-05T17:48:12.923Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:48:12.923Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-05T17:48:12.945Z [DEBUG] Writing to temp file: /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json.tmp.124369.1767635292945
+2026-01-05T17:48:12.945Z [DEBUG] Preserving file permissions: 100600
+2026-01-05T17:48:12.948Z [DEBUG] Temp file written successfully, size: 2 bytes
+2026-01-05T17:48:12.948Z [DEBUG] Applied original permissions to temp file
+2026-01-05T17:48:12.948Z [DEBUG] Renaming /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json.tmp.124369.1767635292945 to /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json
+2026-01-05T17:48:12.948Z [DEBUG] File /home/curator/.claude/todos/c2e2e251-fa38-43e6-b8bc-d51dbee81703-agent-c2e2e251-fa38-43e6-b8bc-d51dbee81703.json written atomically
+2026-01-05T17:48:12.956Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-05T17:48:12.956Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:48:12.956Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-05T17:48:12.978Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-05T17:48:12.978Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-05T17:48:12.978Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-05T17:48:12.978Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-05T17:48:15.035Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:48:19.639Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-05T17:48:19.639Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:48:19.639Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-05T17:48:22.816Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:48:37.992Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-05T17:48:37.992Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:48:37.992Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-05T17:53:07.116Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-05T17:53:07.116Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-05T17:53:07.116Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-05T17:53:07.116Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-05T17:53:07.127Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-05T17:53:07.127Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:53:07.127Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-05T17:53:07.128Z [DEBUG] FileHistory: Making snapshot for message 28efcf56-2066-4a19-a1e7-cb1e5e8ee6ca
+2026-01-05T17:53:07.128Z [DEBUG] FileHistory: Added snapshot for 28efcf56-2066-4a19-a1e7-cb1e5e8ee6ca, tracking 1 files
+2026-01-05T17:53:07.778Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:53:11.107Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:53:19.335Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-05T17:53:19.340Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-05T17:53:19.340Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:53:19.340Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-05T17:53:19.366Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-05T17:53:19.366Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:53:19.366Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-05T17:53:19.386Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-05T17:53:19.386Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-05T17:53:19.386Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-05T17:53:19.386Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-05T17:53:21.871Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:53:24.469Z [DEBUG] Streaming aborted by user: Request was aborted.
+2026-01-05T17:53:24.469Z [ERROR] Error in non-streaming fallback: Request was aborted.
+2026-01-05T17:53:24.470Z [ERROR] Error: Error: Request was aborted.
+    at _0A._createMessage (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:514:3157)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+2026-01-05T17:53:41.418Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-05T17:53:41.418Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-05T17:53:41.418Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-05T17:53:41.418Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-05T17:53:41.444Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-05T17:53:41.444Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:53:41.444Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-05T17:53:41.445Z [DEBUG] FileHistory: Making snapshot for message 5491d605-1b65-4347-966b-9dc21c5d0e6e
+2026-01-05T17:53:41.445Z [DEBUG] FileHistory: Added snapshot for 5491d605-1b65-4347-966b-9dc21c5d0e6e, tracking 1 files
+2026-01-05T17:53:42.037Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:53:43.902Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:53:49.948Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-05T17:53:49.948Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:53:49.948Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-05T17:53:53.872Z [DEBUG] Stream started - received first chunk
+2026-01-05T17:54:03.679Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-05T17:54:03.679Z [DEBUG] Found 0 hook matchers in settings
+2026-01-05T17:54:03.679Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)

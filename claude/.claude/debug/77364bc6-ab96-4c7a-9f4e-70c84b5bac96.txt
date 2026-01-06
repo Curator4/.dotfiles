@@ -1,0 +1,126 @@
+2025-12-11T05:44:56.814Z [DEBUG] Watching for changes in setting files /home/curator/.claude/settings.json...
+2025-12-11T05:44:56.853Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2025-12-11T05:44:56.853Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2025-12-11T05:44:56.853Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2025-12-11T05:44:56.853Z [DEBUG] [LSP SERVER MANAGER] initialize() called
+2025-12-11T05:44:56.853Z [DEBUG] [LSP SERVER MANAGER] Calling getAllLspServers()
+2025-12-11T05:44:56.864Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2025-12-11T05:44:56.865Z [DEBUG] Total LSP servers loaded: 0
+2025-12-11T05:44:56.865Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2025-12-11T05:44:56.865Z [DEBUG] LSP manager initialized with 0 servers
+2025-12-11T05:44:56.865Z [DEBUG] LSP server manager initialized successfully
+2025-12-11T05:44:56.866Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2025-12-11T05:44:56.889Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (15.9ms): ldd /bin/ls 2>/dev/null
+2025-12-11T05:44:56.894Z [DEBUG] Loading skills from directories: managed=/etc/claude-code/.claude/skills, user=/home/curator/.claude/skills, project=[]
+2025-12-11T05:44:56.895Z [DEBUG] >>>>> getPluginSkills CALLED <<<<<
+2025-12-11T05:44:56.924Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (22.7ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-11T05:44:56.925Z [DEBUG] Loaded 0 installed plugins from /home/curator/.claude/plugins/installed_plugins.json (schema version 1)
+2025-12-11T05:44:56.926Z [DEBUG] Official marketplace auto-install already attempted, skipping
+2025-12-11T05:44:56.965Z [DEBUG] Creating shell snapshot for zsh (/usr/bin/zsh)
+2025-12-11T05:44:56.965Z [DEBUG] Looking for shell config file: /home/curator/.zshrc
+2025-12-11T05:44:56.965Z [DEBUG] Snapshots directory: /home/curator/.claude/shell-snapshots
+2025-12-11T05:44:56.966Z [DEBUG] Creating snapshot at: /home/curator/.claude/shell-snapshots/snapshot-zsh-1765431896965-eg5bxj.sh
+2025-12-11T05:44:56.966Z [DEBUG] Shell binary exists: true
+2025-12-11T05:44:56.966Z [DEBUG] Execution timeout: 10000ms
+2025-12-11T05:44:56.971Z [DEBUG] Writing to temp file: /home/curator/.claude/todos/77364bc6-ab96-4c7a-9f4e-70c84b5bac96-agent-77364bc6-ab96-4c7a-9f4e-70c84b5bac96.json.tmp.158247.1765431896970
+2025-12-11T05:44:56.975Z [DEBUG] Temp file written successfully, size: 2 bytes
+2025-12-11T05:44:56.975Z [DEBUG] Renaming /home/curator/.claude/todos/77364bc6-ab96-4c7a-9f4e-70c84b5bac96-agent-77364bc6-ab96-4c7a-9f4e-70c84b5bac96.json.tmp.158247.1765431896970 to /home/curator/.claude/todos/77364bc6-ab96-4c7a-9f4e-70c84b5bac96-agent-77364bc6-ab96-4c7a-9f4e-70c84b5bac96.json
+2025-12-11T05:44:56.975Z [DEBUG] File /home/curator/.claude/todos/77364bc6-ab96-4c7a-9f4e-70c84b5bac96-agent-77364bc6-ab96-4c7a-9f4e-70c84b5bac96.json written atomically
+2025-12-11T05:44:56.983Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2025-12-11T05:44:56.983Z [DEBUG] Total plugin skills loaded: 0
+2025-12-11T05:44:56.983Z [DEBUG] Total plugin commands loaded: 0
+2025-12-11T05:44:56.983Z [DEBUG] Registered 0 hooks from 0 plugins
+2025-12-11T05:44:56.986Z [DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, duplicates removed: 0)
+2025-12-11T05:44:56.987Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills
+2025-12-11T05:44:57.000Z [DEBUG] Git remote URL: git@github.com:curator4/io.git
+2025-12-11T05:44:57.000Z [DEBUG] Parsed repository: curator4/io from git@github.com:curator4/io.git
+2025-12-11T05:44:57.000Z [DEBUG] Parsed repository: curator4/io from URL: git@github.com:curator4/io.git
+2025-12-11T05:44:57.000Z [DEBUG] Path /home/curator/workspace/ai/io already tracked for repo curator4/io
+2025-12-11T05:44:57.070Z [DEBUG] Total plugin agents loaded: 0
+2025-12-11T05:44:57.082Z [DEBUG] Shell snapshot created successfully (11666 bytes)
+2025-12-11T05:44:57.086Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=/home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/x64-linux/rg)
+2025-12-11T05:44:57.152Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.158247.1765431897151
+2025-12-11T05:44:57.152Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T05:44:57.157Z [DEBUG] [SLOW OPERATION DETECTED] fs.writeFileSync (5.6ms)
+2025-12-11T05:44:57.157Z [DEBUG] Temp file written successfully, size: 61423 bytes
+2025-12-11T05:44:57.157Z [DEBUG] Applied original permissions to temp file
+2025-12-11T05:44:57.157Z [DEBUG] Renaming /home/curator/.claude.json.tmp.158247.1765431897151 to /home/curator/.claude.json
+2025-12-11T05:44:57.157Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T05:44:57.173Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.158247.1765431897173
+2025-12-11T05:44:57.173Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T05:44:57.176Z [DEBUG] Temp file written successfully, size: 61423 bytes
+2025-12-11T05:44:57.176Z [DEBUG] Applied original permissions to temp file
+2025-12-11T05:44:57.176Z [DEBUG] Renaming /home/curator/.claude.json.tmp.158247.1765431897173 to /home/curator/.claude.json
+2025-12-11T05:44:57.176Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T05:44:57.177Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.158247.1765431897177
+2025-12-11T05:44:57.177Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T05:44:57.180Z [DEBUG] Temp file written successfully, size: 61423 bytes
+2025-12-11T05:44:57.180Z [DEBUG] Applied original permissions to temp file
+2025-12-11T05:44:57.180Z [DEBUG] Renaming /home/curator/.claude.json.tmp.158247.1765431897177 to /home/curator/.claude.json
+2025-12-11T05:44:57.181Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T05:44:57.200Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.158247.1765431897200
+2025-12-11T05:44:57.200Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T05:44:57.203Z [DEBUG] Temp file written successfully, size: 61423 bytes
+2025-12-11T05:44:57.203Z [DEBUG] Applied original permissions to temp file
+2025-12-11T05:44:57.203Z [DEBUG] Renaming /home/curator/.claude.json.tmp.158247.1765431897200 to /home/curator/.claude.json
+2025-12-11T05:44:57.203Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T05:44:57.943Z [DEBUG] Loaded 0 installed plugins from V2 file at /home/curator/.claude/plugins/installed_plugins_v2.json
+2025-12-11T05:44:57.943Z [DEBUG] Initialized versioned plugins system with 0 plugins
+2025-12-11T05:44:57.947Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.158247.1765431897947
+2025-12-11T05:44:57.947Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T05:44:57.962Z [DEBUG] [SLOW OPERATION DETECTED] fs.writeFileSync (15.0ms)
+2025-12-11T05:44:57.962Z [DEBUG] Temp file written successfully, size: 61423 bytes
+2025-12-11T05:44:57.962Z [DEBUG] Applied original permissions to temp file
+2025-12-11T05:44:57.962Z [DEBUG] Renaming /home/curator/.claude.json.tmp.158247.1765431897947 to /home/curator/.claude.json
+2025-12-11T05:44:57.962Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T05:44:57.971Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2025-12-11T05:44:57.971Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T05:44:57.971Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2025-12-11T05:44:57.990Z [DEBUG] Skills and commands included in Skill tool:
+2025-12-11T05:44:57.990Z [DEBUG] Slash commands included in SlashCommand tool:
+2025-12-11T05:44:58.047Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.158247.1765431898047
+2025-12-11T05:44:58.047Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T05:44:58.050Z [DEBUG] Temp file written successfully, size: 61350 bytes
+2025-12-11T05:44:58.050Z [DEBUG] Applied original permissions to temp file
+2025-12-11T05:44:58.050Z [DEBUG] Renaming /home/curator/.claude.json.tmp.158247.1765431898047 to /home/curator/.claude.json
+2025-12-11T05:44:58.050Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T05:44:58.053Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.158247.1765431898053
+2025-12-11T05:44:58.053Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T05:44:58.056Z [DEBUG] Temp file written successfully, size: 61350 bytes
+2025-12-11T05:44:58.056Z [DEBUG] Applied original permissions to temp file
+2025-12-11T05:44:58.056Z [DEBUG] Renaming /home/curator/.claude.json.tmp.158247.1765431898053 to /home/curator/.claude.json
+2025-12-11T05:44:58.056Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T05:44:58.068Z [DEBUG] performStartupChecks called
+2025-12-11T05:44:58.069Z [DEBUG] Trust not accepted for current directory - skipping plugin installations
+2025-12-11T05:44:58.079Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-11T05:44:58.081Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.158247.1765431898081
+2025-12-11T05:44:58.081Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T05:44:58.085Z [DEBUG] Temp file written successfully, size: 61423 bytes
+2025-12-11T05:44:58.085Z [DEBUG] Applied original permissions to temp file
+2025-12-11T05:44:58.085Z [DEBUG] Renaming /home/curator/.claude.json.tmp.158247.1765431898081 to /home/curator/.claude.json
+2025-12-11T05:44:58.085Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T05:44:58.086Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2025-12-11T05:44:58.099Z [DEBUG] Getting matching hook commands for SubagentStart with query: Explore
+2025-12-11T05:44:58.099Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T05:44:58.099Z [DEBUG] Matched 0 unique hooks for query "Explore" (0 before deduplication)
+2025-12-11T05:44:58.106Z [DEBUG] Getting matching hook commands for SubagentStart with query: Plan
+2025-12-11T05:44:58.106Z [DEBUG] Found 0 hook matchers in settings
+2025-12-11T05:44:58.107Z [DEBUG] Matched 0 unique hooks for query "Plan" (0 before deduplication)
+2025-12-11T05:44:58.135Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.158247.1765431898135
+2025-12-11T05:44:58.135Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T05:44:58.138Z [DEBUG] Temp file written successfully, size: 61423 bytes
+2025-12-11T05:44:58.138Z [DEBUG] Applied original permissions to temp file
+2025-12-11T05:44:58.138Z [DEBUG] Renaming /home/curator/.claude.json.tmp.158247.1765431898135 to /home/curator/.claude.json
+2025-12-11T05:44:58.138Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T05:44:58.175Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.158247.1765431898175
+2025-12-11T05:44:58.175Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T05:44:58.178Z [DEBUG] Temp file written successfully, size: 61423 bytes
+2025-12-11T05:44:58.178Z [DEBUG] Applied original permissions to temp file
+2025-12-11T05:44:58.178Z [DEBUG] Renaming /home/curator/.claude.json.tmp.158247.1765431898175 to /home/curator/.claude.json
+2025-12-11T05:44:58.178Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-11T05:44:58.183Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.158247.1765431898183
+2025-12-11T05:44:58.183Z [DEBUG] Preserving file permissions: 100600
+2025-12-11T05:44:58.186Z [DEBUG] Temp file written successfully, size: 61423 bytes
+2025-12-11T05:44:58.186Z [DEBUG] Applied original permissions to temp file
+2025-12-11T05:44:58.186Z [DEBUG] Renaming /home/curator/.claude.json.tmp.158247.1765431898183 to /home/curator/.claude.json
+2025-12-11T05:44:58.186Z [DEBUG] File /home/curator/.claude.json written atomically

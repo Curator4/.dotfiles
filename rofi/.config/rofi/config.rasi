@@ -10,4 +10,4 @@ configuration {
     monitor: "DP-4";
 }
 
-@theme "osaka-jade"
+@theme "synth-blue"

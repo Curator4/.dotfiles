@@ -1,0 +1,1567 @@
+2025-12-15T19:51:13.258Z [DEBUG] Watching for changes in setting files /home/curator/.claude/settings.json, /home/curator/.claude/settings.json...
+2025-12-15T19:51:13.300Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2025-12-15T19:51:13.300Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2025-12-15T19:51:13.300Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2025-12-15T19:51:13.303Z [DEBUG] LSP server manager initialized successfully
+2025-12-15T19:51:13.303Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2025-12-15T19:51:13.313Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2025-12-15T19:51:13.329Z [DEBUG] Stats cache stale (2025-12-13), processing 2025-12-14 to 2025-12-14 in background
+2025-12-15T19:51:13.347Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (15.5ms): ldd /bin/ls 2>/dev/null
+2025-12-15T19:51:13.354Z [DEBUG] Loading skills from directories: managed=/etc/claude-code/.claude/skills, user=/home/curator/.claude/skills, project=[]
+2025-12-15T19:51:13.382Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (21.6ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-15T19:51:13.383Z [DEBUG] Loaded 0 installed plugins from /home/curator/.claude/plugins/installed_plugins.json
+2025-12-15T19:51:13.383Z [DEBUG] Official marketplace auto-install already attempted, skipping
+2025-12-15T19:51:13.411Z [DEBUG] Creating shell snapshot for zsh (/usr/bin/zsh)
+2025-12-15T19:51:13.411Z [DEBUG] Looking for shell config file: /home/curator/.zshrc
+2025-12-15T19:51:13.411Z [DEBUG] Snapshots directory: /home/curator/.claude/shell-snapshots
+2025-12-15T19:51:13.413Z [DEBUG] Creating snapshot at: /home/curator/.claude/shell-snapshots/snapshot-zsh-1765828273411-kj6juw.sh
+2025-12-15T19:51:13.413Z [DEBUG] Shell binary exists: true
+2025-12-15T19:51:13.413Z [DEBUG] Execution timeout: 10000ms
+2025-12-15T19:51:13.419Z [DEBUG] Writing to temp file: /home/curator/.claude/todos/cb8d3e02-f012-4f8a-ae86-6d9f3fd1d1f6-agent-cb8d3e02-f012-4f8a-ae86-6d9f3fd1d1f6.json.tmp.2134.1765828273419
+2025-12-15T19:51:13.423Z [DEBUG] Temp file written successfully, size: 2 bytes
+2025-12-15T19:51:13.423Z [DEBUG] Renaming /home/curator/.claude/todos/cb8d3e02-f012-4f8a-ae86-6d9f3fd1d1f6-agent-cb8d3e02-f012-4f8a-ae86-6d9f3fd1d1f6.json.tmp.2134.1765828273419 to /home/curator/.claude/todos/cb8d3e02-f012-4f8a-ae86-6d9f3fd1d1f6-agent-cb8d3e02-f012-4f8a-ae86-6d9f3fd1d1f6.json
+2025-12-15T19:51:13.423Z [DEBUG] File /home/curator/.claude/todos/cb8d3e02-f012-4f8a-ae86-6d9f3fd1d1f6-agent-cb8d3e02-f012-4f8a-ae86-6d9f3fd1d1f6.json written atomically
+2025-12-15T19:51:13.426Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2025-12-15T19:51:13.426Z [DEBUG] Total plugin skills loaded: 0
+2025-12-15T19:51:13.426Z [DEBUG] Total plugin commands loaded: 0
+2025-12-15T19:51:13.427Z [DEBUG] Registered 0 hooks from 0 plugins
+2025-12-15T19:51:13.434Z [DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, duplicates removed: 0)
+2025-12-15T19:51:13.435Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills
+2025-12-15T19:51:13.437Z [DEBUG] Total plugin agents loaded: 0
+2025-12-15T19:51:13.456Z [DEBUG] Git remote URL: null
+2025-12-15T19:51:13.456Z [DEBUG] No git remote URL found
+2025-12-15T19:51:13.456Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2025-12-15T19:51:13.532Z [DEBUG] Shell snapshot created successfully (11666 bytes)
+2025-12-15T19:51:13.551Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-workspace-bootdev-docker-course/1fbe07b8-6948-4ea2-97c1-a415d08c0c0b.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-workspace-bootdev-docker-course/1fbe07b8-6948-4ea2-97c1-a415d08c0c0b.jsonl'
+    at xv (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:3878
+    at async Promise.all (index 5)
+    at async kTA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:9601
+    at async RY0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:203)
+    at async Qg2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3921:9099)
+2025-12-15T19:51:13.555Z [DEBUG] Stats cache saved successfully (lastComputedDate: 2025-12-14)
+2025-12-15T19:51:13.555Z [DEBUG] Stats cache updated with 1 new sessions
+2025-12-15T19:51:13.651Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2134.1765828273651
+2025-12-15T19:51:13.651Z [DEBUG] Preserving file permissions: 100600
+2025-12-15T19:51:13.654Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-15T19:51:13.654Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:51:13.654Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2134.1765828273651 to /home/curator/.claude.json
+2025-12-15T19:51:13.654Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-15T19:51:13.710Z [ERROR] AxiosError: AxiosError: Request failed with status code 401
+    at vj (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:56:1137)
+    at IncomingMessage.<anonymous> (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:57:9852)
+    at IncomingMessage.emit (node:events:520:35)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+    at FKA.request (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:59:2130)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async qsB (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1646:3619)
+2025-12-15T19:51:13.918Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2134.1765828273918
+2025-12-15T19:51:13.918Z [DEBUG] Preserving file permissions: 100600
+2025-12-15T19:51:13.921Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-15T19:51:13.921Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:51:13.921Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2134.1765828273918 to /home/curator/.claude.json
+2025-12-15T19:51:13.921Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-15T19:51:13.923Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2134.1765828273923
+2025-12-15T19:51:13.923Z [DEBUG] Preserving file permissions: 100600
+2025-12-15T19:51:13.926Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-15T19:51:13.926Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:51:13.926Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2134.1765828273923 to /home/curator/.claude.json
+2025-12-15T19:51:13.926Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-15T19:51:14.875Z [DEBUG] Failed to fetch Grove notice config: AxiosError: Request failed with status code 401
+2025-12-15T19:51:14.897Z [DEBUG] Initialized versioned plugins system with 0 plugins
+2025-12-15T19:51:14.900Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2134.1765828274900
+2025-12-15T19:51:14.900Z [DEBUG] Preserving file permissions: 100600
+2025-12-15T19:51:14.903Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-15T19:51:14.903Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:51:14.903Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2134.1765828274900 to /home/curator/.claude.json
+2025-12-15T19:51:14.903Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-15T19:51:14.910Z [DEBUG] Skipping SessionStart:startup hook execution - workspace trust not accepted
+2025-12-15T19:51:14.922Z [DEBUG] Skills and commands included in Skill tool:
+2025-12-15T19:51:14.923Z [DEBUG] Slash commands included in SlashCommand tool:
+2025-12-15T19:51:14.954Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2134.1765828274954
+2025-12-15T19:51:14.954Z [DEBUG] Preserving file permissions: 100600
+2025-12-15T19:51:14.958Z [DEBUG] Temp file written successfully, size: 64660 bytes
+2025-12-15T19:51:14.958Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:51:14.958Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2134.1765828274954 to /home/curator/.claude.json
+2025-12-15T19:51:14.958Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-15T19:51:14.967Z [DEBUG] performStartupChecks called
+2025-12-15T19:51:14.968Z [DEBUG] Trust not accepted for current directory - skipping plugin installations
+2025-12-15T19:51:14.976Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:51:14.979Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2134.1765828274979
+2025-12-15T19:51:14.979Z [DEBUG] Preserving file permissions: 100600
+2025-12-15T19:51:14.982Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-15T19:51:14.983Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:51:14.983Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2134.1765828274979 to /home/curator/.claude.json
+2025-12-15T19:51:14.983Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-15T19:51:14.986Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2025-12-15T19:51:15.000Z [DEBUG] Skipping SubagentStart:Explore hook execution - workspace trust not accepted
+2025-12-15T19:51:15.006Z [DEBUG] Skipping SubagentStart:Plan hook execution - workspace trust not accepted
+2025-12-15T19:51:15.038Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2134.1765828275038
+2025-12-15T19:51:15.038Z [DEBUG] Preserving file permissions: 100600
+2025-12-15T19:51:15.041Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-15T19:51:15.041Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:51:15.041Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2134.1765828275038 to /home/curator/.claude.json
+2025-12-15T19:51:15.041Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-15T19:51:15.226Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2134.1765828275226
+2025-12-15T19:51:15.226Z [DEBUG] Preserving file permissions: 100600
+2025-12-15T19:51:15.231Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-15T19:51:15.231Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:51:15.231Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2134.1765828275226 to /home/curator/.claude.json
+2025-12-15T19:51:15.231Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-15T19:51:15.777Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2134.1765828275777
+2025-12-15T19:51:15.777Z [DEBUG] Preserving file permissions: 100600
+2025-12-15T19:51:15.781Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-15T19:51:15.781Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:51:15.781Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2134.1765828275777 to /home/curator/.claude.json
+2025-12-15T19:51:15.781Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-15T19:51:16.750Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:51:17.431Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:51:18.043Z [DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted
+2025-12-15T19:51:21.985Z [DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted
+2025-12-15T19:51:26.093Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:51:26.093Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:51:26.093Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:51:26.093Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:51:26.108Z [DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+2025-12-15T19:51:26.112Z [DEBUG] FileHistory: Added snapshot for 45d370e7-1ad8-4419-b3be-03765c86c649, tracking 0 files
+2025-12-15T19:51:26.137Z [DEBUG] Total plugin output styles loaded: 0
+2025-12-15T19:51:27.038Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:51:28.462Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:51:36.658Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:51:36.658Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:51:36.675Z [DEBUG] tree-sitter: WASM files not found
+2025-12-15T19:51:36.690Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//usr/lib/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-15T19:51:36.713Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:51:36.714Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:51:39.853Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:51:39.856Z [DEBUG] No session environment scripts found
+2025-12-15T19:51:39.910Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:51:39.918Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:51:39.919Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:51:40.436Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:51:40.603Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:51:40.799Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "pacman --version:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-15T19:51:40.820Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:51:40.820Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:51:46.823Z [DEBUG] Skipping Notification:permission_prompt hook execution - workspace trust not accepted
+2025-12-15T19:52:15.057Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:52:15.105Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:52:15.114Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:52:15.115Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:52:15.222Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:52:15.242Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:52:15.242Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:52:15.242Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:52:15.242Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:52:15.726Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:52:16.598Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:52:17.348Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:52:23.824Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:52:23.825Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:52:23.883Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:52:23.891Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:52:23.892Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:52:23.932Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//usr/bin/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-15T19:52:23.959Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:52:23.959Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:52:24.803Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:52:29.968Z [DEBUG] Skipping Notification:permission_prompt hook execution - workspace trust not accepted
+2025-12-15T19:52:31.251Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:52:31.299Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:52:31.317Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:52:31.317Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:52:31.317Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:52:31.317Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:52:32.752Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:52:32.936Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:52:36.627Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:52:36.628Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:52:37.254Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:52:37.485Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "sudo pacman:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-15T19:52:37.500Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:52:37.500Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:52:40.512Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:52:40.805Z [DEBUG] Skipping PostToolUseFailure:Bash hook execution - workspace trust not accepted
+2025-12-15T19:52:40.818Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:52:40.818Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:52:40.818Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:52:40.818Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:52:42.936Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:52:46.988Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:52:46.988Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:52:47.026Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:52:47.026Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:52:48.789Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:52:54.481Z [DEBUG] Skipping PostToolUseFailure:Bash hook execution - workspace trust not accepted
+2025-12-15T19:52:54.508Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:52:54.508Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:52:54.508Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:52:54.508Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:52:59.740Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:53:03.065Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:53:03.065Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:53:04.048Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:53:04.567Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:53:04.923Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:53:05.252Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "sudo pacman:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-15T19:53:05.266Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:53:05.266Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:53:11.267Z [DEBUG] Skipping Notification:permission_prompt hook execution - workspace trust not accepted
+2025-12-15T19:53:21.386Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:53:21.642Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:53:21.657Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:53:21.657Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:53:21.657Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:53:21.657Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:53:22.372Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:53:23.968Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:53:25.751Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:53:25.751Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:53:26.272Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:53:26.653Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "paru --version:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-15T19:53:26.666Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:53:26.666Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:53:30.221Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:53:30.257Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:53:30.271Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:53:30.271Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:53:30.271Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:53:30.271Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:53:31.204Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:53:33.230Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:53:37.832Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:53:37.832Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:53:37.858Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:53:37.859Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:53:42.003Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:53:57.253Z [DEBUG] Skipping PostToolUseFailure:Bash hook execution - workspace trust not accepted
+2025-12-15T19:53:57.269Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:53:57.269Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:53:57.269Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:53:57.269Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:54:02.866Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:54:08.500Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:54:08.500Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:54:08.532Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:54:08.532Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:54:14.534Z [DEBUG] Skipping Notification:permission_prompt hook execution - workspace trust not accepted
+2025-12-15T19:54:21.457Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:54:21.862Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:54:21.876Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:54:21.876Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:54:21.876Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:54:21.876Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:54:22.805Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:54:25.256Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:54:27.624Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:54:27.624Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:54:27.642Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//tmp/paru-git/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-15T19:54:27.657Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:54:27.658Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:54:28.343Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:54:46.935Z [DEBUG] Skipping PostToolUseFailure:Bash hook execution - workspace trust not accepted
+2025-12-15T19:54:46.946Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:54:46.946Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:54:46.946Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:54:46.946Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:54:50.562Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:54:56.543Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:54:56.544Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:54:56.561Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//usr/lib/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-15T19:54:56.573Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:54:56.574Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:54:58.438Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:54:58.491Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:54:58.509Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:54:58.509Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:54:58.509Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:54:58.509Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:54:59.222Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:55:00.820Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:55:02.682Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:55:02.682Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:55:02.713Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "paru --version:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-15T19:55:02.724Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:55:02.725Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:55:04.652Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:55:04.697Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:55:04.711Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:55:04.711Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:55:04.711Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:55:04.711Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:55:05.914Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:55:10.392Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:55:15.413Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:55:15.414Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:55:15.447Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:55:15.447Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:55:21.121Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:55:26.674Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:55:26.689Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:55:26.689Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:55:26.689Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:55:26.689Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:55:27.763Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:55:32.284Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:55:33.783Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:55:33.784Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:55:34.775Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:55:35.153Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "yay --version:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-15T19:55:35.167Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:55:35.167Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:55:41.168Z [DEBUG] Skipping Notification:permission_prompt hook execution - workspace trust not accepted
+2025-12-15T19:55:44.235Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:55:44.285Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:55:44.298Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:55:44.298Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:55:44.298Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:55:44.298Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:55:44.846Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:55:48.626Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:55:51.371Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:55:51.372Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:55:52.973Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:55:53.518Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "yay -Syu:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-15T19:55:53.530Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:55:53.531Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:55:55.659Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:55:56.998Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:55:57.012Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:55:57.012Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:55:57.012Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:55:57.012Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:55:58.044Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:55:59.404Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:56:08.596Z [DEBUG] Skipping Stop hook execution - workspace trust not accepted
+2025-12-15T19:56:08.631Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (27.5ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-15T19:56:08.662Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (22.3ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-15T19:56:08.666Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2134.1765828568666
+2025-12-15T19:56:08.666Z [DEBUG] Preserving file permissions: 100600
+2025-12-15T19:56:08.670Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-15T19:56:08.670Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:56:08.670Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2134.1765828568666 to /home/curator/.claude.json
+2025-12-15T19:56:08.670Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-15T19:56:08.674Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2134.1765828568674
+2025-12-15T19:56:08.674Z [DEBUG] Preserving file permissions: 100600
+2025-12-15T19:56:08.677Z [DEBUG] Temp file written successfully, size: 64733 bytes
+2025-12-15T19:56:08.677Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:56:08.677Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2134.1765828568674 to /home/curator/.claude.json
+2025-12-15T19:56:08.677Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-15T19:56:26.286Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:56:26.286Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:56:26.286Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:56:26.286Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:56:26.296Z [DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+2025-12-15T19:56:26.299Z [DEBUG] FileHistory: Making snapshot for message aabfb44e-79b9-4a38-81f7-c8cb4a977192
+2025-12-15T19:56:26.299Z [DEBUG] FileHistory: Added snapshot for aabfb44e-79b9-4a38-81f7-c8cb4a977192, tracking 0 files
+2025-12-15T19:56:27.514Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:56:28.718Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:56:34.089Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:56:34.090Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:56:34.135Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//tmp/paru-git/src/paru/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-15T19:56:34.152Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:56:34.153Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:57:08.742Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:57:08.977Z [DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted
+2025-12-15T19:57:09.684Z [DEBUG] Skipping SessionStart:resume hook execution - workspace trust not accepted
+2025-12-15T19:57:09.719Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (24.3ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-15T19:57:09.724Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.26649.1765828629724
+2025-12-15T19:57:09.724Z [DEBUG] Preserving file permissions: 100600
+2025-12-15T19:57:09.728Z [DEBUG] Temp file written successfully, size: 65461 bytes
+2025-12-15T19:57:09.728Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:57:09.728Z [DEBUG] Renaming /home/curator/.claude.json.tmp.26649.1765828629724 to /home/curator/.claude.json
+2025-12-15T19:57:09.728Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-15T19:57:09.844Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.26649.1765828629844
+2025-12-15T19:57:09.844Z [DEBUG] Preserving file permissions: 100600
+2025-12-15T19:57:09.847Z [DEBUG] Temp file written successfully, size: 65388 bytes
+2025-12-15T19:57:09.847Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:57:09.847Z [DEBUG] Renaming /home/curator/.claude.json.tmp.26649.1765828629844 to /home/curator/.claude.json
+2025-12-15T19:57:09.847Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-15T19:57:09.870Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.26649.1765828629870
+2025-12-15T19:57:09.870Z [DEBUG] Preserving file permissions: 100600
+2025-12-15T19:57:09.873Z [DEBUG] Temp file written successfully, size: 65461 bytes
+2025-12-15T19:57:09.873Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:57:09.873Z [DEBUG] Renaming /home/curator/.claude.json.tmp.26649.1765828629870 to /home/curator/.claude.json
+2025-12-15T19:57:09.873Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-15T19:57:09.873Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:57:09.886Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.26649.1765828629886
+2025-12-15T19:57:09.886Z [DEBUG] Preserving file permissions: 100600
+2025-12-15T19:57:09.889Z [DEBUG] Temp file written successfully, size: 65461 bytes
+2025-12-15T19:57:09.889Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:57:09.889Z [DEBUG] Renaming /home/curator/.claude.json.tmp.26649.1765828629886 to /home/curator/.claude.json
+2025-12-15T19:57:09.890Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-15T19:57:10.880Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:57:10.880Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:57:10.880Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:57:10.880Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:57:10.905Z [DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+2025-12-15T19:57:10.913Z [DEBUG] FileHistory: Making snapshot for message 45d81dd1-b85f-4a74-a44d-eaae52d6ebe4
+2025-12-15T19:57:10.913Z [DEBUG] FileHistory: Added snapshot for 45d81dd1-b85f-4a74-a44d-eaae52d6ebe4, tracking 0 files
+2025-12-15T19:57:10.941Z [DEBUG] Total plugin output styles loaded: 0
+2025-12-15T19:57:11.077Z [DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted
+2025-12-15T19:57:11.450Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:57:13.004Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:57:17.024Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:57:17.025Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:57:17.043Z [DEBUG] tree-sitter: WASM files not found
+2025-12-15T19:57:17.057Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//tmp/paru-git/src/paru/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-15T19:57:17.072Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:57:17.073Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:57:20.248Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:57:20.250Z [DEBUG] No session environment scripts found
+2025-12-15T19:57:20.302Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:57:20.317Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:57:20.317Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:57:20.317Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:57:20.317Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:57:22.319Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:57:29.621Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:57:31.696Z [DEBUG] executePreToolHooks called for tool: Read
+2025-12-15T19:57:31.697Z [DEBUG] Skipping PreToolUse:Read hook execution - workspace trust not accepted
+2025-12-15T19:57:31.712Z [DEBUG] Permission suggestions for Read: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//tmp/paru-git/src/paru/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-15T19:57:31.733Z [DEBUG] executePermissionRequestHooks called for tool: Read
+2025-12-15T19:57:31.733Z [DEBUG] Skipping PermissionRequest:Read hook execution - workspace trust not accepted
+2025-12-15T19:57:37.740Z [DEBUG] Skipping Notification:permission_prompt hook execution - workspace trust not accepted
+2025-12-15T19:57:46.113Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:57:46.129Z [DEBUG] Skipping PostToolUse:Read hook execution - workspace trust not accepted
+2025-12-15T19:57:46.152Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:57:46.152Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:57:46.152Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:57:46.152Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:57:48.843Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:57:52.450Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-12-15T19:57:52.450Z [DEBUG] Skipping PreToolUse:Edit hook execution - workspace trust not accepted
+2025-12-15T19:57:52.467Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  },
+  {
+    "type": "addDirectories",
+    "directories": [
+      "/tmp/paru-git/src/paru"
+    ],
+    "destination": "session"
+  }
+]
+2025-12-15T19:57:52.490Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-12-15T19:57:52.490Z [DEBUG] Skipping PermissionRequest:Edit hook execution - workspace trust not accepted
+2025-12-15T19:57:56.302Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:57:56.305Z [DEBUG] Writing to temp file: /tmp/paru-git/src/paru/Cargo.toml.tmp.26649.1765828676305
+2025-12-15T19:57:56.305Z [DEBUG] Preserving file permissions: 100644
+2025-12-15T19:57:56.305Z [DEBUG] Temp file written successfully, size: 2036 bytes
+2025-12-15T19:57:56.305Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:57:56.305Z [DEBUG] Renaming /tmp/paru-git/src/paru/Cargo.toml.tmp.26649.1765828676305 to /tmp/paru-git/src/paru/Cargo.toml
+2025-12-15T19:57:56.305Z [DEBUG] File /tmp/paru-git/src/paru/Cargo.toml written atomically
+2025-12-15T19:57:56.315Z [DEBUG] FileHistory: Tracked file modification for /tmp/paru-git/src/paru/Cargo.toml
+2025-12-15T19:57:56.320Z [DEBUG] Skipping PostToolUse:Edit hook execution - workspace trust not accepted
+2025-12-15T19:57:56.347Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:57:56.347Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:57:56.347Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:57:56.347Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:57:58.313Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:58:01.326Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:58:01.326Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:58:01.349Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//tmp/paru-git/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-15T19:58:01.366Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:58:01.366Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:58:04.105Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:58:07.568Z [DEBUG] Skipping PostToolUseFailure:Bash hook execution - workspace trust not accepted
+2025-12-15T19:58:07.586Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:58:07.586Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:58:07.586Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:58:07.586Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:58:10.704Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:58:13.524Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-12-15T19:58:13.525Z [DEBUG] Skipping PreToolUse:Edit hook execution - workspace trust not accepted
+2025-12-15T19:58:13.541Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  },
+  {
+    "type": "addDirectories",
+    "directories": [
+      "/tmp/paru-git/src/paru"
+    ],
+    "destination": "session"
+  }
+]
+2025-12-15T19:58:13.558Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-12-15T19:58:13.558Z [DEBUG] Skipping PermissionRequest:Edit hook execution - workspace trust not accepted
+2025-12-15T19:58:14.216Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:58:14.217Z [DEBUG] Writing to temp file: /tmp/paru-git/src/paru/Cargo.toml.tmp.26649.1765828694217
+2025-12-15T19:58:14.217Z [DEBUG] Preserving file permissions: 100644
+2025-12-15T19:58:14.218Z [DEBUG] Temp file written successfully, size: 2036 bytes
+2025-12-15T19:58:14.218Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:58:14.218Z [DEBUG] Renaming /tmp/paru-git/src/paru/Cargo.toml.tmp.26649.1765828694217 to /tmp/paru-git/src/paru/Cargo.toml
+2025-12-15T19:58:14.218Z [DEBUG] File /tmp/paru-git/src/paru/Cargo.toml written atomically
+2025-12-15T19:58:14.233Z [DEBUG] Skipping PostToolUse:Edit hook execution - workspace trust not accepted
+2025-12-15T19:58:14.251Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:58:14.251Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:58:14.251Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:58:14.251Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:58:16.888Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:58:19.156Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:58:19.156Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:58:19.178Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//tmp/paru-git/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-15T19:58:19.195Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:58:19.195Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:58:25.197Z [DEBUG] Skipping Notification:permission_prompt hook execution - workspace trust not accepted
+2025-12-15T19:58:32.924Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:58:36.454Z [DEBUG] Skipping PostToolUseFailure:Bash hook execution - workspace trust not accepted
+2025-12-15T19:58:36.474Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:58:36.474Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:58:36.474Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:58:36.474Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:58:38.783Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:58:41.335Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:58:41.336Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:58:41.359Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//tmp/paru-git/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-15T19:58:41.374Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:58:41.375Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:58:47.376Z [DEBUG] Skipping Notification:permission_prompt hook execution - workspace trust not accepted
+2025-12-15T19:58:50.382Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:58:50.428Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:58:50.448Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:58:50.448Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:58:50.448Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:58:50.448Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:58:52.237Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:58:52.574Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:58:54.103Z [DEBUG] executePreToolHooks called for tool: Read
+2025-12-15T19:58:54.103Z [DEBUG] Skipping PreToolUse:Read hook execution - workspace trust not accepted
+2025-12-15T19:58:54.121Z [DEBUG] Permission suggestions for Read: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//tmp/paru-git/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-15T19:58:54.134Z [DEBUG] executePermissionRequestHooks called for tool: Read
+2025-12-15T19:58:54.134Z [DEBUG] Skipping PermissionRequest:Read hook execution - workspace trust not accepted
+2025-12-15T19:58:56.490Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:58:56.505Z [DEBUG] Skipping PostToolUse:Read hook execution - workspace trust not accepted
+2025-12-15T19:58:56.520Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:58:56.520Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:58:56.520Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:58:56.520Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:58:58.407Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:59:03.212Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-12-15T19:59:03.212Z [DEBUG] Skipping PreToolUse:Edit hook execution - workspace trust not accepted
+2025-12-15T19:59:03.228Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  },
+  {
+    "type": "addDirectories",
+    "directories": [
+      "/tmp/paru-git"
+    ],
+    "destination": "session"
+  }
+]
+2025-12-15T19:59:03.245Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-12-15T19:59:03.246Z [DEBUG] Skipping PermissionRequest:Edit hook execution - workspace trust not accepted
+2025-12-15T19:59:05.480Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:59:05.482Z [DEBUG] Writing to temp file: /tmp/paru-git/PKGBUILD.tmp.26649.1765828745482
+2025-12-15T19:59:05.482Z [DEBUG] Preserving file permissions: 100644
+2025-12-15T19:59:05.482Z [DEBUG] Temp file written successfully, size: 1873 bytes
+2025-12-15T19:59:05.482Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:59:05.482Z [DEBUG] Renaming /tmp/paru-git/PKGBUILD.tmp.26649.1765828745482 to /tmp/paru-git/PKGBUILD
+2025-12-15T19:59:05.482Z [DEBUG] File /tmp/paru-git/PKGBUILD written atomically
+2025-12-15T19:59:05.491Z [DEBUG] FileHistory: Tracked file modification for /tmp/paru-git/PKGBUILD
+2025-12-15T19:59:05.496Z [DEBUG] Skipping PostToolUse:Edit hook execution - workspace trust not accepted
+2025-12-15T19:59:05.525Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:59:05.525Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:59:05.525Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:59:05.525Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:59:07.940Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:59:10.242Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-12-15T19:59:10.243Z [DEBUG] Skipping PreToolUse:Edit hook execution - workspace trust not accepted
+2025-12-15T19:59:10.257Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  },
+  {
+    "type": "addDirectories",
+    "directories": [
+      "/tmp/paru-git"
+    ],
+    "destination": "session"
+  }
+]
+2025-12-15T19:59:10.275Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-12-15T19:59:10.275Z [DEBUG] Skipping PermissionRequest:Edit hook execution - workspace trust not accepted
+2025-12-15T19:59:16.281Z [DEBUG] Skipping Notification:permission_prompt hook execution - workspace trust not accepted
+2025-12-15T19:59:17.902Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:59:17.904Z [DEBUG] Writing to temp file: /tmp/paru-git/PKGBUILD.tmp.26649.1765828757904
+2025-12-15T19:59:17.904Z [DEBUG] Preserving file permissions: 100644
+2025-12-15T19:59:17.904Z [DEBUG] Temp file written successfully, size: 1864 bytes
+2025-12-15T19:59:17.904Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:59:17.904Z [DEBUG] Renaming /tmp/paru-git/PKGBUILD.tmp.26649.1765828757904 to /tmp/paru-git/PKGBUILD
+2025-12-15T19:59:17.904Z [DEBUG] File /tmp/paru-git/PKGBUILD written atomically
+2025-12-15T19:59:17.923Z [DEBUG] Skipping PostToolUse:Edit hook execution - workspace trust not accepted
+2025-12-15T19:59:17.939Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:59:17.939Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:59:17.939Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:59:17.939Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:59:20.025Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:59:22.866Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T19:59:22.867Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T19:59:22.887Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//tmp/paru-git/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-15T19:59:22.901Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T19:59:22.901Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T19:59:25.893Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:59:43.048Z [DEBUG] Skipping PostToolUseFailure:Bash hook execution - workspace trust not accepted
+2025-12-15T19:59:43.060Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:59:43.060Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:59:43.060Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:59:43.060Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:59:45.819Z [DEBUG] Stream started - received first chunk
+2025-12-15T19:59:54.535Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-12-15T19:59:54.535Z [DEBUG] Skipping PreToolUse:Edit hook execution - workspace trust not accepted
+2025-12-15T19:59:54.545Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  },
+  {
+    "type": "addDirectories",
+    "directories": [
+      "/tmp/paru-git"
+    ],
+    "destination": "session"
+  }
+]
+2025-12-15T19:59:54.556Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-12-15T19:59:54.556Z [DEBUG] Skipping PermissionRequest:Edit hook execution - workspace trust not accepted
+2025-12-15T19:59:56.202Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T19:59:56.203Z [DEBUG] Writing to temp file: /tmp/paru-git/PKGBUILD.tmp.26649.1765828796203
+2025-12-15T19:59:56.203Z [DEBUG] Preserving file permissions: 100644
+2025-12-15T19:59:56.203Z [DEBUG] Temp file written successfully, size: 2119 bytes
+2025-12-15T19:59:56.203Z [DEBUG] Applied original permissions to temp file
+2025-12-15T19:59:56.203Z [DEBUG] Renaming /tmp/paru-git/PKGBUILD.tmp.26649.1765828796203 to /tmp/paru-git/PKGBUILD
+2025-12-15T19:59:56.203Z [DEBUG] File /tmp/paru-git/PKGBUILD written atomically
+2025-12-15T19:59:56.215Z [DEBUG] Skipping PostToolUse:Edit hook execution - workspace trust not accepted
+2025-12-15T19:59:56.230Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T19:59:56.230Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T19:59:56.230Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T19:59:56.230Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T19:59:59.916Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:00:02.512Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T20:00:02.512Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:00:02.534Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//tmp/paru-git/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-15T20:00:02.548Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T20:00:02.548Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T20:00:04.991Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T20:00:23.031Z [DEBUG] Skipping PostToolUseFailure:Bash hook execution - workspace trust not accepted
+2025-12-15T20:00:23.044Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T20:00:23.044Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T20:00:23.044Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T20:00:23.044Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T20:00:25.564Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:00:29.979Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T20:00:29.979Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:00:29.992Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//tmp/paru-git/src/paru/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-15T20:00:30.001Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T20:00:30.001Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T20:00:33.263Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T20:00:33.536Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:00:33.555Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T20:00:33.555Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T20:00:33.555Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T20:00:33.555Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T20:00:34.120Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:00:35.548Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:00:37.251Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T20:00:37.251Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:00:37.855Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:00:37.906Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:00:38.067Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "cargo info:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-15T20:00:38.080Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T20:00:38.081Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T20:00:44.082Z [DEBUG] Skipping Notification:permission_prompt hook execution - workspace trust not accepted
+2025-12-15T20:00:56.769Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T20:00:56.885Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:00:56.905Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T20:00:56.905Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T20:00:56.906Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T20:00:56.906Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T20:00:57.453Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:00:58.803Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:01:01.414Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T20:01:01.414Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:01:02.325Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:01:02.530Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "curl:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-15T20:01:02.547Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T20:01:02.548Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T20:01:05.645Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T20:01:05.967Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:01:05.985Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T20:01:05.985Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T20:01:05.985Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T20:01:05.985Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T20:01:07.083Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:01:08.094Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:01:16.183Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-12-15T20:01:16.183Z [DEBUG] Skipping PreToolUse:Edit hook execution - workspace trust not accepted
+2025-12-15T20:01:16.196Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  },
+  {
+    "type": "addDirectories",
+    "directories": [
+      "/tmp/paru-git"
+    ],
+    "destination": "session"
+  }
+]
+2025-12-15T20:01:16.217Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-12-15T20:01:16.217Z [DEBUG] Skipping PermissionRequest:Edit hook execution - workspace trust not accepted
+2025-12-15T20:01:16.229Z [DEBUG] Writing to temp file: /tmp/paru-git/PKGBUILD.tmp.26649.1765828876229
+2025-12-15T20:01:16.229Z [DEBUG] Preserving file permissions: 100644
+2025-12-15T20:01:16.229Z [DEBUG] Temp file written successfully, size: 2190 bytes
+2025-12-15T20:01:16.229Z [DEBUG] Applied original permissions to temp file
+2025-12-15T20:01:16.229Z [DEBUG] Renaming /tmp/paru-git/PKGBUILD.tmp.26649.1765828876229 to /tmp/paru-git/PKGBUILD
+2025-12-15T20:01:16.229Z [DEBUG] File /tmp/paru-git/PKGBUILD written atomically
+2025-12-15T20:01:16.256Z [DEBUG] Skipping PostToolUse:Edit hook execution - workspace trust not accepted
+2025-12-15T20:01:16.256Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T20:01:16.281Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T20:01:16.281Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T20:01:16.281Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T20:01:16.281Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T20:01:18.349Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:01:20.968Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T20:01:20.969Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:01:20.996Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//tmp/paru-git/src/paru/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-15T20:01:21.009Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T20:01:21.010Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T20:01:22.435Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T20:01:22.488Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:01:22.505Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T20:01:22.505Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T20:01:22.505Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T20:01:22.505Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T20:01:23.214Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:01:25.260Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:01:28.822Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T20:01:28.823Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:01:28.869Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//tmp/paru-git/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-15T20:01:28.888Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T20:01:28.888Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T20:01:33.596Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T20:02:04.180Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:02:04.193Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T20:02:04.193Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T20:02:04.193Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T20:02:04.193Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T20:02:04.809Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:02:06.405Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:02:14.664Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T20:02:14.664Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:02:15.447Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:02:15.627Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "curl:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-15T20:02:15.640Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T20:02:15.641Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T20:02:20.330Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T20:02:20.651Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:02:20.669Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T20:02:20.669Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T20:02:20.669Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T20:02:20.669Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T20:02:22.105Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:02:22.597Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:02:24.690Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T20:02:24.691Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:02:25.521Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:02:25.807Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "curl:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-15T20:02:25.820Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T20:02:25.820Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T20:02:29.090Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T20:02:30.159Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:02:30.182Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T20:02:30.182Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T20:02:30.182Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T20:02:30.182Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T20:02:31.701Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:02:32.214Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:02:34.864Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T20:02:34.864Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:02:34.912Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "curl:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-15T20:02:34.926Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T20:02:34.927Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-15T20:02:36.206Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-15T20:02:36.380Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:02:36.397Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-15T20:02:36.397Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-15T20:02:36.397Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-15T20:02:36.397Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-15T20:02:37.189Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:02:42.362Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:02:44.256Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-15T20:02:44.256Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-15T20:02:44.851Z [DEBUG] Stream started - received first chunk
+2025-12-15T20:02:45.074Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "curl:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-15T20:02:45.088Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-15T20:02:45.089Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-16T10:41:02.506Z [DEBUG] Skipping SessionStart:resume hook execution - workspace trust not accepted
+2025-12-16T10:41:02.508Z [DEBUG] FileHistory: Copied backup 4fa53963e75abd61@v1 from session cb8d3e02-f012-4f8a-ae86-6d9f3fd1d1f6 to 6d042dbb-1898-471d-a129-edc36cafdcb1
+2025-12-16T10:41:02.508Z [DEBUG] FileHistory: Copied backup 6911156b9c5731ad@v1 from session cb8d3e02-f012-4f8a-ae86-6d9f3fd1d1f6 to 6d042dbb-1898-471d-a129-edc36cafdcb1
+2025-12-16T10:41:02.533Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (18.0ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-16T10:41:02.536Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.6804.1765881662536
+2025-12-16T10:41:02.536Z [DEBUG] Preserving file permissions: 100600
+2025-12-16T10:41:02.539Z [DEBUG] Temp file written successfully, size: 65461 bytes
+2025-12-16T10:41:02.539Z [DEBUG] Applied original permissions to temp file
+2025-12-16T10:41:02.539Z [DEBUG] Renaming /home/curator/.claude.json.tmp.6804.1765881662536 to /home/curator/.claude.json
+2025-12-16T10:41:02.539Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-16T10:41:02.701Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.6804.1765881662701
+2025-12-16T10:41:02.701Z [DEBUG] Preserving file permissions: 100600
+2025-12-16T10:41:02.705Z [DEBUG] Temp file written successfully, size: 65388 bytes
+2025-12-16T10:41:02.705Z [DEBUG] Applied original permissions to temp file
+2025-12-16T10:41:02.705Z [DEBUG] Renaming /home/curator/.claude.json.tmp.6804.1765881662701 to /home/curator/.claude.json
+2025-12-16T10:41:02.705Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-16T10:41:02.722Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.6804.1765881662722
+2025-12-16T10:41:02.722Z [DEBUG] Preserving file permissions: 100600
+2025-12-16T10:41:02.725Z [DEBUG] Temp file written successfully, size: 65461 bytes
+2025-12-16T10:41:02.725Z [DEBUG] Applied original permissions to temp file
+2025-12-16T10:41:02.725Z [DEBUG] Renaming /home/curator/.claude.json.tmp.6804.1765881662722 to /home/curator/.claude.json
+2025-12-16T10:41:02.725Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-16T10:41:02.725Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-16T10:41:02.997Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-16T10:41:02.997Z [DEBUG] AutoUpdater: Using local update method
+2025-12-16T10:41:03.506Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.6804.1765881663506
+2025-12-16T10:41:03.506Z [DEBUG] Preserving file permissions: 100600
+2025-12-16T10:41:03.510Z [DEBUG] Temp file written successfully, size: 65461 bytes
+2025-12-16T10:41:03.510Z [DEBUG] Applied original permissions to temp file
+2025-12-16T10:41:03.510Z [DEBUG] Renaming /home/curator/.claude.json.tmp.6804.1765881663506 to /home/curator/.claude.json
+2025-12-16T10:41:03.510Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-16T10:41:05.795Z [DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted
+2025-12-16T10:41:06.988Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-16T10:41:06.988Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-16T10:41:06.988Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-16T10:41:06.988Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-16T10:41:07.001Z [DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+2025-12-16T10:41:07.008Z [DEBUG] FileHistory: Making snapshot for message 4334cb13-1696-49a6-a914-01b2372c7e53
+2025-12-16T10:41:07.008Z [DEBUG] FileHistory: Missing tracked file: /tmp/paru-git/src/paru/Cargo.toml
+2025-12-16T10:41:07.008Z [DEBUG] FileHistory: Missing tracked file: /tmp/paru-git/PKGBUILD
+2025-12-16T10:41:07.008Z [DEBUG] FileHistory: Added snapshot for 4334cb13-1696-49a6-a914-01b2372c7e53, tracking 2 files
+2025-12-16T10:41:07.031Z [DEBUG] Total plugin output styles loaded: 0
+2025-12-16T10:41:08.298Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:41:10.449Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:41:19.996Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-16T10:41:19.996Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:41:20.016Z [DEBUG] tree-sitter: WASM files not found
+2025-12-16T10:41:20.033Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//usr/lib/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-16T10:41:20.055Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-16T10:41:20.055Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-16T10:41:22.441Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-16T10:41:22.444Z [DEBUG] No session environment scripts found
+2025-12-16T10:41:22.504Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:41:22.512Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-16T10:41:22.512Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:41:22.741Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-16T10:41:22.741Z [DEBUG] AutoUpdater: Using local update method
+2025-12-16T10:41:23.288Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:41:23.298Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.6804.1765881683298
+2025-12-16T10:41:23.298Z [DEBUG] Preserving file permissions: 100600
+2025-12-16T10:41:23.302Z [DEBUG] Temp file written successfully, size: 65461 bytes
+2025-12-16T10:41:23.302Z [DEBUG] Applied original permissions to temp file
+2025-12-16T10:41:23.302Z [DEBUG] Renaming /home/curator/.claude.json.tmp.6804.1765881683298 to /home/curator/.claude.json
+2025-12-16T10:41:23.302Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-16T10:41:23.552Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "sudo pacman:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-16T10:41:23.569Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-16T10:41:23.569Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-16T10:41:23.586Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:41:24.897Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-16T10:41:25.198Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:41:25.205Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-16T10:41:25.205Z [DEBUG] AutoUpdater: Using local update method
+2025-12-16T10:41:25.218Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-16T10:41:25.219Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:41:25.258Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addDirectories",
+    "directories": [
+      "/tmp"
+    ],
+    "destination": "session"
+  },
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-12-16T10:41:25.277Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-16T10:41:25.277Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-16T10:41:25.734Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.6804.1765881685734
+2025-12-16T10:41:25.734Z [DEBUG] Preserving file permissions: 100600
+2025-12-16T10:41:25.738Z [DEBUG] Temp file written successfully, size: 65461 bytes
+2025-12-16T10:41:25.738Z [DEBUG] Applied original permissions to temp file
+2025-12-16T10:41:25.738Z [DEBUG] Renaming /home/curator/.claude.json.tmp.6804.1765881685734 to /home/curator/.claude.json
+2025-12-16T10:41:25.738Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-16T10:41:26.632Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:41:29.521Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-16T10:41:29.548Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:41:29.563Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-16T10:41:29.563Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-16T10:41:29.563Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-16T10:41:29.563Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-16T10:41:29.836Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-16T10:41:29.836Z [DEBUG] AutoUpdater: Using local update method
+2025-12-16T10:41:30.098Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:41:30.403Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.6804.1765881690403
+2025-12-16T10:41:30.403Z [DEBUG] Preserving file permissions: 100600
+2025-12-16T10:41:30.406Z [DEBUG] Temp file written successfully, size: 65461 bytes
+2025-12-16T10:41:30.406Z [DEBUG] Applied original permissions to temp file
+2025-12-16T10:41:30.406Z [DEBUG] Renaming /home/curator/.claude.json.tmp.6804.1765881690403 to /home/curator/.claude.json
+2025-12-16T10:41:30.407Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-16T10:41:31.499Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:41:35.427Z [DEBUG] Skipping Stop hook execution - workspace trust not accepted
+2025-12-16T10:41:35.450Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (18.9ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-16T10:41:35.479Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (23.4ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-16T10:42:24.605Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-16T10:42:24.605Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-16T10:42:24.605Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-16T10:42:24.605Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-16T10:42:24.614Z [DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+2025-12-16T10:42:24.616Z [DEBUG] FileHistory: Making snapshot for message aa02e2de-774d-4d70-b7c9-0f75fd9d852c
+2025-12-16T10:42:24.616Z [DEBUG] FileHistory: Missing tracked file: /tmp/paru-git/src/paru/Cargo.toml
+2025-12-16T10:42:24.617Z [DEBUG] FileHistory: Missing tracked file: /tmp/paru-git/PKGBUILD
+2025-12-16T10:42:24.617Z [DEBUG] FileHistory: Added snapshot for aa02e2de-774d-4d70-b7c9-0f75fd9d852c, tracking 2 files
+2025-12-16T10:42:26.808Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:42:27.115Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:42:32.692Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-16T10:42:32.692Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:42:32.724Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-16T10:42:32.724Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-16T10:42:34.236Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-16T10:42:34.537Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-16T10:42:34.537Z [DEBUG] AutoUpdater: Using local update method
+2025-12-16T10:42:35.075Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.6804.1765881755075
+2025-12-16T10:42:35.075Z [DEBUG] Preserving file permissions: 100600
+2025-12-16T10:42:35.079Z [DEBUG] Temp file written successfully, size: 65461 bytes
+2025-12-16T10:42:35.079Z [DEBUG] Applied original permissions to temp file
+2025-12-16T10:42:35.079Z [DEBUG] Renaming /home/curator/.claude.json.tmp.6804.1765881755075 to /home/curator/.claude.json
+2025-12-16T10:42:35.079Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-16T10:42:52.380Z [DEBUG] Skipping PostToolUseFailure:Bash hook execution - workspace trust not accepted
+2025-12-16T10:42:52.399Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-16T10:42:52.399Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-16T10:42:52.399Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-16T10:42:52.399Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-16T10:42:54.045Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:43:05.497Z [DEBUG] Skipping Stop hook execution - workspace trust not accepted
+2025-12-16T10:43:05.528Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (22.6ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-16T10:43:05.553Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (20.2ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-16T10:43:39.829Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-16T10:43:39.830Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-16T10:43:39.830Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-16T10:43:39.830Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-16T10:43:39.840Z [DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+2025-12-16T10:43:39.843Z [DEBUG] FileHistory: Making snapshot for message cdbc20d1-5675-457e-95a9-2e0eb28d5294
+2025-12-16T10:43:39.843Z [DEBUG] FileHistory: Missing tracked file: /tmp/paru-git/src/paru/Cargo.toml
+2025-12-16T10:43:39.843Z [DEBUG] FileHistory: Missing tracked file: /tmp/paru-git/PKGBUILD
+2025-12-16T10:43:39.843Z [DEBUG] FileHistory: Added snapshot for cdbc20d1-5675-457e-95a9-2e0eb28d5294, tracking 2 files
+2025-12-16T10:43:40.492Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:43:41.522Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:43:43.507Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-16T10:43:43.507Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:43:43.543Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-16T10:43:43.543Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-16T10:43:45.335Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-16T10:43:45.650Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-16T10:43:45.650Z [DEBUG] AutoUpdater: Using local update method
+2025-12-16T10:43:46.210Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.6804.1765881826210
+2025-12-16T10:43:46.210Z [DEBUG] Preserving file permissions: 100600
+2025-12-16T10:43:46.213Z [DEBUG] Temp file written successfully, size: 65461 bytes
+2025-12-16T10:43:46.213Z [DEBUG] Applied original permissions to temp file
+2025-12-16T10:43:46.213Z [DEBUG] Renaming /home/curator/.claude.json.tmp.6804.1765881826210 to /home/curator/.claude.json
+2025-12-16T10:43:46.213Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-16T10:43:50.908Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:43:50.926Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-16T10:43:50.926Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-16T10:43:50.926Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-16T10:43:50.926Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-16T10:43:51.711Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:43:52.849Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:43:54.545Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-16T10:43:54.546Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:43:55.138Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:43:55.497Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "yay --version:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-16T10:43:55.511Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-16T10:43:55.512Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-16T10:43:57.102Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-16T10:43:57.158Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:43:57.175Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-16T10:43:57.175Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-16T10:43:57.175Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-16T10:43:57.175Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-16T10:43:57.421Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-16T10:43:57.421Z [DEBUG] AutoUpdater: Using local update method
+2025-12-16T10:43:57.997Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.6804.1765881837997
+2025-12-16T10:43:57.997Z [DEBUG] Preserving file permissions: 100600
+2025-12-16T10:43:57.999Z [DEBUG] Temp file written successfully, size: 65461 bytes
+2025-12-16T10:43:57.999Z [DEBUG] Applied original permissions to temp file
+2025-12-16T10:43:57.999Z [DEBUG] Renaming /home/curator/.claude.json.tmp.6804.1765881837997 to /home/curator/.claude.json
+2025-12-16T10:43:57.999Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-16T10:43:58.683Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:43:59.335Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:44:01.260Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-16T10:44:01.260Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:44:02.890Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:44:03.300Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "yay -Syu:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-16T10:44:03.318Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-16T10:44:03.318Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-16T10:44:07.438Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-16T10:44:07.747Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-16T10:44:07.747Z [DEBUG] AutoUpdater: Using local update method
+2025-12-16T10:44:08.269Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.6804.1765881848269
+2025-12-16T10:44:08.269Z [DEBUG] Preserving file permissions: 100600
+2025-12-16T10:44:08.272Z [DEBUG] Temp file written successfully, size: 65461 bytes
+2025-12-16T10:44:08.272Z [DEBUG] Applied original permissions to temp file
+2025-12-16T10:44:08.272Z [DEBUG] Renaming /home/curator/.claude.json.tmp.6804.1765881848269 to /home/curator/.claude.json
+2025-12-16T10:44:08.272Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-16T10:44:09.012Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:44:09.028Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-16T10:44:09.028Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-16T10:44:09.028Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-16T10:44:09.028Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-16T10:44:09.840Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:44:11.136Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:44:14.959Z [DEBUG] Skipping Stop hook execution - workspace trust not accepted
+2025-12-16T10:44:14.993Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (25.4ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-16T10:44:15.024Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (23.4ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-16T10:44:37.013Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-16T10:44:37.013Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-16T10:44:37.013Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-16T10:44:37.013Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-16T10:44:37.024Z [DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+2025-12-16T10:44:37.026Z [DEBUG] FileHistory: Making snapshot for message 35da8a2f-d778-46c6-b825-5b6b63555a22
+2025-12-16T10:44:37.027Z [DEBUG] FileHistory: Missing tracked file: /tmp/paru-git/src/paru/Cargo.toml
+2025-12-16T10:44:37.027Z [DEBUG] FileHistory: Missing tracked file: /tmp/paru-git/PKGBUILD
+2025-12-16T10:44:37.027Z [DEBUG] FileHistory: Added snapshot for 35da8a2f-d778-46c6-b825-5b6b63555a22, tracking 2 files
+2025-12-16T10:44:38.733Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:44:39.527Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:44:46.334Z [DEBUG] Skipping Stop hook execution - workspace trust not accepted
+2025-12-16T10:44:46.371Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (27.8ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-16T10:44:46.404Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (22.7ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-16T10:45:04.810Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-16T10:45:04.810Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-16T10:45:04.810Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-16T10:45:04.810Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-16T10:45:04.820Z [DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+2025-12-16T10:45:04.821Z [DEBUG] FileHistory: Making snapshot for message f2ee6192-0c46-4a92-9816-8b134bfe2557
+2025-12-16T10:45:04.822Z [DEBUG] FileHistory: Missing tracked file: /tmp/paru-git/src/paru/Cargo.toml
+2025-12-16T10:45:04.822Z [DEBUG] FileHistory: Missing tracked file: /tmp/paru-git/PKGBUILD
+2025-12-16T10:45:04.822Z [DEBUG] FileHistory: Added snapshot for f2ee6192-0c46-4a92-9816-8b134bfe2557, tracking 2 files
+2025-12-16T10:45:05.987Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:45:07.796Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:45:12.750Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-16T10:45:12.750Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:45:13.383Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:45:13.777Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "pacman -Q:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-16T10:45:13.791Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-16T10:45:13.792Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-16T10:45:16.006Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-16T10:45:16.053Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:45:16.069Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-16T10:45:16.069Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-16T10:45:16.069Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-16T10:45:16.069Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-16T10:45:16.317Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-16T10:45:16.317Z [DEBUG] AutoUpdater: Using local update method
+2025-12-16T10:45:16.821Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:45:16.851Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.6804.1765881916851
+2025-12-16T10:45:16.851Z [DEBUG] Preserving file permissions: 100600
+2025-12-16T10:45:16.854Z [DEBUG] Temp file written successfully, size: 65461 bytes
+2025-12-16T10:45:16.854Z [DEBUG] Applied original permissions to temp file
+2025-12-16T10:45:16.854Z [DEBUG] Renaming /home/curator/.claude.json.tmp.6804.1765881916851 to /home/curator/.claude.json
+2025-12-16T10:45:16.854Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-16T10:45:18.337Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:45:20.692Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-16T10:45:20.693Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:45:21.401Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:45:21.646Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "sudo pacman:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-16T10:45:21.661Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-16T10:45:21.662Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-16T10:45:22.672Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-16T10:45:22.865Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:45:22.880Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-16T10:45:22.880Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-16T10:45:22.880Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-16T10:45:22.880Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-16T10:45:22.983Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-16T10:45:22.983Z [DEBUG] AutoUpdater: Using local update method
+2025-12-16T10:45:23.537Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.6804.1765881923537
+2025-12-16T10:45:23.537Z [DEBUG] Preserving file permissions: 100600
+2025-12-16T10:45:23.540Z [DEBUG] Temp file written successfully, size: 65461 bytes
+2025-12-16T10:45:23.540Z [DEBUG] Applied original permissions to temp file
+2025-12-16T10:45:23.540Z [DEBUG] Renaming /home/curator/.claude.json.tmp.6804.1765881923537 to /home/curator/.claude.json
+2025-12-16T10:45:23.541Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-16T10:45:23.688Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:45:25.721Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:45:28.130Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-16T10:45:28.130Z [DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:45:28.154Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "yay -Syu:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-16T10:45:28.168Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-16T10:45:28.169Z [DEBUG] Skipping PermissionRequest:Bash hook execution - workspace trust not accepted
+2025-12-16T10:45:28.910Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-16T10:45:29.224Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-12-16T10:45:29.224Z [DEBUG] AutoUpdater: Using local update method
+2025-12-16T10:45:29.761Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.6804.1765881929761
+2025-12-16T10:45:29.761Z [DEBUG] Preserving file permissions: 100600
+2025-12-16T10:45:29.767Z [DEBUG] [SLOW OPERATION DETECTED] fs.writeFileSync (5.7ms)
+2025-12-16T10:45:29.767Z [DEBUG] Temp file written successfully, size: 65461 bytes
+2025-12-16T10:45:29.767Z [DEBUG] Applied original permissions to temp file
+2025-12-16T10:45:29.767Z [DEBUG] Renaming /home/curator/.claude.json.tmp.6804.1765881929761 to /home/curator/.claude.json
+2025-12-16T10:45:29.767Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-16T10:45:30.242Z [DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+2025-12-16T10:45:30.260Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-16T10:45:30.260Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-16T10:45:30.260Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-16T10:45:30.260Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-16T10:45:31.054Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:45:32.425Z [DEBUG] Stream started - received first chunk
+2025-12-16T10:45:35.454Z [DEBUG] Skipping Stop hook execution - workspace trust not accepted
+2025-12-16T10:45:35.492Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (28.8ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-16T10:45:35.525Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults (25.1ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da

@@ -1,0 +1,124 @@
+[DEBUG] Watching for changes in setting files /home/curator/.claude/settings.json...
+[DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+[DEBUG] >>>>> getSkillsIfEnabled() CALLED <<<<<
+[DEBUG] ENABLE_SKILLS value: true, type: boolean
+[DEBUG] ENABLE_SKILLS check passed, loading skills...
+[DEBUG] Loading skills from directories: managed=/etc/claude-code/.claude/skills, user=/home/curator/.claude/skills, project=/home/curator/workspace/pnc/traccar/.claude/skills
+[DEBUG] >>>>> getPluginSkills CALLED <<<<<
+[DEBUG] Creating shell snapshot for zsh (/usr/bin/zsh)
+[DEBUG] Looking for shell config file: /home/curator/.zshrc
+[DEBUG] Snapshots directory: /home/curator/.claude/shell-snapshots
+[DEBUG] Creating snapshot at: /home/curator/.claude/shell-snapshots/snapshot-zsh-1761555132426-1e3s6v.sh
+[DEBUG] Shell binary exists: true
+[DEBUG] Execution timeout: 10000ms
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/09afa40c-a8fe-4341-8bea-dbda7974703a-agent-09afa40c-a8fe-4341-8bea-dbda7974703a.json.tmp.59115.1761555132432
+[DEBUG] Temp file written successfully, size: 2 bytes
+[DEBUG] Renaming /home/curator/.claude/todos/09afa40c-a8fe-4341-8bea-dbda7974703a-agent-09afa40c-a8fe-4341-8bea-dbda7974703a.json.tmp.59115.1761555132432 to /home/curator/.claude/todos/09afa40c-a8fe-4341-8bea-dbda7974703a-agent-09afa40c-a8fe-4341-8bea-dbda7974703a.json
+[DEBUG] File /home/curator/.claude/todos/09afa40c-a8fe-4341-8bea-dbda7974703a-agent-09afa40c-a8fe-4341-8bea-dbda7974703a.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.59115.1761555132453
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 208456 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.59115.1761555132453 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] getPluginSkills: Processing 0 enabled plugins
+[DEBUG] Total plugin skills loaded: 0
+[DEBUG] Total plugin commands loaded: 0
+[DEBUG] Registered 0 hooks from 0 plugins
+[DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, duplicates removed: 0)
+[DEBUG] getSkillsIfEnabled returning: 0 skill dir commands, 0 plugin skills
+[DEBUG] Total plugin agents loaded: 0
+[DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=/home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/x64-linux/rg)
+[DEBUG] Shell snapshot created successfully (3705 bytes)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.59115.1761555132574
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 208889 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.59115.1761555132574 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Summarizing all 2 messages (~848 tokens)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.59115.1761555132644
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 208889 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.59115.1761555132644 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.59115.1761555132652
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 208889 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.59115.1761555132652 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.59115.1761555133155
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 208889 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.59115.1761555133155 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for SessionStart with query: startup
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.59115.1761555133248
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 208784 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.59115.1761555133248 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.59115.1761555133256
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 208784 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.59115.1761555133256 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local, using native: false
+[DEBUG] performStartupChecks called
+[DEBUG] Starting background plugin installations
+[DEBUG] performBackgroundPluginInstallations called
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.59115.1761555133294
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 208889 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.59115.1761555133294 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+[DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.59115.1761555133343
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 208889 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.59115.1761555133343 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Stream started - received first chunk
+[DEBUG] Summarizing last 9 of 79 messages (~114852 tokens)
+[DEBUG] Stream started - received first chunk
+[DEBUG] Summarizing last 6 of 75 messages (~114268 tokens)
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local, using native: false
+[DEBUG] Stream started - received first chunk
+[DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Getting matching hook commands for SessionStart with query: resume
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "resume" (0 before deduplication)
+[DEBUG] FileHistory: Copied backup 3c95bc5c45df7693@v2 from session 36c3daa8-8d68-4a73-a9de-309e8d050380 to 09afa40c-a8fe-4341-8bea-dbda7974703a
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.59115.1761555138452
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 208889 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.59115.1761555138452 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.59115.1761555138472
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 208784 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.59115.1761555138472 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.59115.1761555138480
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 208784 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.59115.1761555138480 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically

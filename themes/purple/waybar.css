@@ -1,0 +1,74 @@
+* {
+    font-family: "Hack Nerd Font";
+    font-size: 14px;
+}
+
+window#waybar {
+    background-color: rgba(30, 19, 37, 0.9);
+    color: #E8D4F7;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    color: #E8D4F7;
+}
+
+#workspaces button.active {
+    color: #B565D8;
+}
+
+#clock {
+    padding: 0 12px;
+    color: rgba(181, 101, 216, 0.7);
+}
+
+#pulseaudio {
+    padding: 0 10px;
+    color: rgba(255, 159, 67, 0.7);
+}
+
+#bluetooth {
+    padding: 0 10px;
+    color: #7B68EE;
+}
+
+#network {
+    padding: 0 10px;
+    color: #E8D4F7;
+}
+
+#custom-gpu {
+    padding: 0 10px;
+    color: #A569BD;
+}
+
+#cpu {
+    padding: 0 10px;
+    color: #A569BD;
+}
+
+#memory {
+    padding: 0 10px;
+    color: #A569BD;
+}
+
+#disk {
+    padding: 0 10px;
+    color: #A569BD;
+}
+
+#custom-theme {
+    padding: 0 10px;
+    color: #DA70D6;
+}
+
+tooltip {
+    background-color: rgba(30, 19, 37, 0.95);
+    border: 1px solid #B565D8;
+    border-radius: 4px;
+    color: #E8D4F7;
+}
+
+tooltip label {
+    color: #E8D4F7;
+}

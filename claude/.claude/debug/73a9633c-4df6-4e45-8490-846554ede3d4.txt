@@ -1,0 +1,133 @@
+2025-11-26T03:25:23.464Z [DEBUG] Watching for changes in setting files /home/curator/.claude/settings.json, /home/curator/.claude/settings.json...
+2025-11-26T03:25:23.496Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2025-11-26T03:25:23.496Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2025-11-26T03:25:23.496Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2025-11-26T03:25:23.496Z [DEBUG] [LSP SERVER MANAGER] initialize() called
+2025-11-26T03:25:23.496Z [DEBUG] [LSP SERVER MANAGER] Calling getAllLspServers()
+2025-11-26T03:25:23.505Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2025-11-26T03:25:23.509Z [DEBUG] Total LSP servers loaded: 0
+2025-11-26T03:25:23.522Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2025-11-26T03:25:23.522Z [DEBUG] LSP manager initialized with 0 servers
+2025-11-26T03:25:23.524Z [DEBUG] LSP server manager initialized successfully
+2025-11-26T03:25:23.525Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2025-11-26T03:25:23.550Z [DEBUG] Loading skills from directories: managed=/etc/claude-code/.claude/skills, user=/home/curator/.claude/skills, project=/home/curator/.claude/skills
+2025-11-26T03:25:23.551Z [DEBUG] >>>>> getPluginSkills CALLED <<<<<
+2025-11-26T03:25:23.610Z [DEBUG] Creating shell snapshot for zsh (/usr/bin/zsh)
+2025-11-26T03:25:23.610Z [DEBUG] Looking for shell config file: /home/curator/.zshrc
+2025-11-26T03:25:23.610Z [DEBUG] Snapshots directory: /home/curator/.claude/shell-snapshots
+2025-11-26T03:25:23.611Z [DEBUG] Creating snapshot at: /home/curator/.claude/shell-snapshots/snapshot-zsh-1764127523610-0atd7l.sh
+2025-11-26T03:25:23.611Z [DEBUG] Shell binary exists: true
+2025-11-26T03:25:23.611Z [DEBUG] Execution timeout: 10000ms
+2025-11-26T03:25:23.616Z [DEBUG] Writing to temp file: /home/curator/.claude/todos/73a9633c-4df6-4e45-8490-846554ede3d4-agent-73a9633c-4df6-4e45-8490-846554ede3d4.json.tmp.7433.1764127523616
+2025-11-26T03:25:23.620Z [DEBUG] Temp file written successfully, size: 2 bytes
+2025-11-26T03:25:23.620Z [DEBUG] Renaming /home/curator/.claude/todos/73a9633c-4df6-4e45-8490-846554ede3d4-agent-73a9633c-4df6-4e45-8490-846554ede3d4.json.tmp.7433.1764127523616 to /home/curator/.claude/todos/73a9633c-4df6-4e45-8490-846554ede3d4-agent-73a9633c-4df6-4e45-8490-846554ede3d4.json
+2025-11-26T03:25:23.620Z [DEBUG] File /home/curator/.claude/todos/73a9633c-4df6-4e45-8490-846554ede3d4-agent-73a9633c-4df6-4e45-8490-846554ede3d4.json written atomically
+2025-11-26T03:25:23.623Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2025-11-26T03:25:23.623Z [DEBUG] Total plugin skills loaded: 0
+2025-11-26T03:25:23.623Z [DEBUG] Total plugin commands loaded: 0
+2025-11-26T03:25:23.623Z [DEBUG] Registered 0 hooks from 0 plugins
+2025-11-26T03:25:23.624Z [DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, duplicates removed: 0)
+2025-11-26T03:25:23.625Z [DEBUG] getSkillsIfEnabled returning: 0 skill dir commands, 0 plugin skills
+2025-11-26T03:25:23.625Z [DEBUG] Total plugin agents loaded: 0
+2025-11-26T03:25:23.640Z [DEBUG] Git remote URL: null
+2025-11-26T03:25:23.640Z [DEBUG] No git remote URL found
+2025-11-26T03:25:23.640Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2025-11-26T03:25:23.695Z [DEBUG] Shell snapshot created successfully (3750 bytes)
+2025-11-26T03:25:23.801Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.7433.1764127523801
+2025-11-26T03:25:23.801Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T03:25:23.805Z [DEBUG] Temp file written successfully, size: 49292 bytes
+2025-11-26T03:25:23.805Z [DEBUG] Applied original permissions to temp file
+2025-11-26T03:25:23.805Z [DEBUG] Renaming /home/curator/.claude.json.tmp.7433.1764127523801 to /home/curator/.claude.json
+2025-11-26T03:25:23.805Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T03:25:23.807Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.7433.1764127523807
+2025-11-26T03:25:23.807Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T03:25:23.810Z [DEBUG] Temp file written successfully, size: 49292 bytes
+2025-11-26T03:25:23.810Z [DEBUG] Applied original permissions to temp file
+2025-11-26T03:25:23.810Z [DEBUG] Renaming /home/curator/.claude.json.tmp.7433.1764127523807 to /home/curator/.claude.json
+2025-11-26T03:25:23.810Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T03:25:23.868Z [ERROR] AxiosError: AxiosError: Request failed with status code 401
+    at Uj (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:62:1137)
+    at IncomingMessage.<anonymous> (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:67:9858)
+    at IncomingMessage.emit (node:events:520:35)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+    at XVA.request (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:69:2130)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async YW2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1966:43209)
+2025-11-26T03:25:25.255Z [DEBUG] Failed to fetch Grove notice config: AxiosError: Request failed with status code 401
+2025-11-26T03:25:25.265Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.7433.1764127525265
+2025-11-26T03:25:25.265Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T03:25:25.269Z [DEBUG] Temp file written successfully, size: 49292 bytes
+2025-11-26T03:25:25.269Z [DEBUG] Applied original permissions to temp file
+2025-11-26T03:25:25.269Z [DEBUG] Renaming /home/curator/.claude.json.tmp.7433.1764127525265 to /home/curator/.claude.json
+2025-11-26T03:25:25.269Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T03:25:25.284Z [DEBUG] Skipping SessionStart:startup hook execution - workspace trust not accepted
+2025-11-26T03:25:25.324Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.7433.1764127525324
+2025-11-26T03:25:25.324Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T03:25:25.327Z [DEBUG] Temp file written successfully, size: 49187 bytes
+2025-11-26T03:25:25.327Z [DEBUG] Applied original permissions to temp file
+2025-11-26T03:25:25.327Z [DEBUG] Renaming /home/curator/.claude.json.tmp.7433.1764127525324 to /home/curator/.claude.json
+2025-11-26T03:25:25.327Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T03:25:25.338Z [DEBUG] performStartupChecks called
+2025-11-26T03:25:25.338Z [DEBUG] Trust not accepted for current directory - skipping plugin installations
+2025-11-26T03:25:25.348Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-26T03:25:25.349Z [DEBUG] Skills and commands included in Skill tool:
+2025-11-26T03:25:25.349Z [DEBUG] Slash commands included in SlashCommand tool:
+2025-11-26T03:25:25.351Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.7433.1764127525351
+2025-11-26T03:25:25.351Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T03:25:25.356Z [DEBUG] Temp file written successfully, size: 49292 bytes
+2025-11-26T03:25:25.356Z [DEBUG] Applied original permissions to temp file
+2025-11-26T03:25:25.356Z [DEBUG] Renaming /home/curator/.claude.json.tmp.7433.1764127525351 to /home/curator/.claude.json
+2025-11-26T03:25:25.356Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T03:25:25.365Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2025-11-26T03:25:25.387Z [DEBUG] Skipping SubagentStart:Explore hook execution - workspace trust not accepted
+2025-11-26T03:25:25.398Z [DEBUG] Skipping SubagentStart:Plan hook execution - workspace trust not accepted
+2025-11-26T03:25:25.608Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.7433.1764127525608
+2025-11-26T03:25:25.608Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T03:25:25.612Z [DEBUG] Temp file written successfully, size: 49292 bytes
+2025-11-26T03:25:25.612Z [DEBUG] Applied original permissions to temp file
+2025-11-26T03:25:25.612Z [DEBUG] Renaming /home/curator/.claude.json.tmp.7433.1764127525608 to /home/curator/.claude.json
+2025-11-26T03:25:25.612Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T03:25:25.869Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-11-26T03:25:25.869Z [DEBUG] AutoUpdater: Using local update method
+2025-11-26T03:25:25.954Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.7433.1764127525954
+2025-11-26T03:25:25.954Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T03:25:25.958Z [DEBUG] Temp file written successfully, size: 49292 bytes
+2025-11-26T03:25:25.958Z [DEBUG] Applied original permissions to temp file
+2025-11-26T03:25:25.958Z [DEBUG] Renaming /home/curator/.claude.json.tmp.7433.1764127525954 to /home/curator/.claude.json
+2025-11-26T03:25:25.958Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T03:25:27.146Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.7433.1764127527145
+2025-11-26T03:25:27.146Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T03:25:27.152Z [DEBUG] Temp file written successfully, size: 49292 bytes
+2025-11-26T03:25:27.152Z [DEBUG] Applied original permissions to temp file
+2025-11-26T03:25:27.152Z [DEBUG] Renaming /home/curator/.claude.json.tmp.7433.1764127527145 to /home/curator/.claude.json
+2025-11-26T03:25:27.153Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T03:25:27.226Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.7433.1764127527226
+2025-11-26T03:25:27.226Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T03:25:27.229Z [DEBUG] Temp file written successfully, size: 49292 bytes
+2025-11-26T03:25:27.229Z [DEBUG] Applied original permissions to temp file
+2025-11-26T03:25:27.229Z [DEBUG] Renaming /home/curator/.claude.json.tmp.7433.1764127527226 to /home/curator/.claude.json
+2025-11-26T03:25:27.229Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T03:25:27.819Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-26T03:25:27.836Z [DEBUG] Stream started - received first chunk
+2025-11-26T03:25:28.228Z [DEBUG] Stream started - received first chunk
+2025-11-26T03:25:29.539Z [DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted
+2025-11-26T03:25:30.255Z [DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted
+2025-11-26T03:25:58.468Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-26T03:25:58.473Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.7433.1764127558473
+2025-11-26T03:25:58.473Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T03:25:58.512Z [DEBUG] Temp file written successfully, size: 49293 bytes
+2025-11-26T03:25:58.512Z [DEBUG] Applied original permissions to temp file
+2025-11-26T03:25:58.512Z [DEBUG] Renaming /home/curator/.claude.json.tmp.7433.1764127558473 to /home/curator/.claude.json
+2025-11-26T03:25:58.512Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T03:25:58.543Z [DEBUG] UserCommandMessage rendering: "model" (args: "none")
+2025-11-26T03:25:58.543Z [DEBUG] isSkillFormat: false, prefix: "/"
+2025-11-26T03:25:58.609Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.7433.1764127558609
+2025-11-26T03:25:58.609Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T03:25:58.628Z [DEBUG] Temp file written successfully, size: 49293 bytes
+2025-11-26T03:25:58.628Z [DEBUG] Applied original permissions to temp file
+2025-11-26T03:25:58.628Z [DEBUG] Renaming /home/curator/.claude.json.tmp.7433.1764127558609 to /home/curator/.claude.json
+2025-11-26T03:25:58.629Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T03:25:58.828Z [DEBUG] AutoUpdater: Detected installation type: npm-local
+2025-11-26T03:25:58.828Z [DEBUG] AutoUpdater: Using local update method

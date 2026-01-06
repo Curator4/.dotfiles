@@ -2,9 +2,9 @@
     "layer": "top",
     "position": "top",
     "height": 26,
-    "output": ["DP-4"],
+    "output": ["DP-2"],
 
-    "modules-left": ["hyprland/workspaces"],
+    "modules-left": ["hyprland/workspaces", "custom/theme"],
     "modules-center": ["clock"],
     "modules-right": ["pulseaudio", "bluetooth", "network", "custom/gpu", "cpu", "memory", "disk"],
 
@@ -90,6 +90,15 @@
         "format": "󰋊 {percentage_used}%",
         "path": "/",
         "on-click": "kitty -e btop"
+    },
+
+    "custom/theme": {
+        "exec": "~/.config/waybar/scripts/theme-display.sh",
+        "return-type": "json",
+        "interval": 30,
+        "on-click": "~/.config/waybar/scripts/theme-menu.sh",
+        "format": "{}",
+        "tooltip": true
     }
 
     // "battery": {

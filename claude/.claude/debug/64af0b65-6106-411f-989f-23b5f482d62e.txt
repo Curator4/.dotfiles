@@ -1,0 +1,156 @@
+[DEBUG] Watching for changes in setting files /home/curator/.claude/settings.json...
+[DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+[DEBUG] Loading skills from directories: managed=/etc/claude-code/.claude/skills, user=/home/curator/.claude/skills, project=/home/curator/workspace/bootdev/chirpy/.claude/skills
+[DEBUG] >>>>> getPluginSkills CALLED <<<<<
+[DEBUG] Creating shell snapshot for zsh (/usr/bin/zsh)
+[DEBUG] Looking for shell config file: /home/curator/.zshrc
+[DEBUG] Snapshots directory: /home/curator/.claude/shell-snapshots
+[DEBUG] Creating snapshot at: /home/curator/.claude/shell-snapshots/snapshot-zsh-1761655486296-1j5oad.sh
+[DEBUG] Shell binary exists: true
+[DEBUG] Execution timeout: 10000ms
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/64af0b65-6106-411f-989f-23b5f482d62e-agent-64af0b65-6106-411f-989f-23b5f482d62e.json.tmp.82143.1761655486304
+[DEBUG] Temp file written successfully, size: 2 bytes
+[DEBUG] Renaming /home/curator/.claude/todos/64af0b65-6106-411f-989f-23b5f482d62e-agent-64af0b65-6106-411f-989f-23b5f482d62e.json.tmp.82143.1761655486304 to /home/curator/.claude/todos/64af0b65-6106-411f-989f-23b5f482d62e-agent-64af0b65-6106-411f-989f-23b5f482d62e.json
+[DEBUG] File /home/curator/.claude/todos/64af0b65-6106-411f-989f-23b5f482d62e-agent-64af0b65-6106-411f-989f-23b5f482d62e.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.82143.1761655486324
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 249624 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.82143.1761655486324 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] getPluginSkills: Processing 0 enabled plugins
+[DEBUG] Total plugin skills loaded: 0
+[DEBUG] Total plugin commands loaded: 0
+[DEBUG] Registered 0 hooks from 0 plugins
+[DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, duplicates removed: 0)
+[DEBUG] getSkillsIfEnabled returning: 0 skill dir commands, 0 plugin skills
+[DEBUG] Total plugin agents loaded: 0
+[DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=/home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/x64-linux/rg)
+[DEBUG] Shell snapshot created successfully (3731 bytes)
+[DEBUG] Summarizing last 2 of 256 messages (~77752 tokens)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.82143.1761655486485
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 250351 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.82143.1761655486485 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.82143.1761655486549
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 250351 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.82143.1761655486549 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.82143.1761655486560
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 250351 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.82143.1761655486560 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.82143.1761655486632
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 250351 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.82143.1761655486632 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.82143.1761655487135
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 250351 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.82143.1761655487135 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for SessionStart with query: startup
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.82143.1761655487238
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 250246 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.82143.1761655487238 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.82143.1761655487247
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 250246 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.82143.1761655487247 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local, using native: false
+[DEBUG] performStartupChecks called
+[DEBUG] Starting background plugin installations
+[DEBUG] performBackgroundPluginInstallations called
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.82143.1761655487286
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 250351 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.82143.1761655487286 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+[DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.82143.1761655487339
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 250351 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.82143.1761655487339 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Summarizing last 10 of 44 messages (~138333 tokens)
+[DEBUG] Stream started - received first chunk
+[DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Summarizing all 2 messages (~881 tokens)
+[DEBUG] Stream started - received first chunk
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local, using native: false
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local, using native: false
+[DEBUG] Stream started - received first chunk
+[DEBUG] Summarizing all 4 messages (~31813 tokens)
+[DEBUG] Getting matching hook commands for SessionStart with query: resume
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "resume" (0 before deduplication)
+[DEBUG] FileHistory: Copied backup fae95bd756c59438@v2 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup da79cff315c08777@v1 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup da79cff315c08777@v2 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup da79cff315c08777@v3 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup da79cff315c08777@v4 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 0a131fe75264ee26@v2 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup da79cff315c08777@v5 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 0a131fe75264ee26@v3 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup da79cff315c08777@v6 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 0a131fe75264ee26@v4 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 8013bbd3cf384d0a@v2 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 8013bbd3cf384d0a@v3 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 8013bbd3cf384d0a@v4 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 8013bbd3cf384d0a@v5 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 8013bbd3cf384d0a@v6 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 8013bbd3cf384d0a@v7 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 8013bbd3cf384d0a@v8 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 8013bbd3cf384d0a@v9 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 8013bbd3cf384d0a@v10 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 8013bbd3cf384d0a@v11 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 8013bbd3cf384d0a@v12 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 8013bbd3cf384d0a@v13 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 8013bbd3cf384d0a@v14 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 8013bbd3cf384d0a@v15 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 8013bbd3cf384d0a@v16 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] FileHistory: Copied backup 8013bbd3cf384d0a@v17 from session cd182b3f-2213-41e4-8644-8c60ca5009f8 to 64af0b65-6106-411f-989f-23b5f482d62e
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.82143.1761655490209
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 250351 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.82143.1761655490209 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.82143.1761655490240
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 250246 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.82143.1761655490240 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.82143.1761655490248
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 250246 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.82143.1761655490248 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically

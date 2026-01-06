@@ -1,0 +1,923 @@
+2025-12-26T18:11:20.731Z [DEBUG] Watching for changes in setting files /home/curator/.claude...
+2025-12-26T18:11:20.779Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2025-12-26T18:11:20.779Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2025-12-26T18:11:20.779Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2025-12-26T18:11:20.785Z [DEBUG] LSP server manager initialized successfully
+2025-12-26T18:11:20.785Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2025-12-26T18:11:20.786Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2025-12-26T18:11:20.798Z [DEBUG] Stats cache stale (2025-12-22), processing 2025-12-23 to 2025-12-25 in background
+2025-12-26T18:11:20.817Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults_DEPRECATED (17.2ms): ldd /bin/ls 2>/dev/null
+2025-12-26T18:11:20.822Z [DEBUG] Loading skills from: managed=/etc/claude-code/.claude/skills, user=/home/curator/.claude/skills, project=[]
+2025-12-26T18:11:20.851Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults_DEPRECATED (21.8ms): ps aux | grep -E "code|cursor|windsurf|idea|pycharm|webstorm|phpstorm|rubymine|clion|goland|rider|da
+2025-12-26T18:11:20.853Z [DEBUG] Loaded 0 installed plugins from /home/curator/.claude/plugins/installed_plugins.json
+2025-12-26T18:11:20.884Z [DEBUG] Creating shell snapshot for zsh (/usr/bin/zsh)
+2025-12-26T18:11:20.884Z [DEBUG] Looking for shell config file: /home/curator/.zshrc
+2025-12-26T18:11:20.884Z [DEBUG] Snapshots directory: /home/curator/.claude/shell-snapshots
+2025-12-26T18:11:20.885Z [DEBUG] Creating snapshot at: /home/curator/.claude/shell-snapshots/snapshot-zsh-1766772680884-gfdtrl.sh
+2025-12-26T18:11:20.885Z [DEBUG] Shell binary exists: true
+2025-12-26T18:11:20.885Z [DEBUG] Execution timeout: 10000ms
+2025-12-26T18:11:20.891Z [DEBUG] Writing to temp file: /home/curator/.claude/todos/879a7d2d-1ac0-4887-b28b-b506b85a923c-agent-879a7d2d-1ac0-4887-b28b-b506b85a923c.json.tmp.4493.1766772680891
+2025-12-26T18:11:20.894Z [DEBUG] Temp file written successfully, size: 2 bytes
+2025-12-26T18:11:20.894Z [DEBUG] Renaming /home/curator/.claude/todos/879a7d2d-1ac0-4887-b28b-b506b85a923c-agent-879a7d2d-1ac0-4887-b28b-b506b85a923c.json.tmp.4493.1766772680891 to /home/curator/.claude/todos/879a7d2d-1ac0-4887-b28b-b506b85a923c-agent-879a7d2d-1ac0-4887-b28b-b506b85a923c.json
+2025-12-26T18:11:20.894Z [DEBUG] File /home/curator/.claude/todos/879a7d2d-1ac0-4887-b28b-b506b85a923c-agent-879a7d2d-1ac0-4887-b28b-b506b85a923c.json written atomically
+2025-12-26T18:11:20.901Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2025-12-26T18:11:20.901Z [DEBUG] Total plugin skills loaded: 0
+2025-12-26T18:11:20.901Z [DEBUG] Total plugin commands loaded: 0
+2025-12-26T18:11:20.901Z [DEBUG] Registered 0 hooks from 0 plugins
+2025-12-26T18:11:20.919Z [DEBUG] Total plugin agents loaded: 0
+2025-12-26T18:11:20.919Z [DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, legacy commands: 0)
+2025-12-26T18:11:20.919Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills
+2025-12-26T18:11:20.938Z [DEBUG] Git remote URL: git@github.com:Curator4/.dotfiles.git
+2025-12-26T18:11:20.938Z [DEBUG] Could not parse repository from: git@github.com:Curator4/.dotfiles.git
+2025-12-26T18:11:20.938Z [DEBUG] Parsed repository: null from URL: git@github.com:Curator4/.dotfiles.git
+2025-12-26T18:11:20.938Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2025-12-26T18:11:20.956Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=/home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/x64-linux/rg)
+2025-12-26T18:11:21.002Z [DEBUG] Shell snapshot created successfully (4309 bytes)
+2025-12-26T18:11:21.048Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-obsidian-vault/bb10c63b-24a2-4207-a532-a895a61f0d7e.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-obsidian-vault/bb10c63b-24a2-4207-a532-a895a61f0d7e.jsonl'
+    at kc (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3878
+    at async Promise.all (index 8)
+    at async ZfA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9601
+    at async pO0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:203)
+    at async tI9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9099)
+2025-12-26T18:11:21.051Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-workspace-bootdev-peril/63205417-23a6-4c6f-8166-0b3f864f62e8.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-workspace-bootdev-peril/63205417-23a6-4c6f-8166-0b3f864f62e8.jsonl'
+    at kc (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3878
+    at async Promise.all (index 17)
+    at async ZfA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9601
+    at async pO0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:203)
+    at async tI9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9099)
+2025-12-26T18:11:21.051Z [ERROR] Error: Error: Error opening file /home/curator/.claude/projects/-home-curator-workspace-bootdev-peril/f8f5cfed-73c5-461f-87bd-b0a0b9b345e0.jsonl: Error: ENOENT: no such file or directory, open '/home/curator/.claude/projects/-home-curator-workspace-bootdev-peril/f8f5cfed-73c5-461f-87bd-b0a0b9b345e0.jsonl'
+    at kc (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:75:170)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3878
+    at async Promise.all (index 18)
+    at async ZfA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:3714)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9601
+    at async pO0 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:203)
+    at async tI9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:4279:9099)
+2025-12-26T18:11:21.056Z [DEBUG] Stats cache saved successfully (lastComputedDate: 2025-12-25)
+2025-12-26T18:11:21.056Z [DEBUG] Stats cache updated with 3 new sessions
+2025-12-26T18:11:21.141Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.4493.1766772681141
+2025-12-26T18:11:21.141Z [DEBUG] Preserving file permissions: 100600
+2025-12-26T18:11:21.144Z [DEBUG] Temp file written successfully, size: 73054 bytes
+2025-12-26T18:11:21.144Z [DEBUG] Applied original permissions to temp file
+2025-12-26T18:11:21.144Z [DEBUG] Renaming /home/curator/.claude.json.tmp.4493.1766772681141 to /home/curator/.claude.json
+2025-12-26T18:11:21.144Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-26T18:11:21.186Z [ERROR] AxiosError: AxiosError: Request failed with status code 401
+    at bx (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:56:1137)
+    at IncomingMessage.<anonymous> (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:57:9852)
+    at IncomingMessage.emit (node:events:520:35)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+    at fzA.request (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:59:2130)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async UT2 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1845:3609)
+2025-12-26T18:11:21.207Z [DEBUG] Failed to fetch Grove notice config: AxiosError: Request failed with status code 401
+2025-12-26T18:11:21.239Z [DEBUG] Initialized versioned plugins system with 0 plugins
+2025-12-26T18:11:21.243Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.4493.1766772681243
+2025-12-26T18:11:21.243Z [DEBUG] Preserving file permissions: 100600
+2025-12-26T18:11:21.247Z [DEBUG] Temp file written successfully, size: 73054 bytes
+2025-12-26T18:11:21.247Z [DEBUG] Applied original permissions to temp file
+2025-12-26T18:11:21.247Z [DEBUG] Renaming /home/curator/.claude.json.tmp.4493.1766772681243 to /home/curator/.claude.json
+2025-12-26T18:11:21.247Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-26T18:11:21.257Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2025-12-26T18:11:21.257Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:11:21.257Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2025-12-26T18:11:21.276Z [DEBUG] Skills and commands included in Skill tool:
+2025-12-26T18:11:21.324Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.4493.1766772681324
+2025-12-26T18:11:21.324Z [DEBUG] Preserving file permissions: 100600
+2025-12-26T18:11:21.327Z [DEBUG] Temp file written successfully, size: 72981 bytes
+2025-12-26T18:11:21.327Z [DEBUG] Applied original permissions to temp file
+2025-12-26T18:11:21.327Z [DEBUG] Renaming /home/curator/.claude.json.tmp.4493.1766772681324 to /home/curator/.claude.json
+2025-12-26T18:11:21.327Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-26T18:11:21.343Z [DEBUG] Official marketplace auto-install skipped: already_attempted
+2025-12-26T18:11:21.343Z [DEBUG] performStartupChecks called
+2025-12-26T18:11:21.344Z [DEBUG] Starting background plugin installations
+2025-12-26T18:11:21.344Z [DEBUG] performBackgroundPluginInstallations called
+2025-12-26T18:11:21.352Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:11:21.355Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.4493.1766772681355
+2025-12-26T18:11:21.355Z [DEBUG] Preserving file permissions: 100600
+2025-12-26T18:11:21.358Z [DEBUG] Temp file written successfully, size: 72980 bytes
+2025-12-26T18:11:21.358Z [DEBUG] Applied original permissions to temp file
+2025-12-26T18:11:21.358Z [DEBUG] Renaming /home/curator/.claude.json.tmp.4493.1766772681355 to /home/curator/.claude.json
+2025-12-26T18:11:21.358Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-26T18:11:21.360Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.4493.1766772681360
+2025-12-26T18:11:21.360Z [DEBUG] Preserving file permissions: 100600
+2025-12-26T18:11:21.364Z [DEBUG] Temp file written successfully, size: 73053 bytes
+2025-12-26T18:11:21.364Z [DEBUG] Applied original permissions to temp file
+2025-12-26T18:11:21.364Z [DEBUG] Renaming /home/curator/.claude.json.tmp.4493.1766772681360 to /home/curator/.claude.json
+2025-12-26T18:11:21.364Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-26T18:11:21.366Z [DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+2025-12-26T18:11:21.367Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2025-12-26T18:11:21.385Z [DEBUG] Getting matching hook commands for SubagentStart with query: Explore
+2025-12-26T18:11:21.385Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:11:21.385Z [DEBUG] Matched 0 unique hooks for query "Explore" (0 before deduplication)
+2025-12-26T18:11:21.394Z [DEBUG] Getting matching hook commands for SubagentStart with query: Plan
+2025-12-26T18:11:21.394Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:11:21.394Z [DEBUG] Matched 0 unique hooks for query "Plan" (0 before deduplication)
+2025-12-26T18:11:21.430Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.4493.1766772681430
+2025-12-26T18:11:21.430Z [DEBUG] Preserving file permissions: 100600
+2025-12-26T18:11:21.433Z [DEBUG] Temp file written successfully, size: 73053 bytes
+2025-12-26T18:11:21.433Z [DEBUG] Applied original permissions to temp file
+2025-12-26T18:11:21.433Z [DEBUG] Renaming /home/curator/.claude.json.tmp.4493.1766772681430 to /home/curator/.claude.json
+2025-12-26T18:11:21.433Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-26T18:11:21.436Z [DEBUG] Summarizing all 156 messages (~22502 tokens)
+2025-12-26T18:11:21.474Z [DEBUG] [SLOW OPERATION DETECTED] fs.writeFileSync (5.0ms)
+2025-12-26T18:11:21.499Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.4493.1766772681499
+2025-12-26T18:11:21.499Z [DEBUG] Preserving file permissions: 100600
+2025-12-26T18:11:21.503Z [DEBUG] Temp file written successfully, size: 73053 bytes
+2025-12-26T18:11:21.503Z [DEBUG] Applied original permissions to temp file
+2025-12-26T18:11:21.503Z [DEBUG] Renaming /home/curator/.claude.json.tmp.4493.1766772681499 to /home/curator/.claude.json
+2025-12-26T18:11:21.503Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-26T18:11:22.021Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.4493.1766772682021
+2025-12-26T18:11:22.021Z [DEBUG] Preserving file permissions: 100600
+2025-12-26T18:11:22.026Z [DEBUG] Temp file written successfully, size: 73053 bytes
+2025-12-26T18:11:22.026Z [DEBUG] Applied original permissions to temp file
+2025-12-26T18:11:22.026Z [DEBUG] Renaming /home/curator/.claude.json.tmp.4493.1766772682021 to /home/curator/.claude.json
+2025-12-26T18:11:22.026Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-26T18:11:22.220Z [DEBUG] Successfully refreshed marketplace: claude-plugins-official
+2025-12-26T18:11:22.220Z [DEBUG] Plugin autoupdate: checking installed plugins
+2025-12-26T18:11:23.387Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:11:23.987Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:11:24.035Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:11:24.366Z [DEBUG] Summarizing all 225 messages (~32997 tokens)
+2025-12-26T18:11:25.040Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:11:25.173Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-12-26T18:11:25.173Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:11:25.173Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:11:25.567Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:11:31.544Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-12-26T18:11:31.544Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:11:31.544Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:11:54.223Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:11:54.224Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:11:54.224Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:11:54.224Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:11:54.256Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-26T18:11:54.257Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:11:54.257Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:11:54.258Z [DEBUG] FileHistory: Added snapshot for 5bf48454-6d03-4520-b397-7eab14d9c9d6, tracking 0 files
+2025-12-26T18:11:54.293Z [DEBUG] Total plugin output styles loaded: 0
+2025-12-26T18:11:55.239Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:11:56.176Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:12:01.609Z [DEBUG] executePreToolHooks called for tool: Read
+2025-12-26T18:12:01.609Z [DEBUG] executePreToolHooks called for tool: Read
+2025-12-26T18:12:01.614Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2025-12-26T18:12:01.614Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:12:01.614Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-26T18:12:01.614Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2025-12-26T18:12:01.614Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:12:01.614Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-26T18:12:01.660Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2025-12-26T18:12:01.660Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:12:01.660Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-26T18:12:01.660Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2025-12-26T18:12:01.660Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:12:01.660Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-26T18:12:01.668Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-26T18:12:01.682Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-26T18:12:01.682Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:12:01.682Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:12:01.700Z [DEBUG] tree-sitter: WASM files not found
+2025-12-26T18:12:02.431Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:12:02.489Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "hyprctl monitors:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-26T18:12:02.510Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-26T18:12:02.518Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-26T18:12:02.518Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:12:02.518Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:12:07.451Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:12:07.454Z [DEBUG] No session environment scripts found
+2025-12-26T18:12:07.504Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-26T18:12:07.504Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:12:07.504Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:12:07.524Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:12:07.524Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:12:07.524Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:12:07.524Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:12:08.334Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:12:09.999Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:12:25.402Z [DEBUG] executePreToolHooks called for tool: AskUserQuestion
+2025-12-26T18:12:25.415Z [DEBUG] Getting matching hook commands for PreToolUse with query: AskUserQuestion
+2025-12-26T18:12:25.415Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:12:25.415Z [DEBUG] Matched 0 unique hooks for query "AskUserQuestion" (0 before deduplication)
+2025-12-26T18:12:25.433Z [DEBUG] executePermissionRequestHooks called for tool: AskUserQuestion
+2025-12-26T18:12:25.442Z [DEBUG] Getting matching hook commands for PermissionRequest with query: AskUserQuestion
+2025-12-26T18:12:25.442Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:12:25.442Z [DEBUG] Matched 0 unique hooks for query "AskUserQuestion" (0 before deduplication)
+2025-12-26T18:12:31.439Z [DEBUG] Getting matching hook commands for Notification with query: permission_prompt
+2025-12-26T18:12:31.439Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:12:31.439Z [DEBUG] Matched 0 unique hooks for query "permission_prompt" (0 before deduplication)
+2025-12-26T18:12:51.398Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.4493.1766772771398
+2025-12-26T18:12:51.398Z [DEBUG] Preserving file permissions: 100600
+2025-12-26T18:12:51.400Z [DEBUG] Temp file written successfully, size: 73053 bytes
+2025-12-26T18:12:51.400Z [DEBUG] Applied original permissions to temp file
+2025-12-26T18:12:51.400Z [DEBUG] Renaming /home/curator/.claude.json.tmp.4493.1766772771398 to /home/curator/.claude.json
+2025-12-26T18:12:51.400Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-26T18:12:51.428Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:13:31.801Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:13:31.801Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:13:31.801Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:13:31.801Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:13:31.813Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-26T18:13:31.813Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:13:31.813Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:13:31.815Z [DEBUG] FileHistory: Making snapshot for message 4c5cbba3-5fc4-469b-9001-6fdbf60e05f6
+2025-12-26T18:13:31.815Z [DEBUG] FileHistory: Added snapshot for 4c5cbba3-5fc4-469b-9001-6fdbf60e05f6, tracking 0 files
+2025-12-26T18:13:32.729Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:13:33.627Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:13:41.526Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-26T18:13:41.535Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-26T18:13:41.535Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:13:41.535Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:13:41.563Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-26T18:13:41.572Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-26T18:13:41.572Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:13:41.572Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:13:43.177Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:13:46.218Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-26T18:13:46.218Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:13:46.218Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:13:46.233Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:13:46.233Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:13:46.233Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:13:46.233Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:13:46.907Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:13:48.027Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:13:52.283Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-26T18:13:52.283Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:13:52.283Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:13:54.696Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:13:59.115Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-12-26T18:13:59.115Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:13:59.115Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:14:13.358Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:14:13.358Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:14:13.358Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:14:13.358Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:14:13.373Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-26T18:14:13.373Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:14:13.373Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:14:13.376Z [DEBUG] FileHistory: Making snapshot for message 40f0fb24-344e-4fee-8422-51de086e5bd1
+2025-12-26T18:14:13.376Z [DEBUG] FileHistory: Added snapshot for 40f0fb24-344e-4fee-8422-51de086e5bd1, tracking 0 files
+2025-12-26T18:14:14.377Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:15.873Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:18.524Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-26T18:14:18.531Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-26T18:14:18.531Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:14:18.531Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:14:19.417Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:19.496Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "hyprctl keyword:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-26T18:14:19.511Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-26T18:14:19.518Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-26T18:14:19.518Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:14:19.518Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:14:20.958Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:14:21.004Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-26T18:14:21.004Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:14:21.004Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:14:21.019Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:14:21.019Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:14:21.019Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:14:21.019Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:14:21.710Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:23.167Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:24.499Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-26T18:14:24.499Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:14:24.499Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:14:26.698Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:27.867Z [DEBUG] Streaming aborted by user: Request was aborted.
+2025-12-26T18:14:27.868Z [ERROR] Error in non-streaming fallback: Request was aborted.
+2025-12-26T18:14:27.868Z [ERROR] Error: Error: Request was aborted.
+    at _0A._createMessage (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:514:3157)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+2025-12-26T18:14:28.984Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:14:28.984Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:14:28.984Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:14:28.984Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:14:29.000Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-26T18:14:29.000Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:14:29.000Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:14:29.001Z [DEBUG] FileHistory: Making snapshot for message 96dbe519-2722-4a80-9bc3-f79cb119ba43
+2025-12-26T18:14:29.001Z [DEBUG] FileHistory: Added snapshot for 96dbe519-2722-4a80-9bc3-f79cb119ba43, tracking 0 files
+2025-12-26T18:14:29.982Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:31.225Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:34.306Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-26T18:14:34.311Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-26T18:14:34.311Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:14:34.311Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:14:34.991Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:35.167Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:35.729Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:35.809Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "hyprctl keyword:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-26T18:14:35.822Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-26T18:14:35.828Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-26T18:14:35.828Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:14:35.828Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:14:37.325Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:14:37.476Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-26T18:14:37.476Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:14:37.476Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:14:37.492Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:14:37.492Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:14:37.492Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:14:37.492Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:14:38.224Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:39.139Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:40.000Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-26T18:14:40.000Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:14:40.000Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:14:42.581Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:42.953Z [DEBUG] Streaming aborted by user: Request was aborted.
+2025-12-26T18:14:42.953Z [ERROR] Error in non-streaming fallback: Request was aborted.
+2025-12-26T18:14:42.953Z [ERROR] Error: Error: Request was aborted.
+    at _0A._createMessage (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:514:3157)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+2025-12-26T18:14:46.746Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:14:46.746Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:14:46.746Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:14:46.746Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:14:46.757Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-26T18:14:46.757Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:14:46.757Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:14:46.757Z [DEBUG] FileHistory: Making snapshot for message a1e74db3-159a-40e1-911e-d155dbbafb45
+2025-12-26T18:14:46.757Z [DEBUG] FileHistory: Added snapshot for a1e74db3-159a-40e1-911e-d155dbbafb45, tracking 0 files
+2025-12-26T18:14:47.649Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:49.180Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:50.784Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-26T18:14:50.791Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-26T18:14:50.791Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:14:50.791Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:14:51.427Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:51.446Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:51.509Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:51.975Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "hyprctl keyword:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-26T18:14:51.989Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-26T18:14:51.996Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-26T18:14:51.996Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:14:51.996Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:14:52.678Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:14:52.831Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-26T18:14:52.831Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:14:52.831Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:14:52.846Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:14:52.846Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:14:52.846Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:14:52.846Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:14:53.290Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:54.874Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:14:55.421Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-26T18:14:55.421Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:14:55.421Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:14:57.136Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:15:00.074Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-12-26T18:15:00.074Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:15:00.074Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:15:05.957Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:15:05.957Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:15:05.957Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:15:05.957Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:15:05.971Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-26T18:15:05.971Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:15:05.971Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:15:05.972Z [DEBUG] FileHistory: Making snapshot for message e10eb544-c240-4f45-bcce-4aa9e86e174c
+2025-12-26T18:15:05.972Z [DEBUG] FileHistory: Added snapshot for e10eb544-c240-4f45-bcce-4aa9e86e174c, tracking 0 files
+2025-12-26T18:15:07.834Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:15:07.982Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:15:09.762Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-26T18:15:09.771Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-26T18:15:09.771Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:15:09.771Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:15:10.324Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:15:10.325Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:15:10.736Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:15:11.151Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "hyprctl keyword:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-26T18:15:11.167Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-26T18:15:11.176Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-26T18:15:11.176Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:15:11.176Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:15:12.045Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:15:12.199Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-26T18:15:12.199Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:15:12.199Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:15:12.217Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:15:12.217Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:15:12.217Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:15:12.217Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:15:12.685Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:15:13.991Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:15:14.626Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-26T18:15:14.626Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:15:14.626Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:15:16.525Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:15:18.685Z [DEBUG] Streaming aborted by user: Request was aborted.
+2025-12-26T18:15:18.685Z [ERROR] Error in non-streaming fallback: Request was aborted.
+2025-12-26T18:15:18.685Z [ERROR] Error: Error: Request was aborted.
+    at _0A._createMessage (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:514:3157)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+2025-12-26T18:15:19.985Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:15:19.985Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:15:19.985Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:15:19.985Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:15:19.995Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-26T18:15:19.995Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:15:19.995Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:15:19.996Z [DEBUG] FileHistory: Making snapshot for message b78d0189-d4ca-4ba6-bb05-485f9d9464ad
+2025-12-26T18:15:19.996Z [DEBUG] FileHistory: Added snapshot for b78d0189-d4ca-4ba6-bb05-485f9d9464ad, tracking 0 files
+2025-12-26T18:15:21.057Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:15:22.575Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:15:27.238Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-26T18:15:27.243Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-26T18:15:27.243Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:15:27.243Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:15:28.202Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:15:28.287Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "hyprctl keyword:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-26T18:15:28.309Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-26T18:15:28.322Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-26T18:15:28.322Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:15:28.322Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:15:29.612Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:15:29.657Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-26T18:15:29.657Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:15:29.657Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:15:29.672Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:15:29.672Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:15:29.672Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:15:29.672Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:15:30.079Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:15:32.080Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:15:35.715Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-26T18:15:35.715Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:15:35.715Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:15:38.550Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:15:41.473Z [DEBUG] Streaming aborted by user: Request was aborted.
+2025-12-26T18:15:41.473Z [ERROR] Error in non-streaming fallback: Request was aborted.
+2025-12-26T18:15:41.473Z [ERROR] Error: Error: Request was aborted.
+    at _0A._createMessage (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:514:3157)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+2025-12-26T18:15:52.020Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:15:52.020Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:15:52.020Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:15:52.020Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:15:52.033Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-26T18:15:52.033Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:15:52.033Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:15:52.034Z [DEBUG] FileHistory: Making snapshot for message 2351b5a5-ddd4-48b3-8bb9-e3e0b687159d
+2025-12-26T18:15:52.034Z [DEBUG] FileHistory: Added snapshot for 2351b5a5-ddd4-48b3-8bb9-e3e0b687159d, tracking 0 files
+2025-12-26T18:15:52.746Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:15:54.539Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:16:12.159Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-12-26T18:16:12.164Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-12-26T18:16:12.164Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:16:12.164Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-26T18:16:12.176Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-12-26T18:16:12.198Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-12-26T18:16:12.215Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-12-26T18:16:12.215Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:16:12.215Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-26T18:16:13.526Z [DEBUG] Writing to temp file: /home/curator/.dotfiles/hypr/.config/hypr/monitors.conf.tmp.4493.1766772973526
+2025-12-26T18:16:13.526Z [DEBUG] Preserving file permissions: 100644
+2025-12-26T18:16:13.529Z [DEBUG] Temp file written successfully, size: 289 bytes
+2025-12-26T18:16:13.529Z [DEBUG] Applied original permissions to temp file
+2025-12-26T18:16:13.529Z [DEBUG] Renaming /home/curator/.dotfiles/hypr/.config/hypr/monitors.conf.tmp.4493.1766772973526 to /home/curator/.dotfiles/hypr/.config/hypr/monitors.conf
+2025-12-26T18:16:13.530Z [DEBUG] File /home/curator/.dotfiles/hypr/.config/hypr/monitors.conf written atomically
+2025-12-26T18:16:13.539Z [DEBUG] FileHistory: Tracked file modification for /home/curator/.dotfiles/hypr/.config/hypr/monitors.conf
+2025-12-26T18:16:13.557Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .conf
+2025-12-26T18:16:13.559Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:16:13.573Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-12-26T18:16:13.573Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:16:13.573Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-26T18:16:13.610Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:16:13.610Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:16:13.610Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:16:13.610Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:16:16.539Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:16:24.823Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-12-26T18:16:24.827Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-12-26T18:16:24.827Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:16:24.827Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-26T18:16:24.845Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-12-26T18:16:24.867Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-12-26T18:16:24.886Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-12-26T18:16:24.886Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:16:24.886Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-26T18:16:34.180Z [DEBUG] Writing to temp file: /home/curator/.dotfiles/hypr/.config/hypr/rules.conf.tmp.4493.1766772994180
+2025-12-26T18:16:34.180Z [DEBUG] Preserving file permissions: 100644
+2025-12-26T18:16:34.183Z [DEBUG] Temp file written successfully, size: 2453 bytes
+2025-12-26T18:16:34.183Z [DEBUG] Applied original permissions to temp file
+2025-12-26T18:16:34.183Z [DEBUG] Renaming /home/curator/.dotfiles/hypr/.config/hypr/rules.conf.tmp.4493.1766772994180 to /home/curator/.dotfiles/hypr/.config/hypr/rules.conf
+2025-12-26T18:16:34.183Z [DEBUG] File /home/curator/.dotfiles/hypr/.config/hypr/rules.conf written atomically
+2025-12-26T18:16:34.191Z [DEBUG] FileHistory: Tracked file modification for /home/curator/.dotfiles/hypr/.config/hypr/rules.conf
+2025-12-26T18:16:34.208Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .conf
+2025-12-26T18:16:34.209Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:16:34.218Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-12-26T18:16:34.218Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:16:34.218Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-26T18:16:34.249Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:16:34.249Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:16:34.249Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:16:34.249Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:16:36.671Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:16:38.918Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-26T18:16:38.923Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-26T18:16:38.923Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:16:38.923Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:16:39.614Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:16:39.679Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "hyprctl reload:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-26T18:16:39.687Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-26T18:16:39.694Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-26T18:16:39.694Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:16:39.694Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:16:41.468Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:16:41.531Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-26T18:16:41.531Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:16:41.531Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:16:41.549Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:16:41.549Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:16:41.549Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:16:41.549Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:16:42.070Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:16:46.477Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:16:50.152Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-26T18:16:50.152Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:16:50.152Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:16:52.106Z [DEBUG] Streaming aborted by user: Request was aborted.
+2025-12-26T18:16:52.106Z [ERROR] Error in non-streaming fallback: Request was aborted.
+2025-12-26T18:16:52.106Z [ERROR] Error: Error: Request was aborted.
+    at OT.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:857:3940)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+2025-12-26T18:16:58.120Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:16:58.120Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:16:58.120Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:16:58.120Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:16:58.132Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-26T18:16:58.132Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:16:58.132Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:16:58.132Z [DEBUG] FileHistory: Making snapshot for message c3d30dfd-87e7-4d22-b94c-385d3f80c2e2
+2025-12-26T18:16:58.133Z [DEBUG] FileHistory: Added snapshot for c3d30dfd-87e7-4d22-b94c-385d3f80c2e2, tracking 2 files
+2025-12-26T18:16:59.005Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:17:00.032Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:17:06.886Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-12-26T18:17:06.891Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-12-26T18:17:06.891Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:17:06.891Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-26T18:17:06.902Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-12-26T18:17:06.916Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-12-26T18:17:06.930Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-12-26T18:17:06.930Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:17:06.930Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-26T18:17:08.003Z [DEBUG] Writing to temp file: /home/curator/.dotfiles/hypr/.config/hypr/monitors.conf.tmp.4493.1766773028003
+2025-12-26T18:17:08.003Z [DEBUG] Preserving file permissions: 100644
+2025-12-26T18:17:08.007Z [DEBUG] Temp file written successfully, size: 289 bytes
+2025-12-26T18:17:08.007Z [DEBUG] Applied original permissions to temp file
+2025-12-26T18:17:08.007Z [DEBUG] Renaming /home/curator/.dotfiles/hypr/.config/hypr/monitors.conf.tmp.4493.1766773028003 to /home/curator/.dotfiles/hypr/.config/hypr/monitors.conf
+2025-12-26T18:17:08.007Z [DEBUG] File /home/curator/.dotfiles/hypr/.config/hypr/monitors.conf written atomically
+2025-12-26T18:17:08.031Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:17:08.036Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-12-26T18:17:08.037Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:17:08.037Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-26T18:17:08.066Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:17:08.066Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:17:08.066Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:17:08.066Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:17:11.181Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:17:12.535Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-26T18:17:12.540Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-26T18:17:12.540Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:17:12.540Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:17:12.559Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "hyprctl reload:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2025-12-26T18:17:12.571Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-26T18:17:12.582Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-26T18:17:12.582Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:17:12.582Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:17:14.306Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:17:14.337Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2025-12-26T18:17:14.337Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:17:14.337Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:17:14.353Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:17:14.353Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:17:14.353Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:17:14.353Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:17:15.047Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:17:16.315Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:17:17.643Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-26T18:17:17.643Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:17:17.643Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:17:19.563Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:17:23.565Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-12-26T18:17:23.565Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:17:23.565Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:18:17.679Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2025-12-26T18:18:17.679Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:18:17.679Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2025-12-26T18:18:47.562Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:18:47.562Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:18:47.562Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:18:47.562Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:18:47.573Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-26T18:18:47.573Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:18:47.573Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:18:47.573Z [DEBUG] FileHistory: Making snapshot for message 26a9dbb3-74cf-45cd-a156-1dd818738537
+2025-12-26T18:18:47.577Z [DEBUG] FileHistory: Added snapshot for 26a9dbb3-74cf-45cd-a156-1dd818738537, tracking 2 files
+2025-12-26T18:18:48.390Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:18:49.442Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:18:53.639Z [DEBUG] executePreToolHooks called for tool: Read
+2025-12-26T18:18:53.639Z [DEBUG] executePreToolHooks called for tool: Read
+2025-12-26T18:18:53.645Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2025-12-26T18:18:53.645Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:18:53.645Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-26T18:18:53.645Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2025-12-26T18:18:53.645Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:18:53.645Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-26T18:18:53.658Z [DEBUG] Permission suggestions for Read: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Read",
+        "ruleContent": "//home/curator/.dotfiles/waybar/.config/waybar/**"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "session"
+  }
+]
+2025-12-26T18:18:53.672Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2025-12-26T18:18:53.672Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:18:53.672Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-26T18:18:53.678Z [DEBUG] executePermissionRequestHooks called for tool: Read
+2025-12-26T18:18:53.706Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Read
+2025-12-26T18:18:53.706Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:18:53.706Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-26T18:18:56.567Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:18:56.573Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2025-12-26T18:18:56.573Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:18:56.573Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-12-26T18:18:56.596Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:18:56.596Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:18:56.596Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:18:56.596Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:18:58.484Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:19:05.696Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-12-26T18:19:05.700Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-12-26T18:19:05.700Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:19:05.700Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-26T18:19:05.711Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  },
+  {
+    "type": "addDirectories",
+    "directories": [
+      "/home/curator/.dotfiles/waybar/.config/waybar"
+    ],
+    "destination": "session"
+  }
+]
+2025-12-26T18:19:05.725Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-12-26T18:19:05.737Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-12-26T18:19:05.737Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:19:05.737Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-26T18:19:09.350Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:19:13.143Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:19:13.143Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:19:13.143Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:19:13.143Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:19:13.153Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-26T18:19:13.153Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:19:13.153Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:19:13.153Z [DEBUG] FileHistory: Making snapshot for message 557051c0-8049-4cdc-af9e-e1899f8e0445
+2025-12-26T18:19:13.153Z [DEBUG] FileHistory: Added snapshot for 557051c0-8049-4cdc-af9e-e1899f8e0445, tracking 2 files
+2025-12-26T18:19:13.925Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:19:16.791Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:19:19.462Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-12-26T18:19:19.466Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-12-26T18:19:19.466Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:19:19.466Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-26T18:19:19.477Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  },
+  {
+    "type": "addDirectories",
+    "directories": [
+      "/home/curator/.dotfiles/waybar/.config/waybar"
+    ],
+    "destination": "session"
+  }
+]
+2025-12-26T18:19:19.491Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-12-26T18:19:19.510Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-12-26T18:19:19.510Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:19:19.510Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-26T18:19:20.037Z [DEBUG] Writing to temp file: /home/curator/.dotfiles/waybar/.config/waybar/config.jsonc.tmp.4493.1766773160037
+2025-12-26T18:19:20.037Z [DEBUG] Preserving file permissions: 100644
+2025-12-26T18:19:20.041Z [DEBUG] Temp file written successfully, size: 3481 bytes
+2025-12-26T18:19:20.041Z [DEBUG] Applied original permissions to temp file
+2025-12-26T18:19:20.041Z [DEBUG] Renaming /home/curator/.dotfiles/waybar/.config/waybar/config.jsonc.tmp.4493.1766773160037 to /home/curator/.dotfiles/waybar/.config/waybar/config.jsonc
+2025-12-26T18:19:20.041Z [DEBUG] File /home/curator/.dotfiles/waybar/.config/waybar/config.jsonc written atomically
+2025-12-26T18:19:20.048Z [DEBUG] FileHistory: Tracked file modification for /home/curator/.dotfiles/waybar/.config/waybar/config.jsonc
+2025-12-26T18:19:20.065Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .jsonc
+2025-12-26T18:19:20.066Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:19:20.072Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-12-26T18:19:20.072Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:19:20.072Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-12-26T18:19:20.098Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:19:20.098Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:19:20.098Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:19:20.098Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:19:22.478Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:19:24.567Z [DEBUG] executePreToolHooks called for tool: Bash
+2025-12-26T18:19:24.571Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2025-12-26T18:19:24.571Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:19:24.571Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:19:24.596Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2025-12-26T18:19:24.607Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2025-12-26T18:19:24.607Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:19:24.607Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:19:25.263Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-26T18:20:13.364Z [DEBUG] Getting matching hook commands for PostToolUseFailure with query: Bash
+2025-12-26T18:20:13.364Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:20:13.364Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2025-12-26T18:20:19.310Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:20:19.310Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:20:19.310Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:20:19.310Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:20:19.322Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-26T18:20:19.322Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:20:19.322Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:20:19.326Z [DEBUG] FileHistory: Making snapshot for message af41caa3-70a7-4694-806f-df7edd952b21
+2025-12-26T18:20:19.327Z [DEBUG] FileHistory: Added snapshot for af41caa3-70a7-4694-806f-df7edd952b21, tracking 3 files
+2025-12-26T18:20:20.840Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:20:21.844Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:20:25.092Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-26T18:20:25.092Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:20:25.092Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:20:27.267Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:20:30.106Z [DEBUG] Streaming aborted by user: Request was aborted.
+2025-12-26T18:20:30.106Z [ERROR] Error in non-streaming fallback: Request was aborted.
+2025-12-26T18:20:30.106Z [ERROR] Error: Error: Request was aborted.
+    at _0A._createMessage (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:514:3157)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+2025-12-26T18:20:44.364Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:20:44.365Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:20:44.365Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:20:44.365Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:20:44.381Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-26T18:20:44.381Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:20:44.381Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:20:44.383Z [DEBUG] FileHistory: Making snapshot for message 957f452d-71ed-45be-ad37-8de25b7c6f1a
+2025-12-26T18:20:44.383Z [DEBUG] FileHistory: Added snapshot for 957f452d-71ed-45be-ad37-8de25b7c6f1a, tracking 3 files
+2025-12-26T18:20:45.085Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:20:46.654Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:20:49.862Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.4493.1766773249862
+2025-12-26T18:20:49.862Z [DEBUG] Preserving file permissions: 100600
+2025-12-26T18:20:49.865Z [DEBUG] Temp file written successfully, size: 73053 bytes
+2025-12-26T18:20:49.865Z [DEBUG] Applied original permissions to temp file
+2025-12-26T18:20:49.865Z [DEBUG] Renaming /home/curator/.claude.json.tmp.4493.1766773249862 to /home/curator/.claude.json
+2025-12-26T18:20:49.865Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-26T18:20:52.981Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-26T18:20:52.981Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:20:52.981Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:20:53.030Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-12-26T18:20:53.030Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-12-26T18:20:53.030Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-12-26T18:20:53.030Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-12-26T18:20:53.045Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-12-26T18:20:53.045Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:20:53.045Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:20:53.046Z [DEBUG] FileHistory: Making snapshot for message 8078eae0-d104-4f14-a023-12ff747d2d00
+2025-12-26T18:20:53.046Z [DEBUG] FileHistory: Added snapshot for 8078eae0-d104-4f14-a023-12ff747d2d00, tracking 3 files
+2025-12-26T18:20:53.954Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:20:55.775Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:20:56.055Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:20:58.119Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-12-26T18:20:58.119Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:20:58.119Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:21:00.024Z [DEBUG] Stream started - received first chunk
+2025-12-26T18:21:07.221Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-12-26T18:21:07.221Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:21:07.221Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-12-26T18:21:11.450Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-12-26T18:21:11.450Z [DEBUG] Found 0 hook matchers in settings
+2025-12-26T18:21:11.450Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)

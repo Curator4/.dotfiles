@@ -1,0 +1,810 @@
+2025-11-21T20:39:43.822Z [DEBUG] Getting matching hook commands for SessionStart with query: clear
+2025-11-21T20:39:43.822Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:39:43.822Z [DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+2025-11-21T20:39:43.831Z [DEBUG] FileHistory: Added snapshot for fca02cbc-4ced-440f-a750-cad10e7d007b, tracking 0 files
+2025-11-21T20:39:43.837Z [DEBUG] Rendering user message with 1 content blocks
+2025-11-21T20:39:43.837Z [DEBUG] Block 0: <command-name>/clear</command-name>
+            <command-message>clear</command-message>
+           ...
+2025-11-21T20:39:43.837Z [DEBUG] UserCommandMessage rendering: "clear" (args: "none")
+2025-11-21T20:39:43.837Z [DEBUG] isSkillFormat: false, prefix: "/"
+2025-11-21T20:39:43.866Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31491.1763757583866
+2025-11-21T20:39:43.866Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:39:43.869Z [DEBUG] Temp file written successfully, size: 49288 bytes
+2025-11-21T20:39:43.869Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:39:43.869Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31491.1763757583866 to /home/curator/.claude.json
+2025-11-21T20:39:43.869Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-21T20:39:43.876Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:39:45.277Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-11-21T20:39:45.277Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:39:45.277Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-21T20:39:47.238Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-11-21T20:39:47.238Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:39:47.238Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-21T20:40:14.923Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:40:14.923Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:40:14.930Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:40:14.930Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:40:14.952Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-11-21T20:40:14.952Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:40:14.952Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-21T20:40:14.953Z [DEBUG] FileHistory: Making snapshot for message 046746e8-8e3b-4d35-92fe-4de82649f73d
+2025-11-21T20:40:14.953Z [DEBUG] FileHistory: Added snapshot for 046746e8-8e3b-4d35-92fe-4de82649f73d, tracking 0 files
+2025-11-21T20:40:15.007Z [DEBUG] Total plugin output styles loaded: 0
+2025-11-21T20:40:15.921Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:40:17.529Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:40:45.890Z [DEBUG] executePreToolHooks called for tool: Write
+2025-11-21T20:40:45.894Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2025-11-21T20:40:45.894Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:40:45.894Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2025-11-21T20:40:45.906Z [DEBUG] Permission suggestions for Write: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:40:45.967Z [DEBUG] executePermissionRequestHooks called for tool: Write
+2025-11-21T20:40:45.983Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Write
+2025-11-21T20:40:45.983Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:40:45.983Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2025-11-21T20:40:47.724Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:40:47.727Z [DEBUG] FileHistory: Tracked file modification for /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:40:47.775Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757647775
+2025-11-21T20:40:47.779Z [DEBUG] Temp file written successfully, size: 6289 bytes
+2025-11-21T20:40:47.779Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757647775 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:40:47.779Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:40:47.788Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2025-11-21T20:40:47.789Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:40:47.789Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2025-11-21T20:40:47.822Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:40:47.823Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:40:47.829Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:40:47.829Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:40:50.243Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:40:54.583Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-11-21T20:40:54.583Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:40:54.583Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-21T20:40:54.596Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31491.1763757654596
+2025-11-21T20:40:54.596Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:40:54.599Z [DEBUG] Temp file written successfully, size: 49289 bytes
+2025-11-21T20:40:54.599Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:40:54.599Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31491.1763757654596 to /home/curator/.claude.json
+2025-11-21T20:40:54.599Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-21T20:40:54.603Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31491.1763757654603
+2025-11-21T20:40:54.603Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:40:54.606Z [DEBUG] Temp file written successfully, size: 49289 bytes
+2025-11-21T20:40:54.606Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:40:54.606Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31491.1763757654603 to /home/curator/.claude.json
+2025-11-21T20:40:54.606Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-21T20:41:42.775Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:41:42.776Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:41:42.780Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:41:42.780Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:41:42.803Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-11-21T20:41:42.803Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:41:42.803Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-21T20:41:42.804Z [DEBUG] FileHistory: Making snapshot for message 7aeea400-6efe-40d5-9f7f-73e8836fe1ee
+2025-11-21T20:41:42.808Z [DEBUG] FileHistory: Added snapshot for 7aeea400-6efe-40d5-9f7f-73e8836fe1ee, tracking 1 files
+2025-11-21T20:41:43.465Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:41:45.456Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:41:46.230Z [DEBUG] executePreToolHooks called for tool: Read
+2025-11-21T20:41:46.234Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2025-11-21T20:41:46.234Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:41:46.234Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-11-21T20:41:46.258Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2025-11-21T20:41:46.258Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:41:46.258Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-11-21T20:41:46.285Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:41:46.286Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:41:46.291Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:41:46.291Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:41:48.479Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:41:50.175Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-11-21T20:41:50.178Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-11-21T20:41:50.179Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:41:50.179Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:41:50.188Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:41:50.206Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-11-21T20:41:50.209Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-11-21T20:41:50.209Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:41:50.209Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:41:51.323Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:41:51.332Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757711332
+2025-11-21T20:41:51.332Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:41:51.335Z [DEBUG] Temp file written successfully, size: 6287 bytes
+2025-11-21T20:41:51.335Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:41:51.335Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757711332 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:41:51.335Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:41:51.353Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-11-21T20:41:51.353Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:41:51.353Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:41:51.388Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:41:51.389Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:41:51.393Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:41:51.393Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:41:55.510Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:41:56.971Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-11-21T20:41:56.975Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-11-21T20:41:56.975Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:41:56.975Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:41:56.984Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:41:56.999Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-11-21T20:41:57.002Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-11-21T20:41:57.002Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:41:57.002Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:41:57.640Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:41:57.646Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757717646
+2025-11-21T20:41:57.646Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:41:57.649Z [DEBUG] Temp file written successfully, size: 6285 bytes
+2025-11-21T20:41:57.649Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:41:57.649Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757717646 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:41:57.649Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:41:57.668Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-11-21T20:41:57.668Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:41:57.668Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:41:57.703Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:41:57.703Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:41:57.708Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:41:57.709Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:41:59.557Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:42:01.149Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-11-21T20:42:01.153Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-11-21T20:42:01.153Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:01.153Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:01.162Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:42:01.177Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-11-21T20:42:01.180Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-11-21T20:42:01.180Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:01.180Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:01.613Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:42:01.619Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757721619
+2025-11-21T20:42:01.619Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:42:01.622Z [DEBUG] Temp file written successfully, size: 6283 bytes
+2025-11-21T20:42:01.622Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:42:01.622Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757721619 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:42:01.622Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:42:01.638Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-11-21T20:42:01.638Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:01.638Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:01.670Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:42:01.670Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:42:01.674Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:42:01.674Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:42:03.733Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:42:05.895Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-11-21T20:42:05.900Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-11-21T20:42:05.900Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:05.900Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:05.910Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:42:05.926Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-11-21T20:42:05.929Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-11-21T20:42:05.929Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:05.929Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:06.436Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:42:06.441Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757726441
+2025-11-21T20:42:06.441Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:42:06.444Z [DEBUG] Temp file written successfully, size: 6280 bytes
+2025-11-21T20:42:06.444Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:42:06.445Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757726441 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:42:06.445Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:42:06.463Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-11-21T20:42:06.463Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:06.463Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:06.500Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:42:06.500Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:42:06.504Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:42:06.504Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:42:09.307Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:42:10.816Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-11-21T20:42:10.820Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-11-21T20:42:10.821Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:10.821Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:10.832Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:42:10.847Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-11-21T20:42:10.851Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-11-21T20:42:10.851Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:10.851Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:11.258Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:42:11.265Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757731265
+2025-11-21T20:42:11.265Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:42:11.268Z [DEBUG] Temp file written successfully, size: 6278 bytes
+2025-11-21T20:42:11.268Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:42:11.268Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757731265 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:42:11.268Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:42:11.284Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-11-21T20:42:11.285Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:11.285Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:11.320Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:42:11.320Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:42:11.325Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:42:11.325Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:42:15.682Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:42:17.053Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-11-21T20:42:17.057Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-11-21T20:42:17.057Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:17.057Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:17.067Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:42:17.084Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-11-21T20:42:17.088Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-11-21T20:42:17.088Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:17.088Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:21.477Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:42:21.484Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757741484
+2025-11-21T20:42:21.484Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:42:21.487Z [DEBUG] Temp file written successfully, size: 6276 bytes
+2025-11-21T20:42:21.487Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:42:21.488Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757741484 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:42:21.488Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:42:21.505Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-11-21T20:42:21.505Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:21.505Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:21.539Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:42:21.539Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:42:21.545Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:42:21.545Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:42:25.251Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:42:27.105Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-11-21T20:42:27.109Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-11-21T20:42:27.109Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:27.109Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:27.121Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:42:27.136Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-11-21T20:42:27.140Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-11-21T20:42:27.140Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:27.140Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:32.228Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:42:32.235Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757752235
+2025-11-21T20:42:32.235Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:42:32.244Z [DEBUG] Temp file written successfully, size: 6273 bytes
+2025-11-21T20:42:32.244Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:42:32.244Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757752235 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:42:32.244Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:42:32.264Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-11-21T20:42:32.264Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:32.264Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:32.302Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:42:32.302Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:42:32.308Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:42:32.308Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:42:35.749Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:42:37.559Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-11-21T20:42:37.563Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-11-21T20:42:37.563Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:37.563Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:37.576Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:42:37.591Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-11-21T20:42:37.596Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-11-21T20:42:37.596Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:37.596Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:38.088Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:42:38.095Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757758095
+2025-11-21T20:42:38.095Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:42:38.098Z [DEBUG] Temp file written successfully, size: 6271 bytes
+2025-11-21T20:42:38.098Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:42:38.098Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757758095 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:42:38.098Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:42:38.114Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-11-21T20:42:38.114Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:38.114Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:38.151Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:42:38.151Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:42:38.156Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:42:38.156Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:42:40.622Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:42:42.482Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-11-21T20:42:42.487Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-11-21T20:42:42.487Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:42.487Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:42.497Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:42:42.514Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-11-21T20:42:42.518Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-11-21T20:42:42.518Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:42.518Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:43.101Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:42:43.108Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757763108
+2025-11-21T20:42:43.108Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:42:43.111Z [DEBUG] Temp file written successfully, size: 6269 bytes
+2025-11-21T20:42:43.111Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:42:43.111Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757763108 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:42:43.111Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:42:43.132Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-11-21T20:42:43.132Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:43.132Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:43.168Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:42:43.169Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:42:43.174Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:42:43.174Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:42:46.465Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:42:47.957Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-11-21T20:42:47.960Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-11-21T20:42:47.960Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:47.961Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:47.974Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:42:47.993Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-11-21T20:42:47.997Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-11-21T20:42:47.997Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:47.997Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:48.438Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:42:48.445Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757768445
+2025-11-21T20:42:48.445Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:42:48.448Z [DEBUG] Temp file written successfully, size: 6265 bytes
+2025-11-21T20:42:48.448Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:42:48.448Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757768445 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:42:48.448Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:42:48.466Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-11-21T20:42:48.466Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:48.466Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:48.501Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:42:48.501Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:42:48.507Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:42:48.507Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:42:51.657Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:42:52.868Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-11-21T20:42:52.872Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-11-21T20:42:52.872Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:52.872Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:52.885Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:42:52.903Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-11-21T20:42:52.906Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-11-21T20:42:52.906Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:52.906Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:55.162Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:42:55.169Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757775169
+2025-11-21T20:42:55.169Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:42:55.172Z [DEBUG] Temp file written successfully, size: 6263 bytes
+2025-11-21T20:42:55.172Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:42:55.172Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757775169 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:42:55.172Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:42:55.191Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-11-21T20:42:55.191Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:55.191Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:55.227Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:42:55.228Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:42:55.233Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:42:55.233Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:42:57.679Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:42:59.189Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-11-21T20:42:59.192Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-11-21T20:42:59.192Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:59.192Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:59.202Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:42:59.219Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-11-21T20:42:59.223Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-11-21T20:42:59.223Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:59.223Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:59.652Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:42:59.659Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757779659
+2025-11-21T20:42:59.659Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:42:59.662Z [DEBUG] Temp file written successfully, size: 6260 bytes
+2025-11-21T20:42:59.662Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:42:59.662Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757779659 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:42:59.663Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:42:59.682Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-11-21T20:42:59.682Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:42:59.682Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:42:59.716Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:42:59.716Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:42:59.721Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:42:59.721Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:43:02.171Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:43:03.516Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-11-21T20:43:03.519Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-11-21T20:43:03.519Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:43:03.519Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:43:03.529Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:43:03.545Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-11-21T20:43:03.550Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-11-21T20:43:03.550Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:43:03.550Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:43:04.064Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:43:04.070Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757784070
+2025-11-21T20:43:04.070Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:43:04.074Z [DEBUG] Temp file written successfully, size: 6258 bytes
+2025-11-21T20:43:04.074Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:43:04.074Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757784070 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:43:04.074Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:43:04.093Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-11-21T20:43:04.094Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:43:04.094Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:43:04.129Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:43:04.129Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:43:04.134Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:43:04.135Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:43:06.906Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:43:08.309Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-11-21T20:43:08.313Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-11-21T20:43:08.313Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:43:08.313Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:43:08.327Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:43:08.342Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-11-21T20:43:08.347Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-11-21T20:43:08.347Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:43:08.347Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:43:08.717Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:43:08.723Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757788723
+2025-11-21T20:43:08.723Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:43:08.727Z [DEBUG] Temp file written successfully, size: 6256 bytes
+2025-11-21T20:43:08.727Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:43:08.727Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757788723 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:43:08.727Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:43:08.745Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-11-21T20:43:08.745Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:43:08.745Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:43:08.786Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:43:08.786Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:43:08.791Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:43:08.791Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:43:11.560Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:43:13.009Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-11-21T20:43:13.014Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-11-21T20:43:13.014Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:43:13.014Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:43:13.024Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:43:13.039Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-11-21T20:43:13.042Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-11-21T20:43:13.042Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:43:13.042Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:43:13.457Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:43:13.463Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757793463
+2025-11-21T20:43:13.463Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:43:13.466Z [DEBUG] Temp file written successfully, size: 6254 bytes
+2025-11-21T20:43:13.466Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:43:13.466Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757793463 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:43:13.466Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:43:13.485Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-11-21T20:43:13.485Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:43:13.485Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:43:13.523Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:43:13.523Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:43:13.528Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:43:13.528Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:43:16.218Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:43:17.609Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-11-21T20:43:17.612Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-11-21T20:43:17.613Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:43:17.613Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:43:17.622Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:43:17.636Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-11-21T20:43:17.639Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-11-21T20:43:17.639Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:43:17.639Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:43:18.027Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:43:18.033Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757798033
+2025-11-21T20:43:18.033Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:43:18.036Z [DEBUG] Temp file written successfully, size: 6252 bytes
+2025-11-21T20:43:18.036Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:43:18.036Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757798033 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:43:18.036Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:43:18.055Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-11-21T20:43:18.055Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:43:18.055Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:43:18.090Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:43:18.090Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:43:18.095Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:43:18.095Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:43:20.686Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:43:22.349Z [DEBUG] executePreToolHooks called for tool: Edit
+2025-11-21T20:43:22.353Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2025-11-21T20:43:22.353Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:43:22.353Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:43:22.364Z [DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:43:22.382Z [DEBUG] executePermissionRequestHooks called for tool: Edit
+2025-11-21T20:43:22.386Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Edit
+2025-11-21T20:43:22.386Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:43:22.386Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:43:22.729Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:43:22.735Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757802735
+2025-11-21T20:43:22.735Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:43:22.738Z [DEBUG] Temp file written successfully, size: 6250 bytes
+2025-11-21T20:43:22.738Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:43:22.738Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757802735 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:43:22.738Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:43:22.758Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2025-11-21T20:43:22.758Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:43:22.758Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2025-11-21T20:43:22.794Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:43:22.794Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:43:22.799Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:43:22.799Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:43:25.171Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:43:26.237Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-11-21T20:43:26.237Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:43:26.237Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-21T20:43:26.250Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31491.1763757806250
+2025-11-21T20:43:26.250Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:43:26.253Z [DEBUG] Temp file written successfully, size: 49290 bytes
+2025-11-21T20:43:26.253Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:43:26.253Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31491.1763757806250 to /home/curator/.claude.json
+2025-11-21T20:43:26.254Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-21T20:43:26.260Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31491.1763757806260
+2025-11-21T20:43:26.261Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:43:26.264Z [DEBUG] Temp file written successfully, size: 49290 bytes
+2025-11-21T20:43:26.264Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:43:26.264Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31491.1763757806260 to /home/curator/.claude.json
+2025-11-21T20:43:26.264Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-21T20:43:58.367Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:43:58.367Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:43:58.371Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:43:58.371Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:43:58.393Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-11-21T20:43:58.393Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:43:58.393Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-21T20:43:58.394Z [DEBUG] FileHistory: Making snapshot for message e399f726-8833-4dfd-bb5d-756ee86c600f
+2025-11-21T20:43:58.398Z [DEBUG] FileHistory: Added snapshot for e399f726-8833-4dfd-bb5d-756ee86c600f, tracking 1 files
+2025-11-21T20:43:59.062Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:44:01.508Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:44:02.189Z [DEBUG] executePreToolHooks called for tool: Read
+2025-11-21T20:44:02.192Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2025-11-21T20:44:02.192Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:44:02.192Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-11-21T20:44:02.210Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2025-11-21T20:44:02.210Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:44:02.210Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2025-11-21T20:44:02.241Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:44:02.241Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:44:02.246Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:44:02.246Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:44:05.639Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:44:21.547Z [DEBUG] executePreToolHooks called for tool: Write
+2025-11-21T20:44:21.551Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2025-11-21T20:44:21.551Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:44:21.551Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2025-11-21T20:44:21.562Z [DEBUG] Permission suggestions for Write: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2025-11-21T20:44:21.587Z [DEBUG] executePermissionRequestHooks called for tool: Write
+2025-11-21T20:44:21.594Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Write
+2025-11-21T20:44:21.594Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:44:21.594Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2025-11-21T20:44:22.308Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-21T20:44:22.314Z [DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757862314
+2025-11-21T20:44:22.314Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:44:22.317Z [DEBUG] Temp file written successfully, size: 6244 bytes
+2025-11-21T20:44:22.317Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:44:22.317Z [DEBUG] Renaming /home/curator/obsidian-vault/dev/go-json.md.tmp.31491.1763757862314 to /home/curator/obsidian-vault/dev/go-json.md
+2025-11-21T20:44:22.317Z [DEBUG] File /home/curator/obsidian-vault/dev/go-json.md written atomically
+2025-11-21T20:44:22.337Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2025-11-21T20:44:22.337Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:44:22.337Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2025-11-21T20:44:22.392Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:44:22.392Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:44:22.397Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:44:22.397Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:44:25.566Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:44:26.503Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-11-21T20:44:26.503Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:44:26.503Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-21T20:44:26.520Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31491.1763757866520
+2025-11-21T20:44:26.520Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:44:26.523Z [DEBUG] Temp file written successfully, size: 49291 bytes
+2025-11-21T20:44:26.523Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:44:26.523Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31491.1763757866520 to /home/curator/.claude.json
+2025-11-21T20:44:26.523Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-21T20:44:26.528Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31491.1763757866528
+2025-11-21T20:44:26.528Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:44:26.531Z [DEBUG] Temp file written successfully, size: 49291 bytes
+2025-11-21T20:44:26.531Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:44:26.531Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31491.1763757866528 to /home/curator/.claude.json
+2025-11-21T20:44:26.531Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-21T20:49:47.321Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:49:47.321Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:49:47.326Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:49:47.327Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:49:47.356Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-11-21T20:49:47.356Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:49:47.356Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-21T20:49:47.356Z [DEBUG] FileHistory: Making snapshot for message 8321858c-7207-4d2d-9a53-7d2fd47c896d
+2025-11-21T20:49:47.360Z [DEBUG] FileHistory: Added snapshot for 8321858c-7207-4d2d-9a53-7d2fd47c896d, tracking 1 files
+2025-11-21T20:49:47.959Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:49:49.567Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:49:52.714Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-11-21T20:49:52.714Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:49:52.714Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-21T20:49:52.728Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31491.1763758192728
+2025-11-21T20:49:52.728Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:49:52.731Z [DEBUG] Temp file written successfully, size: 49292 bytes
+2025-11-21T20:49:52.731Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:49:52.731Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31491.1763758192728 to /home/curator/.claude.json
+2025-11-21T20:49:52.732Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-21T20:49:52.738Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31491.1763758192738
+2025-11-21T20:49:52.738Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:49:52.741Z [DEBUG] Temp file written successfully, size: 49292 bytes
+2025-11-21T20:49:52.741Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:49:52.741Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31491.1763758192738 to /home/curator/.claude.json
+2025-11-21T20:49:52.742Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-21T20:55:57.541Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T20:55:57.541Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T20:55:57.547Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T20:55:57.547Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T20:55:57.568Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-11-21T20:55:57.568Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:55:57.568Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-21T20:55:57.569Z [DEBUG] FileHistory: Making snapshot for message b55d40b1-2d3c-41d0-a326-2bf621753c1d
+2025-11-21T20:55:57.569Z [DEBUG] FileHistory: Added snapshot for b55d40b1-2d3c-41d0-a326-2bf621753c1d, tracking 1 files
+2025-11-21T20:55:58.307Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:56:00.193Z [DEBUG] Stream started - received first chunk
+2025-11-21T20:56:07.845Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-11-21T20:56:07.845Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T20:56:07.845Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-21T20:56:07.861Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31491.1763758567861
+2025-11-21T20:56:07.861Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:56:07.864Z [DEBUG] Temp file written successfully, size: 49292 bytes
+2025-11-21T20:56:07.864Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:56:07.864Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31491.1763758567861 to /home/curator/.claude.json
+2025-11-21T20:56:07.864Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-21T20:56:07.869Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31491.1763758567869
+2025-11-21T20:56:07.869Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T20:56:07.872Z [DEBUG] Temp file written successfully, size: 49292 bytes
+2025-11-21T20:56:07.872Z [DEBUG] Applied original permissions to temp file
+2025-11-21T20:56:07.872Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31491.1763758567869 to /home/curator/.claude.json
+2025-11-21T20:56:07.872Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-21T21:01:29.772Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T21:01:29.772Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T21:01:29.784Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T21:01:29.784Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T21:01:29.821Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-11-21T21:01:29.821Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T21:01:29.821Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-21T21:01:29.822Z [DEBUG] FileHistory: Making snapshot for message 31b346f3-f141-468b-ba9f-f8c64d7b172a
+2025-11-21T21:01:29.822Z [DEBUG] FileHistory: Added snapshot for 31b346f3-f141-468b-ba9f-f8c64d7b172a, tracking 1 files
+2025-11-21T21:01:30.572Z [DEBUG] Stream started - received first chunk
+2025-11-21T21:01:33.245Z [DEBUG] Stream started - received first chunk
+2025-11-21T21:01:43.123Z [ERROR] Error: Error: Language not supported while highlighting code, falling back to markdown: 
+    at BH (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1106:4488)
+    at file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1106:4217
+    at Array.map (<anonymous>)
+    at QD (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1106:4208)
+    at U92 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1829:3681)
+    at hN (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:105:19417)
+    at zQA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:107:42847)
+    at i9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:107:38379)
+    at Qa (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:107:38307)
+    at sN (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:107:38161)
+2025-11-21T21:01:43.178Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-11-21T21:01:43.178Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T21:01:43.178Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-21T21:01:43.194Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31491.1763758903194
+2025-11-21T21:01:43.194Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T21:01:43.197Z [DEBUG] Temp file written successfully, size: 49292 bytes
+2025-11-21T21:01:43.197Z [DEBUG] Applied original permissions to temp file
+2025-11-21T21:01:43.197Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31491.1763758903194 to /home/curator/.claude.json
+2025-11-21T21:01:43.197Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-21T21:01:43.200Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31491.1763758903200
+2025-11-21T21:01:43.200Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T21:01:43.203Z [DEBUG] Temp file written successfully, size: 49292 bytes
+2025-11-21T21:01:43.203Z [DEBUG] Applied original permissions to temp file
+2025-11-21T21:01:43.203Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31491.1763758903200 to /home/curator/.claude.json
+2025-11-21T21:01:43.203Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-21T21:10:44.407Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-21T21:10:44.407Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-21T21:10:44.413Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-21T21:10:44.413Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-21T21:10:44.442Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-11-21T21:10:44.442Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T21:10:44.442Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-21T21:10:44.443Z [DEBUG] FileHistory: Making snapshot for message 3acb7704-e7ca-4796-b8b4-06a7d7205ad6
+2025-11-21T21:10:44.443Z [DEBUG] FileHistory: Added snapshot for 3acb7704-e7ca-4796-b8b4-06a7d7205ad6, tracking 1 files
+2025-11-21T21:10:45.309Z [DEBUG] Stream started - received first chunk
+2025-11-21T21:10:47.297Z [DEBUG] Stream started - received first chunk
+2025-11-21T21:10:49.934Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-11-21T21:10:49.934Z [DEBUG] Found 0 hook matchers in settings
+2025-11-21T21:10:49.934Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-21T21:10:49.946Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31491.1763759449946
+2025-11-21T21:10:49.946Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T21:10:49.950Z [DEBUG] Temp file written successfully, size: 49292 bytes
+2025-11-21T21:10:49.950Z [DEBUG] Applied original permissions to temp file
+2025-11-21T21:10:49.950Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31491.1763759449946 to /home/curator/.claude.json
+2025-11-21T21:10:49.950Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-21T21:10:49.958Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31491.1763759449958
+2025-11-21T21:10:49.958Z [DEBUG] Preserving file permissions: 100600
+2025-11-21T21:10:49.961Z [DEBUG] Temp file written successfully, size: 49292 bytes
+2025-11-21T21:10:49.961Z [DEBUG] Applied original permissions to temp file
+2025-11-21T21:10:49.961Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31491.1763759449958 to /home/curator/.claude.json
+2025-11-21T21:10:49.961Z [DEBUG] File /home/curator/.claude.json written atomically

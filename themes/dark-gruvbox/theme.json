@@ -1,0 +1,16 @@
+{
+  "name": "Dark Gruvbox",
+  "slug": "dark-gruvbox",
+  "icon": "󰃮",
+  "wallpapers": {
+    "static": [
+      "~/pictures/wallpapers/static/osaka-jade-bg.jpg"
+    ]
+  },
+  "monitors": {
+    "DP-3": "static[0]",
+    "DP-2": "static[0]",
+    "DP-1": "static[0]"
+  },
+  "rofi_theme": "dark-gruvbox"
+}

@@ -1,0 +1,22 @@
+[DEBUG] Getting matching hook commands for SessionStart with query: clear
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+[DEBUG] FileHistory: Added snapshot for a1e7f4fb-b011-46ad-a2ba-c3f4f92b97ea, tracking 0 files
+[DEBUG] Rendering user message with 1 content blocks
+[DEBUG] Block 0: <command-name>/clear</command-name>
+            <command-message>clear</command-message>
+           ...
+[DEBUG] UserCommandMessage rendering: "clear" (args: "none")
+[DEBUG] isSkillFormat: false, prefix: "/"
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.74417.1761307568881
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 204186 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.74417.1761307568881 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.74417.1761307568891
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 204270 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.74417.1761307568891 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically

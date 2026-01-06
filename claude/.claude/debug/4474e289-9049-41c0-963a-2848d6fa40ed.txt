@@ -1,0 +1,153 @@
+2025-12-02T16:11:04.089Z [DEBUG] Watching for changes in setting files /home/curator/.claude/settings.json, /home/curator/.claude/settings.json...
+2025-12-02T16:11:04.130Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2025-12-02T16:11:04.130Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2025-12-02T16:11:04.130Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2025-12-02T16:11:04.130Z [DEBUG] [LSP SERVER MANAGER] initialize() called
+2025-12-02T16:11:04.130Z [DEBUG] [LSP SERVER MANAGER] Calling getAllLspServers()
+2025-12-02T16:11:04.142Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2025-12-02T16:11:04.143Z [DEBUG] Total LSP servers loaded: 0
+2025-12-02T16:11:04.147Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2025-12-02T16:11:04.147Z [DEBUG] LSP manager initialized with 0 servers
+2025-12-02T16:11:04.147Z [DEBUG] LSP server manager initialized successfully
+2025-12-02T16:11:04.148Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2025-12-02T16:11:04.174Z [DEBUG] Loading skills from directories: managed=/etc/claude-code/.claude/skills, user=/home/curator/.claude/skills, project=/home/curator/.claude/skills
+2025-12-02T16:11:04.174Z [DEBUG] >>>>> getPluginSkills CALLED <<<<<
+2025-12-02T16:11:04.204Z [DEBUG] installed_plugins.json doesn't exist yet at /home/curator/.claude/plugins/installed_plugins.json, returning empty object
+2025-12-02T16:11:04.241Z [DEBUG] Creating shell snapshot for zsh (/usr/bin/zsh)
+2025-12-02T16:11:04.241Z [DEBUG] Looking for shell config file: /home/curator/.zshrc
+2025-12-02T16:11:04.241Z [DEBUG] Snapshots directory: /home/curator/.claude/shell-snapshots
+2025-12-02T16:11:04.242Z [DEBUG] Creating snapshot at: /home/curator/.claude/shell-snapshots/snapshot-zsh-1764691864241-abdjlw.sh
+2025-12-02T16:11:04.242Z [DEBUG] Shell binary exists: true
+2025-12-02T16:11:04.242Z [DEBUG] Execution timeout: 10000ms
+2025-12-02T16:11:04.246Z [DEBUG] Writing to temp file: /home/curator/.claude/todos/4474e289-9049-41c0-963a-2848d6fa40ed-agent-4474e289-9049-41c0-963a-2848d6fa40ed.json.tmp.94755.1764691864246
+2025-12-02T16:11:04.251Z [DEBUG] Temp file written successfully, size: 2 bytes
+2025-12-02T16:11:04.251Z [DEBUG] Renaming /home/curator/.claude/todos/4474e289-9049-41c0-963a-2848d6fa40ed-agent-4474e289-9049-41c0-963a-2848d6fa40ed.json.tmp.94755.1764691864246 to /home/curator/.claude/todos/4474e289-9049-41c0-963a-2848d6fa40ed-agent-4474e289-9049-41c0-963a-2848d6fa40ed.json
+2025-12-02T16:11:04.251Z [DEBUG] File /home/curator/.claude/todos/4474e289-9049-41c0-963a-2848d6fa40ed-agent-4474e289-9049-41c0-963a-2848d6fa40ed.json written atomically
+2025-12-02T16:11:04.262Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2025-12-02T16:11:04.262Z [DEBUG] Total plugin skills loaded: 0
+2025-12-02T16:11:04.262Z [DEBUG] Total plugin commands loaded: 0
+2025-12-02T16:11:04.262Z [DEBUG] Registered 0 hooks from 0 plugins
+2025-12-02T16:11:04.262Z [DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, duplicates removed: 0)
+2025-12-02T16:11:04.263Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills
+2025-12-02T16:11:04.274Z [DEBUG] Git remote URL: null
+2025-12-02T16:11:04.274Z [DEBUG] No git remote URL found
+2025-12-02T16:11:04.274Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2025-12-02T16:11:04.285Z [DEBUG] Total plugin agents loaded: 0
+2025-12-02T16:11:04.351Z [DEBUG] Shell snapshot created successfully (11629 bytes)
+2025-12-02T16:11:04.360Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.94755.1764691864360
+2025-12-02T16:11:04.360Z [DEBUG] Preserving file permissions: 100600
+2025-12-02T16:11:04.363Z [DEBUG] Temp file written successfully, size: 56143 bytes
+2025-12-02T16:11:04.363Z [DEBUG] Applied original permissions to temp file
+2025-12-02T16:11:04.363Z [DEBUG] Renaming /home/curator/.claude.json.tmp.94755.1764691864360 to /home/curator/.claude.json
+2025-12-02T16:11:04.363Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-02T16:11:04.431Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.94755.1764691864431
+2025-12-02T16:11:04.431Z [DEBUG] Preserving file permissions: 100600
+2025-12-02T16:11:04.434Z [DEBUG] Temp file written successfully, size: 56143 bytes
+2025-12-02T16:11:04.434Z [DEBUG] Applied original permissions to temp file
+2025-12-02T16:11:04.434Z [DEBUG] Renaming /home/curator/.claude.json.tmp.94755.1764691864431 to /home/curator/.claude.json
+2025-12-02T16:11:04.434Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-02T16:11:04.437Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.94755.1764691864437
+2025-12-02T16:11:04.437Z [DEBUG] Preserving file permissions: 100600
+2025-12-02T16:11:04.440Z [DEBUG] Temp file written successfully, size: 56143 bytes
+2025-12-02T16:11:04.440Z [DEBUG] Applied original permissions to temp file
+2025-12-02T16:11:04.440Z [DEBUG] Renaming /home/curator/.claude.json.tmp.94755.1764691864437 to /home/curator/.claude.json
+2025-12-02T16:11:04.440Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-02T16:11:04.442Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.94755.1764691864442
+2025-12-02T16:11:04.442Z [DEBUG] Preserving file permissions: 100600
+2025-12-02T16:11:04.445Z [DEBUG] Temp file written successfully, size: 56143 bytes
+2025-12-02T16:11:04.445Z [DEBUG] Applied original permissions to temp file
+2025-12-02T16:11:04.445Z [DEBUG] Renaming /home/curator/.claude.json.tmp.94755.1764691864442 to /home/curator/.claude.json
+2025-12-02T16:11:04.445Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-02T16:11:06.505Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.94755.1764691866505
+2025-12-02T16:11:06.505Z [DEBUG] Preserving file permissions: 100600
+2025-12-02T16:11:06.520Z [DEBUG] Temp file written successfully, size: 56143 bytes
+2025-12-02T16:11:06.520Z [DEBUG] Applied original permissions to temp file
+2025-12-02T16:11:06.520Z [DEBUG] Renaming /home/curator/.claude.json.tmp.94755.1764691866505 to /home/curator/.claude.json
+2025-12-02T16:11:06.520Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-02T16:11:06.539Z [DEBUG] Skipping SessionStart:startup hook execution - workspace trust not accepted
+2025-12-02T16:11:06.584Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.94755.1764691866584
+2025-12-02T16:11:06.584Z [DEBUG] Preserving file permissions: 100600
+2025-12-02T16:11:06.587Z [DEBUG] Temp file written successfully, size: 56038 bytes
+2025-12-02T16:11:06.587Z [DEBUG] Applied original permissions to temp file
+2025-12-02T16:11:06.587Z [DEBUG] Renaming /home/curator/.claude.json.tmp.94755.1764691866584 to /home/curator/.claude.json
+2025-12-02T16:11:06.588Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-02T16:11:06.593Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.94755.1764691866593
+2025-12-02T16:11:06.593Z [DEBUG] Preserving file permissions: 100600
+2025-12-02T16:11:06.596Z [DEBUG] Temp file written successfully, size: 56038 bytes
+2025-12-02T16:11:06.596Z [DEBUG] Applied original permissions to temp file
+2025-12-02T16:11:06.596Z [DEBUG] Renaming /home/curator/.claude.json.tmp.94755.1764691866593 to /home/curator/.claude.json
+2025-12-02T16:11:06.596Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-02T16:11:06.607Z [DEBUG] performStartupChecks called
+2025-12-02T16:11:06.608Z [DEBUG] Trust not accepted for current directory - skipping plugin installations
+2025-12-02T16:11:06.618Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-02T16:11:06.620Z [DEBUG] Skills and commands included in Skill tool:
+2025-12-02T16:11:06.620Z [DEBUG] Slash commands included in SlashCommand tool:
+2025-12-02T16:11:06.621Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.94755.1764691866621
+2025-12-02T16:11:06.621Z [DEBUG] Preserving file permissions: 100600
+2025-12-02T16:11:06.624Z [DEBUG] Temp file written successfully, size: 56143 bytes
+2025-12-02T16:11:06.624Z [DEBUG] Applied original permissions to temp file
+2025-12-02T16:11:06.624Z [DEBUG] Renaming /home/curator/.claude.json.tmp.94755.1764691866621 to /home/curator/.claude.json
+2025-12-02T16:11:06.625Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-02T16:11:06.633Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2025-12-02T16:11:06.665Z [DEBUG] Skipping SubagentStart:Explore hook execution - workspace trust not accepted
+2025-12-02T16:11:06.680Z [DEBUG] Skipping SubagentStart:Plan hook execution - workspace trust not accepted
+2025-12-02T16:11:06.707Z [DEBUG] Summarizing all 2 messages (~0 tokens)
+2025-12-02T16:11:06.733Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.94755.1764691866733
+2025-12-02T16:11:06.733Z [DEBUG] Preserving file permissions: 100600
+2025-12-02T16:11:06.736Z [DEBUG] Temp file written successfully, size: 56143 bytes
+2025-12-02T16:11:06.736Z [DEBUG] Applied original permissions to temp file
+2025-12-02T16:11:06.736Z [DEBUG] Renaming /home/curator/.claude.json.tmp.94755.1764691866733 to /home/curator/.claude.json
+2025-12-02T16:11:06.736Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-02T16:11:06.992Z [ERROR] Error streaming, falling back to non-streaming mode: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CVi9qmrqwSUfJCeGiu3F7"}
+2025-12-02T16:11:07.007Z [ERROR] Error streaming, falling back to non-streaming mode: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CVi9qmxYndaFpDMBMhiDm"}
+2025-12-02T16:11:07.202Z [ERROR] Error streaming, falling back to non-streaming mode: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CVi9qmnsszPYGVgZE62E9"}
+2025-12-02T16:11:07.315Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.94755.1764691867315
+2025-12-02T16:11:07.315Z [DEBUG] Preserving file permissions: 100600
+2025-12-02T16:11:07.319Z [DEBUG] Temp file written successfully, size: 56143 bytes
+2025-12-02T16:11:07.319Z [DEBUG] Applied original permissions to temp file
+2025-12-02T16:11:07.319Z [DEBUG] Renaming /home/curator/.claude.json.tmp.94755.1764691867315 to /home/curator/.claude.json
+2025-12-02T16:11:07.319Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-02T16:11:07.527Z [ERROR] Error in non-streaming fallback: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CVi9qopRNQhbfJEfZ4wig"}
+2025-12-02T16:11:07.528Z [ERROR] Error: Error: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CVi9qopRNQhbfJEfZ4wig"}
+    at s2.generate (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:459:9589)
+    at NT.makeStatusError (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1317:2195)
+    at NT.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1317:5419)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async PK9.V61.model (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3961:10432)
+    at async V61 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:2145:1872)
+    at async PK9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3961:10586)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3961:3873
+    at async do1 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1469:2037)
+    at async AYA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3961:3843)
+2025-12-02T16:11:07.541Z [DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted
+2025-12-02T16:11:07.645Z [ERROR] Error in non-streaming fallback: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CVi9qo8FMKV6arjmGgdYL"}
+2025-12-02T16:11:07.645Z [ERROR] Error: Error: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CVi9qo8FMKV6arjmGgdYL"}
+    at s2.generate (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:459:9589)
+    at NT.makeStatusError (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1317:2195)
+    at NT.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1317:5419)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async PK9.V61.model (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3961:10432)
+    at async V61 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:2145:1872)
+    at async PK9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3961:10586)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3961:3631
+    at async do1 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1469:2037)
+    at async Wy (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3961:3602)
+2025-12-02T16:11:07.721Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.94755.1764691867721
+2025-12-02T16:11:07.721Z [DEBUG] Preserving file permissions: 100600
+2025-12-02T16:11:07.731Z [DEBUG] Temp file written successfully, size: 56143 bytes
+2025-12-02T16:11:07.731Z [DEBUG] Applied original permissions to temp file
+2025-12-02T16:11:07.731Z [DEBUG] Renaming /home/curator/.claude.json.tmp.94755.1764691867721 to /home/curator/.claude.json
+2025-12-02T16:11:07.731Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-12-02T16:11:07.907Z [ERROR] Error in non-streaming fallback: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CVi9qoAEVezbvDDgYUU8h"}
+2025-12-02T16:11:07.907Z [ERROR] Error: Error: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CVi9qoAEVezbvDDgYUU8h"}
+    at s2.generate (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:459:9589)
+    at NT.makeStatusError (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1317:2195)
+    at NT.makeRequest (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1317:5419)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async PK9.V61.model (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3961:10432)
+    at async V61 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:2145:1872)
+    at async PK9 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3961:10586)
+    at async file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3961:3873
+    at async do1 (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:1469:2037)
+    at async AYA (file:///home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js:3961:3843)
+2025-12-02T16:11:07.918Z [DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted

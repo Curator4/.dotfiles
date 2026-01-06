@@ -1,0 +1,12 @@
+2025-12-16T12:20:40.009Z [DEBUG] Getting matching hook commands for SessionEnd with query: clear
+2025-12-16T12:20:40.009Z [DEBUG] Found 0 hook matchers in settings
+2025-12-16T12:20:40.009Z [DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+2025-12-16T12:20:40.009Z [DEBUG] Cleared all session hooks for session 707945c3-4902-45ea-80dc-9ce42c6b15d7
+2025-12-16T12:20:40.011Z [DEBUG] Getting matching hook commands for SessionStart with query: clear
+2025-12-16T12:20:40.011Z [DEBUG] Found 0 hook matchers in settings
+2025-12-16T12:20:40.011Z [DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+2025-12-16T12:20:40.018Z [DEBUG] FileHistory: Added snapshot for e1ff0db9-3d02-4df7-9850-2c931ce5d033, tracking 0 files
+2025-12-16T12:20:40.025Z [DEBUG] UserCommandMessage rendering: "clear" (args: "none")
+2025-12-16T12:20:40.025Z [DEBUG] isSkillFormat: false, prefix: "/"
+2025-12-16T12:20:40.057Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-12-16T12:21:06.849Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local

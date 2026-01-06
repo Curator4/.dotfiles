@@ -1,0 +1,45 @@
+#!/bin/zsh
+VAULT="$HOME/obsidian-vault"
+
+# Flag for new term (from hotkey)
+NEW_TERM=false
+if [[ "$1" == "--new-term" ]]; then
+  NEW_TERM=true
+fi
+
+# dates
+DATE=$(date +%Y-%m-%d)
+YEAR=$(date +%Y)
+PREV="$(date -d "yesterday" +%Y-%m-%d)"
+NEXT="$(date -d "tomorrow" +%Y-%m-%d)"
+
+# template
+TEMPLATE=$(cat << EOF
+# entry: $DATE
+
+Tags: #journal #$YEAR
+
+## context
+
+## log
+
+EOF
+)
+
+# dir
+MONTH=$(date +%Y-%m)
+DIR="$VAULT/themis/$YEAR/$MONTH"
+FILE="$DIR/$DATE.md"
+mkdir -p "$DIR"
+
+# open existing file if exists
+if [ ! -f "$FILE" ]; then
+    echo "$TEMPLATE" > "$FILE"
+fi
+
+# nvim: new term if flag, else current
+if $NEW_TERM; then
+  kitty -e nvim "$FILE"
+else
+  nvim "$FILE"
+fi

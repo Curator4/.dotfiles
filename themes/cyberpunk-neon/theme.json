@@ -1,0 +1,16 @@
+{
+  "name": "Cyberpunk Neon",
+  "slug": "cyberpunk-neon",
+  "icon": "󰌆",
+  "wallpapers": {
+    "static": [
+      "~/pictures/wallpapers/static/cyber_neon_catgirl.jpg"
+    ]
+  },
+  "monitors": {
+    "DP-3": "static[0]",
+    "DP-2": "static[0]",
+    "DP-1": "static[0]"
+  },
+  "rofi_theme": "cyberpunk-neon"
+}

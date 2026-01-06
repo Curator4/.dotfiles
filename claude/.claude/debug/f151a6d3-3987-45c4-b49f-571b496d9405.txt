@@ -1,0 +1,216 @@
+2025-11-26T07:56:26.024Z [DEBUG] Watching for changes in setting files /home/curator/.claude/settings.json, /home/curator/.claude/settings.json...
+2025-11-26T07:56:26.056Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2025-11-26T07:56:26.056Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2025-11-26T07:56:26.056Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2025-11-26T07:56:26.057Z [DEBUG] [LSP SERVER MANAGER] initialize() called
+2025-11-26T07:56:26.057Z [DEBUG] [LSP SERVER MANAGER] Calling getAllLspServers()
+2025-11-26T07:56:26.065Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2025-11-26T07:56:26.070Z [DEBUG] Total LSP servers loaded: 0
+2025-11-26T07:56:26.084Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2025-11-26T07:56:26.084Z [DEBUG] LSP manager initialized with 0 servers
+2025-11-26T07:56:26.088Z [DEBUG] LSP server manager initialized successfully
+2025-11-26T07:56:26.088Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2025-11-26T07:56:26.110Z [DEBUG] Loading skills from directories: managed=/etc/claude-code/.claude/skills, user=/home/curator/.claude/skills, project=/home/curator/.claude/skills
+2025-11-26T07:56:26.111Z [DEBUG] >>>>> getPluginSkills CALLED <<<<<
+2025-11-26T07:56:26.172Z [DEBUG] Creating shell snapshot for zsh (/usr/bin/zsh)
+2025-11-26T07:56:26.172Z [DEBUG] Looking for shell config file: /home/curator/.zshrc
+2025-11-26T07:56:26.172Z [DEBUG] Snapshots directory: /home/curator/.claude/shell-snapshots
+2025-11-26T07:56:26.173Z [DEBUG] Creating snapshot at: /home/curator/.claude/shell-snapshots/snapshot-zsh-1764143786172-dg80g5.sh
+2025-11-26T07:56:26.173Z [DEBUG] Shell binary exists: true
+2025-11-26T07:56:26.173Z [DEBUG] Execution timeout: 10000ms
+2025-11-26T07:56:26.177Z [DEBUG] Writing to temp file: /home/curator/.claude/todos/f151a6d3-3987-45c4-b49f-571b496d9405-agent-f151a6d3-3987-45c4-b49f-571b496d9405.json.tmp.31650.1764143786177
+2025-11-26T07:56:26.180Z [DEBUG] Temp file written successfully, size: 2 bytes
+2025-11-26T07:56:26.180Z [DEBUG] Renaming /home/curator/.claude/todos/f151a6d3-3987-45c4-b49f-571b496d9405-agent-f151a6d3-3987-45c4-b49f-571b496d9405.json.tmp.31650.1764143786177 to /home/curator/.claude/todos/f151a6d3-3987-45c4-b49f-571b496d9405-agent-f151a6d3-3987-45c4-b49f-571b496d9405.json
+2025-11-26T07:56:26.180Z [DEBUG] File /home/curator/.claude/todos/f151a6d3-3987-45c4-b49f-571b496d9405-agent-f151a6d3-3987-45c4-b49f-571b496d9405.json written atomically
+2025-11-26T07:56:26.186Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31650.1764143786186
+2025-11-26T07:56:26.186Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T07:56:26.189Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T07:56:26.189Z [DEBUG] Applied original permissions to temp file
+2025-11-26T07:56:26.189Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31650.1764143786186 to /home/curator/.claude.json
+2025-11-26T07:56:26.189Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T07:56:26.190Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2025-11-26T07:56:26.190Z [DEBUG] Total plugin skills loaded: 0
+2025-11-26T07:56:26.190Z [DEBUG] Total plugin commands loaded: 0
+2025-11-26T07:56:26.190Z [DEBUG] Registered 0 hooks from 0 plugins
+2025-11-26T07:56:26.191Z [DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, duplicates removed: 0)
+2025-11-26T07:56:26.192Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills
+2025-11-26T07:56:26.192Z [DEBUG] Total plugin agents loaded: 0
+2025-11-26T07:56:26.212Z [DEBUG] Git remote URL: null
+2025-11-26T07:56:26.212Z [DEBUG] No git remote URL found
+2025-11-26T07:56:26.212Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2025-11-26T07:56:26.265Z [DEBUG] Shell snapshot created successfully (3781 bytes)
+2025-11-26T07:56:26.375Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31650.1764143786375
+2025-11-26T07:56:26.375Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T07:56:26.379Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T07:56:26.379Z [DEBUG] Applied original permissions to temp file
+2025-11-26T07:56:26.379Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31650.1764143786375 to /home/curator/.claude.json
+2025-11-26T07:56:26.379Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T07:56:26.383Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31650.1764143786383
+2025-11-26T07:56:26.383Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T07:56:26.386Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T07:56:26.386Z [DEBUG] Applied original permissions to temp file
+2025-11-26T07:56:26.386Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31650.1764143786383 to /home/curator/.claude.json
+2025-11-26T07:56:26.386Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T07:56:27.960Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31650.1764143787960
+2025-11-26T07:56:27.960Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T07:56:27.964Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T07:56:27.964Z [DEBUG] Applied original permissions to temp file
+2025-11-26T07:56:27.964Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31650.1764143787960 to /home/curator/.claude.json
+2025-11-26T07:56:27.964Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T07:56:27.984Z [DEBUG] Skipping SessionStart:startup hook execution - workspace trust not accepted
+2025-11-26T07:56:28.025Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31650.1764143788025
+2025-11-26T07:56:28.026Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T07:56:28.029Z [DEBUG] Temp file written successfully, size: 51203 bytes
+2025-11-26T07:56:28.029Z [DEBUG] Applied original permissions to temp file
+2025-11-26T07:56:28.029Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31650.1764143788025 to /home/curator/.claude.json
+2025-11-26T07:56:28.029Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T07:56:28.044Z [DEBUG] performStartupChecks called
+2025-11-26T07:56:28.044Z [DEBUG] Trust not accepted for current directory - skipping plugin installations
+2025-11-26T07:56:28.055Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-26T07:56:28.057Z [DEBUG] Skills and commands included in Skill tool:
+2025-11-26T07:56:28.057Z [DEBUG] Slash commands included in SlashCommand tool:
+2025-11-26T07:56:28.058Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31650.1764143788058
+2025-11-26T07:56:28.058Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T07:56:28.061Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T07:56:28.061Z [DEBUG] Applied original permissions to temp file
+2025-11-26T07:56:28.061Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31650.1764143788058 to /home/curator/.claude.json
+2025-11-26T07:56:28.062Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T07:56:28.070Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2025-11-26T07:56:28.095Z [DEBUG] Skipping SubagentStart:Explore hook execution - workspace trust not accepted
+2025-11-26T07:56:28.107Z [DEBUG] Skipping SubagentStart:Plan hook execution - workspace trust not accepted
+2025-11-26T07:56:28.317Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31650.1764143788317
+2025-11-26T07:56:28.317Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T07:56:28.320Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T07:56:28.320Z [DEBUG] Applied original permissions to temp file
+2025-11-26T07:56:28.320Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31650.1764143788317 to /home/curator/.claude.json
+2025-11-26T07:56:28.320Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T07:56:28.880Z [DEBUG] Stream started - received first chunk
+2025-11-26T07:56:28.944Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31650.1764143788944
+2025-11-26T07:56:28.944Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T07:56:28.960Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T07:56:28.960Z [DEBUG] Applied original permissions to temp file
+2025-11-26T07:56:28.960Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31650.1764143788944 to /home/curator/.claude.json
+2025-11-26T07:56:28.960Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T07:56:30.212Z [DEBUG] Stream started - received first chunk
+2025-11-26T07:56:30.625Z [DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted
+2025-11-26T07:56:35.156Z [DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted
+2025-11-26T07:57:08.046Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-26T07:57:08.046Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-26T07:57:08.053Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-26T07:57:08.053Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-26T07:57:08.079Z [DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+2025-11-26T07:57:08.082Z [DEBUG] FileHistory: Added snapshot for b28e00de-858c-47c5-9ce9-63a948df1023, tracking 0 files
+2025-11-26T07:57:08.119Z [DEBUG] Total plugin output styles loaded: 0
+2025-11-26T07:57:08.736Z [DEBUG] Stream started - received first chunk
+2025-11-26T07:57:10.339Z [DEBUG] Stream started - received first chunk
+2025-11-26T07:57:16.502Z [DEBUG] Skipping Stop hook execution - workspace trust not accepted
+2025-11-26T07:57:16.512Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31650.1764143836512
+2025-11-26T07:57:16.512Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T07:57:16.515Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T07:57:16.515Z [DEBUG] Applied original permissions to temp file
+2025-11-26T07:57:16.515Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31650.1764143836512 to /home/curator/.claude.json
+2025-11-26T07:57:16.515Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T07:57:16.520Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31650.1764143836520
+2025-11-26T07:57:16.520Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T07:57:16.523Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T07:57:16.523Z [DEBUG] Applied original permissions to temp file
+2025-11-26T07:57:16.523Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31650.1764143836520 to /home/curator/.claude.json
+2025-11-26T07:57:16.523Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T07:58:23.685Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-26T07:58:23.685Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-26T07:58:23.691Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-26T07:58:23.691Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-26T07:58:23.706Z [DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+2025-11-26T07:58:23.708Z [DEBUG] FileHistory: Making snapshot for message 285be128-3468-4eb6-b45a-0d0c3a962de9
+2025-11-26T07:58:23.708Z [DEBUG] FileHistory: Added snapshot for 285be128-3468-4eb6-b45a-0d0c3a962de9, tracking 0 files
+2025-11-26T07:58:25.052Z [DEBUG] Stream started - received first chunk
+2025-11-26T07:58:26.012Z [DEBUG] Stream started - received first chunk
+2025-11-26T07:58:28.293Z [DEBUG] Skipping Stop hook execution - workspace trust not accepted
+2025-11-26T07:58:28.301Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31650.1764143908301
+2025-11-26T07:58:28.301Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T07:58:28.304Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T07:58:28.304Z [DEBUG] Applied original permissions to temp file
+2025-11-26T07:58:28.304Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31650.1764143908301 to /home/curator/.claude.json
+2025-11-26T07:58:28.304Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T07:58:28.307Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.31650.1764143908307
+2025-11-26T07:58:28.307Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T07:58:28.310Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T07:58:28.310Z [DEBUG] Applied original permissions to temp file
+2025-11-26T07:58:28.310Z [DEBUG] Renaming /home/curator/.claude.json.tmp.31650.1764143908307 to /home/curator/.claude.json
+2025-11-26T07:58:28.310Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T08:02:10.462Z [DEBUG] Skipping SessionStart:resume hook execution - workspace trust not accepted
+2025-11-26T08:02:10.468Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.33197.1764144130468
+2025-11-26T08:02:10.468Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T08:02:10.471Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T08:02:10.471Z [DEBUG] Applied original permissions to temp file
+2025-11-26T08:02:10.471Z [DEBUG] Renaming /home/curator/.claude.json.tmp.33197.1764144130468 to /home/curator/.claude.json
+2025-11-26T08:02:10.471Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T08:02:10.482Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.33197.1764144130482
+2025-11-26T08:02:10.482Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T08:02:10.485Z [DEBUG] Temp file written successfully, size: 51203 bytes
+2025-11-26T08:02:10.485Z [DEBUG] Applied original permissions to temp file
+2025-11-26T08:02:10.485Z [DEBUG] Renaming /home/curator/.claude.json.tmp.33197.1764144130482 to /home/curator/.claude.json
+2025-11-26T08:02:10.485Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T08:02:10.491Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.33197.1764144130491
+2025-11-26T08:02:10.491Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T08:02:10.494Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T08:02:10.494Z [DEBUG] Applied original permissions to temp file
+2025-11-26T08:02:10.494Z [DEBUG] Renaming /home/curator/.claude.json.tmp.33197.1764144130491 to /home/curator/.claude.json
+2025-11-26T08:02:10.494Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T08:02:10.550Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-26T08:02:10.562Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.33197.1764144130562
+2025-11-26T08:02:10.562Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T08:02:10.565Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T08:02:10.565Z [DEBUG] Applied original permissions to temp file
+2025-11-26T08:02:10.565Z [DEBUG] Renaming /home/curator/.claude.json.tmp.33197.1764144130562 to /home/curator/.claude.json
+2025-11-26T08:02:10.565Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T08:02:10.575Z [DEBUG] Stream started - received first chunk
+2025-11-26T08:02:10.639Z [DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted
+2025-11-26T08:02:14.996Z [DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted
+2025-11-26T08:02:19.421Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-26T08:02:19.421Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-26T08:02:19.427Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-26T08:02:19.427Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-26T08:02:19.445Z [DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+2025-11-26T08:02:19.447Z [DEBUG] FileHistory: Making snapshot for message a08e9795-8bf5-4f1e-83e7-79b796415dbe
+2025-11-26T08:02:19.447Z [DEBUG] FileHistory: Added snapshot for a08e9795-8bf5-4f1e-83e7-79b796415dbe, tracking 0 files
+2025-11-26T08:02:19.477Z [DEBUG] Total plugin output styles loaded: 0
+2025-11-26T08:02:20.463Z [DEBUG] Stream started - received first chunk
+2025-11-26T08:02:21.886Z [DEBUG] Stream started - received first chunk
+2025-11-26T08:02:25.982Z [DEBUG] Skipping Stop hook execution - workspace trust not accepted
+2025-11-26T08:02:25.989Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.33197.1764144145989
+2025-11-26T08:02:25.990Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T08:02:25.993Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T08:02:25.993Z [DEBUG] Applied original permissions to temp file
+2025-11-26T08:02:25.993Z [DEBUG] Renaming /home/curator/.claude.json.tmp.33197.1764144145989 to /home/curator/.claude.json
+2025-11-26T08:02:25.993Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T08:02:25.996Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.33197.1764144145996
+2025-11-26T08:02:25.996Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T08:02:25.999Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T08:02:25.999Z [DEBUG] Applied original permissions to temp file
+2025-11-26T08:02:25.999Z [DEBUG] Renaming /home/curator/.claude.json.tmp.33197.1764144145996 to /home/curator/.claude.json
+2025-11-26T08:02:25.999Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T08:03:25.992Z [DEBUG] Skipping Notification:idle_prompt hook execution - workspace trust not accepted
+2025-11-26T08:10:59.096Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-26T08:10:59.096Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-26T08:10:59.102Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-26T08:10:59.102Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-26T08:10:59.114Z [DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+2025-11-26T08:10:59.117Z [DEBUG] FileHistory: Making snapshot for message af792491-6278-498d-bb9d-0d4c9926e4fe
+2025-11-26T08:10:59.117Z [DEBUG] FileHistory: Added snapshot for af792491-6278-498d-bb9d-0d4c9926e4fe, tracking 0 files
+2025-11-26T08:10:59.943Z [DEBUG] Stream started - received first chunk
+2025-11-26T08:11:01.453Z [DEBUG] Stream started - received first chunk
+2025-11-26T08:11:05.753Z [DEBUG] Skipping Stop hook execution - workspace trust not accepted
+2025-11-26T08:11:05.763Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.33197.1764144665763
+2025-11-26T08:11:05.763Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T08:11:05.766Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T08:11:05.766Z [DEBUG] Applied original permissions to temp file
+2025-11-26T08:11:05.766Z [DEBUG] Renaming /home/curator/.claude.json.tmp.33197.1764144665763 to /home/curator/.claude.json
+2025-11-26T08:11:05.766Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T08:11:05.769Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.33197.1764144665769
+2025-11-26T08:11:05.769Z [DEBUG] Preserving file permissions: 100600
+2025-11-26T08:11:05.772Z [DEBUG] Temp file written successfully, size: 51308 bytes
+2025-11-26T08:11:05.772Z [DEBUG] Applied original permissions to temp file
+2025-11-26T08:11:05.772Z [DEBUG] Renaming /home/curator/.claude.json.tmp.33197.1764144665769 to /home/curator/.claude.json
+2025-11-26T08:11:05.772Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-26T08:12:05.763Z [DEBUG] Skipping Notification:idle_prompt hook execution - workspace trust not accepted

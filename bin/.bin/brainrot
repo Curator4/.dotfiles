@@ -1,0 +1,73 @@
+#!/bin/zsh
+
+HOSTS_FILE="/etc/hosts"
+MARKER="# stop wasting time loser"
+
+# Function to check if blocks are active
+is_blocked() {
+    grep -q "^127.0.0.1 reddit.com" "$HOSTS_FILE"
+}
+
+# Function to show status
+show_status() {
+    if is_blocked; then
+        echo "🔒 brainrot blocked"
+    else
+        echo "💀 brainrot unblocked"
+    fi
+}
+
+# Function to enable blocks
+enable_blocks() {
+    if is_blocked; then
+        echo "brainrot already active"
+    else
+        sudo sed -i "/$MARKER/,\$s/^# 127/127/" "$HOSTS_FILE"
+        echo "🔒 brainrot blocked"
+    fi
+}
+
+# Function to disable blocks
+disable_blocks() {
+    if ! is_blocked; then
+        echo "brainrot already inactive"
+    else
+        sudo sed -i "/$MARKER/,\$s/^127/# 127/" "$HOSTS_FILE"
+        echo "💀 ruining your life, brainrot unblocked"
+    fi
+}
+
+# Function to toggle
+toggle_blocks() {
+    if is_blocked; then
+        disable_blocks
+    else
+        enable_blocks
+    fi
+}
+
+# Main logic
+case "${1:-toggle}" in
+    status)
+        show_status
+        ;;
+    on|enable|block)
+        enable_blocks
+        ;;
+    off|disable|unblock)
+        disable_blocks
+        ;;
+    toggle|"")
+        toggle_blocks
+        ;;
+    *)
+        echo "Usage: brainrot [status|on|off|toggle]"
+        echo ""
+        echo "Commands:"
+        echo "  status          Show current block status"
+        echo "  on              Enable blocking"
+        echo "  off             Disable blocking"
+        echo "  toggle          Toggle blocking (default)"
+        exit 1
+        ;;
+esac

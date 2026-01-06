@@ -1,0 +1,330 @@
+2025-11-28T07:59:16.986Z [DEBUG] Watching for changes in setting files /home/curator/.claude/settings.json...
+2025-11-28T07:59:17.018Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2025-11-28T07:59:17.018Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2025-11-28T07:59:17.018Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2025-11-28T07:59:17.018Z [DEBUG] [LSP SERVER MANAGER] initialize() called
+2025-11-28T07:59:17.018Z [DEBUG] [LSP SERVER MANAGER] Calling getAllLspServers()
+2025-11-28T07:59:17.030Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2025-11-28T07:59:17.034Z [DEBUG] Total LSP servers loaded: 0
+2025-11-28T07:59:17.040Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2025-11-28T07:59:17.040Z [DEBUG] LSP manager initialized with 0 servers
+2025-11-28T07:59:17.040Z [DEBUG] LSP server manager initialized successfully
+2025-11-28T07:59:17.040Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2025-11-28T07:59:17.064Z [DEBUG] Loading skills from directories: managed=/etc/claude-code/.claude/skills, user=/home/curator/.claude/skills, project=/home/curator/workspace/bootdev/learn-cicd-starter/.claude/skills
+2025-11-28T07:59:17.064Z [DEBUG] >>>>> getPluginSkills CALLED <<<<<
+2025-11-28T07:59:17.095Z [DEBUG] installed_plugins.json doesn't exist yet at /home/curator/.claude/plugins/installed_plugins.json, returning empty object
+2025-11-28T07:59:17.130Z [DEBUG] Creating shell snapshot for zsh (/usr/bin/zsh)
+2025-11-28T07:59:17.130Z [DEBUG] Looking for shell config file: /home/curator/.zshrc
+2025-11-28T07:59:17.130Z [DEBUG] Snapshots directory: /home/curator/.claude/shell-snapshots
+2025-11-28T07:59:17.131Z [DEBUG] Creating snapshot at: /home/curator/.claude/shell-snapshots/snapshot-zsh-1764316757130-xuja9y.sh
+2025-11-28T07:59:17.131Z [DEBUG] Shell binary exists: true
+2025-11-28T07:59:17.131Z [DEBUG] Execution timeout: 10000ms
+2025-11-28T07:59:17.137Z [DEBUG] Writing to temp file: /home/curator/.claude/todos/6f012d55-2e06-4631-862f-22114d878ff1-agent-6f012d55-2e06-4631-862f-22114d878ff1.json.tmp.42483.1764316757137
+2025-11-28T07:59:17.141Z [DEBUG] Temp file written successfully, size: 2 bytes
+2025-11-28T07:59:17.141Z [DEBUG] Renaming /home/curator/.claude/todos/6f012d55-2e06-4631-862f-22114d878ff1-agent-6f012d55-2e06-4631-862f-22114d878ff1.json.tmp.42483.1764316757137 to /home/curator/.claude/todos/6f012d55-2e06-4631-862f-22114d878ff1-agent-6f012d55-2e06-4631-862f-22114d878ff1.json
+2025-11-28T07:59:17.141Z [DEBUG] File /home/curator/.claude/todos/6f012d55-2e06-4631-862f-22114d878ff1-agent-6f012d55-2e06-4631-862f-22114d878ff1.json written atomically
+2025-11-28T07:59:17.147Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2025-11-28T07:59:17.147Z [DEBUG] Total plugin skills loaded: 0
+2025-11-28T07:59:17.147Z [DEBUG] Total plugin commands loaded: 0
+2025-11-28T07:59:17.147Z [DEBUG] Registered 0 hooks from 0 plugins
+2025-11-28T07:59:17.154Z [DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, duplicates removed: 0)
+2025-11-28T07:59:17.155Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills
+2025-11-28T07:59:17.155Z [DEBUG] Total plugin agents loaded: 0
+2025-11-28T07:59:17.176Z [DEBUG] Git remote URL: git@github.com:Curator4/learn-cicd-starter.git
+2025-11-28T07:59:17.176Z [DEBUG] Parsed repository: Curator4/learn-cicd-starter from git@github.com:Curator4/learn-cicd-starter.git
+2025-11-28T07:59:17.176Z [DEBUG] Parsed repository: Curator4/learn-cicd-starter from URL: git@github.com:Curator4/learn-cicd-starter.git
+2025-11-28T07:59:17.179Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.42483.1764316757179
+2025-11-28T07:59:17.179Z [DEBUG] Preserving file permissions: 100600
+2025-11-28T07:59:17.182Z [DEBUG] Temp file written successfully, size: 51473 bytes
+2025-11-28T07:59:17.182Z [DEBUG] Applied original permissions to temp file
+2025-11-28T07:59:17.182Z [DEBUG] Renaming /home/curator/.claude.json.tmp.42483.1764316757179 to /home/curator/.claude.json
+2025-11-28T07:59:17.182Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-28T07:59:17.182Z [DEBUG] Added /home/curator/workspace/bootdev/learn-cicd-starter to tracked paths for repo curator4/learn-cicd-starter
+2025-11-28T07:59:17.188Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=/home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/x64-linux/rg)
+2025-11-28T07:59:17.241Z [DEBUG] Shell snapshot created successfully (4009 bytes)
+2025-11-28T07:59:17.270Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.42483.1764316757270
+2025-11-28T07:59:17.270Z [DEBUG] Preserving file permissions: 100600
+2025-11-28T07:59:17.273Z [DEBUG] Temp file written successfully, size: 51557 bytes
+2025-11-28T07:59:17.273Z [DEBUG] Applied original permissions to temp file
+2025-11-28T07:59:17.273Z [DEBUG] Renaming /home/curator/.claude.json.tmp.42483.1764316757270 to /home/curator/.claude.json
+2025-11-28T07:59:17.273Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-28T07:59:17.337Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.42483.1764316757337
+2025-11-28T07:59:17.337Z [DEBUG] Preserving file permissions: 100600
+2025-11-28T07:59:17.343Z [DEBUG] Temp file written successfully, size: 51557 bytes
+2025-11-28T07:59:17.343Z [DEBUG] Applied original permissions to temp file
+2025-11-28T07:59:17.343Z [DEBUG] Renaming /home/curator/.claude.json.tmp.42483.1764316757337 to /home/curator/.claude.json
+2025-11-28T07:59:17.343Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-28T07:59:17.345Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.42483.1764316757345
+2025-11-28T07:59:17.345Z [DEBUG] Preserving file permissions: 100600
+2025-11-28T07:59:17.348Z [DEBUG] Temp file written successfully, size: 51557 bytes
+2025-11-28T07:59:17.348Z [DEBUG] Applied original permissions to temp file
+2025-11-28T07:59:17.348Z [DEBUG] Renaming /home/curator/.claude.json.tmp.42483.1764316757345 to /home/curator/.claude.json
+2025-11-28T07:59:17.348Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-28T07:59:18.039Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.42483.1764316758039
+2025-11-28T07:59:18.039Z [DEBUG] Preserving file permissions: 100600
+2025-11-28T07:59:18.042Z [DEBUG] Temp file written successfully, size: 51983 bytes
+2025-11-28T07:59:18.043Z [DEBUG] Applied original permissions to temp file
+2025-11-28T07:59:18.043Z [DEBUG] Renaming /home/curator/.claude.json.tmp.42483.1764316758039 to /home/curator/.claude.json
+2025-11-28T07:59:18.043Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-28T07:59:18.280Z [DEBUG] Stream started - received first chunk
+2025-11-28T07:59:18.527Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.42483.1764316758527
+2025-11-28T07:59:18.527Z [DEBUG] Preserving file permissions: 100600
+2025-11-28T07:59:18.530Z [DEBUG] Temp file written successfully, size: 52165 bytes
+2025-11-28T07:59:18.530Z [DEBUG] Applied original permissions to temp file
+2025-11-28T07:59:18.530Z [DEBUG] Renaming /home/curator/.claude.json.tmp.42483.1764316758527 to /home/curator/.claude.json
+2025-11-28T07:59:18.530Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-28T07:59:18.682Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.42483.1764316758682
+2025-11-28T07:59:18.682Z [DEBUG] Preserving file permissions: 100600
+2025-11-28T07:59:18.689Z [DEBUG] Temp file written successfully, size: 52165 bytes
+2025-11-28T07:59:18.689Z [DEBUG] Applied original permissions to temp file
+2025-11-28T07:59:18.689Z [DEBUG] Renaming /home/curator/.claude.json.tmp.42483.1764316758682 to /home/curator/.claude.json
+2025-11-28T07:59:18.689Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-28T07:59:18.710Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2025-11-28T07:59:18.710Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T07:59:18.710Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2025-11-28T07:59:18.756Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.42483.1764316758756
+2025-11-28T07:59:18.756Z [DEBUG] Preserving file permissions: 100600
+2025-11-28T07:59:18.759Z [DEBUG] Temp file written successfully, size: 52060 bytes
+2025-11-28T07:59:18.759Z [DEBUG] Applied original permissions to temp file
+2025-11-28T07:59:18.759Z [DEBUG] Renaming /home/curator/.claude.json.tmp.42483.1764316758756 to /home/curator/.claude.json
+2025-11-28T07:59:18.759Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-28T07:59:18.761Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.42483.1764316758761
+2025-11-28T07:59:18.761Z [DEBUG] Preserving file permissions: 100600
+2025-11-28T07:59:18.764Z [DEBUG] Temp file written successfully, size: 52060 bytes
+2025-11-28T07:59:18.764Z [DEBUG] Applied original permissions to temp file
+2025-11-28T07:59:18.764Z [DEBUG] Renaming /home/curator/.claude.json.tmp.42483.1764316758761 to /home/curator/.claude.json
+2025-11-28T07:59:18.764Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-28T07:59:18.766Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.42483.1764316758766
+2025-11-28T07:59:18.766Z [DEBUG] Preserving file permissions: 100600
+2025-11-28T07:59:18.769Z [DEBUG] Temp file written successfully, size: 52060 bytes
+2025-11-28T07:59:18.769Z [DEBUG] Applied original permissions to temp file
+2025-11-28T07:59:18.769Z [DEBUG] Renaming /home/curator/.claude.json.tmp.42483.1764316758766 to /home/curator/.claude.json
+2025-11-28T07:59:18.770Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-28T07:59:18.783Z [DEBUG] performStartupChecks called
+2025-11-28T07:59:18.783Z [DEBUG] Starting background plugin installations
+2025-11-28T07:59:18.783Z [DEBUG] performBackgroundPluginInstallations called
+2025-11-28T07:59:18.794Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-28T07:59:18.795Z [DEBUG] Skills and commands included in Skill tool:
+2025-11-28T07:59:18.795Z [DEBUG] Slash commands included in SlashCommand tool:
+2025-11-28T07:59:18.797Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.42483.1764316758797
+2025-11-28T07:59:18.797Z [DEBUG] Preserving file permissions: 100600
+2025-11-28T07:59:18.801Z [DEBUG] Temp file written successfully, size: 52165 bytes
+2025-11-28T07:59:18.801Z [DEBUG] Applied original permissions to temp file
+2025-11-28T07:59:18.801Z [DEBUG] Renaming /home/curator/.claude.json.tmp.42483.1764316758797 to /home/curator/.claude.json
+2025-11-28T07:59:18.801Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-28T07:59:18.807Z [DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+2025-11-28T07:59:18.812Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2025-11-28T07:59:18.835Z [DEBUG] Getting matching hook commands for SubagentStart with query: Explore
+2025-11-28T07:59:18.835Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T07:59:18.835Z [DEBUG] Matched 0 unique hooks for query "Explore" (0 before deduplication)
+2025-11-28T07:59:18.844Z [DEBUG] Getting matching hook commands for SubagentStart with query: Plan
+2025-11-28T07:59:18.844Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T07:59:18.844Z [DEBUG] Matched 0 unique hooks for query "Plan" (0 before deduplication)
+2025-11-28T07:59:18.861Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.42483.1764316758861
+2025-11-28T07:59:18.861Z [DEBUG] Preserving file permissions: 100600
+2025-11-28T07:59:18.864Z [DEBUG] Temp file written successfully, size: 52165 bytes
+2025-11-28T07:59:18.864Z [DEBUG] Applied original permissions to temp file
+2025-11-28T07:59:18.864Z [DEBUG] Renaming /home/curator/.claude.json.tmp.42483.1764316758861 to /home/curator/.claude.json
+2025-11-28T07:59:18.864Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-28T07:59:19.220Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.42483.1764316759220
+2025-11-28T07:59:19.220Z [DEBUG] Preserving file permissions: 100600
+2025-11-28T07:59:19.223Z [DEBUG] Temp file written successfully, size: 52165 bytes
+2025-11-28T07:59:19.224Z [DEBUG] Applied original permissions to temp file
+2025-11-28T07:59:19.224Z [DEBUG] Renaming /home/curator/.claude.json.tmp.42483.1764316759220 to /home/curator/.claude.json
+2025-11-28T07:59:19.224Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-28T07:59:19.362Z [DEBUG] Stream started - received first chunk
+2025-11-28T07:59:19.948Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.42483.1764316759948
+2025-11-28T07:59:19.948Z [DEBUG] Preserving file permissions: 100600
+2025-11-28T07:59:19.952Z [DEBUG] Temp file written successfully, size: 52165 bytes
+2025-11-28T07:59:19.952Z [DEBUG] Applied original permissions to temp file
+2025-11-28T07:59:19.952Z [DEBUG] Renaming /home/curator/.claude.json.tmp.42483.1764316759948 to /home/curator/.claude.json
+2025-11-28T07:59:19.952Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-28T07:59:20.810Z [DEBUG] Stream started - received first chunk
+2025-11-28T07:59:21.074Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-11-28T07:59:21.074Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T07:59:21.074Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T07:59:25.736Z [DEBUG] [FileIndex] Not in bundled mode, using Fuse.js fallback
+2025-11-28T07:59:26.322Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2025-11-28T07:59:26.322Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T07:59:26.322Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T07:59:26.810Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T07:59:27.064Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T07:59:28.086Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T07:59:28.879Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T07:59:29.550Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T07:59:29.966Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T07:59:30.310Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T07:59:31.591Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T07:59:32.437Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T07:59:32.861Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T07:59:32.875Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-28T07:59:33.075Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T07:59:33.738Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T07:59:33.997Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T07:59:34.683Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T07:59:35.183Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T07:59:35.541Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T07:59:35.849Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-28T08:00:13.560Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-28T08:00:13.560Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-28T08:00:13.566Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-28T08:00:13.566Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-28T08:00:13.598Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-11-28T08:00:13.598Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:00:13.598Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T08:00:13.601Z [DEBUG] FileHistory: Added snapshot for 7f6be06f-f30e-4fdc-9bfb-cbe8e7531043, tracking 0 files
+2025-11-28T08:00:13.629Z [DEBUG] Total plugin output styles loaded: 0
+2025-11-28T08:00:14.283Z [DEBUG] Stream started - received first chunk
+2025-11-28T08:00:15.391Z [DEBUG] Stream started - received first chunk
+2025-11-28T08:00:22.238Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-11-28T08:00:22.239Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:00:22.239Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T08:00:22.320Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.42483.1764316822320
+2025-11-28T08:00:22.320Z [DEBUG] Preserving file permissions: 100600
+2025-11-28T08:00:22.323Z [DEBUG] Temp file written successfully, size: 52200 bytes
+2025-11-28T08:00:22.323Z [DEBUG] Applied original permissions to temp file
+2025-11-28T08:00:22.323Z [DEBUG] Renaming /home/curator/.claude.json.tmp.42483.1764316822320 to /home/curator/.claude.json
+2025-11-28T08:00:22.323Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-28T08:00:22.328Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.42483.1764316822328
+2025-11-28T08:00:22.328Z [DEBUG] Preserving file permissions: 100600
+2025-11-28T08:00:22.332Z [DEBUG] Temp file written successfully, size: 52200 bytes
+2025-11-28T08:00:22.332Z [DEBUG] Applied original permissions to temp file
+2025-11-28T08:00:22.332Z [DEBUG] Renaming /home/curator/.claude.json.tmp.42483.1764316822328 to /home/curator/.claude.json
+2025-11-28T08:00:22.332Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-28T08:01:22.318Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2025-11-28T08:01:22.318Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:01:22.318Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2025-11-28T08:02:02.601Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-28T08:02:02.601Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-28T08:02:02.607Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-28T08:02:02.607Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-28T08:02:02.624Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-11-28T08:02:02.624Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:02:02.624Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T08:02:02.626Z [DEBUG] FileHistory: Making snapshot for message 423955d7-7c85-4a55-b6f2-36e8b016816e
+2025-11-28T08:02:02.626Z [DEBUG] FileHistory: Added snapshot for 423955d7-7c85-4a55-b6f2-36e8b016816e, tracking 0 files
+2025-11-28T08:02:03.321Z [DEBUG] Stream started - received first chunk
+2025-11-28T08:02:04.582Z [DEBUG] Stream started - received first chunk
+2025-11-28T08:02:09.520Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-11-28T08:02:09.520Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:02:09.520Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T08:02:09.609Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.42483.1764316929609
+2025-11-28T08:02:09.609Z [DEBUG] Preserving file permissions: 100600
+2025-11-28T08:02:09.612Z [DEBUG] Temp file written successfully, size: 52200 bytes
+2025-11-28T08:02:09.612Z [DEBUG] Applied original permissions to temp file
+2025-11-28T08:02:09.612Z [DEBUG] Renaming /home/curator/.claude.json.tmp.42483.1764316929609 to /home/curator/.claude.json
+2025-11-28T08:02:09.612Z [DEBUG] File /home/curator/.claude.json written atomically
+2025-11-28T08:03:09.607Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2025-11-28T08:03:09.607Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:03:09.607Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2025-11-28T08:05:43.420Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-28T08:05:43.420Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-28T08:05:43.426Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-28T08:05:43.426Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-28T08:05:43.443Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-11-28T08:05:43.443Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:05:43.443Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T08:05:43.446Z [DEBUG] FileHistory: Making snapshot for message be1406f3-70ae-4adf-9701-41a629235bbc
+2025-11-28T08:05:43.446Z [DEBUG] FileHistory: Added snapshot for be1406f3-70ae-4adf-9701-41a629235bbc, tracking 0 files
+2025-11-28T08:05:44.297Z [DEBUG] Stream started - received first chunk
+2025-11-28T08:05:45.208Z [DEBUG] Stream started - received first chunk
+2025-11-28T08:05:51.022Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-11-28T08:05:51.022Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:05:51.022Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T08:06:51.109Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2025-11-28T08:06:51.109Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:06:51.109Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2025-11-28T08:14:26.876Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-28T08:14:26.876Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-28T08:14:26.881Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-28T08:14:26.881Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-28T08:14:26.899Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-11-28T08:14:26.899Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:14:26.899Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T08:14:26.900Z [DEBUG] FileHistory: Making snapshot for message 308af2d9-1dc9-4374-8aff-35b64bbd3a41
+2025-11-28T08:14:26.900Z [DEBUG] FileHistory: Added snapshot for 308af2d9-1dc9-4374-8aff-35b64bbd3a41, tracking 0 files
+2025-11-28T08:14:28.281Z [DEBUG] Stream started - received first chunk
+2025-11-28T08:14:28.495Z [DEBUG] Stream started - received first chunk
+2025-11-28T08:14:35.154Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-11-28T08:14:35.154Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:14:35.154Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T08:15:35.244Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2025-11-28T08:15:35.244Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:15:35.244Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2025-11-28T08:20:45.644Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-28T08:20:45.644Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-28T08:20:45.647Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-28T08:20:45.647Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-28T08:20:45.662Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-11-28T08:20:45.662Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:20:45.662Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T08:20:45.663Z [DEBUG] FileHistory: Making snapshot for message 2da3c382-2875-4d7e-b408-067014fed1ae
+2025-11-28T08:20:45.663Z [DEBUG] FileHistory: Added snapshot for 2da3c382-2875-4d7e-b408-067014fed1ae, tracking 0 files
+2025-11-28T08:20:46.636Z [DEBUG] Stream started - received first chunk
+2025-11-28T08:20:47.636Z [DEBUG] Stream started - received first chunk
+2025-11-28T08:20:53.660Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-11-28T08:20:53.660Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:20:53.660Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T08:21:53.752Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2025-11-28T08:21:53.752Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:21:53.752Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2025-11-28T08:27:05.498Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T08:27:06.550Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T08:27:06.836Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T08:27:07.516Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T08:27:08.147Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T08:27:08.480Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T08:27:08.825Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T08:27:09.504Z [DEBUG] [FileIndex] Using Fuse.js fallback for search
+2025-11-28T08:27:09.811Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2025-11-28T08:27:10.274Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-28T08:27:10.274Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-28T08:27:10.278Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-28T08:27:10.278Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-28T08:27:10.297Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-11-28T08:27:10.297Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:27:10.297Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T08:27:10.299Z [DEBUG] FileHistory: Making snapshot for message 10267b63-78c0-47e7-9157-bf8f25dbb281
+2025-11-28T08:27:10.299Z [DEBUG] FileHistory: Added snapshot for 10267b63-78c0-47e7-9157-bf8f25dbb281, tracking 0 files
+2025-11-28T08:27:11.014Z [DEBUG] Stream started - received first chunk
+2025-11-28T08:27:12.276Z [DEBUG] Stream started - received first chunk
+2025-11-28T08:27:20.933Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-11-28T08:27:20.933Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:27:20.933Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T08:28:21.021Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2025-11-28T08:28:21.021Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:28:21.021Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2025-11-28T08:29:20.496Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-28T08:29:20.496Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-28T08:29:20.501Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-28T08:29:20.501Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-28T08:29:20.516Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-11-28T08:29:20.516Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:29:20.516Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T08:29:20.518Z [DEBUG] FileHistory: Making snapshot for message 2db2a8da-8111-4544-8816-58b1a5b17b97
+2025-11-28T08:29:20.518Z [DEBUG] FileHistory: Added snapshot for 2db2a8da-8111-4544-8816-58b1a5b17b97, tracking 0 files
+2025-11-28T08:29:21.719Z [DEBUG] Stream started - received first chunk
+2025-11-28T08:29:23.190Z [DEBUG] Stream started - received first chunk
+2025-11-28T08:29:28.430Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-11-28T08:29:28.430Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:29:28.430Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T08:30:28.517Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2025-11-28T08:30:28.517Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:30:28.517Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2025-11-28T08:30:54.551Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2025-11-28T08:30:54.551Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2025-11-28T08:30:54.555Z [DEBUG] Hooks: Found 0 total hooks in registry
+2025-11-28T08:30:54.555Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2025-11-28T08:30:54.574Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2025-11-28T08:30:54.574Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:30:54.574Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T08:30:54.575Z [DEBUG] FileHistory: Making snapshot for message a9a2baf5-ba66-4fac-8d58-2e4e44b1209a
+2025-11-28T08:30:54.576Z [DEBUG] FileHistory: Added snapshot for a9a2baf5-ba66-4fac-8d58-2e4e44b1209a, tracking 0 files
+2025-11-28T08:30:56.117Z [DEBUG] Stream started - received first chunk
+2025-11-28T08:30:56.591Z [DEBUG] Stream started - received first chunk
+2025-11-28T08:31:02.156Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2025-11-28T08:31:02.156Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:31:02.156Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2025-11-28T08:32:02.257Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2025-11-28T08:32:02.257Z [DEBUG] Found 0 hook matchers in settings
+2025-11-28T08:32:02.257Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)

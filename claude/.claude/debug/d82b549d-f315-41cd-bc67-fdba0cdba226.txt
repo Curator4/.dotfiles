@@ -1,0 +1,1085 @@
+[DEBUG] Watching for changes in setting files /home/curator/.claude/settings.json...
+[DEBUG] [LSP MANAGER] initializeLspServerManager() called
+[DEBUG] [LSP MANAGER] Created manager instance, state=pending
+[DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+[DEBUG] [LSP SERVER MANAGER] initialize() called
+[DEBUG] [LSP SERVER MANAGER] Calling getAllLspServers()
+[DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+[DEBUG] Total LSP servers loaded: 0
+[DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+[DEBUG] LSP manager initialized with 0 servers
+[DEBUG] LSP server manager initialized successfully
+[DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+[DEBUG] Loading skills from directories: managed=/etc/claude-code/.claude/skills, user=/home/curator/.claude/skills, project=/home/curator/obsidian-vault/.claude/skills
+[DEBUG] >>>>> getPluginSkills CALLED <<<<<
+[DEBUG] Creating shell snapshot for zsh (/usr/bin/zsh)
+[DEBUG] Looking for shell config file: /home/curator/.zshrc
+[DEBUG] Snapshots directory: /home/curator/.claude/shell-snapshots
+[DEBUG] Creating snapshot at: /home/curator/.claude/shell-snapshots/snapshot-zsh-1763112994088-l1mx4z.sh
+[DEBUG] Shell binary exists: true
+[DEBUG] Execution timeout: 10000ms
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763112994095
+[DEBUG] Temp file written successfully, size: 2 bytes
+[DEBUG] Renaming /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763112994095 to /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json
+[DEBUG] File /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json written atomically
+[DEBUG] getPluginSkills: Processing 0 enabled plugins
+[DEBUG] Total plugin skills loaded: 0
+[DEBUG] Total plugin commands loaded: 0
+[DEBUG] Registered 0 hooks from 0 plugins
+[DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, duplicates removed: 0)
+[DEBUG] getSkillsIfEnabled returning: 0 skill dir commands, 0 plugin skills
+[DEBUG] Total plugin agents loaded: 0
+[DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=/home/curator/.dotfiles/claude/.claude/local/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/x64-linux/rg)
+[DEBUG] Shell snapshot created successfully (3750 bytes)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.114324.1763112994239
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 44423 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.114324.1763112994239 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.114324.1763112994245
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 44423 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.114324.1763112994245 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.114324.1763112996089
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 44827 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.114324.1763112996089 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.114324.1763112996141
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 44827 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.114324.1763112996141 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for SessionStart with query: startup
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.114324.1763112996190
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 44722 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.114324.1763112996190 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.114324.1763112996198
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 44722 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.114324.1763112996198 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.114324.1763112996203
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 44722 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.114324.1763112996203 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+[DEBUG] performStartupChecks called
+[DEBUG] Starting background plugin installations
+[DEBUG] performBackgroundPluginInstallations called
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.114324.1763112996230
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 44827 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.114324.1763112996230 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+[DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.114324.1763112996439
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 44827 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.114324.1763112996439 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Stream started - received first chunk
+[DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] [FileIndex] Not in bundled mode, using Fuse.js fallback
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] [FileIndex] Using Fuse.js fallback for search
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Added snapshot for 962be56e-00cd-453d-bff8-79bfb86e8f6a, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113175932
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 1068 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113175932 to /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json
+[DEBUG] File /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Write
+[DEBUG] Getting matching hook commands for PreToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] Permission suggestions for Write: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+[DEBUG] FileHistory: Tracked file modification for /home/curator/obsidian-vault/dev/docker-commands.md
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/docker-commands.md.tmp.114324.1763113218555
+[DEBUG] Temp file written successfully, size: 4393 bytes
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/docker-commands.md.tmp.114324.1763113218555 to /home/curator/obsidian-vault/dev/docker-commands.md
+[DEBUG] File /home/curator/obsidian-vault/dev/docker-commands.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] executePreToolHooks called for tool: Write
+[DEBUG] Getting matching hook commands for PreToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] Permission suggestions for Write: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+[DEBUG] FileHistory: Tracked file modification for /home/curator/obsidian-vault/dev/docker-networking.md
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/docker-networking.md.tmp.114324.1763113220059
+[DEBUG] Temp file written successfully, size: 3918 bytes
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/docker-networking.md.tmp.114324.1763113220059 to /home/curator/obsidian-vault/dev/docker-networking.md
+[DEBUG] File /home/curator/obsidian-vault/dev/docker-networking.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113255150
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 1072 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113255150 to /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json
+[DEBUG] File /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] executePreToolHooks called for tool: Write
+[DEBUG] Getting matching hook commands for PreToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] Permission suggestions for Write: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+[DEBUG] FileHistory: Tracked file modification for /home/curator/obsidian-vault/dev/docker-storage.md
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/docker-storage.md.tmp.114324.1763113258859
+[DEBUG] Temp file written successfully, size: 5675 bytes
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/docker-storage.md.tmp.114324.1763113258859 to /home/curator/obsidian-vault/dev/docker-storage.md
+[DEBUG] File /home/curator/obsidian-vault/dev/docker-storage.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113301827
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 1074 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113301827 to /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json
+[DEBUG] File /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] executePreToolHooks called for tool: Write
+[DEBUG] Getting matching hook commands for PreToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] Permission suggestions for Write: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+[DEBUG] FileHistory: Tracked file modification for /home/curator/obsidian-vault/dev/dockerfile.md
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/dockerfile.md.tmp.114324.1763113303179
+[DEBUG] Temp file written successfully, size: 7744 bytes
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/dockerfile.md.tmp.114324.1763113303179 to /home/curator/obsidian-vault/dev/dockerfile.md
+[DEBUG] File /home/curator/obsidian-vault/dev/dockerfile.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113349220
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 1076 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113349220 to /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json
+[DEBUG] File /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] executePreToolHooks called for tool: Edit
+[DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+[DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+[DEBUG] FileHistory: Tracked file modification for /home/curator/obsidian-vault/dev/docker.md
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/docker.md.tmp.114324.1763113354556
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 4133 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/docker.md.tmp.114324.1763113354556 to /home/curator/obsidian-vault/dev/docker.md
+[DEBUG] File /home/curator/obsidian-vault/dev/docker.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113386357
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 1078 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113386357 to /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json
+[DEBUG] File /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] executePreToolHooks called for tool: Edit
+[DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+[DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+[DEBUG] FileHistory: Tracked file modification for /home/curator/obsidian-vault/dev/load balancer.md
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/load balancer.md.tmp.114324.1763113390622
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 4184 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/load balancer.md.tmp.114324.1763113390622 to /home/curator/obsidian-vault/dev/load balancer.md
+[DEBUG] File /home/curator/obsidian-vault/dev/load balancer.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Edit
+[DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+[DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+[DEBUG] FileHistory: Tracked file modification for /home/curator/obsidian-vault/dev/caddy.md
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/caddy.md.tmp.114324.1763113430993
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 5778 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/caddy.md.tmp.114324.1763113430993 to /home/curator/obsidian-vault/dev/caddy.md
+[DEBUG] File /home/curator/obsidian-vault/dev/caddy.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113438762
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 2 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113438762 to /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json
+[DEBUG] File /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.114324.1763113450541
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 44827 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.114324.1763113450541 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.114324.1763113450579
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 44827 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.114324.1763113450579 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 002faddb-97bb-425c-8d0b-462d95369025
+[DEBUG] FileHistory: Added snapshot for 002faddb-97bb-425c-8d0b-462d95369025, tracking 7 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113527126
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 918 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113527126 to /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json
+[DEBUG] File /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Applying permission update: Setting mode to 'acceptEdits'
+[DEBUG] executePreToolHooks called for tool: Edit
+[DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/docker.md.tmp.114324.1763113561832
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 2203 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/docker.md.tmp.114324.1763113561832 to /home/curator/obsidian-vault/dev/docker.md
+[DEBUG] File /home/curator/obsidian-vault/dev/docker.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113581155
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 920 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113581155 to /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json
+[DEBUG] File /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] executePreToolHooks called for tool: Write
+[DEBUG] Getting matching hook commands for PreToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/docker-commands.md.tmp.114324.1763113581216
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 3320 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/docker-commands.md.tmp.114324.1763113581216 to /home/curator/obsidian-vault/dev/docker-commands.md
+[DEBUG] File /home/curator/obsidian-vault/dev/docker-commands.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113598345
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 922 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113598345 to /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json
+[DEBUG] File /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] executePreToolHooks called for tool: Write
+[DEBUG] Getting matching hook commands for PreToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/docker-networking.md.tmp.114324.1763113598414
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 2710 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/docker-networking.md.tmp.114324.1763113598414 to /home/curator/obsidian-vault/dev/docker-networking.md
+[DEBUG] File /home/curator/obsidian-vault/dev/docker-networking.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113619478
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 924 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113619478 to /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json
+[DEBUG] File /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] executePreToolHooks called for tool: Write
+[DEBUG] Getting matching hook commands for PreToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/docker-storage.md.tmp.114324.1763113619540
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 2975 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/docker-storage.md.tmp.114324.1763113619540 to /home/curator/obsidian-vault/dev/docker-storage.md
+[DEBUG] File /home/curator/obsidian-vault/dev/docker-storage.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113652336
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 926 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113652336 to /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json
+[DEBUG] File /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] executePreToolHooks called for tool: Write
+[DEBUG] Getting matching hook commands for PreToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/dockerfile.md.tmp.114324.1763113652402
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 5162 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/dockerfile.md.tmp.114324.1763113652402 to /home/curator/obsidian-vault/dev/dockerfile.md
+[DEBUG] File /home/curator/obsidian-vault/dev/dockerfile.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113672344
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 928 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113672344 to /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json
+[DEBUG] File /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] executePreToolHooks called for tool: Write
+[DEBUG] Getting matching hook commands for PreToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/load balancer.md.tmp.114324.1763113672412
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 2240 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/load balancer.md.tmp.114324.1763113672412 to /home/curator/obsidian-vault/dev/load balancer.md
+[DEBUG] File /home/curator/obsidian-vault/dev/load balancer.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113697523
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 930 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113697523 to /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json
+[DEBUG] File /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] executePreToolHooks called for tool: Write
+[DEBUG] Getting matching hook commands for PreToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/caddy.md.tmp.114324.1763113697584
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 3916 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/caddy.md.tmp.114324.1763113697584 to /home/curator/obsidian-vault/dev/caddy.md
+[DEBUG] File /home/curator/obsidian-vault/dev/caddy.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113702675
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 2 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113702675 to /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json
+[DEBUG] File /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.114324.1763113709866
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 44827 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.114324.1763113709866 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.114324.1763113709902
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 44827 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.114324.1763113709902 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message 556ffd98-f3e6-4626-99be-e031dc044c03
+[DEBUG] FileHistory: Added snapshot for 556ffd98-f3e6-4626-99be-e031dc044c03, tracking 7 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113731947
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 188 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113731947 to /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json
+[DEBUG] File /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] executePreToolHooks called for tool: Read
+[DEBUG] Getting matching hook commands for PreToolUse with query: Read
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+[DEBUG] Getting matching hook commands for PostToolUse with query: Read
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Edit
+[DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/docker.md.tmp.114324.1763113758546
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 2197 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/docker.md.tmp.114324.1763113758546 to /home/curator/obsidian-vault/dev/docker.md
+[DEBUG] File /home/curator/obsidian-vault/dev/docker.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+[DEBUG] executePreToolHooks called for tool: Write
+[DEBUG] Getting matching hook commands for PreToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/docker-commands.md.tmp.114324.1763113758669
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 3312 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/docker-commands.md.tmp.114324.1763113758669 to /home/curator/obsidian-vault/dev/docker-commands.md
+[DEBUG] File /home/curator/obsidian-vault/dev/docker-commands.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Write
+[DEBUG] Getting matching hook commands for PreToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/docker-storage.md.tmp.114324.1763113790428
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 2966 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/docker-storage.md.tmp.114324.1763113790428 to /home/curator/obsidian-vault/dev/docker-storage.md
+[DEBUG] File /home/curator/obsidian-vault/dev/docker-storage.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Write
+[DEBUG] Getting matching hook commands for PreToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/dockerfile.md.tmp.114324.1763113833785
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 5154 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/dockerfile.md.tmp.114324.1763113833785 to /home/curator/obsidian-vault/dev/dockerfile.md
+[DEBUG] File /home/curator/obsidian-vault/dev/dockerfile.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] executePreToolHooks called for tool: Write
+[DEBUG] Getting matching hook commands for PreToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/load balancer.md.tmp.114324.1763113834011
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 2234 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/load balancer.md.tmp.114324.1763113834011 to /home/curator/obsidian-vault/dev/load balancer.md
+[DEBUG] File /home/curator/obsidian-vault/dev/load balancer.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Write
+[DEBUG] Getting matching hook commands for PreToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/caddy.md.tmp.114324.1763113860542
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 3907 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/caddy.md.tmp.114324.1763113860542 to /home/curator/obsidian-vault/dev/caddy.md
+[DEBUG] File /home/curator/obsidian-vault/dev/caddy.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Write
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113860726
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 2 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json.tmp.114324.1763113860726 to /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json
+[DEBUG] File /home/curator/.claude/todos/d82b549d-f315-41cd-bc67-fdba0cdba226-agent-d82b549d-f315-41cd-bc67-fdba0cdba226.json written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.114324.1763113865389
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 44827 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.114324.1763113865389 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.114324.1763113865427
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 44827 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.114324.1763113865427 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] FileHistory: Making snapshot for message da7cbffe-073e-4913-9a08-d030c68bdabf
+[DEBUG] FileHistory: Added snapshot for da7cbffe-073e-4913-9a08-d030c68bdabf, tracking 7 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Read
+[DEBUG] Getting matching hook commands for PreToolUse with query: Read
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+[DEBUG] Getting matching hook commands for PostToolUse with query: Read
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Edit
+[DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+[DEBUG] FileHistory: Tracked file modification for /home/curator/obsidian-vault/dev/containerization.md
+[DEBUG] Writing to temp file: /home/curator/obsidian-vault/dev/containerization.md.tmp.114324.1763113927442
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 521 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/obsidian-vault/dev/containerization.md.tmp.114324.1763113927442 to /home/curator/obsidian-vault/dev/containerization.md
+[DEBUG] File /home/curator/obsidian-vault/dev/containerization.md written atomically
+[DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+[DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+[DEBUG] LSP Diagnostics: Checking registry - 0 pending
+[DEBUG] LSP Diagnostics: Returning 0 diagnostic set(s) for delivery
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.114324.1763113931671
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 44827 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.114324.1763113931671 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
+[DEBUG] Getting matching hook commands for Stop with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.114324.1763113931706
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 44827 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /home/curator/.claude.json.tmp.114324.1763113931706 to /home/curator/.claude.json
+[DEBUG] File /home/curator/.claude.json written atomically
