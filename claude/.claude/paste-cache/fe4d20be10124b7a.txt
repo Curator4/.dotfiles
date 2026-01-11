@@ -1,0 +1,10 @@
+                                                                                                                                                                                   
+Failed to run `config` for telescope.nvim                                                                                                                                          
+                                                                                                                                                                                   
+/home/curator/.config/nvim/lua/plugins/telescope.lua:5: attempt to index global 'builtin' (a nil value)                                                                            
+                                                                                                                                                                                   
+# stacktrace:                                                                                                                                                                      
+  - ~/.config/nvim/lua/plugins/telescope.lua:5 _in_ **config**                                                                                                                     
+  - ~/.config/nvim/lua/config/lazy.lua:47                                                                                                                                          
+  - init.lua:1                                                                                                                                                                     
+Press ENTER or type command to continue                

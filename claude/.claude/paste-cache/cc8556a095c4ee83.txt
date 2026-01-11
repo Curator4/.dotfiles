@@ -1,0 +1,9 @@
+Failed to run `config` for nvim-lspconfig                                                                                                                                          
+                                                                                                                                                                                   
+/home/curator/.config/nvim/lua/plugins/lsp-config.lua:22: attempt to index field 'bif' (a nil value)                                                                               
+                                                                                                                                                                                   
+# stacktrace:                                                                                                                                                                      
+  - ~/.config/nvim/lua/plugins/lsp-config.lua:22 _in_ **config**                                                                                                                   
+  - ~/.config/nvim/lua/config/lazy.lua:19                                                                                                                                          
+  - ~/.dotfiles/nvim/.config/nvim/init.lua:2                                                                                                                                       
+Press ENTER or type command to continue        
