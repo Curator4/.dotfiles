@@ -8,6 +8,9 @@ return {
 	{
 		"mason-org/mason-lspconfig.nvim",
 		config = function()
+			-- Setup cmp capabilities for LSP
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"lua_ls", -- lua
@@ -25,7 +28,9 @@ return {
 				},
 				handlers = {
 					function(server_name)
-						vim.lsp.config(server_name, {})
+						vim.lsp.config(server_name, {
+							capabilities = capabilities,
+						})
 						vim.lsp.enable(server_name)
 					end,
 				},

@@ -4,6 +4,7 @@ return {
 	config = function()
 		local alpha = require("alpha")
 		local dashboard = require("alpha.themes.dashboard")
+		local cdir = vim.fn.getcwd()
 
 		-- Set header
 		dashboard.section.header.val = {
@@ -39,11 +40,47 @@ return {
 			dashboard.button("q", "󰩈  Quit", ":qa<CR>"),
 		}
 
+		-- Recent files section
+		local mru = {
+			type = "group",
+			val = {
+				{
+					type = "text",
+					val = "Recent Files",
+					opts = {
+						hl = "SpecialComment",
+						shrink_margin = false,
+						position = "center",
+					},
+				},
+				{ type = "padding", val = 1 },
+				{
+					type = "group",
+					val = function()
+						return { require("alpha.themes.theta").mru(0, cdir, 5) }
+					end,
+					opts = { shrink_margin = false },
+				},
+			},
+		}
+
 		-- Set footer
 		dashboard.section.footer.val = "Dynasty 🔥🩸"
 
+		-- Custom layout
+		dashboard.config.layout = {
+			{ type = "padding", val = 2 },
+			dashboard.section.header,
+			{ type = "padding", val = 2 },
+			dashboard.section.buttons,
+			{ type = "padding", val = 1 },
+			mru,
+			{ type = "padding", val = 1 },
+			dashboard.section.footer,
+		}
+
 		-- Send config to alpha
-		alpha.setup(dashboard.opts)
+		alpha.setup(dashboard.config)
 
 		-- Disable folding on alpha buffer
 		vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
