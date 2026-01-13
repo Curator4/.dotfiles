@@ -1,0 +1,60 @@
+{
+  "name": "Ashen",
+  "slug": "ashen",
+  "icon": "🔥",
+
+  "nvim": {
+    "colorscheme": "ashen",
+    "variant": "",
+    "background": "dark"
+  },
+
+  "palette": {
+    "background": "#121212",
+    "foreground": "#b4b4b4",
+    "cursor": "#b4b4b4",
+    "cursor_text": "#151515",
+    "selection_bg": "#323232",
+    "selection_fg": "#b4b4b4",
+
+    "colors": {
+      "black": "#121212",
+      "red": "#B14242",
+      "green": "#D87C4A",
+      "yellow": "#E49A44",
+      "blue": "#4A8B8B",
+      "magenta": "#a7a7a7",
+      "cyan": "#b4b4b4",
+      "white": "#d5d5d5",
+
+      "bright_black": "#949494",
+      "bright_red": "#B14242",
+      "bright_green": "#D87C4A",
+      "bright_yellow": "#E49A44",
+      "bright_blue": "#4A8B8B",
+      "bright_magenta": "#a7a7a7",
+      "bright_cyan": "#b4b4b4",
+      "bright_white": "#d5d5d5"
+    }
+  },
+
+  "wallpapers": {
+    "vertical": [
+      "~/pictures/wallpapers/vertical/mountain-red.jpg",
+      "~/pictures/wallpapers/vertical/sky-vertical-red.jpg"
+    ],
+    "live": [
+      "~/pictures/wallpapers/live/red-text_cyber_red.mp4",
+      "~/pictures/wallpapers/live/makima_red_intense_anime.mp4"
+    ]
+  },
+
+  "monitors": {
+    "DP-1": "vertical[0]",
+    "DP-2": "live[1]",
+    "DP-3": "live[0]",
+    "DP-4": "vertical[1]"
+  },
+
+  "rofi_theme": "ashen"
+}

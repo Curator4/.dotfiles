@@ -1,0 +1,60 @@
+{
+  "name": "Frost",
+  "slug": "frost",
+  "icon": "❄️",
+
+  "nvim": {
+    "colorscheme": "iceberg",
+    "variant": "",
+    "background": "dark"
+  },
+
+  "palette": {
+    "background": "#161821",
+    "foreground": "#c6c8d1",
+    "cursor": "#c6c8d1",
+    "cursor_text": "#161821",
+    "selection_bg": "#272c42",
+    "selection_fg": "#c6c8d1",
+
+    "colors": {
+      "black": "#1e2132",
+      "red": "#e27878",
+      "green": "#b4be82",
+      "yellow": "#e2a478",
+      "blue": "#84a0c6",
+      "magenta": "#a093c7",
+      "cyan": "#89b8c2",
+      "white": "#c6c8d1",
+
+      "bright_black": "#6b7089",
+      "bright_red": "#e98989",
+      "bright_green": "#c0ca8e",
+      "bright_yellow": "#e9b189",
+      "bright_blue": "#91acd1",
+      "bright_magenta": "#ada0d3",
+      "bright_cyan": "#95c4ce",
+      "bright_white": "#d2d4de"
+    }
+  },
+
+  "wallpapers": {
+    "vertical": [
+      "~/pictures/wallpapers/vertical/mountain-azure.jpg",
+      "~/pictures/wallpapers/vertical/sky-vertical.jpg"
+    ],
+    "live": [
+      "~/pictures/wallpapers/live/1657119748-1657119748-blue-planet-earth-hologram-animated-desktop-wallpaper.mp4",
+      "~/pictures/wallpapers/live/1655315225-1655315225-technology-grid-hd-live-wallpaper-for-pc.mp4"
+    ]
+  },
+
+  "monitors": {
+    "DP-1": "vertical[0]",
+    "DP-2": "live[0]",
+    "DP-3": "live[1]",
+    "DP-4": "vertical[1]"
+  },
+
+  "rofi_theme": "frost"
+}

@@ -1,0 +1,191 @@
+2026-01-12T19:44:14.738Z [DEBUG] Watching for changes in setting files /home/curator/.claude, /home/curator/.claude...
+2026-01-12T19:44:14.744Z [DEBUG] [init] configureGlobalMTLS starting
+2026-01-12T19:44:14.744Z [DEBUG] [init] configureGlobalMTLS complete
+2026-01-12T19:44:14.744Z [DEBUG] [init] configureGlobalAgents starting
+2026-01-12T19:44:14.744Z [DEBUG] [init] configureGlobalAgents complete
+2026-01-12T19:44:14.751Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-01-12T19:44:14.751Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-01-12T19:44:14.751Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2026-01-12T19:44:14.755Z [DEBUG] [STARTUP] Loading MCP configs...
+2026-01-12T19:44:14.772Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2026-01-12T19:44:14.772Z [DEBUG] Total LSP servers loaded: 0
+2026-01-12T19:44:14.772Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2026-01-12T19:44:14.772Z [DEBUG] LSP manager initialized with 0 servers
+2026-01-12T19:44:14.772Z [DEBUG] [STARTUP] MCP configs loaded in 17ms
+2026-01-12T19:44:14.772Z [DEBUG] LSP server manager initialized successfully
+2026-01-12T19:44:14.773Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2026-01-12T19:44:14.790Z [DEBUG] [STARTUP] Running setup()...
+2026-01-12T19:44:14.794Z [DEBUG] Stats cache is up to date
+2026-01-12T19:44:14.822Z [DEBUG] Loading skills from: managed=/etc/claude-code/.claude/skills, user=/home/curator/.claude/skills, project=[]
+2026-01-12T19:44:14.874Z [DEBUG] Loaded 0 installed plugins from /home/curator/.claude/plugins/installed_plugins.json
+2026-01-12T19:44:14.894Z [DEBUG] Writing to temp file: /home/curator/.claude/todos/f185ad9e-f35c-4654-88da-121242e57e3c-agent-f185ad9e-f35c-4654-88da-121242e57e3c.json.tmp.2911.1768247054894
+2026-01-12T19:44:14.894Z [DEBUG] Temp file written successfully, size: 2 bytes
+2026-01-12T19:44:14.894Z [DEBUG] Renaming /home/curator/.claude/todos/f185ad9e-f35c-4654-88da-121242e57e3c-agent-f185ad9e-f35c-4654-88da-121242e57e3c.json.tmp.2911.1768247054894 to /home/curator/.claude/todos/f185ad9e-f35c-4654-88da-121242e57e3c-agent-f185ad9e-f35c-4654-88da-121242e57e3c.json
+2026-01-12T19:44:14.895Z [DEBUG] File /home/curator/.claude/todos/f185ad9e-f35c-4654-88da-121242e57e3c-agent-f185ad9e-f35c-4654-88da-121242e57e3c.json written atomically
+2026-01-12T19:44:14.912Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2026-01-12T19:44:14.912Z [DEBUG] Total plugin skills loaded: 0
+2026-01-12T19:44:14.912Z [DEBUG] Total plugin commands loaded: 0
+2026-01-12T19:44:14.912Z [DEBUG] Registered 0 hooks from 0 plugins
+2026-01-12T19:44:14.913Z [DEBUG] [STARTUP] setup() completed in 123ms
+2026-01-12T19:44:14.913Z [DEBUG] [STARTUP] Loading commands and agents...
+2026-01-12T19:44:14.925Z [DEBUG] Total plugin agents loaded: 0
+2026-01-12T19:44:14.925Z [DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, legacy commands: 0)
+2026-01-12T19:44:14.925Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills, 0 bundled skills
+2026-01-12T19:44:14.926Z [DEBUG] [STARTUP] Commands and agents loaded in 13ms
+2026-01-12T19:44:14.926Z [DEBUG] [STARTUP] Running showSetupScreens()...
+2026-01-12T19:44:14.926Z [DEBUG] [render] initYoga starting
+2026-01-12T19:44:14.941Z [DEBUG] Creating shell snapshot for zsh (/usr/bin/zsh)
+2026-01-12T19:44:14.941Z [DEBUG] Looking for shell config file: /home/curator/.zshrc
+2026-01-12T19:44:14.941Z [DEBUG] Snapshots directory: /home/curator/.claude/shell-snapshots
+2026-01-12T19:44:14.941Z [DEBUG] Creating snapshot at: /home/curator/.claude/shell-snapshots/snapshot-zsh-1768247054941-guhvn4.sh
+2026-01-12T19:44:14.942Z [DEBUG] Shell binary exists: true
+2026-01-12T19:44:14.942Z [DEBUG] Execution timeout: 10000ms
+2026-01-12T19:44:14.962Z [DEBUG] [render] initYoga complete
+2026-01-12T19:44:14.971Z [DEBUG] [keybindings] KeybindingSetup initialized with 39 bindings, 0 warnings
+2026-01-12T19:44:15.013Z [DEBUG] [keybindings] Skipping file watcher - user customization disabled
+2026-01-12T19:44:15.014Z [DEBUG] Shell snapshot created successfully (4314 bytes)
+2026-01-12T19:44:15.035Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2911.1768247055035
+2026-01-12T19:44:15.035Z [DEBUG] Preserving file permissions: 100600
+2026-01-12T19:44:15.035Z [DEBUG] Temp file written successfully, size: 23354 bytes
+2026-01-12T19:44:15.035Z [DEBUG] Applied original permissions to temp file
+2026-01-12T19:44:15.035Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2911.1768247055035 to /home/curator/.claude.json
+2026-01-12T19:44:15.035Z [DEBUG] File /home/curator/.claude.json written atomically
+2026-01-12T19:44:15.774Z [DEBUG] Grove: Using fresh cached config
+2026-01-12T19:44:15.774Z [DEBUG] [render] initYoga starting
+2026-01-12T19:44:15.775Z [DEBUG] [render] initYoga complete
+2026-01-12T19:44:15.779Z [DEBUG] Git remote URL: null
+2026-01-12T19:44:15.779Z [DEBUG] No git remote URL found
+2026-01-12T19:44:15.779Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2026-01-12T19:44:15.780Z [DEBUG] [keybindings] KeybindingSetup initialized with 39 bindings, 0 warnings
+2026-01-12T19:44:15.785Z [DEBUG] [keybindings] Skipping file watcher - user customization disabled
+2026-01-12T19:44:16.220Z [DEBUG] [STARTUP] showSetupScreens() completed in 1294ms
+2026-01-12T19:44:16.221Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T19:44:16.221Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T19:44:16.238Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T19:44:16.252Z [DEBUG] Initialized versioned plugins system with 0 plugins
+2026-01-12T19:44:16.256Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2911.1768247056256
+2026-01-12T19:44:16.256Z [DEBUG] Preserving file permissions: 100600
+2026-01-12T19:44:16.256Z [DEBUG] Temp file written successfully, size: 23354 bytes
+2026-01-12T19:44:16.256Z [DEBUG] Applied original permissions to temp file
+2026-01-12T19:44:16.256Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2911.1768247056256 to /home/curator/.claude.json
+2026-01-12T19:44:16.256Z [DEBUG] File /home/curator/.claude.json written atomically
+2026-01-12T19:44:16.263Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2026-01-12T19:44:16.263Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T19:44:16.263Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2026-01-12T19:44:16.282Z [DEBUG] [render] initYoga starting
+2026-01-12T19:44:16.283Z [DEBUG] Skills and commands included in Skill tool:
+2026-01-12T19:44:16.283Z [DEBUG] [render] initYoga complete
+2026-01-12T19:44:16.289Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T19:44:16.289Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T19:44:16.289Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T19:44:16.298Z [DEBUG] Successfully refreshed marketplace: claude-plugins-official
+2026-01-12T19:44:16.298Z [DEBUG] Plugin autoupdate: checking installed plugins
+2026-01-12T19:44:16.304Z [DEBUG] Getting matching hook commands for SubagentStart with query: Explore
+2026-01-12T19:44:16.304Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T19:44:16.304Z [DEBUG] Matched 0 unique hooks for query "Explore" (0 before deduplication)
+2026-01-12T19:44:16.312Z [DEBUG] Getting matching hook commands for SubagentStart with query: Plan
+2026-01-12T19:44:16.312Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T19:44:16.312Z [DEBUG] Matched 0 unique hooks for query "Plan" (0 before deduplication)
+2026-01-12T19:44:16.320Z [DEBUG] Getting matching hook commands for SubagentStart with query: Bash
+2026-01-12T19:44:16.320Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T19:44:16.320Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-12T19:44:16.335Z [DEBUG] [keybindings] KeybindingSetup initialized with 39 bindings, 0 warnings
+2026-01-12T19:44:16.371Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2911.1768247056371
+2026-01-12T19:44:16.371Z [DEBUG] Preserving file permissions: 100600
+2026-01-12T19:44:16.371Z [DEBUG] Temp file written successfully, size: 23354 bytes
+2026-01-12T19:44:16.371Z [DEBUG] Applied original permissions to temp file
+2026-01-12T19:44:16.371Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2911.1768247056371 to /home/curator/.claude.json
+2026-01-12T19:44:16.371Z [DEBUG] File /home/curator/.claude.json written atomically
+2026-01-12T19:44:16.381Z [DEBUG] [keybindings] Skipping file watcher - user customization disabled
+2026-01-12T19:44:16.381Z [DEBUG] [REPL:mount] REPL mounted, disabled=false
+2026-01-12T19:44:16.382Z [DEBUG] Official marketplace auto-install skipped: already_attempted
+2026-01-12T19:44:16.382Z [DEBUG] performStartupChecks called
+2026-01-12T19:44:16.382Z [DEBUG] Starting background plugin installations
+2026-01-12T19:44:16.383Z [DEBUG] performBackgroundPluginInstallations called
+2026-01-12T19:44:16.392Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-local
+2026-01-12T19:44:16.393Z [DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+2026-01-12T19:44:16.394Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2026-01-12T19:44:16.427Z [DEBUG] Summarizing all 51 messages (~4574 tokens)
+2026-01-12T19:44:16.429Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T19:44:16.431Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T19:44:16.431Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T19:44:16.431Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T19:44:16.443Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2911.1768247056443
+2026-01-12T19:44:16.444Z [DEBUG] Preserving file permissions: 100600
+2026-01-12T19:44:16.444Z [DEBUG] Temp file written successfully, size: 23354 bytes
+2026-01-12T19:44:16.444Z [DEBUG] Applied original permissions to temp file
+2026-01-12T19:44:16.444Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2911.1768247056443 to /home/curator/.claude.json
+2026-01-12T19:44:16.444Z [DEBUG] File /home/curator/.claude.json written atomically
+2026-01-12T19:44:16.460Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T19:44:16.460Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T19:44:16.460Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T19:44:16.465Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T19:44:16.465Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T19:44:16.466Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T19:44:16.467Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T19:44:16.467Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T19:44:16.468Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T19:44:16.468Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T19:44:16.468Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T19:44:16.469Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T19:44:16.500Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2911.1768247056500
+2026-01-12T19:44:16.500Z [DEBUG] Preserving file permissions: 100600
+2026-01-12T19:44:16.500Z [DEBUG] Temp file written successfully, size: 23354 bytes
+2026-01-12T19:44:16.500Z [DEBUG] Applied original permissions to temp file
+2026-01-12T19:44:16.500Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2911.1768247056500 to /home/curator/.claude.json
+2026-01-12T19:44:16.500Z [DEBUG] File /home/curator/.claude.json written atomically
+2026-01-12T19:44:16.505Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2911.1768247056505
+2026-01-12T19:44:16.505Z [DEBUG] Preserving file permissions: 100600
+2026-01-12T19:44:16.505Z [DEBUG] Temp file written successfully, size: 23354 bytes
+2026-01-12T19:44:16.505Z [DEBUG] Applied original permissions to temp file
+2026-01-12T19:44:16.505Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2911.1768247056505 to /home/curator/.claude.json
+2026-01-12T19:44:16.505Z [DEBUG] File /home/curator/.claude.json written atomically
+2026-01-12T19:44:17.195Z [DEBUG] Stream started - received first chunk
+2026-01-12T19:44:17.358Z [DEBUG] Stream started - received first chunk
+2026-01-12T19:44:18.665Z [DEBUG] Stream started - received first chunk
+2026-01-12T19:44:18.988Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-12T19:44:18.988Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T19:44:18.988Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T19:44:19.024Z [DEBUG] Stream started - received first chunk
+2026-01-12T19:44:19.799Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-12T19:44:19.799Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T19:44:19.799Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T19:44:22.372Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-12T19:44:22.372Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T19:44:22.372Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T19:44:29.339Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T19:44:29.340Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T19:44:29.340Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T19:44:29.340Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T19:44:29.365Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-12T19:44:29.365Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T19:44:29.365Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T19:44:29.366Z [DEBUG] FileHistory: Added snapshot for 38d6c869-25bf-4df6-ba6a-fc485909bb31, tracking 0 files
+2026-01-12T19:44:29.384Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T19:44:29.392Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T19:44:29.392Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T19:44:29.393Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T19:44:29.396Z [DEBUG] Total plugin output styles loaded: 0
+2026-01-12T19:44:29.409Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T19:44:29.419Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T19:44:29.419Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T19:44:29.419Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T19:44:30.004Z [DEBUG] Stream started - received first chunk
+2026-01-12T19:44:31.665Z [DEBUG] Stream started - received first chunk
+2026-01-12T19:44:43.129Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-12T19:44:43.129Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T19:44:43.129Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T19:44:43.129Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T19:44:43.145Z [DEBUG] Writing to temp file: /home/curator/.claude.json.tmp.2911.1768247083145
+2026-01-12T19:44:43.145Z [DEBUG] Preserving file permissions: 100600
+2026-01-12T19:44:43.145Z [DEBUG] Temp file written successfully, size: 23354 bytes
+2026-01-12T19:44:43.145Z [DEBUG] Applied original permissions to temp file
+2026-01-12T19:44:43.145Z [DEBUG] Renaming /home/curator/.claude.json.tmp.2911.1768247083145 to /home/curator/.claude.json
+2026-01-12T19:44:43.145Z [DEBUG] File /home/curator/.claude.json written atomically
+2026-01-12T19:44:43.153Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T19:44:43.153Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T19:44:43.153Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T19:44:45.253Z [DEBUG] Stream started - received first chunk
+2026-01-12T19:44:51.310Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-12T19:44:51.310Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T19:44:51.310Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)

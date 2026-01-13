@@ -28,5 +28,39 @@ require("lazy").setup({
 	checker = { enabled = true },
 })
 
--- colorscheme
-vim.cmd.colorscheme("catppuccin")
+-- Load colorscheme from theme-switcher configuration
+local ok, theme_config = pcall(require, "config.colorscheme")
+if ok and theme_config and theme_config.colorscheme then
+	-- Set variant-specific global variables if needed
+	if theme_config.variant ~= "" then
+		if theme_config.colorscheme == "everforest" then
+			vim.g.everforest_background = theme_config.variant
+		elseif theme_config.colorscheme == "neon" then
+			vim.g.neon_style = theme_config.variant
+		elseif theme_config.colorscheme:match("^catppuccin") then
+			vim.g.catppuccin_flavour = theme_config.variant
+		end
+	end
+
+	-- Set background
+	vim.opt.background = theme_config.background
+
+	-- Apply colorscheme
+	vim.cmd.colorscheme(theme_config.colorscheme)
+
+	-- Apply transparency overrides
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+	vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "none" })
+else
+	-- Fallback to catppuccin
+	vim.cmd.colorscheme("catppuccin-frappe")
+
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+	vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "none" })
+end

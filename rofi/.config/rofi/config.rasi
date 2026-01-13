@@ -7,7 +7,7 @@ configuration {
     font: "Hack Nerd Font 12";
     sorting-method: "fzf";
     matching: "fuzzy";
-    monitor: "DP-4";
+    monitor: "DP-2";
 }
 
-@theme "synth-blue"
+@theme "frost"

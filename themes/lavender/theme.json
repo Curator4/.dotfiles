@@ -1,0 +1,27 @@
+{
+  "name": "Lavender",
+  "slug": "lavender",
+  "icon": "💜",
+  "wallpapers": {
+    "vertical": [
+      "~/pictures/wallpapers/vertical/mountain-purple.jpg",
+      "~/pictures/wallpapers/vertical/purple-vertical.jpg"
+    ],
+    "live": [
+      "~/pictures/wallpapers/live/intense-purple-sture_anime_purple.mp4",
+      "~/pictures/wallpapers/live/purple-girl_calm-chill_purple.mp4"
+    ]
+  },
+  "monitors": {
+    "DP-1": "vertical[0]",
+    "DP-2": "live[0]",
+    "DP-3": "live[1]",
+    "DP-4": "vertical[1]"
+  },
+  "rofi_theme": "lavender",
+  "nvim": {
+    "colorscheme": "lavender",
+    "variant": "",
+    "background": "dark"
+  }
+}

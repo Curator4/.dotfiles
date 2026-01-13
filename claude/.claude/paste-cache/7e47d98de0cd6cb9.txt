@@ -1,0 +1,10 @@
+                                                                                                                                                
+~                   Failed (1)                                                                                                                                   
+~                     ○ lavender.nvim      ■ clone failed                                                                                                        
+~                         Cloning into '/home/curator/.local/share/nvim/lazy/lavender.nvim'...                                                                   
+~                         ERROR: Repository not found.                                                                                                           
+~                         fatal: Could not read from remote repository.                                                                                          
+~                                                                                                                                                                
+~                         Please make sure you have the correct access rights                                                                                    
+~                         and the repository exists.                                                                                                             
+~                                                      

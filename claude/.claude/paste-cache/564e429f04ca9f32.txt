@@ -1,0 +1,103 @@
+## hotkeys etc
+### files
+tree - s, S, t
+telescope - C-x, C-v, C-t
+- auto indent, =
+- hover defintion, K
+- scroll, ctrl-d, ctrl-u
+- center, zz
+- horizontal split, ctrl-w + s, (to close ctrl-w + q)
+- surround selection with character - S + character
+- go to definition/declaration - g, d/D, gr for references
+- new horizonal pane - :sp /path, close with :q
+- new vertical :vsp
+- new pane - :e /path
+- next diagnostid, ]-d . ] is next in general
+- completion, next ctrl+n, p, y to accept, e to exit
+- open file, leader-f-f, ctrl + v or x to open in pane / vertical
+- jump to last position, ctrl + o, jump back, ctrl + i
+- search root directory with grep: leader - s - g
+- record, q-q, @q plays again
+lsp
+```
+  Navigation:
+  - gd - go to definition
+  - gD - go to declaration
+  - gi - go to implementation
+  - gr - go to references
+  - \vd / \sd - split definition
+  - C-o - jump back (built-in Vim)
+  - C-i - jump forward (built-in Vim)
+
+  Actions:
+  - K - hover docs (info popup)
+  - \rn - rename symbol everywhere
+  - \ca - code actions (quick fixes)
+
+  Diagnostics (errors/warnings):
+  - [d / ]d - jump between diagnostics (vim-style)
+  - \k - show diagnostic details in popup
+```
+lint/diagnostics
+```
+  Leader commands:
+  - \d - diagnostics list (telescope)
+  - \e - show diagnostic popup
+  - \f - format
+  - \rn - rename
+```
+neotree:
+```
+      ["A"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
+      ["d"] = "delete",
+      ["r"] = "rename",
+      ["b"] = "rename_basename",
+      ["y"] = "copy_to_clipboard",
+      ["x"] = "cut_to_clipboard",
+      ["p"] = "paste_from_clipboard",
+      ["<C-r>"] = "clear_clipboard",
+      ["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
+      -- ["c"] = {
+      --  "copy",
+      --  config = {
+      --    show_path = "none" -- "none", "relative", "absolute"
+      --  }
+      --}
+      ["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
+      ["q"] = "close_window",
+      ["R"] = "refresh",
+      ["?"] = "show_help",
+      ["<"] = "prev_source",
+      [">"] = "next_source",
+      ["i"] = "show_file_details",
+```
+### marks
+  Setting marks:
+  - m{a-z} - Set a local mark (lowercase letters are file-specific)
+  - m{A-Z} - Set a global mark (uppercase letters work across files)
+  Jumping to marks:
+  - \`a - Jump to exact position (line and column) of mark 'a'
+  - 'a - Jump to first non-blank character of line with mark 'a'
+  Special marks:
+  - \`. - Jump to last change position
+  - \`" - Jump to last position when file was closed
+  - \`[ - Jump to beginning of last change/yank`
+  - \`] - Jump to end of last change/yank
+  - '^ - Position where you last inserted text
+  - '< - Start of last visual selection
+  - '> - End of last visual selection
+  List all marks:
+  - :marks - Shows all marks
+  Cycling through marks:
+  - ]' - Jump to next line with a mark
+  - [\' - Jump to previous line with a mark`
+  - ]\`  - Jump to next mark (exact position)
+  - [\`  - Jump to previous mark (exact position)`
+  - \<leader\>sm - Search marks (shows list of all marks you can fuzzy search)
+think about:
+  mm - main function
+  mt - types/structs
+  mf - first function (or "focus" - what you're currently working on)
+  mc - constants
+  mi - imports
+  me - error handling

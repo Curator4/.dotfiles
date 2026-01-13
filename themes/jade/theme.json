@@ -1,0 +1,29 @@
+{
+  "name": "Jade",
+  "slug": "jade",
+  "icon": "🍃",
+  "wallpapers": {
+    "static": [
+      "~/pictures/wallpapers/static/osaka-jade-bg.jpg"
+    ],
+    "vertical": [
+      "~/pictures/wallpapers/vertical/mountain-osaka.jpg",
+      "~/pictures/wallpapers/vertical/osaka-vertical.jpeg"
+    ],
+    "live": [
+      "~/pictures/wallpapers/live/spacesuit_green_nihon.mp4"
+    ]
+  },
+  "monitors": {
+    "DP-1": "vertical[0]",
+    "DP-2": "live[0]",
+    "DP-3": "static[0]",
+    "DP-4": "vertical[1]"
+  },
+  "rofi_theme": "jade",
+  "nvim": {
+    "colorscheme": "everforest",
+    "variant": "hard",
+    "background": "dark"
+  }
+}

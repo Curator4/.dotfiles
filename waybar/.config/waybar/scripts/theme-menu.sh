@@ -1,7 +1,7 @@
 #!/bin/bash
 
 THEMES_DIR="$HOME/.dotfiles/themes"
-SWITCHER="$HOME/.dotfiles/bin/theme-switcher.sh"
+SWITCHER="$HOME/.dotfiles/bin/.bin/theme-switcher.sh"
 
 # Build theme list with icons
 THEME_LIST=""
@@ -13,20 +13,18 @@ for theme_dir in "$THEMES_DIR"/*; do
     THEME_SLUG=$(basename "$theme_dir")
 
     if [ -f "$theme_dir/theme.json" ]; then
-        ICON=$(jq -r '.icon' "$theme_dir/theme.json")
+        ICON=$(jq -r '.icon' "$theme_dir/theme.json") # ICON is still extracted but not used in DISPLAY
         NAME=$(jq -r '.name' "$theme_dir/theme.json")
-        DISPLAY="$ICON  $NAME"
-    else
-        ICON=""
-        NAME="$THEME_SLUG"
-        DISPLAY="  $NAME"
-    fi
+        DISPLAY="$NAME"
 
-    THEME_LIST+="$DISPLAY\n"
-    THEME_MAP["$NAME"]="$THEME_SLUG"
+        THEME_LIST+="$DISPLAY\n"
+        THEME_MAP["$NAME"]="$THEME_SLUG"
+    fi
 done
 
-# Show rofi menu
+# Show rofi menu (remove trailing newline)
+sleep 0.1
+THEME_LIST="${THEME_LIST%\\n}"
 SELECTED=$(echo -e "$THEME_LIST" | rofi -dmenu -i -p "Select Theme" | sed 's/^.*  //')
 
 if [ -n "$SELECTED" ]; then

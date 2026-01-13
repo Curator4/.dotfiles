@@ -1,0 +1,55 @@
+{
+  "name": "Neon",
+  "slug": "neon",
+  "icon": "⚡",
+  "nvim": {
+    "colorscheme": "neon",
+    "variant": "dark",
+    "background": "dark"
+  },
+  "palette": {
+    "background": "#2b2d37",
+    "foreground": "#c5cdd9",
+    "cursor": "#c5cdd9",
+    "cursor_text": "#4db5bd",
+    "selection_bg": "#444444",
+    "selection_fg": "#c5cdd9",
+    "colors": {
+      "black": "#363a49",
+      "red": "#4db5bd",
+      "green": "#a0c980",
+      "yellow": "#6cb6eb",
+      "blue": "#ECBE7B",
+      "magenta": "#d38aea",
+      "cyan": "#6cb6eb",
+      "white": "#6cb6eb",
+      "bright_black": "#ECBE7B",
+      "bright_red": "#ec7279",
+      "bright_green": "#a0c980",
+      "bright_yellow": "#4db5bd",
+      "bright_blue": "#5699AF",
+      "bright_magenta": "#d38aea",
+      "bright_cyan": "#a0c980",
+      "bright_white": "#6cb6eb"
+    }
+  },
+  "wallpapers": {
+    "static": [
+      "~/pictures/wallpapers/static/girl-vertical.jpg",
+      "~/pictures/wallpapers/static/cyber_neon_catgirl.jpg"
+    ],
+    "vertical": [
+      "~/pictures/wallpapers/vertical/cyber-vertical.jpg"
+    ],
+    "live": [
+      "~/pictures/wallpapers/live/pink cyber.mp4"
+    ]
+  },
+  "monitors": {
+    "DP-1": "static[0]",
+    "DP-2": "live[0]",
+    "DP-3": "static[1]",
+    "DP-4": "vertical[0]"
+  },
+  "rofi_theme": "neon"
+}

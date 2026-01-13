@@ -1,0 +1,55 @@
+{
+  "name": "Crimson Gray",
+  "slug": "crimson-gray",
+  "icon": "⬛",
+  "nvim": {
+    "colorscheme": "lackluster",
+    "variant": "",
+    "background": "dark"
+  },
+  "palette": {
+    "background": "#101010",
+    "foreground": "#cccccc",
+    "cursor": "#cccccc",
+    "cursor_text": "#101010",
+    "selection_bg": "#cccccc",
+    "selection_fg": "#000000",
+    "colors": {
+      "black": "#101010",
+      "red": "#cccccc",
+      "green": "#cccccc",
+      "yellow": "#cccccc",
+      "blue": "#cccccc",
+      "magenta": "#cccccc",
+      "cyan": "#cccccc",
+      "white": "#cccccc",
+      "bright_black": "#808080",
+      "bright_red": "#cccccc",
+      "bright_green": "#cccccc",
+      "bright_yellow": "#cccccc",
+      "bright_blue": "#cccccc",
+      "bright_magenta": "#cccccc",
+      "bright_cyan": "#cccccc",
+      "bright_white": "#ffffff"
+    }
+  },
+  "wallpapers": {
+    "static": [
+      "~/pictures/wallpapers/static/girl-vertical.jpg",
+      "~/pictures/wallpapers/static/germany.png"
+    ],
+    "vertical": [
+      "~/pictures/wallpapers/vertical/artsy-vertical.png"
+    ],
+    "live": [
+      "~/pictures/wallpapers/live/rainyday_depression.mp4"
+    ]
+  },
+  "monitors": {
+    "DP-1": "static[0]",
+    "DP-2": "static[1]",
+    "DP-3": "live[0]",
+    "DP-4": "vertical[0]"
+  },
+  "rofi_theme": "crimson-gray"
+}

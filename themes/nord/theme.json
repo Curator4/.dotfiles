@@ -1,0 +1,53 @@
+{
+  "name": "Nord",
+  "slug": "nord",
+  "icon": "🌊",
+  "nvim": {
+    "colorscheme": "nord",
+    "variant": "",
+    "background": "dark"
+  },
+  "palette": {
+    "background": "#2e3440",
+    "foreground": "#d8dee9",
+    "cursor": "#d8dee9",
+    "cursor_text": "#d8dee9",
+    "selection_bg": "#434c5e",
+    "selection_fg": "#d8dee9",
+    "colors": {
+      "black": "#3B4252",
+      "red": "#BF616A",
+      "green": "#A3BE8C",
+      "yellow": "#EBCB8B",
+      "blue": "#81A1C1",
+      "magenta": "#B48EAD",
+      "cyan": "#88C0D0",
+      "white": "#E5E9F0",
+      "bright_black": "#4C566A",
+      "bright_red": "#BF616A",
+      "bright_green": "#A3BE8C",
+      "bright_yellow": "#EBCB8B",
+      "bright_blue": "#81A1C1",
+      "bright_magenta": "#B48EAD",
+      "bright_cyan": "#8FBCBB",
+      "bright_white": "#ECEFF4"
+    }
+  },
+  "wallpapers": {
+    "static": [
+      "~/pictures/wallpapers/static/snow.png",
+      "~/pictures/wallpapers/static/white hair.jpg"
+    ],
+    "vertical": [
+      "~/pictures/wallpapers/vertical/mountain-azure.jpg",
+      "~/pictures/wallpapers/vertical/sky-vertical.jpg"
+    ]
+  },
+  "monitors": {
+    "DP-1": "vertical[0]",
+    "DP-2": "static[1]",
+    "DP-3": "static[0]",
+    "DP-4": "vertical[1]"
+  },
+  "rofi_theme": "nord"
+}

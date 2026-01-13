@@ -16,7 +16,7 @@ THEME_DIR="$THEMES_DIR/$CURRENT"
 if [ -f "$THEME_DIR/theme.json" ]; then
     ICON=$(jq -r '.icon' "$THEME_DIR/theme.json")
     NAME=$(jq -r '.name' "$THEME_DIR/theme.json")
-    echo "{\"text\": \"$ICON\", \"tooltip\": \"Current theme: $NAME\"}"
+    echo "{\"text\": \"$NAME\", \"tooltip\": \"Current theme: $NAME\"}"
 else
     # Fallback if no theme.json
     echo "{\"text\": \"\", \"tooltip\": \"Current theme: $CURRENT\"}"
