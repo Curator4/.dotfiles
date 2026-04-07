@@ -44,6 +44,7 @@ Common tags: `#journal`, `#dev`, `#themis`, `#learning`, `#go`, `#docker`, `#nut
 - Show the file path relative to the vault root, plus 1-2 lines of context around the match.
 - Keep output concise — snippets, not full files.
 - If one file is clearly the best match, offer to read it in full.
+- When multiple files match, briefly summarize what each one contains — don't just list paths.
 - Summarize findings in prose so the output reads naturally when spoken aloud.
 - If nothing is found with the first search, try alternate keywords before giving up.
 
