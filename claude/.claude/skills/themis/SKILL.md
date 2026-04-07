@@ -96,7 +96,7 @@ If the target section already has entries:
 
 For `## stats` (last section, no next heading):
 - If empty: `old_string` = `## stats\n`, `new_string` = `## stats\n\n- {entry}\n`
-- If has entries: append after the last line of the file or match the last entry line and add below it.
+- If has entries: read the file, find the last line in `## stats` that starts with `- `. Use that line as `old_string` and append the new entry immediately after it as `new_string`. If the file ends with a trailing newline, insert before it. Example: `old_string` = `- 82.3kg\n`, `new_string` = `- 82.3kg\n- {entry}\n`.
 
 Use the Edit tool for all insertions. Read the file first to determine which case applies.
 
@@ -124,14 +124,12 @@ Steps:
 
 Steps:
 1. Get today's date and current time.
-2. Identify: description, calories, protein. If calories or protein are missing, check meal reference DB first (case-insensitive substring match on description).
+2. Identify: description, calories, protein. Always check `meals_reference.json` first (case-insensitive substring match on description). If a match is found, use those macros and tell the user you did.
 3. If macros still missing after reference check, ask only if essential (skip asking for protein if user hasn't mentioned it and it's a simple item — use 0).
 4. Derive diary path. Create file if missing.
 5. Read file to determine section state.
 6. Insert into `## nutrition` using nutrition insertion rules.
 7. Confirm with entry written.
-
-**Macro auto-fill:** When logging a meal, always check `meals_reference.json` first. If a match is found, use those macros (and tell the user you did).
 
 ### Log Workout
 
