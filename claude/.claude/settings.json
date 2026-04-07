@@ -1,7 +1,124 @@
 {
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "SHELL": "/usr/bin/fish"
+  },
+  "permissions": {
+    "allow": [
+      "mcp__atlassian__*",
+      "mcp__plugin_atlassian_atlassian__*",
+      "mcp__claude_ai_Atlassian__*",
+      "mcp__weather__*",
+      "Bash(git:*)",
+      "Bash(gh:*)",
+      "WebSearch",
+      "Bash(golangci-lint:*)",
+      "Bash(make:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(systemctl --user:*)",
+      "Bash(pw-link:*)",
+      "Bash(wpctl:*)",
+      "Bash(wc:*)",
+      "Bash(go:*)",
+      "Bash(python3:*)",
+      "Bash(python:*)",
+      "Bash(pip:*)",
+      "Bash(npm:*)",
+      "Bash(yarn:*)",
+      "Bash(pnpm:*)",
+      "Bash(node:*)",
+      "Bash(docker:*)",
+      "Bash(podman:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(jq:*)",
+      "Bash(sed:*)",
+      "Bash(awk:*)",
+      "Bash(sort:*)",
+      "Bash(uniq:*)",
+      "Bash(tar:*)",
+      "Bash(zip:*)",
+      "Bash(unzip:*)",
+      "Bash(ffmpeg:*)",
+      "Bash(ffprobe:*)",
+      "Bash(file:*)",
+      "Bash(stat:*)",
+      "Bash(du:*)",
+      "Bash(df:*)",
+      "Bash(which:*)",
+      "Bash(whoami:*)",
+      "Bash(date:*)",
+      "Bash(echo:*)",
+      "Bash(printf:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(touch:*)",
+      "Bash(chmod:*)",
+      "Bash(tree:*)",
+      "Bash(eza:*)",
+      "Bash(rg:*)",
+      "Bash(fd:*)",
+      "Bash(fzf:*)",
+      "Bash(xargs:*)",
+      "Bash(tee:*)",
+      "Bash(diff:*)",
+      "Bash(patch:*)",
+      "Bash(ssh:*)",
+      "Bash(scp:*)",
+      "Bash(rsync:*)",
+      "Bash(kill:*)",
+      "Bash(pkill:*)",
+      "Bash(pgrep:*)"
+    ],
+    "defaultMode": "default"
+  },
+  "model": "opus[1m]",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/tts-greeting.sh",
+            "timeout": 30,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/tts-finalize.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "/home/curator/.claude/statusline-command.sh"
   },
-  "alwaysThinkingEnabled": true
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true,
+    "atlassian@claude-plugins-official": true,
+    "explanatory-output-style@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "medium",
+  "voiceEnabled": true,
+  "autoDreamEnabled": true,
+  "skipDangerousModePermissionPrompt": true
 }
