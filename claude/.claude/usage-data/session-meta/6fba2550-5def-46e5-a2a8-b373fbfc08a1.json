@@ -1,0 +1,47 @@
+{
+  "session_id": "6fba2550-5def-46e5-a2a8-b373fbfc08a1",
+  "project_path": "/home/curator/workspace/pnc/alarm-receiver",
+  "start_time": "2026-02-03T08:57:16.945Z",
+  "duration_minutes": 4,
+  "user_message_count": 3,
+  "assistant_message_count": 18,
+  "tool_counts": {
+    "Read": 3,
+    "Edit": 3
+  },
+  "languages": {
+    "Markdown": 5
+  },
+  "git_commits": 0,
+  "git_pushes": 0,
+  "input_tokens": 158,
+  "output_tokens": 50,
+  "first_prompt": "i made a draft. thoughts",
+  "user_interruptions": 0,
+  "user_response_times": [
+    154.799,
+    40.362
+  ],
+  "tool_errors": 2,
+  "tool_error_categories": {
+    "File Changed": 1,
+    "Other": 1
+  },
+  "uses_task_agent": false,
+  "uses_mcp": false,
+  "uses_web_search": false,
+  "uses_web_fetch": false,
+  "lines_added": 7,
+  "lines_removed": 7,
+  "files_modified": 1,
+  "message_hours": [
+    9,
+    10,
+    10
+  ],
+  "user_message_timestamps": [
+    "2026-02-03T08:57:16.945Z",
+    "2026-02-03T09:00:06.685Z",
+    "2026-02-03T09:01:08.026Z"
+  ]
+}

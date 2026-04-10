@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=TTS Vibe Visualizers
+Exec=/home/curator/.local/bin/tts-vibe-start
+Comment=Per-voice audio loopbacks and vibe visualizers (Mustang DP-4, Velise DP-1)

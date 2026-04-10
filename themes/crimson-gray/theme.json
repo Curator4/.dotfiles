@@ -46,10 +46,15 @@
     ]
   },
   "monitors": {
-    "DP-1": "static[0]",
+    "DP-1": "vertical[0]",
     "DP-2": "static[1]",
     "DP-3": "live[0]",
-    "DP-4": "vertical[0]"
+    "DP-4": "static[0]"
   },
-  "rofi_theme": "crimson-gray"
+  "rofi_theme": "crimson-gray",
+  "obsidian": {
+    "cssTheme": "Minimal",
+    "base": "obsidian"
+  },
+  "vibe": "morose"
 }

@@ -1,0 +1,15 @@
+{
+  "underlying_goal": "Configure the Claude Code statusline to match their shell PS1/Starship prompt configuration",
+  "goal_categories": {
+    "configuration": 1
+  },
+  "outcome": "fully_achieved",
+  "user_satisfaction_counts": {},
+  "claude_helpfulness": "very_helpful",
+  "session_type": "single_task",
+  "friction_counts": {},
+  "friction_detail": "",
+  "primary_success": "correct_code_edits",
+  "brief_summary": "User asked to configure their statusLine from their shell PS1 configuration, and Claude successfully set it up to mirror their Starship prompt with directory, git branch, and git status indicators.",
+  "session_id": "fadf81cf-f6f9-45f0-836d-7562cf481bcf"
+}

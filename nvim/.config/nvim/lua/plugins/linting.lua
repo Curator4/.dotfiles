@@ -10,6 +10,7 @@ return {
 			python = { "ruff" },
 			bash = { "shellcheck" },
 			sh = { "shellcheck" },
+			go = { "golangcilint" },
 		}
 
 		-- Auto-lint on save and text change

@@ -10,6 +10,8 @@ fi
 # dates
 DATE=$(date +%Y-%m-%d)
 YEAR=$(date +%Y)
+WEEKDAY=$(date +%A)
+WEEK=$(date +%V)
 PREV="$(date -d "yesterday" +%Y-%m-%d)"
 NEXT="$(date -d "tomorrow" +%Y-%m-%d)"
 
@@ -17,11 +19,16 @@ NEXT="$(date -d "tomorrow" +%Y-%m-%d)"
 TEMPLATE=$(cat << EOF
 # entry: $DATE
 
-Tags: #journal #$YEAR
-
-## context
+Tags: #themis #$YEAR
+$WEEKDAY · Week $WEEK · [[reference]]
 
 ## log
+
+## nutrition
+
+## workout
+
+## stats
 
 EOF
 )

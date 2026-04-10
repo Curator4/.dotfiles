@@ -1,0 +1,36 @@
+{
+  "session_id": "a30a43c3-ce5d-4ed7-a958-b0d8505ade34",
+  "project_path": "/home/curator/workspace/pnc/alarm-receiver",
+  "start_time": "2026-02-06T17:56:46.460Z",
+  "duration_minutes": 2,
+  "user_message_count": 1,
+  "assistant_message_count": 9,
+  "tool_counts": {
+    "mcp__atlassian__getJiraIssue": 1,
+    "Task": 1,
+    "mcp__atlassian__createJiraIssue": 1
+  },
+  "languages": {},
+  "git_commits": 0,
+  "git_pushes": 0,
+  "input_tokens": 19,
+  "output_tokens": 76,
+  "first_prompt": "Hm claude. I want you to make a jira ticket connected to the AR-63 Epic.   The epic is around sia parsing and handling, but i realize we have no particular parsing regarding the data fields. particula…",
+  "user_interruptions": 0,
+  "user_response_times": [],
+  "tool_errors": 0,
+  "tool_error_categories": {},
+  "uses_task_agent": true,
+  "uses_mcp": true,
+  "uses_web_search": false,
+  "uses_web_fetch": false,
+  "lines_added": 0,
+  "lines_removed": 0,
+  "files_modified": 0,
+  "message_hours": [
+    18
+  ],
+  "user_message_timestamps": [
+    "2026-02-06T17:56:46.460Z"
+  ]
+}

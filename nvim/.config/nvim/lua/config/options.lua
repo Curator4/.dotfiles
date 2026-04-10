@@ -23,6 +23,9 @@ vim.cmd("set tabstop=2")
 vim.cmd("set softtabstop=2")
 vim.cmd("set shiftwidth=2")
 
+-- True color support
+vim.opt.termguicolors = true
+
 -- Line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true

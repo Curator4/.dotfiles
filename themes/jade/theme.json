@@ -25,5 +25,10 @@
     "colorscheme": "everforest",
     "variant": "hard",
     "background": "dark"
-  }
+  },
+  "obsidian": {
+    "cssTheme": "Everforest",
+    "base": "obsidian"
+  },
+  "vibe": "chill"
 }

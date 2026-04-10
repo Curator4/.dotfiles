@@ -1,0 +1,17 @@
+{
+  "underlying_goal": "Understanding why resumed Claude Code conversations don't show full history and getting back to their previous coding work",
+  "goal_categories": {
+    "quick_question": 1
+  },
+  "outcome": "mostly_achieved",
+  "user_satisfaction_counts": {
+    "likely_satisfied": 1
+  },
+  "claude_helpfulness": "moderately_helpful",
+  "session_type": "quick_question",
+  "friction_counts": {},
+  "friction_detail": "",
+  "primary_success": "good_explanations",
+  "brief_summary": "User was confused about why resumed conversations don't show full history; Claude explained the summarization behavior and attempted to re-orient on their previous coding task.",
+  "session_id": "d72d8dbb-86fd-4a9a-b683-d1d40870b734"
+}

@@ -1,0 +1,15 @@
+{
+  "default": "mustang",
+  "projects": {
+    "alarm-receiver": "mustang",
+    "tts-daemon": "velise"
+  },
+  "slugs": {
+    "Mustang": "mustang",
+    "Velise": "velise"
+  },
+  "insight_moods": {
+    "mustang": "intimate",
+    "velise": "resolute"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "7",
+  "subject": "Task 4: Smoke test both skills",
+  "description": "Manually test all operations in both skills",
+  "activeForm": "Smoke testing skills",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

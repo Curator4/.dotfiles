@@ -1,0 +1,33 @@
+{
+  "session_id": "f185ad9e-f35c-4654-88da-121242e57e3c",
+  "project_path": "/home/curator",
+  "start_time": "2026-01-12T19:44:29.354Z",
+  "duration_minutes": 0,
+  "user_message_count": 1,
+  "assistant_message_count": 2,
+  "tool_counts": {},
+  "languages": {},
+  "git_commits": 0,
+  "git_pushes": 0,
+  "input_tokens": 18,
+  "output_tokens": 547,
+  "first_prompt": "my grub and stuff are loading on one of my side monitors. can i fix this or should i just move the cables around",
+  "summary": "GRUB Display Output on Wrong Monitor Fix",
+  "user_interruptions": 0,
+  "user_response_times": [],
+  "tool_errors": 0,
+  "tool_error_categories": {},
+  "uses_task_agent": false,
+  "uses_mcp": false,
+  "uses_web_search": false,
+  "uses_web_fetch": false,
+  "lines_added": 0,
+  "lines_removed": 0,
+  "files_modified": 0,
+  "message_hours": [
+    20
+  ],
+  "user_message_timestamps": [
+    "2026-01-12T19:44:29.354Z"
+  ]
+}

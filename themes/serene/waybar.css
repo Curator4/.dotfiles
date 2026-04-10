@@ -11,19 +11,19 @@ window#waybar {
     color: #4c4f6a;
 }
 #workspaces button.active {
-    color: #1e66f5;
+    color: #8b9ad8;
 }
-#clock { padding: 0 12px; color: rgba(30, 102, 245, 0.7); }
+#clock { padding: 0 12px; color: rgba(139, 154, 216, 0.7); }
 #pulseaudio { padding: 0 10px; color: rgba(210, 15, 57, 0.7); }
-#bluetooth { padding: 0 10px; color: #1e66f5; }
+#bluetooth { padding: 0 10px; color: #8b9ad8; }
 #network { padding: 0 10px; color: #4c4f6a; }
-#custom-gpu { padding: 0 10px; color: #1e66f5; }
-#cpu { padding: 0 10px; color: #1e66f5; }
-#memory { padding: 0 10px; color: #1e66f5; }
-#disk { padding: 0 10px; color: #1e66f5; }
-#custom-theme { padding: 0 10px; color: #1e66f5; }
+#custom-gpu { padding: 0 10px; color: #8b9ad8; }
+#cpu { padding: 0 10px; color: #8b9ad8; }
+#memory { padding: 0 10px; color: #8b9ad8; }
+#disk { padding: 0 10px; color: #8b9ad8; }
+#custom-theme { padding: 0 10px; color: #8b9ad8; }
 tooltip {
     background: rgba(239, 241, 246, 0.95);
-    border: 1px solid #1e66f5;
+    border: 1px solid #8b9ad8;
     color: #4c4f6a;
 }

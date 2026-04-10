@@ -1,0 +1,39 @@
+{
+  "session_id": "f20cf568-dd73-4c39-b96b-6c2d3879a0bb",
+  "project_path": "/home/curator/workspace/pnc/alarm-receiver",
+  "start_time": "2026-02-06T08:29:04.091Z",
+  "duration_minutes": 2,
+  "user_message_count": 3,
+  "assistant_message_count": 9,
+  "tool_counts": {},
+  "languages": {},
+  "git_commits": 0,
+  "git_pushes": 0,
+  "input_tokens": 27,
+  "output_tokens": 583,
+  "first_prompt": "n Claude Code, you can now assemble agent teams to work on tasks together. 🤔",
+  "user_interruptions": 0,
+  "user_response_times": [
+    45.81,
+    17.947
+  ],
+  "tool_errors": 0,
+  "tool_error_categories": {},
+  "uses_task_agent": false,
+  "uses_mcp": false,
+  "uses_web_search": false,
+  "uses_web_fetch": false,
+  "lines_added": 0,
+  "lines_removed": 0,
+  "files_modified": 0,
+  "message_hours": [
+    9,
+    9,
+    9
+  ],
+  "user_message_timestamps": [
+    "2026-02-06T08:29:04.091Z",
+    "2026-02-06T08:29:57.578Z",
+    "2026-02-06T08:30:25.387Z"
+  ]
+}

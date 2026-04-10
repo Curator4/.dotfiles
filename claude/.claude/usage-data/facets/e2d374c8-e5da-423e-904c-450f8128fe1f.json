@@ -1,0 +1,15 @@
+{
+  "underlying_goal": "Casual off-topic conversation about Mars colonization, not related to any coding task",
+  "goal_categories": {
+    "warmup_minimal": 1
+  },
+  "outcome": "unclear_from_transcript",
+  "user_satisfaction_counts": {},
+  "claude_helpfulness": "unhelpful",
+  "session_type": "quick_question",
+  "friction_counts": {},
+  "friction_detail": "",
+  "primary_success": "none",
+  "brief_summary": "User asked an off-topic speculative question about Mars settlement in caves; no coding work was requested or performed.",
+  "session_id": "e2d374c8-e5da-423e-904c-450f8128fe1f"
+}

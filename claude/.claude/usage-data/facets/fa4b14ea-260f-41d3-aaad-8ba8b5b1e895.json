@@ -1,0 +1,15 @@
+{
+  "underlying_goal": "Change the first ISP DNS entry to a specific IP address (10.200.0.2)",
+  "goal_categories": {
+    "config_change": 1
+  },
+  "outcome": "fully_achieved",
+  "user_satisfaction_counts": {},
+  "claude_helpfulness": "very_helpful",
+  "session_type": "single_task",
+  "friction_counts": {},
+  "friction_detail": "",
+  "primary_success": "correct_code_edits",
+  "brief_summary": "User asked to change the first ISP DNS entry to 10.200.0.2, and Claude successfully made the change and verified it.",
+  "session_id": "fa4b14ea-260f-41d3-aaad-8ba8b5b1e895"
+}

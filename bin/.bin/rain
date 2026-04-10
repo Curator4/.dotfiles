@@ -1,0 +1,112 @@
+#!/bin/zsh
+
+SOCKET="/tmp/rain.sock"
+AUDIO="$HOME/.local/share/rain/rain.mp3"
+
+is_running() {
+    [[ -S "$SOCKET" ]] && echo '{"command": ["get_property", "pid"]}' | socat - "$SOCKET" &>/dev/null
+}
+
+start_rain() {
+    if is_running; then
+        echo "🌧️ rain already running"
+    else
+        rm -f "$SOCKET"
+        mpv --input-ipc-server="$SOCKET" --loop --no-video --really-quiet "$AUDIO" &
+        disown
+        echo "🌧️ rain started"
+    fi
+}
+
+stop_rain() {
+    if is_running; then
+        echo '{"command": ["quit"]}' | socat - "$SOCKET" &>/dev/null
+        echo "🌧️ rain stopped"
+    else
+        echo "🌧️ rain not running"
+    fi
+}
+
+toggle_pause() {
+    if is_running; then
+        echo '{"command": ["cycle", "pause"]}' | socat - "$SOCKET" &>/dev/null
+        echo "🌧️ rain toggled"
+    else
+        start_rain
+    fi
+}
+
+set_volume() {
+    local vol="$1"
+    if is_running; then
+        echo '{"command": ["set_property", "pause", false]}' | socat - "$SOCKET" &>/dev/null
+        echo "{\"command\": [\"set_property\", \"volume\", $vol]}" | socat - "$SOCKET" &>/dev/null
+        echo "🌧️ volume set to ${vol}%"
+    else
+        rm -f "$SOCKET"
+        mpv --input-ipc-server="$SOCKET" --loop --no-video --really-quiet "$AUDIO" &
+        disown
+        for i in {1..20}; do
+            is_running && break
+            sleep 0.1
+        done
+        echo "{\"command\": [\"set_property\", \"volume\", $vol]}" | socat - "$SOCKET" &>/dev/null
+        echo "🌧️ rain started at ${vol}%"
+    fi
+}
+
+get_volume() {
+    if is_running; then
+        local vol=$(echo '{"command": ["get_property", "volume"]}' | socat - "$SOCKET" 2>/dev/null | grep -oP '"data":\K[0-9.]+')
+        echo "🌧️ volume: ${vol}%"
+    else
+        echo "🌧️ rain not running"
+    fi
+}
+
+show_status() {
+    if is_running; then
+        paused=$(echo '{"command": ["get_property", "pause"]}' | socat - "$SOCKET" 2>/dev/null | grep -o '"data":true')
+        if [[ -n "$paused" ]]; then
+            echo "🌧️ rain paused"
+        else
+            echo "🌧️ rain playing"
+        fi
+    else
+        echo "🌧️ rain not running"
+    fi
+}
+
+case "${1:-toggle}" in
+    start|on)
+        start_rain
+        ;;
+    stop|off|quit)
+        stop_rain
+        ;;
+    toggle|"")
+        toggle_pause
+        ;;
+    status)
+        show_status
+        ;;
+    low)
+        set_volume 30
+        ;;
+    medium|med)
+        set_volume 60
+        ;;
+    high)
+        set_volume 100
+        ;;
+    volume|vol)
+        get_volume
+        ;;
+    [0-9]|[1-9][0-9]|100)
+        set_volume "$1"
+        ;;
+    *)
+        echo "Usage: rain [start|stop|toggle|status|low|medium|high|volume|1-100]"
+        exit 1
+        ;;
+esac

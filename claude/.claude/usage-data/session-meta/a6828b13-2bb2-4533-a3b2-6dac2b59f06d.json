@@ -1,0 +1,37 @@
+{
+  "session_id": "a6828b13-2bb2-4533-a3b2-6dac2b59f06d",
+  "project_path": "/home/curator",
+  "start_time": "2026-01-13T15:27:58.325Z",
+  "duration_minutes": 0,
+  "user_message_count": 3,
+  "assistant_message_count": 0,
+  "tool_counts": {},
+  "languages": {},
+  "git_commits": 0,
+  "git_pushes": 0,
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "first_prompt": "No prompt",
+  "summary": "User Exit Session",
+  "user_interruptions": 0,
+  "user_response_times": [],
+  "tool_errors": 0,
+  "tool_error_categories": {},
+  "uses_task_agent": false,
+  "uses_mcp": false,
+  "uses_web_search": false,
+  "uses_web_fetch": false,
+  "lines_added": 0,
+  "lines_removed": 0,
+  "files_modified": 0,
+  "message_hours": [
+    16,
+    16,
+    16
+  ],
+  "user_message_timestamps": [
+    "2026-01-13T15:27:58.325Z",
+    "2026-01-13T15:27:58.324Z",
+    "2026-01-13T15:27:58.324Z"
+  ]
+}

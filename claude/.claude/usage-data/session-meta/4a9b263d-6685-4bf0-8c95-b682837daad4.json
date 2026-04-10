@@ -1,0 +1,56 @@
+{
+  "session_id": "4a9b263d-6685-4bf0-8c95-b682837daad4",
+  "project_path": "/home/curator/.dotfiles",
+  "start_time": "2026-01-19T14:26:43.370Z",
+  "duration_minutes": 5,
+  "user_message_count": 7,
+  "assistant_message_count": 28,
+  "tool_counts": {
+    "Glob": 1,
+    "Read": 3,
+    "Edit": 3
+  },
+  "languages": {},
+  "git_commits": 0,
+  "git_pushes": 0,
+  "input_tokens": 258,
+  "output_tokens": 85,
+  "first_prompt": "yo, i need to fix up my... hyprlock. after my new monitor setup i haven't adjusted it. check ehm, hypr/monitors or something for info",
+  "summary": "Hyprlock Monitor Setup & Screenshot Lock",
+  "user_interruptions": 0,
+  "user_response_times": [
+    68.265,
+    41.852,
+    4.502,
+    10.424,
+    30.517,
+    51.969
+  ],
+  "tool_errors": 0,
+  "tool_error_categories": {},
+  "uses_task_agent": false,
+  "uses_mcp": false,
+  "uses_web_search": false,
+  "uses_web_fetch": false,
+  "lines_added": 4,
+  "lines_removed": 12,
+  "files_modified": 1,
+  "message_hours": [
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15
+  ],
+  "user_message_timestamps": [
+    "2026-01-19T14:26:43.370Z",
+    "2026-01-19T14:28:16.188Z",
+    "2026-01-19T14:29:22.107Z",
+    "2026-01-19T14:29:38.661Z",
+    "2026-01-19T14:30:01.591Z",
+    "2026-01-19T14:30:42.942Z",
+    "2026-01-19T14:31:54.576Z"
+  ]
+}

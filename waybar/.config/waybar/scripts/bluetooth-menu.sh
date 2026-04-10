@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Get list of paired devices
-devices=$(bluetoothctl devices | cut -d' ' -f2-)
+# Get list of paired devices (heredoc workaround for bluez 5.86 non-interactive bug)
+devices=$(bluetoothctl <<< "devices Paired" 2>/dev/null | grep "^Device" | cut -d' ' -f2-)
 
 if [ -z "$devices" ]; then
     notify-send "Bluetooth" "No paired devices found"
@@ -16,14 +16,14 @@ if [ -n "$selected" ]; then
     mac=$(echo "$selected" | awk '{print $1}')
 
     # Check if already connected
-    if bluetoothctl info "$mac" | grep -q "Connected: yes"; then
-        bluetoothctl disconnect "$mac"
+    if bluetoothctl <<< "info $mac" 2>/dev/null | grep -q "Connected: yes"; then
+        bluetoothctl <<< "disconnect $mac"
         notify-send "Bluetooth" "Disconnected from $selected"
     else
-        bluetoothctl connect "$mac"
+        bluetoothctl <<< "connect $mac"
         sleep 2
         # Set trusted and try to reconnect audio profile if needed
-        bluetoothctl trust "$mac"
+        bluetoothctl <<< "trust $mac"
         pactl set-card-profile "bluez_card.${mac//:/_}" a2dp-sink 2>/dev/null
         notify-send "Bluetooth" "Connected to $selected"
     fi

@@ -7,6 +7,13 @@ cwd=$(echo "$input" | jq -r '.workspace.current_dir')
 # Change to the working directory
 cd "$cwd" 2>/dev/null || true
 
+# Colors matching Starship config (#cccccc for all elements, italic for branch)
+DIR_COLOR="\033[38;2;204;204;204m"        # #cccccc - directory
+DIR_BOLD_COLOR="\033[1;38;2;204;204;204m" # bold #cccccc - repo root
+BRANCH_COLOR="\033[3;38;2;204;204;204m"   # italic #cccccc - git branch
+STATUS_COLOR="\033[38;2;204;204;204m"     # #cccccc - git status
+RESET="\033[0m"
+
 # Get directory info
 if git -c core.filemode=false rev-parse --is-inside-work-tree &>/dev/null; then
   # Inside a git repo - show repo root
@@ -14,10 +21,10 @@ if git -c core.filemode=false rev-parse --is-inside-work-tree &>/dev/null; then
   repo_path=$(git -c core.filemode=false rev-parse --show-prefix 2>/dev/null | sed 's:/$::')
   if [ -n "$repo_path" ]; then
     # We're in a subdirectory
-    printf "\033[1;38;2;69;158;81m%s\033[0m\033[38;2;69;158;81m/%s\033[0m " "$repo_root" "$repo_path"
+    printf "${DIR_BOLD_COLOR}%s${RESET}${DIR_COLOR}/%s${RESET} " "$repo_root" "$repo_path"
   else
     # We're at repo root
-    printf "\033[1;38;2;69;158;81m%s\033[0m " "$repo_root"
+    printf "${DIR_BOLD_COLOR}%s${RESET} " "$repo_root"
   fi
 else
   # Not in git repo - show last 2 path components
@@ -27,13 +34,13 @@ else
     else if (n == 2) print $1"/"$2
     else print "…/"$(n-1)"/"$n
   }')
-  printf "\033[38;2;69;158;81m%s\033[0m " "$path_parts"
+  printf "${DIR_COLOR}%s${RESET} " "$path_parts"
 fi
 
 # Git branch
 git_branch=$(git -c core.filemode=false symbolic-ref --short HEAD 2>/dev/null)
 if [ -n "$git_branch" ]; then
-  printf "\033[3;38;2;84;158;106m %s\033[0m " "$git_branch"
+  printf "${BRANCH_COLOR} %s${RESET} " "$git_branch"
 
   # Git status with detailed indicators
   git_status=$(git -c core.filemode=false status --porcelain 2>/dev/null)
@@ -67,7 +74,7 @@ if [ -n "$git_branch" ]; then
     fi
 
     if [ -n "$status_str" ]; then
-      printf "\033[38;2;247;107;21m%s\033[0m " "$status_str"
+      printf "${STATUS_COLOR}%s${RESET} " "$status_str"
     fi
   fi
 fi

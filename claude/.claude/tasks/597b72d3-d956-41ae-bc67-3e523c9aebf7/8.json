@@ -1,0 +1,9 @@
+{
+  "id": "8",
+  "subject": "Clean up user skills",
+  "description": "Delete /tone, /voice, /tts, /vibe. Rewrite /done to remove MCP references.",
+  "activeForm": "Cleaning up skills",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

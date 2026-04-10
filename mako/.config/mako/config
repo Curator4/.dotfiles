@@ -1,10 +1,10 @@
-# Mako notification daemon config - Frost theme
+# Mako notification daemon config - Osaka Jade theme
 
 # Style
 font=Hack Nerd Font 12
-background-color=#161821E6
-text-color=#c6c8d1
-border-color=#84a0c6
+background-color=#111C18E6
+text-color=#C1C497
+border-color=#F76B15
 border-size=2
 border-radius=4
 padding=12
@@ -28,14 +28,14 @@ max-visible=5
 
 # Urgency overrides
 [urgency=low]
-border-color=#89b8c2
+border-color=#71CEAD
 default-timeout=3000
 
 [urgency=normal]
-border-color=#84a0c6
+border-color=#F76B15
 default-timeout=5000
 
 [urgency=critical]
-border-color=#e27878
-background-color=#161821E6
+border-color=#ff6464
+background-color=#1a0f0fE6
 default-timeout=0

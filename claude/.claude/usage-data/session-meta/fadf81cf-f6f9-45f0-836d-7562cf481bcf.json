@@ -1,0 +1,37 @@
+{
+  "session_id": "fadf81cf-f6f9-45f0-836d-7562cf481bcf",
+  "project_path": "/home/curator",
+  "start_time": "2026-01-14T09:29:48.547Z",
+  "duration_minutes": 1,
+  "user_message_count": 2,
+  "assistant_message_count": 2,
+  "tool_counts": {
+    "Task": 1
+  },
+  "languages": {},
+  "git_commits": 0,
+  "git_pushes": 0,
+  "input_tokens": 2,
+  "output_tokens": 221,
+  "first_prompt": "No prompt",
+  "summary": "Shell PS1 to statusLine configuration transfer",
+  "user_interruptions": 0,
+  "user_response_times": [],
+  "tool_errors": 0,
+  "tool_error_categories": {},
+  "uses_task_agent": true,
+  "uses_mcp": false,
+  "uses_web_search": false,
+  "uses_web_fetch": false,
+  "lines_added": 0,
+  "lines_removed": 0,
+  "files_modified": 0,
+  "message_hours": [
+    10,
+    10
+  ],
+  "user_message_timestamps": [
+    "2026-01-14T09:29:48.547Z",
+    "2026-01-14T09:29:48.547Z"
+  ]
+}

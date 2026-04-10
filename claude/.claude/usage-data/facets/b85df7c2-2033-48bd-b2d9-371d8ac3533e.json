@@ -1,0 +1,18 @@
+{
+  "underlying_goal": "Remount network drives that weren't mounting properly, specifically using /etc/fstab",
+  "goal_categories": {
+    "system_administration_help": 1,
+    "command_recall": 1
+  },
+  "outcome": "fully_achieved",
+  "user_satisfaction_counts": {
+    "satisfied": 1
+  },
+  "claude_helpfulness": "moderately_helpful",
+  "session_type": "quick_question",
+  "friction_counts": {},
+  "friction_detail": "",
+  "primary_success": "good_explanations",
+  "brief_summary": "User needed help remounting network drives and remembered the `sudo mount -a` command with Claude's guidance.",
+  "session_id": "b85df7c2-2033-48bd-b2d9-371d8ac3533e"
+}

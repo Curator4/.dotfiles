@@ -1,0 +1,51 @@
+{
+  "session_id": "d72d8dbb-86fd-4a9a-b683-d1d40870b734",
+  "project_path": "/home/curator/workspace/pnc/sia-receiver-prototype",
+  "start_time": "2026-02-04T15:13:22.597Z",
+  "duration_minutes": 2,
+  "user_message_count": 8,
+  "assistant_message_count": 6,
+  "tool_counts": {},
+  "languages": {},
+  "git_commits": 0,
+  "git_pushes": 0,
+  "input_tokens": 60,
+  "output_tokens": 475,
+  "first_prompt": "ehm. i resume convos and it works i think. but i scroll up and i dont see entire history 🤔?",
+  "user_interruptions": 1,
+  "user_response_times": [
+    60.082,
+    26.715,
+    31.36,
+    39.404
+  ],
+  "tool_errors": 0,
+  "tool_error_categories": {},
+  "uses_task_agent": false,
+  "uses_mcp": false,
+  "uses_web_search": false,
+  "uses_web_fetch": false,
+  "lines_added": 0,
+  "lines_removed": 0,
+  "files_modified": 0,
+  "message_hours": [
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16
+  ],
+  "user_message_timestamps": [
+    "2026-02-04T15:13:22.597Z",
+    "2026-02-04T15:13:22.595Z",
+    "2026-02-04T15:13:22.597Z",
+    "2026-02-04T15:13:35.346Z",
+    "2026-02-04T15:14:46.100Z",
+    "2026-02-04T15:15:26.785Z",
+    "2026-02-04T15:15:31.430Z",
+    "2026-02-04T15:15:39.474Z"
+  ]
+}

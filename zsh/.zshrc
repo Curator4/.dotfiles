@@ -14,14 +14,20 @@ alias gb='gator browse'
 alias cdb="cd ~/workspace/bootdev/"
 alias cdw="cd ~/workspace/"
 alias cdp="cd ~/workspace/pnc/"
+alias cdpa="cd ~/workspace/pnc/alarm-receiver/"
 alias cdd="cd ~/.dotfiles"
 alias cdh="cd ~/"
 alias cda="cd ~/workspace/ai/"
 alias cdio="cd ~/workspace/ai/io"
+alias cddp="cd ~/docs/pnc/"
+alias cdt="cd ~/docs/pnc/tech-docs/"
+alias nvc='cd ~/.config/nvim'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias rc='pkill -9 -f "claude-desktop-native" && claude-desktop &'
+alias rdp-receiver='xfreerdp3 /u:Administrator /p:Station1 /v:10.200.0.60 /sec:tls /cert:ignore /dynamic-resolution'
+alias gtree='git log --oneline --graph -20'
 
 # Paru wrapper to change message
 paru() {
@@ -36,7 +42,13 @@ cover () {
         && unlink $t
 }
 
+# Initialize Starship prompt
 eval "$(starship init zsh)"
+
+# Helper function to reload shell config (useful after theme changes)
+reload-shell() {
+    exec zsh
+}
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
@@ -54,7 +66,6 @@ if ! pgrep -f "gator agg" > /dev/null; then
   nohup gator agg 1m > /dev/null 2>&1 &
 fi
 
-alias claude="/home/curator/.claude/local/claude"
 
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -65,3 +76,13 @@ if [ -f '/home/curator/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . 
 
 # Turso
 export PATH="$PATH:/home/curator/.turso"
+
+# kitty escape key
+bindkey "^[[3~" delete-char
+
+alias t='tree -L'
+
+# OpenClaw Completion
+autoload -Uz compinit && compinit
+source "/home/curator/.openclaw/completions/openclaw.zsh"
+alias stfu='pkill -f "python3 tts_hook.py"; pkill -f "python3 stream_tts.py"; pkill -f "python3 -c"; touch /tmp/tts-daemon/stopped 2>/dev/null'

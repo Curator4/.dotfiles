@@ -51,5 +51,10 @@
     "DP-3": "static[1]",
     "DP-4": "vertical[0]"
   },
-  "rofi_theme": "neon"
+  "rofi_theme": "neon",
+  "obsidian": {
+    "cssTheme": "Vauxhall",
+    "base": "obsidian"
+  },
+  "vibe": "neon"
 }

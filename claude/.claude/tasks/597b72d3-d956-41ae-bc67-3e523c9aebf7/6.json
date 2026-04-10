@@ -1,0 +1,9 @@
+{
+  "id": "6",
+  "subject": "Task 3: Disable Themis MCP server",
+  "description": "Remove themis from enabledMcpjsonServers and permissions in settings files",
+  "activeForm": "Disabling Themis MCP server",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

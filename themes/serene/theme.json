@@ -49,5 +49,10 @@
     "DP-3": "live[0]",
     "DP-4": "static[2]"
   },
-  "rofi_theme": "serene"
+  "rofi_theme": "serene",
+  "obsidian": {
+    "cssTheme": "Catppuccin",
+    "base": "moonstone"
+  },
+  "vibe": "chill"
 }

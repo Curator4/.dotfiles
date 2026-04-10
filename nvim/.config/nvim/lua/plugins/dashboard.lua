@@ -37,6 +37,7 @@ return {
 			dashboard.button("e", "󰙅  File tree", ":Neotree toggle<CR>"),
 			dashboard.button("r", "󰋚  Recent files", ":Telescope oldfiles <CR>"),
 			dashboard.button("g", "󰱼  Find text", ":Telescope live_grep <CR>"),
+			dashboard.button("U", "󰚰  Update plugins", ":Lazy update<CR>"),
 			dashboard.button("q", "󰩈  Quit", ":qa<CR>"),
 		}
 
@@ -84,6 +85,9 @@ return {
 
 		-- Disable folding on alpha buffer
 		vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
+
+		-- Keymap to return to dashboard
+		vim.keymap.set("n", "<leader>a", ":Alpha<CR>", { desc = "Dashboard" })
 	end,
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 }

@@ -1,0 +1,82 @@
+{
+  "session_id": "cbb9802f-182b-435a-8e32-40be42292e89",
+  "project_path": "/home/curator/.dotfiles",
+  "start_time": "2026-01-20T11:29:51.317Z",
+  "duration_minutes": 20,
+  "user_message_count": 14,
+  "assistant_message_count": 87,
+  "tool_counts": {
+    "Read": 13,
+    "Bash": 8,
+    "TodoWrite": 4,
+    "Write": 10,
+    "Edit": 6
+  },
+  "languages": {
+    "Shell": 1
+  },
+  "git_commits": 0,
+  "git_pushes": 0,
+  "input_tokens": 869,
+  "output_tokens": 282,
+  "first_prompt": "hmm, i entered hyprlock but it still bugged? is my hyprlock plugged in with theme switcher?",
+  "summary": "Fix Hyprlock 4-Monitor Setup Across 9 Themes",
+  "user_interruptions": 4,
+  "user_response_times": [
+    6.527,
+    61.119,
+    2.634,
+    28.647,
+    15.997,
+    21.123,
+    23.972,
+    68.981,
+    6.735,
+    6.001,
+    22.549,
+    50.489
+  ],
+  "tool_errors": 4,
+  "tool_error_categories": {
+    "User Rejected": 4
+  },
+  "uses_task_agent": false,
+  "uses_mcp": false,
+  "uses_web_search": false,
+  "uses_web_fetch": false,
+  "lines_added": 856,
+  "lines_removed": 0,
+  "files_modified": 9,
+  "message_hours": [
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12
+  ],
+  "user_message_timestamps": [
+    "2026-01-20T11:29:51.317Z",
+    "2026-01-20T11:40:24.588Z",
+    "2026-01-20T11:41:19.180Z",
+    "2026-01-20T11:41:40.196Z",
+    "2026-01-20T11:42:06.209Z",
+    "2026-01-20T11:42:50.505Z",
+    "2026-01-20T11:43:31.681Z",
+    "2026-01-20T11:44:08.701Z",
+    "2026-01-20T11:47:27.700Z",
+    "2026-01-20T11:47:34.603Z",
+    "2026-01-20T11:47:40.585Z",
+    "2026-01-20T11:47:59.574Z",
+    "2026-01-20T11:48:16.122Z",
+    "2026-01-20T11:49:32.155Z"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "underlying_goal": "Add an update button to the Neovim dashboard and a keybinding to return to the dashboard from anywhere",
+  "goal_categories": {
+    "neovim_configuration": 2
+  },
+  "outcome": "fully_achieved",
+  "user_satisfaction_counts": {},
+  "claude_helpfulness": "very_helpful",
+  "session_type": "single_task",
+  "friction_counts": {},
+  "friction_detail": "",
+  "primary_success": "correct_code_edits",
+  "brief_summary": "User asked for a dashboard update button and a keybinding to return to the dashboard in Neovim, and Claude added both edits successfully.",
+  "session_id": "3fce2cf2-cf9b-4fa5-a77d-f390c9de5407"
+}

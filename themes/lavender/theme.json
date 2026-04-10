@@ -23,5 +23,10 @@
     "colorscheme": "lavender",
     "variant": "",
     "background": "dark"
-  }
+  },
+  "obsidian": {
+    "cssTheme": "Royal Velvet",
+    "base": "obsidian"
+  },
+  "vibe": "shadow"
 }

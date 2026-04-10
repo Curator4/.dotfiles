@@ -1,0 +1,9 @@
+{
+  "id": "7",
+  "subject": "Step 7: Graceful shutdown (context, waitgroup)",
+  "description": "",
+  "activeForm": "Adding graceful shutdown",
+  "status": "in_progress",
+  "blocks": [],
+  "blockedBy": []
+}

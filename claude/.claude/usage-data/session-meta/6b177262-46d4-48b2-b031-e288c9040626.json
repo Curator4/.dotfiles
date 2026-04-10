@@ -1,0 +1,73 @@
+{
+  "session_id": "6b177262-46d4-48b2-b031-e288c9040626",
+  "project_path": "/home/curator",
+  "start_time": "2026-01-15T15:12:44.527Z",
+  "duration_minutes": 41,
+  "user_message_count": 12,
+  "assistant_message_count": 61,
+  "tool_counts": {
+    "Glob": 2,
+    "Bash": 10,
+    "Grep": 1,
+    "Read": 1,
+    "Edit": 5
+  },
+  "languages": {},
+  "git_commits": 0,
+  "git_pushes": 0,
+  "input_tokens": 468,
+  "output_tokens": 3184,
+  "first_prompt": "major problem claude. i have these keybinds for emojis, u can check them in hypr configs if u want i think. problem is. they sometimes dont work. i think in certain apps. works in browser, doesn't wor…",
+  "summary": "Emoji Keybinds Wayland XWayland Compatibility Issue",
+  "user_interruptions": 2,
+  "user_response_times": [
+    72.297,
+    20.711,
+    10.27,
+    15.063,
+    29.781,
+    5.221,
+    20.056,
+    78.839,
+    6.417
+  ],
+  "tool_errors": 1,
+  "tool_error_categories": {
+    "User Rejected": 1
+  },
+  "uses_task_agent": false,
+  "uses_mcp": false,
+  "uses_web_search": false,
+  "uses_web_fetch": false,
+  "lines_added": 5,
+  "lines_removed": 5,
+  "files_modified": 1,
+  "message_hours": [
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16
+  ],
+  "user_message_timestamps": [
+    "2026-01-15T15:12:44.527Z",
+    "2026-01-15T15:14:46.792Z",
+    "2026-01-15T15:15:20.406Z",
+    "2026-01-15T15:15:45.691Z",
+    "2026-01-15T15:17:11.382Z",
+    "2026-01-15T15:18:05.568Z",
+    "2026-01-15T15:18:18.097Z",
+    "2026-01-15T15:18:22.066Z",
+    "2026-01-15T15:18:46.100Z",
+    "2026-01-15T15:20:09.278Z",
+    "2026-01-15T15:20:13.557Z",
+    "2026-01-15T15:52:50.001Z"
+  ]
+}

@@ -1,0 +1,162 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PIDFILE="/tmp/cast-monitor.pid"
+FIFO="/tmp/cast-fifo"
+HLS_DIR="/tmp/cast-hls"
+PORT=9998
+DEVICE="[LG] webOS TV QNED85A6C"
+MONITOR="DP-3"
+IFACE="eno1"
+
+notify() {
+    notify-send -a "cast-monitor" "$1" "$2" 2>/dev/null || true
+}
+
+stop_cast() {
+    echo "Stopping cast..."
+    if [[ -f "$PIDFILE" ]]; then
+        read -r WF_PID FF_PID SRV_PID < "$PIDFILE" 2>/dev/null || true
+        catt -d "$DEVICE" stop 2>/dev/null || true
+        kill "$WF_PID" 2>/dev/null || true
+        kill "$FF_PID" 2>/dev/null || true
+        kill "$SRV_PID" 2>/dev/null || true
+        sleep 1
+        kill -9 "$WF_PID" 2>/dev/null || true
+        kill -9 "$FF_PID" 2>/dev/null || true
+        kill -9 "$SRV_PID" 2>/dev/null || true
+        rm -f "$PIDFILE"
+    fi
+    rm -rf "$FIFO" "$HLS_DIR"
+    notify "Cast Stopped" "Monitor casting ended"
+    echo "Cast stopped."
+}
+
+start_cast() {
+    # Get local IP
+    LOCAL_IP=$(ip -4 addr show "$IFACE" | grep -oP 'inet \K[\d.]+')
+    if [[ -z "$LOCAL_IP" ]]; then
+        echo "ERROR: Could not detect IP on $IFACE"
+        notify "Cast Error" "No IP on $IFACE"
+        exit 1
+    fi
+    echo "Local IP: $LOCAL_IP"
+
+    # Clean up any stale state
+    rm -rf "$FIFO" "$PIDFILE" "$HLS_DIR"
+    mkfifo "$FIFO"
+    mkdir -p "$HLS_DIR"
+
+    # Launch wf-recorder → FIFO (video only, NVENC)
+    yes | wf-recorder \
+        -o "$MONITOR" \
+        -c h264_nvenc \
+        -r 30 \
+        --muxer=mpegts \
+        -p preset=p1 \
+        -p b=5M \
+        -p tune=ull \
+        -p g=30 \
+        -p level=4.1 \
+        -F "format=pix_fmts=nv12,scale=1920:1080" \
+        -f "$FIFO" &
+    WF_PID=$!
+    echo "wf-recorder started (PID $WF_PID)"
+
+    # ffmpeg: add silent audio + HLS with 1s segments for lower latency
+    ffmpeg -y -hide_banner -loglevel warning \
+        -i "$FIFO" \
+        -f lavfi -i anullsrc=r=44100:cl=stereo \
+        -c:v copy -c:a aac -shortest \
+        -f hls \
+        -hls_time 1 \
+        -hls_list_size 4 \
+        -hls_delete_threshold 60 \
+        -hls_flags delete_segments+append_list+temp_file \
+        -hls_segment_filename "$HLS_DIR/seg%03d.ts" \
+        "$HLS_DIR/stream.m3u8" 2>/tmp/cast-ff.log &
+    FF_PID=$!
+    echo "ffmpeg HLS segmenter started (PID $FF_PID)"
+
+    # Python threaded HTTP file server for HLS directory
+    python3 - "$HLS_DIR" "$PORT" <<'PYEOF' &
+import sys, os, mimetypes
+from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
+
+mimetypes.add_type("video/mp2t", ".ts")
+mimetypes.add_type("application/vnd.apple.mpegurl", ".m3u8")
+
+directory = sys.argv[1]
+port = int(sys.argv[2])
+
+class Handler(SimpleHTTPRequestHandler):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, directory=directory, **kwargs)
+    def end_headers(self):
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Cache-Control", "no-cache")
+        super().end_headers()
+    def log_message(self, format, *args):
+        print(f"[http] {args[0]}", flush=True)
+
+print(f"[http] serving {directory} on :{port}", flush=True)
+ThreadingHTTPServer(("0.0.0.0", port), Handler).serve_forever()
+PYEOF
+    SRV_PID=$!
+    echo "HTTP server started (PID $SRV_PID)"
+
+    # Save PIDs
+    echo "$WF_PID $FF_PID $SRV_PID" > "$PIDFILE"
+    notify "Starting Cast" "Preparing stream to LG TV..."
+
+    # Wait for m3u8 playlist to appear
+    echo "Waiting for HLS stream..."
+    for i in $(seq 1 30); do
+        if [[ -f "$HLS_DIR/stream.m3u8" ]]; then
+            echo "HLS playlist ready!"
+            break
+        fi
+        if ! kill -0 "$FF_PID" 2>/dev/null; then
+            echo "ERROR: ffmpeg died"
+            stop_cast
+            exit 1
+        fi
+        if ! kill -0 "$WF_PID" 2>/dev/null; then
+            echo "ERROR: wf-recorder died"
+            stop_cast
+            exit 1
+        fi
+        sleep 1
+    done
+
+    if [[ ! -f "$HLS_DIR/stream.m3u8" ]]; then
+        echo "ERROR: HLS playlist never appeared"
+        echo "ffmpeg log: $(cat /tmp/cast-ff.log 2>/dev/null)"
+        stop_cast
+        exit 1
+    fi
+
+    # Tell TV to play the HLS stream
+    echo "Casting to TV..."
+    catt -d "$DEVICE" cast "http://${LOCAL_IP}:${PORT}/stream.m3u8"
+    notify "Casting" "DP-3 → LG TV on :${PORT}"
+    echo "Cast started! Run again to stop."
+
+    # If running interactively, trap signals for clean shutdown
+    trap stop_cast SIGINT SIGTERM
+    wait
+}
+
+# --- Toggle logic ---
+if [[ -f "$PIDFILE" ]]; then
+    read -r WF_PID FF_PID SRV_PID < "$PIDFILE" 2>/dev/null || true
+    if kill -0 "$WF_PID" 2>/dev/null || kill -0 "$FF_PID" 2>/dev/null || kill -0 "$SRV_PID" 2>/dev/null; then
+        stop_cast
+    else
+        echo "Stale PID file found, cleaning up..."
+        rm -rf "$PIDFILE" "$FIFO" "$HLS_DIR"
+        start_cast
+    fi
+else
+    start_cast
+fi
