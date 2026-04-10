@@ -39,6 +39,7 @@ if status is-interactive
     function ccm; test -n "$KITTY_LISTEN_ON"; and kitty @ --to "$KITTY_LISTEN_ON" set-colors --all --configured ~/.dotfiles/themes/aegis/kitty.conf 2>/dev/null; test -n "$KITTY_PID"; and hyprctl dispatch setprop "pid:$KITTY_PID" active_border_color "rgba(d79921AA)" &>/dev/null; echo -e "\e[1;33m━━━ Mustang ━━━\e[0m"; cc --append-system-prompt-file ~/.claude/agents/mustang.md --name Mustang $argv; end
     function ccv; test -n "$KITTY_LISTEN_ON"; and kitty @ --to "$KITTY_LISTEN_ON" set-colors --all --configured ~/.dotfiles/themes/ashen/kitty.conf 2>/dev/null; test -n "$KITTY_PID"; and hyprctl dispatch setprop "pid:$KITTY_PID" active_border_color "rgba(8B2222ee)" &>/dev/null; echo -e "\e[1;35m━━━ Velise ━━━\e[0m"; cc --append-system-prompt-file ~/.claude/agents/velise.md --name Velise $argv; end
     alias pavu 'flatpak run com.saivert.pwvucontrol'
+    alias wm 'wiremix'
     alias stfu 'pkill -f "python3 tts_hook.py"; pkill -f "python3 stream_tts.py"; pkill -f "python3 -c"; touch /tmp/tts-daemon/stopped 2>/dev/null'
     alias tts-stop 'systemctl --user stop vllm-tts'
     alias tts-start 'systemctl --user start vllm-tts'
