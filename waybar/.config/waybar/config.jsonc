@@ -6,7 +6,7 @@
 
     "modules-left": ["hyprland/workspaces", "custom/theme"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "bluetooth", "network", "custom/gpu", "cpu", "memory", "disk"],
+    "modules-right": ["pulseaudio", "bluetooth", "network", "custom/gpu", "custom/vram", "cpu", "memory", "disk"],
 
     "hyprland/workspaces": {
         "on-click": "activate",
@@ -59,9 +59,9 @@
     },
 
     "pulseaudio": {
-        "format": "󰕾 {volume}%",
-        "format-muted": "󰖁 Muted",
-        "on-click": "pavucontrol",
+        "format": "VOL {volume}%",
+        "format-muted": "VOL Muted",
+        "on-click": "flatpak run com.saivert.pwvucontrol",
         "on-click-right": "pamixer -t",
         "scroll-step": 5,
         "tooltip-format": "{desc}\nVolume: {volume}%"
@@ -69,26 +69,37 @@
 
     "cpu": {
         "interval": 5,
-        "format": "󰍛 {usage}%",
+        "format": "CPU {usage}%",
+        "tooltip-format": "CPU Usage: {usage}%\nLoad: {load}",
         "on-click": "kitty -e btop"
     },
 
     "custom/gpu": {
         "exec": "~/.config/waybar/scripts/gpu.sh",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "kitty -e watch -n 1 nvidia-smi"
+    },
+
+    "custom/vram": {
+        "exec": "~/.config/waybar/scripts/vram.sh",
+        "return-type": "json",
         "interval": 5,
         "on-click": "kitty -e watch -n 1 nvidia-smi"
     },
 
     "memory": {
         "interval": 5,
-        "format": "󰑭 {percentage}%",
+        "format": "RAM {percentage}%",
+        "tooltip-format": "RAM Usage: {percentage}%\nUsed: {used:0.1f} GiB / {total:0.1f} GiB\nSwap: {swapPercentage}%",
         "on-click": "kitty -e btop"
     },
 
     "disk": {
         "interval": 30,
-        "format": "󰋊 {percentage_used}%",
+        "format": "DISK {percentage_used}%",
         "path": "/",
+        "tooltip-format": "Disk Usage: {percentage_used}%\nUsed: {used} / {total}\nFree: {free}\nPath: {path}",
         "on-click": "kitty -e btop"
     },
 
