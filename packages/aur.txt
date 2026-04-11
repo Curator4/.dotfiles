@@ -1,0 +1,17 @@
+catt
+claude-desktop-native
+claude-desktop-native-debug
+cuda-12.8
+eww-git
+gcc13
+libation
+miniconda3
+mkchromecast-git
+mpvpaper
+pacseek
+python310
+timg
+vial-appimage
+vibe-audio-visualizer-git
+yay-bin
+yay-bin-debug

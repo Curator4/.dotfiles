@@ -1,0 +1,106 @@
+; ── AI Companion Bar ─────────────────────────────────────
+; Sits at the top of vertical monitor (DP-4, workspace 4)
+; Three panels: voice indicator | avatar | dashboard
+
+; ── Variables ────────────────────────────────────────────
+(defvar vibe "cyber")
+(defvar avatar_image "/home/curator/.claude/vibes/cyber/avatar.jpg")
+(defvar speaking false)
+(defvar thinking false)
+(defvar thinking_stage "")
+(defvar current_voice "mustang")
+(defvar last_tool "")
+(defvar session_active false)
+
+; ── Polling variables ────────────────────────────────────
+(defpoll vibe_poll :interval "2s"
+  `cat ~/.claude/current-vibe 2>/dev/null || echo "chill"`)
+
+(defpoll voice_poll :interval "2s"
+  `cat ~/workspace/ai/qwen-tts/voice.txt 2>/dev/null || echo "unknown"`)
+
+(defpoll speaking_poll :interval "300ms"
+  `pgrep -f "python3 tts_hook.py\|python3 stream_tts.py\|python3 -c" >/dev/null 2>&1 && echo true || echo false`)
+
+(defpoll thinking_poll :interval "1s"
+  `[ -f /tmp/tts-daemon/thinking-stage ] && cat /tmp/tts-daemon/thinking-stage || echo ""`)
+
+(defpoll session_poll :interval "2s"
+  `pgrep -f "claude" >/dev/null 2>&1 && echo true || echo false`)
+
+; ── Voice Indicator (left panel) ─────────────────────────
+(defwidget voice-indicator []
+  (box :class "voice-panel"
+       :orientation "v"
+       :valign "center"
+       :halign "center"
+       :space-evenly false
+    ; Pulsing orb when speaking
+    (box :class "orb-container"
+      (box :class {speaking_poll == "true" ? "orb speaking" : "orb idle"}))
+    ; Status text
+    (label :class "voice-status"
+           :text {speaking_poll == "true" ? "speaking" :
+                  thinking_poll != "" ? "thinking" : "listening"})
+    ; Voice name
+    (label :class "voice-name" :text voice_poll)))
+
+; ── Avatar (center panel) ────────────────────────────────
+(defwidget avatar []
+  (box :class "avatar-panel"
+       :orientation "v"
+       :valign "center"
+       :halign "center"
+       :space-evenly false
+    (image :path {"/home/curator/.claude/vibes/${vibe_poll}/avatar.jpg"}
+           :image-width 280
+           :image-height 280)
+    (label :class "vibe-name" :text vibe_poll)))
+
+; ── Dashboard (right panel) ──────────────────────────────
+(defwidget dashboard []
+  (box :class "dashboard-panel"
+       :orientation "v"
+       :valign "center"
+       :halign "center"
+       :space-evenly false
+    ; Session status
+    (box :class "dash-row"
+      (label :class "dash-label" :text "session")
+      (label :class "dash-value"
+             :text {session_poll == "true" ? "active" : "idle"}))
+    ; Current vibe
+    (box :class "dash-row"
+      (label :class "dash-label" :text "vibe")
+      (label :class "dash-value" :text vibe_poll))
+    ; Current voice
+    (box :class "dash-row"
+      (label :class "dash-label" :text "voice")
+      (label :class "dash-value" :text voice_poll))
+    ; Time
+    (box :class "dash-row"
+      (label :class "dash-label" :text "time")
+      (label :class "dash-value" :text {formattime(EWW_TIME, "%H:%M")}))))
+
+; ── Main Bar ─────────────────────────────────────────────
+(defwidget ai-bar []
+  (box :class "ai-bar"
+       :orientation "v"
+       :space-evenly false
+    (avatar)
+    (voice-indicator)
+    (dashboard)))
+
+; ── Window ───────────────────────────────────────────────
+(defwindow ai-companion
+  :monitor "DP-4"
+  :geometry (geometry :x "0px"
+                      :y "0px"
+                      :width "1420px"
+                      :height "600px"
+                      :anchor "top center")
+  :stacking "fg"
+  :exclusive false
+  :focusable false
+  :namespace "ai-companion"
+  (ai-bar))

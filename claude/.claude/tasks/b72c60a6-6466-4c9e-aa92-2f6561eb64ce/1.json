@@ -1,9 +1,0 @@
-{
-  "id": "1",
-  "subject": "Step 1: Basic TCP server - listen, accept, read bytes",
-  "description": "",
-  "activeForm": "Building basic TCP server",
-  "status": "completed",
-  "blocks": [],
-  "blockedBy": []
-}

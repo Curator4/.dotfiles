@@ -1,9 +1,0 @@
-{
-  "id": "5",
-  "subject": "Task 2: Create /vault skill",
-  "description": "Create ~/.claude/skills/vault/SKILL.md for Obsidian vault search",
-  "activeForm": "Implementing Task 2: /vault skill",
-  "status": "completed",
-  "blocks": [],
-  "blockedBy": []
-}

@@ -1,9 +1,0 @@
-{
-  "id": "8",
-  "subject": "Step 8: Structured logging (zap) + config integration",
-  "description": "",
-  "activeForm": "Integrating logging and config",
-  "status": "pending",
-  "blocks": [],
-  "blockedBy": []
-}

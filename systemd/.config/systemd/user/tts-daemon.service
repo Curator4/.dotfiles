@@ -1,0 +1,15 @@
+[Unit]
+Description=Unified TTS Daemon — speech, tool announcements, thinking lines
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.claude/hooks/tts-daemon.sh
+Restart=on-failure
+RestartSec=3
+Environment=HOME=%h
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=PIPEWIRE_NODE=tts-voice
+
+[Install]
+WantedBy=default.target

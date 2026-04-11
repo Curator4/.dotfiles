@@ -1,206 +1,131 @@
 #!/bin/bash
 set -e
+
+# ── Dotfiles Bootstrap: Desktop Environment ──────────────
+# Installs packages, stows configs, enables services.
+# Safe to re-run (idempotent).
+
+DOTFILES="$(cd "$(dirname "$0")" && pwd)"
+PKG_DIR="$DOTFILES/packages"
+
+# ── Pre-flight ───────────────────────────────────────────
+
+if [[ $EUID -eq 0 ]]; then
+    echo "Don't run as root. The script will sudo when needed."
+    exit 1
+fi
+
 sudo -v
+# Keep sudo alive for the duration
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 echo ""
 echo "================================"
 echo "setting up development environment..."
 echo "================================"
 
-# system update
-echo ""
-echo "================================"
-echo "updating system..."
-echo "================================"
+# ── System Update ────────────────────────────────────────
 
+echo ""
+echo ":: updating system..."
 sudo pacman -Syu --noconfirm
 
-# pacman packages
-echo ""
-echo "================================"
-echo "installing pacman packages..."
-echo "================================"
+# ── Install Packages ─────────────────────────────────────
 
-packages=(
-    # system
-    base-devel
-    git
-    stow
-    sudo
-    
-    # network
-    networkmanager
-    openssh
-    tailscale
-    
-    # desktop/wm
-    hyprland
-    hyprpaper
-    hyprlock
-    hyprshot
-    kitty
-    rofi-wayland
-    uwsm
-    
-    # audio/bluetooth
-    pipewire
-    pipewire-pulse
-    pipewire-alsa
-    wireplumber
-    bluez
-    bluez-utils
-    pavucontrol
-    
-    # graphics (nvidia)
-    nvidia
-    nvidia-utils
-    vulkan-icd-loader
-    
-    # sync
-    syncthing
-    
-    # shell
-    zsh
-        
-    # utilities
-    htop
-    tree
-    curl
-    wget
-    nvim
-    man-db
-    man-pages
-    wl-clipboard
-    wl-clip-persist
-    fastfetch
-    playerctl
-    noto-fonts-emoji
-    
-    # hardware
-    intel-ucode  # change to amd-ucode if amd cpu
-
-    # software
-    obsidian
-    firefox
-
-    # dev
-    nodejs
-    npm
-
-)
-sudo pacman -S --needed --noconfirm "${packages[@]}"
-
-# install paru (AUR helper)
-echo ""
-echo "================================"
-echo "installing paru..."
-echo "================================"
-
-if ! command -v paru &> /dev/null; then
-    echo "installing paru..."
-    git clone https://aur.archlinux.org/paru.git /tmp/paru
-    cd /tmp/paru
-    makepkg -si --noconfirm
-    cd -
-fi
-
-
-# aur packages
-echo ""
-echo "================================"
-echo "installing AUR packages..."
-echo "================================"
-
-aur_packages=(
-    pacseek
-    starship
-    yazi
-    eza
-    ttf-hack-nerd
-    mpvpaper
-    ncspot
-    cava
-    mako
-    waybar
-    rofimoji
-    wtype
-)
-paru -S --noconfirm "${aur_packages[@]}"
-
-# npm global installs
-echo ""
-echo "================================"
-echo "installing NPM packages..."
-echo "================================"
-
-npm_packages=(
-    @anthropic-ai/claude-code
-)
-npm install -g "${npm_packages[@]}"
-
-echo ""
-echo "================================"
-echo "enabling services..."
-echo "================================"
-
-# enable system services
-sudo systemctl enable NetworkManager
-sudo systemctl enable bluetooth
-sudo systemctl enable sshd
-systemctl --user enable pipewire
-systemctl --user enable wireplumber
-
-
-# clone dotfiles
-if [ ! -d "$HOME/.dotfiles" ]; then
+if [[ -f "$PKG_DIR/pacman.txt" ]]; then
     echo ""
-    echo "================================"
-    echo "cloning dotfiles..."
-    echo "================================"
-    git clone https://github.com/Curator4/.dotfiles.git "$HOME/.dotfiles"
+    echo ":: installing pacman packages..."
+    sudo pacman -S --needed --noconfirm - < "$PKG_DIR/pacman.txt"
+else
+    echo "WARNING: $PKG_DIR/pacman.txt not found, skipping pacman packages"
 fi
 
-# stow configs
-echo ""
-echo "================================"
-echo "applying stow symlinks..."
-echo "================================"
-cd "$HOME/.dotfiles"
-stow_packages=(
-    hypr
-    kitty
-    rofi
-    zsh
-    htop
-    btop
-    nvim
-    pacseek
-    starship
-    ncspot
-    cava
-    mako
-    waybar
-    yazi
-    git
-)
+# ── AUR Helper ───────────────────────────────────────────
 
-for pkg in "${stow_packages[@]}"; do
-    # remove conflicting files/dirs
-    stow -n "$pkg" 2>&1 | grep "existing target" | awk '{print $NF}' | while read conflict; do
-        rm -rf "$HOME/$conflict"
-    done
-    stow "$pkg"
+if ! command -v yay &>/dev/null; then
+    echo ""
+    echo ":: installing yay..."
+    tmpdir=$(mktemp -d)
+    git clone https://aur.archlinux.org/yay-bin.git "$tmpdir/yay-bin"
+    (cd "$tmpdir/yay-bin" && makepkg -si --noconfirm)
+    rm -rf "$tmpdir"
+fi
+
+# ── AUR Packages ─────────────────────────────────────────
+
+if [[ -f "$PKG_DIR/aur.txt" ]]; then
+    echo ""
+    echo ":: installing AUR packages..."
+    yay -S --needed --noconfirm - < "$PKG_DIR/aur.txt"
+else
+    echo "WARNING: $PKG_DIR/aur.txt not found, skipping AUR packages"
+fi
+
+# ── NPM Global Packages ─────────────────────────────────
+
+if command -v npm &>/dev/null; then
+    echo ""
+    echo ":: installing global npm packages..."
+    npm install -g @anthropic-ai/claude-code
+fi
+
+# ── Stow Configs ─────────────────────────────────────────
+# Auto-detect: every top-level directory is a stow package,
+# except themes/ and packages/ which are special.
+
+echo ""
+echo ":: stowing configs..."
+cd "$DOTFILES"
+
+SKIP_DIRS="themes|packages|.git"
+
+for dir in */; do
+    pkg="${dir%/}"
+    [[ "$pkg" =~ ^($SKIP_DIRS)$ ]] && continue
+
+    echo "  stow: $pkg"
+    stow --adopt --restow "$pkg" 2>/dev/null || stow --restow "$pkg"
 done
 
-# change shell to zsh
-if [ "$SHELL" != "$(which zsh)" ]; then
-    echo "changing shell to zsh..."
-    chsh -s $(which zsh)
-    echo "shell change will take effect after logout"
+# ── Enable Services ──────────────────────────────────────
+
+echo ""
+echo ":: enabling services..."
+
+# System services
+sudo systemctl enable --now NetworkManager 2>/dev/null || true
+sudo systemctl enable --now bluetooth 2>/dev/null || true
+sudo systemctl enable --now sshd 2>/dev/null || true
+sudo systemctl enable --now tailscaled 2>/dev/null || true
+sudo systemctl enable --now docker 2>/dev/null || true
+
+# User services from list
+if [[ -f "$PKG_DIR/user-services.txt" ]]; then
+    while IFS= read -r service; do
+        [[ -z "$service" ]] && continue
+        systemctl --user enable "$service" 2>/dev/null || true
+    done < "$PKG_DIR/user-services.txt"
 fi
+
+# ── Shell ────────────────────────────────────────────────
+
+FISH="$(command -v fish 2>/dev/null)"
+if [[ -n "$FISH" && "$SHELL" != "$FISH" ]]; then
+    echo ""
+    echo ":: setting default shell to fish..."
+    chsh -s "$FISH"
+    echo "  (takes effect after logout)"
+fi
+
+# ── Done ─────────────────────────────────────────────────
 
 echo ""
 echo "================================"
-echo "development environment setup complete"
-echo "reboot recommended"
-echo "check readme for further steps"
+echo "setup complete!"
+echo ""
+echo "manual steps:"
+echo "  - tailscale up"
+echo "  - syncthing setup"
+echo "  - log out and back in for shell change"
+echo "  - reboot recommended"
 echo "================================"

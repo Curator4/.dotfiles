@@ -1,7 +1,43 @@
-file-history/
-projects/
-shell-snapshots/
-statsig/
-todos/
-history.jsonl
-.credentials.json
+# Ignore everything by default — whitelist what we want to track
+*
+
+# Core config files
+!.gitignore
+!CLAUDE.md
+!settings.json
+!settings.local.json
+!current-vibe
+!statusline-command.sh
+
+# TTS config
+!tts-enabled
+!tts-voice-mode
+!tts-voices.json
+
+# Agents, skills, vibes, hooks (custom work worth tracking)
+!agents/
+!agents/**
+!skills/
+!skills/**
+!vibes/
+!vibes/**
+!hooks/
+!hooks/**
+
+# IDE integration
+!ide/
+!ide/**
+
+# Plugin install state (not the cached repos/data)
+!plugins/
+!plugins/installed_plugins.json
+!plugins/known_marketplaces.json
+plugins/marketplaces/
+plugins/cache/
+plugins/data/
+plugins/blocklist.json
+plugins/install-counts-cache.json
+
+# Memory (for auto memory system)
+!memory/
+!memory/**

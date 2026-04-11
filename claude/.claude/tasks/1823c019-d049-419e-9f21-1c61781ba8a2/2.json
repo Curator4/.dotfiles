@@ -1,9 +1,0 @@
-{
-  "id": "2",
-  "subject": "Step 2: Connection cleanup (defer Close) and error handling",
-  "description": "",
-  "activeForm": "Fixing connection lifecycle",
-  "status": "completed",
-  "blocks": [],
-  "blockedBy": []
-}

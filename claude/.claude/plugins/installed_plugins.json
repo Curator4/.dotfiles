@@ -1,4 +1,164 @@
 {
   "version": 2,
-  "plugins": {}
+  "plugins": {
+    "gopls-lsp@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/gopls-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-01-16T10:42:47.767Z",
+        "lastUpdated": "2026-01-16T10:42:47.767Z",
+        "gitCommitSha": "96276205880a60fd66bbae981f5ab568e70c4cbf"
+      }
+    ],
+    "code-review@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/home/curator/workspace/pnc/alarm-receiver",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/code-review/unknown",
+        "version": "unknown",
+        "installedAt": "2026-02-27T07:52:30.382Z",
+        "lastUpdated": "2026-03-25T15:09:38.053Z",
+        "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
+      }
+    ],
+    "feature-dev@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/home/curator/workspace/pnc/alarm-receiver",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/feature-dev/unknown",
+        "version": "unknown",
+        "installedAt": "2026-02-27T07:52:49.540Z",
+        "lastUpdated": "2026-03-25T15:09:38.050Z",
+        "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
+      }
+    ],
+    "code-simplifier@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/home/curator/workspace/pnc/alarm-receiver",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-02-27T07:52:57.832Z",
+        "lastUpdated": "2026-02-27T07:52:57.832Z",
+        "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
+      }
+    ],
+    "commit-commands@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/home/curator/workspace/pnc/alarm-receiver",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/commit-commands/unknown",
+        "version": "unknown",
+        "installedAt": "2026-02-27T07:53:55.272Z",
+        "lastUpdated": "2026-03-25T15:09:38.038Z",
+        "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
+      }
+    ],
+    "security-guidance@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/home/curator/workspace/pnc/alarm-receiver",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/security-guidance/unknown",
+        "version": "unknown",
+        "installedAt": "2026-02-27T07:54:23.782Z",
+        "lastUpdated": "2026-03-25T15:09:38.044Z",
+        "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
+      }
+    ],
+    "claude-md-management@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/home/curator/workspace/pnc/alarm-receiver",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/claude-md-management/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-02-27T07:54:34.622Z",
+        "lastUpdated": "2026-02-27T07:54:34.622Z",
+        "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
+      }
+    ],
+    "pr-review-toolkit@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/home/curator/workspace/pnc/alarm-receiver",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/pr-review-toolkit/unknown",
+        "version": "unknown",
+        "installedAt": "2026-02-27T07:54:48.221Z",
+        "lastUpdated": "2026-03-25T15:09:38.060Z",
+        "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
+      }
+    ],
+    "context7@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/home/curator/workspace/pnc/alarm-receiver",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/context7/unknown",
+        "version": "unknown",
+        "installedAt": "2026-02-27T07:55:12.016Z",
+        "lastUpdated": "2026-03-25T15:09:38.057Z",
+        "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
+      }
+    ],
+    "atlassian@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/atlassian/385c1469c567",
+        "version": "385c1469c567",
+        "installedAt": "2026-02-27T07:55:38.811Z",
+        "lastUpdated": "2026-03-11T20:35:37.202Z",
+        "gitCommitSha": "5fa435362b2c2a1de6199e5373757854663df530"
+      }
+    ],
+    "claude-code-setup@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/home/curator/workspace/pnc/alarm-receiver",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/claude-code-setup/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-02-27T07:55:49.250Z",
+        "lastUpdated": "2026-02-27T07:55:49.250Z",
+        "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
+      }
+    ],
+    "explanatory-output-style@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/explanatory-output-style/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-02-28T12:42:29.064Z",
+        "lastUpdated": "2026-03-29T08:08:02.791Z",
+        "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
+      }
+    ],
+    "typescript-lsp@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/typescript-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-02-28T12:42:43.419Z",
+        "lastUpdated": "2026-02-28T12:42:43.419Z",
+        "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
+      }
+    ],
+    "skill-creator@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/skill-creator/unknown",
+        "version": "unknown",
+        "installedAt": "2026-02-28T12:43:08.461Z",
+        "lastUpdated": "2026-03-25T15:06:37.192Z",
+        "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
+      }
+    ],
+    "superpowers@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/superpowers/5.0.7",
+        "version": "5.0.7",
+        "installedAt": "2026-02-28T12:45:29.023Z",
+        "lastUpdated": "2026-03-31T19:39:23.799Z",
+        "gitCommitSha": "e4a2375cb705ca5800f0833528ce36a3faf9017a"
+      }
+    ]
+  }
 }

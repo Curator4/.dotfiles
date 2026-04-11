@@ -1,9 +1,0 @@
-{
-  "id": "4",
-  "subject": "Task 1: Rewrite /themis skill",
-  "description": "Expand ~/.claude/skills/themis/SKILL.md to handle all health tracking operations (nutrition, workout, weight, summaries, meal reference) in addition to session logging",
-  "activeForm": "Implementing Task 1: /themis skill",
-  "status": "completed",
-  "blocks": [],
-  "blockedBy": []
-}

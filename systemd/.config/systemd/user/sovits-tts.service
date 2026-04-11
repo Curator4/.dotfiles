@@ -1,0 +1,16 @@
+[Unit]
+Description=GPT-SoVITS API Server
+After=graphical-session.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/curator/workspace/ai/GPT-SoVITS
+Environment=CUDA_HOME=/opt/cuda
+Environment=PATH=/home/curator/.conda/envs/GPTSoVits/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/curator/.conda/envs/GPTSoVits/bin/python api_v2.py -a 127.0.0.1 -p 9880
+ExecStartPost=/bin/sh -c 'sleep 10 && curl -s "http://localhost:9880/set_sovits_weights?weights_path=/home/curator/workspace/ai/GPT-SoVITS/SoVITS_weights_v4/mustang_v4_e12_s528_l64.pth" && curl -s "http://localhost:9880/set_gpt_weights?weights_path=/home/curator/workspace/ai/GPT-SoVITS/GPT_weights_v4/mustang_v4-e25.ckpt"'
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

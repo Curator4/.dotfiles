@@ -1,5 +1,23 @@
-claude/.claude/debug/
-claude/.claude/paste-cache/
-claude/.claude/plugins/marketplaces/
-claude/.claude/backups/
-claude/.claude/local/
+# Secrets — never commit these
+*.key
+*.pem
+*.p12
+**/.env
+**/.env.*
+**/secrets*
+**/credentials*
+**/.credentials*
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Caches and generated files
+__pycache__/
+node_modules/
+*.pyc

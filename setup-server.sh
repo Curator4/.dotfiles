@@ -1,69 +1,60 @@
 #!/bin/bash
 set -e
+
+# ── Dotfiles Bootstrap: Server (Minimal) ────────────────
+# Lightweight setup for headless machines.
+
+DOTFILES="$(cd "$(dirname "$0")" && pwd)"
+
+if [[ $EUID -eq 0 ]]; then
+    echo "Don't run as root. The script will sudo when needed."
+    exit 1
+fi
+
 sudo -v
-echo "installing server essentials..."
+
+echo ":: installing server essentials..."
 
 packages=(
-    # system
-    base-devel
-    git
-    stow
-    sudo
-    
-    # network
-    openssh
-    tailscale
-    
-    # shell
-    zsh
-    
-    # utilities
-    htop
-    tree
-    curl
-    wget
-    nvim
-    man-db
-    man-pages
-    fastfetch
-    
-    # system
-    intel-ucode  # change to amd-ucode if amd cpu
+    base-devel git stow sudo
+    openssh tailscale
+    fish zsh
+    htop btop tree curl wget neovim
+    man-db man-pages fastfetch
+    ripgrep eza
 )
 
 sudo pacman -Syu --noconfirm
 sudo pacman -S --needed --noconfirm "${packages[@]}"
 
-# systemctl enables
-sudo systemctl enable sshd
+# Enable services
+sudo systemctl enable --now sshd 2>/dev/null || true
+sudo systemctl enable --now tailscaled 2>/dev/null || true
 
-# clone dotfiles
-if [ ! -d "$HOME/.dotfiles" ]; then
-    echo "cloning dotfiles..."
+# Clone dotfiles if needed
+if [[ ! -d "$HOME/.dotfiles" ]]; then
+    echo ":: cloning dotfiles..."
     git clone https://github.com/Curator4/.dotfiles.git "$HOME/.dotfiles"
 fi
 
-# stow configs
-echo "applying stow symlinks..."
-cd "$HOME/.dotfiles"
-
-stow_packages=(
-    zsh
-)
-
-for pkg in "${stow_packages[@]}"; do
-    # remove conflicting files/dirs
-    stow -n "$pkg" 2>&1 | grep "existing target" | awk '{print $NF}' | while read conflict; do
-        rm -rf "$HOME/$conflict"
-    done
-    stow "$pkg"
+# Stow only what makes sense on a server
+echo ":: stowing configs..."
+cd "$DOTFILES"
+for pkg in zsh fish git htop btop starship nvim fastfetch tmux; do
+    if [[ -d "$pkg" ]]; then
+        echo "  stow: $pkg"
+        stow --adopt --restow "$pkg" 2>/dev/null || stow --restow "$pkg"
+    fi
 done
 
-# change shell to zsh
-if [ "$SHELL" != "$(which zsh)" ]; then
-    echo "changing shell to zsh..."
-    chsh -s $(which zsh)
-    echo "shell change will take effect after logout"
+# Set shell to fish
+FISH="$(command -v fish 2>/dev/null)"
+if [[ -n "$FISH" && "$SHELL" != "$FISH" ]]; then
+    echo ":: setting default shell to fish..."
+    chsh -s "$FISH"
 fi
 
+echo ""
 echo "server setup complete!"
+echo "  - tailscale up"
+echo "  - log out for shell change"

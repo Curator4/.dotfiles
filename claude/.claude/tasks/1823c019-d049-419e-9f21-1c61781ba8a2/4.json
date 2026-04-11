@@ -1,9 +1,0 @@
-{
-  "id": "4",
-  "subject": "Step 4: bufio.Reader + SIA framing (LF/CR delimiters)",
-  "description": "",
-  "activeForm": "Adding SIA message framing",
-  "status": "completed",
-  "blocks": [],
-  "blockedBy": []
-}

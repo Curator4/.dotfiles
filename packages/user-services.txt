@@ -1,0 +1,12 @@
+hyprpaper.service
+openclaw-gateway.service
+p11-kit-server.socket
+pipewire-pulse.service
+pipewire-pulse.socket
+pipewire.service
+pipewire.socket
+syncthing.service
+tts-daemon-v2.service
+wireplumber.service
+xdg-user-dirs.service
+ydotool.service

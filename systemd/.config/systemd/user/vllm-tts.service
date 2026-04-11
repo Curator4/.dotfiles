@@ -1,0 +1,15 @@
+[Unit]
+Description=vLLM-Omni TTS Server (Qwen3-TTS)
+After=graphical-session.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/curator/workspace/ai/qwen-tts
+Environment=CUDA_HOME=/opt/cuda
+Environment=PATH=/home/curator/workspace/ai/qwen-tts/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/curator/workspace/ai/qwen-tts/bin/vllm-omni serve Qwen/Qwen3-TTS-12Hz-1.7B-Base --stage-configs-path /home/curator/workspace/ai/qwen-tts/lib/python3.10/site-packages/vllm_omni/model_executor/stage_configs/qwen3_tts.yaml --omni --port 8091 --trust-remote-code
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,17 @@
+[Unit]
+Description=Unified TTS Daemon v2 — socket server + JSONL watcher + SoVITS pool
+After=graphical-session.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/curator/workspace/ai/tts-daemon
+ExecStart=/home/curator/workspace/ai/qwen-tts/bin/python tts_daemon.py
+Environment=HOME=%h
+Environment=PATH=%h/workspace/ai/qwen-tts/bin:%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=CUDA_HOME=/opt/cuda
+KillMode=control-group
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

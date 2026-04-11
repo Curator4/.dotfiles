@@ -5,6 +5,14 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/home/curator/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-01-13T20:51:18.271Z"
+    "lastUpdated": "2026-04-11T00:09:26.004Z"
+  },
+  "anthropic-agent-skills": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/skills"
+    },
+    "installLocation": "/home/curator/.claude/plugins/marketplaces/anthropic-agent-skills",
+    "lastUpdated": "2026-02-27T07:46:13.461Z"
   }
 }
