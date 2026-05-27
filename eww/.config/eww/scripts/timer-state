@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# Emit current timer state as a single-line JSON object for eww defpoll.
+# Reads from /tmp/eww-timer/ — single source of truth is the `end` epoch.
+
+set -u
+
+dir=/tmp/eww-timer
+end_file=$dir/end
+total_file=$dir/total
+msg_file=$dir/msg
+color_file=$dir/color
+done_file=$dir/done
+
+idle_json='{"active":0,"phase":"idle","remaining":0,"total":0,"progress":0,"display":"","msg":"","color":"red"}'
+
+if [ ! -f "$end_file" ]; then
+  printf '%s\n' "$idle_json"
+  exit 0
+fi
+
+end=$(cat "$end_file" 2>/dev/null) || end=0
+total=$(cat "$total_file" 2>/dev/null) || total=0
+msg=$(cat "$msg_file" 2>/dev/null) || msg=""
+color=$(cat "$color_file" 2>/dev/null) || color="red"
+now=$(date +%s)
+remaining=$((end - now))
+
+if [ -f "$done_file" ] || [ "$remaining" -le 0 ]; then
+  remaining=0
+  phase=done
+else
+  phase=running
+fi
+
+elapsed=$((total - remaining))
+[ "$elapsed" -lt 0 ] && elapsed=0
+
+progress=0
+if [ "$total" -gt 0 ]; then
+  progress=$(awk -v e="$elapsed" -v t="$total" 'BEGIN { p=(e/t)*100; if (p>100) p=100; if (p<0) p=0; printf "%.2f", p }')
+fi
+
+h=$((remaining / 3600))
+m=$(((remaining % 3600) / 60))
+s=$((remaining % 60))
+if [ "$h" -gt 0 ]; then
+  display=$(printf '%d:%02d:%02d' "$h" "$m" "$s")
+else
+  display=$(printf '%d:%02d' "$m" "$s")
+fi
+
+jq -nc \
+  --argjson active 1 \
+  --arg phase "$phase" \
+  --argjson remaining "$remaining" \
+  --argjson total "$total" \
+  --argjson progress "$progress" \
+  --arg display "$display" \
+  --arg msg "$msg" \
+  --arg color "$color" \
+  '{active:$active, phase:$phase, remaining:$remaining, total:$total, progress:$progress, display:$display, msg:$msg, color:$color}'

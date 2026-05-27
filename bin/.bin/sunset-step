@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Step hyprsunset temperature warmer or cooler.
+
+STEP=500
+MIN=2500
+MAX=6500
+
+current=$(hyprctl hyprsunset temperature)
+
+case "$1" in
+    warmer) new=$((current - STEP)); (( new < MIN )) && new=$MIN ;;
+    cooler) new=$((current + STEP)); (( new > MAX )) && new=$MAX ;;
+    *) echo "usage: sunset-step warmer|cooler" >&2; exit 1 ;;
+esac
+
+hyprctl hyprsunset temperature "$new" >/dev/null
+notify-send -t 1000 -h "string:x-canonical-private-synchronous:sunset" "Sunset" "${new}K"
