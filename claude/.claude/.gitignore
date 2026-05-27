@@ -24,6 +24,32 @@
 !hooks/
 !hooks/**
 
+# Vendor skills — symlinks into upstream mirrors, not user-authored. Re-deny
+# after the !skills/** allowlist so they don't leak in as symlink entries
+# whose targets are per-machine paths. Sources:
+#   ~/.agents/upstream-mattpocock/  — most non-golang vendor skills
+#   ~/.agents/skills/               — golang-* family
+#   bundled vendor clone w/ own .git — stop-slop
+#   ~/workspace/ai/household-oc/... — project-local shared skill (holly)
+skills/caveman
+skills/diagnose
+skills/edit-article
+skills/git-guardrails-claude-code
+skills/golang-*
+skills/grill-me
+skills/grill-with-docs
+skills/handoff
+skills/holly
+skills/improve-codebase-architecture
+skills/obsidian-vault
+skills/stop-slop
+skills/tdd
+skills/to-issues
+skills/to-prd
+skills/triage
+skills/write-a-skill
+skills/zoom-out
+
 # IDE integration
 !ide/
 !ide/**
