@@ -39,3 +39,40 @@ default-timeout=5000
 border-color=#e27878
 background-color=#161821E6
 default-timeout=0
+# Timer category overrides — appended to mako config after each theme swap.
+# Matches the tokyo-night palette used by the eww timer bar so the bar and
+# notification share a visual identity regardless of the active mako theme.
+# Edited by hand? Also edit ~/.dotfiles/bin/.bin/theme-switcher.sh which
+# concatenates this onto the destination after the per-theme mako.conf copy.
+
+[category=timer-red]
+border-color=#f7768e
+
+[category=timer-green]
+border-color=#9ece6a
+
+[category=timer-yellow]
+border-color=#e0af68
+
+[category=timer-blue]
+border-color=#7aa2f7
+
+[category=timer-purple]
+border-color=#bb9af7
+
+[category=timer-cyan]
+border-color=#7dcfff
+# Household category overrides — appended to mako config after each theme swap.
+# Same pattern as timer-categories.conf: per-agent border color so household
+# notifications carry the agent's visual identity regardless of theme.
+# Edited by hand? Also edit ~/.dotfiles/bin/.bin/theme-switcher.sh which
+# concatenates this onto the destination after the per-theme mako.conf copy.
+
+[category=household.tactical]
+border-color=#ffffff
+
+[category=household.io]
+border-color=#7aa2f7
+
+[category=household.frederica]
+border-color=#9ece6a

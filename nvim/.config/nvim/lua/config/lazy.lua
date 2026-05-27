@@ -45,6 +45,24 @@ if ok and theme_config and theme_config.colorscheme then
 	-- Set background
 	vim.opt.background = theme_config.background
 
+	-- Palette overrides (plugin has no public override API, patch its cached module table)
+	if theme_config.colorscheme == "neon" then
+		local ok_neon, neon_colors = pcall(require, "neon.colors")
+		if ok_neon then
+			neon_colors.red        = "#ff2d95"
+			neon_colors.yellow     = "#ffd166"
+			neon_colors.orange     = "#ff7a47"
+			neon_colors.green      = "#00ffb3"
+			neon_colors.cyan       = "#00f0ff"
+			neon_colors.dark_cyan  = "#0099cc"
+			neon_colors.blue       = "#00b3ff"
+			neon_colors.violet     = "#c98bff"
+			neon_colors.purple     = "#ff5eb8"
+			neon_colors.light_blue = "#5ad1ff"
+			neon_colors.light_pink = "#ff9ad6"
+		end
+	end
+
 	-- Apply colorscheme
 	vim.cmd.colorscheme(theme_config.colorscheme)
 

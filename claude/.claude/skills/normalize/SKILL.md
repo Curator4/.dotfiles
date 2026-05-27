@@ -1,6 +1,6 @@
 ---
 name: normalize
-description: "Add or update TTS text normalization rules in tts_hook.py's clean_for_speech()"
+description: "Add or update TTS text normalization rules in tts_text.py's clean_for_speech()"
 argument-hint: "<pattern> [to <replacement>] | [# <symbol> to <word>]"
 ---
 
@@ -27,7 +27,7 @@ Add, update, or remove text normalization rules in the TTS pipeline.
 
 ## Instructions
 
-The normalization file is `~/workspace/ai/qwen-tts/tts_hook.py`, specifically the `clean_for_speech()` function.
+The normalization file is `~/workspace/ai/tts-daemon/tts_text.py`, specifically the `clean_for_speech()` function. This is the single source of truth — the hook (`tts_hook.py`) passes text through without normalizing.
 
 ### Step 1: Parse the user's intent
 
@@ -43,7 +43,7 @@ When the intent is ambiguous, **read the current rules first** to understand wha
 
 ### Step 2: Read the current state
 
-**Always read `~/workspace/ai/qwen-tts/tts_hook.py`** before making changes. The `clean_for_speech()` function has carefully ordered sections. You MUST understand the current layout before inserting.
+**Always read `~/workspace/ai/tts-daemon/tts_text.py`** before making changes. The `clean_for_speech()` function has carefully ordered sections. You MUST understand the current layout before inserting.
 
 ### Step 3: Determine where to insert
 
@@ -52,16 +52,20 @@ The rule sections in `clean_for_speech()` are ordered — **insertion point matt
 | Section | What goes here | Anchor pattern to find |
 |---------|---------------|----------------------|
 | Structural | Code blocks, inline code, quotes, dashes, headers, bullets, tables, emojis | `# Text normalization for TTS` marks end of structural |
+| Jira tickets | `AR-28` → `A R 28` | `Jira ticket references` comment |
+| Compound terms | `GPT-SoVITS` (before identifier normalizer) | `Compound tech terms` comment |
 | Range dashes | `86-93` → `86 to 93` | `Range dashes:` comment |
-| Identifiers | snake_case, ALL_CAPS normalization | `Bare identifiers` comment |
+| Identifiers | snake_case, ALL_CAPS, CamelCase normalization | `Bare identifiers` comment |
 | Units | `3ms` → `3 milliseconds`, `5kg` → `5 kilograms` | `Compound units first` comment |
 | Slang/gaming | `gg`, `afk`, `btw` | `Slang / gaming terms` comment |
 | Tech terms | Pronunciation overrides for specific lowercase/mixed words | `# Tech terms` comment |
+| Complex patterns | Plurals (`FKs`), compounds, `#` symbols | `Complex patterns` comment |
 | `_ACRONYMS` dict | ALL CAPS acronyms: spell-outs, word expansions, phonetic | `_ACRONYMS = {` |
+| Roman numerals | `III` → `the third` (before catch-all) | `Roman numerals` comment |
 | Catch-all | Lowercases any remaining ALL CAPS word (emphasis, not acronym) | `Catch-all:` comment |
 | File paths | Path normalization | `Normalize file paths` comment |
 | File extensions | `.md` → `m d`, `.py` → `pee y` | `ext_pronunciations` dict |
-| Abbreviations | `w/o` → `without`, rates, approximations | `Common abbreviations` comment |
+| Abbreviations | `w/o` → `without`, `fwd` → `forward`, rates | `Common abbreviations` comment |
 | Operators | `&&`, `|`, `--flags` | `Operators` comment |
 | Pre-NeMo | Paragraph breaks, large numbers | `Paragraph/newline breaks` comment |
 | NeMo | Final number/date normalization | `NeMo normalization` comment |
@@ -104,7 +108,7 @@ text = re.sub(r"\bFOOs\b", "foo bars", text, flags=re.IGNORECASE)
 text = re.sub(r"\bFOO[-‑ ](\d+)\b", r"F O O \1", text, flags=re.IGNORECASE)
 ```
 
-### Step 5: Edit the file
+### Step 5: Edit both files
 
 Use the Edit tool to insert the new rule. **Be precise:**
 - For dict entries: add to the appropriate section (spell-outs, word expansions, or phonetic) inside `_ACRONYMS`

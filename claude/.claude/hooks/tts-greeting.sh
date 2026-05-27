@@ -20,9 +20,12 @@ if [ ! -t 0 ]; then
 fi
 SESSION_ID="${SESSION_ID:-greeting}"
 
-# Resolve voice from tts-voices.json using cwd
+# Resolve voice: TTS_VOICE env var > project match > default
 VOICE_CONFIG=~/.claude/tts-voices.json
-VOICE=$(python3 -c "
+if [ -n "$TTS_VOICE" ]; then
+    VOICE="$TTS_VOICE"
+else
+    VOICE=$(python3 -c "
 import json, sys
 try:
     cfg = json.load(open('$VOICE_CONFIG'))
@@ -33,7 +36,8 @@ for pat, v in cfg.get('projects', {}).items():
         print(v); sys.exit(0)
 print(cfg.get('default', 'mustang'))
 " 2>/dev/null)
-VOICE="${VOICE:-mustang}"
+    VOICE="${VOICE:-mustang}"
+fi
 
 # Time-of-day aware greetings
 if [ "$HOUR" -lt 6 ]; then
@@ -78,6 +82,11 @@ else
         cyber)   PHRASE=$(pick "late hours" "night watch" "still operational") ;;
         *)       PHRASE=$(pick "late one tonight" "hey, late night" "still at it") ;;
     esac
+fi
+
+# Persist voice for this session so the watcher can pick it up
+if [ "$SESSION_ID" != "greeting" ]; then
+    echo "$VOICE" > ~/.claude/tts-session-voices/"$SESSION_ID"
 fi
 
 # Send to daemon via socket

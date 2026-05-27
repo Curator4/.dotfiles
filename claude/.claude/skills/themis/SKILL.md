@@ -1,6 +1,6 @@
 ---
 name: themis
-description: Health tracking and session logging — meals, workouts, weight, summaries, meal reference, and end-of-session diary entries. Use when the user talks about food, exercise, weight, or invokes /themis.
+description: Health tracking and session logging — meals, workouts, weight, fasting windows, summaries, meal reference, and end-of-session diary entries. Use when the user talks about food, exercise, weight, fasting, or invokes /themis.
 argument-hint: "[optional note or command]"
 ---
 
@@ -26,6 +26,7 @@ Read the user's message and args, then pick the matching operation:
 | "recent entries", "diary last N days", "show my log" | Recent entries |
 | "add meal reference", "save this meal", "add to meal DB" | Add meal reference |
 | "look up meal", "what's in X", "meal macros for X", "find meal" | Get meal reference |
+| "fasting summary", "fasting this week", "how's my fasting" | Fasting summary |
 
 When invoked as `/themis` with no argument or a session note, default to Session log.
 
@@ -69,9 +70,9 @@ Tags: #themis #{YYYY}
 - **Nutrition:** `- HH:MM | {description} | {calories} kcal | {protein}g protein`
 - **Workout:** `- HH:MM | {description}`
 - **Weight:** `- {weight}kg` (no trailing zeros: `80` not `80.0`, but `80.5` stays as `80.5`)
-- **Session log:** `- ~{duration} — {summary}` (past tense, one sentence)
+- **Session log:** `- HH:MM | ~{duration} — {summary}` (past tense, one sentence). `HH:MM` is when the entry was logged; `~{duration}` is how long the session ran.
 
-Get current time with `date +%H:%M` when logging meals or workouts.
+Get current time with `date +%H:%M` when logging meals, workouts, or session entries.
 
 ---
 
@@ -110,13 +111,14 @@ End-of-session diary entry. Triggered by `/themis` or `/themis "note"`.
 
 Steps:
 1. Get today's date from system clock.
-2. Derive diary path. Create file from template if missing.
-3. Read the file.
-4. Summarise the session: scan the conversation for the main work done, decisions made, topics explored. 1–2 tight sentences, past tense.
-5. Estimate duration from first to last message. Round to nearest 15 min. Format: `Xh`, `Xh Ym`, or `Ym`. Use `?` if unknown.
-6. If user provided a note after `/themis "..."`, weave it in or append after `;`.
-7. Insert using log insertion rules.
-8. Confirm with the entry written. Do not ask clarifying questions — best effort always.
+2. Get current time with `date +%H:%M` — this is the logged-at timestamp.
+3. Derive diary path. Create file from template if missing.
+4. Read the file.
+5. Summarise the session: scan the conversation for the main work done, decisions made, topics explored. 1–2 tight sentences, past tense.
+6. Estimate duration from first to last message. Round to nearest 15 min. Format: `Xh`, `Xh Ym`, or `Ym`. Use `?` if unknown.
+7. If user provided a note after `/themis "..."`, weave it in or append after `;`.
+8. Insert using log insertion rules. Entry shape: `- HH:MM | ~{duration} — {summary}`.
+9. Confirm with the entry written. Do not ask clarifying questions — best effort always.
 
 **Duration format:** `~1h 30m`, `~45m`, `~2h`, `~?`
 
@@ -150,6 +152,26 @@ Steps:
 4. Read file to determine section state.
 5. Insert into `## stats` using stats insertion rules.
 6. Confirm with entry written.
+
+### Fasting Summary
+
+Fasting windows are derived from nutrition timestamps — no separate logging needed. The user follows a 20:4 warrior protocol (20h fast, 4h eating window).
+
+Steps:
+1. Determine date range. Default = last 7 days. Extend to 30 if user says "month".
+2. For each date in range, read the daily note if it exists.
+3. Parse `## nutrition` entries to extract meal timestamps (the `HH:MM` at the start of each entry).
+4. For each day with nutrition data, identify:
+   - **First meal** = earliest timestamp → this is when the eating window opened (fast broken).
+   - **Last meal** = latest timestamp → this is when the eating window effectively closed.
+   - **Eating window** = last meal time − first meal time.
+5. Calculate **fasting duration** by looking at consecutive days: previous day's last meal to current day's first meal. If previous day has no data, the fast duration for that day is unknown.
+6. For each day, assess against 20:4 target:
+   - Eating window ≤ 4h = on target.
+   - Eating window 4–6h = close but over.
+   - Eating window > 6h = missed target.
+   - Fast duration ≥ 20h = on target. 18–20h = close. < 18h = short fast.
+7. Report in prose: per-day eating windows and fast durations where calculable, average eating window, number of days on target, trend. Flag days with no nutrition data as untracked.
 
 ### Nutrition Summary
 
@@ -207,12 +229,22 @@ Steps:
 
 Keep confirmations short and TTS-friendly. Prose, not tables. Example formats:
 
-- "Logged to themis/2026/2026-04/2026-04-07.md — `- ~1h 15m — Implemented AR-83 poll supervisor.`"
+- "Logged to themis/2026/2026-04/2026-04-07.md — `- 18:42 | ~1h 15m — Implemented AR-83 poll supervisor.`"
 - "Nutrition entry added: chicken and rice, 550 kcal, 45g protein."
 - "Weight logged: 82.3kg."
 - "Found 2 meals matching 'rice': Brown rice (350 kcal, 7g protein) and Chicken rice bowl (550 kcal, 45g protein)."
 
 ---
+
+## Vault context
+
+The vault has structure beyond the themis tree:
+
+- **Substrate** (themis writes here) — `themis/YYYY/YYYY-MM/YYYY-MM-DD.md` daily notes, `themis/meals_reference.json`, etc. This is the correct scope for this skill.
+- **Wiki layer** at `~/obsidian-vault/wiki/<instance>/` — LLM-maintained synthesis. **Don't write here from themis.** The wiki has its own ingest and lint skills (`/wiki-ingest`, `/wiki-lint`); session logs reach the wiki only via explicit ingest.
+- **Pending vault audit** — the vault root has scattered files from older work (planning notes, old project drafts, vendor info) and is queued for a cleanup pass. Themis writes only to `themis/YYYY/…` so it doesn't add to the root mess; keep that scoping strict.
+
+If a session captures a substantive insight worth promoting to the wiki — a recurring pattern, a new design decision, a learned best practice — surface that to the user as a one-line note ("worth ingesting to the wiki?"). Don't auto-promote. Themis owns the log; the wiki owns the synthesis.
 
 ## Notes
 

@@ -36,9 +36,13 @@ apply_theme() {
         echo "  ✓ Updated Waybar CSS"
     fi
 
-    # 4. Copy Mako config
+    # 4. Copy Mako config + append shared timer + household category rules
     if [ -f "$THEME_DIR/mako.conf" ]; then
         cp "$THEME_DIR/mako.conf" "$DOTFILES/mako/.config/mako/config"
+        TIMER_CATS="$DOTFILES/mako/.config/mako/timer-categories.conf"
+        [ -f "$TIMER_CATS" ] && cat "$TIMER_CATS" >> "$DOTFILES/mako/.config/mako/config"
+        HOUSEHOLD_CATS="$DOTFILES/mako/.config/mako/household-categories.conf"
+        [ -f "$HOUSEHOLD_CATS" ] && cat "$HOUSEHOLD_CATS" >> "$DOTFILES/mako/.config/mako/config"
         echo "  ✓ Updated Mako config"
     fi
 

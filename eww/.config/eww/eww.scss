@@ -98,3 +98,83 @@ window {
   font-family: "Hack Nerd Font";
   font-weight: bold;
 }
+
+// ── Timer Bar ────────────────────────────────────────────
+.timer-bar {
+  background-color: rgba(10, 10, 18, 0.94);
+  padding: 22px 36px 16px;
+  border-bottom: 1px solid rgba(122, 162, 247, 0.18);
+}
+
+.timer-row {
+  margin-bottom: 16px;
+}
+
+.timer-time {
+  font-family: "Hack Nerd Font";
+  font-weight: bold;
+  font-size: 56px;
+  color: #c0c8d8;
+  letter-spacing: 1px;
+}
+
+.timer-msg {
+  font-family: "Hack Nerd Font";
+  font-size: 24px;
+  color: #c0c8d8;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+.timer-progress trough {
+  background-color: rgba(255, 255, 255, 0.06);
+  border: none;
+  border-radius: 3px;
+  min-height: 6px;
+}
+
+.timer-progress progress {
+  border-radius: 3px;
+  background-image: none;
+  min-height: 6px;
+}
+
+// ── Color variants ───────────────────────────────────────
+.timer-c-red    .timer-time,
+.timer-c-red    .timer-msg               { color: #f7768e; }
+.timer-c-red                             { border-bottom-color: rgba(247, 118, 142, 0.45); }
+.timer-c-red    .timer-progress progress { background-color: #f7768e; }
+
+.timer-c-green  .timer-time,
+.timer-c-green  .timer-msg               { color: #9ece6a; }
+.timer-c-green                           { border-bottom-color: rgba(158, 206, 106, 0.45); }
+.timer-c-green  .timer-progress progress { background-color: #9ece6a; }
+
+.timer-c-yellow .timer-time,
+.timer-c-yellow .timer-msg               { color: #e0af68; }
+.timer-c-yellow                          { border-bottom-color: rgba(224, 175, 104, 0.45); }
+.timer-c-yellow .timer-progress progress { background-color: #e0af68; }
+
+.timer-c-blue   .timer-time,
+.timer-c-blue   .timer-msg               { color: #7aa2f7; }
+.timer-c-blue                            { border-bottom-color: rgba(122, 162, 247, 0.45); }
+.timer-c-blue   .timer-progress progress { background-color: #7aa2f7; }
+
+.timer-c-purple .timer-time,
+.timer-c-purple .timer-msg               { color: #bb9af7; }
+.timer-c-purple                          { border-bottom-color: rgba(187, 154, 247, 0.45); }
+.timer-c-purple .timer-progress progress { background-color: #bb9af7; }
+
+.timer-c-cyan   .timer-time,
+.timer-c-cyan   .timer-msg               { color: #7dcfff; }
+.timer-c-cyan                            { border-bottom-color: rgba(125, 207, 255, 0.45); }
+.timer-c-cyan   .timer-progress progress { background-color: #7dcfff; }
+
+// ── Phase: done — fully filled, brighter ─────────────────
+.timer-p-done {
+  background-color: rgba(20, 10, 10, 0.96);
+}
+
+.timer-p-done .timer-time {
+  text-shadow: 0 0 18px currentColor;
+}

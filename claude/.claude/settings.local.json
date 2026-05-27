@@ -61,5 +61,6 @@
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "weather"
-  ]
+  ],
+  "outputStyle": "Socratic"
 }

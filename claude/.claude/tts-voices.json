@@ -8,6 +8,10 @@
     "Mustang": "mustang",
     "Velise": "velise"
   },
+  "colors": {
+    "yellow": "mustang",
+    "red": "velise"
+  },
   "insight_moods": {
     "mustang": "intimate",
     "velise": "resolute"

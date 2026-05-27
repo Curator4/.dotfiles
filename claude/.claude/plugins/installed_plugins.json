@@ -59,10 +59,10 @@
       {
         "scope": "project",
         "projectPath": "/home/curator/workspace/pnc/alarm-receiver",
-        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/security-guidance/unknown",
-        "version": "unknown",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/security-guidance/2.0.0",
+        "version": "2.0.0",
         "installedAt": "2026-02-27T07:54:23.782Z",
-        "lastUpdated": "2026-03-25T15:09:38.044Z",
+        "lastUpdated": "2026-05-27T05:34:49.928Z",
         "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
       }
     ],
@@ -102,10 +102,10 @@
     "atlassian@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/atlassian/385c1469c567",
-        "version": "385c1469c567",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/atlassian/9b52fb18e184",
+        "version": "9b52fb18e184",
         "installedAt": "2026-02-27T07:55:38.811Z",
-        "lastUpdated": "2026-03-11T20:35:37.202Z",
+        "lastUpdated": "2026-04-14T21:30:51.266Z",
         "gitCommitSha": "5fa435362b2c2a1de6199e5373757854663df530"
       }
     ],
@@ -153,11 +153,76 @@
     "superpowers@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/superpowers/5.0.7",
-        "version": "5.0.7",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/superpowers/5.1.0",
+        "version": "5.1.0",
         "installedAt": "2026-02-28T12:45:29.023Z",
-        "lastUpdated": "2026-03-31T19:39:23.799Z",
+        "lastUpdated": "2026-05-05T07:41:19.618Z",
         "gitCommitSha": "e4a2375cb705ca5800f0833528ce36a3faf9017a"
+      }
+    ],
+    "ralph-loop@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/ralph-loop/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-04-24T13:28:47.522Z",
+        "lastUpdated": "2026-04-24T13:28:47.522Z"
+      }
+    ],
+    "serena@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/serena/unknown",
+        "version": "unknown",
+        "installedAt": "2026-04-24T13:29:08.516Z",
+        "lastUpdated": "2026-04-24T13:29:08.516Z"
+      }
+    ],
+    "discord@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/discord/0.0.4",
+        "version": "0.0.4",
+        "installedAt": "2026-04-24T17:18:12.415Z",
+        "lastUpdated": "2026-04-24T17:18:12.415Z"
+      }
+    ],
+    "fakechat@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/fakechat/0.0.1",
+        "version": "0.0.1",
+        "installedAt": "2026-04-24T17:31:54.420Z",
+        "lastUpdated": "2026-04-24T17:31:54.420Z"
+      }
+    ],
+    "frontend-design@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/frontend-design/unknown",
+        "version": "unknown",
+        "installedAt": "2026-04-25T14:41:55.069Z",
+        "lastUpdated": "2026-04-25T14:41:55.069Z"
+      }
+    ],
+    "filebridge@household": [
+      {
+        "scope": "user",
+        "installPath": "/home/curator/.claude/plugins/cache/household/filebridge/0.1.0",
+        "version": "0.1.0",
+        "installedAt": "2026-05-03T18:34:55.229Z",
+        "lastUpdated": "2026-05-03T18:34:55.229Z",
+        "gitCommitSha": "6715671db60e7aa053872c8c7562e9e407f2e844"
+      }
+    ],
+    "inter-session@inter-session": [
+      {
+        "scope": "user",
+        "installPath": "/home/curator/.claude/plugins/cache/inter-session/inter-session/0.1.1",
+        "version": "0.1.1",
+        "installedAt": "2026-05-08T13:23:52.708Z",
+        "lastUpdated": "2026-05-08T13:23:52.708Z",
+        "gitCommitSha": "2eb8c1d60f20168cbbc0ea48c2e8a057134243cc"
       }
     ]
   }
