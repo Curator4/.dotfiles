@@ -64,13 +64,16 @@ notify() {
 
 # ---------- path resolution ----------
 
-# Source repo = git root of cwd at invocation time.
-SOURCE_REPO="$(git rev-parse --show-toplevel 2>/dev/null || true)"
-if [[ -z "$SOURCE_REPO" ]]; then
+# Source repo = the MAIN working tree, not the linked worktree: `--show-toplevel`
+# returns the worktree root under .claude/worktrees/<ticket>, where the gitignored
+# `docs` symlink is absent (that aborted AR-215). worktree-list[0] is always main.
+if ! git rev-parse --is-inside-work-tree &>/dev/null; then
   notify critical "❌ docs agent" "$TICKET — not inside a git repo, dispatch aborted"
   echo "not inside a git repo" >&2
   exit 1
 fi
+SOURCE_REPO="$(git worktree list --porcelain 2>/dev/null | sed -n '1s/^worktree //p')"
+[[ -n "$SOURCE_REPO" ]] || SOURCE_REPO="$(git rev-parse --show-toplevel)"
 
 # Docs repo = <source>/docs/ by convention. Symlink-resolved.
 DOCS="$SOURCE_REPO/docs"
