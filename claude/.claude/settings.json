@@ -242,7 +242,8 @@
     "discord@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": false,
     "filebridge@household": true,
-    "inter-session@inter-session": true
+    "inter-session@inter-session": true,
+    "codex@openai-codex": true
   },
   "extraKnownMarketplaces": {
     "household": {
@@ -256,9 +257,17 @@
         "source": "directory",
         "path": "/home/curator/workspace/ai/inter-session"
       }
+    },
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
+      }
     }
   },
   "effortLevel": "xhigh",
+  "ultracode": true,
+  "autoCompactWindow": 1000000,
   "autoDreamEnabled": true,
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark-ansi",
@@ -266,6 +275,5 @@
   "teammateMode": "auto",
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "voiceEnabled": true,
-  "autoCompactWindow": 1000000
+  "voiceEnabled": true
 }

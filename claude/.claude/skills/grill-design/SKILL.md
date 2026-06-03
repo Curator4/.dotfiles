@@ -29,9 +29,11 @@ If you're unsure whether something qualifies, run the skill — false positives 
 
 4. **Name what becomes hard to reverse.** Specifically: which files/branches/tickets/services would need to be touched to undo this in a week? In a month?
 
-5. **STOP.** Do not execute. Wait for explicit approval from the user. "Looks good" / "go" / "ship it" = approved. Silence ≠ approval. A correction or new question = back to step 1 with the new info.
+5. **Offer a cross-vendor sanity check.** If the decision involves a code diff (not a pure scoping/closure call), ask the user once: "Want me to run `/codex:adversarial-review` against the diff before you sign off?" If yes, run it and fold findings into the decision summary. If no, or no clear answer, skip — proceed to step 6. Don't auto-run. Don't re-ask if declined.
 
-6. **Only after approval, execute.** If the user approves with caveats, restate the decision incorporating the caveats before moving.
+6. **STOP.** Do not execute. Wait for explicit approval from the user. "Looks good" / "go" / "ship it" = approved. Silence ≠ approval. A correction or new question = back to step 1 with the new info.
+
+7. **Only after approval, execute.** If the user approves with caveats, restate the decision incorporating the caveats before moving.
 
 ## What this is NOT
 

@@ -218,11 +218,21 @@
     "inter-session@inter-session": [
       {
         "scope": "user",
-        "installPath": "/home/curator/.claude/plugins/cache/inter-session/inter-session/0.1.1",
-        "version": "0.1.1",
+        "installPath": "/home/curator/.claude/plugins/cache/inter-session/inter-session/0.1.4",
+        "version": "0.1.4",
         "installedAt": "2026-05-08T13:23:52.708Z",
-        "lastUpdated": "2026-05-08T13:23:52.708Z",
-        "gitCommitSha": "2eb8c1d60f20168cbbc0ea48c2e8a057134243cc"
+        "lastUpdated": "2026-05-28T08:45:48.051Z",
+        "gitCommitSha": "9954aaa37ce372f3e4ecd0ce54f3d70a75d3612e"
+      }
+    ],
+    "codex@openai-codex": [
+      {
+        "scope": "user",
+        "installPath": "/home/curator/.claude/plugins/cache/openai-codex/codex/1.0.4",
+        "version": "1.0.4",
+        "installedAt": "2026-05-27T14:15:16.986Z",
+        "lastUpdated": "2026-05-27T14:15:16.986Z",
+        "gitCommitSha": "807e03ac9d5aa23bc395fdec8c3767500a86b3cf"
       }
     ]
   }

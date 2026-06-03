@@ -37,7 +37,7 @@ if status is-interactive
     alias gtree 'git log --oneline --graph -20'
     alias t 'tree -L'
     function __cc_slug; basename (pwd) | tr '[:upper:]' '[:lower:]' | tr -c 'a-z0-9-' '-' | string trim -c '-' | string sub -l 30; end
-    function cc; set -q INTER_SESSION_NAME; or set -lx INTER_SESSION_NAME (__cc_slug); claude --allow-dangerously-skip-permissions --permission-mode auto $argv; end
+    function cc; set -q INTER_SESSION_NAME; or set -lx INTER_SESSION_NAME (__cc_slug); claude --allow-dangerously-skip-permissions --permission-mode auto --settings '{"ultracode": true}' $argv; end
     function ccd; set -lx INTER_SESSION_NAME discord-(__cc_slug); set -lx INTER_SESSION_LABEL "discord channel"; cc --channels plugin:discord@claude-plugins-official $argv; end
     function ccm; test -n "$KITTY_LISTEN_ON"; and kitty @ --to "$KITTY_LISTEN_ON" set-colors --all --configured ~/.dotfiles/themes/cyber/kitty.conf 2>/dev/null; test -n "$KITTY_PID"; and hyprctl dispatch setprop "pid:$KITTY_PID" active_border_color "rgba(84a0c6AA)" &>/dev/null; set -x TTS_VOICE mustang; set -lx INTER_SESSION_NAME mustang-(__cc_slug); set -lx INTER_SESSION_LABEL "Mustang — strategic, dry wit"; if test (count $argv) -eq 0; cc --append-system-prompt-file ~/.claude/agents/mustang.md "/color blue"; else; cc --append-system-prompt-file ~/.claude/agents/mustang.md $argv; end; end
     function ccv; test -n "$KITTY_LISTEN_ON"; and kitty @ --to "$KITTY_LISTEN_ON" set-colors --all --configured ~/.dotfiles/themes/ashen/kitty.conf 2>/dev/null; test -n "$KITTY_PID"; and hyprctl dispatch setprop "pid:$KITTY_PID" active_border_color "rgba(8B2222ee)" &>/dev/null; set -x TTS_VOICE velise; set -lx INTER_SESSION_NAME velise-(__cc_slug); set -lx INTER_SESSION_LABEL "Velise — sharp, analytical"; if test (count $argv) -eq 0; cc --append-system-prompt-file ~/.claude/agents/velise.md "/color red"; else; cc --append-system-prompt-file ~/.claude/agents/velise.md $argv; end; end
@@ -84,3 +84,7 @@ end
 
 # OpenClaw Completion
 source "/home/curator/.openclaw/completions/openclaw.fish"
+
+# >>> grok installer >>>
+fish_add_path $HOME/.grok/bin
+# <<< grok installer <<<

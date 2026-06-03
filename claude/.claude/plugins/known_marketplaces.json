@@ -5,7 +5,7 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/home/curator/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-05-27T07:05:40.466Z"
+    "lastUpdated": "2026-06-03T11:26:25.096Z"
   },
   "anthropic-agent-skills": {
     "source": {
@@ -13,7 +13,7 @@
       "repo": "anthropics/skills"
     },
     "installLocation": "/home/curator/.claude/plugins/marketplaces/anthropic-agent-skills",
-    "lastUpdated": "2026-05-27T07:05:40.317Z"
+    "lastUpdated": "2026-06-03T11:26:24.921Z"
   },
   "household": {
     "source": {
@@ -30,5 +30,13 @@
     },
     "installLocation": "/home/curator/workspace/ai/inter-session",
     "lastUpdated": "2026-05-08T13:23:45.525Z"
+  },
+  "openai-codex": {
+    "source": {
+      "source": "github",
+      "repo": "openai/codex-plugin-cc"
+    },
+    "installLocation": "/home/curator/.claude/plugins/marketplaces/openai-codex",
+    "lastUpdated": "2026-05-27T14:14:56.583Z"
   }
 }

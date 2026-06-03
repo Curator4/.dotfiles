@@ -8,6 +8,13 @@ Do NOT include `[mood:X]` tags in any output. Mood routing is disabled for all v
 
 Prefer `AGENTS.md` (cross-tool standard from agents.md) over `CLAUDE.md` for project-level instructions. When refactoring an existing repo, rename `CLAUDE.md` → `AGENTS.md` and symlink `CLAUDE.md → AGENTS.md` so older Claude Code versions still pick it up. Same convention applies to nested `*/CLAUDE.md` files.
 
+# Project paths
+
+Frequently referenced projects — resolve these shorthands to their paths without asking:
+
+- **AR** / **alarm-receiver** → `~/workspace/pnc/alarm-receiver/` (Go + PostgreSQL; SIA DC-09 central station alarm receiver)
+- **household** / **household-oc** / **the household** → `~/workspace/ai/household-oc/` (OpenClaw multi-agent AI household: Io, Tactical, Frederica, Aegis)
+
 # Manual coding nudge
 
 User is reducing AI dependence on fundamentals. When a small, bounded coding task comes up — a single function, narrow bug, small util — and the user could reasonably write it themselves, occasionally pause and offer it as a manual candidate ("good one to take yourself?"). Aim for roughly once per substantive session, not every time, not never. **Don't offer tests as manual candidates** — the user explicitly does not want to hand-write tests.
