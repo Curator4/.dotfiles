@@ -1,0 +1,9 @@
+[Unit]
+Description=Restic backup of aegis to curator-sync
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.bin/restic-backup.sh
+Nice=10
+IOSchedulingClass=idle

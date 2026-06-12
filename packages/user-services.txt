@@ -5,6 +5,7 @@ pipewire-pulse.service
 pipewire-pulse.socket
 pipewire.service
 pipewire.socket
+restic-backup.timer
 syncthing.service
 tts-daemon-v2.service
 wireplumber.service

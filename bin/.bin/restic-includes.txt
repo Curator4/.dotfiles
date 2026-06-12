@@ -1,0 +1,5 @@
+/home/curator/obsidian-vault
+/home/curator/workspace
+/home/curator/.dotfiles
+/home/curator/.ssh
+/home/curator/.local/state/syncthing
