@@ -132,7 +132,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "opus[1m]",
+  "model": "claude-fable-5[1m]",
   "skillOverrides": {
     "golang-benchmark": "off",
     "golang-cli": "off",
@@ -239,11 +239,12 @@
     "skill-creator@claude-plugins-official": true,
     "superpowers@claude-plugins-official": false,
     "ralph-loop@claude-plugins-official": false,
-    "discord@claude-plugins-official": true,
+    "discord@claude-plugins-official": false,
     "frontend-design@claude-plugins-official": false,
     "filebridge@household": true,
     "inter-session@inter-session": true,
-    "codex@openai-codex": true
+    "codex@openai-codex": true,
+    "telegram@claude-plugins-official": false
   },
   "extraKnownMarketplaces": {
     "household": {
@@ -266,10 +267,10 @@
     }
   },
   "effortLevel": "xhigh",
-  "ultracode": true,
   "autoCompactWindow": 1000000,
   "autoDreamEnabled": true,
   "skipDangerousModePermissionPrompt": true,
+  "skipWorkflowUsageWarning": true,
   "theme": "dark-ansi",
   "verbose": false,
   "teammateMode": "auto",

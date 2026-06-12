@@ -5,7 +5,7 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/home/curator/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-06-03T11:26:25.096Z"
+    "lastUpdated": "2026-06-12T20:04:55.251Z"
   },
   "anthropic-agent-skills": {
     "source": {
@@ -13,7 +13,7 @@
       "repo": "anthropics/skills"
     },
     "installLocation": "/home/curator/.claude/plugins/marketplaces/anthropic-agent-skills",
-    "lastUpdated": "2026-06-03T11:26:24.921Z"
+    "lastUpdated": "2026-06-12T20:04:55.081Z"
   },
   "household": {
     "source": {

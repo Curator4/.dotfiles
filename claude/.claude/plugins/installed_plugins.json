@@ -59,10 +59,10 @@
       {
         "scope": "project",
         "projectPath": "/home/curator/workspace/pnc/alarm-receiver",
-        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/security-guidance/2.0.0",
-        "version": "2.0.0",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/security-guidance/2.0.6",
+        "version": "2.0.6",
         "installedAt": "2026-02-27T07:54:23.782Z",
-        "lastUpdated": "2026-05-27T05:34:49.928Z",
+        "lastUpdated": "2026-06-12T19:16:10.748Z",
         "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
       }
     ],
@@ -102,10 +102,10 @@
     "atlassian@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/atlassian/9b52fb18e184",
-        "version": "9b52fb18e184",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/atlassian/f4911dba81f2",
+        "version": "f4911dba81f2",
         "installedAt": "2026-02-27T07:55:38.811Z",
-        "lastUpdated": "2026-04-14T21:30:51.266Z",
+        "lastUpdated": "2026-06-10T16:29:21.212Z",
         "gitCommitSha": "5fa435362b2c2a1de6199e5373757854663df530"
       }
     ],
@@ -233,6 +233,15 @@
         "installedAt": "2026-05-27T14:15:16.986Z",
         "lastUpdated": "2026-05-27T14:15:16.986Z",
         "gitCommitSha": "807e03ac9d5aa23bc395fdec8c3767500a86b3cf"
+      }
+    ],
+    "telegram@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/telegram/0.0.6",
+        "version": "0.0.6",
+        "installedAt": "2026-06-09T10:15:55.035Z",
+        "lastUpdated": "2026-06-09T10:15:55.035Z"
       }
     ]
   }

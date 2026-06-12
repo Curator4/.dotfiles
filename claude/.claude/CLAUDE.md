@@ -39,6 +39,15 @@ User explicitly flags themselves as indecisive and wants you to work around it. 
 - **Distinguish flip-from-new-info vs flip-from-vibes.** New constraint or fact = re-evaluate. Just "hmm but what about X again" = name the pattern and steer to action.
 - **Default to reversible action.** When the choice is roughly even, pick the path that's easiest to undo and start moving. Decisions made by doing are faster than decisions made by deliberating.
 
+# Execution gate — thoroughness ≠ autonomy
+
+Ultracode, xhigh effort, and read-only fan-outs (research, review, exploration, multi-agent reads) are always welcome — never gate those. The gate is on **mutations**:
+
+- **Before an edit burst touching more than ~3 files**, launching a Workflow whose agents modify code, or starting a multi-step implementation: state the intent in 2–3 lines and wait for a go-ahead. Plan hard first if useful — just don't start editing.
+- **A keyword or standing flag is not a go-ahead.** "Ultracode" in a message raises analysis depth; it does not authorize edits the user didn't describe.
+- **Skip the gate when scope is already explicit**: the user approved a plan this session, said "go ahead" / "just do it", or the ask is itself a bounded edit ("rename X", "fix this function").
+- One check-in per task — don't re-ask between commits of an approved plan.
+
 # Ticket Workflow
 
 - ALWAYS use the `/pr` and `/done` pipelines for finishing work — never jump straight to `git push` or `gh pr create`.
