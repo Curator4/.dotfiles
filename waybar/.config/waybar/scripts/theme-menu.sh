@@ -32,9 +32,8 @@ if [ -n "$SELECTED" ]; then
     THEME_SLUG="${THEME_MAP[$SELECTED]}"
 
     if [ -n "$THEME_SLUG" ]; then
+        # apply also runs reload_services, which fully restarts waybar
+        # (picking up the theme's waybar.css) — no extra refresh needed here.
         "$SWITCHER" apply "$THEME_SLUG"
-
-        # Refresh waybar
-        pkill -RTMIN+8 waybar 2>/dev/null || true
     fi
 fi
