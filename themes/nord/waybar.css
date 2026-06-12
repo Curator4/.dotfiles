@@ -17,7 +17,7 @@ window#waybar {
     padding: 0 12px;
     color: rgba(129, 161, 193, 0.7);
 }
-#pulseaudio {
+#custom-volume {
     padding: 0 10px;
     color: rgba(191, 97, 106, 0.7);
 }

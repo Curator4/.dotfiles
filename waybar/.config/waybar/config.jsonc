@@ -6,7 +6,7 @@
 
     "modules-left": ["hyprland/workspaces", "custom/theme"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "bluetooth", "network", "custom/gpu", "custom/vram", "cpu", "memory", "disk"],
+    "modules-right": ["custom/volume", "bluetooth", "network", "custom/gpu", "custom/vram", "cpu", "memory", "disk"],
 
     "hyprland/workspaces": {
         "on-click": "activate",
@@ -58,13 +58,14 @@
         "on-click": "~/.config/waybar/scripts/bluetooth-menu.sh"
     },
 
-    "pulseaudio": {
-        "format": "VOL {volume}%",
-        "format-muted": "VOL Muted",
+    "custom/volume": {
+        "exec": "~/.config/waybar/scripts/volume.sh",
+        "return-type": "json",
+        "restart-interval": 2,
         "on-click": "flatpak run com.saivert.pwvucontrol",
-        "on-click-right": "pamixer -t",
-        "scroll-step": 5,
-        "tooltip-format": "{desc}\nVolume: {volume}%"
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.0",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
     },
 
     "cpu": {

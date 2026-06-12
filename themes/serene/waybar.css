@@ -14,7 +14,7 @@ window#waybar {
     color: #8b9ad8;
 }
 #clock { padding: 0 12px; color: rgba(139, 154, 216, 0.7); }
-#pulseaudio { padding: 0 10px; color: rgba(210, 15, 57, 0.7); }
+#custom-volume { padding: 0 10px; color: rgba(210, 15, 57, 0.7); }
 #bluetooth { padding: 0 10px; color: #8b9ad8; }
 #network { padding: 0 10px; color: #4c4f6a; }
 #custom-gpu { padding: 0 10px; color: #8b9ad8; }

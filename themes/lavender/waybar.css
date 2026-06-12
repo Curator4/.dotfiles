@@ -22,7 +22,7 @@ window#waybar {
     color: rgba(181, 101, 216, 0.7);
 }
 
-#pulseaudio {
+#custom-volume {
     padding: 0 10px;
     color: rgba(255, 159, 67, 0.7);
 }
