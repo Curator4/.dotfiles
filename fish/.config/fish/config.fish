@@ -37,8 +37,9 @@ if status is-interactive
     alias gtree 'git log --oneline --graph -20'
     alias t 'tree -L'
     function __cc_slug; basename (pwd) | tr '[:upper:]' '[:lower:]' | tr -c 'a-z0-9-' '-' | string trim -c '-' | string sub -l 30; end
-    function cc; set -q INTER_SESSION_NAME; or set -lx INTER_SESSION_NAME (__cc_slug); claude --allow-dangerously-skip-permissions --permission-mode auto --settings '{"ultracode": true}' $argv; end
-    function ccd; set -lx INTER_SESSION_NAME discord-(__cc_slug); set -lx INTER_SESSION_LABEL "discord channel"; cc --channels plugin:discord@claude-plugins-official $argv; end
+    function cc; set -q INTER_SESSION_NAME; or set -lx INTER_SESSION_NAME (__cc_slug); claude --allow-dangerously-skip-permissions --permission-mode auto $argv; end
+    function ccd; set -lx INTER_SESSION_NAME discord-(__cc_slug); set -lx INTER_SESSION_LABEL "discord channel"; test -n "$KITTY_PID"; and set -l __ws9 (hyprctl activewindow -j 2>/dev/null | jq -r '.pid'); and test "$__ws9" = "$KITTY_PID"; and hyprctl dispatch movetoworkspacesilent 9 &>/dev/null; claude --allow-dangerously-skip-permissions --permission-mode auto --model claude-opus-4-8 --effort xhigh --settings ~/.claude/channels/discord/io_settings.json --channels plugin:discord@claude-plugins-official --append-system-prompt-file ~/.claude/channels/discord/io_bot.md $argv; end
+    function cct; set -lx INTER_SESSION_NAME telegram-(__cc_slug); set -lx INTER_SESSION_LABEL "telegram channel"; test -n "$KITTY_PID"; and set -l __ws9 (hyprctl activewindow -j 2>/dev/null | jq -r '.pid'); and test "$__ws9" = "$KITTY_PID"; and hyprctl dispatch movetoworkspacesilent 9 &>/dev/null; claude --permission-mode dontAsk --model claude-opus-4-8 --effort xhigh --settings ~/.claude/channels/telegram/as_dev_settings.json --channels plugin:telegram@claude-plugins-official --append-system-prompt-file ~/.claude/channels/telegram/as_dev_bot.md $argv; end
     function ccm; test -n "$KITTY_LISTEN_ON"; and kitty @ --to "$KITTY_LISTEN_ON" set-colors --all --configured ~/.dotfiles/themes/cyber/kitty.conf 2>/dev/null; test -n "$KITTY_PID"; and hyprctl dispatch setprop "pid:$KITTY_PID" active_border_color "rgba(84a0c6AA)" &>/dev/null; set -x TTS_VOICE mustang; set -lx INTER_SESSION_NAME mustang-(__cc_slug); set -lx INTER_SESSION_LABEL "Mustang — strategic, dry wit"; if test (count $argv) -eq 0; cc --append-system-prompt-file ~/.claude/agents/mustang.md "/color blue"; else; cc --append-system-prompt-file ~/.claude/agents/mustang.md $argv; end; end
     function ccv; test -n "$KITTY_LISTEN_ON"; and kitty @ --to "$KITTY_LISTEN_ON" set-colors --all --configured ~/.dotfiles/themes/ashen/kitty.conf 2>/dev/null; test -n "$KITTY_PID"; and hyprctl dispatch setprop "pid:$KITTY_PID" active_border_color "rgba(8B2222ee)" &>/dev/null; set -x TTS_VOICE velise; set -lx INTER_SESSION_NAME velise-(__cc_slug); set -lx INTER_SESSION_LABEL "Velise — sharp, analytical"; if test (count $argv) -eq 0; cc --append-system-prompt-file ~/.claude/agents/velise.md "/color red"; else; cc --append-system-prompt-file ~/.claude/agents/velise.md $argv; end; end
     function cca; test -n "$KITTY_LISTEN_ON"; and kitty @ --to "$KITTY_LISTEN_ON" set-colors --all --configured ~/.dotfiles/themes/aegis/kitty.conf 2>/dev/null; test -n "$KITTY_PID"; and hyprctl dispatch setprop "pid:$KITTY_PID" active_border_color "rgba(d79921ee)" &>/dev/null; set -lx INTER_SESSION_NAME aegis-(__cc_slug); set -lx INTER_SESSION_LABEL "Aegis (yellow)"; if test (count $argv) -eq 0; cc "/color yellow"; else; cc $argv; end; end
@@ -72,7 +73,9 @@ fish_add_path ~/.turso
 
 # env vars
 set -x EDITOR nvim
-set -x GITHUB_TOKEN $(gh auth token)
+# Do NOT export GITHUB_TOKEN here — it snapshots gh's rotating OAuth token at
+# shell start, goes stale, and then shadows the working keyring auth (401s,
+# blocks `gh auth refresh`). Tools needing a token: use `gh auth token` at call time.
 
 # gcloud
 if test -f ~/Downloads/google-cloud-sdk/path.fish.inc
