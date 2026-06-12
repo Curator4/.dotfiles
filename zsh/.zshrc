@@ -59,13 +59,6 @@ export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.npm-global/bin:$PATH"
 export EDITOR="nvim"
 
-# Auto-start gator RSS aggregator in background (scrapes feeds every 1m)
-# To disable: comment out or remove this line
-# To stop running instance: pkill -f "gator agg"
-if ! pgrep -f "gator agg" > /dev/null; then
-  nohup gator agg 1m > /dev/null 2>&1 &
-fi
-
 
 
 # The next line updates PATH for the Google Cloud SDK.
