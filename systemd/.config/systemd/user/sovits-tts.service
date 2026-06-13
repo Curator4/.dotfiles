@@ -8,7 +8,13 @@ WorkingDirectory=/home/curator/workspace/ai/GPT-SoVITS
 Environment=CUDA_HOME=/opt/cuda
 Environment=PATH=/home/curator/.conda/envs/GPTSoVits/bin:/usr/local/bin:/usr/bin:/bin
 ExecStart=/home/curator/.conda/envs/GPTSoVits/bin/python api_v2.py -a 127.0.0.1 -p 9880
-ExecStartPost=/bin/sh -c 'sleep 10 && curl -s "http://localhost:9880/set_sovits_weights?weights_path=/home/curator/workspace/ai/GPT-SoVITS/SoVITS_weights_v4/mustang_v4_e12_s528_l64.pth" && curl -s "http://localhost:9880/set_gpt_weights?weights_path=/home/curator/workspace/ai/GPT-SoVITS/GPT_weights_v4/mustang_v4-e25.ckpt"'
+ExecStartPost=/bin/sh -c 'for i in $$(seq 1 60); do \
+    curl -sf --connect-timeout 5 "http://localhost:9880/set_sovits_weights?weights_path=/home/curator/workspace/ai/GPT-SoVITS/SoVITS_weights_v4/mustang_v4_e12_s528_l64.pth" \
+      && curl -sf --connect-timeout 5 "http://localhost:9880/set_gpt_weights?weights_path=/home/curator/workspace/ai/GPT-SoVITS/GPT_weights_v4/mustang_v4-e25.ckpt" \
+      && exit 0; \
+    sleep 1; \
+  done; \
+  echo "sovits-tts: weights failed to load after 60 attempts" >&2; exit 1'
 Restart=on-failure
 RestartSec=10
 
