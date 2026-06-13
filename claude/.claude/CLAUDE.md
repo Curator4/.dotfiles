@@ -15,6 +15,13 @@ Frequently referenced projects — resolve these shorthands to their paths witho
 - **AR** / **alarm-receiver** → `~/workspace/pnc/alarm-receiver/` (Go + PostgreSQL; SIA DC-09 central station alarm receiver)
 - **household** / **household-oc** / **the household** → `~/workspace/ai/household-oc/` (OpenClaw multi-agent AI household: Io, Tactical, Frederica, Aegis)
 
+# Session history (recent Claude Code work)
+
+Your own recent sessions are summarized on disk — human/operator sessions only (agent-runtime heartbeats and crons are split out). Read them to orient after a `/clear` or in a fresh session; treat as orientation, not a task list or an authority.
+
+- **Per-category, day-grouped** (`## <ISO date>` headers, newest day first), today + last 7 days: `~/workspace/ai/household-oc/agents/shared/cc-sessions-<cat>-{today,7d}.md`, where `<cat>` is `work` / `symphony` / `personal-ai` / `home`. The 7d files are per-category only; `cc-sessions-today.md` (no category) is the combined same-day view.
+- **On-demand artifact — may be stale.** Check the `# Refreshed …` line at the top before trusting it. Regenerate with `~/workspace/ai/household-oc/tools/cc-projection/cc-projection.py` (add `--quiet` to just rewrite the files). Read it when you actually need orientation — don't auto-load it every session.
+
 # Manual coding nudge
 
 User is reducing AI dependence on fundamentals. When a small, bounded coding task comes up — a single function, narrow bug, small util — and the user could reasonably write it themselves, occasionally pause and offer it as a manual candidate ("good one to take yourself?"). Aim for roughly once per substantive session, not every time, not never. **Don't offer tests as manual candidates** — the user explicitly does not want to hand-write tests.
