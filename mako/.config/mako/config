@@ -1,10 +1,10 @@
-# Mako notification daemon config - Frost theme
+# Mako notification daemon config - Ashen theme
 
 # Style
 font=Hack Nerd Font 12
-background-color=#161821E6
-text-color=#c6c8d1
-border-color=#84a0c6
+background-color=#121212E6
+text-color=#b4b4b4
+border-color=#D87C4A
 border-size=2
 border-radius=4
 padding=12
@@ -28,16 +28,16 @@ max-visible=5
 
 # Urgency overrides
 [urgency=low]
-border-color=#89b8c2
+border-color=#4A8B8B
 default-timeout=3000
 
 [urgency=normal]
-border-color=#84a0c6
+border-color=#D87C4A
 default-timeout=5000
 
 [urgency=critical]
-border-color=#e27878
-background-color=#161821E6
+border-color=#B14242
+background-color=#121212E6
 default-timeout=0
 # Timer category overrides — appended to mako config after each theme swap.
 # Matches the tokyo-night palette used by the eww timer bar so the bar and
@@ -70,9 +70,21 @@ border-color=#7dcfff
 
 [category=household.tactical]
 border-color=#ffffff
+default-timeout=12000
+width=480
+font=Hack Nerd Font 10
+height=350
 
 [category=household.io]
 border-color=#7aa2f7
+default-timeout=12000
+width=480
+font=Hack Nerd Font 10
+height=350
 
 [category=household.frederica]
 border-color=#9ece6a
+default-timeout=12000
+width=480
+font=Hack Nerd Font 10
+height=350
