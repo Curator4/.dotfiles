@@ -35,21 +35,19 @@
   },
   "wallpapers": {
     "static": [
-      "~/pictures/wallpapers/static/girl-vertical.jpg",
-      "~/pictures/wallpapers/static/cyber_neon_catgirl.jpg"
+      "~/pictures/wallpapers/static/cyan-glasses-girl.png",
+      "~/pictures/wallpapers/static/bubbles-splash-girl.png"
     ],
     "vertical": [
-      "~/pictures/wallpapers/vertical/cyber-vertical.jpg"
-    ],
-    "live": [
-      "~/pictures/wallpapers/live/pink cyber.mp4"
+      "~/pictures/wallpapers/vertical/cyber-neon-catgirl-vert.png",
+      "~/pictures/wallpapers/vertical/pink-sunglasses-girl.png"
     ]
   },
   "monitors": {
-    "DP-1": "static[0]",
-    "DP-2": "live[0]",
-    "DP-3": "static[1]",
-    "DP-4": "vertical[0]"
+    "DP-1": "vertical[0]",
+    "DP-2": "static[1]",
+    "DP-3": "static[0]",
+    "DP-4": "vertical[1]"
   },
   "rofi_theme": "neon",
   "obsidian": {

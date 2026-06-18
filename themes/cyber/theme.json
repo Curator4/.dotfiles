@@ -34,19 +34,19 @@
     }
   },
   "wallpapers": {
-    "vertical": [
-      "~/pictures/wallpapers/vertical/mountain-azure.jpg",
-      "~/pictures/wallpapers/vertical/sky-vertical.jpg"
+    "static": [
+      "~/pictures/wallpapers/static/terminal-tux.png",
+      "~/pictures/wallpapers/static/late-night-desk.png"
     ],
-    "live": [
-      "~/pictures/wallpapers/live/1657119748-1657119748-blue-planet-earth-hologram-animated-desktop-wallpaper.mp4",
-      "~/pictures/wallpapers/live/1655315225-1655315225-technology-grid-hd-live-wallpaper-for-pc.mp4"
+    "vertical": [
+      "~/pictures/wallpapers/vertical/cyberpunk-rooftop.png",
+      "~/pictures/wallpapers/vertical/dore-angels-violet.png"
     ]
   },
   "monitors": {
     "DP-1": "vertical[0]",
-    "DP-2": "live[0]",
-    "DP-3": "live[1]",
+    "DP-2": "static[1]",
+    "DP-3": "static[0]",
     "DP-4": "vertical[1]"
   },
   "rofi_theme": "cyber",

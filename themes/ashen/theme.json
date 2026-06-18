@@ -34,18 +34,20 @@
     }
   },
   "wallpapers": {
+    "static": [
+      "~/pictures/wallpapers/static/bloodmoon-city.jpg"
+    ],
     "vertical": [
       "~/pictures/wallpapers/vertical/mountain-red.jpg",
       "~/pictures/wallpapers/vertical/sky-vertical-red.jpg"
     ],
     "live": [
-      "~/pictures/wallpapers/live/red-text_cyber_red.mp4",
       "~/pictures/wallpapers/live/makima_red_intense_anime.mp4"
     ]
   },
   "monitors": {
     "DP-1": "vertical[0]",
-    "DP-2": "live[1]",
+    "DP-2": "static[0]",
     "DP-3": "live[0]",
     "DP-4": "vertical[1]"
   },

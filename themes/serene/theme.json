@@ -35,19 +35,21 @@
   },
   "wallpapers": {
     "static": [
-      "~/pictures/wallpapers/static/girl-vertical.jpg",
-      "~/pictures/wallpapers/static/coffee.png",
-      "~/pictures/wallpapers/static/tea.png"
+      "~/pictures/wallpapers/static/tea.png",
+      "~/pictures/wallpapers/static/miku-winter.jpg"
+    ],
+    "vertical": [
+      "~/pictures/wallpapers/vertical/coffee-girl-vert.png"
     ],
     "live": [
       "~/pictures/wallpapers/live/chill-girl_white_chill.mp4"
     ]
   },
   "monitors": {
-    "DP-1": "static[0]",
+    "DP-1": "vertical[0]",
     "DP-2": "static[1]",
     "DP-3": "live[0]",
-    "DP-4": "static[2]"
+    "DP-4": "static[0]"
   },
   "rofi_theme": "serene",
   "obsidian": {
