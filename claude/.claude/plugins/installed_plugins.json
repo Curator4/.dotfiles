@@ -18,7 +18,7 @@
         "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/code-review/unknown",
         "version": "unknown",
         "installedAt": "2026-02-27T07:52:30.382Z",
-        "lastUpdated": "2026-03-25T15:09:38.053Z",
+        "lastUpdated": "2026-06-16T13:07:00.143Z",
         "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
       }
     ],
@@ -29,7 +29,7 @@
         "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/feature-dev/unknown",
         "version": "unknown",
         "installedAt": "2026-02-27T07:52:49.540Z",
-        "lastUpdated": "2026-03-25T15:09:38.050Z",
+        "lastUpdated": "2026-06-16T13:07:00.142Z",
         "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
       }
     ],
@@ -51,7 +51,7 @@
         "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/commit-commands/unknown",
         "version": "unknown",
         "installedAt": "2026-02-27T07:53:55.272Z",
-        "lastUpdated": "2026-03-25T15:09:38.038Z",
+        "lastUpdated": "2026-06-16T13:07:00.142Z",
         "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
       }
     ],
@@ -84,7 +84,7 @@
         "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/pr-review-toolkit/unknown",
         "version": "unknown",
         "installedAt": "2026-02-27T07:54:48.221Z",
-        "lastUpdated": "2026-03-25T15:09:38.060Z",
+        "lastUpdated": "2026-06-16T13:07:00.141Z",
         "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
       }
     ],
@@ -95,7 +95,7 @@
         "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/context7/unknown",
         "version": "unknown",
         "installedAt": "2026-02-27T07:55:12.016Z",
-        "lastUpdated": "2026-03-25T15:09:38.057Z",
+        "lastUpdated": "2026-06-16T13:07:00.141Z",
         "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
       }
     ],
@@ -146,17 +146,17 @@
         "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/skill-creator/unknown",
         "version": "unknown",
         "installedAt": "2026-02-28T12:43:08.461Z",
-        "lastUpdated": "2026-03-25T15:06:37.192Z",
+        "lastUpdated": "2026-06-18T07:19:48.198Z",
         "gitCommitSha": "55b58ec6e5649104f926ba7558b567dc8d33c5ff"
       }
     ],
     "superpowers@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/superpowers/5.1.0",
-        "version": "5.1.0",
+        "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/superpowers/6.0.2",
+        "version": "6.0.2",
         "installedAt": "2026-02-28T12:45:29.023Z",
-        "lastUpdated": "2026-05-05T07:41:19.618Z",
+        "lastUpdated": "2026-06-17T19:08:48.484Z",
         "gitCommitSha": "e4a2375cb705ca5800f0833528ce36a3faf9017a"
       }
     ],
@@ -175,7 +175,7 @@
         "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/serena/unknown",
         "version": "unknown",
         "installedAt": "2026-04-24T13:29:08.516Z",
-        "lastUpdated": "2026-04-24T13:29:08.516Z"
+        "lastUpdated": "2026-06-18T07:19:48.194Z"
       }
     ],
     "discord@claude-plugins-official": [
@@ -202,7 +202,7 @@
         "installPath": "/home/curator/.claude/plugins/cache/claude-plugins-official/frontend-design/unknown",
         "version": "unknown",
         "installedAt": "2026-04-25T14:41:55.069Z",
-        "lastUpdated": "2026-04-25T14:41:55.069Z"
+        "lastUpdated": "2026-06-18T07:19:48.196Z"
       }
     ],
     "filebridge@household": [

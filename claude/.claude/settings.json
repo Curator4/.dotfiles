@@ -128,47 +128,10 @@
       "WebFetch(domain:ocdevel.com)",
       "WebFetch(domain:git.sr.ht)",
       "WebFetch(domain:thenextweb.com)",
-      "Bash(timer:*)"
+      "Bash(timer:*)",
+      "Bash(email-tool act:*)"
     ],
     "defaultMode": "auto"
-  },
-  "model": "claude-fable-5[1m]",
-  "skillOverrides": {
-    "golang-benchmark": "off",
-    "golang-cli": "off",
-    "golang-code-style": "off",
-    "golang-concurrency": "off",
-    "golang-context": "off",
-    "golang-continuous-integration": "off",
-    "golang-data-structures": "off",
-    "golang-database": "off",
-    "golang-dependency-injection": "off",
-    "golang-dependency-management": "off",
-    "golang-design-patterns": "off",
-    "golang-documentation": "off",
-    "golang-error-handling": "off",
-    "golang-grpc": "off",
-    "golang-lint": "off",
-    "golang-modernize": "off",
-    "golang-naming": "off",
-    "golang-observability": "off",
-    "golang-performance": "off",
-    "golang-popular-libraries": "off",
-    "golang-project-layout": "off",
-    "golang-safety": "off",
-    "golang-samber-do": "off",
-    "golang-samber-hot": "off",
-    "golang-samber-lo": "off",
-    "golang-samber-mo": "off",
-    "golang-samber-oops": "off",
-    "golang-samber-ro": "off",
-    "golang-samber-slog": "off",
-    "golang-security": "off",
-    "golang-stay-updated": "off",
-    "golang-stretchr-testify": "off",
-    "golang-structs-interfaces": "off",
-    "golang-testing": "off",
-    "golang-troubleshooting": "off"
   },
   "hooks": {
     "SessionStart": [
@@ -237,7 +200,7 @@
     "explanatory-output-style@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": false,
     "skill-creator@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": false,
+    "superpowers@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": false,
     "discord@claude-plugins-official": false,
     "frontend-design@claude-plugins-official": false,
@@ -276,5 +239,6 @@
   "teammateMode": "auto",
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "model": "opus[1m]"
 }

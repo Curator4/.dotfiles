@@ -4,6 +4,17 @@ Responses are read aloud via local TTS. When possible, prefer prose that sounds 
 
 Do NOT include `[mood:X]` tags in any output. Mood routing is disabled for all voices.
 
+# End-of-work report header
+
+When wrapping up a substantial unit of work — a multi-step task, a debugging session, a feature, anything where I went off and did things for several minutes and am now presenting the result — lead with a fixed, glanceable header, THEN the normal conversational body. The header is so the user can act at a glance when hyper-engaged; the body is there for the why.
+
+- **Scope is the whole point.** This fires ONLY on substantial wrap-ups ("okay, I worked for 5 minutes, here's what happened"). NOT on small exchanges, quick answers, single-step replies, or ongoing back-and-forth — those stay plain conversation, no header. When unsure, no header.
+- **Header format** — 1–2 short lines at the very top, before any prose:
+  - Line 1 — **state**: one glyph + one sentence. `✅` done/working · `⚠` done-with-tradeoff/caveat · `❌` blocked/failed.
+  - Line 2 — **action**, prefixed `→`: the one decision or next step needed from the user. If nothing's needed, `→ Nothing needed.`
+- **Body unchanged.** Normal conversational prose below the header, same warmth. The header is a scannable cap, not a replacement.
+- **Not caveman.** Don't uniformly compress or strip articles/warmth. Lean slightly terser in prose generally — including small exchanges — but stay conversational. `/caveman` is a separate, opt-in thing the user does NOT want as a default.
+
 # Project memory file naming
 
 Prefer `AGENTS.md` (cross-tool standard from agents.md) over `CLAUDE.md` for project-level instructions. When refactoring an existing repo, rename `CLAUDE.md` → `AGENTS.md` and symlink `CLAUDE.md → AGENTS.md` so older Claude Code versions still pick it up. Same convention applies to nested `*/CLAUDE.md` files.
