@@ -1,0 +1,58 @@
+{
+  "name": "Ember",
+  "slug": "ember",
+  "icon": "🌗",
+  "nvim": {
+    "colorscheme": "gruvbox",
+    "variant": "",
+    "background": "dark"
+  },
+  "palette": {
+    "background": "#12161E",
+    "foreground": "#D0C3A8",
+    "cursor": "#D69A73",
+    "cursor_text": "#12161E",
+    "selection_bg": "#254A67",
+    "selection_fg": "#D0C3A8",
+    "colors": {
+      "black": "#153551",
+      "red": "#9D4A36",
+      "green": "#5E8D90",
+      "yellow": "#B58F56",
+      "blue": "#226590",
+      "magenta": "#A07189",
+      "cyan": "#5E8D90",
+      "white": "#D0C3A8",
+      "bright_black": "#4E5654",
+      "bright_red": "#AE5D3B",
+      "bright_green": "#6E93A3",
+      "bright_yellow": "#D69A73",
+      "bright_blue": "#486989",
+      "bright_magenta": "#B96C7B",
+      "bright_cyan": "#6E93A3",
+      "bright_white": "#E6D7BE"
+    }
+  },
+  "wallpapers": {
+    "static": [
+      "~/pictures/wallpapers/static/samus-cockpit.png",
+      "~/pictures/wallpapers/static/rocket-moon-peak.png"
+    ],
+    "vertical": [
+      "~/pictures/wallpapers/vertical/sunlit-wall-girl-vert.jpg",
+      "~/pictures/wallpapers/vertical/sunset-car-girl.jpg"
+    ]
+  },
+  "monitors": {
+    "DP-1": "vertical[0]",
+    "DP-2": "static[1]",
+    "DP-3": "static[0]",
+    "DP-4": "vertical[1]"
+  },
+  "rofi_theme": "dark-gruvbox",
+  "obsidian": {
+    "cssTheme": "Obsidian gruvbox",
+    "base": "obsidian"
+  },
+  "vibe": "morose"
+}

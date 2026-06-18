@@ -36,3 +36,17 @@ function lavender     -d "Theme: purple";       _apply-kitty-theme lavender     
 function neon         -d "Theme: pink/cyan";    _apply-kitty-theme neon         'rgba(00f0ffee)'; end
 function nord         -d "Theme: nord frost";   _apply-kitty-theme nord         'rgba(88c0d0ee)'; end
 function serene       -d "Theme: cool cyan";    _apply-kitty-theme serene       'rgba(8b9ad8ee)'; end
+function calliope     -d "Theme: cosmic blue";  _apply-kitty-theme calliope     'rgba(7297BBee)'; end
+function ember        -d "Theme: amber dusk";   _apply-kitty-theme ember        'rgba(D69A73ee)'; end
+function mono         -d "Theme: monochrome";   _apply-kitty-theme mono         'rgba(C3C3C3ee)'; end
+
+# Full SYSTEM theme switch (wallpapers + waybar + apps + vibe): `theme <name>`
+# (the bare names above only reskin the current terminal window)
+function theme -d "Apply a full system theme"
+    if test -z "$argv[1]"
+        echo "usage: theme <name>  —  "(command ls ~/.dotfiles/themes | string join ', ')
+        return 1
+    end
+    ~/.dotfiles/bin/.bin/theme-switcher.sh apply $argv[1]
+end
+complete -c theme -f -a "(command ls ~/.dotfiles/themes)"

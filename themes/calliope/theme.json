@@ -1,0 +1,60 @@
+{
+  "name": "Calliope",
+  "slug": "calliope",
+  "icon": "🌌",
+  "nvim": {
+    "colorscheme": "catppuccin-mocha",
+    "variant": "",
+    "background": "dark"
+  },
+  "palette": {
+    "background": "#0A131C",
+    "foreground": "#A0B4C5",
+    "cursor": "#7297BB",
+    "cursor_text": "#0A131C",
+    "selection_bg": "#18324E",
+    "selection_fg": "#A0B4C5",
+    "colors": {
+      "black": "#101B25",
+      "red": "#905F59",
+      "green": "#5E8C9C",
+      "yellow": "#D9C5A8",
+      "blue": "#3D6390",
+      "magenta": "#6E6A9C",
+      "cyan": "#7297BB",
+      "white": "#A0B4C5",
+      "bright_black": "#475772",
+      "bright_red": "#BC8D73",
+      "bright_green": "#7BA6B5",
+      "bright_yellow": "#E6D7BE",
+      "bright_blue": "#6298D1",
+      "bright_magenta": "#8172A7",
+      "bright_cyan": "#9BB0D7",
+      "bright_white": "#C8D6E0"
+    }
+  },
+  "wallpapers": {
+    "static": [
+      "~/pictures/wallpapers/static/orbital-shipyard.jpg"
+    ],
+    "vertical": [
+      "~/pictures/wallpapers/vertical/starry-night-figure.png",
+      "~/pictures/wallpapers/vertical/space-planet-nebula.jpg"
+    ],
+    "live": [
+      "~/pictures/wallpapers/live/stars-space-moewalls-com.mp4"
+    ]
+  },
+  "monitors": {
+    "DP-1": "vertical[0]",
+    "DP-2": "static[0]",
+    "DP-3": "live[0]",
+    "DP-4": "vertical[1]"
+  },
+  "rofi_theme": "frost",
+  "obsidian": {
+    "cssTheme": "Obsidianite",
+    "base": "obsidian"
+  },
+  "vibe": "arcane"
+}
