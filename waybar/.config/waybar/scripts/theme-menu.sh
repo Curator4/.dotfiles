@@ -32,8 +32,10 @@ if [ -n "$SELECTED" ]; then
     THEME_SLUG="${THEME_MAP[$SELECTED]}"
 
     if [ -n "$THEME_SLUG" ]; then
-        # apply also runs reload_services, which fully restarts waybar
-        # (picking up the theme's waybar.css) — no extra refresh needed here.
-        "$SWITCHER" apply "$THEME_SLUG"
+        # apply runs reload_services, which restarts waybar. Since this menu is a
+        # CHILD of waybar, a direct call would get killed mid-apply by that restart
+        # (before .current-theme is written). Detach into a transient user scope so
+        # the switcher survives the waybar restart and finishes.
+        systemd-run --user --quiet --collect "$SWITCHER" apply "$THEME_SLUG"
     fi
 fi

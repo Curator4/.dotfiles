@@ -298,7 +298,7 @@ EOF
             WALLPAPER=$(jq -r ".wallpapers.$TYPE[$INDEX]?" "$THEME_DIR/theme.json" 2>/dev/null)
             if [ -n "$WALLPAPER" ] && [ "$WALLPAPER" != "null" ]; then
                 EXPANDED_PATH=$(eval echo "$WALLPAPER")
-                echo "wallpaper = $monitor, $EXPANDED_PATH" >> "$HYPRPAPER_CONF"
+                echo "wallpaper = $monitor,$EXPANDED_PATH" >> "$HYPRPAPER_CONF"
             fi
         fi
     done
@@ -322,7 +322,7 @@ EOF
             WALLPAPER=$(jq -r ".wallpapers.$TYPE[$INDEX]?" "$THEME_DIR/theme.json" 2>/dev/null)
             if [ -n "$WALLPAPER" ] && [ "$WALLPAPER" != "null" ]; then
                 EXPANDED_PATH=$(eval echo "$WALLPAPER")
-                echo "mpvpaper -o \"loop --hwdec=auto\" \"$monitor\" \"$EXPANDED_PATH\" &>/dev/null & disown" >> "$TEMP_MPVPAPER"
+                echo "systemd-run --user --quiet --collect mpvpaper -o \"loop --hwdec=auto\" \"$monitor\" \"$EXPANDED_PATH\"" >> "$TEMP_MPVPAPER"
             fi
         fi
     done
@@ -339,10 +339,9 @@ reload_services() {
     # Reload Hyprland
     hyprctl reload &>/dev/null && echo "    ✓ Hyprland reloaded" || echo "    ! Hyprland reload failed"
 
-    # Restart Hyprpaper
-    killall hyprpaper &>/dev/null
-    sleep 0.5
-    hyprpaper &>/dev/null & disown
+    # Restart Hyprpaper via its user unit (stays supervised in its own cgroup,
+    # not a disowned child of whatever called this)
+    systemctl --user restart hyprpaper.service &>/dev/null
     sleep 1
 
     # Send wallpaper commands directly to hyprpaper
@@ -369,16 +368,12 @@ reload_services() {
         echo "    ✓ Animated wallpapers started"
     fi
 
-    # Restart Waybar
-    killall waybar &>/dev/null
-    sleep 0.5
-    waybar & disown
+    # Restart Waybar via its user unit (stays supervised — no orphaned module scripts)
+    systemctl --user restart app-waybar@autostart.service &>/dev/null
     echo "    ✓ Waybar restarted"
 
-    # Restart Mako
-    killall mako &>/dev/null
-    sleep 0.5
-    mako &>/dev/null & disown
+    # Restart Mako via its user unit (stays supervised)
+    systemctl --user restart app-mako@autostart.service &>/dev/null
     echo "    ✓ Mako restarted"
 
     # Reload Kitty colors using remote control
