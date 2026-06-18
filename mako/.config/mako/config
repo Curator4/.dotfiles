@@ -67,6 +67,12 @@ border-color=#7dcfff
 # notifications carry the agent's visual identity regardless of theme.
 # Edited by hand? Also edit ~/.dotfiles/bin/.bin/theme-switcher.sh which
 # concatenates this onto the destination after the per-theme mako.conf copy.
+#
+# Per-criteria style overrides for household notifications only (last matching
+# criteria wins, and this file is appended last). 12s timeout so agent reminders
+# are readable; wider + smaller font so long bodies read as a block instead of a
+# tall skinny column; height is a hard ceiling (mako has no scroll) sized to fit
+# that shape.
 
 [category=household.tactical]
 border-color=#ffffff
