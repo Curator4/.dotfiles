@@ -6,8 +6,10 @@
 // path runs offline and deterministically.
 //
 // Each fake's behavior is chosen at runtime from an env var (COUNCIL_FAKE_<NAME>),
-// a JSON spec: { mode: "ok" | "error" | "usage" | "garbage" | "timeout" | "flood", review?: {...}, bytes?: number }.
-// ("flood" streams `bytes` of junk — grok/pi to stdout, codex to its -o file — to exercise the output-size cap.)
+// a JSON spec: { mode: "ok" | "error" | "usage" | "garbage" | "timeout" | "flood" | "flaky" | "split", review?, bytes?, ... }.
+// "flood" streams `bytes` of junk (output-size cap); "flaky" fails N times then succeeds (retry, grok only,
+// needs counterFile/failTimes); "split" emits the review with a multibyte char straddling two stdout chunks
+// (UTF-8 decode, grok only).
 // Each fake speaks the SAME output protocol as the real CLI it stands in for:
 //   - grok  : prints the review JSON object on stdout (companion runs with --output-format json)
 //   - codex : writes the review JSON to the `-o <file>` path the companion passes
@@ -56,6 +58,14 @@ else if (spec.mode === "flaky") {
   try { fsx.writeFileSync(spec.counterFile, String(n)); } catch (e) {}
   if (n <= (spec.failTimes || 1)) { process.exit(0); } // empty stdout -> "empty output" (retryable)
   process.stdout.write(review); process.exit(0);
+}
+else if (spec.mode === "split") {
+  // Emit the review with a multibyte UTF-8 char straddling two stdout chunks.
+  const buf = Buffer.from(review, "utf8");
+  const i = buf.indexOf(0xc3); // first byte of a 2-byte char (e.g. the 'e' in cafe-acute)
+  const k = i >= 0 ? i + 1 : Math.floor(buf.length / 2);
+  process.stdout.write(buf.subarray(0, k));
+  setTimeout(function () { process.stdout.write(buf.subarray(k)); process.exit(0); }, 25);
 }
 else { process.stdout.write(review); process.exit(0); }
 `;

@@ -222,6 +222,27 @@ test("council rejects a --base ref beginning with '-' (argument-injection guard)
   assert.match(res.stderr, /unsafe .*base|must not start/i);
 });
 
+// ---------- robustness: multibyte UTF-8 output split across stdout chunks ----------
+
+test("council --json: a multibyte char split across stdout chunks is decoded, not mangled", async () => {
+  const review = {
+    verdict: "needs-attention",
+    summary: "résumé café",
+    findings: [
+      { severity: "high", title: "café résumé ☕ piñata", body: "naïve coöperation", file: "app.js", line_start: 1, line_end: 1, confidence: 0.5, recommendation: "fix" },
+    ],
+    next_steps: [],
+  };
+  // grok 'split' mode writes the review with a multibyte char straddling two chunks.
+  const env = baseEnv({ grok: { mode: "split", review }, codex: { mode: "error" }, pi: { mode: "error" } });
+  const res = await runCompanion(["council", "--json"], env);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  const grokFindings = out.findings.filter((f) => f.engine === "grok");
+  assert.equal(grokFindings.length, 1, "the finding parsed despite the mid-character chunk split");
+  assert.equal(grokFindings[0].title, "café résumé ☕ piñata", "multibyte chars intact (no replacement chars)");
+});
+
 // ---------- reliability: transient-failure retry ----------
 
 test("council --json: a transient empty-output failure is retried and recovers", async () => {
