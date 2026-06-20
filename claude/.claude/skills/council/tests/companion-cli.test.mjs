@@ -221,3 +221,44 @@ test("council rejects a --base ref beginning with '-' (argument-injection guard)
   assert.notEqual(res.code, 0, "an option-shaped base ref should abort");
   assert.match(res.stderr, /unsafe .*base|must not start/i);
 });
+
+// ---------- reliability: transient-failure retry ----------
+
+test("council --json: a transient empty-output failure is retried and recovers", async () => {
+  const counter = path.join(mkdtemp("council-counter-"), "n");
+  const env = baseEnv(
+    { grok: { mode: "flaky", counterFile: counter, failTimes: 1, review: R_GROK }, codex: { mode: "error" }, pi: { mode: "error" } },
+    { COUNCIL_RETRIES: "1", COUNCIL_RETRY_DELAY_MS: "0" }
+  );
+  const res = await runCompanion(["council", "--json"], env);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  assert.ok(out.findings.some((f) => f.engine === "grok"), "grok should recover via retry");
+  assert.equal(out.skipped.find((s) => s.id === "grok"), undefined, "recovered engine must not be in skipped");
+  assert.equal(fs.readFileSync(counter, "utf8"), "2", "grok should be invoked twice (1 empty + 1 retry)");
+});
+
+test("council --json: a non-retryable error is NOT retried (single attempt)", async () => {
+  // COUNCIL_RETRIES=2, but a hard error (not the empty-output family) must abort immediately.
+  const env = baseEnv(
+    { grok: { mode: "error" }, codex: { mode: "error" }, pi: { mode: "ok", review: R_PI } },
+    { COUNCIL_RETRIES: "2", COUNCIL_RETRY_DELAY_MS: "0" }
+  );
+  const res = await runCompanion(["council", "--json"], env);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  const grokSkip = out.skipped.find((s) => s.id === "grok");
+  assert.ok(grokSkip, "grok should be skipped");
+  assert.equal(grokSkip.attempts, 1, "a hard error must not be retried");
+});
+
+test("council (human render): reports the attempt count for an engine that retried", async () => {
+  const counter = path.join(mkdtemp("council-counter-"), "n");
+  const env = baseEnv(
+    { grok: { mode: "flaky", counterFile: counter, failTimes: 1, review: R_GROK }, codex: { mode: "error" }, pi: { mode: "error" } },
+    { COUNCIL_RETRIES: "1", COUNCIL_RETRY_DELAY_MS: "0" }
+  );
+  const res = await runCompanion(["council"], env);
+  assert.equal(res.code, 0, res.stderr);
+  assert.match(res.stdout, /2 attempts/, "the status line should note the retry");
+});

@@ -46,6 +46,17 @@ if (spec.mode === "timeout") { setTimeout(function () {}, 5000); }
 else if (spec.mode === "error") { process.stderr.write("grok engine error: boom"); process.exit(1); }
 else if (spec.mode === "garbage") { process.stdout.write("this is not json at all"); process.exit(0); }
 else if (spec.mode === "flood") { process.stdout.write("x".repeat(spec.bytes || 200000)); process.exit(0); }
+else if (spec.mode === "flaky") {
+  // Transient empty-output for the first \`failTimes\` invocations, then succeed.
+  // Each retry is a fresh process, so invocation count is tracked in a file.
+  const fsx = require("fs");
+  let n = 0;
+  try { n = parseInt(fsx.readFileSync(spec.counterFile, "utf8"), 10) || 0; } catch (e) {}
+  n += 1;
+  try { fsx.writeFileSync(spec.counterFile, String(n)); } catch (e) {}
+  if (n <= (spec.failTimes || 1)) { process.exit(0); } // empty stdout -> "empty output" (retryable)
+  process.stdout.write(review); process.exit(0);
+}
 else { process.stdout.write(review); process.exit(0); }
 `;
 
