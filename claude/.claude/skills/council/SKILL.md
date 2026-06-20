@@ -52,7 +52,7 @@ The chair reads the findings file, dedupes/merges across reviewers (tagging each
 **A4 — Present.** When the workflow returns, present its result faithfully (no added review, no fixes):
 
 - Lead with the **verdict** (`needs-attention` / `approve`) and the one-line summary.
-- List each finding as `### [SEVERITY] title  [engines]`, then `` `file:line` ``, the body, and **Fix:** the recommendation. Sort critical → low.
+- List each finding as `### [SEVERITY] title  [engines]`, then `` `file:line` ``, the body, and **Fix:** the recommendation. Sort critical → low; within a severity, the workflow already lists corroborated (multi-engine) findings before solo ones — preserve that order.
 - Name the reviewers that actually ran.
 - If `dropped` is non-empty, note briefly which findings validation refuted, and why.
 

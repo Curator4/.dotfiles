@@ -107,7 +107,13 @@ for (const r of checked.filter(Boolean)) {
   keptHigh.push({ ...r.finding, severity, validated: r.v ? r.v.status : 'unverified' })
 }
 
-const findings = [...keptHigh, ...lowSev].sort((a, b) => order[a.severity] - order[b.severity])
+// Within a severity band, surface corroborated findings (>=2 reviewers) above
+// solo ones — coarse tier only, since effective votes saturate near 2
+// (arXiv:2605.29800). Solo findings are kept, just ranked lower (recall-favoring).
+const corroboration = (f) => (f.engines && f.engines.length >= 2 ? 1 : 0)
+const findings = [...keptHigh, ...lowSev].sort(
+  (a, b) => order[a.severity] - order[b.severity] || corroboration(b) - corroboration(a)
+)
 
 return {
   verdict: findings.length ? 'needs-attention' : 'approve',

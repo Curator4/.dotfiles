@@ -153,6 +153,36 @@ test("merge yields verdict 'unknown' when no engine succeeded", () => {
   assert.deepEqual(m.findings, []);
 });
 
+test("merge ranks corroborated findings above solo within a severity band (and keeps solo)", () => {
+  const f = (title, file, confidence) => ({ severity: "high", title, body: "", file, line_start: 1, line_end: 1, confidence, recommendation: "" });
+  const results = [
+    { ok: true, id: "grok", label: "Grok", review: { verdict: "needs-attention", summary: "", findings: [f("Solo High", "a.js", 0.9), f("Corroborated High", "b.js", 0.5)], next_steps: [] } },
+    { ok: true, id: "glm", label: "GLM", review: { verdict: "needs-attention", summary: "", findings: [f("Corroborated High", "b.js", 0.4)], next_steps: [] } },
+  ];
+  const m = merge(results);
+  assert.equal(m.findings.length, 2, "solo finding is kept, not dropped");
+  // Corroborated (2 engines) ranks first even though the solo finding has HIGHER confidence.
+  assert.equal(m.findings[0].title, "Corroborated High");
+  assert.deepEqual(m.findings[0].engines, ["grok", "glm"]);
+  assert.equal(m.findings[1].title, "Solo High");
+});
+
+test("merge corroboration tier is COARSE: a 3-engine finding does not outrank a 2-engine one on count alone", () => {
+  const f = (title, file, confidence) => ({ severity: "high", title, body: "", file, line_start: 1, line_end: 1, confidence, recommendation: "" });
+  const results = [
+    { ok: true, id: "grok", label: "Grok", review: { verdict: "needs-attention", summary: "", findings: [f("Three", "x.js", 0.3), f("Two", "y.js", 0.8)], next_steps: [] } },
+    { ok: true, id: "glm", label: "GLM", review: { verdict: "needs-attention", summary: "", findings: [f("Three", "x.js", 0.3), f("Two", "y.js", 0.8)], next_steps: [] } },
+    { ok: true, id: "codex", label: "Codex", review: { verdict: "needs-attention", summary: "", findings: [f("Three", "x.js", 0.3)], next_steps: [] } },
+  ];
+  const m = merge(results);
+  // Both are corroborated (>=2) -> same tier -> confidence decides. The 2-engine,
+  // higher-confidence finding wins over the 3-engine, lower-confidence one.
+  assert.equal(m.findings[0].title, "Two");
+  assert.equal(m.findings[0].engines.length, 2);
+  assert.equal(m.findings[1].title, "Three");
+  assert.equal(m.findings[1].engines.length, 3);
+});
+
 // ---------- piAssistantText (JSONL event parsing) ----------
 test("piAssistantText extracts the last non-empty assistant message", () => {
   const stream = [
