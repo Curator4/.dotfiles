@@ -56,11 +56,11 @@ function runCompanion(args, env) {
 }
 
 function baseEnv(fakes, extra = {}) {
-  const env = {
-    ...process.env,
-    PATH: `${binDir}${path.delimiter}${process.env.PATH || ""}`,
-    ...extra,
-  };
+  const env = { ...process.env };
+  // Isolate from any ambient COUNCIL_* config so tests are deterministic.
+  for (const k of Object.keys(env)) if (k.startsWith("COUNCIL_")) delete env[k];
+  env.PATH = `${binDir}${path.delimiter}${process.env.PATH || ""}`;
+  Object.assign(env, extra);
   if (fakes.grok) env.COUNCIL_FAKE_GROK = JSON.stringify(fakes.grok);
   if (fakes.codex) env.COUNCIL_FAKE_CODEX = JSON.stringify(fakes.codex);
   if (fakes.pi) env.COUNCIL_FAKE_PI = JSON.stringify(fakes.pi);
@@ -261,4 +261,70 @@ test("council (human render): reports the attempt count for an engine that retri
   const res = await runCompanion(["council"], env);
   assert.equal(res.code, 0, res.stderr);
   assert.match(res.stdout, /2 attempts/, "the status line should note the retry");
+});
+
+// ---------- capability: configurable engine roster (COUNCIL_ENGINES) ----------
+
+test("COUNCIL_ENGINES narrows the council to the listed subset", async () => {
+  const env = baseEnv(
+    { grok: { mode: "ok", review: R_GROK }, codex: { mode: "ok" }, pi: { mode: "ok", review: R_PI } },
+    { COUNCIL_ENGINES: "grok,glm" }
+  );
+  const res = await runCompanion(["council", "--json"], env);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  const engines = new Set(out.findings.map((f) => f.engine));
+  assert.ok(engines.has("grok") && engines.has("glm"), "listed engines run");
+  assert.ok(!engines.has("codex"), "unlisted engine does not run");
+  assert.equal(out.skipped.find((s) => s.id === "codex"), undefined, "out-of-roster engine is neither run nor skipped");
+});
+
+test("COUNCIL_ENGINES=grok runs only grok", async () => {
+  const env = baseEnv(
+    { grok: { mode: "ok", review: R_GROK }, codex: { mode: "ok" }, pi: { mode: "ok" } },
+    { COUNCIL_ENGINES: "grok" }
+  );
+  const res = await runCompanion(["council", "--json"], env);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  assert.deepEqual([...new Set(out.findings.map((f) => f.engine))], ["grok"]);
+  assert.equal(out.skipped.length, 0);
+});
+
+test("COUNCIL_ENGINES drops unknown ids with a warning, runs the valid ones", async () => {
+  const env = baseEnv(
+    { grok: { mode: "ok", review: R_GROK }, codex: { mode: "ok" }, pi: { mode: "ok" } },
+    { COUNCIL_ENGINES: "grok, bogus" }
+  );
+  const res = await runCompanion(["council", "--json"], env);
+  assert.equal(res.code, 0, res.stderr);
+  assert.match(res.stderr, /unknown engine.*bogus/i);
+  const out = JSON.parse(res.stdout);
+  assert.deepEqual([...new Set(out.findings.map((f) => f.engine))], ["grok"]);
+});
+
+test("blank COUNCIL_ENGINES falls back to the enabled defaults (all engines)", async () => {
+  const env = baseEnv(
+    { grok: { mode: "ok", review: R_GROK }, codex: { mode: "ok" }, pi: { mode: "ok", review: R_PI } },
+    { COUNCIL_ENGINES: "   " }
+  );
+  const res = await runCompanion(["council", "--json"], env);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  const engines = new Set(out.findings.map((f) => f.engine));
+  assert.ok(engines.has("grok") && engines.has("codex") && engines.has("glm"), "blank roster -> all enabled defaults");
+});
+
+test("COUNCIL_ENGINES also scopes the open-brief fan-out", async () => {
+  const briefFile = path.join(mkdtemp("council-brief-"), "brief.md");
+  fs.writeFileSync(briefFile, "Postgres or SQLite?");
+  const env = baseEnv(
+    { grok: { mode: "ok" }, codex: { mode: "ok" }, pi: { mode: "ok" } },
+    { COUNCIL_ENGINES: "glm" }
+  );
+  const res = await runCompanion(["council-brief", "--brief-file", briefFile, "--json"], env);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  assert.deepEqual(out.takes.map((t) => t.engine), ["glm"]);
+  assert.equal(out.skipped.length, 0);
 });
