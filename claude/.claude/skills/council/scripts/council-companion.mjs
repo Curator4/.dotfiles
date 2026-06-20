@@ -561,7 +561,39 @@ async function main() {
   }
 }
 
-main().catch((e) => {
-  process.stderr.write(`council: ${e && e.message ? e.message : e}\n`);
-  process.exitCode = 1;
-});
+// Run the CLI only when invoked directly (`node council-companion.mjs ...`), not
+// when imported by the test suite. realpath BOTH sides first: the skill is reached
+// through a symlink (~/.claude -> ~/.dotfiles/...), so argv[1] (the symlink path)
+// and import.meta.url (the resolved realpath) would otherwise never match and the
+// live CLI would silently no-op.
+function invokedAsMain() {
+  try {
+    if (!process.argv[1]) return false;
+    return fs.realpathSync(process.argv[1]) === fs.realpathSync(fileURLToPath(import.meta.url));
+  } catch {
+    return false;
+  }
+}
+
+if (invokedAsMain()) {
+  main().catch((e) => {
+    process.stderr.write(`council: ${e && e.message ? e.message : e}\n`);
+    process.exitCode = 1;
+  });
+}
+
+// Exported for the offline test suite (tests/). These are the pure helpers —
+// no subprocess, no network — so importing this module is side-effect-free
+// beyond reading the prompt/schema files at load time.
+export {
+  firstLine,
+  stripFences,
+  extractJson,
+  normSeverity,
+  normReview,
+  merge,
+  piAssistantText,
+  parseArgs,
+  getFlagValue,
+  interpolate,
+};

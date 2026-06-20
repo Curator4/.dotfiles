@@ -97,4 +97,27 @@ node ~/.claude/skills/council/scripts/council-companion.mjs setup
 - `COUNCIL_GLM_MODEL` — pi model id for the GLM engine (default `openrouter/z-ai/glm-5.2`).
 - `COUNCIL_DEBUG` — dump raw Grok stdout/stderr to `/tmp/` for debugging.
 - Engine enable/disable: the `ENGINES` array in `scripts/council-companion.mjs`.
+
+## Tests
+
+The gather companion has an offline test suite under `tests/` — it never
+contacts a real model API. Run it from this directory:
+
 ```
+node --test          # or: npm test
+```
+
+The CLI tests put **fake `grok`/`codex`/`pi` binaries on `PATH`** and drive the
+companion against a throwaway git repo, exercising the full gather → parse →
+merge → render path — including graceful degradation when an engine errors,
+times out, or returns garbage — entirely offline.
+
+- `companion-units.test.mjs` — pure helpers: JSON extraction, severity
+  normalization, review shaping, consensus merge/dedup, pi JSONL parsing, arg
+  parsing, and the `{{VAR}}` interpolation injection-safety property.
+- `companion-cli.test.mjs` — end-to-end with mocked engines: survivor merge,
+  consensus tagging, per-engine skips, timeout kills, and the open-brief fan-out.
+
+> Discovery note: pass **no path** (`node --test` finds the `tests/*.test.mjs`
+> files); the `node --test tests/` directory-arg form is rejected on some Node
+> builds.
