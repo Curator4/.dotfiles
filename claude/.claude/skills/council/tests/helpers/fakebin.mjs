@@ -6,7 +6,8 @@
 // path runs offline and deterministically.
 //
 // Each fake's behavior is chosen at runtime from an env var (COUNCIL_FAKE_<NAME>),
-// a JSON spec: { mode: "ok" | "error" | "usage" | "garbage" | "timeout", review?: {...} }.
+// a JSON spec: { mode: "ok" | "error" | "usage" | "garbage" | "timeout" | "flood", review?: {...}, bytes?: number }.
+// ("flood" streams `bytes` of junk — grok/pi to stdout, codex to its -o file — to exercise the output-size cap.)
 // Each fake speaks the SAME output protocol as the real CLI it stands in for:
 //   - grok  : prints the review JSON object on stdout (companion runs with --output-format json)
 //   - codex : writes the review JSON to the `-o <file>` path the companion passes
@@ -44,6 +45,7 @@ const review = spec.review ? JSON.stringify(spec.review) : ${JSON.stringify(DEFA
 if (spec.mode === "timeout") { setTimeout(function () {}, 5000); }
 else if (spec.mode === "error") { process.stderr.write("grok engine error: boom"); process.exit(1); }
 else if (spec.mode === "garbage") { process.stdout.write("this is not json at all"); process.exit(0); }
+else if (spec.mode === "flood") { process.stdout.write("x".repeat(spec.bytes || 200000)); process.exit(0); }
 else { process.stdout.write(review); process.exit(0); }
 `;
 
@@ -59,6 +61,7 @@ if (spec.mode === "timeout") { setTimeout(function () {}, 5000); }
 else if (spec.mode === "usage") { process.stdout.write("stream error: usage limit reached"); process.exit(0); }
 else if (spec.mode === "error") { process.stderr.write("codex engine error: boom"); process.exit(1); }
 else if (spec.mode === "garbage") { if (outFile) fs.writeFileSync(outFile, "garbage{"); process.exit(0); }
+else if (spec.mode === "flood") { if (outFile) fs.writeFileSync(outFile, "x".repeat(spec.bytes || 200000)); process.exit(0); }
 else { if (outFile) fs.writeFileSync(outFile, review); process.exit(0); }
 `;
 
@@ -72,6 +75,7 @@ function emit(text) {
 if (spec.mode === "timeout") { setTimeout(function () {}, 5000); }
 else if (spec.mode === "error") { process.stderr.write("pi engine error: boom"); process.exit(1); }
 else if (spec.mode === "garbage") { emit("no json here either"); process.exit(0); }
+else if (spec.mode === "flood") { process.stdout.write("x".repeat(spec.bytes || 200000)); process.exit(0); }
 else { emit(review); process.exit(0); }
 `;
 

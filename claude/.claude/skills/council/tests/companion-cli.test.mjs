@@ -168,3 +168,56 @@ test("council-brief --json: fans the brief out to every engine for a prose take"
   assert.equal(out.skipped.length, 0);
   for (const t of out.takes) assert.ok(t.text && t.text.length > 0, `engine ${t.engine} returned a non-empty take`);
 });
+
+// ---------- security hardening ----------
+
+test("council --json: an engine flooding stdout is capped (SIGKILL) and skipped", async () => {
+  const env = baseEnv(
+    { grok: { mode: "flood" }, codex: { mode: "ok" }, pi: { mode: "ok" } },
+    { COUNCIL_MAX_OUTPUT_BYTES: "4096" }
+  );
+  const res = await runCompanion(["council", "--json"], env);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  const grokSkip = out.skipped.find((s) => s.id === "grok");
+  assert.ok(grokSkip, "flooding grok should be skipped");
+  assert.match(grokSkip.error, /size cap|exceeded/i);
+  const engines = new Set(out.findings.map((f) => f.engine));
+  assert.ok(engines.has("codex") && engines.has("glm"), "survivors still produce findings");
+});
+
+test("council --json: codex overflowing its -o output file is capped and skipped", async () => {
+  const env = baseEnv(
+    { grok: { mode: "ok", review: R_GROK }, codex: { mode: "flood" }, pi: { mode: "ok", review: R_PI } },
+    { COUNCIL_MAX_OUTPUT_BYTES: "4096" }
+  );
+  const res = await runCompanion(["council", "--json"], env);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  const codexSkip = out.skipped.find((s) => s.id === "codex");
+  assert.ok(codexSkip, "codex writing an oversized file should be skipped");
+  assert.match(codexSkip.error, /size cap|exceeded/i);
+});
+
+test("COUNCIL_DEBUG dumps go to a private 0700 dir, not fixed world-readable /tmp paths", async () => {
+  const env = baseEnv(
+    { grok: { mode: "ok", review: R_GROK }, codex: { mode: "error" }, pi: { mode: "error" } },
+    { COUNCIL_DEBUG: "1" }
+  );
+  const res = await runCompanion(["council", "--json"], env);
+  assert.equal(res.code, 0, res.stderr);
+  const m = res.stderr.match(/COUNCIL_DEBUG dumps -> (\S+)/);
+  assert.ok(m, "debug dir should be announced on stderr");
+  const dir = m[1];
+  tmpDirs.push(dir);
+  assert.match(dir, /council-debug-/, "dump dir should be a private mkdtemp dir");
+  assert.ok(fs.existsSync(path.join(dir, "grok-out.txt")), "grok stdout dump should be present");
+  assert.equal(fs.statSync(dir).mode & 0o077, 0, "debug dir must not be group/world accessible");
+});
+
+test("council rejects a --base ref beginning with '-' (argument-injection guard)", async () => {
+  const env = baseEnv({ grok: { mode: "ok" }, codex: { mode: "ok" }, pi: { mode: "ok" } });
+  const res = await runCompanion(["council", "--base", "--evil-option", "--json"], env);
+  assert.notEqual(res.code, 0, "an option-shaped base ref should abort");
+  assert.match(res.stderr, /unsafe .*base|must not start/i);
+});
