@@ -42,12 +42,31 @@ function makeDirtyRepo() {
   return dir;
 }
 
-function runCompanion(args, env) {
+// A clean committed repo (one commit, nothing dirty). Tests dirty/branch it as needed.
+function makeRepo() {
+  const dir = mkdtemp("council-repo2-");
+  const g = (args) => execFileSync("git", args, { cwd: dir, stdio: "ignore" });
+  g(["init", "-q"]);
+  g(["config", "user.email", "test@example.com"]);
+  g(["config", "user.name", "Council Test"]);
+  g(["config", "commit.gpgsign", "false"]);
+  g(["config", "core.hooksPath", "/nonexistent-council-test-hooks"]);
+  fs.writeFileSync(path.join(dir, "app.js"), "const x = 1;\n");
+  g(["add", "-A"]);
+  g(["commit", "-q", "-m", "init"]);
+  return dir;
+}
+
+function gitIn(dir, args) {
+  return execFileSync("git", args, { cwd: dir, encoding: "utf8" }).trim();
+}
+
+function runCompanion(args, env, cwd = repo) {
   return new Promise((resolve) => {
     execFile(
       process.execPath,
       [COMPANION, ...args],
-      { cwd: repo, env, maxBuffer: 32 * 1024 * 1024 },
+      { cwd, env, maxBuffer: 32 * 1024 * 1024 },
       (err, stdout, stderr) => {
         resolve({ code: err && typeof err.code === "number" ? err.code : err ? 1 : 0, stdout: stdout || "", stderr: stderr || "" });
       }
@@ -348,4 +367,65 @@ test("COUNCIL_ENGINES also scopes the open-brief fan-out", async () => {
   const out = JSON.parse(res.stdout);
   assert.deepEqual(out.takes.map((t) => t.engine), ["glm"]);
   assert.equal(out.skipped.length, 0);
+});
+
+// ---------- diff collection (collectTarget) + single-engine mode ----------
+
+test("review errors out when not inside a git repository", async () => {
+  const nonRepo = mkdtemp("council-nonrepo-");
+  const env = baseEnv({ grok: { mode: "ok" }, codex: { mode: "ok" }, pi: { mode: "ok" } });
+  const res = await runCompanion(["council", "--json"], env, nonRepo);
+  assert.notEqual(res.code, 0, "should fail outside a git repo");
+  assert.match(res.stderr, /not inside a git repository/i);
+});
+
+test("working-tree scope appends untracked files to the reviewed diff", async () => {
+  const r = makeRepo();
+  fs.writeFileSync(path.join(r, "NEWFILE_untracked.txt"), "a brand new file\n");
+  const env = baseEnv({ grok: { mode: "ok", review: R_GROK }, codex: { mode: "error" }, pi: { mode: "error" } });
+  const res = await runCompanion(["council", "--json"], env, r);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  assert.match(out.diff, /Untracked files/, "untracked files are surfaced to reviewers");
+  assert.match(out.diff, /NEWFILE_untracked\.txt/);
+});
+
+test("branch scope diffs the given --base ref against HEAD", async () => {
+  const r = makeRepo();
+  const base = gitIn(r, ["rev-parse", "HEAD"]);
+  fs.writeFileSync(path.join(r, "app.js"), "const x = 1;\n// COMMIT_TWO_MARKER\n");
+  execFileSync("git", ["add", "-A"], { cwd: r, stdio: "ignore" });
+  execFileSync("git", ["commit", "-q", "-m", "second"], { cwd: r, stdio: "ignore" });
+  const env = baseEnv({ grok: { mode: "ok", review: R_GROK }, codex: { mode: "error" }, pi: { mode: "error" } });
+  const res = await runCompanion(["council", "--scope", "branch", "--base", base, "--json"], env, r);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  assert.match(out.diff, /COMMIT_TWO_MARKER/, "branch diff contains the second commit's change");
+  assert.ok(out.findings.some((f) => f.engine === "grok"), "pipeline ran on the branch diff");
+});
+
+test("clean working tree (scope auto -> branch) yields an empty review", async () => {
+  const r = makeRepo(); // committed, nothing dirty
+  const env = baseEnv({ grok: { mode: "ok", review: R_GROK }, codex: { mode: "ok" }, pi: { mode: "ok" } });
+  const res = await runCompanion(["council", "--json"], env, r);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  assert.equal(out.diff, "", "no changes -> empty diff");
+  assert.equal(out.findings.length, 0);
+});
+
+test("grok-review single mode runs only grok (--json)", async () => {
+  const env = baseEnv({ grok: { mode: "ok", review: R_GROK }, codex: { mode: "ok" }, pi: { mode: "ok" } });
+  const res = await runCompanion(["grok-review", "--json"], env);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  assert.deepEqual([...new Set(out.findings.map((f) => f.engine))], ["grok"], "only grok runs in single mode");
+});
+
+test("grok-review human render is titled and omits the [engines] consensus tag", async () => {
+  const env = baseEnv({ grok: { mode: "ok", review: R_GROK }, codex: { mode: "ok" }, pi: { mode: "ok" } });
+  const res = await runCompanion(["grok-review"], env);
+  assert.equal(res.code, 0, res.stderr);
+  assert.match(res.stdout, /# Grok Review/);
+  assert.ok(!res.stdout.includes("[grok]"), "single mode omits the engine tag");
 });
