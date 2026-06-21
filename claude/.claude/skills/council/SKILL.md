@@ -36,7 +36,7 @@ node "$HOME/.claude/skills/council/scripts/council-companion.mjs" council --json
 
 The companion reviews the diff with each enabled engine and emits compact JSON: `{diff, repoPath, findings:[{engine,severity,title,body,file,line_start,line_end,recommendation}], skipped}`. Engines that are unavailable (quota exhausted, not installed) land in `skipped` — expected graceful degradation, not an error.
 
-Scope is `--scope auto|working-tree|staged|branch` (default `auto`: working tree if dirty, else branch vs `--base`/`main`). Use `--scope staged` to review only what's `git add`ed — i.e. exactly what the next commit would record (pre-commit review). If the user asks to review their staged changes / what they're about to commit, pass `--scope staged`.
+Scope is `--scope auto|working-tree|staged|commit|branch` (default `auto`: working tree if dirty, else branch vs `--base`/`main`). Use `--scope staged` to review only what's `git add`ed — i.e. exactly what the next commit would record (pre-commit review); if the user asks to review their staged changes / what they're about to commit, pass `--scope staged`. Use `--scope commit --base <sha>` to review a single commit's diff (vs its parent) without checking it out (default `HEAD`); if the user asks to review a specific commit, pass that.
 
 **A2 — Short-circuit.** If `diff` is empty or `findings` is empty, tell the user there's nothing to review (and why — all engines skipped, or no diff) and stop. Do not launch the workflow.
 

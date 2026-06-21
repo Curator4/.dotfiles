@@ -478,6 +478,42 @@ test("staged scope with nothing staged yields an empty review", async () => {
   assert.equal(out.findings.length, 0);
 });
 
+test("commit scope reviews a specific commit's diff via --base <sha>", async () => {
+  const r = makeRepo();
+  fs.writeFileSync(path.join(r, "app.js"), "const x = 1;\n// COMMIT_TWO_MARKER\n");
+  execFileSync("git", ["add", "-A"], { cwd: r, stdio: "ignore" });
+  execFileSync("git", ["commit", "-q", "-m", "second"], { cwd: r, stdio: "ignore" });
+  const sha = gitIn(r, ["rev-parse", "HEAD"]);
+  const env = baseEnv({ grok: { mode: "ok", review: R_GROK }, codex: { mode: "error" }, pi: { mode: "error" } });
+  const res = await runCompanion(["council", "--scope", "commit", "--base", sha, "--json"], env, r);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  assert.match(out.diff, /COMMIT_TWO_MARKER/, "the commit's diff is reviewed");
+  assert.ok(out.findings.some((f) => f.engine === "grok"), "pipeline ran on the commit diff");
+});
+
+test("commit scope defaults to HEAD when no --base is given", async () => {
+  const r = makeRepo();
+  fs.writeFileSync(path.join(r, "app.js"), "const x = 1;\n// HEAD_COMMIT_MARKER\n");
+  execFileSync("git", ["add", "-A"], { cwd: r, stdio: "ignore" });
+  execFileSync("git", ["commit", "-q", "-m", "head"], { cwd: r, stdio: "ignore" });
+  const env = baseEnv({ grok: { mode: "ok", review: R_GROK }, codex: { mode: "error" }, pi: { mode: "error" } });
+  const res = await runCompanion(["council", "--scope", "commit", "--json"], env, r);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  assert.match(out.diff, /HEAD_COMMIT_MARKER/);
+});
+
+test("commit scope with an unknown ref yields an empty review (graceful)", async () => {
+  const r = makeRepo();
+  const env = baseEnv({ grok: { mode: "ok", review: R_GROK }, codex: { mode: "ok" }, pi: { mode: "ok" } });
+  const res = await runCompanion(["council", "--scope", "commit", "--base", "deadbeefdeadbeef", "--json"], env, r);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  assert.equal(out.diff, "", "unknown ref -> empty diff");
+  assert.equal(out.findings.length, 0);
+});
+
 test("grok-review human render is titled and omits the [engines] consensus tag", async () => {
   const env = baseEnv({ grok: { mode: "ok", review: R_GROK }, codex: { mode: "ok" }, pi: { mode: "ok" } });
   const res = await runCompanion(["grok-review"], env);
