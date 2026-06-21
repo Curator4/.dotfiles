@@ -65,6 +65,19 @@ const synth = await agent(
   { label: 'synthesize', phase: 'Synthesize', schema: SYNTH_SCHEMA }
 )
 
+if (!synth) {
+  // The chair agent died (terminal error after retries) and returned null. Do NOT
+  // report a misleading clean "approve" — the external reviewers may have raised
+  // real findings we simply could not merge. Surface it so the caller re-runs.
+  return {
+    verdict: 'needs-attention',
+    summary: 'Synthesis failed: the chair returned no result, so the reviewer findings could not be reconciled. Re-run, or inspect the raw findings file.',
+    reviewers: [],
+    findings: [],
+    dropped: [],
+  }
+}
+
 const merged = (synth && synth.findings) || []
 const reviewers = [...new Set(merged.flatMap((f) => (f && f.engines) || []))]
 if (!merged.length) {

@@ -21,6 +21,7 @@ import {
   parseArgs,
   getFlagValue,
   interpolate,
+  isRetryable,
   render,
   renderTakes,
   makeDelimiter,
@@ -79,6 +80,30 @@ test("sanitizeRepoPath clamps traversal/absolute paths so they cannot escape rep
     const s = sanitizeRepoPath(evil);
     assert.ok(!s.startsWith("/"), `not absolute: ${s}`);
     assert.ok(!s.split("/").includes(".."), `no traversal segment: ${s}`);
+  }
+});
+
+// ---------- isRetryable (retry classification) ----------
+test("isRetryable retries empty-output and spawn-resource transients, not deterministic failures", () => {
+  for (const yes of [
+    "empty output",
+    "empty take",
+    "no assistant output from pi",
+    "Error: spawn EAGAIN",
+    "spawn grok EMFILE",
+    "ENFILE: file table overflow",
+    "ENOMEM",
+  ]) {
+    assert.equal(isRetryable(new Error(yes)), true, `should retry: ${yes}`);
+  }
+  for (const no of [
+    "timed out",
+    "OpenAI usage limit reached",
+    "output exceeded size cap (123 bytes)",
+    "could not parse JSON from model output",
+    "Error: spawn grok ENOENT", // missing binary is deterministic — must NOT retry
+  ]) {
+    assert.equal(isRetryable(new Error(no)), false, `should NOT retry: ${no}`);
   }
 });
 

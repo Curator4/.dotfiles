@@ -82,7 +82,7 @@ const synth = await agent(
 
 return (
   synth || {
-    summary: 'No takes to synthesize.',
+    summary: 'Synthesis failed: the chair returned no result. Re-run, or inspect the raw takes file.',
     recommendation: '',
     consensus: [],
     divergences: [],
