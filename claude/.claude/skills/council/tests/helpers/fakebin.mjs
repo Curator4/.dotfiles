@@ -6,7 +6,8 @@
 // path runs offline and deterministically.
 //
 // Each fake's behavior is chosen at runtime from an env var (COUNCIL_FAKE_<NAME>),
-// a JSON spec: { mode: "ok" | "error" | "usage" | "garbage" | "timeout" | "flood" | "flaky" | "split" | "slow", review?, bytes?, ms?, ... }.
+// a JSON spec: { mode: "ok" | "error" | "usage" | "garbage" | "timeout" | "flood" | "flaky" | "split" | "slow" | "envelope" | "error-envelope", review?, bytes?, ms?, message?, ... }.
+// "envelope"/"error-envelope" (grok only) match grok's real `--output-format json` wrapper: {type:"result",text:<review>} / {type:"error",message}.
 // "slow" returns a normal ok review after `ms` (default 300) — used to observe engine concurrency.
 // "flood" streams `bytes` of junk (output-size cap); "flaky" fails N times then succeeds (retry, grok only,
 // needs counterFile/failTimes); "split" emits the review with a multibyte char straddling two stdout chunks
@@ -69,6 +70,8 @@ else if (spec.mode === "split") {
   setTimeout(function () { process.stdout.write(buf.subarray(k)); process.exit(0); }, 25);
 }
 else if (spec.mode === "slow") { setTimeout(function () { process.stdout.write(review); process.exit(0); }, spec.ms || 300); }
+else if (spec.mode === "envelope") { process.stdout.write(JSON.stringify({ type: "result", text: review })); process.exit(0); }
+else if (spec.mode === "error-envelope") { process.stdout.write(JSON.stringify({ type: "error", message: spec.message || "rate limited" })); process.exit(0); }
 else { process.stdout.write(review); process.exit(0); }
 `;
 

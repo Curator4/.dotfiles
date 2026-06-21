@@ -623,6 +623,31 @@ test("an unknown --scope value is rejected with a clear error (not a silent bran
   assert.match(res.stderr, /staged/, "lists the valid scopes so the typo is obvious");
 });
 
+// ---------- grok's real --output-format json envelope decode (was dead under the mock) ----------
+
+test("council --json: a grok JSON envelope ({type,text}) is unwrapped and the review parsed", async () => {
+  // Real grok wraps its output as {type,text}; runGrok extracts env.text. The bare-review
+  // mock never exercised that branch — this does.
+  const env = baseEnv({ grok: { mode: "envelope", review: R_GROK }, codex: { mode: "error" }, pi: { mode: "error" } });
+  const res = await runCompanion(["council", "--json"], env);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  assert.ok(out.findings.some((f) => f.engine === "grok"), "envelope-wrapped review is unwrapped + parsed");
+});
+
+test("council --json: a grok error-envelope ({type:'error'}) is a clean skip, not a bogus review", async () => {
+  // Grok signals an error inside the envelope on exit 0; runGrok must throw (skip), not
+  // re-serialize the envelope into a fake finding.
+  const env = baseEnv({ grok: { mode: "error-envelope", message: "rate limited" }, codex: { mode: "error" }, pi: { mode: "error" } });
+  const res = await runCompanion(["council", "--json"], env);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  const grokSkip = out.skipped.find((s) => s.id === "grok");
+  assert.ok(grokSkip, "grok error-envelope -> skipped");
+  assert.match(grokSkip.error, /rate limited/);
+  assert.ok(!out.findings.some((f) => f.engine === "grok"), "no bogus grok finding from an error envelope");
+});
+
 // ---------- quality: per-finding confidence is plumbed to the chair (--json) ----------
 
 test("council --json: findings carry the per-engine confidence (chair + validator can see it)", async () => {
