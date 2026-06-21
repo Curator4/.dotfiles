@@ -521,3 +521,44 @@ test("grok-review human render is titled and omits the [engines] consensus tag",
   assert.match(res.stdout, /# Grok Review/);
   assert.ok(!res.stdout.includes("[grok]"), "single mode omits the engine tag");
 });
+
+// ---------- error paths (input validation) + setup diagnostic ----------
+
+test("council-brief without --brief-file errors out", async () => {
+  const res = await runCompanion(["council-brief", "--json"], baseEnv({}));
+  assert.notEqual(res.code, 0, "missing --brief-file should fail");
+  assert.match(res.stderr, /requires --brief-file/);
+});
+
+test("council-brief with a nonexistent brief file errors out", async () => {
+  const res = await runCompanion(["council-brief", "--brief-file", "/no/such/council-brief.md", "--json"], baseEnv({}));
+  assert.notEqual(res.code, 0);
+  assert.match(res.stderr, /brief file not found/);
+});
+
+test("council-brief with an empty brief file errors out", async () => {
+  const f = path.join(mkdtemp("council-brief-"), "empty.md");
+  fs.writeFileSync(f, "   \n"); // whitespace-only -> trims to empty
+  const res = await runCompanion(["council-brief", "--brief-file", f, "--json"], baseEnv({}));
+  assert.notEqual(res.code, 0);
+  assert.match(res.stderr, /brief file is empty/);
+});
+
+test("an unknown subcommand prints usage and exits non-zero", async () => {
+  const res = await runCompanion(["bogus-subcommand"], baseEnv({}));
+  assert.notEqual(res.code, 0);
+  assert.match(res.stderr, /usage: council-companion/);
+});
+
+test("setup reports installed engines and the default active roster", async () => {
+  const res = await runCompanion(["setup"], baseEnv({}));
+  assert.equal(res.code, 0, res.stderr);
+  assert.match(res.stdout, /Grok.*installed/);
+  assert.match(res.stdout, /Active roster \(defaults\): grok, codex, glm/);
+});
+
+test("setup reflects COUNCIL_ENGINES in the active roster", async () => {
+  const res = await runCompanion(["setup"], baseEnv({}, { COUNCIL_ENGINES: "grok, codex" }));
+  assert.equal(res.code, 0, res.stderr);
+  assert.match(res.stdout, /Active roster \(COUNCIL_ENGINES\): grok, codex/);
+});
