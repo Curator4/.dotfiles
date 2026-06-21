@@ -34,7 +34,7 @@ git rev-parse --show-toplevel    # REPO_ROOT — capture for step A3
 node "$HOME/.claude/skills/council/scripts/council-companion.mjs" council --json $REVIEW_ARGS > /tmp/council/findings.json
 ```
 
-The companion reviews the diff with each enabled engine and emits compact JSON: `{diff, repoPath, findings:[{engine,severity,title,body,file,line_start,line_end,recommendation}], skipped}`. Engines that are unavailable (quota exhausted, not installed) land in `skipped` — expected graceful degradation, not an error.
+The companion reviews the diff with each enabled engine and emits compact JSON: `{diff, repoPath, findings:[{engine,severity,title,body,file,line_start,line_end,recommendation}], skipped}`. Engines that are unavailable (quota exhausted, not installed) land in `skipped` — expected graceful degradation, not an error. If the diff is too large for one prompt, the companion reviews it file-by-file in batches and adds `partial:{batches,totalFiles,reviewedFiles,skippedFiles}` — note this for A4 (it means coverage was partial).
 
 Scope is `--scope auto|working-tree|staged|commit|branch|file` (default `auto`: working tree if dirty, else branch vs `--base`/`main`). Use `--scope staged` to review only what's `git add`ed — i.e. exactly what the next commit would record (pre-commit review); if the user asks to review their staged changes / what they're about to commit, pass `--scope staged`. Use `--scope commit --base <sha>` to review a single commit's diff (vs its parent) without checking it out (default `HEAD`); if the user asks to review a specific commit, pass that. Use `--scope file --base <path>` to review a diff read from a FILE (a saved `.patch`, `gh pr diff` output, a proposed change) instead of a git state — this works even outside a git repo; if the user asks to review a patch/diff file or a PR diff they've fetched, pass that.
 
@@ -59,6 +59,7 @@ The chair reads the findings file, dedupes/merges across reviewers (tagging each
 - Name the reviewers that actually ran.
 - If `dropped` is non-empty, note briefly which findings validation refuted, and why.
 - If `confidence` is `low`, say so prominently: the verdict rests on thin evidence — fewer than two reviewers ran, or a `needs-attention` whose strongest finding is a lone, unvalidated claim. Tell the user to verify it before acting, rather than taking the verdict at face value.
+- If the companion JSON (A1) included `partial`, say prominently that the diff was too large to review at once: it was reviewed file-by-file in `batches` batches, `reviewedFiles`/`totalFiles` files covered (cross-file issues may be missed), and list any `skippedFiles` that were too large to review at all. Coverage is incomplete — frame the verdict accordingly.
 
 **A5 — Machine-readable export (on request).** If the user wants SARIF / CI output (e.g. to upload to GitHub code scanning or gate a build), write the workflow's returned report object to a JSON file and convert it — this exports the VALIDATED chair report, not the raw pre-chair findings:
 

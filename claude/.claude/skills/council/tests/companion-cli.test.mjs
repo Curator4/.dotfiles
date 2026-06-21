@@ -660,22 +660,15 @@ test("a diff over the argv byte limit fails fast with a clear error, not N crypt
   assert.match(res.stderr, /scope/i); // actionable guidance to narrow it
 });
 
-test("the large-diff guard names the biggest files so the user knows what to review separately", async () => {
-  const huge = "x".repeat(140 * 1024); // one file's added content, over the ~120 KiB budget
+test("when NO file is reviewable (all oversized) the guard fails fast, naming the biggest files", async () => {
+  // a single file too big to review even on its own -> nothing to batch -> fail fast.
   const diff = [
-    "diff --git a/small.js b/small.js",
-    "index 1..2 100644",
-    "--- a/small.js",
-    "+++ b/small.js",
-    "@@ -1 +1 @@",
-    "-a",
-    "+b",
     "diff --git a/huge.js b/huge.js",
     "index 3..4 100644",
     "--- a/huge.js",
     "+++ b/huge.js",
     "@@ -0,0 +1 @@",
-    `+${huge}`,
+    `+${"x".repeat(140 * 1024)}`, // > the ~120 KiB budget on its own
   ].join("\n");
   const f = path.join(mkdtemp("council-bigmf-"), "multi.diff");
   fs.writeFileSync(f, diff);
@@ -684,6 +677,24 @@ test("the large-diff guard names the biggest files so the user knows what to rev
   assert.match(res.stderr, /too large to review/);
   assert.match(res.stderr, /Biggest files:/);
   assert.match(res.stderr, /huge\.js/, "names the file blowing the budget, not just 'narrow your scope'");
+});
+
+test("a too-large MULTI-file diff is reviewed in batches (map-reduce), not refused", async () => {
+  // three ~35 KiB files; with a 60 KiB arg budget no two fit one prompt -> batched.
+  const file = (name) =>
+    `diff --git a/${name} b/${name}\nindex 1..2 100644\n--- a/${name}\n+++ b/${name}\n@@ -0,0 +1 @@\n+${"x".repeat(35 * 1024)}\n`;
+  const diff = file("a.js") + file("b.js") + file("c.js");
+  const f = path.join(mkdtemp("council-mr-"), "multi.diff");
+  fs.writeFileSync(f, diff);
+  const env = baseEnv({ grok: { mode: "ok" }, codex: { mode: "ok" }, pi: { mode: "ok" } }, { COUNCIL_MAX_ARG_BYTES: "61440" });
+  const res = await runCompanion(["council", "--scope", "file", "--base", f, "--json"], env);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  assert.ok(out.findings.length > 0, "produced findings instead of failing fast");
+  assert.ok(out.partial, "reports partial/batched coverage");
+  assert.ok(out.partial.batches >= 2, "split the diff into multiple batches");
+  assert.equal(out.partial.skippedFiles.length, 0, "each file fit a batch; none skipped");
+  assert.equal(out.partial.totalFiles, 3);
 });
 
 // ---------- capability: to-sarif (chair report -> SARIF for CI) ----------

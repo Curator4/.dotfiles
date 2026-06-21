@@ -27,6 +27,7 @@ import {
   renderTakes,
   toSarif,
   splitDiffByFile,
+  packBatches,
   makeDelimiter,
   spotlight,
   buildPrompt,
@@ -469,6 +470,32 @@ test("splitDiffByFile returns [] for a non-git / empty diff", () => {
   assert.deepEqual(splitDiffByFile("--- a/x\n+++ b/x\n@@ -1 +1 @@\n-a\n+b"), []); // no `diff --git` header
 });
 
+// ---------- packBatches (large-diff map-reduce batching) ----------
+test("packBatches packs sections under budget and flags oversized ones", () => {
+  const sections = [
+    { file: "a", diff: "a".repeat(100), bytes: 100 },
+    { file: "b", diff: "b".repeat(100), bytes: 100 },
+    { file: "c", diff: "c".repeat(300), bytes: 300 }, // alone > budget 250 -> oversized
+  ];
+  const { batches, oversized } = packBatches(sections, 250);
+  assert.deepEqual(oversized, ["c"]);
+  assert.equal(batches.length, 1, "a+b (200) fit one batch under 250");
+  assert.match(batches[0], /a{100}/);
+  assert.match(batches[0], /b{100}/);
+});
+
+test("packBatches starts a new batch when the next section would overflow", () => {
+  const { batches, oversized } = packBatches(
+    [
+      { file: "a", diff: "x".repeat(200), bytes: 200 },
+      { file: "b", diff: "y".repeat(200), bytes: 200 },
+    ],
+    250
+  );
+  assert.equal(oversized.length, 0);
+  assert.equal(batches.length, 2, "200+200 > 250 -> two batches");
+});
+
 // ---------- schema file integrity ----------
 test("review-output.schema.json is valid and constrains severity/required fields", () => {
   const schema = JSON.parse(fs.readFileSync(path.join(HERE, "..", "schemas", "review-output.schema.json"), "utf8"));
@@ -547,6 +574,17 @@ test("render: all engines unavailable -> 'No engine produced a review' + skip li
 test("render: empty target diff -> 'Nothing to review'", () => {
   const out = render({ target: { label: "x" }, empty: true, results: [] }, { single: false });
   assert.match(out, /Nothing to review/);
+});
+
+test("render: a partial (batched) review surfaces the coverage caveat", () => {
+  const review = { verdict: "approve", summary: "", findings: [], next_steps: [] };
+  const out = render(
+    { target: { label: "x" }, results: [okResult("grok", "Grok", review)], partial: { batches: 3, totalFiles: 4, reviewedFiles: 3, skippedFiles: ["huge.js"] } },
+    { single: false }
+  );
+  assert.match(out, /Large diff/);
+  assert.match(out, /reviewed 3\/4 files across 3 batches/);
+  assert.match(out, /huge\.js/, "names the file too large to review");
 });
 
 test("render single mode: 'Grok Review' title and no engine tag", () => {
