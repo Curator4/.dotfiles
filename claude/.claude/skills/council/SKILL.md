@@ -55,6 +55,7 @@ The chair reads the findings file, dedupes/merges across reviewers (tagging each
 
 - Lead with the **verdict** (`needs-attention` / `approve`), a one-glance severity count (e.g. "3 findings — 1 critical, 2 high"; if `dropped` is non-empty, add "N refuted by validation"), and the one-line summary — so a ship-blocker is obvious before reading the list.
 - List each finding as `### [SEVERITY] title  [engines]`, then `` `file:line` ``, the body, and **Fix:** the recommendation. Sort critical → low; within a severity, the workflow already lists corroborated (multi-engine) findings before solo ones — preserve that order.
+- Mark any finding whose `validated` is `unconfirmed`: the chair's validator could neither reproduce it from the code nor positively refute it — flag it as "unconfirmed — verify manually", so it's not read with the same weight as a `confirmed` one.
 - Name the reviewers that actually ran.
 - If `dropped` is non-empty, note briefly which findings validation refuted, and why.
 - If `confidence` is `low`, say so prominently: the verdict rests on thin evidence — fewer than two reviewers ran, or a `needs-attention` whose strongest finding is a lone, unvalidated claim. Tell the user to verify it before acting, rather than taking the verdict at face value.

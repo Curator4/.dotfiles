@@ -42,7 +42,7 @@ const VERDICT_SCHEMA = {
   additionalProperties: false,
   required: ['status', 'reason'],
   properties: {
-    status: { type: 'string', enum: ['confirmed', 'refuted', 'adjusted'] },
+    status: { type: 'string', enum: ['confirmed', 'refuted', 'adjusted', 'unconfirmed'] },
     reason: { type: 'string' },
     adjusted_severity: { type: 'string', enum: ['critical', 'high', 'medium', 'low'] },
   },
@@ -117,11 +117,17 @@ const checked = await parallel(
   highSev.map((f) => () =>
     agent(
       [
-        `Verify this code-review finding against the real code. The file is at this EXACT absolute path:`,
+        `Independently verify a code-review finding against the real code. The file is at this EXACT absolute path:`,
         `  ${repoPath}/${f.file}`,
         `Use the Read tool on that absolute path directly. Do NOT use find / grep / git / ls or the current working directory to locate the file — the CWD may be a different, unrelated repository and will mislead you into thinking the file is missing. The file you need is the absolute path above.`,
-        `Judge whether the finding is real and accurately describes that file's current code.`,
-        `Be conservative about dropping: return "refuted" ONLY if the file's actual contents positively contradict the finding. If you genuinely cannot read the file at that absolute path, do NOT refute — return "confirmed" (trust the reviewers; absence of the file is not evidence the finding is wrong). Return "adjusted" (with adjusted_severity) if real but the severity is clearly off; otherwise "confirmed".`,
+        '',
+        `STEP 1 — read the file and form your OWN view of the code around lines ${f.line_start ?? '?'}-${f.line_end ?? '?'} FIRST, before weighing the claim: what, if anything, is actually wrong there? Being shown a claim and asked "is this true?" biases you toward agreeing (confirmation bias) — derive your read from the code itself, then compare.`,
+        `STEP 2 — now judge the finding (JSON below) against the code and your own read:`,
+        `  - "confirmed": the code shows the finding is real and accurate (you independently see the issue, or the code plainly exhibits it).`,
+        `  - "refuted": the file's actual contents POSITIVELY CONTRADICT the finding. Refute ONLY on positive contradiction, never merely because you are unsure.`,
+        `  - "unconfirmed": plausible, but your own read did NOT reproduce it and the code does not clearly exhibit it — you can neither confirm it nor positively contradict it. Keep it, flagged as not independently confirmed.`,
+        `  - "adjusted" (with adjusted_severity): real, but the severity is clearly off.`,
+        `If you genuinely cannot read the file at that absolute path, do NOT refute and do NOT mark unconfirmed — return "confirmed" (trust the reviewers; absence of the file is not evidence the finding is wrong).`,
         `The finding's "engines" field lists which reviewers raised it. That count is NOT evidence of correctness — independent models frequently agree on the SAME wrong conclusion (correlated errors). Judge this finding against the actual code on its own merits; if the code positively contradicts it, refute it no matter how many engines agreed. Consensus decides what to look at, not what to trust.`,
         `The finding's "confidence" (0..1) is the reviewer's own self-rated certainty. Treat a LOW confidence (<= 0.4) as a reason to scrutinize harder — it signals how load-bearing the claim is — but keep the conservative rule above: refute only on positive contradiction, never merely because confidence was low.`,
         '',

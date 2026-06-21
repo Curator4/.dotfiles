@@ -48,3 +48,15 @@ test("synthesis.mjs computes and reports a council-level confidence", () => {
   assert.match(src, /function councilConfidence\(/, "councilConfidence is defined");
   assert.match(src, /confidence: councilConfidence\(/, "the final report carries the computed confidence");
 });
+
+// The validator does a blind-first pass (form your own read BEFORE weighing the
+// claim — confirmation-bias mitigation) and can return "unconfirmed" (plausible but
+// not independently reproduced) instead of being forced to confirm/refute. Lock both
+// so a future prompt edit can't silently revert to claim-first / binary validation.
+test("synthesis.mjs validator is blind-first and supports an 'unconfirmed' verdict", () => {
+  const src = fs.readFileSync(path.join(WORKFLOWS, "synthesis.mjs"), "utf8");
+  assert.match(src, /STEP 1 — read the file and form your OWN view/, "validator forms its own read before the claim");
+  assert.match(src, /confirmation bias/i, "the blind-first rationale is stated");
+  assert.match(src, /enum: \['confirmed', 'refuted', 'adjusted', 'unconfirmed'\]/, "'unconfirmed' is a valid verdict status");
+  assert.match(src, /"unconfirmed":/, "the prompt defines when to return unconfirmed");
+});
