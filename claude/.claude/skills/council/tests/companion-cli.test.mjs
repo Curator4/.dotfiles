@@ -562,3 +562,39 @@ test("setup reflects COUNCIL_ENGINES in the active roster", async () => {
   assert.equal(res.code, 0, res.stderr);
   assert.match(res.stdout, /Active roster \(COUNCIL_ENGINES\): grok, codex/);
 });
+
+// ---------- capability: --scope file (review a diff read from a file) ----------
+
+test("file scope reviews a diff read from a file (--scope file --base <path>)", async () => {
+  const f = path.join(mkdtemp("council-diff-"), "pr.diff");
+  fs.writeFileSync(f, "diff --git a/x.js b/x.js\n--- a/x.js\n+++ b/x.js\n@@ -1 +1,2 @@\n const x = 1;\n+// FILE_DIFF_MARKER\n");
+  const env = baseEnv({ grok: { mode: "ok", review: R_GROK }, codex: { mode: "error" }, pi: { mode: "error" } });
+  const res = await runCompanion(["council", "--scope", "file", "--base", f, "--json"], env);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  assert.match(out.diff, /FILE_DIFF_MARKER/, "the file's contents are reviewed");
+  assert.ok(out.findings.some((x) => x.engine === "grok"), "pipeline ran on the file diff");
+});
+
+test("file scope works outside a git repository", async () => {
+  const dir = mkdtemp("council-nonrepo-");
+  const f = path.join(dir, "patch.diff");
+  fs.writeFileSync(f, "diff --git a/y.js b/y.js\n+// STANDALONE_PATCH\n");
+  const env = baseEnv({ grok: { mode: "ok", review: R_GROK }, codex: { mode: "error" }, pi: { mode: "error" } });
+  const res = await runCompanion(["council", "--scope", "file", "--base", f, "--json"], env, dir);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  assert.match(out.diff, /STANDALONE_PATCH/, "reviews a file diff with no git repo present");
+});
+
+test("file scope without --base errors out", async () => {
+  const res = await runCompanion(["council", "--scope", "file", "--json"], baseEnv({}));
+  assert.notEqual(res.code, 0);
+  assert.match(res.stderr, /requires --base/);
+});
+
+test("file scope with a nonexistent diff file errors out", async () => {
+  const res = await runCompanion(["council", "--scope", "file", "--base", "/no/such/patch.diff", "--json"], baseEnv({}));
+  assert.notEqual(res.code, 0);
+  assert.match(res.stderr, /diff file not found/);
+});
