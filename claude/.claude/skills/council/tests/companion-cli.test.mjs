@@ -697,6 +697,13 @@ test("to-sarif errors clearly on a missing file, invalid JSON, and no arg", asyn
   assert.match(r3.stderr, /requires a chair-report/);
 });
 
+test("to-sarif rejects a non-regular file (shared guard: no hang on fifo/device)", async () => {
+  const dir = mkdtemp("council-notfile-"); // a directory hits the same isFile() guard
+  const res = await runCompanion(["to-sarif", dir], baseEnv({}));
+  assert.notEqual(res.code, 0);
+  assert.match(res.stderr, /must be a regular file/);
+});
+
 // ---------- quality: per-finding confidence is plumbed to the chair (--json) ----------
 
 test("council --json: findings carry the per-engine confidence (chair + validator can see it)", async () => {
