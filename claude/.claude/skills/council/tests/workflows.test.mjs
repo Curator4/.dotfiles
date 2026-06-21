@@ -49,14 +49,17 @@ test("synthesis.mjs computes and reports a council-level confidence", () => {
   assert.match(src, /confidence: councilConfidence\(/, "the final report carries the computed confidence");
 });
 
-// The validator does a blind-first pass (form your own read BEFORE weighing the
-// claim — confirmation-bias mitigation) and can return "unconfirmed" (plausible but
-// not independently reproduced) instead of being forced to confirm/refute. Lock both
-// so a future prompt edit can't silently revert to claim-first / binary validation.
-test("synthesis.mjs validator is blind-first and supports an 'unconfirmed' verdict", () => {
+// The validator runs TWO passes per finding to defeat confirmation bias: pass A
+// audits the code region BLIND (no claim), pass B judges the claim against that
+// independent read. It can return "unconfirmed" (not independently reproduced)
+// rather than being forced to confirm/refute. Lock the structure so a future edit
+// can't silently revert to a single claim-first / binary validation.
+test("synthesis.mjs validates in two blind passes (audit then judge) supporting 'unconfirmed'", () => {
   const src = fs.readFileSync(path.join(WORKFLOWS, "synthesis.mjs"), "utf8");
-  assert.match(src, /STEP 1 — read the file and form your OWN view/, "validator forms its own read before the claim");
-  assert.match(src, /confirmation bias/i, "the blind-first rationale is stated");
+  assert.match(src, /confirmation bias/i, "the confirmation-bias rationale is stated");
+  assert.match(src, /AUDIT_SCHEMA/, "pass A has a dedicated blind-audit schema");
+  assert.match(src, /label: `audit:/, "a blind audit pass runs (before the judge pass)");
+  assert.match(src, /WITHOUT seeing any claim/, "the claim is revealed to the judge only after the independent audit");
   assert.match(src, /enum: \['confirmed', 'refuted', 'adjusted', 'unconfirmed'\]/, "'unconfirmed' is a valid verdict status");
-  assert.match(src, /"unconfirmed":/, "the prompt defines when to return unconfirmed");
+  assert.match(src, /"unconfirmed":/, "the judge prompt defines when to return unconfirmed");
 });

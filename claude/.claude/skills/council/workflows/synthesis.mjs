@@ -48,6 +48,25 @@ const VERDICT_SCHEMA = {
   },
 }
 
+// Pass-A (blind audit) output: an independent read of the code region with NO claim
+// shown, so the judge in pass B isn't primed to agree (confirmation bias).
+const AUDIT_SCHEMA = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['issues'],
+  properties: {
+    issues: {
+      type: 'array',
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['description'],
+        properties: { description: { type: 'string' }, evidence: { type: 'string' } },
+      },
+    },
+  },
+}
+
 // Council-level confidence in THIS verdict (selective prediction / "trust or
 // escalate", arXiv:2407.18370): a heuristic cue — NOT a calibrated guarantee — for
 // when to take the verdict at face value vs dig deeper. Low when the call rests on
@@ -111,34 +130,48 @@ const order = { critical: 0, high: 1, medium: 2, low: 3 }
 const highSev = merged.filter((f) => f.severity === 'critical' || f.severity === 'high')
 const lowSev = merged.filter((f) => f.severity === 'medium' || f.severity === 'low')
 
-// --- Validate: verify each critical/high finding against the real code, in parallel ---
+// --- Validate: verify each critical/high finding against the real code, in parallel.
+// TWO PASSES per finding to defeat confirmation bias (arXiv:2603.18740 — a validator
+// shown the claim first is primed to agree). Pass A audits the code region BLIND (no
+// claim). Pass B then judges the claim against that independent read. The conservative
+// refute-only rule is preserved, so the worst case is "no improvement", never a
+// wrongly-dropped real finding. ---
 phase('Validate')
+const fileNote = (f) =>
+  `Use the Read tool on the EXACT absolute path ${repoPath}/${f.file} directly. Do NOT use find / grep / git / ls or the current working directory — the CWD may be a DIFFERENT, unrelated repository and will mislead you into thinking the file is missing.`
 const checked = await parallel(
-  highSev.map((f) => () =>
-    agent(
+  highSev.map((f) => async () => {
+    // Pass A — BLIND independent audit: NO claim shown, so the read isn't anchored.
+    const audit = await agent(
       [
-        `Independently verify a code-review finding against the real code. The file is at this EXACT absolute path:`,
-        `  ${repoPath}/${f.file}`,
-        `Use the Read tool on that absolute path directly. Do NOT use find / grep / git / ls or the current working directory to locate the file — the CWD may be a different, unrelated repository and will mislead you into thinking the file is missing. The file you need is the absolute path above.`,
+        `Audit a region of source code independently. ${fileNote(f)}`,
+        `Read the file and examine the code around lines ${f.line_start ?? '?'}-${f.line_end ?? '?'}. Report what — if ANYTHING — is genuinely wrong there. Do NOT assume a problem exists; many regions are perfectly fine, in which case return an empty list. For each issue you actually see, quote the offending line(s) as evidence.`,
+      ].join('\n'),
+      { label: `audit:${f.file}`, phase: 'Validate', schema: AUDIT_SCHEMA }
+    ).catch(() => null)
+    // Pass B — JUDGE the claim against the INDEPENDENT audit (only now is the claim revealed).
+    const v = await agent(
+      [
+        `An independent auditor examined ${repoPath}/${f.file} WITHOUT seeing any claim, and reported these issues:`,
+        audit ? JSON.stringify(audit.issues || [], null, 2) : '(the independent audit produced no result)',
         '',
-        `STEP 1 — read the file and form your OWN view of the code around lines ${f.line_start ?? '?'}-${f.line_end ?? '?'} FIRST, before weighing the claim: what, if anything, is actually wrong there? Being shown a claim and asked "is this true?" biases you toward agreeing (confirmation bias) — derive your read from the code itself, then compare.`,
-        `STEP 2 — now judge the finding (JSON below) against the code and your own read:`,
-        `  - "confirmed": the code shows the finding is real and accurate (you independently see the issue, or the code plainly exhibits it).`,
-        `  - "refuted": the file's actual contents POSITIVELY CONTRADICT the finding. Refute ONLY on positive contradiction, never merely because you are unsure.`,
-        `  - "unconfirmed": plausible, but your own read did NOT reproduce it and the code does not clearly exhibit it — you can neither confirm it nor positively contradict it. Keep it, flagged as not independently confirmed.`,
-        `  - "adjusted" (with adjusted_severity): real, but the severity is clearly off.`,
-        `If you genuinely cannot read the file at that absolute path, do NOT refute and do NOT mark unconfirmed — return "confirmed" (trust the reviewers; absence of the file is not evidence the finding is wrong).`,
-        `The finding's "engines" field lists which reviewers raised it. That count is NOT evidence of correctness — independent models frequently agree on the SAME wrong conclusion (correlated errors). Judge this finding against the actual code on its own merits; if the code positively contradicts it, refute it no matter how many engines agreed. Consensus decides what to look at, not what to trust.`,
-        `The finding's "confidence" (0..1) is the reviewer's own self-rated certainty. Treat a LOW confidence (<= 0.4) as a reason to scrutinize harder — it signals how load-bearing the claim is — but keep the conservative rule above: refute only on positive contradiction, never merely because confidence was low.`,
+        `Now judge THIS finding a code reviewer raised about the same code. You may re-read the file to settle it. ${fileNote(f)}`,
         '',
         'FINDING (JSON):',
         JSON.stringify(f, null, 2),
+        '',
+        `Decide:`,
+        `  - "confirmed": the independent audit corroborates the finding, OR the code plainly exhibits it.`,
+        `  - "refuted": the file's actual contents POSITIVELY CONTRADICT the finding. Refute ONLY on positive contradiction, never merely because the audit missed it.`,
+        `  - "unconfirmed": the independent audit did NOT surface it and you cannot positively contradict it — keep it, flagged as not independently reproduced.`,
+        `  - "adjusted" (with adjusted_severity): real, but the severity is clearly off.`,
+        `If you genuinely cannot read the file, do NOT refute and do NOT mark unconfirmed — return "confirmed" (absence of the file is not evidence the finding is wrong).`,
+        `The finding's "engines" field is NOT evidence of correctness — independent models frequently agree on the SAME wrong conclusion (correlated errors). Judge against the actual code. "confidence" (0..1) low (<= 0.4) means scrutinize harder, not refute.`,
       ].join('\n'),
       { label: `validate:${f.file}`, phase: 'Validate', schema: VERDICT_SCHEMA }
-    )
-      .then((v) => ({ finding: f, v }))
-      .catch(() => ({ finding: f, v: null }))
-  )
+    ).catch(() => null)
+    return { finding: f, v }
+  })
 )
 
 const keptHigh = []
