@@ -6,7 +6,8 @@
 // path runs offline and deterministically.
 //
 // Each fake's behavior is chosen at runtime from an env var (COUNCIL_FAKE_<NAME>),
-// a JSON spec: { mode: "ok" | "error" | "usage" | "garbage" | "timeout" | "flood" | "flaky" | "split", review?, bytes?, ... }.
+// a JSON spec: { mode: "ok" | "error" | "usage" | "garbage" | "timeout" | "flood" | "flaky" | "split" | "slow", review?, bytes?, ms?, ... }.
+// "slow" returns a normal ok review after `ms` (default 300) — used to observe engine concurrency.
 // "flood" streams `bytes` of junk (output-size cap); "flaky" fails N times then succeeds (retry, grok only,
 // needs counterFile/failTimes); "split" emits the review with a multibyte char straddling two stdout chunks
 // (UTF-8 decode, grok only).
@@ -67,6 +68,7 @@ else if (spec.mode === "split") {
   process.stdout.write(buf.subarray(0, k));
   setTimeout(function () { process.stdout.write(buf.subarray(k)); process.exit(0); }, 25);
 }
+else if (spec.mode === "slow") { setTimeout(function () { process.stdout.write(review); process.exit(0); }, spec.ms || 300); }
 else { process.stdout.write(review); process.exit(0); }
 `;
 
@@ -83,6 +85,7 @@ else if (spec.mode === "usage") { process.stdout.write("stream error: usage limi
 else if (spec.mode === "error") { process.stderr.write("codex engine error: boom"); process.exit(1); }
 else if (spec.mode === "garbage") { if (outFile) fs.writeFileSync(outFile, "garbage{"); process.exit(0); }
 else if (spec.mode === "flood") { if (outFile) fs.writeFileSync(outFile, "x".repeat(spec.bytes || 200000)); process.exit(0); }
+else if (spec.mode === "slow") { setTimeout(function () { if (outFile) fs.writeFileSync(outFile, review); process.exit(0); }, spec.ms || 300); }
 else { if (outFile) fs.writeFileSync(outFile, review); process.exit(0); }
 `;
 
@@ -97,6 +100,7 @@ if (spec.mode === "timeout") { setTimeout(function () {}, 5000); }
 else if (spec.mode === "error") { process.stderr.write("pi engine error: boom"); process.exit(1); }
 else if (spec.mode === "garbage") { emit("no json here either"); process.exit(0); }
 else if (spec.mode === "flood") { process.stdout.write("x".repeat(spec.bytes || 200000)); process.exit(0); }
+else if (spec.mode === "slow") { setTimeout(function () { emit(review); process.exit(0); }, spec.ms || 300); }
 else { emit(review); process.exit(0); }
 `;
 

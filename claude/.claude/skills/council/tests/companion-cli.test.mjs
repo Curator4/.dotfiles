@@ -241,6 +241,35 @@ test("council rejects a --base ref beginning with '-' (argument-injection guard)
   assert.match(res.stderr, /unsafe .*base|must not start/i);
 });
 
+// ---------- reliability: engine concurrency (COUNCIL_CONCURRENCY) ----------
+
+test("engines run concurrently by default; COUNCIL_CONCURRENCY=1 serializes (same results)", async () => {
+  const SLEEP = 300;
+  const fakes = {
+    grok: { mode: "slow", ms: SLEEP, review: R_GROK },
+    codex: { mode: "slow", ms: SLEEP },
+    pi: { mode: "slow", ms: SLEEP, review: R_PI },
+  };
+  const run = async (extra) => {
+    const t0 = Date.now();
+    const res = await runCompanion(["council", "--json"], baseEnv(fakes, extra));
+    const ms = Date.now() - t0;
+    assert.equal(res.code, 0, res.stderr);
+    return { ms, out: JSON.parse(res.stdout) };
+  };
+  const parallel = await run({});
+  const sequential = await run({ COUNCIL_CONCURRENCY: "1" });
+  const engines = (o) => o.out.findings.map((f) => f.engine).sort();
+  assert.deepEqual(engines(parallel), engines(sequential), "same findings regardless of concurrency");
+  assert.ok(parallel.out.findings.length >= 3, "all three engines contributed");
+  // Sequential is ~3 sleeps, parallel ~1; the gap must exceed at least one sleep
+  // (true headroom is ~2x SLEEP, so this is robust to per-spawn overhead/jitter).
+  assert.ok(
+    sequential.ms - parallel.ms > SLEEP,
+    `expected concurrency speedup > ${SLEEP}ms (parallel=${parallel.ms}ms, sequential=${sequential.ms}ms)`
+  );
+});
+
 // ---------- robustness: multibyte UTF-8 output split across stdout chunks ----------
 
 test("council --json: a multibyte char split across stdout chunks is decoded, not mangled", async () => {

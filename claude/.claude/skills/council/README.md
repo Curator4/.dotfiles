@@ -95,6 +95,7 @@ COUNCIL_ENGINES=grok node ~/.claude/skills/council/scripts/council-companion.mjs
 ## Knobs
 
 - `COUNCIL_TIMEOUT_MS` — per-engine CLI timeout (default 300000).
+- `COUNCIL_CONCURRENCY` — max engines run at once (default: unbounded — all concurrent, so total latency is the slowest engine, not the sum of timeouts). Set `1` to run strictly sequentially.
 - `COUNCIL_MAX_OUTPUT_BYTES` — per-engine output ceiling; an engine streaming more (stdout+stderr, or its codex `-o` file) is SIGKILLed and skipped (default 24 MiB).
 - `COUNCIL_RETRIES` — per-engine retries on a *transient* failure (empty output); `0` disables (default 1). Other failures (quota, timeout, size cap, parse error) are never retried.
 - `COUNCIL_RETRY_DELAY_MS` — delay before a retry (default 750; grok's empty-output flakiness is worse under rapid repeated calls).
