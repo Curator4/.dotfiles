@@ -19,9 +19,13 @@ const SYNTH_SCHEMA = {
       items: {
         type: 'object',
         additionalProperties: false,
-        required: ['point', 'positions'],
+        required: ['point', 'divergence_type', 'positions'],
         properties: {
           point: { type: 'string' },
+          // Why the panel splits (DiscoUQ, arXiv:2603.20975): evidence divergence is
+          // resolvable (pin the missing fact — that's the crux); reasoning/value
+          // divergence is irreducible and should lower confidence in the recommendation.
+          divergence_type: { type: 'string', enum: ['evidence', 'reasoning', 'value'] },
           positions: {
             type: 'array',
             items: {
@@ -70,9 +74,9 @@ const synth = await agent(
     'You are the chair of a multi-model advisory council. You did NOT write any of the takes; reconcile them neutrally. Produce:',
     '- summary: one or two sentences capturing the council\'s overall read.',
     "- recommendation: the consolidated call. Weight positions by the STRENGTH and verifiability of their argument, NOT by how many engines hold them — a single well-reasoned take can outweigh a numerical majority, and if so, say that. If the takes converge, state it plainly. If they genuinely diverge, say what it depends on and give your best-judgment lean AS CHAIR (mark it as the chair's call, not unanimous).",
-    "- crux: the single fact, assumption, or condition that would most change the recommendation if resolved — the thing the user should go find out (or decide) BEFORE acting. If nothing would flip it, say the recommendation is robust and why.",
+    "- crux: the single fact, assumption, or condition that would most change the recommendation if resolved — the thing the user should go find out (or decide) BEFORE acting. If the load-bearing divergences are `evidence`-type, the crux is the missing fact that would collapse the split — name it. If they are `reasoning`- or `value`-type, no fact may flip it: say the recommendation is genuinely contested, state the tradeoff the user must decide, and lower your confidence in the recommendation accordingly. If nothing would flip it, say the recommendation is robust and why.",
     '- consensus: points most or all takes agree on.',
-    '- divergences: substantive disagreements. For each, state the point and the differing positions, attributing each stance to the engine(s) that hold it. This is the most valuable output — surface real disagreement, do not paper over it.',
+    "- divergences: substantive disagreements. For each, state the point, attribute each stance to the engine(s) that hold it, and CLASSIFY its `divergence_type`: `evidence` (members reasoned soundly but assumed DIFFERENT FACTS — resolvable by pinning the fact), `reasoning` (SAME facts, different inference), or `value` (same facts and logic, different PRIORITIES/tradeoffs). The type tells the user whether the split is resolvable (evidence) or a genuine judgment call (reasoning/value). This is the most valuable output — surface real disagreement, do not paper over it.",
     '- strongest_points: the most compelling individual arguments raised by ANY single member, even if only one raised it.',
     '- open_questions: what the council could not resolve, or what the brief left underspecified.',
     '- takes: a one-line gist per engine of that member\'s overall position.',

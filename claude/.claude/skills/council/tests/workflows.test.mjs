@@ -40,6 +40,16 @@ test("council-synth.mjs declares the crux field in its output schema", () => {
   assert.match(src, /crux: \{ type: 'string' \}/, "crux is a declared schema property");
 });
 
+// Each divergence is typed (evidence/reasoning/value) so the user knows whether a
+// split is resolvable (pin the fact) or a genuine judgment call. Lock the schema +
+// the classification instruction (DiscoUQ, arXiv:2603.20975).
+test("council-synth.mjs classifies each divergence by type", () => {
+  const src = fs.readFileSync(path.join(WORKFLOWS, "council-synth.mjs"), "utf8");
+  assert.match(src, /required: \['point', 'divergence_type', 'positions'\]/, "divergence_type is required per divergence");
+  assert.match(src, /enum: \['evidence', 'reasoning', 'value'\]/, "the three divergence types are declared");
+  assert.match(src, /CLASSIFY its `divergence_type`/, "the chair is instructed to classify each divergence");
+});
+
 // The review chair emits a council-level `confidence` (selective prediction). Lock
 // both the function and that the final report carries it, so a future edit can't
 // silently drop the calibration signal the skill surfaces to the user.
