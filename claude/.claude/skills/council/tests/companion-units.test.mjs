@@ -84,6 +84,19 @@ test("sanitizeRepoPath clamps traversal/absolute paths so they cannot escape rep
   }
 });
 
+test("sanitizeRepoPath rejects paths containing control characters (NUL/newline/tab/DEL)", () => {
+  const ctl = (n) => String.fromCharCode(n);
+  assert.equal(sanitizeRepoPath("src/ev" + ctl(0) + "il.js"), "?"); // NUL
+  assert.equal(sanitizeRepoPath("a" + ctl(10) + "b/c.js"), "?"); // newline
+  assert.equal(sanitizeRepoPath("a" + ctl(9) + "b.js"), "?"); // tab
+  assert.equal(sanitizeRepoPath("x" + ctl(127) + "y.js"), "?"); // DEL
+  // Invariant: the output never contains a control character.
+  const hasCtl = (s) => [...s].some((ch) => ch.charCodeAt(0) <= 0x1f || ch.charCodeAt(0) === 0x7f);
+  for (const evil of ["a" + ctl(0) + "b", "x" + ctl(10) + "y.js", "ok/path.js"]) {
+    assert.ok(!hasCtl(sanitizeRepoPath(evil)), `no control char in output for ${JSON.stringify(evil)}`);
+  }
+});
+
 // ---------- shuffle (chair-bound output order; position-bias mitigation) ----------
 test("shuffle returns a permutation and does not mutate the input", () => {
   const input = Array.from({ length: 50 }, (_, i) => i);
