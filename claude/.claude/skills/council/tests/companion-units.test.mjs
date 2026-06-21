@@ -28,6 +28,7 @@ import {
   toSarif,
   splitDiffByFile,
   packBatches,
+  foldEngineResults,
   makeDelimiter,
   spotlight,
   buildPrompt,
@@ -462,6 +463,8 @@ test("splitDiffByFile splits a git diff into per-file sections with byte sizes",
     ["src/a.js", "src/big.js"]
   );
   assert.ok(parts[1].bytes > parts[0].bytes, "the 500-char file section is the bigger one");
+  assert.match(parts[0].diff, /^diff --git a\/src\/a\.js b\/src\/a\.js/, "section text is the file's own diff (needed by the map-reduce batcher)");
+  assert.ok(!parts[0].diff.includes("src/big.js"), "a file's section stops at the next file's header");
 });
 
 test("splitDiffByFile returns [] for a non-git / empty diff", () => {
@@ -494,6 +497,58 @@ test("packBatches starts a new batch when the next section would overflow", () =
   );
   assert.equal(oversized.length, 0);
   assert.equal(batches.length, 2, "200+200 > 250 -> two batches");
+});
+
+// ---------- foldEngineResults (large-diff per-engine cross-batch fold) ----------
+const E2 = [
+  { id: "grok", label: "Grok" },
+  { id: "codex", label: "Codex" },
+];
+
+test("foldEngineResults concatenates an engine's findings across batches + rolls up verdict/ms/attempts", () => {
+  const tasks = [
+    { id: "grok", label: "Grok", ok: true, ms: 100, attempts: 1, review: { verdict: "needs-attention", summary: "b1", findings: [{ title: "A" }], next_steps: ["x"] } },
+    { id: "grok", label: "Grok", ok: true, ms: 200, attempts: 2, review: { verdict: "approve", summary: "b2", findings: [{ title: "B" }], next_steps: ["x", "y"] } },
+  ];
+  const [g] = foldEngineResults([E2[0]], tasks);
+  assert.equal(g.ok, true);
+  assert.deepEqual(g.review.findings.map((f) => f.title), ["A", "B"], "findings concatenated across batches");
+  assert.equal(g.review.verdict, "needs-attention", "any batch needs-attention -> needs-attention");
+  assert.deepEqual(g.review.next_steps, ["x", "y"], "next_steps unioned (deduped)");
+  assert.equal(g.ms, 300, "ms summed across batches");
+  assert.equal(g.attempts, 2, "attempts = max across batches");
+});
+
+test("foldEngineResults: an engine that failed ALL its batches is skipped (ok:false), carrying the first error", () => {
+  const tasks = [
+    { id: "grok", label: "Grok", ok: false, error: "boom1", ms: 50, attempts: 1 },
+    { id: "grok", label: "Grok", ok: false, error: "boom2", ms: 60, attempts: 1 },
+  ];
+  const [g] = foldEngineResults([E2[0]], tasks);
+  assert.equal(g.ok, false);
+  assert.match(g.error, /boom1/);
+  assert.equal(g.ms, 110);
+});
+
+test("foldEngineResults: an engine ok on SOME batches keeps the successful findings (best-effort)", () => {
+  const tasks = [
+    { id: "grok", label: "Grok", ok: false, error: "batch1 down", ms: 10, attempts: 1 },
+    { id: "grok", label: "Grok", ok: true, ms: 20, attempts: 1, review: { verdict: "needs-attention", summary: "ok", findings: [{ title: "kept" }], next_steps: [] } },
+  ];
+  const [g] = foldEngineResults([E2[0]], tasks);
+  assert.equal(g.ok, true, "any successful batch -> ok");
+  assert.deepEqual(g.review.findings.map((f) => f.title), ["kept"]);
+});
+
+test("foldEngineResults folds each engine independently and preserves engine order", () => {
+  const tasks = [
+    { id: "codex", label: "Codex", ok: false, error: "down", ms: 2, attempts: 1 },
+    { id: "grok", label: "Grok", ok: true, ms: 1, attempts: 1, review: { verdict: "approve", summary: "", findings: [{ title: "G" }], next_steps: [] } },
+  ];
+  const out = foldEngineResults(E2, tasks);
+  assert.deepEqual(out.map((r) => r.id), ["grok", "codex"], "output follows the engines list order, not task order");
+  assert.equal(out[0].ok, true);
+  assert.equal(out[1].ok, false);
 });
 
 // ---------- schema file integrity ----------
