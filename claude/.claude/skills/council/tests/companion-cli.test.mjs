@@ -648,6 +648,18 @@ test("council --json: a grok error-envelope ({type:'error'}) is a clean skip, no
   assert.ok(!out.findings.some((f) => f.engine === "grok"), "no bogus grok finding from an error envelope");
 });
 
+// ---------- reliability: oversized prompt fails fast (argv E2BIG pre-flight) ----------
+
+test("a diff over the argv byte limit fails fast with a clear error, not N cryptic E2BIG skips", async () => {
+  const f = path.join(mkdtemp("council-bigdiff-"), "huge.diff");
+  fs.writeFileSync(f, "x".repeat(200 * 1024)); // 200 KiB > the ~128 KiB single-argv limit
+  const env = baseEnv({ grok: { mode: "ok" }, codex: { mode: "ok" }, pi: { mode: "ok" } });
+  const res = await runCompanion(["council", "--scope", "file", "--base", f, "--json"], env);
+  assert.notEqual(res.code, 0);
+  assert.match(res.stderr, /too large to review/);
+  assert.match(res.stderr, /scope/i); // actionable guidance to narrow it
+});
+
 // ---------- quality: per-finding confidence is plumbed to the chair (--json) ----------
 
 test("council --json: findings carry the per-engine confidence (chair + validator can see it)", async () => {
