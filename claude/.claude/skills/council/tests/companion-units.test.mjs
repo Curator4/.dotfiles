@@ -21,6 +21,8 @@ import {
   parseArgs,
   getFlagValue,
   interpolate,
+  render,
+  renderTakes,
   makeDelimiter,
   spotlight,
   buildPrompt,
@@ -329,4 +331,84 @@ test("review-output.schema.json is valid and constrains severity/required fields
   assert.deepEqual(schema.required, ["verdict", "summary", "findings", "next_steps"]);
   assert.deepEqual(schema.properties.verdict.enum, ["approve", "needs-attention"]);
   assert.deepEqual(schema.properties.findings.items.properties.severity.enum, ["critical", "high", "medium", "low"]);
+});
+
+// ---------- render / renderTakes (human-facing output formatting) ----------
+const okResult = (id, label, review) => ({ ok: true, id, label, ms: 1000, attempts: 1, review });
+
+test("render formats a finding: verdict, summary, severity+engine tag, loc range, conf, fix, next steps", () => {
+  const review = {
+    verdict: "needs-attention",
+    summary: "ship-blocker",
+    findings: [{ severity: "high", title: "SQL Injection", body: "unparameterized query", file: "db.js", line_start: 2, line_end: 5, confidence: 0.8, recommendation: "use params" }],
+    next_steps: ["add a prepared-statement helper"],
+  };
+  const out = render({ target: { label: "working tree" }, results: [okResult("grok", "Grok", review)] }, { single: false });
+  assert.match(out, /# Council Review — working tree/);
+  assert.match(out, /\*\*Verdict: NEEDS-ATTENTION\*\*/);
+  assert.match(out, /- \*Grok:\* ship-blocker/);
+  assert.match(out, /### \[HIGH\] SQL Injection _\[grok\]_/);
+  assert.match(out, /`db\.js:2-5` \(conf 0\.8\)/);
+  assert.match(out, /unparameterized query/);
+  assert.match(out, /\*\*Fix:\*\* use params/);
+  assert.match(out, /## Next steps\n- add a prepared-statement helper/);
+});
+
+test("render loc: single line when start==end, file-only when no line, no conf when null", () => {
+  const review = {
+    verdict: "needs-attention",
+    summary: "",
+    findings: [
+      { severity: "medium", title: "single", body: "", file: "a.js", line_start: 7, line_end: 7, confidence: null, recommendation: "" },
+      { severity: "low", title: "noline", body: "", file: "b.js", line_start: null, line_end: null, confidence: null, recommendation: "" },
+    ],
+    next_steps: [],
+  };
+  const out = render({ target: { label: "x" }, results: [okResult("grok", "Grok", review)] }, { single: false });
+  assert.match(out, /`a\.js:7`/);
+  assert.ok(!out.includes("a.js:7-"), "no range suffix when start==end");
+  assert.match(out, /`b\.js`/);
+  assert.ok(!out.includes("b.js:"), "no :line when line_start is null");
+  assert.ok(!out.includes("(conf"), "no confidence shown when null");
+});
+
+test("render: 'No material findings' when an engine approves with no findings", () => {
+  const review = { verdict: "approve", summary: "looks clean", findings: [], next_steps: [] };
+  const out = render({ target: { label: "x" }, results: [okResult("grok", "Grok", review)] }, { single: false });
+  assert.match(out, /\*\*Verdict: APPROVE\*\*/);
+  assert.match(out, /No material findings\./);
+});
+
+test("render: all engines unavailable -> 'No engine produced a review' + skip line", () => {
+  const out = render({ target: { label: "x" }, results: [{ ok: false, id: "grok", label: "Grok", error: "down", ms: 100, attempts: 1 }] }, { single: false });
+  assert.match(out, /No engine produced a review/);
+  assert.match(out, /Grok skipped — down/);
+});
+
+test("render: empty target diff -> 'Nothing to review'", () => {
+  const out = render({ target: { label: "x" }, empty: true, results: [] }, { single: false });
+  assert.match(out, /Nothing to review/);
+});
+
+test("render single mode: 'Grok Review' title and no engine tag", () => {
+  const review = { verdict: "needs-attention", summary: "", findings: [{ severity: "high", title: "x", body: "", file: "a.js", line_start: 1, line_end: 1, confidence: null, recommendation: "" }], next_steps: [] };
+  const out = render({ target: { label: "wt" }, results: [okResult("grok", "Grok", review)] }, { single: true });
+  assert.match(out, /# Grok Review — wt/);
+  assert.ok(!out.includes("_[grok]_"), "single mode omits the engine tag");
+});
+
+test("renderTakes formats ok takes and skip lines", () => {
+  const out = renderTakes([
+    { ok: true, label: "Grok", text: "my position is X", ms: 1200, attempts: 1 },
+    { ok: false, label: "Codex", error: "usage limit", ms: 500, attempts: 1 },
+  ]);
+  assert.match(out, /# Council — open brief/);
+  assert.match(out, /✅ Grok \(1\.2s\)/);
+  assert.match(out, /Codex skipped — usage limit/);
+  assert.match(out, /## Grok\n\nmy position is X/);
+});
+
+test("renderTakes: all skipped -> 'No engine produced a take'", () => {
+  const out = renderTakes([{ ok: false, label: "Grok", error: "down", ms: 100, attempts: 1 }]);
+  assert.match(out, /No engine produced a take/);
 });
