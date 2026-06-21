@@ -101,6 +101,7 @@ node ~/.claude/skills/council/scripts/council-companion.mjs to-sarif report.json
 - `COUNCIL_TIMEOUT_MS` — per-engine CLI timeout (default 300000).
 - `COUNCIL_CONCURRENCY` — max engines run at once (default: unbounded — all concurrent, so total latency is the slowest engine, not the sum of timeouts). Set `1` to run strictly sequentially.
 - `COUNCIL_MAX_OUTPUT_BYTES` — per-engine output ceiling; an engine streaming more (stdout+stderr, or its codex `-o` file) is SIGKILLed and skipped (default 24 MiB).
+- `COUNCIL_MAX_ARG_BYTES` — max prompt size (template + diff/brief) before the review fails fast with a clear "too large" error instead of every engine dying at spawn with `E2BIG` (default ~120 KiB, under Linux's ~128 KiB single-argument limit). If you hit it, narrow the scope (a file or a commit).
 - `COUNCIL_RETRIES` — per-engine retries on a *transient* failure (empty output); `0` disables (default 1). Other failures (quota, timeout, size cap, parse error) are never retried.
 - `COUNCIL_RETRY_DELAY_MS` — delay before a retry (default 750; grok's empty-output flakiness is worse under rapid repeated calls).
 - `COUNCIL_ENGINES` — comma/space-separated roster of engine ids (`grok`, `codex`, `glm`) to run. When set it is *authoritative*: it both narrows the council and can enable an engine that's disabled by default. Unknown ids are warned and dropped; unset/blank falls back to the enabled defaults. `setup` prints the active roster.
