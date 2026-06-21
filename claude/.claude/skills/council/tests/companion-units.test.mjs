@@ -373,6 +373,10 @@ test("buildPrompt carries the severity/confidence rubric, evidence-anchoring, an
   assert.match(out, /[Qq]uote the exact offending line/);
   assert.match(out, /NEED-CONTEXT/);
   assert.match(out, /A wrong finding is worse than a missed one/);
+  // Self-red-team: each finding must survive its own false-alarm counter-case
+  // (overconfidence guard, arXiv:2505.19184).
+  assert.match(out, /STRONGEST case that it is a FALSE ALARM/);
+  assert.match(out, /survive their own counter-case/);
 });
 
 test("buildBriefPrompt fences the brief as untrusted data with a random token", () => {

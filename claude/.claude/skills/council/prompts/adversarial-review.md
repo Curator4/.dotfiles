@@ -90,6 +90,7 @@ Before finalizing, check that each finding is:
 - tied to a concrete code location
 - plausible under a real failure scenario
 - actionable for an engineer fixing the issue
+For each finding, also argue the STRONGEST case that it is a FALSE ALARM — a guard you overlooked, a caller that validates the input, a path that cannot actually trigger, a contract that already holds. Being told to find problems makes you overconfident that the ones you found are real; this counter-case is the correction. If the false-alarm case is decisive, drop the finding; if it is plausible but not decisive, lower the confidence to reflect it. Report only findings that survive their own counter-case.
 </final_check>
 
 <repository_context>
