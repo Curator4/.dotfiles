@@ -451,6 +451,33 @@ test("grok-review single mode runs only grok (--json)", async () => {
   assert.deepEqual([...new Set(out.findings.map((f) => f.engine))], ["grok"], "only grok runs in single mode");
 });
 
+test("staged scope reviews only the staged diff (git diff --cached), not unstaged work", async () => {
+  const r = makeRepo();
+  // Stage one change...
+  fs.writeFileSync(path.join(r, "app.js"), "const x = 1;\n// STAGED_CHANGE\n");
+  execFileSync("git", ["add", "app.js"], { cwd: r, stdio: "ignore" });
+  // ...then make a further unstaged change on top.
+  fs.writeFileSync(path.join(r, "app.js"), "const x = 1;\n// STAGED_CHANGE\n// UNSTAGED_CHANGE\n");
+  const env = baseEnv({ grok: { mode: "ok", review: R_GROK }, codex: { mode: "error" }, pi: { mode: "error" } });
+  const res = await runCompanion(["council", "--scope", "staged", "--json"], env, r);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  assert.match(out.diff, /STAGED_CHANGE/, "staged change is reviewed");
+  assert.ok(!out.diff.includes("UNSTAGED_CHANGE"), "unstaged change is excluded");
+  assert.ok(out.findings.some((f) => f.engine === "grok"), "pipeline ran on the staged diff");
+});
+
+test("staged scope with nothing staged yields an empty review", async () => {
+  const r = makeRepo();
+  fs.writeFileSync(path.join(r, "app.js"), "const x = 1;\n// unstaged only\n"); // modified, not added
+  const env = baseEnv({ grok: { mode: "ok", review: R_GROK }, codex: { mode: "ok" }, pi: { mode: "ok" } });
+  const res = await runCompanion(["council", "--scope", "staged", "--json"], env, r);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  assert.equal(out.diff, "", "nothing staged -> empty diff");
+  assert.equal(out.findings.length, 0);
+});
+
 test("grok-review human render is titled and omits the [engines] consensus tag", async () => {
   const env = baseEnv({ grok: { mode: "ok", review: R_GROK }, codex: { mode: "ok" }, pi: { mode: "ok" } });
   const res = await runCompanion(["grok-review"], env);

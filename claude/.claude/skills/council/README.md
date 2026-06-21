@@ -73,6 +73,7 @@ Notes:
 /council review                      # auto scope: working tree if dirty, else branch vs main
 /council review --base develop       # branch review against a base ref
 /council review --scope working-tree # force working-tree review
+/council review --scope staged       # review only staged changes (pre-commit)
 /council review auth token isolation # extra focus text
 
 /council should I use Postgres or SQLite for the alarm-receiver event store?
