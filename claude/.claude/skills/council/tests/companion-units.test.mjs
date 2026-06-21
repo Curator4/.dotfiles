@@ -12,6 +12,7 @@ import { fileURLToPath } from "node:url";
 import {
   firstLine,
   sanitizeRepoPath,
+  shuffle,
   stripFences,
   extractJson,
   normSeverity,
@@ -81,6 +82,21 @@ test("sanitizeRepoPath clamps traversal/absolute paths so they cannot escape rep
     assert.ok(!s.startsWith("/"), `not absolute: ${s}`);
     assert.ok(!s.split("/").includes(".."), `no traversal segment: ${s}`);
   }
+});
+
+// ---------- shuffle (chair-bound output order; position-bias mitigation) ----------
+test("shuffle returns a permutation and does not mutate the input", () => {
+  const input = Array.from({ length: 50 }, (_, i) => i);
+  const out = shuffle(input);
+  assert.equal(out.length, input.length);
+  assert.deepEqual([...out].sort((a, b) => a - b), input, "same multiset of elements");
+  assert.deepEqual(input, Array.from({ length: 50 }, (_, i) => i), "input array not mutated");
+});
+
+test("shuffle varies order across runs (two shuffles of 100 items differ)", () => {
+  const input = Array.from({ length: 100 }, (_, i) => i);
+  // P(two independent shuffles of 100 distinct items being identical) = 1/100! ~ 0.
+  assert.notEqual(shuffle(input).join(","), shuffle(input).join(","));
 });
 
 // ---------- isRetryable (retry classification) ----------
