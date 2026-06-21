@@ -11,6 +11,7 @@ import { fileURLToPath } from "node:url";
 
 import {
   firstLine,
+  sanitizeRepoPath,
   stripFences,
   extractJson,
   normSeverity,
@@ -54,6 +55,29 @@ test("extractJson parses bare, fenced, and embedded JSON", () => {
 test("extractJson throws on output with no JSON object", () => {
   assert.throws(() => extractJson("there is no json here"), /could not parse JSON/);
   assert.throws(() => extractJson(""), /could not parse JSON/);
+});
+
+// ---------- sanitizeRepoPath (path-traversal guard for chair-read paths) ----------
+test("sanitizeRepoPath preserves legit repo paths and resolves '.'", () => {
+  assert.equal(sanitizeRepoPath("src/app.js"), "src/app.js");
+  assert.equal(sanitizeRepoPath("./src/./app.js"), "src/app.js");
+  assert.equal(sanitizeRepoPath("src/../lib/x.js"), "lib/x.js");
+  assert.equal(sanitizeRepoPath("a\\b\\c"), "a/b/c"); // normalizes separators
+  assert.equal(sanitizeRepoPath(""), "?");
+  assert.equal(sanitizeRepoPath(undefined), "?");
+  assert.equal(sanitizeRepoPath(".."), "?");
+});
+
+test("sanitizeRepoPath clamps traversal/absolute paths so they cannot escape repoPath", () => {
+  assert.equal(sanitizeRepoPath("/etc/passwd"), "etc/passwd");
+  assert.equal(sanitizeRepoPath("../../etc/passwd"), "etc/passwd");
+  assert.equal(sanitizeRepoPath("a/../../../x"), "x");
+  // Invariant: result is never absolute and never contains a '..' segment.
+  for (const evil of ["/x", "../x", "../../x", "a/../../../x", "....//y", "/../../root/.ssh/id_rsa"]) {
+    const s = sanitizeRepoPath(evil);
+    assert.ok(!s.startsWith("/"), `not absolute: ${s}`);
+    assert.ok(!s.split("/").includes(".."), `no traversal segment: ${s}`);
+  }
 });
 
 // ---------- normSeverity ----------
@@ -103,6 +127,15 @@ test("normReview derives verdict and tolerates junk input", () => {
     assert.deepEqual(r.findings, []);
     assert.deepEqual(r.next_steps, []);
   }
+});
+
+test("normReview sanitizes a traversal/absolute file path from model output", () => {
+  const r = normReview({
+    findings: [{ severity: "high", title: "leak", body: "b", file: "../../../../etc/passwd", line_start: 1, line_end: 1, recommendation: "x" }],
+  });
+  assert.equal(r.findings[0].file, "etc/passwd");
+  assert.ok(!r.findings[0].file.startsWith("/"));
+  assert.ok(!r.findings[0].file.split("/").includes(".."));
 });
 
 // ---------- merge (consensus tagging + dedup + severity reconciliation) ----------
