@@ -14,6 +14,7 @@ const FINDING_PROPS = {
   file: { type: 'string' },
   line_start: { type: 'integer' },
   line_end: { type: 'integer' },
+  confidence: { type: 'number' }, // reviewer's self-rated 0..1 certainty; carried through merge for the validator + ranking
   recommendation: { type: 'string' },
 }
 
@@ -58,9 +59,9 @@ phase('Synthesize')
 const synth = await agent(
   [
     `Read the JSON file at: ${findingsFile}`,
-    'It contains `diff` (the unified diff under review) and `findings` (an array; each has: engine, severity, title, body, file, line_start, line_end, recommendation).',
+    'It contains `diff` (the unified diff under review) and `findings` (an array; each has: engine, severity, title, body, file, line_start, line_end, confidence (the reviewer\'s self-rated 0..1 certainty the finding is real), recommendation).',
     '',
-    'You are the chair of a multi-model code-review council. Merge findings that describe the SAME underlying issue into ONE entry, and set `engines` to every reviewer (`engine`) that raised it (consensus signal). Reconcile conflicting severities to the best-supported one. Keep the file, lines, and the strongest recommendation. Do NOT validate or drop anything yet — only dedupe and consolidate against the diff.',
+    'You are the chair of a multi-model code-review council. Merge findings that describe the SAME underlying issue into ONE entry, and set `engines` to every reviewer (`engine`) that raised it (consensus signal). Reconcile conflicting severities to the best-supported one. Keep the file, lines, the strongest recommendation, and the HIGHEST `confidence` among the reviewers that raised it. Do NOT validate or drop anything yet — only dedupe and consolidate against the diff.',
   ].join('\n'),
   { label: 'synthesize', phase: 'Synthesize', schema: SYNTH_SCHEMA }
 )
@@ -99,6 +100,7 @@ const checked = await parallel(
         `Judge whether the finding is real and accurately describes that file's current code.`,
         `Be conservative about dropping: return "refuted" ONLY if the file's actual contents positively contradict the finding. If you genuinely cannot read the file at that absolute path, do NOT refute — return "confirmed" (trust the reviewers; absence of the file is not evidence the finding is wrong). Return "adjusted" (with adjusted_severity) if real but the severity is clearly off; otherwise "confirmed".`,
         `The finding's "engines" field lists which reviewers raised it. That count is NOT evidence of correctness — independent models frequently agree on the SAME wrong conclusion (correlated errors). Judge this finding against the actual code on its own merits; if the code positively contradicts it, refute it no matter how many engines agreed. Consensus decides what to look at, not what to trust.`,
+        `The finding's "confidence" (0..1) is the reviewer's own self-rated certainty. Treat a LOW confidence (<= 0.4) as a reason to scrutinize harder — it signals how load-bearing the claim is — but keep the conservative rule above: refute only on positive contradiction, never merely because confidence was low.`,
         '',
         'FINDING (JSON):',
         JSON.stringify(f, null, 2),
@@ -124,9 +126,13 @@ for (const r of checked.filter(Boolean)) {
 // Within a severity band, surface corroborated findings (>=2 reviewers) above
 // solo ones — coarse tier only, since effective votes saturate near 2
 // (arXiv:2605.29800). Solo findings are kept, just ranked lower (recall-favoring).
+// Reviewer confidence breaks remaining ties (now that it's carried through).
 const corroboration = (f) => (f.engines && f.engines.length >= 2 ? 1 : 0)
 const findings = [...keptHigh, ...lowSev].sort(
-  (a, b) => order[a.severity] - order[b.severity] || corroboration(b) - corroboration(a)
+  (a, b) =>
+    order[a.severity] - order[b.severity] ||
+    corroboration(b) - corroboration(a) ||
+    (b.confidence || 0) - (a.confidence || 0)
 )
 
 return {

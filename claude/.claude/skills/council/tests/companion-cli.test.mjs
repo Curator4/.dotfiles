@@ -598,3 +598,16 @@ test("file scope with a nonexistent diff file errors out", async () => {
   assert.notEqual(res.code, 0);
   assert.match(res.stderr, /diff file not found/);
 });
+
+// ---------- quality: per-finding confidence is plumbed to the chair (--json) ----------
+
+test("council --json: findings carry the per-engine confidence (chair + validator can see it)", async () => {
+  // R_GROK's finding has confidence 0.8; it must survive into the chair-bound JSON.
+  const env = baseEnv({ grok: { mode: "ok", review: R_GROK }, codex: { mode: "error" }, pi: { mode: "error" } });
+  const res = await runCompanion(["council", "--json"], env);
+  assert.equal(res.code, 0, res.stderr);
+  const out = JSON.parse(res.stdout);
+  const grokFinding = out.findings.find((f) => f.engine === "grok");
+  assert.ok(grokFinding, "grok finding present");
+  assert.equal(grokFinding.confidence, 0.8, "confidence preserved in the chair-bound --json (was previously dropped)");
+});
