@@ -85,6 +85,7 @@ const checked = await parallel(
         `Use the Read tool on that absolute path directly. Do NOT use find / grep / git / ls or the current working directory to locate the file — the CWD may be a different, unrelated repository and will mislead you into thinking the file is missing. The file you need is the absolute path above.`,
         `Judge whether the finding is real and accurately describes that file's current code.`,
         `Be conservative about dropping: return "refuted" ONLY if the file's actual contents positively contradict the finding. If you genuinely cannot read the file at that absolute path, do NOT refute — return "confirmed" (trust the reviewers; absence of the file is not evidence the finding is wrong). Return "adjusted" (with adjusted_severity) if real but the severity is clearly off; otherwise "confirmed".`,
+        `The finding's "engines" field lists which reviewers raised it. That count is NOT evidence of correctness — independent models frequently agree on the SAME wrong conclusion (correlated errors). Judge this finding against the actual code on its own merits; if the code positively contradicts it, refute it no matter how many engines agreed. Consensus decides what to look at, not what to trust.`,
         '',
         'FINDING (JSON):',
         JSON.stringify(f, null, 2),
