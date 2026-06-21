@@ -408,6 +408,21 @@ test("render formats a finding: verdict, summary, severity+engine tag, loc range
   assert.match(out, /## Next steps\n- add a prepared-statement helper/);
 });
 
+test("render shows a severity-count triage line above the findings", () => {
+  const f = (severity, title, file) => ({ severity, title, body: "", file, line_start: 1, line_end: 1, confidence: null, recommendation: "" });
+  const review = { verdict: "needs-attention", summary: "", findings: [f("critical", "A", "a.js"), f("high", "B", "b.js"), f("high", "C", "c.js")], next_steps: [] };
+  const out = render({ target: { label: "x" }, results: [okResult("grok", "Grok", review)] }, { single: false });
+  assert.ok(out.includes("3 findings"), out); // distinct from "## Findings (3)"
+  assert.ok(out.includes("1 critical, 2 high"), "severity tally, only non-zero severities, severity order");
+});
+
+test("render triage line is singular for one finding", () => {
+  const review = { verdict: "needs-attention", summary: "", findings: [{ severity: "low", title: "x", body: "", file: "a.js", line_start: 1, line_end: 1, confidence: null, recommendation: "" }], next_steps: [] };
+  const out = render({ target: { label: "x" }, results: [okResult("grok", "Grok", review)] }, { single: false });
+  assert.ok(out.includes("1 finding") && !out.includes("1 findings"), "singular");
+  assert.ok(out.includes("1 low"), out);
+});
+
 test("render loc: single line when start==end, file-only when no line, no conf when null", () => {
   const review = {
     verdict: "needs-attention",
