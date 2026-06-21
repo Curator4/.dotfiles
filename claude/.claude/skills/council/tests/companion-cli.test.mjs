@@ -616,6 +616,13 @@ test("file scope rejects an oversized diff file (size cap)", async () => {
   assert.match(res.stderr, /too large/);
 });
 
+test("an unknown --scope value is rejected with a clear error (not a silent branch review)", async () => {
+  const res = await runCompanion(["council", "--scope", "stage", "--json"], baseEnv({})); // typo for "staged"
+  assert.notEqual(res.code, 0);
+  assert.match(res.stderr, /unknown --scope/);
+  assert.match(res.stderr, /staged/, "lists the valid scopes so the typo is obvious");
+});
+
 // ---------- quality: per-finding confidence is plumbed to the chair (--json) ----------
 
 test("council --json: findings carry the per-engine confidence (chair + validator can see it)", async () => {
