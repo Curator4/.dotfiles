@@ -599,6 +599,23 @@ test("file scope with a nonexistent diff file errors out", async () => {
   assert.match(res.stderr, /diff file not found/);
 });
 
+test("file scope rejects a non-regular file (no hang on fifo/device)", async () => {
+  // A directory hits the same isFile() guard that rejects fifos and /dev/zero,
+  // where readFileSync would otherwise hang (fifo) or OOM (/dev/zero).
+  const dir = mkdtemp("council-notfile-");
+  const res = await runCompanion(["council", "--scope", "file", "--base", dir, "--json"], baseEnv({}));
+  assert.notEqual(res.code, 0);
+  assert.match(res.stderr, /must be a regular file/);
+});
+
+test("file scope rejects an oversized diff file (size cap)", async () => {
+  const f = path.join(mkdtemp("council-big-"), "big.diff");
+  fs.writeFileSync(f, "x".repeat(500));
+  const res = await runCompanion(["council", "--scope", "file", "--base", f, "--json"], baseEnv({}, { COUNCIL_MAX_OUTPUT_BYTES: "100" }));
+  assert.notEqual(res.code, 0);
+  assert.match(res.stderr, /too large/);
+});
+
 // ---------- quality: per-finding confidence is plumbed to the chair (--json) ----------
 
 test("council --json: findings carry the per-engine confidence (chair + validator can see it)", async () => {
