@@ -39,3 +39,12 @@ test("council-synth.mjs declares the crux field in its output schema", () => {
   assert.match(src, /required:.*'crux'/, "crux is a required output");
   assert.match(src, /crux: \{ type: 'string' \}/, "crux is a declared schema property");
 });
+
+// The review chair emits a council-level `confidence` (selective prediction). Lock
+// both the function and that the final report carries it, so a future edit can't
+// silently drop the calibration signal the skill surfaces to the user.
+test("synthesis.mjs computes and reports a council-level confidence", () => {
+  const src = fs.readFileSync(path.join(WORKFLOWS, "synthesis.mjs"), "utf8");
+  assert.match(src, /function councilConfidence\(/, "councilConfidence is defined");
+  assert.match(src, /confidence: councilConfidence\(/, "the final report carries the computed confidence");
+});

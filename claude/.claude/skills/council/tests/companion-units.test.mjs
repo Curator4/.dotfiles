@@ -386,6 +386,7 @@ test("toSarif converts a chair report to valid SARIF 2.1.0 with severity->level 
     verdict: "needs-attention",
     summary: "ship-blocker present",
     reviewers: ["grok", "glm"],
+    confidence: "low",
     findings: [
       { severity: "critical", title: "SQLi", body: "unparam query", file: "db.js", line_start: 4, line_end: 6, recommendation: "use params", engines: ["grok", "glm"], confidence: 0.8, validated: "confirmed" },
       { severity: "low", title: "naming", body: "", file: "?", line_start: null, line_end: null, recommendation: "", engines: ["glm"] },
@@ -411,6 +412,7 @@ test("toSarif converts a chair report to valid SARIF 2.1.0 with severity->level 
   assert.equal(low.locations[0].physicalLocation.artifactLocation.uri, ".", "unanchored ('?') -> repo-root location, NOT omitted (GitHub rejects location-less results)");
   assert.equal(low.locations[0].physicalLocation.region, undefined, "no region for an unanchored finding");
   assert.equal(s.runs[0].properties.verdict, "needs-attention");
+  assert.equal(s.runs[0].properties.councilConfidence, "low", "council confidence flows into SARIF run properties");
   assert.equal(s.runs[0].properties.droppedCount, 1);
 });
 

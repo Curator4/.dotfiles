@@ -48,6 +48,21 @@ const VERDICT_SCHEMA = {
   },
 }
 
+// Council-level confidence in THIS verdict (selective prediction / "trust or
+// escalate", arXiv:2407.18370): a heuristic cue — NOT a calibrated guarantee — for
+// when to take the verdict at face value vs dig deeper. Low when the call rests on
+// thin evidence: fewer than two reviewers (no real council), or a needs-attention
+// whose strongest finding is a lone, unvalidated claim. Derived only from signals
+// already computed (reviewer count + the top finding's corroboration and validation).
+function councilConfidence(verdict, findings, reviewers) {
+  if (!reviewers || reviewers.length <= 1) return 'low'
+  if (verdict === 'approve') return 'high'
+  const top = findings && findings[0] // findings are pre-sorted: [0] is the strongest
+  const corroborated = !!(top && top.engines && top.engines.length >= 2)
+  const validated = !!(top && (top.validated === 'confirmed' || top.validated === 'adjusted'))
+  return corroborated || validated ? 'high' : 'low'
+}
+
 // args: { findingsFile: string (companion `council --json`: {diff, repoPath, findings:[{engine,...}]}), repoPath: string }
 const findingsFile = (args && args.findingsFile) || ''
 const repoPath = (args && args.repoPath) || '.'
@@ -76,13 +91,21 @@ if (!synth) {
     reviewers: [],
     findings: [],
     dropped: [],
+    confidence: 'low',
   }
 }
 
 const merged = (synth && synth.findings) || []
 const reviewers = [...new Set(merged.flatMap((f) => (f && f.engines) || []))]
 if (!merged.length) {
-  return { verdict: 'approve', summary: (synth && synth.summary) || 'No findings.', reviewers, findings: [], dropped: [] }
+  return {
+    verdict: 'approve',
+    summary: (synth && synth.summary) || 'No findings.',
+    reviewers,
+    findings: [],
+    dropped: [],
+    confidence: councilConfidence('approve', [], reviewers),
+  }
 }
 const order = { critical: 0, high: 1, medium: 2, low: 3 }
 const highSev = merged.filter((f) => f.severity === 'critical' || f.severity === 'high')
@@ -135,10 +158,12 @@ const findings = [...keptHigh, ...lowSev].sort(
     (b.confidence || 0) - (a.confidence || 0)
 )
 
+const verdict = findings.length ? 'needs-attention' : 'approve'
 return {
-  verdict: findings.length ? 'needs-attention' : 'approve',
+  verdict,
   summary: (synth && synth.summary) || '',
   reviewers,
   findings,
   dropped,
+  confidence: councilConfidence(verdict, findings, reviewers),
 }

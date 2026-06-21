@@ -57,6 +57,7 @@ The chair reads the findings file, dedupes/merges across reviewers (tagging each
 - List each finding as `### [SEVERITY] title  [engines]`, then `` `file:line` ``, the body, and **Fix:** the recommendation. Sort critical → low; within a severity, the workflow already lists corroborated (multi-engine) findings before solo ones — preserve that order.
 - Name the reviewers that actually ran.
 - If `dropped` is non-empty, note briefly which findings validation refuted, and why.
+- If `confidence` is `low`, say so prominently: the verdict rests on thin evidence — fewer than two reviewers ran, or a `needs-attention` whose strongest finding is a lone, unvalidated claim. Tell the user to verify it before acting, rather than taking the verdict at face value.
 
 **A5 — Machine-readable export (on request).** If the user wants SARIF / CI output (e.g. to upload to GitHub code scanning or gate a build), write the workflow's returned report object to a JSON file and convert it — this exports the VALIDATED chair report, not the raw pre-chair findings:
 
