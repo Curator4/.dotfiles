@@ -58,6 +58,15 @@ The chair reads the findings file, dedupes/merges across reviewers (tagging each
 - Name the reviewers that actually ran.
 - If `dropped` is non-empty, note briefly which findings validation refuted, and why.
 
+**A5 — Machine-readable export (on request).** If the user wants SARIF / CI output (e.g. to upload to GitHub code scanning or gate a build), write the workflow's returned report object to a JSON file and convert it — this exports the VALIDATED chair report, not the raw pre-chair findings:
+
+```bash
+# (write the A3 workflow result to $REPORT, e.g. /tmp/council/report.json, then:)
+node "$HOME/.claude/skills/council/scripts/council-companion.mjs" to-sarif "$REPORT" > council.sarif
+```
+
+`to-sarif` also accepts `-` to read the report JSON from stdin. severity maps to SARIF level (critical/high → error, medium → warning, low → note); refuted/`dropped` findings are excluded.
+
 ---
 
 ## Mode B — open council

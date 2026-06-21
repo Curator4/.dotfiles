@@ -660,6 +660,43 @@ test("a diff over the argv byte limit fails fast with a clear error, not N crypt
   assert.match(res.stderr, /scope/i); // actionable guidance to narrow it
 });
 
+// ---------- capability: to-sarif (chair report -> SARIF for CI) ----------
+
+test("to-sarif converts a chair-report file to SARIF on stdout", async () => {
+  const f = path.join(mkdtemp("council-report-"), "report.json");
+  fs.writeFileSync(
+    f,
+    JSON.stringify({
+      verdict: "needs-attention",
+      summary: "s",
+      reviewers: ["grok"],
+      findings: [{ severity: "high", title: "Bug", body: "b", file: "a.js", line_start: 2, line_end: 2, recommendation: "fix", engines: ["grok"], confidence: 0.7 }],
+      dropped: [],
+    })
+  );
+  const res = await runCompanion(["to-sarif", f], baseEnv({}));
+  assert.equal(res.code, 0, res.stderr);
+  const sarif = JSON.parse(res.stdout);
+  assert.equal(sarif.version, "2.1.0");
+  assert.equal(sarif.runs[0].results.length, 1);
+  assert.equal(sarif.runs[0].results[0].level, "error"); // high -> error
+  assert.equal(sarif.runs[0].results[0].locations[0].physicalLocation.artifactLocation.uri, "a.js");
+});
+
+test("to-sarif errors clearly on a missing file, invalid JSON, and no arg", async () => {
+  const r1 = await runCompanion(["to-sarif", "/no/such/report.json"], baseEnv({}));
+  assert.notEqual(r1.code, 0);
+  assert.match(r1.stderr, /report file not found/);
+  const bad = path.join(mkdtemp("council-report-"), "bad.json");
+  fs.writeFileSync(bad, "{not json");
+  const r2 = await runCompanion(["to-sarif", bad], baseEnv({}));
+  assert.notEqual(r2.code, 0);
+  assert.match(r2.stderr, /not valid JSON/);
+  const r3 = await runCompanion(["to-sarif"], baseEnv({}));
+  assert.notEqual(r3.code, 0);
+  assert.match(r3.stderr, /requires a chair-report/);
+});
+
 // ---------- quality: per-finding confidence is plumbed to the chair (--json) ----------
 
 test("council --json: findings carry the per-engine confidence (chair + validator can see it)", async () => {

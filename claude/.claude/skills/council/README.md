@@ -93,6 +93,7 @@ Quick single-model pass and engine status (no synthesis workflow):
 node ~/.claude/skills/council/scripts/council-companion.mjs grok-review
 node ~/.claude/skills/council/scripts/council-companion.mjs setup           # shows the active roster
 COUNCIL_ENGINES=grok node ~/.claude/skills/council/scripts/council-companion.mjs council --json   # one fast, free engine
+node ~/.claude/skills/council/scripts/council-companion.mjs to-sarif report.json > council.sarif  # chair report -> SARIF (CI / code scanning)
 ```
 
 ## Knobs

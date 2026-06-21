@@ -25,6 +25,7 @@ import {
   isRetryable,
   render,
   renderTakes,
+  toSarif,
   makeDelimiter,
   spotlight,
   buildPrompt,
@@ -377,6 +378,45 @@ test("buildBriefPrompt fences the brief as untrusted data with a random token", 
   const token = out.match(/<<(COUNCIL_UNTRUSTED_[0-9a-f]{16})>>/)[1];
   assert.ok(out.includes(`<</${token}>>`));
   assert.ok(out.includes("Should we use Postgres or SQLite?"));
+});
+
+// ---------- toSarif (chair report -> SARIF 2.1.0 export) ----------
+test("toSarif converts a chair report to valid SARIF 2.1.0 with severity->level + locations", () => {
+  const report = {
+    verdict: "needs-attention",
+    summary: "ship-blocker present",
+    reviewers: ["grok", "glm"],
+    findings: [
+      { severity: "critical", title: "SQLi", body: "unparam query", file: "db.js", line_start: 4, line_end: 6, recommendation: "use params", engines: ["grok", "glm"], confidence: 0.8, validated: "confirmed" },
+      { severity: "low", title: "naming", body: "", file: "?", line_start: null, line_end: null, recommendation: "", engines: ["glm"] },
+    ],
+    dropped: [{ title: "refuted thing" }],
+  };
+  const s = toSarif(report);
+  assert.equal(s.version, "2.1.0");
+  assert.equal(s.runs[0].tool.driver.name, "council");
+  assert.equal(s.runs[0].results.length, 2);
+  const crit = s.runs[0].results[0];
+  assert.equal(crit.level, "error", "critical -> error");
+  assert.equal(crit.locations[0].physicalLocation.artifactLocation.uri, "db.js");
+  assert.equal(crit.locations[0].physicalLocation.region.startLine, 4);
+  assert.equal(crit.locations[0].physicalLocation.region.endLine, 6);
+  assert.equal(crit.properties.severity, "critical");
+  assert.deepEqual(crit.properties.engines, ["grok", "glm"]);
+  assert.equal(crit.properties.confidence, 0.8);
+  assert.match(crit.message.text, /SQLi/);
+  assert.match(crit.message.text, /Fix: use params/);
+  const low = s.runs[0].results[1];
+  assert.equal(low.level, "note", "low -> note");
+  assert.equal(low.locations, undefined, "file '?' -> no location emitted");
+  assert.equal(s.runs[0].properties.verdict, "needs-attention");
+  assert.equal(s.runs[0].properties.droppedCount, 1);
+});
+
+test("toSarif tolerates empty/garbage input and maps medium->warning", () => {
+  assert.equal(toSarif({}).runs[0].results.length, 0);
+  assert.equal(toSarif(null).version, "2.1.0");
+  assert.equal(toSarif({ findings: [{ severity: "medium", title: "x" }] }).runs[0].results[0].level, "warning");
 });
 
 // ---------- schema file integrity ----------
