@@ -96,6 +96,7 @@ A single fresh-context chair reads the takes and reconciles them neutrally — i
 **B4 — Present.** When the workflow returns, present its result faithfully (no added opinion of your own):
 
 - Lead with the **recommendation** and the one-line summary. If the chair flagged the recommendation as its own call rather than unanimous, say so.
+- **The crux** — the `crux`: the one fact/assumption/condition that would most change the recommendation. Surface it right after the recommendation; it's the actionable "go find this out before deciding" lever.
 - **Where they agree** — the `consensus` points.
 - **Where they diverge** — each `divergences` entry: the point, then each stance attributed to the engine(s) that held it. This is the high-value part; don't flatten it.
 - **Strongest points** raised by any single member.

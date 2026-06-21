@@ -8,10 +8,11 @@ export const meta = {
 const SYNTH_SCHEMA = {
   type: 'object',
   additionalProperties: false,
-  required: ['summary', 'recommendation', 'consensus', 'divergences', 'open_questions', 'takes'],
+  required: ['summary', 'recommendation', 'crux', 'consensus', 'divergences', 'open_questions', 'takes'],
   properties: {
     summary: { type: 'string' },
     recommendation: { type: 'string' },
+    crux: { type: 'string' },
     consensus: { type: 'array', items: { type: 'string' } },
     divergences: {
       type: 'array',
@@ -68,14 +69,15 @@ const synth = await agent(
     '',
     'You are the chair of a multi-model advisory council. You did NOT write any of the takes; reconcile them neutrally. Produce:',
     '- summary: one or two sentences capturing the council\'s overall read.',
-    "- recommendation: the consolidated call. If the takes converge, state it plainly. If they genuinely diverge, say what it depends on and give your best-judgment lean AS CHAIR (mark it as the chair's call, not unanimous).",
+    "- recommendation: the consolidated call. Weight positions by the STRENGTH and verifiability of their argument, NOT by how many engines hold them — a single well-reasoned take can outweigh a numerical majority, and if so, say that. If the takes converge, state it plainly. If they genuinely diverge, say what it depends on and give your best-judgment lean AS CHAIR (mark it as the chair's call, not unanimous).",
+    "- crux: the single fact, assumption, or condition that would most change the recommendation if resolved — the thing the user should go find out (or decide) BEFORE acting. If nothing would flip it, say the recommendation is robust and why.",
     '- consensus: points most or all takes agree on.',
     '- divergences: substantive disagreements. For each, state the point and the differing positions, attributing each stance to the engine(s) that hold it. This is the most valuable output — surface real disagreement, do not paper over it.',
     '- strongest_points: the most compelling individual arguments raised by ANY single member, even if only one raised it.',
     '- open_questions: what the council could not resolve, or what the brief left underspecified.',
     '- takes: a one-line gist per engine of that member\'s overall position.',
     '',
-    'Be faithful to what the members actually argued. Do not invent agreement or disagreement, and do not inject your own opinion as if it were a member\'s take.',
+    'Be faithful to what the members actually argued. Do not invent agreement or disagreement, and do not inject your own opinion as if it were a member\'s take. Take LENGTH carries no weight — judge each take by the substance and verifiability of its reasoning, not its length or fluency; do not let a longer take crowd out a brief but sharper one. Report the composition of stances precisely: how many engines hold each position, including lone holdouts and abstentions — do not round a 2-vs-1 split into "general agreement" or a lone dissent into "broad consensus".',
   ].join('\n'),
   { label: 'chair', phase: 'Synthesize', schema: SYNTH_SCHEMA }
 )
@@ -84,6 +86,7 @@ return (
   synth || {
     summary: 'Synthesis failed: the chair returned no result. Re-run, or inspect the raw takes file.',
     recommendation: '',
+    crux: '',
     consensus: [],
     divergences: [],
     strongest_points: [],

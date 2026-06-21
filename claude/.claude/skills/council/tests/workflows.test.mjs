@@ -30,3 +30,12 @@ for (const file of ["synthesis.mjs", "council-synth.mjs"]) {
     assert.doesNotThrow(() => new AsyncFunction(...HARNESS_GLOBALS, src), SyntaxError);
   });
 }
+
+// `crux` is the key research-applied addition to the advisory chair (the
+// decision-hinge). Lock it structurally so a future prompt edit can't silently
+// drop it from the output schema.
+test("council-synth.mjs declares the crux field in its output schema", () => {
+  const src = fs.readFileSync(path.join(WORKFLOWS, "council-synth.mjs"), "utf8");
+  assert.match(src, /required:.*'crux'/, "crux is a required output");
+  assert.match(src, /crux: \{ type: 'string' \}/, "crux is a declared schema property");
+});
