@@ -408,9 +408,24 @@ test("toSarif converts a chair report to valid SARIF 2.1.0 with severity->level 
   assert.match(crit.message.text, /Fix: use params/);
   const low = s.runs[0].results[1];
   assert.equal(low.level, "note", "low -> note");
-  assert.equal(low.locations, undefined, "file '?' -> no location emitted");
+  assert.equal(low.locations[0].physicalLocation.artifactLocation.uri, ".", "unanchored ('?') -> repo-root location, NOT omitted (GitHub rejects location-less results)");
+  assert.equal(low.locations[0].physicalLocation.region, undefined, "no region for an unanchored finding");
   assert.equal(s.runs[0].properties.verdict, "needs-attention");
   assert.equal(s.runs[0].properties.droppedCount, 1);
+});
+
+test("toSarif: every result carries >=1 location (GitHub rejects location-less results)", () => {
+  const s = toSarif({
+    findings: [
+      { severity: "high", title: "anchored", file: "a.js", line_start: 3 },
+      { severity: "low", title: "unanchored", file: "?" },
+      { severity: "medium", title: "no-file-field" }, // file undefined
+    ],
+  });
+  assert.ok(
+    s.runs[0].results.every((r) => Array.isArray(r.locations) && r.locations.length >= 1),
+    "every result must have a location or GitHub rejects the whole SARIF upload"
+  );
 });
 
 test("toSarif tolerates empty/garbage input and maps medium->warning", () => {
