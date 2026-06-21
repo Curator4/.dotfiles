@@ -660,6 +660,32 @@ test("a diff over the argv byte limit fails fast with a clear error, not N crypt
   assert.match(res.stderr, /scope/i); // actionable guidance to narrow it
 });
 
+test("the large-diff guard names the biggest files so the user knows what to review separately", async () => {
+  const huge = "x".repeat(140 * 1024); // one file's added content, over the ~120 KiB budget
+  const diff = [
+    "diff --git a/small.js b/small.js",
+    "index 1..2 100644",
+    "--- a/small.js",
+    "+++ b/small.js",
+    "@@ -1 +1 @@",
+    "-a",
+    "+b",
+    "diff --git a/huge.js b/huge.js",
+    "index 3..4 100644",
+    "--- a/huge.js",
+    "+++ b/huge.js",
+    "@@ -0,0 +1 @@",
+    `+${huge}`,
+  ].join("\n");
+  const f = path.join(mkdtemp("council-bigmf-"), "multi.diff");
+  fs.writeFileSync(f, diff);
+  const res = await runCompanion(["council", "--scope", "file", "--base", f, "--json"], baseEnv({}));
+  assert.notEqual(res.code, 0);
+  assert.match(res.stderr, /too large to review/);
+  assert.match(res.stderr, /Biggest files:/);
+  assert.match(res.stderr, /huge\.js/, "names the file blowing the budget, not just 'narrow your scope'");
+});
+
 // ---------- capability: to-sarif (chair report -> SARIF for CI) ----------
 
 test("to-sarif converts a chair-report file to SARIF on stdout", async () => {

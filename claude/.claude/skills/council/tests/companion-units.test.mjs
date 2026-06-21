@@ -26,6 +26,7 @@ import {
   render,
   renderTakes,
   toSarif,
+  splitDiffByFile,
   makeDelimiter,
   spotlight,
   buildPrompt,
@@ -434,6 +435,38 @@ test("toSarif tolerates empty/garbage input and maps medium->warning", () => {
   assert.equal(toSarif({}).runs[0].results.length, 0);
   assert.equal(toSarif(null).version, "2.1.0");
   assert.equal(toSarif({ findings: [{ severity: "medium", title: "x" }] }).runs[0].results[0].level, "warning");
+});
+
+// ---------- splitDiffByFile (per-file sizing for the large-diff guard) ----------
+test("splitDiffByFile splits a git diff into per-file sections with byte sizes", () => {
+  const diff = [
+    "diff --git a/src/a.js b/src/a.js",
+    "index 111..222 100644",
+    "--- a/src/a.js",
+    "+++ b/src/a.js",
+    "@@ -1 +1 @@",
+    "-old",
+    "+new",
+    "diff --git a/src/big.js b/src/big.js",
+    "index 333..444 100644",
+    "--- a/src/big.js",
+    "+++ b/src/big.js",
+    "@@ -1 +1 @@",
+    `+${"x".repeat(500)}`,
+  ].join("\n");
+  const parts = splitDiffByFile(diff);
+  assert.equal(parts.length, 2);
+  assert.deepEqual(
+    parts.map((p) => p.file),
+    ["src/a.js", "src/big.js"]
+  );
+  assert.ok(parts[1].bytes > parts[0].bytes, "the 500-char file section is the bigger one");
+});
+
+test("splitDiffByFile returns [] for a non-git / empty diff", () => {
+  assert.deepEqual(splitDiffByFile(""), []);
+  assert.deepEqual(splitDiffByFile(null), []);
+  assert.deepEqual(splitDiffByFile("--- a/x\n+++ b/x\n@@ -1 +1 @@\n-a\n+b"), []); // no `diff --git` header
 });
 
 // ---------- schema file integrity ----------
