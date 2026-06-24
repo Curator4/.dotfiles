@@ -148,12 +148,13 @@
   (timer-bar))
 
 ; ═════════════════════════════════════════════════════════
-; ── Household HUD — attention board (plan + live activity) ─
-; Plan: today's itinerary.  Activity: what's being worked on
-; now, derived from live Claude Code sessions, via the `hud` binary.
+; ── Household HUD — attention board (focus + live activity) ─
+; Focus: the operator's own priorities (declared, AI-curated/injected).
+; Activity: what's being worked on now, derived from live Claude Code
+; sessions. Both via the `hud` binary.
 ; ═════════════════════════════════════════════════════════
-(defpoll plan_text :interval "30s" :initial "…"
-  `/home/curator/workspace/hud/hud plan`)
+(defpoll focus_text :interval "30s" :initial "…"
+  `/home/curator/workspace/hud/hud focus`)
 (defpoll activity_render :interval "150ms" :initial "…"
   `~/.config/eww/scripts/hud-activity-render`)
 
@@ -163,8 +164,8 @@
       (label :class "hud-title" :text "ACTIVITY" :halign "start")
       (label :class "hud-body" :text activity_render :halign "start" :wrap true))
     (box :class "hud-section" :orientation "v" :valign "center" :space-evenly false
-      (label :class "hud-title" :text "PLAN" :halign "start")
-      (label :class "hud-body" :text plan_text :halign "start" :wrap true))))
+      (label :class "hud-title" :text "FOCUS" :halign "start")
+      (label :class "hud-body" :text focus_text :halign "start" :wrap true))))
 
 (defwindow hud
   :monitor "DP-4"
