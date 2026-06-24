@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Fast (~150ms) renderer for the HUD activity column. Animates the working
+# spinner every tick; the expensive session scan is cached and only refreshed
+# every ~3s. Output is the formatted activity block for a single eww label.
+cache="$HOME/.local/state/hud/activity.json"
+hud=/home/curator/workspace/hud/hud
+
+if [ ! -f "$cache" ] || [ "$(( $(date +%s) - $(stat -c %Y "$cache" 2>/dev/null || echo 0) ))" -ge 3 ]; then
+  "$hud" activity --json >"$cache.tmp" 2>/dev/null && mv "$cache.tmp" "$cache"
+  find "$HOME/.local/state/hud/active" -type f -mtime +1 -delete 2>/dev/null
+fi
+
+frames=(⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏)
+sp="${frames[$(( ($(date +%s%N) / 100000000) % 10 ))]}"
+
+jq -r --arg sp "$sp" '.[] | (if .working then $sp else "○" end) + "  " + ((.category + "         ")[0:9]) + " — " + .label' "$cache" 2>/dev/null

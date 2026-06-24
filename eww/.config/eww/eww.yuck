@@ -146,3 +146,31 @@
   :focusable false
   :namespace "timer"
   (timer-bar))
+
+; ═════════════════════════════════════════════════════════
+; ── Household HUD — attention board (plan + live activity) ─
+; Plan: today's itinerary.  Activity: what's being worked on
+; now, derived from live Claude Code sessions, via the `hud` binary.
+; ═════════════════════════════════════════════════════════
+(defpoll plan_text :interval "30s" :initial "…"
+  `/home/curator/workspace/hud/hud plan`)
+(defpoll activity_render :interval "150ms" :initial "…"
+  `~/.config/eww/scripts/hud-activity-render`)
+
+(defwidget hud-panel []
+  (box :class "hud-panel" :orientation "h" :space-evenly true :spacing 48 :valign "center"
+    (box :class "hud-section" :orientation "v" :valign "center" :space-evenly false
+      (label :class "hud-title" :text "ACTIVITY" :halign "start")
+      (label :class "hud-body" :text activity_render :halign "start" :wrap true))
+    (box :class "hud-section" :orientation "v" :valign "center" :space-evenly false
+      (label :class "hud-title" :text "PLAN" :halign "start")
+      (label :class "hud-body" :text plan_text :halign "start" :wrap true))))
+
+(defwindow hud
+  :monitor "DP-4"
+  :geometry (geometry :x "0px" :y "0px" :width "1440px" :anchor "top center")
+  :stacking "fg"
+  :exclusive true
+  :focusable false
+  :namespace "hud"
+  (hud-panel))

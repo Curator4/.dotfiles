@@ -4,9 +4,17 @@
     "height": 26,
     "output": ["DP-2"],
 
-    "modules-left": ["hyprland/workspaces", "custom/theme"],
+    "modules-left": ["custom/hud", "hyprland/workspaces", "custom/theme"],
     "modules-center": ["clock"],
     "modules-right": ["custom/volume", "bluetooth", "network", "custom/gpu", "custom/vram", "cpu", "memory", "disk"],
+
+    "custom/hud": {
+        "exec": "/home/curator/workspace/hud/hud count",
+        "interval": 5,
+        "format": " {}",
+        "on-click": "eww open --toggle hud",
+        "tooltip": false
+    },
 
     "hyprland/workspaces": {
         "on-click": "activate",
