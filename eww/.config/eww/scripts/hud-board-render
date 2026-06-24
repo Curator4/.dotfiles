@@ -26,6 +26,7 @@ jq -r --arg z "$zone" --arg sp "$sp" '
   .[$z][]? |
   if   .kind == "header"     then (.text|@html)
   elif .kind == "blank"      then ""
+  elif .kind == "gap"        then "<span size=\"40%\"> </span>"
   elif .kind == "sub"        then "    └ " + (.text|@html)
   elif .kind == "alsoactive" then (if .working then $sp else "·" end) + "  " + (.text|@html)
   else
