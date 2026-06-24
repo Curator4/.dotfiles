@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Fast (~150ms) renderer for the merged FOCUS board: focus items, with a braille
+# spinner animated on any item an agent is live on (and on "also active" rows).
+# The expensive scan (hud focus --json — walks transcripts + joins activity) is
+# cached and only refreshed every ~3s.
+cache="$HOME/.local/state/hud/focus-board.json"
+hud=/home/curator/workspace/hud/hud
+
+if [ ! -f "$cache" ] || [ "$(( $(date +%s) - $(stat -c %Y "$cache" 2>/dev/null || echo 0) ))" -ge 3 ]; then
+  "$hud" focus --json >"$cache.tmp" 2>/dev/null && mv "$cache.tmp" "$cache"
+  find "$HOME/.local/state/hud/active" -type f -mtime +1 -delete 2>/dev/null
+fi
+
+frames=(⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏)
+sp="${frames[$(( ($(date +%s%N) / 100000000) % 10 ))]}"
+
+jq -r --arg sp "$sp" '.lines[] |
+  if   .kind == "header"     then .text
+  elif .kind == "blank"      then ""
+  elif .kind == "sub"        then "    └ " + .text
+  elif .kind == "alsoactive" then (if .working then $sp else "·" end) + "  " + .text
+  else                            (if .working then $sp else "○" end) + "  " + .text
+  end' "$cache" 2>/dev/null
