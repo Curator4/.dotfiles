@@ -19,5 +19,5 @@ jq -r --arg sp "$sp" '.lines[] |
   elif .kind == "blank"      then ""
   elif .kind == "sub"        then "    └ " + .text
   elif .kind == "alsoactive" then (if .working then $sp else "·" end) + "  " + .text
-  else                            (if .working then $sp else "○" end) + "  " + .text
+  else                            (if .working then $sp else "○" end) + "  " + .text + (if .badge then "   · " + .badge else "" end)
   end' "$cache" 2>/dev/null
