@@ -133,6 +133,7 @@
     ],
     "defaultMode": "auto"
   },
+  "model": "opus[1m]",
   "hooks": {
     "SessionStart": [
       {
@@ -153,6 +154,16 @@
             "type": "command",
             "command": "~/.claude/hooks/tts-finalize.sh",
             "timeout": 5
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/hud-stop.sh",
+            "timeout": 5,
+            "async": true
           }
         ]
       }
@@ -176,6 +187,16 @@
             "timeout": 5
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/hud-working.sh",
+            "timeout": 5,
+            "async": true
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
@@ -184,6 +205,16 @@
           {
             "type": "command",
             "command": "bunx -y ccstatusline@latest --hook"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/hud-working.sh",
+            "timeout": 5,
+            "async": true
           }
         ]
       }
@@ -207,7 +238,8 @@
     "filebridge@household": true,
     "inter-session@inter-session": true,
     "codex@openai-codex": true,
-    "telegram@claude-plugins-official": false
+    "telegram@claude-plugins-official": false,
+    "claude-code-multisession@langmartai": true
   },
   "extraKnownMarketplaces": {
     "household": {
@@ -227,6 +259,12 @@
         "source": "github",
         "repo": "openai/codex-plugin-cc"
       }
+    },
+    "langmartai": {
+      "source": {
+        "source": "github",
+        "repo": "langmartai/lm-assist"
+      }
     }
   },
   "effortLevel": "xhigh",
@@ -239,6 +277,5 @@
   "teammateMode": "auto",
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "voiceEnabled": true,
-  "model": "opus[1m]"
+  "voiceEnabled": true
 }
