@@ -206,3 +206,13 @@ window {
   font-family: "Hack Nerd Font";
   font-size: 15px;
 }
+
+.hud-zone {
+  margin: 0 4px;
+}
+
+// Per-zone colour — class sits on the zone box; title + body inherit it.
+.zone-work    .hud-title, .zone-work    .hud-body { color: #7aa2f7; } // blue   — priorities
+.zone-side    .hud-title, .zone-side    .hud-body { color: #bb9af7; } // purple — side projects
+.zone-today   .hud-title, .zone-today   .hud-body { color: #9ece6a; } // green  — today
+.zone-backlog .hud-title, .zone-backlog .hud-body { color: #8089b3; } // dim    — backlog pool

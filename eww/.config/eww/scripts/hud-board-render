@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Per-zone renderer for the HUD focus board. Arg 1 = zone (priorities|side|
+# today|backlog). Output is Pango markup (the eww labels use :markup): text is
+# html-escaped, and side-project items are wrapped in a per-project colour span.
+# The expensive scan (hud board) is cached and refreshed every ~3s; focus zones
+# poll fast so the braille spinner animates.
+zone="${1:-priorities}"
+cache="$HOME/.local/state/hud/board.json"
+hud=/home/curator/workspace/hud/hud
+
+if [ ! -f "$cache" ] || [ "$(( $(date +%s) - $(stat -c %Y "$cache" 2>/dev/null || echo 0) ))" -ge 3 ]; then
+  "$hud" board >"$cache.tmp" 2>/dev/null && mv "$cache.tmp" "$cache"
+  find "$HOME/.local/state/hud/active" -type f -mtime +1 -delete 2>/dev/null
+fi
+
+frames=(⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏)
+sp="${frames[$(( ($(date +%s%N) / 100000000) % 10 ))]}"
+
+jq -r --arg z "$zone" --arg sp "$sp" '
+  def col($t):
+    if   ($t|test("dynasty"))   then "#c0504d"
+    elif ($t|test("calliope"))  then "#5566cc"
+    elif ($t|test("household")) then "#dcc05a"
+    elif ($t|test("council"))   then "#eaeaf0"
+    else "" end;
+  .[$z][]? |
+  if   .kind == "header"     then (.text|@html)
+  elif .kind == "blank"      then ""
+  elif .kind == "sub"        then "    └ " + (.text|@html)
+  elif .kind == "alsoactive" then (if .working then $sp else "·" end) + "  " + (.text|@html)
+  else
+    (((if .working then $sp elif .done then "✓" else "○" end) + "  " + (.text|@html))
+     + (if .badge then "   · " + (.badge|@html) else "" end)) as $line
+    | if $z == "side" then
+        (col(.text|ascii_downcase)) as $c
+        | (if $c == "" then $line else "<span foreground=\"" + $c + "\">" + $line + "</span>" end)
+      else $line end
+  end' "$cache" 2>/dev/null

@@ -148,19 +148,25 @@
   (timer-bar))
 
 ; ═════════════════════════════════════════════════════════
-; ── Household HUD — attention board (merged focus + activity) ─
-; One column: the operator's own FOCUS (declared, AI-routed, injected
-; into new sessions), with live Claude Code activity painted onto the
-; matching item as an animated spinner. Unmatched live work falls to an
-; "also active" tail. Rendered via the `hud` binary + a 150ms spinner script.
+; ── Household HUD — focus board (two columns) ─────────────
+; PRIORITIES | SIDE PROJECTS — your FOCUS, with live Claude Code activity
+; painted on as an animated spinner + drift badges. Each zone is its own
+; label (own colour) fed by hud-board-render <zone>, polled fast so the
+; spinner animates. (today/backlog zones exist in `hud board` but are off
+; the panel for now.)
 ; ═════════════════════════════════════════════════════════
-(defpoll focus_render :interval "150ms" :initial "…"
-  `~/.config/eww/scripts/hud-focus-render`)
+(defpoll board_pri  :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render priorities`)
+(defpoll board_side :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render side`)
+
+(defwidget hud-zone [class title body]
+  (box :class "hud-zone ${class}" :orientation "v" :space-evenly false :hexpand true :valign "start"
+    (label :class "hud-title" :text title :halign "start")
+    (label :class "hud-body" :markup body :halign "start" :wrap true)))
 
 (defwidget hud-panel []
-  (box :class "hud-panel" :orientation "v" :space-evenly false :valign "center"
-    (label :class "hud-title" :text "FOCUS" :halign "start")
-    (label :class "hud-body" :text focus_render :halign "start" :wrap true)))
+  (box :class "hud-panel" :orientation "h" :space-evenly true :spacing 40 :valign "center"
+    (hud-zone :class "zone-work" :title "PRIORITIES"    :body board_pri)
+    (hud-zone :class "zone-side" :title "SIDE PROJECTS" :body board_side)))
 
 (defwindow hud
   :monitor "DP-4"

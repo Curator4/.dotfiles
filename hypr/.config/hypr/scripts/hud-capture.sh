@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-# Quick-capture, bound to Super+Y. Brain-dump a note in rofi; Haiku routes it to
-# FOCUS (your own priorities), the BACKLOG (a task/bug to do), or today's
-# ITINERARY, and files it. Prefix with "focus:", "side:", "backlog:" or "today:"
-# to force the destination and skip the LLM.
+# Quick-capture, bound to Super+Y. Brain-dump a note in rofi; Haiku auto-routes
+# it to the BACKLOG (a task/bug to do later) or today's ITINERARY (a time-bound
+# thing). FOCUS is deliberate — it's the small set that gets injected into new
+# sessions and drift-tracked — so it's only set via the "focus:" / "side:"
+# prefix. "backlog:" / "today:" force those too.
 set -uo pipefail
 
 hud=/home/curator/.bin/hud
@@ -27,29 +28,28 @@ case "$text" in
 esac
 text=$(printf '%s' "$text" | trim)
 
-# No override → Haiku classifies + tidies. Runs from a filtered dir with the
-# recursion guard, so it never lands on the board or re-fires the HUD hooks.
+# No prefix → Haiku routes between backlog and itinerary only (focus is never
+# auto-assigned). Runs from a filtered dir with the recursion guard, so it never
+# lands on the board or re-fires the HUD hooks.
 if [ -z "$dest" ]; then
   mkdir -p "$llmdir" 2>/dev/null
-  prompt="You route a captured note in a personal system into ONE destination and tidy it into a short item.
+  prompt="Route a captured note into ONE destination and tidy it into a short item.
 Destinations:
-- focus: the operator's OWN work priorities/intentions — to do, decide, follow up, or plan (e.g. \"close out AR 222\", \"make a work roadmap\"). Pick section \"priorities\" (work) or \"side\" (side projects: dynasty, calliope, council, household tooling, this session tracker).
-- backlog: a concrete task/bug/feature to be done later, often delegatable (e.g. \"fix the openclaw bug\", \"set up vaultwarden\").
 - itinerary: a time-bound thing for TODAY (appointment, errand, \"watch the game 19:00\").
-Return ONLY minified JSON: {\"dest\":\"focus|backlog|itinerary\",\"section\":\"priorities|side\",\"text\":\"<tidied item>\"}.
+- backlog: anything else to do later — a task, bug, feature, or errand without a today deadline (e.g. \"fix the openclaw bug\", \"set up vaultwarden\").
+When unsure, choose backlog.
+Return ONLY minified JSON: {\"dest\":\"backlog|itinerary\",\"text\":\"<tidied item>\"}.
 Note: $text"
 
   json=$(cd "$llmdir" && HUD_SUMMARIZING=1 "$claude" -p --model "$model" "$prompt" 2>/dev/null \
          | tr -d '\n' | grep -o '{.*}' | head -1)
   d=$(printf '%s' "$json" | jq -r '.dest // empty' 2>/dev/null)
-  s=$(printf '%s' "$json" | jq -r '.section // empty' 2>/dev/null)
   t=$(printf '%s' "$json" | jq -r '.text // empty' 2>/dev/null)
   [ -n "$d" ] && dest=$d
-  [ -n "$s" ] && section=$s
   [ -n "$t" ] && text=$t
 fi
 
-[ -z "$dest" ] && dest=focus  # safe fallback if the LLM was unreachable
+[ -z "$dest" ] && dest=backlog  # safe fallback: the pool, never focus
 
 "$hud" capture --dest "$dest" --section "$section" "$text" >/dev/null 2>&1
 notify-send -t 4000 "captured → ${dest}" "$text" 2>/dev/null || true
