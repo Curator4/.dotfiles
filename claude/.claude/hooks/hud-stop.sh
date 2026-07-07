@@ -2,6 +2,7 @@
 # HUD: on turn end, mark this session idle and (debounced + recursion-guarded)
 # kick a background summary refresh. Async / fire-and-forget — always exit 0.
 [ -n "${HUD_SUMMARIZING:-}" ] && exit 0
+[ -n "${HUD_BG:-}" ] && exit 0   # background machinery never registers
 input=$(cat 2>/dev/null)
 sid=$(printf '%s' "$input" | jq -r '.session_id // empty' 2>/dev/null)
 [ -z "$sid" ] && exit 0
@@ -22,5 +23,6 @@ fi
 # Run from the tool dir so its claude -p transcript lands in a project dir the
 # HUD activity view filters out.
 ccp="$HOME/workspace/ai/household-oc/tools/cc-projection"
-setsid bash -c "cd '$ccp' && HUD_SUMMARIZING=1 python3 cc-projection.py --session '$sid'" >/dev/null 2>&1 &
+setsid bash -c "cd '$ccp' && HUD_SUMMARIZING=1 python3 cc-projection.py --session '$sid' \
+  && /home/curator/workspace/hud/hud reconcile --session '$sid'" >/dev/null 2>&1 &
 exit 0

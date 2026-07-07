@@ -3,6 +3,7 @@
 # drops it immediately instead of waiting for it to age out of the 15m window.
 # Async / fire-and-forget — always exit 0.
 [ -n "${HUD_SUMMARIZING:-}" ] && exit 0
+[ -n "${HUD_BG:-}" ] && exit 0   # background machinery never registers
 input=$(cat 2>/dev/null)
 sid=$(printf '%s' "$input" | jq -r '.session_id // empty' 2>/dev/null)
 [ -z "$sid" ] && exit 0
