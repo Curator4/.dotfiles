@@ -148,25 +148,30 @@
   (timer-bar))
 
 ; ═════════════════════════════════════════════════════════
-; ── Household HUD — focus board (two columns) ─────────────
-; PRIORITIES | SIDE PROJECTS — your FOCUS, with live Claude Code activity
-; painted on as an animated spinner + drift badges. Each zone is its own
-; label (own colour) fed by hud-board-render <zone>, polled fast so the
-; spinner animates. (today/backlog zones exist in `hud board` but are off
-; the panel for now.)
+; ── Household HUD — focus board (TODAY strip + two columns) ─
+; TODAY strip on top, LEFT | RIGHT project-grouped columns below — your
+; FOCUS, with live Claude Code activity painted on as an animated spinner +
+; drift badges. Each zone is fed by hud-board-render <zone>, polled fast so
+; the spinner animates. (backlog zone exists in `hud board` but is off the
+; panel for now.)
 ; ═════════════════════════════════════════════════════════
-(defpoll board_pri  :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render priorities`)
-(defpoll board_side :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render side`)
+(defpoll board_today :interval "150ms" :initial "" `~/.config/eww/scripts/hud-board-render today`)
+(defpoll board_left  :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render left`)
+(defpoll board_right :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render right`)
 
-(defwidget hud-zone [class title body]
+(defwidget hud-zone [class body]
   (box :class "hud-zone ${class}" :orientation "v" :space-evenly false :hexpand true :valign "start"
-    (label :class "hud-title" :text title :halign "start")
     (label :class "hud-body" :markup body :halign "start" :wrap true)))
 
 (defwidget hud-panel []
-  (box :class "hud-panel" :orientation "h" :space-evenly true :spacing 40 :valign "center"
-    (hud-zone :class "zone-work" :title "PRIORITIES"    :body board_pri)
-    (hud-zone :class "zone-side" :title "SIDE PROJECTS" :body board_side)))
+  (box :class "hud-panel" :orientation "v" :space-evenly false :spacing 10
+    (box :class "hud-today" :orientation "v" :space-evenly false
+         :visible {strlength(board_today) > 0}
+      (label :class "hud-title" :text "TODAY" :halign "start")
+      (label :class "hud-body" :markup board_today :halign "start" :wrap true))
+    (box :orientation "h" :space-evenly true :spacing 40
+      (hud-zone :class "zone-work" :body board_left)
+      (hud-zone :class "zone-side" :body board_right))))
 
 (defwindow hud
   :monitor "DP-4"

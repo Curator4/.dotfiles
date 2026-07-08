@@ -13,4 +13,4 @@ fi
 frames=(⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏)
 sp="${frames[$(( ($(date +%s%N) / 100000000) % 10 ))]}"
 
-jq -r --arg sp "$sp" '.[] | (if .working then $sp else "○" end) + "  " + ((.category + "         ")[0:9]) + " — " + .label' "$cache" 2>/dev/null
+jq -r --arg sp "$sp" '.[] | (if .working then $sp else "○" end) + "  " + ((.project + "         ")[0:9]) + " — " + .label' "$cache" 2>/dev/null
