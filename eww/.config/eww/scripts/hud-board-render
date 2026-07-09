@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Per-zone renderer for the HUD focus board. Arg 1 = zone (today|left|right).
 # Output is Pango markup: text html-escaped, headers/items tinted per project.
+# Either column can hold any project (hud packs them by height), so every group
+# must carry its own tint here — the zones themselves are neutral.
 # The expensive scan (hud board) is cached ~3s; zones poll fast so the braille
 # spinner animates.
 zone="${1:-left}"
@@ -17,12 +19,13 @@ sp="${frames[$(( ($(date +%s%N) / 100000000) % 10 ))]}"
 
 jq -r --arg z "$zone" --arg sp "$sp" '
   def col($p):
-    if   $p == "dynasty"   then "#c0504d"
+    if   $p == "work"      then "#7aa2f7"
+    elif $p == "dynasty"   then "#c0504d"
     elif $p == "calliope"  then "#5566cc"
     elif $p == "household" then "#dcc05a"
     elif $p == "council"   then "#eaeaf0"
-    elif $p == "hud"       then "#7aa2f7"
-    elif $p == "ship"      then "#5aa07a"
+    elif $p == "hud"       then "#56b6c2"
+    elif $p == "system"    then "#8b93a8"
     else "" end;
   def tint($p; $s):
     (col($p)) as $c
