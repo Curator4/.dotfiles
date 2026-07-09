@@ -21,4 +21,12 @@ kitty @ --to "unix:@mykitty-$pid" set-colors --all --configured "$conf" 2>/dev/n
 # Tint the window's hyprland border from the theme palette (if it has one)
 border=$(jq -r '.palette.cursor // empty' "$TDIR/theme.json" 2>/dev/null)
 [ -n "$border" ] && hyprctl dispatch setprop "pid:$pid" active_border_color "rgba(${border#\#}ee)" &>/dev/null
+
+# grok-night additionally blends the *inactive* border into the terminal bg, so
+# an unfocused grok window shows no frame around the TUI's dark canvas. The
+# background itself already comes from the theme conf loaded above.
+if [ "$slug" = "grok-night" ]; then
+    hyprctl dispatch setprop "pid:$pid" inactive_border_color "rgba(131414ee)" &>/dev/null
+fi
+
 exit 0

@@ -91,3 +91,52 @@ source "/home/curator/.openclaw/completions/openclaw.fish"
 # >>> grok installer >>>
 fish_add_path $HOME/.grok/bin
 # <<< grok installer <<<
+
+# TUI launchers that reskin the window for the duration of the session.
+#
+# These exist because a TUI painting a solid canvas colour only paints *cells* —
+# kitty's window_padding stays at the default background, leaving a mismatched
+# frame. Matching kitty's background to the TUI's hides it. Borders are handled
+# too so the hyprland frame doesn't reintroduce the seam.
+#
+# Colours are snapshotted before and replayed after, so the window comes back
+# exactly as it was. Note theme-term.sh passes --configured, which rewrites the
+# defaults new tabs inherit — without the replay the reskin is permanent.
+function _themed-run --description 'Run a command under a temporary kitty theme, restoring colours on exit'
+    set -l slug $argv[1]
+
+    # Outside kitty there is nothing to reskin, and theme-term.sh would target
+    # whatever window happens to be focused. Just run the command.
+    if test -z "$KITTY_LISTEN_ON"
+        command $argv[2..-1]
+        return $status
+    end
+
+    set -l snapshot (mktemp)
+    kitty @ --to "$KITTY_LISTEN_ON" get-colors >$snapshot 2>/dev/null; or true
+    ~/.dotfiles/bin/.bin/theme-term.sh $slug 2>/dev/null; or true
+
+    command $argv[2..-1]
+    set -l st $status
+
+    if test -s $snapshot
+        kitty @ --to "$KITTY_LISTEN_ON" set-colors --all --configured $snapshot 2>/dev/null; or true
+    end
+    # unset reverts to the hyprland.conf defaults — the per-window tint a bare
+    # theme command may have applied is not recorded anywhere, so it is lost.
+    if test -n "$KITTY_PID"
+        hyprctl dispatch setprop "pid:$KITTY_PID" active_border_color unset &>/dev/null
+        hyprctl dispatch setprop "pid:$KITTY_PID" inactive_border_color unset &>/dev/null
+    end
+    rm -f $snapshot
+
+    return $st
+end
+
+function grok --wraps grok --description 'Launch grok under the grok-night theme'
+    _themed-run grok-night grok $argv
+end
+
+function codex --wraps codex --description 'Launch Codex under the Jade theme'
+    _themed-run jade codex -c 'tui.theme="jade"' $argv
+end
