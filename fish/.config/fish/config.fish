@@ -110,8 +110,11 @@ function _tui-run --description 'Run a TUI edge-to-edge, restoring kitty padding
     set -l cmd $argv[2..-1]
 
     # Outside kitty there is nothing to adjust, and theme-term.sh would target
-    # whatever window happens to be focused. Just run the command.
-    if test -z "$KITTY_LISTEN_ON"
+    # whatever window happens to be focused. Under tmux every pane inherits the
+    # server's KITTY_LISTEN_ON and KITTY_WINDOW_ID, which name the window tmux
+    # first started in — not this one — so the restore could land on a stranger.
+    # Both cases: run the command unadorned.
+    if test -z "$KITTY_LISTEN_ON"; or test -n "$TMUX"
         command $cmd
         return $status
     end
