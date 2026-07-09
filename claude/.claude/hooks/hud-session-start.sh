@@ -2,12 +2,14 @@
 # HUD: inject the operator's current FOCUS into each new/cleared/resumed session
 # as context, so fresh sessions know the standing priorities and keep the board
 # current via the hud MCP tools. SYNCHRONOUS (not async): the JSON on stdout is
-# read by Claude Code before the session starts. HUD_SUMMARIZING short-circuits
-# the LLM-machinery sub-sessions; HUD_BG tombstones background agents (crons,
-# heartbeats) so the board never shows them.
-[ -n "${HUD_SUMMARIZING:-}" ] && exit 0
-
-if [ -n "${HUD_BG:-}" ]; then
+# read by Claude Code before the session starts.
+#
+# Machinery sessions get a 'bg' tombstone instead of context: the LLM
+# summary/classify sub-sessions (HUD_SUMMARIZING) and background agents like
+# crons and heartbeats (HUD_BG). Tombstone rather than a bare exit — an
+# unmarked session still rides gatherActivity's mtime fallback onto the board
+# for activeWindow, which is how the summarizer's own sessions used to surface.
+if [ -n "${HUD_BG:-}" ] || [ -n "${HUD_SUMMARIZING:-}" ]; then
   input=$(cat 2>/dev/null)
   sid=$(printf '%s' "$input" | jq -r '.session_id // empty' 2>/dev/null)
   if [ -n "$sid" ]; then
