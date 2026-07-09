@@ -92,51 +92,77 @@ source "/home/curator/.openclaw/completions/openclaw.fish"
 fish_add_path $HOME/.grok/bin
 # <<< grok installer <<<
 
-# TUI launchers that reskin the window for the duration of the session.
+# TUI launchers that run the app edge-to-edge, optionally under a theme.
 #
-# These exist because a TUI painting a solid canvas colour only paints *cells* —
-# kitty's window_padding stays at the default background, leaving a mismatched
-# frame. Matching kitty's background to the TUI's hides it. Borders are handled
-# too so the hyprland frame doesn't reintroduce the seam.
+# A TUI painting a solid canvas only ever paints *cells*. window_padding has no
+# cells, so it keeps kitty's default background and the canvas stops 14pt short
+# of the window edge — a frame in the wrong colour around apps like hunk. For a
+# full-screen TUI that padding is dead space anyway, so drop it for the session
+# rather than trying to colour-match it.
 #
-# Colours are snapshotted before and replayed after, so the window comes back
-# exactly as it was. Note theme-term.sh passes --configured, which rewrites the
+# Themed launchers additionally reskin the window. Colours are snapshotted and
+# replayed, because theme-term.sh passes --configured, which rewrites the
 # defaults new tabs inherit — without the replay the reskin is permanent.
-function _themed-run --description 'Run a command under a temporary kitty theme, restoring colours on exit'
+#
+# An empty slug means "no reskin, just reclaim the padding".
+function _tui-run --description 'Run a TUI edge-to-edge, restoring kitty padding and colours on exit'
     set -l slug $argv[1]
+    set -l cmd $argv[2..-1]
 
-    # Outside kitty there is nothing to reskin, and theme-term.sh would target
+    # Outside kitty there is nothing to adjust, and theme-term.sh would target
     # whatever window happens to be focused. Just run the command.
     if test -z "$KITTY_LISTEN_ON"
-        command $argv[2..-1]
+        command $cmd
         return $status
     end
 
-    set -l snapshot (mktemp)
-    kitty @ --to "$KITTY_LISTEN_ON" get-colors >$snapshot 2>/dev/null; or true
-    ~/.dotfiles/bin/.bin/theme-term.sh $slug 2>/dev/null; or true
+    set -l kt kitty @ --to "$KITTY_LISTEN_ON"
+    # Pin to this window, so losing focus mid-session cannot misdirect the
+    # restore. Empty when kitty did not export an id, falling back to active.
+    set -l target
+    test -n "$KITTY_WINDOW_ID"; and set target --match id:$KITTY_WINDOW_ID
 
-    command $argv[2..-1]
+    # No --configured: the configured 14pt stays intact, so `default` restores.
+    $kt set-spacing $target padding=0 2>/dev/null; or true
+
+    set -l snapshot
+    if test -n "$slug"
+        set snapshot (mktemp)
+        $kt get-colors $target >$snapshot 2>/dev/null; or true
+        ~/.dotfiles/bin/.bin/theme-term.sh $slug 2>/dev/null; or true
+    end
+
+    command $cmd
     set -l st $status
 
-    if test -s $snapshot
-        kitty @ --to "$KITTY_LISTEN_ON" set-colors --all --configured $snapshot 2>/dev/null; or true
+    $kt set-spacing $target padding=default 2>/dev/null; or true
+
+    if test -n "$snapshot"
+        # --all --configured mirrors what theme-term.sh changed, so this is a
+        # true inverse rather than a reset to kitty's startup colours.
+        if test -s $snapshot
+            $kt set-colors --all --configured $snapshot 2>/dev/null; or true
+        end
+        rm -f $snapshot
+        # unset reverts to the hyprland.conf defaults — the per-window tint a
+        # bare theme command may have applied is not recorded anywhere.
+        if test -n "$KITTY_PID"
+            hyprctl dispatch setprop "pid:$KITTY_PID" active_border_color unset &>/dev/null
+            hyprctl dispatch setprop "pid:$KITTY_PID" inactive_border_color unset &>/dev/null
+        end
     end
-    # unset reverts to the hyprland.conf defaults — the per-window tint a bare
-    # theme command may have applied is not recorded anywhere, so it is lost.
-    if test -n "$KITTY_PID"
-        hyprctl dispatch setprop "pid:$KITTY_PID" active_border_color unset &>/dev/null
-        hyprctl dispatch setprop "pid:$KITTY_PID" inactive_border_color unset &>/dev/null
-    end
-    rm -f $snapshot
 
     return $st
 end
 
-function grok --wraps grok --description 'Launch grok under the grok-night theme'
-    _themed-run grok-night grok $argv
+function grok --wraps grok --description 'Launch grok edge-to-edge under the grok-night theme'
+    _tui-run grok-night grok $argv
 end
 
-function codex --wraps codex --description 'Launch Codex under the Jade theme'
-    _themed-run jade codex -c 'tui.theme="jade"' $argv
+function codex --wraps codex --description 'Launch Codex edge-to-edge under the Jade theme'
+    _tui-run jade codex -c 'tui.theme="jade"' $argv
+end
+
+function hunk --wraps hunk --description 'Launch hunk edge-to-edge'
+    _tui-run '' hunk $argv
 end
