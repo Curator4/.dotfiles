@@ -29,13 +29,13 @@ jq -r --arg z "$zone" --arg sp "$sp" '
     | if $c == "" then $s else "<span foreground=\"" + $c + "\">" + $s + "</span>" end;
   .[$z][]? |
   if   .kind == "header"     then tint(.project // ""; (.text|@html))
-  elif .kind == "blank"      then ""
-  elif .kind == "gap"        then "<span size=\"20%\"> </span>"
-  elif .kind == "sub"        then "    └ " + (if .working then $sp else "·" end) + " " + (.text|@html)
+  elif .kind == "blank"      then "<span size=\"50%\"> </span>"
+  elif .kind == "gap"        then "<span size=\"10%\"> </span>"
+  elif .kind == "sub"        then tint(.project // ""; "    └ " + (if .working then $sp else "·" end) + " " + (.text|@html))
   elif .kind == "note"       then "<span alpha=\"55%\">    └ " + (.badge|@html) + " · " + (.text|@html) + "</span>"
   elif .kind == "alsoactive" then (if .working then $sp else "·" end) + "  " + (.text|@html)
   else
-    (((if .working then $sp elif .done then "✓" else "○" end) + "  " + (.text|@html))
-     + (if .badge then "   · " + (.badge|@html) else "" end)) as $line
-    | if $z == "today" then tint(.project // ""; $line) else $line end
+    tint(.project // "";
+      ((if .working then $sp elif .done then "✓" else "○" end) + "  " + (.text|@html))
+      + (if .badge then "   · " + (.badge|@html) else "" end))
   end' "$cache" 2>/dev/null
