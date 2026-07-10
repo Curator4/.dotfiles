@@ -78,6 +78,6 @@ alias t='tree -L'
 # OpenClaw Completion
 autoload -Uz compinit && compinit
 source "/home/curator/.openclaw/completions/openclaw.zsh"
-alias stfu='pkill -f "python3 tts_hook.py"; pkill -f "python3 stream_tts.py"; pkill -f "python3 -c"; touch /tmp/tts-daemon/stopped 2>/dev/null'
+alias stfu='"$HOME"/workspace/ai/tts-daemon/.venv/bin/python "$HOME"/workspace/ai/tts-daemon/tts_client.py kill >/dev/null 2>&1'
 
 . "$HOME/.local/share/../bin/env"

@@ -1,7 +1,6 @@
-# Reinstallable TTS runtime (the live daemon's venv — see tts-daemon-v2.service).
-# voices/ and the root scripts in qwen-tts ARE backed up.
-/home/curator/workspace/ai/qwen-tts/lib
-/home/curator/workspace/ai/qwen-tts/share
+# The live daemon's venv now lives at tts-daemon/.venv and is covered by the
+# generic ".venv" rule below. voices/ and nemo_normalizer.pkl moved into the
+# tts-daemon repo and ARE backed up.
 
 # GPT-SoVITS framework + base models — re-downloadable from upstream.
 # GPT_weights_v4/ and SoVITS_weights_v4/ (trained personas) ARE backed up.
