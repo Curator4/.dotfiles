@@ -2,7 +2,7 @@
 # TTS greeting — speaks a vibe-flavored hello on session start via tts-daemon-v2
 
 TTS_CLIENT=~/workspace/ai/tts-daemon/tts_client.py
-PYTHON=~/workspace/ai/qwen-tts/bin/python
+PYTHON=~/workspace/ai/tts-daemon/.venv/bin/python
 
 pick() { local arr=("$@"); echo "${arr[$((RANDOM % ${#arr[@]}))]}" ; }
 

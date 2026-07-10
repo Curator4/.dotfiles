@@ -11,5 +11,5 @@ h = hashlib.md5(msg.encode()).hexdigest()
 print(f'  last_assistant_message hash={h[:8]} len={len(msg)}')
 print(f'  first 200 chars: {msg[:200]!r}')
 " 2>&1
-echo "$STDIN" | ~/workspace/ai/qwen-tts/bin/python ~/workspace/ai/tts-daemon/tts_client.py finalize
+echo "$STDIN" | ~/workspace/ai/tts-daemon/.venv/bin/python ~/workspace/ai/tts-daemon/tts_client.py finalize
 echo "$(date): finalize exit=$?"

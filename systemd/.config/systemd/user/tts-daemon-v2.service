@@ -5,9 +5,9 @@ After=graphical-session.target
 [Service]
 Type=simple
 WorkingDirectory=/home/curator/workspace/ai/tts-daemon
-ExecStart=/home/curator/workspace/ai/qwen-tts/bin/python tts_daemon.py
+ExecStart=/home/curator/workspace/ai/tts-daemon/.venv/bin/python tts_daemon.py
 Environment=HOME=%h
-Environment=PATH=%h/workspace/ai/qwen-tts/bin:%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=PATH=%h/workspace/ai/tts-daemon/.venv/bin:%h/.local/bin:/usr/local/bin:/usr/bin:/bin
 Environment=CUDA_HOME=/opt/cuda
 KillMode=control-group
 Restart=on-failure

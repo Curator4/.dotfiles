@@ -1,0 +1,10 @@
+#!/bin/sh
+# Is tts-daemon-v2 currently speaking? Prints "true" or "false".
+#
+# eww polls this every 300ms, so it must stay cheap: socat round-trips the
+# daemon's unix socket in ~6ms, where the python client costs ~34ms of
+# interpreter startup. Prints "false" if the daemon is down or the socket
+# is missing, which is what the idle orb wants anyway.
+printf '{"type":"status"}\n' \
+  | socat -t1 - UNIX-CONNECT:/tmp/tts-daemon.sock 2>/dev/null \
+  | grep -qE '"playing":[[:space:]]*true' && echo true || echo false
