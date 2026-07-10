@@ -1,16 +1,16 @@
 ---
 name: council
-description: Convene a multi-model council. Two modes. (1) "/council review" runs an adversarial CODE review — fans the current diff out to several model CLIs (Grok, GLM, Codex), then a fresh-context chair dedupes their findings with consensus tags and validates the critical/high ones against the real code. (2) "/council <topic>" gives open-ended ADVICE — fans a design, decision, plan, spec, or question out to the same models for independent takes, then a fresh-context chair synthesizes consensus, disagreements, the strongest points, and a recommendation. Use when the user says "/council", "council", "convene the council", "ask the council", "multi-model" or "cross-model" opinion/review, "get other models' take on this", "review this with multiple models", "adversarial review of my changes", or wants several models to weigh in before a merge or a decision.
+description: "Use when the user wants multi-model advice, adversarial code review, council review, cross-model opinions, or several models to weigh in."
 argument-hint: "review [--base <ref>] [--scope ...] [focus] | <topic / question / design to put to the council>"
 ---
 
 # council — multi-model fan-out
 
-Convene a council of independent model engines (Grok, GLM, Codex) over either the current code changes or an open question, then let a **fresh-context chair** reconcile their input into one report.
+Convene a council of independent model engines (Grok, GLM, Codex, Claude) over either the current code changes or an open question, then let a **fresh-context chair** reconcile their input into one report.
 
 **Advisory only.** Never fix issues, apply patches, edit code, or imply you're about to change anything. Your job is to run the pipeline and present its report.
 
-This skill lives at `$HOME/.claude/skills/council/` — resolve `$HOME` to the real absolute path when building `Workflow` calls and companion paths.
+This skill lives at `$HOME/.agents/skills/council/` — resolve `$HOME` to the real absolute path when building `Workflow` calls and companion paths.
 
 ## Route
 
@@ -31,10 +31,11 @@ Review the current changes with every available engine, then synthesize and vali
 ```bash
 mkdir -p /tmp/council
 git rev-parse --show-toplevel    # REPO_ROOT — capture for step A3
-node "$HOME/.claude/skills/council/scripts/council-companion.mjs" council --json $REVIEW_ARGS > /tmp/council/findings.json
+node "$HOME/.agents/skills/council/scripts/council-companion.mjs" council --json \
+  --alias-file /tmp/council/aliases.json $REVIEW_ARGS > /tmp/council/findings.json
 ```
 
-The companion reviews the diff with each enabled engine and emits compact JSON: `{diff, repoPath, findings:[{engine,severity,title,body,file,line_start,line_end,recommendation}], skipped}`. Engines that are unavailable (quota exhausted, not installed) land in `skipped` — expected graceful degradation, not an error. If the diff is too large for one prompt, the companion reviews it file-by-file in batches and adds `partial:{batches,totalFiles,reviewedFiles,skippedFiles}` — note this for A4 (it means coverage was partial).
+The companion reviews the diff with each enabled engine and emits compact JSON: `{diff, repoPath, findings:[{engine,severity,title,body,file,line_start,line_end,recommendation}], skipped}`. Engines that are unavailable (quota exhausted, not installed) land in `skipped` — expected graceful degradation, not an error. Engine ids in this JSON are **blinded aliases** (`reviewer-N`) so the chair can't play favorites; the real mapping is written to `/tmp/council/aliases.json` — Read it now (you need it in A3), and don't paste real engine names into anything the workflow's agents will read. If the diff is too large for one prompt, the companion reviews it file-by-file in batches and adds `partial:{batches,totalFiles,reviewedFiles,skippedFiles}` — note this for A4 (it means coverage was partial).
 
 Scope is `--scope auto|working-tree|staged|commit|branch|file` (default `auto`: working tree if dirty, else branch vs `--base`/`main`). Use `--scope staged` to review only what's `git add`ed — i.e. exactly what the next commit would record (pre-commit review); if the user asks to review their staged changes / what they're about to commit, pass `--scope staged`. Use `--scope commit --base <sha>` to review a single commit's diff (vs its parent) without checking it out (default `HEAD`); if the user asks to review a specific commit, pass that. Use `--scope file --base <path>` to review a diff read from a FILE (a saved `.patch`, `gh pr diff` output, a proposed change) instead of a git state — this works even outside a git repo; if the user asks to review a patch/diff file or a PR diff they've fetched, pass that.
 
@@ -44,12 +45,16 @@ Scope is `--scope auto|working-tree|staged|commit|branch|file` (default `auto`: 
 
 ```
 Workflow({
-  scriptPath: "<$HOME>/.claude/skills/council/workflows/synthesis.mjs",
-  args: { findingsFile: "/tmp/council/findings.json", repoPath: "<REPO_ROOT from A1>" }
+  scriptPath: "<$HOME>/.agents/skills/council/workflows/synthesis.mjs",
+  args: {
+    findingsFile: "/tmp/council/findings.json",
+    repoPath: "<REPO_ROOT from A1>",
+    aliases: <the parsed object from /tmp/council/aliases.json>
+  }
 })
 ```
 
-The chair reads the findings file, dedupes/merges across reviewers (tagging each finding with the `engines` that raised it, reconciling severity), then fans out validators that check each critical/high finding against the actual code — conservatively dropping only findings they can positively refute. It runs in the background and notifies on completion.
+The chair reads the findings file, dedupes/merges across reviewers (tagging each finding with the `engines` that raised it, reconciling severity), then fans out validators that check each critical/high finding against the actual code — conservatively dropping only findings they can positively refute. The chair and validators see only the `reviewer-N` aliases; the workflow de-aliases with `aliases` at return time, so the report you get back carries real engine names. It runs in the background and notifies on completion.
 
 **A4 — Present.** When the workflow returns, present its result faithfully (no added review, no fixes):
 
@@ -61,11 +66,18 @@ The chair reads the findings file, dedupes/merges across reviewers (tagging each
 - If `confidence` is `low`, say so prominently: the verdict rests on thin evidence — fewer than two reviewers ran, or a `needs-attention` whose strongest finding is a lone, unvalidated claim. Tell the user to verify it before acting, rather than taking the verdict at face value.
 - If the companion JSON (A1) included `partial`, say prominently that the diff was too large to review at once: it was reviewed file-by-file in `batches` batches, `reviewedFiles`/`totalFiles` files covered (cross-file issues may be missed), and list any `skippedFiles` that were too large to review at all. Coverage is incomplete — frame the verdict accordingly.
 
-**A5 — Machine-readable export (on request).** If the user wants SARIF / CI output (e.g. to upload to GitHub code scanning or gate a build), write the workflow's returned report object to a JSON file and convert it — this exports the VALIDATED chair report, not the raw pre-chair findings:
+**A5 — Persist.** Always, after presenting: Write the workflow's returned report object to `/tmp/council/report.json`, then save it durably:
 
 ```bash
-# (write the A3 workflow result to $REPORT, e.g. /tmp/council/report.json, then:)
-node "$HOME/.claude/skills/council/scripts/council-companion.mjs" to-sarif "$REPORT" > council.sarif
+node "$HOME/.agents/skills/council/scripts/council-companion.mjs" save-report /tmp/council/report.json --repo "<REPO_ROOT from A1>"
+```
+
+It prints the saved directory — `report.json` + rendered `report.md` under `~/.local/share/council/reports/` (a `latest` symlink tracks the newest). Mention the saved path in one closing line. If the user wants a shareable page, load the `artifact-design` skill and publish the saved `report.md` via the Artifact tool.
+
+**A6 — Machine-readable export (on request).** If the user wants SARIF / CI output (e.g. to upload to GitHub code scanning or gate a build), convert the persisted report — this exports the VALIDATED chair report, not the raw pre-chair findings:
+
+```bash
+node "$HOME/.agents/skills/council/scripts/council-companion.mjs" to-sarif /tmp/council/report.json > council.sarif
 ```
 
 `to-sarif` also accepts `-` to read the report JSON from stdin. severity maps to SARIF level (critical/high → error, medium → warning, low → note); refuted/`dropped` findings are excluded.
@@ -87,10 +99,12 @@ Keep it faithful and neutral — don't bias the council toward an answer. If the
 ```bash
 mkdir -p /tmp/council
 # (write the brief to /tmp/council/brief.md with the Write tool, then:)
-node "$HOME/.claude/skills/council/scripts/council-companion.mjs" council-brief --brief-file /tmp/council/brief.md --json > /tmp/council/takes.json
+node "$HOME/.agents/skills/council/scripts/council-companion.mjs" council-brief \
+  --brief-file /tmp/council/brief.md --json \
+  --alias-file /tmp/council/aliases.json > /tmp/council/takes.json
 ```
 
-The companion fans the brief out to each enabled engine for an independent **prose** take (no schema — open analysis doesn't fit a findings shape) and emits `{brief, repoPath, takes:[{engine,label,text}], skipped}`. Engines that are unavailable land in `skipped`.
+The companion fans the brief out to each enabled engine for an independent **prose** take (no schema — open analysis doesn't fit a findings shape) and emits `{brief, repoPath, takes:[{engine,label,text}], skipped}`. Engines that are unavailable land in `skipped`. Engine ids and labels in the takes are **blinded aliases** (`reviewer-N` / `Reviewer N`) so the chair reconciles arguments, not reputations; the real mapping is written to `/tmp/council/aliases.json` — Read it now (you need it in B3).
 
 **B2 — Short-circuit.** If `takes` is empty (every engine skipped), tell the user the council couldn't convene (and why) and stop.
 
@@ -98,12 +112,16 @@ The companion fans the brief out to each enabled engine for an independent **pro
 
 ```
 Workflow({
-  scriptPath: "<$HOME>/.claude/skills/council/workflows/council-synth.mjs",
-  args: { takesFile: "/tmp/council/takes.json", repoPath: "<git root or pwd>" }
+  scriptPath: "<$HOME>/.agents/skills/council/workflows/council-synth.mjs",
+  args: {
+    takesFile: "/tmp/council/takes.json",
+    repoPath: "<git root or pwd>",
+    aliases: <the parsed object from /tmp/council/aliases.json>
+  }
 })
 ```
 
-A single fresh-context chair reads the takes and reconciles them neutrally — it wrote none of them, so it isn't anchored on this conversation. There's **no validate-against-code stage** here (nothing to validate); that's review-only.
+A single fresh-context chair reads the takes and reconciles them neutrally — it wrote none of them, so it isn't anchored on this conversation, and it sees only the blinded `reviewer-N` aliases (the workflow de-aliases at return time, so the report carries real engine names). There's **no validate-against-code stage** here (nothing to validate); that's review-only.
 
 **B4 — Present.** When the workflow returns, present its result faithfully (no added opinion of your own):
 
@@ -115,12 +133,20 @@ A single fresh-context chair reads the takes and reconciles them neutrally — i
 - **Open questions** the council couldn't resolve.
 - Name the members that actually weighed in (one-line `takes` gist each is a nice touch).
 
+**B5 — Persist.** Always, after presenting: Write the workflow's returned report object to `/tmp/council/report.json`, then save it durably:
+
+```bash
+node "$HOME/.agents/skills/council/scripts/council-companion.mjs" save-report /tmp/council/report.json --repo "<git root or pwd>"
+```
+
+It prints the saved directory — `report.json` + rendered `report.md` under `~/.local/share/council/reports/` (a `latest` symlink tracks the newest). Mention the saved path in one closing line. If the user wants a shareable page, load the `artifact-design` skill and publish the saved `report.md` via the Artifact tool.
+
 ---
 
 ## Other modes
 
 - **Quick single-model pass** (Grok alone, no synthesis workflow — fast, free on the SuperGrok sub):
-  `node "$HOME/.claude/skills/council/scripts/council-companion.mjs" grok-review $REVIEW_ARGS`
-- **Engine status:** `node "$HOME/.claude/skills/council/scripts/council-companion.mjs" setup`
+  `node "$HOME/.agents/skills/council/scripts/council-companion.mjs" grok-review $REVIEW_ARGS`
+- **Engine status:** `node "$HOME/.agents/skills/council/scripts/council-companion.mjs" setup`
 
-A full review run is ~2–3 min and ~100k–130k tokens (gather + chair + validators); an open council is lighter (gather + one chair, no validators). See `$HOME/.claude/skills/council/README.md` for architecture and engine/auth details.
+A full review run is ~2–3 min and ~100k–130k tokens (gather + chair + validators); an open council is lighter (gather + one chair, no validators). The Claude member additionally spends Claude Max quota (one headless `claude -p` per council). See `$HOME/.agents/skills/council/README.md` for architecture and engine/auth details.
