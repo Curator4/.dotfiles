@@ -6,7 +6,7 @@
 
     "modules-left": ["custom/hud", "hyprland/workspaces", "custom/theme"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/volume", "bluetooth", "network", "custom/gpu", "custom/vram", "cpu", "memory", "disk"],
+    "modules-right": ["custom/codexbar-claude", "custom/codexbar-codex", "custom/codexbar-grok", "custom/volume", "bluetooth", "network", "custom/gpu", "custom/vram", "cpu", "memory", "disk"],
 
     "custom/hud": {
         "exec": "/home/curator/workspace/hud/hud count",
@@ -14,6 +14,39 @@
         "format": " {}",
         "on-click": "eww open --toggle hud",
         "tooltip": false
+    },
+
+    "custom/codexbar-codex": {
+        "exec": "CODEXBAR_PROVIDERS=codex CODEXBAR_BAR_PROVIDER=codex $HOME/.config/waybar/scripts/codexbar.sh | jq -c '.text |= (gsub(\"🤖 ?\";\"\"))'",
+        "return-type": "json",
+        "format": "{}",
+        "interval": 180,
+        "signal": 8,
+        "on-click": "$HOME/.config/waybar/scripts/codexbar-popup.py",
+        "tooltip": true,
+        "max-length": 18
+    },
+
+    "custom/codexbar-claude": {
+        "exec": "CODEXBAR_PROVIDERS=claude CODEXBAR_BAR_PROVIDER=claude $HOME/.config/waybar/scripts/codexbar.sh | jq -c '.text |= (gsub(\"🤖 ?\";\"\"))'",
+        "return-type": "json",
+        "format": "{}",
+        "interval": 180,
+        "signal": 8,
+        "on-click": "$HOME/.config/waybar/scripts/codexbar-popup.py",
+        "tooltip": true,
+        "max-length": 18
+    },
+
+    "custom/codexbar-grok": {
+        "exec": "CODEXBAR_PROVIDERS=grok CODEXBAR_BAR_PROVIDER=grok $HOME/.config/waybar/scripts/codexbar.sh | jq -c '.text |= (gsub(\"🤖 ?\";\"\"))'",
+        "return-type": "json",
+        "format": "{}",
+        "interval": 180,
+        "signal": 8,
+        "on-click": "$HOME/.config/waybar/scripts/codexbar-popup.py",
+        "tooltip": true,
+        "max-length": 18
     },
 
     "hyprland/workspaces": {
