@@ -1,0 +1,49 @@
+{
+  "name": "GrokNight",
+  "slug": "grok-night",
+  "icon": "🌑",
+  "terminal_only": true,
+  "nvim": {
+    "colorscheme": "catppuccin-mocha",
+    "variant": "",
+    "background": "dark"
+  },
+  "palette": {
+    "background": "#131414",
+    "foreground": "#c8c8c8",
+    "cursor": "#7D4BC6",
+    "cursor_text": "#171717",
+    "border": "#444444",
+    "selection_bg": "#333A3E",
+    "selection_fg": "#c8c8c8",
+    "colors": {
+      "black": "#1a1a1a",
+      "red": "#905F59",
+      "green": "#5E8C9C",
+      "yellow": "#D9C5A8",
+      "blue": "#3D6390",
+      "magenta": "#7D4BC6",
+      "cyan": "#7297BB",
+      "white": "#c8c8c8",
+      "bright_black": "#444444",
+      "bright_red": "#BC8D73",
+      "bright_green": "#7BA6B5",
+      "bright_yellow": "#E6D7BE",
+      "bright_blue": "#6298D1",
+      "bright_magenta": "#8a90dd",
+      "bright_cyan": "#9BB0D7",
+      "bright_white": "#e0e0e0"
+    }
+  },
+  "wallpapers": {
+    "static": [
+      "~/pictures/wallpapers/static/orbital-shipyard.jpg"
+    ]
+  },
+  "rofi_theme": "frost",
+  "obsidian": {
+    "cssTheme": "Obsidianite",
+    "base": "obsidian"
+  },
+  "vibe": "neutral-dark"
+}

@@ -44,10 +44,10 @@
     ]
   },
   "monitors": {
-    "DP-1": "vertical[0]",
+    "DP-1": "vertical[1]",
     "DP-2": "static[1]",
     "DP-3": "static[0]",
-    "DP-4": "vertical[1]"
+    "DP-4": "vertical[0]"
   },
   "rofi_theme": "nord",
   "obsidian": {
