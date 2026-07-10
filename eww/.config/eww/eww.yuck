@@ -153,18 +153,35 @@
 ; break) — your FOCUS, with live Claude Code activity painted on as an animated
 ; spinner + drift badges. Every item lives under its project; reading order is
 ; work, then live projects by recency, then declared-but-idle. Each zone is fed
-; by hud-board-render <zone>, polled fast so the spinner animates. (itinerary
-; and backlog zones exist in `hud board` but are off the panel for now.)
+; by hud-board-render <zone>, polled fast so the spinner animates. (backlog
+; zone exists in `hud board` but is off the panel for now.)
+;
+; TODAY strip: the council's day plan (itinerary zone), one clickable row per
+; item — click checks it off via `hud itinerary-done <n>` and drops the board
+; cache so the ✓ shows on the next poll.
 ; ═════════════════════════════════════════════════════════
 (defpoll board_left  :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render left`)
 (defpoll board_right :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render right`)
+(defpoll board_today :interval "2s"    :initial "[]" `~/.config/eww/scripts/hud-today-json`)
 
 (defwidget hud-zone [class body]
   (box :class "hud-zone ${class}" :orientation "v" :space-evenly false :hexpand true :valign "start"
     (label :class "hud-body" :markup body :halign "start" :wrap true)))
 
+(defwidget hud-today []
+  (box :class "hud-today" :orientation "v" :space-evenly false
+       :visible {arraylength(board_today) > 0}
+    (label :class "today-header" :text "TODAY" :halign "start")
+    (for it in board_today
+      (eventbox :cursor "pointer"
+                :onclick "/home/curator/workspace/hud/hud itinerary-done ${it.i} >/dev/null 2>&1; rm -f ~/.local/state/hud/board.json &"
+        (label :class {it.done ? "today-item done" : "today-item"}
+               :halign "start"
+               :text "${it.done ? "✓" : "○"}  ${it.text}")))))
+
 (defwidget hud-panel []
   (box :class "hud-panel" :orientation "v" :space-evenly false :spacing 10
+    (hud-today)
     (box :orientation "h" :space-evenly true :spacing 40
       (hud-zone :class "zone-left"  :body board_left)
       (hud-zone :class "zone-right" :body board_right))))

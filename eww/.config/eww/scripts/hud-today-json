@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# TODAY strip feed: today's itinerary items from the cached board JSON as
+# [{i,text,done}] for eww's for-loop — i is the 1-based position that
+# `hud itinerary-done <n>` expects, so click targets survive text clipping.
+# Rides the ~3s cache the hud-board-render pollers keep fresh.
+cache="$HOME/.local/state/hud/board.json"
+jq -c '[.itinerary[]? | {text, done}] | to_entries
+       | map({i: (.key + 1), text: .value.text, done: (.value.done == true)})' \
+  "$cache" 2>/dev/null || echo "[]"
