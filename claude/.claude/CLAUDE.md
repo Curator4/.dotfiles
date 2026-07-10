@@ -101,5 +101,5 @@ Captures go in the session scratchpad, never the repo. `WAYLAND_DISPLAY` is set 
 # External Skill Sources
 
 - mattpocock's skills mirror (`~/.agents/upstream-mattpocock/`) is the source for the Matt suite — `/ask-matt` routes over it. Its skills are **symlinked** into both `~/.claude/skills/` and `~/.agents/skills/`, so a `git pull` in the mirror changes them immediately. `/code-review` is deliberately not linked: the name collides with Claude Code's built-in.
-- The `golang-*` family lives in `~/.agents/skills/` as real directories from a separate source — not the mattpocock mirror. Personal skills live directly under `~/.claude/skills/`.
+- **`~/.agents/skills/` is the canonical skills home** (own git repo, 2026-07-11 consolidation); `~/.claude/skills/` is symlinks-only — never edit or create real skill files there. The `golang-*` family lives in `~/.agents/skills/` from a separate source (not the mattpocock mirror). Repo-owned skills keep their canonical inside their repo and symlink in (holly → `household-oc/.claude/skills/holly`). Skills with their own nested git (council, stop-slop) version themselves and are gitignored in the `~/.agents` repo.
 - React/Vercel and PlanetScale: prefer their official docs when working in those stacks.
