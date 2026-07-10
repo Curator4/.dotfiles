@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # Per-zone renderer for the HUD focus board. Arg 1 = zone (today|left|right).
-# Output is Pango markup: text html-escaped, headers/items tinted per project.
-# Either column can hold any project (hud packs them by height), so every group
-# must carry its own tint here — the zones themselves are neutral.
+# Output is Pango markup: text html-escaped, every line painted with the colour
+# `hud board` resolved for its project. Either column can hold any project (hud
+# packs them by height), so the zones themselves are neutral and each line
+# carries its own tint. Long lines arrive pre-wrapped, as an item/sub/note plus
+# indented `cont` rows — hud owns the width budget, this script never re-flows.
 # The expensive scan (hud board) is cached ~3s; zones poll fast so the braille
 # spinner animates.
 zone="${1:-left}"
@@ -18,27 +20,21 @@ frames=(⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏)
 sp="${frames[$(( ($(date +%s%N) / 100000000) % 10 ))]}"
 
 jq -r --arg z "$zone" --arg sp "$sp" '
-  def col($p):
-    if   $p == "work"      then "#7aa2f7"
-    elif $p == "dynasty"   then "#c0504d"
-    elif $p == "calliope"  then "#5566cc"
-    elif $p == "household" then "#dcc05a"
-    elif $p == "council"   then "#eaeaf0"
-    elif $p == "hud"       then "#56b6c2"
-    elif $p == "system"    then "#8b93a8"
-    else "" end;
-  def tint($p; $s):
-    (col($p)) as $c
-    | if $c == "" then $s else "<span foreground=\"" + $c + "\">" + $s + "</span>" end;
-  .[$z][]? |
-  if   .kind == "header"     then tint(.project // ""; (.text|@html))
-  elif .kind == "blank"      then "<span size=\"50%\"> </span>"
+  # One span carrying both attributes; no span at all when neither applies.
+  def paint($c; $dim; $s):
+    ((if $c == "" then "" else " foreground=\"" + $c + "\"" end)
+     + (if $dim then " alpha=\"55%\"" else "" end)) as $attrs
+    | if $attrs == "" then $s else "<span" + $attrs + ">" + $s + "</span>" end;
+  def dot:  if .working then $sp elif .done then "✓" else "○" end;
+  def live: if .working then $sp else "·" end;
+  .[$z][]? | (.color // "") as $c |
+  if   .kind == "blank"      then "<span size=\"50%\"> </span>"
   elif .kind == "gap"        then "<span size=\"10%\"> </span>"
-  elif .kind == "sub"        then tint(.project // ""; "    └ " + (if .working then $sp else "·" end) + " " + (.text|@html))
-  elif .kind == "note"       then "<span alpha=\"55%\">    └ " + (.badge|@html) + " · " + (.text|@html) + "</span>"
-  elif .kind == "alsoactive" then (if .working then $sp else "·" end) + "  " + (.text|@html)
-  else
-    tint(.project // "";
-      ((if .working then $sp elif .done then "✓" else "○" end) + "  " + (.text|@html))
-      + (if .badge then "   · " + (.badge|@html) else "" end))
+  elif .kind == "header"     then paint($c; false;        (.text|@html))
+  elif .kind == "cont"       then paint($c; .dim // false; (.text|@html))
+  elif .kind == "sub"        then paint($c; false; "    └ " + live + " " + (.text|@html))
+  elif .kind == "note"       then paint($c; true;  "    └ " + (.badge|@html) + " · " + (.text|@html))
+  elif .kind == "alsoactive" then paint($c; false; live + "  " + (.text|@html))
+  else paint($c; false; dot + "  " + (.text|@html)
+                        + (if .badge then "   · " + (.badge|@html) else "" end))
   end' "$cache" 2>/dev/null

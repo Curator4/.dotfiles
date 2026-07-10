@@ -188,21 +188,6 @@ window {
   margin: 5px;
 }
 
-.hud-section {
-  margin-bottom: 0;
-}
-
-.hud-title {
-  color: #7aa2f7;
-  font-family: "Hack Nerd Font";
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 3px;
-  margin-bottom: 6px;
-}
-
-.hud-today .hud-title { color: #e0af68; }
-
 .hud-body {
   color: #c0c8d8;
   font-family: "Hack Nerd Font";
@@ -213,8 +198,6 @@ window {
   margin: 0 4px;
 }
 
-// Per-zone colour — class sits on the zone box; title + body inherit it.
-.zone-work    .hud-title, .zone-work    .hud-body { color: #7aa2f7; } // blue    — work
-.zone-side    .hud-title, .zone-side    .hud-body { color: #c0c8d8; } // neutral — project groups carry their own tint
-.zone-today   .hud-title, .zone-today   .hud-body { color: #9ece6a; } // green  — today
-.zone-backlog .hud-title, .zone-backlog .hud-body { color: #8089b3; } // dim    — backlog pool
+// No per-zone colour. The columns are packed by height, so either can hold any
+// project: the zones stay on .hud-body's neutral and every line carries its own
+// tint from hud-board-render, which `hud board` resolves per project.

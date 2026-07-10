@@ -148,14 +148,14 @@
   (timer-bar))
 
 ; ═════════════════════════════════════════════════════════
-; ── Household HUD — focus board (TODAY strip + two columns) ─
-; TODAY strip on top, LEFT | RIGHT project-grouped columns below — your
-; FOCUS, with live Claude Code activity painted on as an animated spinner +
-; drift badges. Each zone is fed by hud-board-render <zone>, polled fast so
-; the spinner animates. (backlog zone exists in `hud board` but is off the
-; panel for now.)
+; ── Household HUD — focus board (two columns) ────────────
+; Project groups packed across two columns by height (`hud board` picks the
+; break) — your FOCUS, with live Claude Code activity painted on as an animated
+; spinner + drift badges. Every item lives under its project; reading order is
+; work, then live projects by recency, then declared-but-idle. Each zone is fed
+; by hud-board-render <zone>, polled fast so the spinner animates. (itinerary
+; and backlog zones exist in `hud board` but are off the panel for now.)
 ; ═════════════════════════════════════════════════════════
-(defpoll board_today :interval "150ms" :initial "" `~/.config/eww/scripts/hud-board-render today`)
 (defpoll board_left  :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render left`)
 (defpoll board_right :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render right`)
 
@@ -165,13 +165,9 @@
 
 (defwidget hud-panel []
   (box :class "hud-panel" :orientation "v" :space-evenly false :spacing 10
-    (box :class "hud-today" :orientation "v" :space-evenly false
-         :visible {strlength(board_today) > 0}
-      (label :class "hud-title" :text "TODAY" :halign "start")
-      (label :class "hud-body" :markup board_today :halign "start" :wrap true))
     (box :orientation "h" :space-evenly true :spacing 40
-      (hud-zone :class "zone-work" :body board_left)
-      (hud-zone :class "zone-side" :body board_right))))
+      (hud-zone :class "zone-left"  :body board_left)
+      (hud-zone :class "zone-right" :body board_right))))
 
 (defwindow hud
   :monitor "DP-4"
