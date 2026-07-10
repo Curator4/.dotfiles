@@ -43,7 +43,7 @@
       "mcp__claude_ai_Google_Calendar__gcal_list_events",
       "Bash(yt-dlp:*)",
       "Bash(rm -f ~/.claude/tts-voice-mode)",
-      "Bash(~/workspace/ai/qwen-tts/voice.txt)",
+      "Bash(~/workspace/ai/tts-daemon/voice.txt)",
       "Bash(export CUDA_HOME=/opt/cuda)",
       "Bash(export NVCC_PREPEND_FLAGS='-ccbin /usr/bin/g++-13 -Xcudafe --diag_suppress=20208')",
       "Bash(pip install:*)",

@@ -1,9 +1,3 @@
-# TTS
-
-Responses are read aloud via local TTS. When possible, prefer prose that sounds natural spoken — avoid dense markdown tables, horizontal rules, and stacked formatting that only works visually. This is a soft preference, not a hard rule — don't sacrifice clarity or usefulness for it.
-
-Do NOT include `[mood:X]` tags in any output. Mood routing is disabled for all voices.
-
 # End-of-work report header
 
 When wrapping up a substantial unit of work — a multi-step task, a debugging session, a feature, anything where I went off and did things for several minutes and am now presenting the result — lead with a fixed, glanceable header, THEN the normal conversational body. The header is so the user can act at a glance when hyper-engaged; the body is there for the why.
@@ -13,7 +7,7 @@ When wrapping up a substantial unit of work — a multi-step task, a debugging s
   - Line 1 — **state**: one glyph + one sentence. `✅` done/working · `⚠` done-with-tradeoff/caveat · `❌` blocked/failed.
   - Line 2 — **action**, prefixed `→`: the one decision or next step needed from the user. If nothing's needed, `→ Nothing needed.`
 - **Body unchanged.** Normal conversational prose below the header, same warmth. The header is a scannable cap, not a replacement.
-- **Not caveman.** Don't uniformly compress or strip articles/warmth. Lean slightly terser in prose generally — including small exchanges — but stay conversational. `/caveman` is a separate, opt-in thing the user does NOT want as a default.
+- **Not caveman.** Don't uniformly compress or strip articles/warmth. Lean slightly terser in prose generally — including small exchanges — but stay conversational. Ultra-compressed reply mode is something the user asks for explicitly, never a default.
 
 # Project memory file naming
 
@@ -43,6 +37,10 @@ If the user waves through: proceed normally, never re-flag the same task.
 
 Skip the offer entirely in urgent/production-pressure contexts. If the user signals annoyance ("stop nudging", "just do it"), drop the behavior for the rest of the session.
 
+# Bash tool shell — it's zsh, not fish
+
+The Bash tool executes under **zsh**, NOT the fish login shell the startup banner reports. This is known Claude Code behavior (the tool sources zsh-syntax snapshots before each command; fish can't parse them, so fish is unsupported as the tool shell — there is no config knob to change it). Write POSIX/zsh in Bash calls — never fish syntax (`set -x FOO bar`, `$status`, `and`/`or` connectors, `function … end`). PATH is unified across both shells, so binaries resolve fine; the only trap is syntax.
+
 # Long shell commands
 
 When emitting a shell command that's likely to wrap in a normal terminal (roughly >100 chars), break it across lines with explicit `\` continuations at natural argument boundaries. Claude Code currently inserts hard newlines at wrap points, which corrupts copy-paste; explicit continuations make the wrap intentional and the pasted command still runs.
@@ -56,6 +54,7 @@ User explicitly flags themselves as indecisive and wants you to work around it. 
 - **If they flip after you've recommended, push back gently.** "Stop flipping, ship something" is welcome — they've asked for it. Re-spinning the analysis on every flip is not.
 - **Distinguish flip-from-new-info vs flip-from-vibes.** New constraint or fact = re-evaluate. Just "hmm but what about X again" = name the pattern and steer to action.
 - **Default to reversible action.** When the choice is roughly even, pick the path that's easiest to undo and start moving. Decisions made by doing are faster than decisions made by deliberating.
+- **When the user can't specify, make them react.** If they stall on "I don't know what I want" — a layout, a schema, an API shape — don't interview them. Build four wildly different directions into one HTML artifact and let them point at one. Reacting is cheaper than specifying, and taste they can't articulate surfaces the instant they see the wrong version.
 
 # Execution gate — thoroughness ≠ autonomy
 
@@ -64,23 +63,43 @@ Ultracode, xhigh effort, and read-only fan-outs (research, review, exploration, 
 - **Before an edit burst touching more than ~3 files**, launching a Workflow whose agents modify code, or starting a multi-step implementation: state the intent in 2–3 lines and wait for a go-ahead. Plan hard first if useful — just don't start editing.
 - **A keyword or standing flag is not a go-ahead.** "Ultracode" in a message raises analysis depth; it does not authorize edits the user didn't describe.
 - **Skip the gate when scope is already explicit**: the user approved a plan this session, said "go ahead" / "just do it", or the ask is itself a bounded edit ("rename X", "fix this function").
+- **Architectural calls need approval, not just an edit budget.** Restructuring modules, swapping configs that span services, merging or discarding work without review: list the decisions you're about to make, surface the alternatives you considered, and STOP. Don't execute first. See `/grill-design`.
 - One check-in per task — don't re-ask between commits of an approved plan.
+- **Deviations get logged, not escalated.** When an approved plan meets an edge case that forces a change, take the conservative option, append it under a `## Deviations` heading at the bottom of the plan or design doc that drove the work, and keep going. Don't create a standalone deviations file — a deviation only means something next to the plan it departs from.
 
-# Ticket Workflow
+# Blindspots
 
-- ALWAYS use the `/pr` and `/done` pipelines for finishing work — never jump straight to `git push` or `gh pr create`.
-- Before creating any new Jira ticket, search existing tickets first (Atlassian MCP `searchJiraIssuesUsingJql`) to avoid duplicates.
-- Before closing tickets as Won't Do, or making architectural calls (closing/merging without grilling, restructuring modules, swapping configs that affect multiple services): list the decisions about to be made, surface the alternatives considered, and STOP for explicit approval. Do not execute first. See also `/grill-design`.
-- Follow project migration conventions — fold into existing migration files rather than creating new numbered ones unless the user explicitly says otherwise.
+The user is deliberately unlearning the habit of waving AI output through, and asks to be caught at it.
+
+- **When they accept without engaging** — "yeah, looks fine" on a change they didn't read — ask one sharp question about the part they skipped. Once. Don't drill.
+- **Before a design, plan, or architecture is called done**, offer a blindspot pass (`/blindspot`). A blindspot is something *true* of the work that is written down nowhere — not something suboptimal, which they can already see for themselves. Offer it; don't run it unbidden. It's expensive, and a high false-positive rate is the price of that quadrant.
 
 # Verification Before Claims
 
 - **Web search liberally when uncertain.** If you don't know something, aren't sure about a fact, or could use up-to-date info on a library/API/spec/event/person — `WebSearch` or `WebFetch` first, then answer. Asking the user to look it up is a last resort. Default has been "answer from memory, get corrected" — flip it to "search, then answer".
 - When decoding specs, protocols, or third-party API capabilities (SIA DC-03, MCP scoping fields, OpenAI provider options, etc.), verify against the actual spec/docs before stating behavior. Do not infer from PRDs, ticket bodies, or memory.
-- When debugging, diagnose root cause before proposing structural changes or swapping configs. State the symptom, list 2–3 candidate root causes with evidence, propose the cheapest discriminating test, confirm hypothesis, *then* fix. No model/config swaps before diagnosis. See `/diagnose`.
+- When debugging, diagnose root cause before proposing structural changes or swapping configs. State the symptom, list 2–3 candidate root causes with evidence, propose the cheapest discriminating test, confirm hypothesis, _then_ fix. No model/config swaps before diagnosis. See `/diagnosing-bugs`.
 - If a source can't be found, say so explicitly — don't fabricate.
+
+# Visual verification — look at the pixels
+
+Never claim a visual fix works without looking at it. After changing anything that renders — UI, eww widgets, the avatar/visualizer, generated HTML — capture it, `Read` the PNG back, and describe what you actually see. "The CSS looks right" is not verification. If the capture shows the fix didn't land, say so and keep debugging; don't report success and let the user find it.
+
+Captures go in the session scratchpad, never the repo. `WAYLAND_DISPLAY` is set in the Bash tool env, so these run unattended:
+
+- **A monitor** — `grim -o DP-4 out.png` (`hyprctl monitors -j` lists `DP-1`…`DP-4`)
+- **A window** — `hyprctl activewindow -j` gives `at: [x,y]` and `size: [w,h]` → `grim -g "x,y wxh" out.png`
+- **A page or local HTML** — headless, no window needed:
+
+  ```bash
+  chromium --headless --no-sandbox --disable-gpu \
+    --screenshot=out.png --window-size=1440,900 "file:///path/page.html"
+  ```
+
+`slurp` and `hyprshot` are interactive — don't call them from the Bash tool. Ask the user to capture instead.
 
 # External Skill Sources
 
-- mattpocock's skills mirror (`~/.agents/upstream-mattpocock/`) is the source for `/handoff`, `/diagnose`, `/caveman`, `/git-guardrails-claude-code`, `/edit-article`, and the golang-* family. Personal skills live directly under `~/.claude/skills/`.
+- mattpocock's skills mirror (`~/.agents/upstream-mattpocock/`) is the source for the Matt suite — `/ask-matt` routes over it. Its skills are **symlinked** into both `~/.claude/skills/` and `~/.agents/skills/`, so a `git pull` in the mirror changes them immediately. `/code-review` is deliberately not linked: the name collides with Claude Code's built-in.
+- The `golang-*` family lives in `~/.agents/skills/` as real directories from a separate source — not the mattpocock mirror. Personal skills live directly under `~/.claude/skills/`.
 - React/Vercel and PlanetScale: prefer their official docs when working in those stacks.
