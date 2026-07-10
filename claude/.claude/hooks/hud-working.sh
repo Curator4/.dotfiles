@@ -9,5 +9,9 @@ sid=$(printf '%s' "$input" | jq -r '.session_id // empty' 2>/dev/null)
 [ -z "$sid" ] && exit 0
 dir="$HOME/.local/state/hud/active"
 mkdir -p "$dir" 2>/dev/null
+if [[ "${INTER_SESSION_LABEL:-}" == *" channel" ]]; then
+  printf 'bg' > "$dir/$sid" 2>/dev/null
+  exit 0
+fi
 printf 'working' > "$dir/$sid" 2>/dev/null
 exit 0

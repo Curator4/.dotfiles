@@ -9,7 +9,7 @@
 # crons and heartbeats (HUD_BG). Tombstone rather than a bare exit — an
 # unmarked session still rides gatherActivity's mtime fallback onto the board
 # for activeWindow, which is how the summarizer's own sessions used to surface.
-if [ -n "${HUD_BG:-}" ] || [ -n "${HUD_SUMMARIZING:-}" ]; then
+if [ -n "${HUD_BG:-}" ] || [ -n "${HUD_SUMMARIZING:-}" ] || [[ "${INTER_SESSION_LABEL:-}" == *" channel" ]]; then
   input=$(cat 2>/dev/null)
   sid=$(printf '%s' "$input" | jq -r '.session_id // empty' 2>/dev/null)
   if [ -n "$sid" ]; then
