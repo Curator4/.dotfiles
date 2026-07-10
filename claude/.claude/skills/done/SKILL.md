@@ -1,6 +1,6 @@
 ---
 name: done
-description: "Session Wrap-Up Skill"
+description: "Use when wrapping up a work session, recording a Themis diary entry, updating docs, checking status, or running the ticket closeout flow."
 ---
 
 # Session Wrap-Up Skill
@@ -51,7 +51,7 @@ Wrap up the current session.
    - Optionally identify obvious cross-cutting pages affected (`src/architecture.md`, `src/shutdown.md`, `src/routing.md`, `src/forwarding.md` umbrella).
    - Invoke the wrapper:
      ```bash
-     ~/.claude/skills/docs-update/wrapper.sh \
+     ~/.agents/skills/docs-update/wrapper.sh \
        --range="$RANGE" \
        --ticket="$TICKET" \
        --intent="$INTENT" \

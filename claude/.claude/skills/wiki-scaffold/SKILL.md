@@ -1,6 +1,6 @@
 ---
 name: wiki-scaffold
-description: Create a new wiki instance under ~/obsidian-vault/wiki/<name>/ with index.md, log.md, and optional instance-level AGENTS.md. Does NOT generate content — that's what /wiki-ingest is for. Use when the user invokes /wiki-scaffold, says "create a wiki for X", "new wiki instance for X", or "bootstrap a wiki for X domain".
+description: "Use when creating or bootstrapping a new personal wiki instance under obsidian-vault/wiki."
 argument-hint: "<instance-name> [<domain-description>]"
 ---
 

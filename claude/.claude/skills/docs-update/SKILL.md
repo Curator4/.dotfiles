@@ -1,6 +1,6 @@
 ---
 name: docs-update
-description: Dispatch a detached docs-update agent that reads commits in a given range and updates the project's mdBook tech-docs accordingly. Fire-and-forget — returns immediately, notifies via mako on completion. Use at ticket close (auto via /done) or manually mid-phase. Trigger on `/docs-update`, "update docs", "dispatch docs agent", or `/done`'s docs step.
+description: "Use when dispatching a background docs update from recent commits, especially at ticket close, /done, or when tech docs need synchronization."
 ---
 
 # /docs-update
@@ -32,7 +32,7 @@ Dispatch the docs-update agent. The dispatch is fire-and-forget — this skill r
 4. **Optionally identify cross-cutting pages.** Inspect the diff yourself. If a change touches lifecycle, shutdown ordering, the composition root, or other system-wide invariants, list the affected cross-cutting pages. Cross-cutting pages are the ones without `source:` frontmatter (typically `src/architecture.md`, `src/shutdown.md`, `src/routing.md`, `src/forwarding.md` umbrella).
 5. **Invoke the wrapper.**
    ```bash
-   ~/.claude/skills/docs-update/wrapper.sh \
+   ~/.agents/skills/docs-update/wrapper.sh \
      --range="$RANGE" \
      --ticket="$TICKET" \
      --intent="$INTENT" \
@@ -47,7 +47,7 @@ Dispatch the docs-update agent. The dispatch is fire-and-forget — this skill r
 - Notifies dispatch via mako (low urgency, brief).
 - Resolves source repo absolute path from `git rev-parse --show-toplevel` at invocation time.
 - Resolves docs repo path as `<source-repo>/docs/`. Spawn cwd is set there.
-- Spawns detached `claude -p` with `--permission-mode auto` (model and reasoning inherited from user defaults — xhigh by default).
+- Spawns detached `Codex -p` with `--permission-mode auto` (model and reasoning inherited from user defaults — xhigh by default).
 - Background subshell holds the flock for the duration; foreground exits immediately so the invoking session is unblocked.
 - Spawned agent reads `docs/AGENTS.md` for the writing contract, walks commits via `git -C <source>`, edits pages, runs `mdbook build`, commits locally on success, stashes on build failure.
 - After agent exits 0, the wrapper itself runs `git push origin main` from the docs repo (operator-authorized, sidesteps auto-mode's restriction on shared-system writes by the agent).
@@ -62,7 +62,7 @@ Dispatch the docs-update agent. The dispatch is fire-and-forget — this skill r
 
 - Lock: `~/.local/state/docs-agent/lock`
 - Status: `~/.local/state/docs-agent/runs/<YYYYMMDD-HHMMSS>-<ticket>.status` (one line: `running` → `done`/`done-noop`/`failed-N`/`timeout`/`push-failed`).
-- Log: `~/.local/state/docs-agent/runs/<YYYYMMDD-HHMMSS>-<ticket>.log` (full stdout/stderr from claude -p plus push output).
+- Log: `~/.local/state/docs-agent/runs/<YYYYMMDD-HHMMSS>-<ticket>.log` (full stdout/stderr from Codex -p plus push output).
 
 To inspect recent runs:
 ```bash
@@ -73,13 +73,13 @@ ls -t ~/.local/state/docs-agent/runs/*.status | head -10 \
 ## Hard rules
 
 - This skill never blocks. If you need to wait for completion, watch mako or tail the log file.
-- The contract the spawned agent follows lives in the docs repo at `docs/AGENTS.md` (alongside a `CLAUDE.md` symlink for older tools). Voice, page shapes, anti-patterns — all there. Keep that file authoritative.
+- The contract the spawned agent follows lives in the docs repo at `docs/AGENTS.md` (alongside a `AGENTS.md` symlink for older tools). Voice, page shapes, anti-patterns — all there. Keep that file authoritative.
 - Do not pass per-dispatch style guidance to the agent. Style lives in the contract, not in the prompt.
 - The intent note is for the agent to *understand with*, not *quote from*. The skill makes this explicit in the prompt template.
 
 ## Bootstrap
 
-Initial `docs/AGENTS.md` is hand-written, not skill-generated. The skill assumes it exists. If it doesn't, the spawned agent will likely produce poor output and you should write the contract first (or run a one-shot `claude -p` with a bootstrap prompt — separate from this skill).
+Initial `docs/AGENTS.md` is hand-written, not skill-generated. The skill assumes it exists. If it doesn't, the spawned agent will likely produce poor output and you should write the contract first (or run a one-shot `Codex -p` with a bootstrap prompt — separate from this skill).
 
 ## Files in this skill
 

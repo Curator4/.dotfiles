@@ -1,6 +1,6 @@
 ---
 name: socratic
-description: Toggle the Socratic output style on/off. `/socratic` enables it, `/socratic off` disables it. Output style is locked at session start, so the user must run `/clear` after for the change to apply.
+description: "Use when toggling Socratic output style on or off via /socratic or /socratic off."
 ---
 
 # Toggle Socratic output style

@@ -1,6 +1,6 @@
 ---
 name: gwd
-description: Slash-command shortcut for grill-with-docs. Triggers ONLY on explicit /gwd invocation. Auto-trigger phrasing ("grill me", "stress-test this design", etc.) goes to grill-with-docs directly, not here.
+description: "Use only when the user explicitly invokes /gwd as a shortcut for grill-with-docs."
 ---
 
 # /gwd — alias for grill-with-docs

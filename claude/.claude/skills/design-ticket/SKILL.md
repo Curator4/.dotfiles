@@ -1,6 +1,6 @@
 ---
 name: design-ticket
-description: Interactive design + grilling session for a tracker issue. Picks an issue from `status:staging` (or accepts an issue number), runs a brainstorm + grill-with-docs session against existing project docs to produce a structured `## Symphony Workpad` comment with Plan / Acceptance Criteria / Validation, then transitions to `status:todo` so symphony can pick it up. Handles both fresh designs and reset-to-design (operator relabels human-review → staging and re-invokes; the skill archives the prior workpad in place before grilling). Use when the user says "design this ticket", "/design-ticket", "let's grill the architecture for issue N", or before kicking off symphony on a non-trivial issue.
+description: "Use when designing or grilling a tracker issue before implementation, especially /design-ticket, staging issues, or Symphony workpad creation."
 ---
 
 # /design-ticket
@@ -20,7 +20,7 @@ the contract.
 - Before any non-trivial symphony run. The implementing stage requires
   a `## Symphony Workpad` comment as input; this skill produces it.
 - When you want to grill an architecture decision against existing
-  project docs (CLAUDE.md / AGENTS.md / CONTEXT.md / ADRs) before any
+  project docs (AGENTS.md / AGENTS.md / CONTEXT.md / ADRs) before any
   code is written.
 
 ## Inputs
@@ -129,7 +129,7 @@ so renaming is sufficient. No prior workpad → no-op.
 
 Read the project's design documentation, in this order:
 
-- `AGENTS.md` (or `CLAUDE.md` if no AGENTS.md)
+- `AGENTS.md` (or `AGENTS.md` if no AGENTS.md)
 - `.agents/CONTEXT.md` if present (project domain glossary)
 - `ARCHITECTURE.md` if present
 - `docs/adr/*.md` if present

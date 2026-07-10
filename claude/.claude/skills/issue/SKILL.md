@@ -1,6 +1,6 @@
 ---
 name: issue
-description: Show the current ticket's GH parent issue — body, sub-issues hierarchy with progress, comments, link. Use when the user says "show issue", "show the issue", "view issue", "current issue", "tracking issue", "what's tracked", "show subtasks" (read-only view), "/issue", or wants to inspect what's in the active ticket's GH Issue without editing it.
+description: "Use when showing the active ticket, GH parent issue, body, comments, sub-issues, tracked work, or subtasks without editing them."
 argument-hint: "[ticket-key]"
 ---
 

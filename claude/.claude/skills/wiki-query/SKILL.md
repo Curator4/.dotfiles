@@ -1,6 +1,6 @@
 ---
 name: wiki-query
-description: Answer questions against the personal wiki at ~/obsidian-vault/wiki/. Searches relevant pages, synthesizes an answer with [[wikilink]] citations, and auto-files substantive synthesis as a wiki page so explorations compound. Use proactively whenever the user asks a question that could be answered from a wiki instance — e.g. about the personal AI household, council prototype, agents, design decisions, or anything else captured under wiki/. Don't wait for explicit /wiki-query invocation; trigger on the question itself.
+description: "Use when answering questions from the personal wiki, especially about captured domains, agents, designs, or household AI context."
 argument-hint: "<question>"
 ---
 

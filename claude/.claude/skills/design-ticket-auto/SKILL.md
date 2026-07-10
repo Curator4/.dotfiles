@@ -1,6 +1,6 @@
 ---
 name: design-ticket-auto
-description: Autonomous variant of /design-ticket. Designs a tracker issue without human-in-the-loop — auto-picks the next eligible staging issue (or accepts an explicit number), grills internally against project docs and the code, posts the `## Symphony Workpad`, transitions to `status:todo`. Skips titles prefixed `Brainstorm:` or `Iterate X based on production runs` — those need operator ideation. Use when the user invokes `/design-ticket-auto`, says "autopilot design", "/design-auto", "batch design staging", or wraps this skill in /loop for unattended throughput.
+description: "Use when autonomously designing staging tracker issues, batch designing issues, or preparing Symphony workpads without human-in-the-loop grilling."
 ---
 
 # /design-ticket-auto
@@ -126,7 +126,7 @@ human prompt.
 
 Read project documentation, in order:
 
-- `AGENTS.md` (or `CLAUDE.md` if no AGENTS.md)
+- `AGENTS.md` (or `AGENTS.md` if no AGENTS.md)
 - `.agents/CONTEXT.md` if present
 - `ARCHITECTURE.md` if present
 - `docs/adr/*.md` if present

@@ -1,6 +1,6 @@
 ---
 name: normalize
-description: "Add or update TTS text normalization rules in tts_text.py's clean_for_speech()"
+description: "Use when adding or updating TTS text normalization rules in tts_text.py clean_for_speech()."
 argument-hint: "<pattern> [to <replacement>] | [# <symbol> to <word>]"
 ---
 

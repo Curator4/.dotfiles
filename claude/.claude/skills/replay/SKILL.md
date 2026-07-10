@@ -1,11 +1,11 @@
 ---
 name: replay
-description: "Replay the last TTS message from the current session"
+description: "Use when replaying the last spoken TTS message from the current session."
 ---
 
 # TTS Replay
 
-Replay the last spoken TTS message from the current Claude Code session.
+Replay the last spoken TTS message from the current Codex session.
 
 ## Instructions
 

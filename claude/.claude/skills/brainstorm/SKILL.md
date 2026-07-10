@@ -1,6 +1,6 @@
 ---
 name: brainstorm
-description: Open-ended brainstorming partner. Diverges before it converges — generates options, surfaces tradeoffs, helps the user think out loud without grilling. Works for code, writing, life decisions, anything. Use when the user says "brainstorm", "/brainstorm", "help me think about X", "I'm noodling on X", or signals they want exploration rather than execution.
+description: "Use when the user wants open-ended exploration, options, or help thinking through code, writing, life decisions, or plans without committing yet."
 argument-hint: "[topic, optional]"
 ---
 

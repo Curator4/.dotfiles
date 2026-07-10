@@ -1,6 +1,6 @@
 ---
 name: email
-description: Fetch, summarize, and triage emails across all accounts. Use when user asks about email, inbox, messages, or invokes /email.
+description: "Use when the user asks about email, inboxes, message triage, summaries, or email actions."
 argument-hint: "[optional: role filter or natural language like 'check work email']"
 ---
 

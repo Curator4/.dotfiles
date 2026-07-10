@@ -1,6 +1,6 @@
 ---
 name: grill-design
-description: "Architectural checkpoint gate. Forces an explicit decision summary and user sign-off before closing tickets, merging architectural PRs, or making irreversible structural changes. Use proactively before any of: closing a Jira ticket as Won't Do, merging a PR that changes module boundaries, swapping a service's transport/storage/coordination model, deleting or restructuring a directory tree."
+description: "Use when pausing before irreversible architectural calls, Won't Do closures, boundary-changing PRs, module restructuring, or core design swaps."
 ---
 
 # Grill Design — Architectural Checkpoint
@@ -43,4 +43,4 @@ If you're unsure whether something qualifies, run the skill — false positives 
 
 ## Reference
 
-This skill exists because of a recurring friction pattern: Claude closing AR-72 Phase 0 tickets without checkpointing, applying clean_gone patches mid-discussion, proposing file-based coordination to fix codex deadlock before diagnosing. The cost of pausing is low. The cost of unwinding is high.
+This skill exists because of a recurring friction pattern: Codex closing AR-72 Phase 0 tickets without checkpointing, applying clean_gone patches mid-discussion, proposing file-based coordination to fix codex deadlock before diagnosing. The cost of pausing is low. The cost of unwinding is high.

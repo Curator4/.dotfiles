@@ -1,6 +1,6 @@
 ---
 name: start-ticket
-description: Start working on a Jira ticket — creates branch, sets upstream, transitions ticket to In Progress, fetches the matching GH Issue, and explores the codebase with ticket context. Use when the user says "start ticket", "pick up ticket", "work on AR-xxx", etc.
+description: "Use when starting or picking up a Jira ticket, creating the branch, moving status, or fetching linked GH issue context."
 argument-hint: "<ticket-id> <branch-slug> [base-branch]"
 ---
 

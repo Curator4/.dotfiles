@@ -1,6 +1,6 @@
 ---
 name: themis
-description: Health tracking and session logging — meals, workouts, weight, fasting windows, summaries, meal reference, and end-of-session diary entries. Use when the user talks about food, exercise, weight, fasting, or invokes /themis.
+description: "Use when logging or summarizing meals, workouts, weight, fasting, health notes, session diaries, meal references, or /themis."
 argument-hint: "[optional note or command]"
 ---
 

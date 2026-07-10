@@ -1,6 +1,6 @@
 ---
 name: subtask
-description: Manage the active ticket's GH Issue subtasks — add or tick off checkbox items in the parent issue body, list current state, or promote a checkbox into a real sub-issue when it grows up. Use when the user says "add subtask", "new subtask", "tick off X", "mark X done", "check off X", "show subtasks", "what's left", "promote subtask", "make X a sub-issue", "subtask add", "subtask done", "subtask promote", "/subtask".
+description: "Use when adding, listing, checking off, or promoting subtasks on the active GH parent issue."
 argument-hint: "add|done|list|promote [text|index]"
 ---
 

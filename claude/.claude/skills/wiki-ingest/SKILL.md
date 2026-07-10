@@ -1,6 +1,6 @@
 ---
 name: wiki-ingest
-description: Ingest a source (vault path, URL, or pasted content) into a wiki instance under ~/obsidian-vault/wiki/. Reads source, decides create/update/flag/skip per entity-and-concept, writes pages with wikilinks, appends to log, updates index. Skips silently if the source content is unchanged since last ingest (hash dedup). Use when the user invokes /wiki-ingest, says "ingest X into the wiki", "compile X into the wiki", or "add this source to the wiki".
+description: "Use when ingesting a source, URL, vault note, or pasted content into a personal wiki instance."
 argument-hint: "<source-path-or-url> [<instance-name>]"
 ---
 

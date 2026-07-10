@@ -1,6 +1,6 @@
 ---
 name: wiki-lint
-description: Run a lint pass on a wiki instance under ~/obsidian-vault/wiki/. Auto-fixes mechanical issues (broken-link redirects, index sync, empty Related sections), applies high-confidence LLM fixes (stub generation, single-source contradiction resolution), and flags judgment-required findings (orphans, stale pages, ambiguous redirects, multi-source contradictions) in the report. Designed to run autonomously, including headless via /schedule. Use when the user invokes /wiki-lint, asks for a wiki health check, says "lint the wiki", or before bulk ingest.
+description: "Use when linting, health-checking, or mechanically fixing a personal wiki instance before or after bulk ingest."
 argument-hint: "[<instance-name>]"
 ---
 

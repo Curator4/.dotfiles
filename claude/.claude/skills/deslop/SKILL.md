@@ -1,6 +1,6 @@
 ---
 name: deslop
-description: Remove AI-generated code slop from a branch. Use when cleaning up AI-generated code, removing unnecessary comments, defensive checks, or type casts. Checks diff against main and fixes style inconsistencies.
+description: "Use when cleaning AI-generated code, removing slop, comments, unnecessary casts, defensive clutter, or style drift from a branch."
 ---
 
 # Remove AI Code Slop

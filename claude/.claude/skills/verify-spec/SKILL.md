@@ -1,6 +1,6 @@
 ---
 name: verify-spec
-description: "Forces source-verified answers when the user asks about a protocol, spec, third-party API, platform capability, or any technical fact that has an authoritative source. Quote the source before interpreting. Use when the user asks about SIA DC-03, MCP scoping, OpenAI/Anthropic/Google API capabilities, IETF/W3C specs, library APIs, or any 'does X support Y' question."
+description: "Use when answering protocol, spec, API, platform, library, standards, capability, or technical-fact questions needing sources."
 ---
 
 # Verify Spec — Source Before Answer
@@ -13,7 +13,7 @@ Trigger when the user asks about, or you are about to assert, any of:
 
 - A protocol or wire format (SIA DC-03, Contact ID, DTMF, gRPC details, HTTP semantics)
 - A third-party API's capabilities, scopes, or auth model (OpenAI, Anthropic, Atlassian, GitHub, etc.)
-- A platform configuration option (MCP scoping fields, Claude Code settings, Hyprland config)
+- A platform configuration option (MCP scoping fields, Codex settings, Hyprland config)
 - A library's public API or behavior (especially across versions)
 - A standard or RFC
 

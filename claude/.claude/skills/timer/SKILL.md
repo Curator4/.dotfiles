@@ -1,6 +1,6 @@
 ---
 name: timer
-description: Set a desktop timer with a themed countdown bar on the right monitor (DP-4) and a mako notification when it ends. Use when the user says "set a timer", "remind me in X", "X-minute timer", "X-minute pomodoro", "timer for X", "give me a Y break", "start a countdown", or wants a visual countdown. Also handles cancellation phrasings — "cancel the timer", "stop the timer", "kill the timer".
+description: "Use when setting, cancelling, or managing timers, reminders, breaks, pomodoros, countdowns, or visual timer bars."
 argument-hint: "[duration] [message]"
 ---
 

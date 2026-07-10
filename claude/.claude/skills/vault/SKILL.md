@@ -1,6 +1,6 @@
 ---
 name: vault
-description: Search the Obsidian vault for notes, dev docs, journal entries, or any content. Use when the user asks to find something in their notes, look up a topic, or search their vault.
+description: "Use when searching the Obsidian vault for notes, docs, journal entries, project context, or remembered content."
 argument-hint: "<search query>"
 ---
 

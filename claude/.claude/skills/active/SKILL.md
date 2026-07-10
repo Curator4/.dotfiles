@@ -1,6 +1,6 @@
 ---
 name: active
-description: Show what you're currently working on — current branch, Jira ticket status, GH parent issue with sub-issue hierarchy and progress, recent commits, and any open PR. Use when the user says "what am I working on", "what's the current ticket", "active work", "where am I", "what's the state", "current context", "/active", or returns to a project after a break and needs a quick orientation.
+description: "Use when the user asks what they are working on, current ticket status, branch state, recent commits, open PRs, or project context after a break."
 ---
 
 # Active Skill
