@@ -17,10 +17,10 @@
   `cat ~/.claude/current-vibe 2>/dev/null || echo "chill"`)
 
 (defpoll voice_poll :interval "2s"
-  `cat ~/workspace/ai/qwen-tts/voice.txt 2>/dev/null || echo "unknown"`)
+  `cat ~/workspace/ai/tts-daemon/voice.txt 2>/dev/null || echo "unknown"`)
 
 (defpoll speaking_poll :interval "300ms"
-  `pgrep -f "python3 tts_hook.py\|python3 stream_tts.py\|python3 -c" >/dev/null 2>&1 && echo true || echo false`)
+  `~/.config/eww/scripts/tts-speaking`)
 
 (defpoll thinking_poll :interval "1s"
   `[ -f /tmp/tts-daemon/thinking-stage ] && cat /tmp/tts-daemon/thinking-stage || echo ""`)

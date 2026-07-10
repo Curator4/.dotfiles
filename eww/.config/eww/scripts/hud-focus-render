@@ -17,7 +17,7 @@ sp="${frames[$(( ($(date +%s%N) / 100000000) % 10 ))]}"
 jq -r --arg sp "$sp" '.lines[] |
   if   .kind == "header"     then .text
   elif .kind == "blank"      then ""
-  elif .kind == "sub"        then "    └ " + .text
+  elif .kind == "sub"        then "    └ " + (if .working then $sp else "·" end) + " " + .text
   elif .kind == "alsoactive" then (if .working then $sp else "·" end) + "  " + .text
   else                            (if .working then $sp else "○" end) + "  " + .text + (if .badge then "   · " + .badge else "" end)
   end' "$cache" 2>/dev/null
