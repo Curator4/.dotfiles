@@ -14,42 +14,19 @@
 !tts-voice-mode
 !tts-voices.json
 
-# Agents, skills, vibes, hooks (custom work worth tracking)
+# Agents, vibes, hooks (custom work worth tracking)
 !agents/
 !agents/**
-!skills/
-!skills/**
 !vibes/
 !vibes/**
 !hooks/
 !hooks/**
 
-# Vendor skills — symlinks into upstream mirrors, not user-authored. Re-deny
-# after the !skills/** allowlist so they don't leak in as symlink entries
-# whose targets are per-machine paths. Sources:
-#   ~/.agents/upstream-mattpocock/  — most non-golang vendor skills
-#   ~/.agents/skills/               — golang-* family
-#   bundled vendor clone w/ own .git — stop-slop
-#   ~/workspace/ai/household-oc/... — project-local shared skill (holly)
-skills/caveman
-skills/diagnose
-skills/edit-article
-skills/git-guardrails-claude-code
-skills/golang-*
-skills/grill-me
-skills/grill-with-docs
-skills/handoff
-skills/holly
-skills/improve-codebase-architecture
-skills/obsidian-vault
-skills/stop-slop
-skills/tdd
-skills/teach
-skills/to-issues
-skills/to-prd
-skills/triage
-skills/write-a-skill
-skills/zoom-out
+# Skills moved out (2026-07-11 consolidation): ~/.claude/skills/ is
+# symlinks-only. The canonical copies live in ~/.agents/skills (its own
+# repo), the mattpocock mirror, or their owning project repo (holly ->
+# household-oc). Nothing here is user-authored content anymore; the
+# symlink targets are per-machine paths, so keep the whole dir untracked.
 
 # IDE integration
 !ide/

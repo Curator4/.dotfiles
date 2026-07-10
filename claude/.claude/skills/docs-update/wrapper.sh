@@ -1,1 +1,0 @@
-/home/curator/.agents/skills/docs-update/wrapper.sh

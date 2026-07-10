@@ -1,1 +1,0 @@
-/home/curator/.agents/skills/docs-update/agent-prompt.md
