@@ -13,6 +13,10 @@ for theme_dir in "$THEMES_DIR"/*; do
     THEME_SLUG=$(basename "$theme_dir")
 
     if [ -f "$theme_dir/theme.json" ]; then
+        # Terminal-only themes (grok-night) have no desktop configs; theme-term.sh
+        # applies them to one window. Offering them here breaks Hyprland.
+        [ "$(jq -r '.terminal_only // false' "$theme_dir/theme.json")" = "true" ] && continue
+
         ICON=$(jq -r '.icon' "$theme_dir/theme.json") # ICON is still extracted but not used in DISPLAY
         NAME=$(jq -r '.name' "$theme_dir/theme.json")
         DISPLAY="$NAME"

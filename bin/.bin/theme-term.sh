@@ -18,8 +18,9 @@ pid=$(hyprctl activewindow -j 2>/dev/null | jq -r '.pid // empty')
 # Reskin that kitty window's colors. No-op if the focused window isn't kitty.
 kitty @ --to "unix:@mykitty-$pid" set-colors --all --configured "$conf" 2>/dev/null || exit 0
 
-# Tint the window's hyprland border from the theme palette (if it has one)
-border=$(jq -r '.palette.cursor // empty' "$TDIR/theme.json" 2>/dev/null)
+# Tint the window's hyprland border from the theme palette (if it has one).
+# Themes may set `border` explicitly; otherwise the cursor colour stands in.
+border=$(jq -r '.palette.border // .palette.cursor // empty' "$TDIR/theme.json" 2>/dev/null)
 [ -n "$border" ] && hyprctl dispatch setprop "pid:$pid" active_border_color "rgba(${border#\#}ee)" &>/dev/null
 
 # grok-night additionally blends the *inactive* border into the terminal bg, so

@@ -29,8 +29,8 @@ end
 
 function aegis        -d "Theme: gruvbox warm"; _apply-kitty-theme aegis        'rgba(d79921ee)'; end
 function ashen        -d "Theme: velise red";   _apply-kitty-theme ashen        'rgba(8B2222ee)'; end
-function crimson-gray -d "Theme: monochrome";   _apply-kitty-theme crimson-gray 'rgba(808080ee)'; end
-function cyber        -d "Theme: mustang blue"; _apply-kitty-theme cyber        'rgba(84a0c6AA)'; end
+function crimson-gray -d "Theme: iceberg";       _apply-kitty-theme crimson-gray 'rgba(84a0c6AA)'; end
+function cyber        -d "Theme: mustang blue"; _apply-kitty-theme cyber        'rgba(3D6390AA)'; end
 function jade         -d "Theme: green";        _apply-kitty-theme jade         'rgba(2DD5B7ee)'; end
 function lavender     -d "Theme: purple";       _apply-kitty-theme lavender     'rgba(7B68EEee)'; end
 function neon         -d "Theme: pink/cyan";    _apply-kitty-theme neon         'rgba(00f0ffee)'; end
