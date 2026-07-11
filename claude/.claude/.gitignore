@@ -32,15 +32,11 @@
 !ide/
 !ide/**
 
-# Plugin install state (not the cached repos/data)
-!plugins/
-!plugins/installed_plugins.json
-!plugins/known_marketplaces.json
-plugins/marketplaces/
-plugins/cache/
-plugins/data/
-plugins/blocklist.json
-plugins/install-counts-cache.json
+# Plugins: nothing here is tracked. installed_plugins.json and
+# known_marketplaces.json used to be whitelisted, but they're cache
+# bookkeeping, not config — Claude Code rebuilds them from settings.json
+# (enabledPlugins + extraKnownMarketplaces) and otherwise just churns
+# `lastUpdated` timestamps, dirtying the tree every session.
 
 # Memory (for auto memory system)
 !memory/

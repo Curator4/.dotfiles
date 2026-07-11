@@ -263,6 +263,12 @@
     "claude-code-multisession@langmartai": true
   },
   "extraKnownMarketplaces": {
+    "anthropic-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/skills"
+      }
+    },
     "household": {
       "source": {
         "source": "directory",
