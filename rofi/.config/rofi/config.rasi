@@ -10,4 +10,4 @@ configuration {
     monitor: "DP-2";
 }
 
-@theme "frost"
+@theme "neon"
