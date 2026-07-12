@@ -1,0 +1,61 @@
+{
+  "name": "Pine",
+  "slug": "pine",
+  "icon": "🌲",
+  "effects": {
+    "profile": "snappy"
+  },
+  "nvim": {
+    "colorscheme": "everforest",
+    "variant": "hard",
+    "background": "dark"
+  },
+  "palette": {
+    "background": "#050706",
+    "foreground": "#E8ECE9",
+    "cursor": "#10A37F",
+    "cursor_text": "#050706",
+    "selection_bg": "#173629",
+    "selection_fg": "#F0F3EF",
+    "border": "#10A37F",
+    "colors": {
+      "black": "#111614",
+      "red": "#FF6B5F",
+      "green": "#34D399",
+      "yellow": "#D6B85A",
+      "blue": "#5BA7D9",
+      "magenta": "#B58BD8",
+      "cyan": "#00B8B8",
+      "white": "#C8D0CB",
+      "bright_black": "#66736C",
+      "bright_red": "#FF8B82",
+      "bright_green": "#6EE7B7",
+      "bright_yellow": "#E8D487",
+      "bright_blue": "#86C5EE",
+      "bright_magenta": "#D0ACEA",
+      "bright_cyan": "#52D6D6",
+      "bright_white": "#F0F3EF"
+    }
+  },
+  "wallpapers": {
+    "static": [
+      "~/pictures/wallpapers/static/black.png",
+      "~/pictures/wallpapers/static/osaka-jade-bg.jpg"
+    ],
+    "vertical": [
+      "~/pictures/wallpapers/vertical/mountain-osaka.jpg",
+      "~/pictures/wallpapers/vertical/pier-lake-night.jpg"
+    ]
+  },
+  "monitors": {
+    "DP-1": "vertical[0]",
+    "DP-2": "static[0]",
+    "DP-3": "static[1]",
+    "DP-4": "vertical[1]"
+  },
+  "rofi_theme": "pine",
+  "obsidian": {
+    "cssTheme": "Everforest",
+    "base": "obsidian"
+  }
+}
