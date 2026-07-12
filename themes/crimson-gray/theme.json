@@ -2,6 +2,9 @@
   "name": "Iceberg",
   "slug": "crimson-gray",
   "icon": "🧊",
+  "effects": {
+    "profile": "calm"
+  },
   "nvim": {
     "colorscheme": "iceberg",
     "variant": "",
@@ -35,11 +38,11 @@
   },
   "wallpapers": {
     "static": [
-      "~/pictures/wallpapers/static/coral-rim-girl-portrait.jpg",
       "~/pictures/wallpapers/static/dusk-city-rooftop.jpg"
     ],
     "vertical": [
-      "~/pictures/wallpapers/vertical/starry-night-figure.png"
+      "~/pictures/wallpapers/vertical/starry-night-figure.png",
+      "~/pictures/wallpapers/static/coral-rim-girl-portrait.jpg"
     ],
     "live": [
       "~/pictures/wallpapers/live/rainyday_depression.mp4"
@@ -47,14 +50,13 @@
   },
   "monitors": {
     "DP-1": "vertical[0]",
-    "DP-2": "static[1]",
+    "DP-2": "static[0]",
     "DP-3": "live[0]",
-    "DP-4": "static[0]"
+    "DP-4": "vertical[1]"
   },
   "rofi_theme": "crimson-gray",
   "obsidian": {
     "cssTheme": "Minimal",
     "base": "obsidian"
-  },
-  "vibe": "morose"
+  }
 }

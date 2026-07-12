@@ -3,6 +3,28 @@
 THEMES_DIR="$HOME/.dotfiles/themes"
 CURRENT_THEME_FILE="$HOME/.config/.current-theme"
 DOTFILES="$HOME/.dotfiles"
+THEME_RENDERER="$DOTFILES/bin/.bin/theme-render.sh"
+
+render_theme_surfaces() {
+    local theme_name="$1"
+    local theme_dir="$THEMES_DIR/$theme_name"
+
+    if [ ! -d "$theme_dir" ]; then
+        echo "Error: Theme '$theme_name' not found"
+        return 1
+    fi
+
+    if ! "$THEME_RENDERER" \
+        "$theme_dir" \
+        "$DOTFILES/waybar/.config/waybar/style.css" \
+        "$DOTFILES/hypr/.config/hypr/hyprlock.conf" \
+        "$DOTFILES/hypr/.config/hypr/theme-effects.conf"; then
+        echo "Error: Failed to render shared theme surfaces"
+        return 1
+    fi
+
+    generate_codexbar_css "$theme_dir"
+}
 
 # Function to apply theme
 apply_theme() {
@@ -25,6 +47,8 @@ apply_theme() {
 
     echo "Applying theme: $THEME_NAME"
 
+    render_theme_surfaces "$THEME_NAME" || return 1
+
     # 1. Update Hyprland source line
     if [ -f "$DOTFILES/hypr/.config/hypr/hyprland.conf" ]; then
         sed -i "s|source = ~/.dotfiles/themes/.*/hyprland.conf|source = ~/.dotfiles/themes/$THEME_NAME/hyprland.conf|" \
@@ -39,13 +63,8 @@ apply_theme() {
         echo "  ✓ Updated Kitty config"
     fi
 
-    # 3. Copy Waybar CSS
-    if [ -f "$THEME_DIR/waybar.css" ]; then
-        cp "$THEME_DIR/waybar.css" "$DOTFILES/waybar/.config/waybar/style.css"
-        echo "  ✓ Updated Waybar CSS"
-        # 3b. Append palette-driven codexbar (AI usage) styling on top
-        generate_codexbar_css "$THEME_DIR"
-    fi
+    # 3. Waybar was generated from the shared structure
+    echo "  ✓ Rendered shared Waybar CSS"
 
     # 4. Copy Mako config + append output pin + shared timer + household category rules
     if [ -f "$THEME_DIR/mako.conf" ]; then
@@ -60,11 +79,8 @@ apply_theme() {
         echo "  ✓ Updated Mako config"
     fi
 
-    # 5. Copy Hyprlock config
-    if [ -f "$THEME_DIR/hyprlock.conf" ]; then
-        cp "$THEME_DIR/hyprlock.conf" "$DOTFILES/hypr/.config/hypr/hyprlock.conf"
-        echo "  ✓ Updated Hyprlock config"
-    fi
+    # 5. Hyprlock and Hyprland effects were rendered from the shared structure
+    echo "  ✓ Rendered shared Hyprlock and effect profiles"
 
     # 6. Update Rofi theme
     if [ -f "$THEME_DIR/theme.json" ]; then
@@ -96,10 +112,7 @@ apply_theme() {
         fi
     fi
 
-    # 6.8. Switch Claude Code vibe (if defined)
-    switch_vibe "$THEME_DIR"
-
-    # 6.9. Generate wiremix theme from palette
+    # 6.8. Generate wiremix theme from palette
     generate_wiremix_config "$THEME_DIR"
 
     # 7. Update Hyprpaper wallpapers
@@ -160,50 +173,6 @@ EOF
 
 # Function to announce theme switch via TTS (disabled — was Qwen, needs SoVITS rewrite)
 # announce_theme() { ... }
-
-# Function to switch Claude Code vibe
-switch_vibe() {
-    THEME_DIR="$1"
-    VIBE_NAME=$(jq -r '.vibe // empty' "$THEME_DIR/theme.json" 2>/dev/null)
-
-    if [ -z "$VIBE_NAME" ]; then
-        return
-    fi
-
-    VIBE_DIR="$HOME/.claude/vibes/$VIBE_NAME"
-    if [ ! -d "$VIBE_DIR" ]; then
-        echo "  ! Warning: vibe '$VIBE_NAME' not found, skipping"
-        return
-    fi
-
-    # Update tone in CLAUDE.md
-    CLAUDE_MD="$HOME/.claude/CLAUDE.md"
-    TONE_FILE="$VIBE_DIR/tone.md"
-    if [ -f "$TONE_FILE" ] && [ -f "$CLAUDE_MD" ]; then
-        # Replace everything between ## Tone and the next ## (or EOF)
-        TONE_CONTENT=$(cat "$TONE_FILE")
-        python3 -c "
-import re
-with open('$CLAUDE_MD') as f:
-    content = f.read()
-with open('$TONE_FILE') as f:
-    tone = f.read().strip()
-content = re.sub(
-    r'(## Tone\n\n).*?(?=\n## |\Z)',
-    r'\1' + tone + '\n',
-    content,
-    flags=re.DOTALL
-)
-with open('$CLAUDE_MD', 'w') as f:
-    f.write(content)
-"
-        echo "  ✓ Updated Claude Code tone"
-    fi
-
-    # Save current vibe
-    echo "$VIBE_NAME" > "$HOME/.claude/current-vibe"
-    echo "  ✓ Switched vibe to $VIBE_NAME"
-}
 
 # Function to generate wiremix config from theme palette
 generate_wiremix_config() {
@@ -291,7 +260,9 @@ generate_codexbar_css() {
     local c_openai="#10A37F"      # OpenAI green
     local c_google="#4285F4"      # Google blue
     local c_xai                   # xAI: follow theme foreground (monochrome brand)
-    c_xai=$(jq -r '.palette.foreground // "#B4B4B4"' "$THEME_DIR/theme.json")
+    c_xai=$(jq -r '.palette.foreground // empty' "$THEME_DIR/theme.json")
+    [ -n "$c_xai" ] || c_xai=$(awk '$1 == "foreground" { print $2; exit }' "$THEME_DIR/kitty.conf")
+    [ -n "$c_xai" ] || c_xai="#B4B4B4"
     local c_openrouter="#A78BFA"  # OpenRouter: violet (readable on dark and light)
 
     # Recolour a white source SVG to a brand colour, caching the result.

@@ -2,6 +2,9 @@
   "name": "Mono",
   "slug": "mono",
   "icon": "⬜",
+  "effects": {
+    "profile": "quiet"
+  },
   "nvim": {
     "colorscheme": "lackluster",
     "variant": "",
@@ -53,6 +56,5 @@
   "obsidian": {
     "cssTheme": "Minimal",
     "base": "obsidian"
-  },
-  "vibe": "shadow"
+  }
 }

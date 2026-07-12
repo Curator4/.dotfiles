@@ -2,6 +2,9 @@
   "name": "Lavender",
   "slug": "lavender",
   "icon": "💜",
+  "effects": {
+    "profile": "calm"
+  },
   "wallpapers": {
     "static": [
       "~/pictures/wallpapers/static/purple-anime-portrait.png"
@@ -29,6 +32,5 @@
   "obsidian": {
     "cssTheme": "Royal Velvet",
     "base": "obsidian"
-  },
-  "vibe": "shadow"
+  }
 }

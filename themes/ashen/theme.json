@@ -2,6 +2,9 @@
   "name": "Ashen",
   "slug": "ashen",
   "icon": "🔥",
+  "effects": {
+    "profile": "cinematic"
+  },
   "nvim": {
     "colorscheme": "ashen",
     "variant": "",
@@ -55,6 +58,5 @@
   "obsidian": {
     "cssTheme": "Obsidian gruvbox",
     "base": "obsidian"
-  },
-  "vibe": "dommy"
+  }
 }

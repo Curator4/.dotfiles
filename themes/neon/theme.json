@@ -2,6 +2,9 @@
   "name": "Neon",
   "slug": "neon",
   "icon": "⚡",
+  "effects": {
+    "profile": "snappy"
+  },
   "nvim": {
     "colorscheme": "neon",
     "variant": "dark",
@@ -53,6 +56,5 @@
   "obsidian": {
     "cssTheme": "Vauxhall",
     "base": "obsidian"
-  },
-  "vibe": "neon"
+  }
 }

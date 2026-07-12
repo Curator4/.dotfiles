@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Theme Initializer
-Comment=Apply saved theme on startup
+Comment=Pick a random theme once per boot, then keep it stable
 Exec=/home/curator/.dotfiles/bin/.bin/theme-startup.sh
 Terminal=false
 X-GNOME-Autostart-enabled=true

@@ -2,6 +2,9 @@
   "name": "Cyber",
   "slug": "cyber",
   "icon": "❄️",
+  "effects": {
+    "profile": "snappy"
+  },
   "nvim": {
     "colorscheme": "catppuccin-mocha",
     "variant": "",
@@ -53,6 +56,5 @@
   "obsidian": {
     "cssTheme": "Obsidian Nord",
     "base": "obsidian"
-  },
-  "vibe": "cyber"
+  }
 }

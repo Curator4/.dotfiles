@@ -2,6 +2,9 @@
   "name": "Calliope",
   "slug": "calliope",
   "icon": "🌌",
+  "effects": {
+    "profile": "cinematic"
+  },
   "nvim": {
     "colorscheme": "lackluster",
     "variant": "",
@@ -55,6 +58,5 @@
   "obsidian": {
     "cssTheme": "Obsidianite",
     "base": "obsidian"
-  },
-  "vibe": "arcane"
+  }
 }

@@ -2,6 +2,9 @@
   "name": "Aegis",
   "slug": "aegis",
   "icon": "☀️",
+  "effects": {
+    "profile": "snappy"
+  },
   "nvim": {
     "colorscheme": "gruvbox",
     "variant": "dark",
@@ -53,6 +56,5 @@
   "obsidian": {
     "cssTheme": "Wasp",
     "base": "obsidian"
-  },
-  "vibe": "bright"
+  }
 }

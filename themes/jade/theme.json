@@ -2,6 +2,9 @@
   "name": "Jade",
   "slug": "jade",
   "icon": "🍃",
+  "effects": {
+    "profile": "calm"
+  },
   "wallpapers": {
     "static": [
       "~/pictures/wallpapers/static/osaka-jade-bg.jpg",
@@ -27,6 +30,5 @@
   "obsidian": {
     "cssTheme": "Everforest",
     "base": "obsidian"
-  },
-  "vibe": "chill"
+  }
 }

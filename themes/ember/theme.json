@@ -2,6 +2,9 @@
   "name": "Ember",
   "slug": "ember",
   "icon": "🌗",
+  "effects": {
+    "profile": "cinematic"
+  },
   "nvim": {
     "colorscheme": "gruvbox",
     "variant": "",
@@ -53,6 +56,5 @@
   "obsidian": {
     "cssTheme": "Obsidian gruvbox",
     "base": "obsidian"
-  },
-  "vibe": "morose"
+  }
 }
