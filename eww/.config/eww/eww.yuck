@@ -112,30 +112,23 @@
 ; Driver:      ~/.config/fish/functions/timer.fish
 ; ═════════════════════════════════════════════════════════
 
-; Six polls — one per field — using `jq -r` so strings arrive unquoted.
-(defpoll t_display  :interval "200ms" :initial "0:00"
-  `~/.config/eww/scripts/timer-state | jq -r .display`)
-(defpoll t_msg      :interval "1s"    :initial ""
-  `~/.config/eww/scripts/timer-state | jq -r .msg`)
-(defpoll t_progress :interval "200ms" :initial "0"
-  `~/.config/eww/scripts/timer-state | jq -r .progress`)
-(defpoll t_phase    :interval "200ms" :initial "idle"
-  `~/.config/eww/scripts/timer-state | jq -r .phase`)
-(defpoll t_color    :interval "1s"    :initial "red"
-  `~/.config/eww/scripts/timer-state | jq -r .color`)
+; Poll the state once, then read each field from the parsed JSON object.
+(defpoll timer_state :interval "200ms"
+  :initial '{"display":"0:00","msg":"","progress":0,"phase":"idle","color":"red"}'
+  `~/.config/eww/scripts/timer-state`)
 
 (defwidget timer-bar []
-  (box :class "timer-bar timer-c-${t_color} timer-p-${t_phase}"
+  (box :class "timer-bar timer-c-${timer_state.color} timer-p-${timer_state.phase}"
        :orientation "v"
        :space-evenly false
        :spacing 0
     (centerbox :class "timer-row" :orientation "h"
-      (label :class "timer-time" :text t_display :halign "start" :valign "center")
+      (label :class "timer-time" :text {timer_state.display} :halign "start" :valign "center")
       (box)
-      (label :class "timer-msg"  :text t_msg :halign "end" :valign "center"
-             :visible {strlength(t_msg) > 0}))
+      (label :class "timer-msg"  :text {timer_state.msg} :halign "end" :valign "center"
+             :visible {strlength(timer_state.msg) > 0}))
     (progress :class "timer-progress"
-              :value t_progress
+              :value {timer_state.progress}
               :orientation "h")))
 
 (defwindow timer

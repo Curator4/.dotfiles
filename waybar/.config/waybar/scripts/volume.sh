@@ -35,11 +35,42 @@ emit() {
     fi
 }
 
-emit
-pactl subscribe 2>/dev/null | while read -r line; do
-    # sink events = volume/mute changes; server events = default-sink switches.
-    # "on sink #" deliberately excludes the noisy "on sink-input #" stream.
-    case "$line" in
-        *"on sink #"*|*"on server #"*) emit ;;
+adjust_volume() {
+    local direction raw vol target
+    direction=$1
+    raw=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null) || return 1
+    vol=$(awk '{printf "%.0f", $2 * 100}' <<< "$raw")
+
+    case "$direction" in
+        up)
+            target=$(( (vol / 5 + 1) * 5 ))
+            (( target > 100 )) && target=100
+            ;;
+        down)
+            target=$(( ((vol - 1) / 5) * 5 ))
+            (( target < 0 )) && target=0
+            ;;
     esac
-done
+
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ "${target}%"
+}
+
+case "${1:-watch}" in
+    up|down)
+        adjust_volume "$1"
+        ;;
+    watch)
+        emit
+        pactl subscribe 2>/dev/null | while read -r line; do
+            # sink events = volume/mute changes; server events = default-sink switches.
+            # "on sink #" deliberately excludes the noisy "on sink-input #" stream.
+            case "$line" in
+                *"on sink #"*|*"on server #"*) emit ;;
+            esac
+        done
+        ;;
+    *)
+        echo "usage: ${0##*/} [up|down|watch]" >&2
+        exit 2
+        ;;
+esac

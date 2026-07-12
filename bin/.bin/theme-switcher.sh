@@ -337,6 +337,14 @@ EOF
     echo "  ✓ Appended codexbar (brand-coloured) styling"
 }
 
+expand_home_path() {
+    case "$1" in
+        \~) printf '%s\n' "$HOME" ;;
+        \~/*) printf '%s/%s\n' "$HOME" "${1#\~/}" ;;
+        *) printf '%s\n' "$1" ;;
+    esac
+}
+
 # Function to update wallpapers
 update_wallpapers() {
     THEME_DIR="$1"
@@ -360,7 +368,7 @@ EOF
     for type in static vertical; do
         jq -r ".wallpapers.$type[]?" "$THEME_DIR/theme.json" 2>/dev/null | while read -r wp; do
             if [ -n "$wp" ]; then
-                EXPANDED_PATH=$(eval echo "$wp")
+                EXPANDED_PATH=$(expand_home_path "$wp")
                 echo "preload = $EXPANDED_PATH" >> "$HYPRPAPER_CONF"
             fi
         done
@@ -377,7 +385,7 @@ EOF
         if [ "$TYPE" != "live" ]; then
             WALLPAPER=$(jq -r ".wallpapers.$TYPE[$INDEX]?" "$THEME_DIR/theme.json" 2>/dev/null)
             if [ -n "$WALLPAPER" ] && [ "$WALLPAPER" != "null" ]; then
-                EXPANDED_PATH=$(eval echo "$WALLPAPER")
+                EXPANDED_PATH=$(expand_home_path "$WALLPAPER")
                 echo "wallpaper = $monitor,$EXPANDED_PATH" >> "$HYPRPAPER_CONF"
             fi
         fi
@@ -401,7 +409,7 @@ EOF
         if [ "$TYPE" = "live" ]; then
             WALLPAPER=$(jq -r ".wallpapers.$TYPE[$INDEX]?" "$THEME_DIR/theme.json" 2>/dev/null)
             if [ -n "$WALLPAPER" ] && [ "$WALLPAPER" != "null" ]; then
-                EXPANDED_PATH=$(eval echo "$WALLPAPER")
+                EXPANDED_PATH=$(expand_home_path "$WALLPAPER")
                 echo "systemd-run --user --quiet --collect mpvpaper -o \"loop --hwdec=auto\" \"$monitor\" \"$EXPANDED_PATH\"" >> "$TEMP_MPVPAPER"
             fi
         fi
@@ -433,7 +441,7 @@ reload_services() {
         if [ "$TYPE" != "live" ]; then
             WALLPAPER=$(jq -r ".wallpapers.$TYPE[$INDEX]?" "$THEME_JSON" 2>/dev/null)
             if [ -n "$WALLPAPER" ] && [ "$WALLPAPER" != "null" ]; then
-                EXPANDED_PATH=$(eval echo "$WALLPAPER")
+                EXPANDED_PATH=$(expand_home_path "$WALLPAPER")
                 hyprctl hyprpaper preload "$EXPANDED_PATH" &>/dev/null
                 hyprctl hyprpaper wallpaper "$monitor,$EXPANDED_PATH" &>/dev/null
             fi
