@@ -14,19 +14,28 @@
 --     run. The hard block (yay.abort) is deferred until the spool has real
 --     data to calibrate the trigger against. Observe -> warn -> pre-deselect
 --     -> block; we are at pre-deselect.
+--   * The pre-deselect is a SOAK, and a soak must expire. RECENT_DAYS keyed off
+--     the head PKGBUILD's mtime alone is a treadmill: any package whose upstream
+--     releases faster than the window is never not-recent, so it silently becomes
+--     permanently unupgradeable (codexbar-cli sat 4 minors behind this way). So
+--     the deferral is clocked per pkgbase from the FIRST time we held it back;
+--     past MAX_DEFER_DAYS it is released and escalated to Aegis for a real look.
+--     Staleness we never revisit is its own supply-chain risk.
 --   * Every callback is pcall-wrapped: a bug in here must never break yay.
 --   * State lives under $XDG_STATE_HOME/yay (outside the dotfiles tree, so it
 --     never shows up as git drift that Aegis would nag about). init.lua itself
 --     IS tracked in ~/.dotfiles (it runs as the operator on every yay call --
 --     a trust anchor worth version-controlling and drift-watching).
 
-local RECENT_DAYS = 5  -- AUR PKGBUILDs modified within this window get pre-deselected + logged
+local RECENT_DAYS = 5      -- AUR PKGBUILDs modified within this window get pre-deselected + logged
+local MAX_DEFER_DAYS = 14  -- ...but never hold one package back longer than this
 
 -- ── paths ────────────────────────────────────────────────────────────────
 local HOME = os.getenv("HOME") or ""
 local STATE_DIR = (os.getenv("XDG_STATE_HOME") or (HOME .. "/.local/state")) .. "/yay"
 local SPOOL = STATE_DIR .. "/review-events.jsonl"
 local MAINT = STATE_DIR .. "/maintainers.tsv"
+local DEFER = STATE_DIR .. "/deferrals.tsv"
 
 local function ensure_state_dir()
   os.execute('mkdir -p "' .. STATE_DIR .. '" 2>/dev/null')
@@ -105,6 +114,33 @@ local function write_maintainers(known)
   f:close()
 end
 
+-- ── deferral clock (base \t first_deferred_epoch \t escalated) ─────────────
+-- `since` is when we FIRST held this base back, not when its PKGBUILD last
+-- moved -- that distinction is the whole point: the clock must not reset every
+-- time upstream cuts another release. `escalated` keeps the expiry event
+-- one-shot so Aegis sees a single hand-off, not one row per `up`.
+local function read_deferrals()
+  local d = {}
+  local f = io.open(DEFER, "r")
+  if not f then return d end
+  for line in f:lines() do
+    local base, since, esc = line:match("^([^\t]+)\t(%d+)\t(%d)$")
+    if base then d[base] = { since = tonumber(since), escalated = esc == "1" } end
+  end
+  f:close()
+  return d
+end
+
+local function write_deferrals(d)
+  ensure_state_dir()
+  local f = io.open(DEFER, "w")
+  if not f then return end
+  for base, v in pairs(d) do
+    f:write(base .. "\t" .. json_num(v.since) .. "\t" .. (v.escalated and "1" or "0") .. "\n")
+  end
+  f:close()
+end
+
 -- ── UpgradeSelect: pre-deselect risky AUR upgrades + log provenance ───────
 -- Fires during `yay -Syu` after the upgrade graph is built, before the
 -- exclusion menu. We return an exclude list (non-blocking: the operator still
@@ -115,9 +151,13 @@ yay.create_autocmd("UpgradeSelect", {
     local ok, result = pcall(function()
       local data = event.data or {}
       local upgrades = data.upgrades or {}
-      local recent_cutoff = os.time() - (RECENT_DAYS * 24 * 60 * 60)
+      local now = os.time()
+      local recent_cutoff = now - (RECENT_DAYS * 24 * 60 * 60)
+      local max_defer = MAX_DEFER_DAYS * 24 * 60 * 60
       local exclude = {}
       local known = read_maintainers()
+      local deferred = read_deferrals()
+      local still_deferred = {}  -- rebuilt each run; bases absent from it are pruned
       local state_dirty = false
 
       for _, pkg in ipairs(upgrades) do
@@ -150,19 +190,50 @@ yay.create_autocmd("UpgradeSelect", {
           end
 
           if #reasons > 0 then
-            exclude[#exclude + 1] = name
-            spool({
-              {"event", "upgrade_predeselected"},
-              {"name", name}, {"base", base},
-              {"reasons", table.concat(reasons, ",")},
-              {"maintainer", m},
-              {"last_modified", pkg.last_modified},
-              {"local_version", pkg.local_version}, {"remote_version", pkg.remote_version},
-            })
+            local prior = deferred[base]
+            local since = prior and prior.since or now
+            local escalated = prior and prior.escalated or false
+            local held_for = now - since
+
+            if held_for >= max_defer then
+              -- Soak expired. Let it through and hand it to Aegis: a package we
+              -- have been sitting on for two weeks needs a human-grade look, not
+              -- another silent deselect.
+              if not escalated then
+                spool({
+                  {"event", "quarantine_expired"},
+                  {"name", name}, {"base", base},
+                  {"reasons", table.concat(reasons, ",")},
+                  {"maintainer", m},
+                  {"deferred_since", since},
+                  {"deferred_days", math.floor(held_for / 86400)},
+                  {"last_modified", pkg.last_modified},
+                  {"local_version", pkg.local_version}, {"remote_version", pkg.remote_version},
+                })
+                escalated = true
+              end
+            else
+              exclude[#exclude + 1] = name
+              spool({
+                {"event", "upgrade_predeselected"},
+                {"name", name}, {"base", base},
+                {"reasons", table.concat(reasons, ",")},
+                {"maintainer", m},
+                {"deferred_since", since},
+                {"deferred_days", math.floor(held_for / 86400)},
+                {"last_modified", pkg.last_modified},
+                {"local_version", pkg.local_version}, {"remote_version", pkg.remote_version},
+              })
+            end
+
+            still_deferred[base] = { since = since, escalated = escalated }
           end
         end
       end
 
+      -- Any base we did not flag this run has either been installed or aged out
+      -- of the recent window; dropping it restarts its clock at zero next time.
+      write_deferrals(still_deferred)
       if state_dirty then write_maintainers(known) end
       return { exclude = exclude, skip_menu = false }
     end)
