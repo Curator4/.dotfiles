@@ -38,12 +38,12 @@
   },
   "wallpapers": {
     "static": [
-      "~/pictures/wallpapers/static/terminal-tux.png",
+      "~/pictures/wallpapers/static/hyprland-chan-default.png",
       "~/pictures/wallpapers/static/late-night-desk.png"
     ],
     "vertical": [
       "~/pictures/wallpapers/vertical/cyberpunk-rooftop.png",
-      "~/pictures/wallpapers/vertical/dore-angels-violet.png"
+      "~/pictures/wallpapers/vertical/cyber-pylon-city.png"
     ]
   },
   "monitors": {
