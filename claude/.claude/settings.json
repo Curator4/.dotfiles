@@ -2,7 +2,8 @@
   "skillListingBudgetFraction": 0.012,
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
-    "SHELL": "/usr/bin/fish"
+    "SHELL": "/usr/bin/fish",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "opus"
   },
   "permissions": {
     "allow": [
@@ -133,7 +134,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "opus[1m]",
+  "model": "opus",
   "hooks": {
     "SessionStart": [
       {
@@ -294,7 +295,7 @@
       }
     }
   },
-  "effortLevel": "medium",
+  "effortLevel": "xhigh",
   "autoCompactWindow": 1000000,
   "tui": "fullscreen",
   "autoDreamEnabled": true,

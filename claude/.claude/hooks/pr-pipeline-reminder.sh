@@ -16,7 +16,7 @@ if printf '%s' "$cmd" | grep -qE '(^|&&[[:space:]]*|\|\|[[:space:]]*|;[[:space:]
     jq -nc '{
       hookSpecificOutput: {
         hookEventName: "PreToolUse",
-        additionalContext: "Reminder: this looks like the end of a ticket. Did you run /pr (six-lens review) and /done (wrap-up + diary + docs-update)? If this push is mid-work or a force-update on an existing PR, ignore."
+        additionalContext: "Reminder: this looks like the end of a ticket. Did you run /pr (review battery: built-in /code-review, calibrated by REVIEW.md, plus the type-design lens when the diff has type surface) and /done (wrap-up + diary + docs-update)? If this push is mid-work or a force-update on an existing PR, ignore."
       }
     }'
 fi
