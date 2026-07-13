@@ -208,7 +208,7 @@ window#waybar {
 #clock,
 #custom-volume,
 #bluetooth,
-#network,
+#custom-network,
 #custom-gpu,
 #custom-vram,
 #cpu,
@@ -244,8 +244,17 @@ window#waybar {
     color: $cyan;
 }
 
-#network {
+#custom-network.full {
     color: $foreground;
+}
+
+#custom-network.limited,
+#custom-network.portal {
+    color: $yellow;
+}
+
+#custom-network.disconnected {
+    color: $red;
 }
 
 #memory {

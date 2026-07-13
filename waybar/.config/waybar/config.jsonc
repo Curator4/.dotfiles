@@ -6,7 +6,7 @@
 
     "modules-left": ["custom/hud", "hyprland/workspaces", "custom/theme"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/codexbar-claude", "custom/codexbar-codex", "custom/codexbar-grok", "custom/codexbar-openrouter", "custom/volume", "bluetooth", "network", "custom/gpu", "custom/vram", "cpu", "memory", "disk"],
+    "modules-right": ["custom/codexbar-claude", "custom/codexbar-codex", "custom/codexbar-grok", "custom/codexbar-openrouter", "custom/volume", "bluetooth", "custom/network", "custom/gpu", "custom/vram", "cpu", "memory", "disk"],
 
     "custom/hud": {
         "exec": "/home/curator/workspace/hud/hud count",
@@ -89,13 +89,12 @@
         "tooltip-format": "{:%A %eth %B W%V %Y}"
     },
 
-    "network": {
-        "format-wifi": "󰖨 Connected",
-        "format-ethernet": "󰈁 Connected",
-        "format-disconnected": "󰖪 Disconnected",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}/{cidr}\n󰞒 {bandwidthDownBytes} 󰞕 {bandwidthUpBytes}",
-        "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}\n󰞒 {bandwidthDownBytes} 󰞕 {bandwidthUpBytes}",
-        "interval": 5
+    "custom/network": {
+        "exec": "~/.config/waybar/scripts/network.sh",
+        "return-type": "json",
+        "format": "{}",
+        "interval": 5,
+        "on-click": "kitty -e nmtui"
     },
 
     "bluetooth": {
