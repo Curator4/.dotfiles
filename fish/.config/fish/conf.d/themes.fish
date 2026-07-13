@@ -32,6 +32,7 @@ function ashen        -d "Theme: velise red";   _apply-kitty-theme ashen        
 function crimson-gray -d "Theme: iceberg";       _apply-kitty-theme crimson-gray 'rgba(84a0c6AA)'; end
 function cyber        -d "Theme: mustang blue"; _apply-kitty-theme cyber        'rgba(3D6390AA)'; end
 function jade         -d "Theme: green";        _apply-kitty-theme jade         'rgba(2DD5B7ee)'; end
+function pine         -d "Theme: OpenAI green"; _apply-kitty-theme pine         'rgba(10A37Fee)'; end
 function lavender     -d "Theme: purple";       _apply-kitty-theme lavender     'rgba(7B68EEee)'; end
 function neon         -d "Theme: pink/cyan";    _apply-kitty-theme neon         'rgba(00f0ffee)'; end
 function nord         -d "Theme: nord frost";   _apply-kitty-theme nord         'rgba(88c0d0ee)'; end

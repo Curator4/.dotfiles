@@ -162,10 +162,6 @@ function grok --wraps grok --description 'Launch grok edge-to-edge under the gro
     _tui-run grok-night grok $argv
 end
 
-function codex --wraps codex --description 'Launch Codex edge-to-edge under the Jade theme'
-    _tui-run jade codex -c 'tui.theme="jade"' $argv
-end
-
 function hunk --wraps hunk --description 'Launch hunk edge-to-edge'
     _tui-run '' hunk $argv
 end
