@@ -246,6 +246,39 @@ if [[ -f "$LAST_GOOD" ]]; then
     last_good_json="$(jq -c 'select(type == "array")' "$LAST_GOOD" 2>/dev/null || true)"
 fi
 
+# Codex occasionally returns a coherent-but-wrong quota snapshot. Keep the
+# last verified snapshot when either rate-limit window drops by 20+ points
+# without its reset moving; a real reset always changes that timestamp.
+if [[ -n "$last_good_json" ]]; then
+    merged="$(jq -c --argjson prev "$last_good_json" '
+        def cache_key: (.provider // "") + "\u0000" + (.account // "");
+        def impossible_drop(before; after):
+            (before.usedPercent // null) as $before_pct
+            | (after.usedPercent // null) as $after_pct
+            | before.resetsAt as $before_reset
+            | after.resetsAt as $after_reset
+            | ($before_pct | type) == "number"
+              and ($after_pct | type) == "number"
+              and $before_reset != null
+              and $before_reset == $after_reset
+              and ($before_pct - $after_pct >= 20);
+        def bad_codex_snapshot(before; after):
+            impossible_drop(before.usage.primary; after.usage.primary)
+            or impossible_drop(before.usage.secondary; after.usage.secondary);
+        ([$prev[]? | select((.error | not) and (.stale != true))
+          | {key: cache_key, value: .}] | from_entries) as $ok_prev
+        | map(. as $current
+              | ($ok_prev[($current | cache_key)] // null) as $previous
+              | if $current.provider == "codex"
+                    and ($current.error | not)
+                    and $previous != null
+                    and bad_codex_snapshot($previous; $current)
+                then $previous + {stale: true}
+                else $current
+                end)
+    ' <<< "$merged")"
+fi
+
 # Persist fresh successful provider snapshots without dropping older successful
 # entries for providers that failed this refresh.
 if [[ "$merged" != "[]" ]] && echo "$merged" | jq -e 'any(.error | not)' >/dev/null 2>&1; then
