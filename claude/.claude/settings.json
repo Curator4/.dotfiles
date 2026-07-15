@@ -2,8 +2,8 @@
   "skillListingBudgetFraction": 0.012,
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
-    "SHELL": "/usr/bin/fish",
-    "CLAUDE_CODE_SUBAGENT_MODEL": "opus"
+    "CLAUDE_CODE_SUBAGENT_MODEL": "opus",
+    "SHELL": "/usr/bin/fish"
   },
   "permissions": {
     "allow": [
@@ -136,60 +136,6 @@
   },
   "model": "opus",
   "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/tts-greeting.sh",
-            "timeout": 30,
-            "async": true
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/hud-session-start.sh",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
-    "SessionEnd": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/hud-end.sh",
-            "timeout": 5,
-            "async": true
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/tts-finalize.sh",
-            "timeout": 5
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/hud-stop.sh",
-            "timeout": 5,
-            "async": true
-          }
-        ]
-      }
-    ],
     "PreToolUse": [
       {
         "matcher": "Skill",
@@ -215,6 +161,70 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/hud-working.sh",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/hud-end.sh",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/tts-greeting.sh",
+            "timeout": 30,
+            "async": true
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/hud-session-start.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/home/curator/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/tts-finalize.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/hud-stop.sh",
             "timeout": 5,
             "async": true
           }
@@ -248,20 +258,20 @@
     "padding": 0
   },
   "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": false,
     "atlassian@claude-plugins-official": false,
+    "claude-code-multisession@langmartai": true,
+    "codex@openai-codex": true,
+    "discord@claude-plugins-official": false,
     "explanatory-output-style@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": false,
+    "filebridge@household": true,
+    "frontend-design@claude-plugins-official": false,
+    "gopls-lsp@claude-plugins-official": false,
+    "inter-session@inter-session": false,
+    "ralph-loop@claude-plugins-official": false,
     "skill-creator@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
-    "ralph-loop@claude-plugins-official": false,
-    "discord@claude-plugins-official": false,
-    "frontend-design@claude-plugins-official": false,
-    "filebridge@household": true,
-    "inter-session@inter-session": false,
-    "codex@openai-codex": true,
     "telegram@claude-plugins-official": false,
-    "claude-code-multisession@langmartai": true
+    "typescript-lsp@claude-plugins-official": false
   },
   "extraKnownMarketplaces": {
     "anthropic-agent-skills": {
@@ -282,16 +292,16 @@
         "path": "/home/curator/workspace/ai/inter-session"
       }
     },
-    "openai-codex": {
-      "source": {
-        "source": "github",
-        "repo": "openai/codex-plugin-cc"
-      }
-    },
     "langmartai": {
       "source": {
         "source": "github",
         "repo": "langmartai/lm-assist"
+      }
+    },
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
       }
     }
   },
