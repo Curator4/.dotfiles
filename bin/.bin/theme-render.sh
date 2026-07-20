@@ -81,6 +81,14 @@ hex_to_rgba() {
     printf 'rgba(%d, %d, %d, %s)' "$red" "$green" "$blue" "$alpha"
 }
 
+hex_to_pango() {
+    local color="${1#\#}"
+
+    # Hyprlang strips everything after an unescaped '#', anywhere in the line.
+    # Pango markup attributes must therefore double it: ##rrggbb.
+    printf '##%s' "$color"
+}
+
 expand_home_path() {
     case "$1" in
         \~) printf '%s\n' "$HOME" ;;
@@ -169,6 +177,8 @@ accent_soft=$(hex_to_rgba "$accent" 0.72)
 accent_lock=$(hex_to_rgba "$accent" 0.88)
 foreground_soft=$(hex_to_rgba "$foreground" 0.80)
 foreground_solid=$(hex_to_rgba "$foreground" 1.0)
+foreground_pango=$(hex_to_pango "$foreground")
+red_pango=$(hex_to_pango "$red")
 red_solid=$(hex_to_rgba "$red" 1.0)
 green_solid=$(hex_to_rgba "$green" 1.0)
 magenta_soft=$(hex_to_rgba "$magenta" 0.72)
@@ -368,14 +378,14 @@ input-field {
     font_color = $foreground_solid
     font_family = Hack Nerd Font
     fade_on_empty = false
-    placeholder_text = <span foreground="$foreground">Enter Password...</span>
+    placeholder_text = <span foreground="$foreground_pango">Enter Password...</span>
     hide_input = false
     position = 0, -120
     halign = center
     valign = center
     check_color = $green_solid
     fail_color = $red_solid
-    fail_text = <span foreground="$red">Authentication failed!</span>
+    fail_text = <span foreground="$red_pango">Authentication failed!</span>
 }
 
 label {

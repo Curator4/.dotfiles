@@ -1,10 +1,10 @@
-# Mako notification daemon config - Cyber theme
+# Mako notification daemon config - Calliope theme
 
 # Style
 font=Hack Nerd Font 12
-background-color=#0A131CE6
-text-color=#A0B4C5
-border-color=#3D6390
+background-color=#08090BE6
+text-color=#B4BAC2
+border-color=#3E6FA8
 border-size=2
 border-radius=4
 padding=12

@@ -1,4 +1,4 @@
-function update --description 'Pre-flight brief (CVEs, flagged AUR, upstream notes) + LLM triage, then yay -Syu'
+function update --description 'Pre-flight brief (CVEs, flagged AUR, upstream notes) + LLM triage, then the full sweep: repos+AUR(--devel), npm globals, flatpak, pipx, self-updaters'
     # Measured 2026-07-14 over 3 runs each on a 30-package payload: sonnet ~6.0s
     # (tight), opus ~7.5s (one 10.7s outlier). Near enough the same -- the wait is
     # CLI startup and model load, not the tier, so there is no speed argument for
@@ -24,23 +24,33 @@ function update --description 'Pre-flight brief (CVEs, flagged AUR, upstream not
     end
 
     # The brief is advisory. Anything that goes wrong below falls through to a
-    # plain yay -- the operator's update is never held hostage to this tooling.
+    # plain sweep -- the operator's update is never held hostage to this tooling.
     if not test -x $tool
-        echo "⚠ update-brief missing — running yay unbriefed"
+        echo "⚠ update-brief missing — running unbriefed"
         rm -f $brief
-        yay -Syu $yay_args
-        return $status
+        yay -Syu --devel $yay_args
+        __update_extras
+        return 0
     end
 
     echo
     if not $tool --json-out $brief
         rm -f $brief
-        yay -Syu $yay_args
-        return $status
+        yay -Syu --devel $yay_args
+        __update_extras
+        return 0
     end
 
+    # No pacman deltas still means work to do: the brief reads pacman's view only,
+    # so it cannot see VCS packages with new upstream commits (that is what --devel
+    # below checks) and it knows nothing about npm, flatpak or the self-updaters.
+    # Skipping straight out here is what let uv drift fourteen releases behind.
     if not jq -e '.pending | length > 0' $brief >/dev/null 2>&1
         rm -f $brief
+        echo "  No repo updates pending — checking VCS packages and other managers."
+        echo
+        yay -Syu --devel $yay_args
+        __update_extras
         return 0
     end
 
@@ -106,14 +116,103 @@ He is standing at a terminal prompt waiting to type Y. Four sentences, hard maxi
     rm -f $brief
 
     # ── the gate ──────────────────────────────────────────────────────────────
+    # One gate for the whole sweep, not just the pacman half. A gate that guards
+    # some of the work is a gate you stop trusting: "n" means nothing runs.
     echo
     read -l -P '  Proceed? [Y/n] ' answer
     switch (string lower -- (string trim -- $answer))
         case '' y yes
             echo
-            yay -Syu $yay_args
+            yay -Syu --devel $yay_args
+            __update_extras
         case '*'
             echo "  Aborted — nothing installed."
             return 1
     end
+end
+
+# Everything pacman cannot see, plus the post-update checks. Split out because
+# four separate paths through `update` reach it (brief missing, brief failed,
+# nothing pending, gate passed) and only the declined gate must skip it.
+function __update_extras --description 'npm globals, flatpak, pipx, self-updaters; gateway restart; reboot/dotfiles nudges'
+    # npm globals — pacman/yay are blind to these (openclaw, @openai/codex backend, gemini-cli, pi).
+    set -l oc_before (openclaw --version 2>/dev/null)
+    set -l cx_before (codex --version 2>/dev/null)
+    npm update -g
+    set -l oc_after (openclaw --version 2>/dev/null)
+    set -l cx_after (codex --version 2>/dev/null)
+
+    # Other managers outside yay.
+    command -q flatpak; and flatpak update -y
+    command -q pipx; and pipx upgrade-all
+
+    # Self-updaters in ~/.local/bin — no package manager can see these, so without
+    # an explicit call they never move. claude's autoUpdates is off by design
+    # (a native-install swap mid-session is worse than being a day behind), which
+    # makes this line the only thing that ever advances it.
+    command -q claude; and claude update
+    command -q uv; and uv self update
+
+    # `openclaw update` has a habit of silently dropping plugins out of the config
+    # (npm 12 bug): they vanish from plugins.allow and flip to enabled:false, the
+    # gateway restarts clean, and nothing tells you until the plugin's absence
+    # bites days later. Check before the restart, so the warning isn't buried
+    # under systemctl output.
+    __update_check_openclaw_plugins
+
+    # Restart the household gateway only if its runtime changed (openclaw OR the codex backend).
+    if test "$oc_before" != "$oc_after"; or test "$cx_before" != "$cx_after"
+        echo "Substrate changed (openclaw: $oc_before -> $oc_after | codex: $cx_before -> $cx_after) — restarting gateway + mirrors"
+        systemctl --user restart openclaw-gateway.service household-mirror.service \
+            discord-mirror.service activator.service
+    end
+
+    # --- non-destructive nudges ---
+    set -l krun (uname -r)
+    set -l kins (pacman -Q linux 2>/dev/null | string split ' ')[2]
+    if test -n "$kins"; and test (string replace -a '.' '-' -- $krun) != (string replace -a '.' '-' -- $kins)
+        echo "⚠ reboot pending: running $krun, installed $kins"
+    end
+
+    set -l df_dirty (git -C ~/.dotfiles status --porcelain 2>/dev/null)
+    if test -n "$df_dirty"
+        echo "✎ dotfiles uncommitted (run `git acp \"msg\"` when ready):"
+        git -C ~/.dotfiles status --short
+    end
+end
+
+# `$expected` is a declaration, not a discovery. The config on its own cannot tell
+# "the npm 12 bug ate this plugin" apart from "the operator switched it off on
+# purpose" — both look like allow-missing + enabled:false. So intent gets written
+# down here, and anything not listed is simply not this check's business.
+#
+# codex is deliberately absent. As of 2026-07-20 it fails to register with
+# "openKeyedStore is only available for trusted plugins in this release" — a
+# trust-model rejection, not the allowlist drop this check exists to catch.
+# Listing it would produce a warning on every run that re-adding it wouldn't fix.
+function __update_check_openclaw_plugins --description 'Warn when an openclaw update drops a load-bearing plugin from the config'
+    set -l expected discord
+
+    set -l cfg $HOME/.openclaw/openclaw.json
+    command -q jq; or return 0
+    test -r $cfg; or return 0
+
+    set -l broken
+    for p in $expected
+        set -l allowed (jq -r --arg p $p '.plugins.allow | index($p) != null' $cfg 2>/dev/null)
+        set -l enabled (jq -r --arg p $p '.plugins.entries[$p].enabled // false' $cfg 2>/dev/null)
+        if test "$allowed" != true; or test "$enabled" != true
+            set -a broken "$p (allow=$allowed enabled=$enabled)"
+        end
+    end
+
+    set -q broken[1]; or return 0
+
+    echo "⚠ openclaw plugins missing from config — an update likely dropped them:"
+    for b in $broken
+        echo "    $b"
+    end
+    echo "  Fix in ~/.openclaw/openclaw.json: add the name to .plugins.allow AND set"
+    echo "  .plugins.entries.<name>.enabled = true. The gateway restart below will not"
+    echo "  repair this on its own."
 end
