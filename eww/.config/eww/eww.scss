@@ -227,3 +227,22 @@ window {
 // No per-zone colour. The columns are packed by height, so either can hold any
 // project: the zones stay on .hud-body's neutral and every line carries its own
 // tint from hud-board-render, which `hud board` resolves per project.
+
+// Posture footer — sit/stand time, away-from-desk subtracted. Bottom right,
+// smaller and dimmer than anything above it: this is instrumentation the
+// operator glances at, not work they've committed to, and it has to read that
+// way at a glance. Past the nudge threshold `hud posture render` wraps the line
+// in an amber span, which overrides this colour — that state change is the
+// entire ambient tier of the nudge ladder, so the resting style stays quiet
+// enough for the amber to register.
+.hud-posture {
+  border-top: 1px solid rgba(122, 162, 247, 0.1);
+  padding-top: 8px;
+  margin: 2px 4px 0 4px;
+}
+
+.posture-line {
+  color: #565e73;
+  font-family: "Hack Nerd Font";
+  font-size: 12px;
+}

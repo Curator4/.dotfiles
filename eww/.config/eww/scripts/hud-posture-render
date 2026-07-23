@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Footer line for the HUD panel: current posture, active time in this block, and
+# today's split. Output is Pango markup — `hud posture render` paints the line
+# amber itself once the block crosses the nudge threshold, which is the whole of
+# the ambient tier. Empty output before the first declaration; the widget hides.
+#
+# No cache: unlike `hud board` this is two localhost queries and a small log
+# read, and the poll has to stay responsive enough that Super+R feels connected
+# to the panel.
+exec /home/curator/workspace/hud/hud posture render 2>/dev/null

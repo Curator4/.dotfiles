@@ -143,6 +143,8 @@ Then build the overview:
 - **Workouts** (7-day window): what was done, frequency, patterns. Count gap days explicitly from the filenames present vs. absent.
 - **Sodium/Potassium**: Scan meal descriptions for sodium-heavy patterns (takeout, fast food, ramen, frozen meals, processed snacks, soy sauce, pizza) and potassium-poor diets (few fruits, vegetables, or legumes). Flag streaks of high-sodium eating — "three days of takeout is a salt bomb, that's where the face puff comes from." Nudge toward potassium-rich foods (bananas, potatoes, spinach, avocado, yogurt) as a counterbalance. No hard numbers needed — pattern recognition from descriptions is enough. This is a bloat-prevention concern, so frame it around water retention and puffiness, not heart health lectures.
 
+**Posture** (one line, only if there's data): run `hud posture summary yesterday`. It prints sitting/standing totals with away-from-desk time already subtracted, plus switch count and the longest unbroken sit. Report it plainly — this is the one surface where the numbers are meant to land as feedback rather than a nudge, because the live nudges only ever change the next five minutes and this is what moves the setpoint. Prints `no posture data` on days it wasn't used; skip the line entirely then rather than reporting a zero. What's worth remarking on is the **switch count** and the longest sit, not the standing total — alternation is the thing that does anything, standing per se isn't.
+
 Keep it casual and encouraging, but don't be afraid to nag:
 - **No workouts in 3+ days?** Call it out. Be direct but affectionate — guilt-trip energy, not lecture energy.
 - **No weight logged in 3+ days?** Remind them. It takes 10 seconds. No excuses.

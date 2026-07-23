@@ -152,10 +152,16 @@
 ; TODAY strip: the council's day plan (itinerary zone), one clickable row per
 ; item — click checks it off via `hud itinerary-done <n>` and drops the board
 ; cache so the ✓ shows on the next poll.
+;
+; Posture footer: declared sit/stand time with away-from-desk subtracted (the
+; AFK stream from ActivityWatch). Instrumentation, not agenda — it sits below
+; the columns, small and dim, and deliberately looks nothing like a focus item.
+; `hud posture render` paints it amber past the nudge threshold.
 ; ═════════════════════════════════════════════════════════
-(defpoll board_left  :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render left`)
-(defpoll board_right :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render right`)
-(defpoll board_today :interval "2s"    :initial "[]" `~/.config/eww/scripts/hud-today-json`)
+(defpoll board_left    :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render left`)
+(defpoll board_right   :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render right`)
+(defpoll board_today   :interval "2s"    :initial "[]" `~/.config/eww/scripts/hud-today-json`)
+(defpoll board_posture :interval "2s"    :initial ""   `~/.config/eww/scripts/hud-posture-render`)
 
 (defwidget hud-zone [class body]
   (box :class "hud-zone ${class}" :orientation "v" :space-evenly false :hexpand true :valign "start"
@@ -172,12 +178,18 @@
                :halign "start"
                :text "${it.done ? "✓" : "○"}  ${it.text}")))))
 
+(defwidget hud-posture []
+  (box :class "hud-posture" :halign "end" :space-evenly false
+       :visible {board_posture != ""}
+    (label :class "posture-line" :markup board_posture :halign "end")))
+
 (defwidget hud-panel []
   (box :class "hud-panel" :orientation "v" :space-evenly false :spacing 10
     (hud-today)
     (box :orientation "h" :space-evenly true :spacing 40
       (hud-zone :class "zone-left"  :body board_left)
-      (hud-zone :class "zone-right" :body board_right))))
+      (hud-zone :class "zone-right" :body board_right))
+    (hud-posture)))
 
 (defwindow hud
   :monitor "DP-4"
