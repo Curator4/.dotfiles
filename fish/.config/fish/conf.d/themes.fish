@@ -2,6 +2,28 @@
 # just that window (kitty colors + hyprland border). No claude-code launch.
 # Companion to the cc* launchers in config.fish.
 
+function _emit-osc-theme -d "Reskin the current terminal grid via OSC — per-pane inside herdr"
+    # Reads a kitty theme conf and emits the equivalent dynamic-color escapes.
+    # Only 6-digit hex values are picked up; anything else is skipped silently.
+    for line in (command grep -E '^[a-z_0-9]+[[:space:]]+#[0-9a-fA-F]{6}' $argv[1])
+        set -l kv (string match -r '^(\S+)\s+(#[0-9a-fA-F]{6})' -- $line)
+        switch $kv[2]
+            case foreground
+                printf '\e]10;%s\e\\' $kv[3]
+            case background
+                printf '\e]11;%s\e\\' $kv[3]
+            case cursor
+                printf '\e]12;%s\e\\' $kv[3]
+            case selection_background
+                printf '\e]17;%s\e\\' $kv[3]
+            case selection_foreground
+                printf '\e]19;%s\e\\' $kv[3]
+            case 'color*'
+                printf '\e]4;%s;%s\e\\' (string replace -r '^color' '' $kv[2]) $kv[3]
+        end
+    end
+end
+
 function _apply-kitty-theme -d "Reskin the active kitty window, its hyprland border, and starship prompt"
     set -l slug $argv[1]
     set -l border $argv[2]
@@ -14,12 +36,20 @@ function _apply-kitty-theme -d "Reskin the active kitty window, its hyprland bor
         return 1
     end
 
-    if test -n "$KITTY_LISTEN_ON"
-        kitty @ --to "$KITTY_LISTEN_ON" set-colors --configured $kitty_conf 2>/dev/null
-    end
+    # Inside a herdr pane, KITTY_LISTEN_ON/KITTY_PID are stale values inherited
+    # from whichever kitty was alive when the herdr *server* started, and
+    # set-colors is window-wide regardless. Each pane owns its own VT, so OSC
+    # reskins exactly this pane and nothing else.
+    if set -q HERDR_ENV
+        _emit-osc-theme $kitty_conf
+    else
+        if test -n "$KITTY_LISTEN_ON"
+            kitty @ --to "$KITTY_LISTEN_ON" set-colors --configured $kitty_conf 2>/dev/null
+        end
 
-    if test -n "$KITTY_PID"; and test -n "$border"
-        hyprctl dispatch setprop "pid:$KITTY_PID" active_border_color "$border" &>/dev/null
+        if test -n "$KITTY_PID"; and test -n "$border"
+            hyprctl dispatch setprop "pid:$KITTY_PID" active_border_color "$border" &>/dev/null
+        end
     end
 
     if test -f $starship_conf

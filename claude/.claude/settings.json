@@ -134,7 +134,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "fable",
+  "model": "opus",
   "hooks": {
     "PreToolUse": [
       {
@@ -314,7 +314,7 @@
       }
     }
   },
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
   "autoCompactWindow": 1000000,
   "tui": "fullscreen",
   "autoDreamEnabled": true,

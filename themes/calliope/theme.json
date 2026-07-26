@@ -38,10 +38,11 @@
   },
   "wallpapers": {
     "static": [
-      "~/pictures/wallpapers/static/orbital-shipyard.jpg"
+      "~/pictures/wallpapers/static/saturn-rings-space.jpg",
+      "~/pictures/wallpapers/static/deep-starfield.png"
     ],
     "vertical": [
-      "~/pictures/wallpapers/vertical/starry-night-figure.png",
+      "~/pictures/wallpapers/vertical/earth-orbit-sunrise.png",
       "~/pictures/wallpapers/vertical/space-planet-nebula.jpg"
     ],
     "live": [
@@ -51,7 +52,7 @@
   "monitors": {
     "DP-1": "vertical[0]",
     "DP-2": "static[0]",
-    "DP-3": "live[0]",
+    "DP-3": "static[1]",
     "DP-4": "vertical[1]"
   },
   "rofi_theme": "frost",
