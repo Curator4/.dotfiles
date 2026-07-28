@@ -235,13 +235,17 @@ window {
 // in an amber span, which overrides this colour — that state change is the
 // entire ambient tier of the nudge ladder, so the resting style stays quiet
 // enough for the amber to register.
-.hud-posture {
+.hud-footer {
   border-top: 1px solid rgba(122, 162, 247, 0.1);
   padding-top: 8px;
   margin: 2px 4px 0 4px;
 }
 
-.posture-line {
+// Both footer lines share the posture line's weight. They're the same tier of
+// signal — instrumentation under the board — and the checks line earns its
+// colour from `hud checks render`'s markup, not from here.
+.posture-line,
+.checks-line {
   color: #565e73;
   font-family: "Hack Nerd Font";
   font-size: 12px;

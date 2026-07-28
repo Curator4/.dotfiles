@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Footer line for the HUD panel: what's still due on the checks registry, named
+# one item at a time. Output is Pango markup — `hud checks render` paints it
+# amber past check.py's speak threshold and red at double that. Empty output on
+# a clear day (or an unreadable registry); the widget hides.
+#
+# Polled slowly on purpose: this shells out to python3, and a routine item's
+# state changes on the order of hours. The full list stays behind Super+X.
+exec /home/curator/workspace/hud/hud checks render 2>/dev/null
