@@ -87,6 +87,16 @@ for dir in */; do
     stow --adopt --restow "$pkg" 2>/dev/null || stow --restow "$pkg"
 done
 
+# ── Theme ────────────────────────────────────────────────
+# Required, not cosmetic: waybar's style.css, hyprlock.conf, mako's config and
+# friends are generated from themes/ and deliberately untracked, so a fresh
+# clone has none of them. This also creates ~/.config/current-theme, which
+# kitty.conf and hyprland.conf source their palettes from.
+
+echo ""
+echo ":: applying theme..."
+"$DOTFILES/bin/.bin/theme-switcher.sh" apply "${DOTFILES_THEME:-jade}"
+
 # ── Enable Services ──────────────────────────────────────
 
 echo ""

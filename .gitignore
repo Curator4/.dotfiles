@@ -22,3 +22,21 @@ Thumbs.db
 __pycache__/
 node_modules/
 *.pyc
+
+# Theme output — rewritten by theme-switcher.sh on every switch.
+#
+# These are build artifacts, not config: the sources are themes/<name>/ plus
+# the tracked fragments the switcher composes in (mako's output.conf and
+# *-categories.conf, the shared structure theme-render.sh renders from).
+# Tracking them meant every theme switch showed up as a dozen dirty files and
+# buried real edits in the noise. theme-startup.sh re-applies a theme at every
+# login, so they are always regenerated; a fresh machine gets them from the
+# `theme-switcher.sh apply` step in setup-devenv.sh.
+waybar/.config/waybar/style.css
+hypr/.config/hypr/hyprlock.conf
+hypr/.config/hypr/hyprpaper.conf
+hypr/.config/hypr/theme-effects.conf
+mako/.config/mako/config
+starship/.config/starship.toml
+nvim/.config/nvim/lua/config/colorscheme.lua
+rofi/.config/rofi/current.rasi

@@ -26,6 +26,39 @@ render_theme_surfaces() {
     generate_codexbar_css "$theme_dir"
 }
 
+# Point the stable indirection links at the chosen theme.
+#
+# Configs that only ever named a theme (kitty's include, Hyprland's source,
+# Rofi's @theme) used to get sed-rewritten in place on every switch, which
+# dirtied the repo — those files are stow symlinks, so editing the live config
+# *is* editing tracked content. They now reference a fixed path and this moves
+# the link instead. Both links live outside git's view: ~/.config/current-theme
+# is not in any stow package, and current.rasi is gitignored.
+link_current_theme() {
+    local theme_name="$1"
+    local theme_dir="$THEMES_DIR/$theme_name"
+
+    # -n so we replace the link itself rather than writing inside the directory
+    # it already points at.
+    ln -sfn "$theme_dir" "$HOME/.config/current-theme"
+    echo "  ✓ Linked ~/.config/current-theme -> themes/$theme_name"
+
+    # Rofi resolves @theme "current" against ~/.config/rofi, so the link lives
+    # beside the .rasi files it points at and stays relative.
+    local rofi_dir="$DOTFILES/rofi/.config/rofi"
+    local rofi_theme
+    rofi_theme=$(jq -r '.rofi_theme // empty' "$theme_dir/theme.json" 2>/dev/null)
+
+    if [ -z "$rofi_theme" ]; then
+        echo "  ! Warning: no rofi_theme in theme.json, leaving Rofi theme as-is"
+    elif [ ! -f "$rofi_dir/$rofi_theme.rasi" ]; then
+        echo "  ! Warning: Rofi theme '$rofi_theme.rasi' not found, leaving as-is"
+    else
+        ln -sfn "$rofi_theme.rasi" "$rofi_dir/current.rasi"
+        echo "  ✓ Linked Rofi theme -> $rofi_theme"
+    fi
+}
+
 # Function to apply theme
 apply_theme() {
     THEME_NAME="$1"
@@ -49,19 +82,9 @@ apply_theme() {
 
     render_theme_surfaces "$THEME_NAME" || return 1
 
-    # 1. Update Hyprland source line
-    if [ -f "$DOTFILES/hypr/.config/hypr/hyprland.conf" ]; then
-        sed -i "s|source = ~/.dotfiles/themes/.*/hyprland.conf|source = ~/.dotfiles/themes/$THEME_NAME/hyprland.conf|" \
-            "$DOTFILES/hypr/.config/hypr/hyprland.conf"
-        echo "  ✓ Updated Hyprland config"
-    fi
-
-    # 2. Update Kitty include line
-    if [ -f "$DOTFILES/kitty/.config/kitty/kitty.conf" ]; then
-        sed -i "s|include ~/.dotfiles/themes/.*/kitty.conf|include ~/.dotfiles/themes/$THEME_NAME/kitty.conf|" \
-            "$DOTFILES/kitty/.config/kitty/kitty.conf"
-        echo "  ✓ Updated Kitty config"
-    fi
+    # 1-2. Kitty and Hyprland follow ~/.config/current-theme; moving the link is
+    # the whole update. Must happen before reload_services.
+    link_current_theme "$THEME_NAME"
 
     # 3. Waybar was generated from the shared structure
     echo "  ✓ Rendered shared Waybar CSS"
@@ -82,13 +105,7 @@ apply_theme() {
     # 5. Hyprlock and Hyprland effects were rendered from the shared structure
     echo "  ✓ Rendered shared Hyprlock and effect profiles"
 
-    # 6. Update Rofi theme
-    if [ -f "$THEME_DIR/theme.json" ]; then
-        ROFI_THEME=$(jq -r '.rofi_theme' "$THEME_DIR/theme.json")
-        sed -i "s|@theme \".*\"|@theme \"$ROFI_THEME\"|" \
-            "$DOTFILES/rofi/.config/rofi/config.rasi"
-        echo "  ✓ Updated Rofi theme"
-    fi
+    # 6. Rofi followed the current.rasi link in link_current_theme
 
     # 6.5. Update Starship prompt
     if [ -f "$THEME_DIR/starship.toml" ]; then

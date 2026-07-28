@@ -47,6 +47,27 @@ claude/        → ~/.claude/           (claude code config)
 - `themes/` — theme presets used by theme-switcher
 - `packages/` — package lists for bootstrap
 
+## theming
+
+`theme-switcher.sh apply <name>` composes each theme in `themes/` onto the live
+config. it writes into the repo, because the stow symlinks mean the live config
+*is* the repo — so anything it writes is gitignored (see `.gitignore`) and does
+not show up as churn:
+
+- **generated, untracked** — waybar `style.css`, `hyprlock.conf`,
+  `hyprpaper.conf`, `theme-effects.conf`, mako `config`, `starship.toml`, nvim
+  `colorscheme.lua`. edits here are lost on the next switch. change
+  `themes/<name>/` or the shared structure in `theme-render.sh` instead.
+- **tracked inputs** — everything under `themes/`, mako's `output.conf` and
+  `*-categories.conf` fragments, the rofi `.rasi` palettes.
+- **indirection, not rewriting** — `kitty.conf` and `hyprland.conf` reference
+  `~/.config/current-theme/`, and rofi's `config.rasi` references
+  `@theme "current"`. those are symlinks the switcher repoints; the tracked
+  files never change.
+
+a fresh clone has none of the generated files until `setup-devenv.sh` runs
+`theme-switcher.sh apply` (or `theme-startup.sh` fires at login).
+
 ## stow basics
 
 stow creates symlinks from the repo into your home directory. each package mirrors the target path structure.

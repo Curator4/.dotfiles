@@ -10,4 +10,6 @@ configuration {
     monitor: "DP-2";
 }
 
-@theme "pine"
+/* current.rasi is a gitignored symlink to one of the .rasi files beside it,
+   repointed by theme-switcher.sh. */
+@theme "current"
