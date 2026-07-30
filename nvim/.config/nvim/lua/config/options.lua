@@ -29,3 +29,6 @@ vim.opt.termguicolors = true
 -- Line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
+
+-- Hide the end-of-buffer tildes (dashboard reads as a void with them)
+vim.opt.fillchars:append({ eob = " " })

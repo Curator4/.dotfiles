@@ -42,6 +42,11 @@ return {
 		}
 
 		-- Recent files section
+		local mru_items = 5
+		local function mru_group()
+			return require("alpha.themes.theta").mru(0, cdir, mru_items)
+		end
+
 		local mru = {
 			type = "group",
 			val = {
@@ -58,7 +63,7 @@ return {
 				{
 					type = "group",
 					val = function()
-						return { require("alpha.themes.theta").mru(0, cdir, 5) }
+						return { mru_group() }
 					end,
 					opts = { shrink_margin = false },
 				},
@@ -68,9 +73,26 @@ return {
 		-- Set footer
 		dashboard.section.footer.val = "Dynasty 🔥🩸"
 
+		-- Rows below the top padding, excluding the mru file entries. Measured
+		-- from a rendered buffer rather than derived, since the group elements
+		-- add trailing spacing that is easy to miscount.
+		local fixed_rows = 40
+
+		-- Alpha has no vertical centering, so the top padding does it. The mru
+		-- section is short in directories with no history, so count it rather
+		-- than assume it is full.
+		local function top_padding()
+			local ok, group = pcall(mru_group)
+			local rows = fixed_rows
+			if ok and group and group.val then
+				rows = rows + #group.val
+			end
+			return math.max(2, math.floor((vim.api.nvim_win_get_height(0) - rows) / 2))
+		end
+
 		-- Custom layout
 		dashboard.config.layout = {
-			{ type = "padding", val = 2 },
+			{ type = "padding", val = top_padding },
 			dashboard.section.header,
 			{ type = "padding", val = 2 },
 			dashboard.section.buttons,
