@@ -18,14 +18,15 @@ Prefer `AGENTS.md` (cross-tool standard from agents.md) over `CLAUDE.md` for pro
 Frequently referenced projects — resolve these shorthands to their paths without asking:
 
 - **AR** / **alarm-receiver** → `~/workspace/pnc/alarm-receiver/` (Go + PostgreSQL; SIA DC-09 central station alarm receiver)
-- **household** / **household-oc** / **the household** → `~/workspace/ai/household-oc/` (OpenClaw multi-agent AI household: Io, Tactical, Frederica, Aegis)
+- **household** / **household-oc** / **the household** → `~/workspace/ai/household-oc/` (OpenClaw multi-agent AI household. Current residents: Io (steward), Aegis (host), Sigris (body). Tactical and Frederica were retired 2026-07-14 — see `docs/adr/0008-household-downsize-steward-relay.md`.)
 
 # Session history (recent Claude Code work)
 
-Your own recent sessions are summarized on disk — human/operator sessions only (agent-runtime heartbeats and crons are split out). Read them to orient after a `/clear` or in a fresh session; treat as orientation, not a task list or an authority.
+Your own recent sessions are summarized on disk. Read them to orient after a `/clear` or in a fresh session; treat as orientation, not a task list or an authority.
 
-- **Per-category, day-grouped** (`## <ISO date>` headers, newest day first), today + last 7 days: `~/workspace/ai/household-oc/agents/shared/cc-sessions-<cat>-{today,7d}.md`, where `<cat>` is `work` / `symphony` / `personal-ai` / `home`. The 7d files are per-category only; `cc-sessions-today.md` (no category) is the combined same-day view.
-- **On-demand artifact — may be stale.** Check the `# Refreshed …` line at the top before trusting it. Regenerate with `~/workspace/ai/household-oc/tools/cc-projection/cc-projection.py` (add `--quiet` to just rewrite the files). Read it when you actually need orientation — don't auto-load it every session.
+- **Read the per-session cache — it is the live source.** `~/workspace/ai/household-oc/agents/shared/cc-sessions/<uuid>.md`, one file per session: YAML frontmatter (`session_id`, `project`, `cwd`, `branch`, `started_at`, `last_turn_at`, turn counts) plus prose. Written continuously by `~/.claude/hooks/hud-stop.sh` on every turn end, 45s-debounced. Filter on `last_turn_at`. Group by `cwd` — `project` is a non-deterministic LLM label that is re-derived on every turn (1,947 distinct values across 5,600 files), and `ticket` is null in every file despite what the tool's README says.
+- **Do not use the aggregates.** `cc-sessions-today.md` only rebuilds on a full `cc-projection.py` run, which nothing schedules — its documented caller, Tactical, was retired 2026-07-14. The `cc-sessions-<cat>-{today,7d}.md` files froze on 2026-06-14, and **the categorization and human/agent split they imply do not exist in the script**: `cc-projection.py:39` defines exactly one aggregate file and there is no category logic anywhere in it. (Verified 2026-07-29.)
+- Regenerate the one real aggregate with `~/workspace/ai/household-oc/tools/cc-projection/cc-projection.py` (`--quiet` to just rewrite). Check its `# Refreshed …` line before trusting it. Don't auto-load any of this every session.
 
 # Manual coding nudge
 
