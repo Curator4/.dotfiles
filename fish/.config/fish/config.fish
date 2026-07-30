@@ -3,6 +3,7 @@ if status is-interactive
     alias copy 'wl-copy'
     alias paste 'wl-paste'
     alias dots 'cd ~/.dotfiles'
+    alias dyn 'herdr --session dynasty'
     alias home 'cd ~/'
     alias hypr 'cd ~/.dotfiles/hypr/.config/hypr/'
     alias ls 'eza -l --icons --color=auto --group-directories-first'
