@@ -1,0 +1,12 @@
+-- Serene - Hyprland Colors
+-- Palette consumed by ~/.config/hypr/theme.lua via the current-theme symlink.
+return {
+    border_active = "rgba(1e66f566)",
+    border_inactive = "rgba(eff1f666)",
+    shadow = "rgba(eff1f6ee)",
+    bg = "rgb(eff1f6)",
+    fg = "rgb(4c4f6a)",
+    accent = "rgb(1e66f5)",
+    orange = "rgb(d20f39)",
+    orange_light = "rgba(d20f3966)",
+}

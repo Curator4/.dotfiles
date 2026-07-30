@@ -35,6 +35,8 @@ node_modules/
 waybar/.config/waybar/style.css
 hypr/.config/hypr/hyprlock.conf
 hypr/.config/hypr/hyprpaper.conf
+hypr/.config/hypr/theme-effects.lua
+# Pre-0.57 hyprlang fallback, still generated-not-authored.
 hypr/.config/hypr/theme-effects.conf
 mako/.config/mako/config
 starship/.config/starship.toml

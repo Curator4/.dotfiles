@@ -1,0 +1,12 @@
+-- Calliope - Hyprland Colors
+-- Palette consumed by ~/.config/hypr/theme.lua via the current-theme symlink.
+return {
+    border_active = "rgba(3E6FA866)",
+    border_inactive = "rgba(1D2B4566)",
+    shadow = "rgba(08090Bee)",
+    bg = "rgb(08090B)",
+    fg = "rgb(B4BAC2)",
+    accent = "rgb(3E6FA8)",
+    orange = "rgb(6473A8)",
+    orange_light = "rgba(6473A866)",
+}

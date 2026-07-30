@@ -1,0 +1,12 @@
+-- Cyber - Hyprland Colors
+-- Palette consumed by ~/.config/hypr/theme.lua via the current-theme symlink.
+return {
+    border_active = "rgba(3D639066)",
+    border_inactive = "rgba(18324E66)",
+    shadow = "rgba(0A131Cee)",
+    bg = "rgb(0A131C)",
+    fg = "rgb(A0B4C5)",
+    accent = "rgb(3D6390)",
+    orange = "rgb(905F59)",
+    orange_light = "rgba(905F5966)",
+}

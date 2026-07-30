@@ -1,0 +1,12 @@
+-- Ashen - Hyprland Colors
+-- Palette consumed by ~/.config/hypr/theme.lua via the current-theme symlink.
+return {
+    border_active = "rgba(D87C4A66)",
+    border_inactive = "rgba(32323266)",
+    shadow = "rgba(121212ee)",
+    bg = "rgb(121212)",
+    fg = "rgb(b4b4b4)",
+    accent = "rgb(D87C4A)",
+    orange = "rgb(B14242)",
+    orange_light = "rgba(B1424266)",
+}

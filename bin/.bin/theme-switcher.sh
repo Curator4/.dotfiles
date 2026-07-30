@@ -18,7 +18,7 @@ render_theme_surfaces() {
         "$theme_dir" \
         "$DOTFILES/waybar/.config/waybar/style.css" \
         "$DOTFILES/hypr/.config/hypr/hyprlock.conf" \
-        "$DOTFILES/hypr/.config/hypr/theme-effects.conf"; then
+        "$DOTFILES/hypr/.config/hypr/theme-effects.lua"; then
         echo "Error: Failed to render shared theme surfaces"
         return 1
     fi
@@ -70,9 +70,9 @@ apply_theme() {
     fi
 
     # Terminal-only themes ship just theme.json + kitty.conf, for theme-term.sh to
-    # recolor a single window. Applying one desktop-wide points Hyprland's source=
-    # at a hyprland.conf that does not exist, leaving $border_active and friends
-    # undefined across styling.conf.
+    # recolor a single window. Applying one desktop-wide points theme.lua's dofile
+    # at a hyprland.lua that does not exist, which is a hard config error rather
+    # than the undefined-variable warnings hyprlang used to give.
     if [ "$(jq -r '.terminal_only // false' "$THEME_DIR/theme.json" 2>/dev/null)" = "true" ]; then
         echo "Error: '$THEME_NAME' is a terminal-only theme; use theme-term.sh instead"
         exit 1

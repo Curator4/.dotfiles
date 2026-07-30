@@ -1,0 +1,12 @@
+-- Pine - Hyprland Colors
+-- Palette consumed by ~/.config/hypr/theme.lua via the current-theme symlink.
+return {
+    border_active = "rgba(10A37FAA)",
+    border_inactive = "rgba(17362966)",
+    shadow = "rgba(050706ee)",
+    bg = "rgb(050706)",
+    fg = "rgb(E8ECE9)",
+    accent = "rgb(10A37F)",
+    orange = "rgb(D6B85A)",
+    orange_light = "rgba(D6B85A66)",
+}

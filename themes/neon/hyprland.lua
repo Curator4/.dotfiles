@@ -1,0 +1,12 @@
+-- neon - Hyprland Colors
+-- Palette consumed by ~/.config/hypr/theme.lua via the current-theme symlink.
+return {
+    border_active = "rgba(00f0ff66)",
+    border_inactive = "rgba(0d111766)",
+    shadow = "rgba(0d1117ee)",
+    bg = "rgb(0d1117)",
+    fg = "rgb(d8e8ff)",
+    accent = "rgb(00f0ff)",
+    orange = "rgb(ff2d95)",
+    orange_light = "rgba(ff2d9566)",
+}

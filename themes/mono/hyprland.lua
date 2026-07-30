@@ -1,0 +1,12 @@
+-- Crimson Gray - Hyprland Colors
+-- Palette consumed by ~/.config/hypr/theme.lua via the current-theme symlink.
+return {
+    border_active = "rgba(cccccc66)",
+    border_inactive = "rgba(10101066)",
+    shadow = "rgba(101010ee)",
+    bg = "rgb(101010)",
+    fg = "rgb(cccccc)",
+    accent = "rgb(cccccc)",
+    orange = "rgb(cccccc)",
+    orange_light = "rgba(cccccc66)",
+}

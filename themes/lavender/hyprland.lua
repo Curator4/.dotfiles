@@ -1,0 +1,12 @@
+-- Purple - Hyprland Colors
+-- Palette consumed by ~/.config/hypr/theme.lua via the current-theme symlink.
+return {
+    border_active = "rgba(B565D866)",
+    border_inactive = "rgba(2D1B3Daa)",
+    shadow = "rgba(1E1325ee)",
+    bg = "rgb(1E1325)",
+    fg = "rgb(E8D4F7)",
+    accent = "rgb(B565D8)",
+    orange = "rgb(FF9F43)",
+    orange_light = "rgba(FF9F4366)",
+}
