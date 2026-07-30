@@ -150,8 +150,10 @@
 ; zone exists in `hud board` but is off the panel for now.)
 ;
 ; TODAY strip: the council's day plan (itinerary zone), one clickable row per
-; item — click checks it off via `hud itinerary-done <n>` and drops the board
-; cache so the ✓ shows on the next poll.
+; item — click flips it via `hud itinerary-toggle <n>` and drops the board cache
+; so the ✓ shows on the next poll. Toggle, not `itinerary-done`: a mis-tap on an
+; always-on panel needs the same tap to undo it, and the row is the only place
+; that undo can live. The conversational surfaces keep the idempotent `done`.
 ;
 ; Footer row, below the columns and deliberately unlike a focus item — checks
 ; left, posture right, both small and dim until they have a reason not to be.
@@ -165,7 +167,9 @@
 ;
 ; Posture: declared sit/stand time with away-from-desk subtracted (the AFK
 ; stream from ActivityWatch). Instrumentation, not agenda. `hud posture render`
-; paints it amber past the nudge threshold.
+; paints it amber past the nudge threshold. Click flips sit/stand — the same
+; `hud posture toggle` Super+R runs, so the footer you're already reading when
+; the nudge lands is somewhere you can answer it.
 ; ═════════════════════════════════════════════════════════
 (defpoll board_left    :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render left`)
 (defpoll board_right   :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render right`)
@@ -184,7 +188,7 @@
     (label :class "today-header" :text "TODAY" :halign "start")
     (for it in board_today
       (eventbox :cursor "pointer"
-                :onclick "/home/curator/workspace/hud/hud itinerary-done ${it.i} >/dev/null 2>&1; rm -f ~/.local/state/hud/board.json &"
+                :onclick "/home/curator/workspace/hud/hud itinerary-toggle ${it.i} >/dev/null 2>&1; rm -f ~/.local/state/hud/board.json &"
         (label :class {it.done ? "today-item done" : "today-item"}
                :halign "start"
                :text "${it.done ? "✓" : "○"}  ${it.text}")))))
@@ -196,8 +200,10 @@
               :visible {board_checks != ""}
               :onclick "/home/curator/workspace/ai/household-oc/tools/checks/checks-menu.sh &"
       (label :class "checks-line" :markup board_checks :halign "start"))
-    (label :class "posture-line" :markup board_posture :halign "end" :hexpand true
-           :visible {board_posture != ""})))
+    (eventbox :cursor "pointer" :hexpand true :halign "end"
+              :visible {board_posture != ""}
+              :onclick "/home/curator/workspace/hud/hud posture toggle >/dev/null 2>&1 &"
+      (label :class "posture-line" :markup board_posture :halign "end"))))
 
 (defwidget hud-panel []
   (box :class "hud-panel" :orientation "v" :space-evenly false :spacing 10
