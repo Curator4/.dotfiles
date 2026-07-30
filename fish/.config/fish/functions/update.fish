@@ -151,7 +151,15 @@ function __update_extras --description 'npm globals, flatpak, pipx, self-updater
     # (a native-install swap mid-session is worse than being a day behind), which
     # makes this line the only thing that ever advances it.
     command -q claude; and claude update
+    # herdr for the same reason as claude, and with sharper teeth: it is the launch
+    # path for dynasty's seats, and 0.7.5 rewrote `agent start` outright. A swap
+    # while a bench is mid-run breaks it in flight, so it moves here and only here.
+    command -q herdr; and herdr update
     command -q uv; and uv self update
+    # codexbar left pacman 2026-07-30: the AUR package froze at 0.42.1 while
+    # upstream kept shipping weekly, so releases come straight from GitHub now.
+    # It has no self-update subcommand — the function below is the whole updater.
+    __update_codexbar
 
     # `openclaw update` has a habit of silently dropping plugins out of the config
     # (npm 12 bug): they vanish from plugins.allow and flip to enabled:false, the
@@ -179,6 +187,57 @@ function __update_extras --description 'npm globals, flatpak, pipx, self-updater
         echo "✎ dotfiles uncommitted (run `git acp \"msg\"` when ready):"
         git -C ~/.dotfiles status --short
     end
+end
+
+# The CLI reads its version from a VERSION file resolved relative to argv[0],
+# which is why ~/.local/bin/codexbar is a two-line sh wrapper and must never
+# become a symlink: symlinked, --version drops the number and this function
+# would re-download on every sweep. Layout mirrors what the AUR package did
+# system-side: real binary + VERSION in ~/.local/lib/codexbar, wrapper in bin.
+function __update_codexbar --description 'Pull the latest CodexBar CLI release from GitHub when upstream is ahead'
+    set -l dir $HOME/.local/lib/codexbar
+    test -x $dir/CodexBarCLI; or return 0
+    command -q jq; or return 0
+
+    set -l installed (cat $dir/VERSION 2>/dev/null | string trim)
+    set -l latest (curl -sf --max-time 15 \
+        https://api.github.com/repos/steipete/CodexBar/releases/latest \
+        | jq -r '.tag_name // empty' | string replace -r '^v' '')
+
+    # Fail loud but never block: like the brief, this is advisory tooling and
+    # the sweep must finish whether or not GitHub answers.
+    if test -z "$latest"
+        echo "⚠ codexbar: release check failed — still on $installed"
+        return 0
+    end
+    test "$latest" != "$installed"; or return 0
+
+    echo "codexbar $installed -> $latest"
+    set -l tarball CodexBarCLI-v$latest-linux-x86_64.tar.gz
+    set -l base https://github.com/steipete/CodexBar/releases/download/v$latest
+    set -l tmp (mktemp -d -t codexbar-up.XXXXXX)
+
+    if not curl -sfL --max-time 300 -o $tmp/$tarball $base/$tarball
+        echo "⚠ codexbar: download failed — still on $installed"
+        rm -rf $tmp
+        return 0
+    end
+
+    # The published .sha256 embeds the CI runner's build path, so
+    # `sha256sum -c` cannot read it — compare digests by hand.
+    set -l want (curl -sfL --max-time 15 $base/$tarball.sha256 | awk '{print $1}')
+    set -l got (sha256sum $tmp/$tarball | awk '{print $1}')
+    if test -z "$want"; or test "$want" != "$got"
+        echo "⚠ codexbar: checksum mismatch — keeping $installed"
+        rm -rf $tmp
+        return 0
+    end
+
+    tar xzf $tmp/$tarball -C $tmp
+    install -m755 $tmp/CodexBarCLI $dir/CodexBarCLI
+    install -m644 $tmp/VERSION $dir/VERSION
+    rm -rf $tmp
+    echo "codexbar now "(codexbar --version 2>/dev/null | string replace 'CodexBar ' '')
 end
 
 # `$expected` is a declaration, not a discovery. The config on its own cannot tell
