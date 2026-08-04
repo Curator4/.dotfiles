@@ -20,14 +20,22 @@ kitty @ --to "unix:@mykitty-$pid" set-colors --all --configured "$conf" 2>/dev/n
 
 # Tint the window's hyprland border from the theme palette (if it has one).
 # Themes may set `border` explicitly; otherwise the cursor colour stands in.
+# The config is Lua (hyprland.lua), so `hyprctl dispatch` evaluates its argument
+# as Lua — the old `setprop "pid:N" prop value` form is a parse error.
+set_prop() {
+    hyprctl dispatch \
+        "hl.dsp.window.set_prop({ window = \"pid:$pid\", prop = \"$1\", value = \"$2\" })" \
+        &>/dev/null
+}
+
 border=$(jq -r '.palette.border // .palette.cursor // empty' "$TDIR/theme.json" 2>/dev/null)
-[ -n "$border" ] && hyprctl dispatch setprop "pid:$pid" active_border_color "rgba(${border#\#}ee)" &>/dev/null
+[ -n "$border" ] && set_prop active_border_color "rgba(${border#\#}ee)"
 
 # grok-night additionally blends the *inactive* border into the terminal bg, so
 # an unfocused grok window shows no frame around the TUI's dark canvas. The
 # background itself already comes from the theme conf loaded above.
 if [ "$slug" = "grok-night" ]; then
-    hyprctl dispatch setprop "pid:$pid" inactive_border_color "rgba(131414ee)" &>/dev/null
+    set_prop inactive_border_color "rgba(131414ee)"
 fi
 
 exit 0

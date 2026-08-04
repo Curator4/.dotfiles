@@ -9,8 +9,10 @@
 #   terminals (kitty, …) → Ctrl+Shift+V
 #   everything else      → Ctrl+V  (Electron/Discord/Chromium/GTK/Qt)
 #
-# Hyprland sendshortcut is preferred: keys go to the client and do not re-fire
+# Hyprland send_shortcut is preferred: keys go to the client and do not re-fire
 # our Super+Ctrl binds the way a raw uinput Ctrl+V would while Super is held.
+# The config is Lua (hyprland.lua), so `hyprctl dispatch` evaluates its argument
+# as Lua — the old `sendshortcut "CTRL,V,activewindow"` form is a parse error.
 #
 # Usage: type-emoji.sh <text>
 
@@ -62,15 +64,18 @@ paste_ydotool_ctrl_v()     { ydotool key 29:1 47:1 47:0 29:0; }
 paste_ydotool_ctrl_shift() { ydotool key 29:1 42:1 47:1 47:0 42:0 29:0; }
 paste_ydotool_shift_ins()  { ydotool key 42:1 110:1 110:0 42:0; }
 
+# hyprctl exits 0 on some Lua errors, so match the "ok" reply, not $?.
 paste_sendshortcut() {
-  local chord=$1
-  hyprctl dispatch sendshortcut "${chord},activewindow" >/dev/null 2>&1
+  local mods=$1 key=$2
+  [[ $(hyprctl dispatch \
+    "hl.dsp.send_shortcut({ mods = \"$mods\", key = \"$key\", window = \"activewindow\" })" \
+    2>&1) == ok* ]]
 }
 
 do_paste() {
   if (( is_terminal )); then
     # kitty et al.
-    paste_sendshortcut "CTRL SHIFT,V" && return 0
+    paste_sendshortcut "CTRL SHIFT" "V" && return 0
     if command -v ydotool >/dev/null 2>&1 && [[ -S "$YDOTOOL_SOCKET" ]]; then
       sleep 0.05
       paste_ydotool_ctrl_shift 2>/dev/null && return 0
@@ -79,8 +84,8 @@ do_paste() {
   else
     # Discord / Electron / browsers / normal apps.
     # sendshortcut first — avoids Super+Ctrl+V bind re-entry while Super held.
-    paste_sendshortcut "CTRL,V" && return 0
-    paste_sendshortcut "SHIFT,Insert" && return 0
+    paste_sendshortcut "CTRL" "V" && return 0
+    paste_sendshortcut "SHIFT" "Insert" && return 0
     if command -v ydotool >/dev/null 2>&1 && [[ -S "$YDOTOOL_SOCKET" ]]; then
       # Wait for physical Super/Ctrl from the hotkey to drop, then paste.
       sleep 0.12
