@@ -28,13 +28,10 @@
       "Bash(wpctl:*)",
       "Bash(wc:*)",
       "Bash(go:*)",
-      "Bash(python3:*)",
-      "Bash(python:*)",
       "Bash(pip:*)",
       "Bash(npm:*)",
       "Bash(yarn:*)",
       "Bash(pnpm:*)",
-      "Bash(node:*)",
       "Bash(docker:*)",
       "Bash(podman:*)",
       "Bash(curl:*)",
@@ -62,17 +59,14 @@
       "Bash(cp:*)",
       "Bash(mv:*)",
       "Bash(touch:*)",
-      "Bash(chmod:*)",
       "Bash(tree:*)",
       "Bash(eza:*)",
       "Bash(rg:*)",
       "Bash(fd:*)",
       "Bash(fzf:*)",
-      "Bash(xargs:*)",
       "Bash(tee:*)",
       "Bash(diff:*)",
       "Bash(patch:*)",
-      "Bash(ssh:*)",
       "Bash(scp:*)",
       "Bash(rsync:*)",
       "Bash(kill:*)",
@@ -106,7 +100,6 @@
       "mcp__plugin_atlassian_atlassian__searchJiraIssuesUsingJql",
       "Bash(curl -s \"https://html.duckduckgo.com/html/?q=custom+AI+personality+layer+developer+tools+github\")",
       "Bash(source bin/activate)",
-      "Bash(python3 -c \":*)",
       "Bash(ls -lt ~/.claude/projects/-home-curator/*.jsonl)",
       "Bash(/usr/bin/ls -lt ~/.claude/projects/-home-curator/*.jsonl)",
       "Read(//tmp/**)",
@@ -275,12 +268,12 @@
     "filebridge@household": true,
     "frontend-design@claude-plugins-official": false,
     "gopls-lsp@claude-plugins-official": false,
-    "inter-session@inter-session": false,
     "ralph-loop@claude-plugins-official": false,
     "skill-creator@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
     "telegram@claude-plugins-official": false,
-    "typescript-lsp@claude-plugins-official": false
+    "typescript-lsp@claude-plugins-official": false,
+    "grok-cc@grok-plugin-claude-code": true
   },
   "extraKnownMarketplaces": {
     "anthropic-agent-skills": {
@@ -295,12 +288,6 @@
         "path": "/home/curator/.claude/marketplaces-local/household"
       }
     },
-    "inter-session": {
-      "source": {
-        "source": "directory",
-        "path": "/home/curator/workspace/ai/inter-session"
-      }
-    },
     "langmartai": {
       "source": {
         "source": "github",
@@ -312,12 +299,19 @@
         "source": "github",
         "repo": "openai/codex-plugin-cc"
       }
+    },
+    "grok-plugin-claude-code": {
+      "source": {
+        "source": "github",
+        "repo": "zachdunn/grok-plugin-claude-code"
+      }
     }
   },
   "effortLevel": "xhigh",
   "autoCompactWindow": 1000000,
   "tui": "fullscreen",
   "autoDreamEnabled": true,
+  "showThinkingSummaries": true,
   "skipDangerousModePermissionPrompt": true,
   "skipWorkflowUsageWarning": true,
   "theme": "dark-ansi",
@@ -325,5 +319,33 @@
   "teammateMode": "auto",
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
+  "autoMode": {
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: Not queryable here (no origin remote in this repo); assume private",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: Not queryable here (no origin remote in this repo)",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Source control**: The trusted repo only (no remotes configured) — no additional orgs configured",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: any file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material; preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar — includes credential files noted under this home directory such as .aws/credentials, .config/gcloud/credentials.db, .openclaw/secrets.json, .hermes/.env, and similar .env / secrets files",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment (hyphen/underscore/dot-delimited)",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: personal/hobby use (multi-project home directory: dotfiles, personal AI agents/household tooling, various small repos) — no single trusted project repo detected here",
+      "**Trusted repo**: This directory (/home/curator) has no tracked files and no git remotes configured — there is no trusted repo/remote to scope commits or pushes to; treat any git operations here as needing explicit confirmation",
+      "**Org-specific CLIs**: None configured",
+      "routine under curator/ prefix: not applicable — no org or namespace prefix evidenced"
+    ]
+  },
   "voiceEnabled": true
 }

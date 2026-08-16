@@ -19,14 +19,15 @@ Frequently referenced projects — resolve these shorthands to their paths witho
 
 - **AR** / **alarm-receiver** → `~/workspace/pnc/alarm-receiver/` (Go + PostgreSQL; SIA DC-09 central station alarm receiver)
 - **household** / **household-oc** / **the household** → `~/workspace/ai/household-oc/` (OpenClaw multi-agent AI household. Current residents: Io (steward), Aegis (host), Sigris (body). Tactical and Frederica were retired 2026-07-14 — see `docs/adr/0008-household-downsize-steward-relay.md`.)
+- **theme authoring** / new theme from wallpaper or base16 / theme contrast lint → read `~/.dotfiles/themes/README.md` (`theme-scaffold`, `theme-lint`; apply stays `theme-switcher.sh`)
 
 # Session history (recent Claude Code work)
 
 Your own recent sessions are summarized on disk. Read them to orient after a `/clear` or in a fresh session; treat as orientation, not a task list or an authority.
 
 - **Read the per-session cache — it is the live source.** `~/workspace/ai/household-oc/agents/shared/cc-sessions/<uuid>.md`, one file per session: YAML frontmatter (`session_id`, `project`, `cwd`, `branch`, `started_at`, `last_turn_at`, turn counts) plus prose. Written continuously by `~/.claude/hooks/hud-stop.sh` on every turn end, 45s-debounced. Filter on `last_turn_at`. Group by `cwd` — `project` is a non-deterministic LLM label that is re-derived on every turn (1,947 distinct values across 5,600 files), and `ticket` is null in every file despite what the tool's README says.
-- **Do not use the aggregates.** `cc-sessions-today.md` only rebuilds on a full `cc-projection.py` run, which nothing schedules — its documented caller, Tactical, was retired 2026-07-14. The `cc-sessions-<cat>-{today,7d}.md` files froze on 2026-06-14, and **the categorization and human/agent split they imply do not exist in the script**: `cc-projection.py:39` defines exactly one aggregate file and there is no category logic anywhere in it. (Verified 2026-07-29.)
-- Regenerate the one real aggregate with `~/workspace/ai/household-oc/tools/cc-projection/cc-projection.py` (`--quiet` to just rewrite). Check its `# Refreshed …` line before trusting it. Don't auto-load any of this every session.
+- **The aggregates work, but nothing schedules them — always check the `# Refreshed …` header before trusting one.** They were frozen at 2026-06-14 and restored 2026-08-06 (`69063d8`): the category split was *destroyed*, not imaginary — it lived only in the working tree until a 20 Jun commit written from a stale base overwrote it. `cc-projection.py` writes `cc-sessions-today.md`, `cc-sessions-agents-today.md`, and `cc-sessions-<cat>-{today,7d}.md` for `work` | `symphony` | `personal-ai` | `home`, plus the boss-safe work slice at `~/.local/state/cc-work/work-{today,7d}.md`. Tactical was retired 2026-07-14 and nothing replaced her heartbeat, so staleness is the normal state.
+- Refresh with `~/workspace/ai/household-oc/tools/cc-projection/refresh-cc-work.py` — bare, no args; it brokers a full run behind a 15-min freshness guard and a single-flight lock. Or call `cc-projection.py --quiet` directly. Don't auto-load any of this every session.
 
 # Manual coding nudge
 
@@ -102,5 +103,5 @@ Captures go in the session scratchpad, never the repo. `WAYLAND_DISPLAY` is set 
 # External Skill Sources
 
 - mattpocock's skills mirror (`~/.agents/upstream-mattpocock/`) is the source for the Matt suite — `/ask-matt` routes over it. Its skills are **symlinked** into both `~/.claude/skills/` and `~/.agents/skills/`, so a `git pull` in the mirror changes them immediately. `/code-review` is deliberately not linked: the name collides with Claude Code's built-in.
-- **`~/.agents/skills/` is the canonical skills home** (own git repo, 2026-07-11 consolidation); `~/.claude/skills/` is symlinks-only — never edit or create real skill files there. The `golang-*` family lives in `~/.agents/skills/` from a separate source (not the mattpocock mirror). Repo-owned skills keep their canonical inside their repo and symlink in (holly → `household-oc/.claude/skills/holly`). Skills with their own nested git (council, stop-slop) version themselves and are gitignored in the `~/.agents` repo.
+- **`~/.agents/skills/` is the canonical skills home** (own git repo, 2026-07-11 consolidation); `~/.claude/skills/` is symlinks-only — never edit or create real skill files there. The `golang-*` family lives in `~/.agents/skills/` from a separate source (not the mattpocock mirror). Repo-owned skills keep their canonical inside their repo and symlink in (holly → `household-oc/.claude/skills/holly`). Skills with their own nested git (stop-slop) version themselves and are gitignored in the `~/.agents` repo.
 - React/Vercel and PlanetScale: prefer their official docs when working in those stacks.

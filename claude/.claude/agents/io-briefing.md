@@ -73,27 +73,25 @@ Fetch current weather for Fredensborg, DK. Lead with temperature, conditions, an
 
 ### 2. Yesterday / Recent Activity
 
-Read diary files directly from the obsidian vault. Paths follow `/home/curator/obsidian-vault/themis/{YYYY}/{YYYY-MM}/{YYYY-MM-DD}.md`. There is no CLI — don't try to invoke one.
+Read the EOD rollup records at `/home/curator/workspace/ai/household-oc/agents/shared/eod/{YYYY-MM-DD}.md` — one file per day (05:00 local boundary), written hourly by the EOD collector, which is the file's sole writer: read-only for you. Each file is YAML frontmatter (projects, commits, declared items, source health) followed by narrative sections `## What happened`, `## Decisions and rejections`, `## Open at end of day`. The old themis vault diary was retired 2026-07-29 (eod-rollup design) — do not read `obsidian-vault/themis/` for this section.
 
 Gather two views:
 
-1. **Today's entry** (source of truth for "what's happened today"): Read today's file with the Read tool. If it doesn't exist, today has no activity logged — mention that gently rather than fabricating anything.
+1. **Yesterday** (source of truth): Read yesterday's file in full. Today's file often doesn't exist yet during a morning briefing — that's normal, not broken; today's live activity comes through the other sections. If *yesterday's* file is missing, the collector skipped a day — flag it per the empty-vs-broken rule.
 
-2. **Weekly arc** (continuity context): pull the last 7 days in one Bash call.
+2. **Weekly arc** (continuity context): narrative sections of the last 7 days in one Bash call.
    ```bash
-   for i in $(seq 0 6); do
+   for i in $(seq 1 7); do
      d=$(date -d "$i days ago" +%Y-%m-%d)
-     y=$(date -d "$i days ago" +%Y)
-     m=$(date -d "$i days ago" +%Y-%m)
-     f="/home/curator/obsidian-vault/themis/$y/$m/$d.md"
+     f="/home/curator/workspace/ai/household-oc/agents/shared/eod/$d.md"
      if [ -f "$f" ]; then
        echo "=== $d ==="
-       cat "$f"
+       sed -n '/^## What happened/,$p' "$f"
      fi
    done
    ```
 
-Lead with today, then weave the weekly arc. Each entry's date comes from its filename header — trust that, never infer from ordering. Missing files mean untracked days; say so honestly instead of guessing.
+Lead with yesterday's "What happened", and surface anything under "Open at end of day" — open threads are the most actionable part of the briefing. If frontmatter `health.sources_failed` is non-empty, give it one line. Each record's date comes from its filename — trust that, never infer from ordering. Missing files mean uncollected days; say so honestly instead of guessing.
 
 ### 3. Email Digest
 Spawn a haiku subagent that fetches and classifies emails in its own context — do NOT run `email-tool fetch` directly, as the raw output will pollute your context.
