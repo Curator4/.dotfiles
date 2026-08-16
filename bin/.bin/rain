@@ -7,13 +7,37 @@ is_running() {
     [[ -S "$SOCKET" ]] && echo '{"command": ["get_property", "pid"]}' | socat - "$SOCKET" &>/dev/null
 }
 
+spawn_mpv() {
+    rm -f "$SOCKET"
+    mpv --input-ipc-server="$SOCKET" --loop --no-video --really-quiet "$AUDIO" &
+    disown
+    for i in {1..20}; do
+        is_running && break
+        sleep 0.1
+    done
+}
+
+# Ask mpv what state it's actually in, rather than assuming.
+report_state() {
+    if ! is_running; then
+        echo "🌧️ rain not running"
+        return
+    fi
+    local paused vol
+    paused=$(echo '{"command": ["get_property", "pause"]}' | socat - "$SOCKET" 2>/dev/null | grep -o '"data":true')
+    vol=$(echo '{"command": ["get_property", "volume"]}' | socat - "$SOCKET" 2>/dev/null | grep -oP '"data":\K[0-9.]+')
+    if [[ -n "$paused" ]]; then
+        echo "🌧️ rain off · ${vol%%.*}%"
+    else
+        echo "🌧️ rain on · ${vol%%.*}%"
+    fi
+}
+
 start_rain() {
     if is_running; then
         echo "🌧️ rain already running"
     else
-        rm -f "$SOCKET"
-        mpv --input-ipc-server="$SOCKET" --loop --no-video --really-quiet "$AUDIO" &
-        disown
+        spawn_mpv
         echo "🌧️ rain started"
     fi
 }
@@ -30,10 +54,10 @@ stop_rain() {
 toggle_pause() {
     if is_running; then
         echo '{"command": ["cycle", "pause"]}' | socat - "$SOCKET" &>/dev/null
-        echo "🌧️ rain toggled"
     else
-        start_rain
+        spawn_mpv
     fi
+    report_state
 }
 
 set_volume() {
@@ -43,13 +67,7 @@ set_volume() {
         echo "{\"command\": [\"set_property\", \"volume\", $vol]}" | socat - "$SOCKET" &>/dev/null
         echo "🌧️ volume set to ${vol}%"
     else
-        rm -f "$SOCKET"
-        mpv --input-ipc-server="$SOCKET" --loop --no-video --really-quiet "$AUDIO" &
-        disown
-        for i in {1..20}; do
-            is_running && break
-            sleep 0.1
-        done
+        spawn_mpv
         echo "{\"command\": [\"set_property\", \"volume\", $vol]}" | socat - "$SOCKET" &>/dev/null
         echo "🌧️ rain started at ${vol}%"
     fi
@@ -58,23 +76,14 @@ set_volume() {
 get_volume() {
     if is_running; then
         local vol=$(echo '{"command": ["get_property", "volume"]}' | socat - "$SOCKET" 2>/dev/null | grep -oP '"data":\K[0-9.]+')
-        echo "🌧️ volume: ${vol}%"
+        echo "🌧️ volume: ${vol%%.*}%"
     else
         echo "🌧️ rain not running"
     fi
 }
 
 show_status() {
-    if is_running; then
-        paused=$(echo '{"command": ["get_property", "pause"]}' | socat - "$SOCKET" 2>/dev/null | grep -o '"data":true')
-        if [[ -n "$paused" ]]; then
-            echo "🌧️ rain paused"
-        else
-            echo "🌧️ rain playing"
-        fi
-    else
-        echo "🌧️ rain not running"
-    fi
+    report_state
 }
 
 case "${1:-toggle}" in
