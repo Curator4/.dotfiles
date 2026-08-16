@@ -1,0 +1,510 @@
+#!/usr/bin/env bash
+# Local Philips Hue control for the office group + theme-switcher hook.
+#
+# Config: ~/.config/hue/config.json
+#   { "bridge": "…", "username": "…", "group": "office anders",
+#     "theme_sync": true, "bri": 72, "sat_scale": 1.0 }
+#
+# Usage:
+#   hue pair [bridge-ip]     # press link button first; polls ~30s
+#   hue on | off | toggle
+#   hue status
+#   hue groups
+#   hue theme [theme-slug]   # push palette accent (default: current theme)
+#   hue color #RRGGBB [bri]
+#   hue set bri <0-254>
+set -euo pipefail
+
+CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/hue"
+CONFIG="$CONFIG_DIR/config.json"
+DEFAULT_GROUP="office anders"
+# Prefer the Bridge Pro on the desktop LAN; discovery may list other sites too.
+DEFAULT_BRIDGES=(
+    "10.200.201.189"
+    "192.168.50.181"
+    "192.168.50.139"
+)
+
+api() {
+    # api METHOD path [json-body]
+    local method="$1" path="$2" body="${3:-}"
+    local bridge user url
+    bridge=$(cfg bridge)
+    user=$(cfg username)
+    if [ -z "$bridge" ] || [ -z "$user" ]; then
+        echo "hue: not paired — run: hue pair" >&2
+        return 1
+    fi
+    url="https://${bridge}/api/${user}${path}"
+    if [ -n "$body" ]; then
+        curl -sk -m 5 -X "$method" "$url" \
+            -H 'Content-Type: application/json' \
+            -d "$body"
+    else
+        curl -sk -m 5 -X "$method" "$url"
+    fi
+}
+
+cfg() {
+    local key="$1" default="${2:-}"
+    if [ ! -f "$CONFIG" ]; then
+        printf '%s' "$default"
+        return
+    fi
+    local v
+    v=$(jq -r --arg k "$key" '.[$k] // empty' "$CONFIG" 2>/dev/null || true)
+    if [ -z "$v" ] || [ "$v" = "null" ]; then
+        printf '%s' "$default"
+    else
+        printf '%s' "$v"
+    fi
+}
+
+write_config() {
+    mkdir -p "$CONFIG_DIR"
+    local tmp
+    tmp=$(mktemp)
+    if [ -f "$CONFIG" ]; then
+        cat "$CONFIG" >"$tmp"
+    else
+        echo '{}' >"$tmp"
+    fi
+    local out
+    out=$(mktemp)
+    jq -n \
+        --slurpfile c "$tmp" \
+        --arg bridge "${1:-}" \
+        --arg username "${2:-}" \
+        --arg group "${3:-$DEFAULT_GROUP}" \
+        '
+        ($c[0] // {}) as $base
+        | $base
+        + (if $bridge != "" then {bridge: $bridge} else {} end)
+        + (if $username != "" then {username: $username} else {} end)
+        + {group: (if $group != "" then $group else ($base.group // "office anders") end)}
+        + (if $base.theme_sync == null then {theme_sync: true} else {} end)
+        + (if $base.bri == null then {bri: 72} else {} end)
+        + (if $base.sat_scale == null then {sat_scale: 1.0} else {} end)
+        + (if $base.only_if_on == null then {only_if_on: false} else {} end)
+        ' >"$out"
+    mv "$out" "$CONFIG"
+    rm -f "$tmp"
+    chmod 600 "$CONFIG"
+}
+
+resolve_group_id() {
+    local name id groups
+    name=$(cfg group "$DEFAULT_GROUP")
+    id=$(cfg group_id)
+    groups=$(api GET /groups) || return 1
+
+    # Prefer cached id if name still matches
+    if [ -n "$id" ] && [ "$id" != "null" ]; then
+        local cached_name
+        cached_name=$(echo "$groups" | jq -r --arg id "$id" '.[$id].name // empty')
+        if [ "$(echo "$cached_name" | tr '[:upper:]' '[:lower:]')" = "$(echo "$name" | tr '[:upper:]' '[:lower:]')" ]; then
+            printf '%s' "$id"
+            return 0
+        fi
+    fi
+
+    id=$(echo "$groups" | jq -r --arg n "$(echo "$name" | tr '[:upper:]' '[:lower:]')" '
+        to_entries
+        | map(select((.value.name | ascii_downcase) == $n))
+        | .[0].key // empty
+    ')
+    if [ -z "$id" ]; then
+        # substring match as fallback
+        id=$(echo "$groups" | jq -r --arg n "$(echo "$name" | tr '[:upper:]' '[:lower:]')" '
+            to_entries
+            | map(select((.value.name | ascii_downcase) | contains($n)))
+            | .[0].key // empty
+        ')
+    fi
+    if [ -z "$id" ]; then
+        echo "hue: group not found: $name" >&2
+        echo "hue: available groups:" >&2
+        echo "$groups" | jq -r 'to_entries[] | "  \(.key)\t\(.value.name)\t(\(.value.type))"' >&2
+        return 1
+    fi
+
+    # Cache id
+    local tmp
+    tmp=$(mktemp)
+    jq --arg id "$id" '.group_id = $id' "$CONFIG" >"$tmp" && mv "$tmp" "$CONFIG"
+    chmod 600 "$CONFIG"
+    printf '%s' "$id"
+}
+
+group_action() {
+    local body="$1"
+    local gid
+    gid=$(resolve_group_id) || return 1
+    api PUT "/groups/${gid}/action" "$body"
+}
+
+hex_to_hue_body() {
+    # args: #RRGGBB [bri] [sat_scale]
+    # Room-mood mapping: low bri, high sat. Near-gray sources stay neutral dim.
+    python3 - "$@" <<'PY'
+import colorsys, json, sys
+
+hexcol = sys.argv[1].lstrip("#")
+if len(hexcol) != 6:
+    sys.stderr.write(f"bad color: {sys.argv[1]}\n")
+    sys.exit(2)
+bri = int(sys.argv[2]) if len(sys.argv) > 2 and sys.argv[2] else 72
+sat_scale = float(sys.argv[3]) if len(sys.argv) > 3 and sys.argv[3] else 1.0
+bri = max(1, min(254, bri))
+sat_scale = max(0.05, min(1.2, sat_scale))
+
+r = int(hexcol[0:2], 16) / 255.0
+g = int(hexcol[2:4], 16) / 255.0
+b = int(hexcol[4:6], 16) / 255.0
+h, s, v = colorsys.rgb_to_hsv(r, g, b)
+
+# Hue API: hue 0-65535, sat 0-254, bri 0-254
+hue = int(h * 65535) % 65536
+
+if s < 0.12:
+    # Mono / frost cursor — dim cool white, don't invent a hue
+    sat = int(min(40, s * 254 * sat_scale))
+    bri_out = max(1, min(120, int(bri * 0.85)))
+else:
+    # Push chromatic colors toward vivid room light
+    s_boost = min(1.0, max(s, 0.72) * sat_scale)
+    sat = int(min(254, max(0, s_boost * 254)))
+    # Keep ambient low; slightly dimmer for high-value neon accents
+    v_factor = 0.75 + 0.25 * (1.0 - v)
+    bri_out = max(1, min(180, int(bri * v_factor)))
+
+print(json.dumps({"on": True, "bri": bri_out, "hue": hue, "sat": sat}))
+PY
+}
+
+theme_accent_hex() {
+    # Pick the most chromatic color from the theme (not the UI cursor, which
+    # is often near-white). Optional .hue.accent wins. Falls back to kitty.conf.
+    local theme_slug="${1:-}"
+    local theme_dir
+    if [ -z "$theme_slug" ]; then
+        if [ -f "$HOME/.config/.current-theme" ]; then
+            theme_slug=$(cat "$HOME/.config/.current-theme")
+        elif [ -L "$HOME/.config/current-theme" ]; then
+            theme_slug=$(basename "$(readlink -f "$HOME/.config/current-theme")")
+        else
+            echo "hue: no current theme; pass a slug" >&2
+            return 1
+        fi
+    fi
+    theme_dir="$HOME/.dotfiles/themes/$theme_slug"
+    if [ ! -d "$theme_dir" ]; then
+        echo "hue: theme not found: $theme_slug" >&2
+        return 1
+    fi
+
+    python3 - "$theme_dir" <<'PY'
+import json, re, sys
+from pathlib import Path
+
+theme_dir = Path(sys.argv[1])
+theme_json = theme_dir / "theme.json"
+kitty = theme_dir / "kitty.conf"
+candidates = []
+
+def add(hexcol, weight=1.0, label=""):
+    if not hexcol:
+        return
+    h = hexcol.strip().lstrip("#")
+    if len(h) != 6:
+        return
+    try:
+        r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+    except ValueError:
+        return
+    mx, mn = max(r, g, b), min(r, g, b)
+    # chroma: how far from gray; skip near-black
+    if mx < 40:
+        return
+    chroma = (mx - mn) / 255.0
+    value = mx / 255.0
+    # Prefer mid-bright colorful over pale pastels and pure neon white
+    score = chroma * (0.55 + 0.45 * min(value, 0.9)) * weight
+    candidates.append((score, chroma, f"#{h.upper()}", label))
+
+if theme_json.is_file():
+    data = json.loads(theme_json.read_text())
+    hue = data.get("hue") or {}
+    if isinstance(hue, dict) and hue.get("accent"):
+        print(hue["accent"].strip())
+        raise SystemExit(0)
+    pal = data.get("palette") or {}
+    add(pal.get("cursor"), 0.55, "cursor")
+    add(pal.get("border"), 0.9, "border")
+    colors = pal.get("colors") or {}
+    # Named ANSI slots — red/blue/cyan/magenta carry the theme vibe
+    prefer = {
+        "red": 1.15, "bright_red": 1.1,
+        "blue": 1.15, "bright_blue": 1.1,
+        "magenta": 1.1, "bright_magenta": 1.05,
+        "cyan": 1.05, "bright_cyan": 1.0,
+        "green": 1.05, "bright_green": 1.0,
+        "yellow": 0.95, "bright_yellow": 0.9,
+    }
+    for name, hexcol in colors.items():
+        add(hexcol, prefer.get(name, 0.85), name)
+
+if kitty.is_file():
+    text = kitty.read_text()
+    for m in re.finditer(r"^(cursor|color\d+)\s+(#[0-9a-fA-F]{6})", text, re.M):
+        key = m.group(1)
+        w = 0.55 if key == "cursor" else 1.0
+        # color1=red, color4=blue, color5=magenta, color6=cyan
+        if key in ("color1", "color9"):
+            w = 1.15
+        elif key in ("color4", "color12"):
+            w = 1.15
+        elif key in ("color5", "color13"):
+            w = 1.1
+        elif key in ("color6", "color14"):
+            w = 1.05
+        add(m.group(2), w, key)
+
+if not candidates:
+    sys.stderr.write("hue: no accent color in theme\n")
+    raise SystemExit(1)
+
+# If everything is gray (mono), use the lightest non-black as cool dim white
+candidates.sort(key=lambda x: x[0], reverse=True)
+best = candidates[0]
+if best[1] < 0.08:
+    # pure mono — still emit something dim-neutral
+    print(best[2])
+else:
+    print(best[2])
+PY
+}
+
+cmd_pair() {
+    local bridge="${1:-}"
+    local bridges=()
+    if [ -n "$bridge" ]; then
+        bridges=("$bridge")
+    else
+        bridges=("${DEFAULT_BRIDGES[@]}")
+        # discovery.meethue.com extras
+        local disc
+        disc=$(curl -sS -m 3 https://discovery.meethue.com/ 2>/dev/null || true)
+        if [ -n "$disc" ]; then
+            while IFS= read -r ip; do
+                [ -n "$ip" ] || continue
+                local seen=0
+                for b in "${bridges[@]}"; do
+                    [ "$b" = "$ip" ] && seen=1 && break
+                done
+                [ "$seen" -eq 0 ] && bridges+=("$ip")
+            done < <(echo "$disc" | jq -r '.[].internalipaddress // empty' 2>/dev/null)
+        fi
+    fi
+
+    echo "hue: press the link button on the bridge, then wait…"
+    echo "hue: trying: ${bridges[*]}"
+    local i bridge_ip resp user name
+    for i in $(seq 1 40); do
+        for bridge_ip in "${bridges[@]}"; do
+            resp=$(curl -sk -m 2 -X POST "https://${bridge_ip}/api" \
+                -H 'Content-Type: application/json' \
+                -d '{"devicetype":"aegis-desktop#hue"}' 2>/dev/null || true)
+            user=$(echo "$resp" | jq -r '.[0].success.username // empty' 2>/dev/null || true)
+            if [ -n "$user" ]; then
+                name=$(curl -sk -m 2 "https://${bridge_ip}/api/config" \
+                    | jq -r '.name // "Hue Bridge"' 2>/dev/null || echo "Hue Bridge")
+                write_config "$bridge_ip" "$user" "$DEFAULT_GROUP"
+                echo "hue: paired with $name @ $bridge_ip"
+                echo "hue: config -> $CONFIG"
+                # Resolve group now so we fail loud if name is wrong
+                if resolve_group_id >/dev/null; then
+                    echo "hue: group '$(cfg group)' -> id $(cfg group_id)"
+                else
+                    echo "hue: paired, but group '$(cfg group)' not on this bridge — try hue groups" >&2
+                fi
+                return 0
+            fi
+            # type 101 = button not pressed; anything else worth logging once
+            local err
+            err=$(echo "$resp" | jq -r '.[0].error.description // empty' 2>/dev/null || true)
+            if [ -n "$err" ] && [ "$err" != "link button not pressed" ] && [ "$i" -eq 1 ]; then
+                echo "hue: $bridge_ip: $err" >&2
+            fi
+        done
+        printf '.'
+        sleep 1
+    done
+    echo
+    echo "hue: timed out — press the round link button on the bridge and re-run: hue pair" >&2
+    return 1
+}
+
+cmd_groups() {
+    api GET /groups | jq -r 'to_entries[] | "\(.key)\t\(.value.name)\t\(.value.type)\tlights=\((.value.lights // []) | length)\ton=\(.value.state.any_on // .value.action.on // false)"'
+}
+
+cmd_status() {
+    local gid groups name any_on bri hue sat
+    gid=$(resolve_group_id) || return 1
+    groups=$(api GET /groups)
+    name=$(echo "$groups" | jq -r --arg id "$gid" '.[$id].name')
+    any_on=$(echo "$groups" | jq -r --arg id "$gid" '.[$id].state.any_on // .[$id].action.on')
+    bri=$(echo "$groups" | jq -r --arg id "$gid" '.[$id].action.bri // empty')
+    hue=$(echo "$groups" | jq -r --arg id "$gid" '.[$id].action.hue // empty')
+    sat=$(echo "$groups" | jq -r --arg id "$gid" '.[$id].action.sat // empty')
+    echo "bridge:  $(cfg bridge)"
+    echo "group:   $name (id $gid)"
+    echo "on:      $any_on"
+    echo "bri:     ${bri:-?}"
+    echo "hue/sat: ${hue:-?}/${sat:-?}"
+    echo "sync:    theme_sync=$(cfg theme_sync true) only_if_on=$(cfg only_if_on false)"
+}
+
+cmd_on()  { group_action '{"on":true}' | jq -c .; }
+cmd_off() { group_action '{"on":false}' | jq -c .; }
+
+cmd_toggle() {
+    local gid groups any_on
+    gid=$(resolve_group_id) || return 1
+    groups=$(api GET /groups)
+    any_on=$(echo "$groups" | jq -r --arg id "$gid" '.[$id].state.any_on // false')
+    if [ "$any_on" = "true" ]; then
+        cmd_off
+    else
+        cmd_on
+    fi
+}
+
+cmd_color() {
+    local hex="$1" bri="${2:-$(cfg bri 72)}"
+    local body
+    body=$(hex_to_hue_body "$hex" "$bri" "$(cfg sat_scale 1.0)")
+    group_action "$body" | jq -c .
+}
+
+cmd_bri() {
+    local bri="$1"
+    group_action "$(jq -n --argjson b "$bri" '{bri: $b}')" | jq -c .
+}
+
+cmd_theme() {
+    local slug="${1:-}"
+    local sync only_if_on hex body gid groups any_on
+
+    sync=$(cfg theme_sync true)
+    if [ "$sync" = "false" ]; then
+        echo "hue: theme_sync disabled in $CONFIG"
+        return 0
+    fi
+
+    # Optional: don't turn lights on just to recolor
+    only_if_on=$(cfg only_if_on false)
+    if [ "$only_if_on" = "true" ]; then
+        gid=$(resolve_group_id) || return 0
+        groups=$(api GET /groups 2>/dev/null) || return 0
+        any_on=$(echo "$groups" | jq -r --arg id "$gid" '.[$id].state.any_on // false')
+        if [ "$any_on" != "true" ]; then
+            echo "hue: group off — skip theme color (only_if_on)"
+            return 0
+        fi
+    fi
+
+    hex=$(theme_accent_hex "$slug") || return 1
+    if [ -z "$hex" ]; then
+        echo "hue: no accent color in theme" >&2
+        return 1
+    fi
+
+    # Per-theme overrides (e.g. calliope night-sky wants lower bri)
+    local theme_dir theme_json bri sat_scale
+    if [ -n "$slug" ]; then
+        theme_dir="$HOME/.dotfiles/themes/$slug"
+    elif [ -f "$HOME/.config/.current-theme" ]; then
+        theme_dir="$HOME/.dotfiles/themes/$(cat "$HOME/.config/.current-theme")"
+    else
+        theme_dir="$HOME/.config/current-theme"
+    fi
+    theme_json="$theme_dir/theme.json"
+    bri=$(cfg bri 72)
+    sat_scale=$(cfg sat_scale 1.0)
+    if [ -f "$theme_json" ]; then
+        local tb ts
+        tb=$(jq -r '.hue.bri // empty' "$theme_json" 2>/dev/null || true)
+        ts=$(jq -r '.hue.sat_scale // empty' "$theme_json" 2>/dev/null || true)
+        [ -n "$tb" ] && bri="$tb"
+        [ -n "$ts" ] && sat_scale="$ts"
+    fi
+
+    body=$(hex_to_hue_body "$hex" "$bri" "$sat_scale")
+    echo "hue: theme accent $hex (bri=$bri) -> $(cfg group "$DEFAULT_GROUP")"
+    group_action "$body" | jq -c .
+}
+
+cmd_theme_soft() {
+    # Best-effort for theme-switcher: never fail the parent apply.
+    if [ ! -f "$CONFIG" ]; then
+        return 0
+    fi
+    if [ "$(cfg theme_sync true)" = "false" ]; then
+        return 0
+    fi
+    cmd_theme "$@" 2>/dev/null || true
+}
+
+usage() {
+    cat <<EOF
+Usage: hue <command>
+
+  pair [ip]          Press bridge link button, then run (polls ~40s)
+  on | off | toggle  Power for group "$(cfg group "$DEFAULT_GROUP")"
+  status             Show group + bridge state
+  groups             List groups/rooms on the bridge
+  theme [slug]       Push current (or named) theme accent to the group
+  color #RRGGBB [bri]
+  bri <0-254>
+  config             Print config path + contents (username redacted)
+
+Config: $CONFIG
+EOF
+}
+
+cmd_config() {
+    echo "path: $CONFIG"
+    if [ -f "$CONFIG" ]; then
+        jq 'if .username then .username = (.username[:4] + "…") else . end' "$CONFIG"
+    else
+        echo "(missing — run hue pair)"
+    fi
+}
+
+main() {
+    local cmd="${1:-}"
+    shift || true
+    case "$cmd" in
+        pair)   cmd_pair "${1:-}" ;;
+        on)     cmd_on ;;
+        off)    cmd_off ;;
+        toggle) cmd_toggle ;;
+        status) cmd_status ;;
+        groups) cmd_groups ;;
+        theme)  cmd_theme "${1:-}" ;;
+        theme-soft) cmd_theme_soft "${1:-}" ;;
+        color)  cmd_color "${1:?hex}" "${2:-}" ;;
+        bri)    cmd_bri "${1:?0-254}" ;;
+        config) cmd_config ;;
+        ""|-h|--help|help) usage ;;
+        *)
+            echo "hue: unknown command: $cmd" >&2
+            usage >&2
+            exit 1
+            ;;
+    esac
+}
+
+main "$@"
