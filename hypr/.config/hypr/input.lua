@@ -4,6 +4,8 @@ hl.config({
         kb_layout  = "us",
         kb_variant = "",
         kb_model   = "",
+        -- Right Alt = Compose. æ: Compose a e · ø: Compose / o · å: Compose a a
+        kb_options = "compose:ralt",
         kb_rules   = "",
 
         follow_mouse = 1,

@@ -73,17 +73,27 @@ hl.bind(mod .. " + SHIFT + R", exec("~/.bin/record-region"))
 
 -- Utilities
 hl.bind(mod .. " + P", exec("hyprlock"))
-hl.bind(mod .. " + U", exec(p.ssh))
+-- Super+Y = quick capture (backlog/itinerary). Super+U family is the focus board:
+--   U        = add item (category picker, incl. new category)
+--   Shift+U  = toggle the panel
+--   Alt+U    = SSH (moved off Shift+U)
+-- Hue lights on Super+Shift+Y.
+hl.bind(mod .. " + U", exec("~/.config/hypr/scripts/hud-focus-add.sh"))
+hl.bind(mod .. " + SHIFT + U", exec("eww open --toggle hud"))
+hl.bind(mod .. " + ALT + U", exec(p.ssh))
 hl.bind(mod .. " + Y", exec("~/.config/hypr/scripts/hud-capture.sh"))
-hl.bind(mod .. " + SHIFT + Y", exec("eww open --toggle hud"))
+hl.bind(mod .. " + SHIFT + Y", exec("~/.bin/hue toggle"))
 -- Sit/stand toggle — declares the transition, HUD footer counts the block with
 -- away-from-desk time subtracted. Confirms with a short notification because the
 -- board is often closed when this is pressed.
 hl.bind(mod .. " + R", exec("posture"))
+-- Caffeine dose picker (coffee mug / Monster). Super+X is checks; this is the
+-- sibling event logger. Confirms with notify-send (active mg + quiet estimate).
+hl.bind(mod .. " + SHIFT + X", exec("~/.config/hypr/scripts/caffeine-menu.sh"))
 hl.bind(mod .. " + period", exec("~/.config/hypr/scripts/emoji-picker.sh"))
 hl.bind(mod .. " + B", exec("~/.config/waybar/scripts/bluetooth-menu.sh"))
--- Display warmth (hyprsunset) — manual override, auto-resets at next profile boundary.
--- Schedule lives in ~/.config/hypr/hyprsunset.conf.
+-- Display warmth (sunsetr) — steps active-period target via ~/.bin/sunset-step.
+-- Geo schedule lives in ~/.config/sunsetr/sunsetr.toml (systemctl --user sunsetr).
 hl.bind(mod .. " + G", exec("~/.bin/sunset-step warmer"))
 hl.bind(mod .. " + SHIFT + G", exec("~/.bin/sunset-step cooler"))
 
@@ -105,17 +115,20 @@ for i, theme in ipairs(themes) do
     hl.bind(mod .. " + ALT + " .. fkey, exec(themeApply .. " " .. theme))
 end
 
--- Laptop multimedia keys for volume and LCD brightness
-hl.bind("XF86AudioRaiseVolume", exec("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), LOCKED_EL)
-hl.bind("XF86AudioLowerVolume", exec("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), LOCKED_EL)
+-- Laptop multimedia keys for volume and LCD brightness.
+-- Volume snaps to multiples of 5 (see scripts/volume-snap.sh) so a volume that
+-- drifted off-grid (mixer UI, apps) re-aligns instead of staying at 47/52/….
+local volSnap = "~/.config/hypr/scripts/volume-snap.sh"
+hl.bind("XF86AudioRaiseVolume", exec(volSnap .. " up"), LOCKED_EL)
+hl.bind("XF86AudioLowerVolume", exec(volSnap .. " down"), LOCKED_EL)
 hl.bind("XF86AudioMute", exec("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), LOCKED_EL)
 hl.bind("XF86AudioMicMute", exec("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), LOCKED_EL)
 hl.bind("XF86MonBrightnessUp", exec("brightnessctl -e4 -n2 set 5%+"), LOCKED_EL)
 hl.bind("XF86MonBrightnessDown", exec("brightnessctl -e4 -n2 set 5%-"), LOCKED_EL)
 
 -- Volume control with arrow keys
-hl.bind(mod .. " + up", exec("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), LOCKED_EL)
-hl.bind(mod .. " + down", exec("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), LOCKED_EL)
+hl.bind(mod .. " + up", exec(volSnap .. " up"), LOCKED_EL)
+hl.bind(mod .. " + down", exec(volSnap .. " down"), LOCKED_EL)
 
 -- Media controls with playerctl
 hl.bind("XF86AudioNext", exec("playerctl next"), LOCKED)
