@@ -42,3 +42,5 @@ mako/.config/mako/config
 starship/.config/starship.toml
 nvim/.config/nvim/lua/config/colorscheme.lua
 rofi/.config/rofi/current.rasi
+cava/.config/cava/config
+kitty/.config/kitty/theme-font.conf
