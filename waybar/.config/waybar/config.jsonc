@@ -4,17 +4,9 @@
     "height": 26,
     "output": ["DP-2"],
 
-    "modules-left": ["custom/hud", "hyprland/workspaces", "custom/theme"],
+    "modules-left": ["hyprland/workspaces", "custom/theme"],
     "modules-center": ["clock"],
     "modules-right": ["custom/codexbar-claude", "custom/codexbar-codex", "custom/codexbar-grok", "custom/codexbar-openrouter", "custom/volume", "bluetooth", "custom/network", "custom/gpu", "custom/vram", "cpu", "memory", "disk"],
-
-    "custom/hud": {
-        "exec": "/home/curator/workspace/hud/hud count",
-        "interval": 5,
-        "format": " {}",
-        "on-click": "eww open --toggle hud",
-        "tooltip": false
-    },
 
     "custom/codexbar-codex": {
         "exec": "CODEXBAR_PROVIDERS=codex CODEXBAR_BAR_PROVIDER=codex $HOME/.config/waybar/scripts/codexbar.sh | jq -c '.text |= (gsub(\"🤖 ?\";\"\"))'",
@@ -24,7 +16,7 @@
         "signal": 8,
         "on-click": "$HOME/.config/waybar/scripts/codexbar-popup.py",
         "tooltip": true,
-        "max-length": 18
+        "max-length": 28
     },
 
     "custom/codexbar-claude": {
@@ -35,7 +27,7 @@
         "signal": 8,
         "on-click": "$HOME/.config/waybar/scripts/codexbar-popup.py",
         "tooltip": true,
-        "max-length": 18
+        "max-length": 28
     },
 
     "custom/codexbar-openrouter": {
@@ -56,37 +48,29 @@
         "signal": 8,
         "on-click": "$HOME/.config/waybar/scripts/codexbar-popup.py",
         "tooltip": true,
-        "max-length": 18
+        "max-length": 28
     },
 
     "hyprland/workspaces": {
         "on-click": "activate",
-        "format": "{icon}",
-        "format-icons": {
-            "default": "",
-            "1": "1",
-            "2": "2",
-            "3": "3",
-            "4": "4",
-            "5": "5",
-            "6": "6",
-            "7": "7",
-            "8": "8",
-            "9": "9",
-            "active": "󱓻"
-        },
+        "format": "{id}",
+        "sort-by": "number",
         "persistent-workspaces": {
             "1": [],
             "2": [],
             "3": [],
             "4": [],
-            "5": []
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": []
         }
     },
 
     "clock": {
-        "format": "{:%H:%M}",
-        "tooltip-format": "{:%A %eth %B W%V %Y}"
+        "format": "{:%a %d %b · %H:%M}",
+        "tooltip-format": "{:%A %d %B · W%V %Y}"
     },
 
     "custom/network": {

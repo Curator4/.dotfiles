@@ -534,17 +534,55 @@ echo "$merged" | jq -c \
         if w == null or w.usedPercent == null then null
         else (w.usedPercent | floor) end;
 
+    # Compact relative reset for the bar. Unit depends on the window kind:
+    #   short session (windowMinutes <= 12h) -> m / h
+    #   multi-day / weekly (windowMinutes >= 1d) -> d, falling back to h/m
+    #     when under 24h so a same-day weekly reset does not render as "0d"
+    #   unknown (e.g. Grok with null windowMinutes) -> unit by remaining time
+    def relative_reset(w):
+        if w == null or w.resetsAt == null then null
+        else (try (w.resetsAt | fromdateiso8601) catch null) as $ts
+             | if $ts == null then null
+               else ($ts - now) as $sec
+                    | if $sec <= 0 then "now"
+                      else (w.windowMinutes // 0) as $wm
+                           | if $wm > 0 and $wm <= 720 then
+                                 if $sec < 3600 then "\(($sec / 60 | floor))m"
+                                 else "\(($sec / 3600 | floor))h" end
+                             elif $wm >= 1440 then
+                                 if $sec >= 86400 then "\(($sec / 86400 | floor))d"
+                                 elif $sec < 3600 then "\(($sec / 60 | floor))m"
+                                 else "\(($sec / 3600 | floor))h" end
+                             else
+                                 if $sec >= 86400 then "\(($sec / 86400 | floor))d"
+                                 elif $sec < 3600 then "\(($sec / 60 | floor))m"
+                                 else "\(($sec / 3600 | floor))h" end
+                             end
+                      end
+               end
+        end;
+
+    # One bar chip for a usage window: "97%2h". Omits the clock when
+    # resetsAt is missing so percent-only providers stay compact.
+    def bar_window(w):
+        pct_or_null(w) as $p
+        | relative_reset(w) as $r
+        | if $p == null then empty
+          elif $r == null then "\($p)%"
+          else "\($p)%\($r)" end;
+
     # When the user has pinned a provider for the bar text, surface session
-    # and weekly inline ("3% • 12%"). Otherwise emit the global max%.
+    # and weekly inline with their reset clocks ("97%2h • 64%6d").
+    # Otherwise emit the global max%.
     def bar_text(entry):
         if entry == null or entry.error then "🤖 ⚠"
         else
-            [pct_or_null(entry.usage.primary),
-             pct_or_null(entry.usage.secondary)]
+            [bar_window(entry.usage.primary),
+             bar_window(entry.usage.secondary)]
             | map(select(. != null))
             | if length == 0 then "🤖 —"
-              elif length == 1 then "🤖 \(.[0])%"
-              else "🤖 \(.[0])% • \(.[1])%" end
+              elif length == 1 then "🤖 \(.[0])"
+              else "🤖 \(.[0]) • \(.[1])" end
         end;
 
     . as $all
