@@ -58,5 +58,11 @@
   "obsidian": {
     "cssTheme": "Minimal",
     "base": "obsidian"
+  },
+  "hue": {
+    "accent": "#84a0c6"
+  },
+  "font": {
+    "mono": "Hack Nerd Font"
   }
 }

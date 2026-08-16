@@ -59,5 +59,13 @@
   "obsidian": {
     "cssTheme": "Obsidianite",
     "base": "obsidian"
+  },
+  "hue": {
+    "accent": "#0A1638",
+    "bri": 38,
+    "sat_scale": 1.15
+  },
+  "font": {
+    "mono": "JetBrainsMono Nerd Font"
   }
 }

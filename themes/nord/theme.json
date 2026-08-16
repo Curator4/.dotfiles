@@ -56,5 +56,11 @@
   "obsidian": {
     "cssTheme": "Obsidian Nord",
     "base": "obsidian"
+  },
+  "hue": {
+    "accent": "#88c0d0"
+  },
+  "font": {
+    "mono": "Hack Nerd Font"
   }
 }

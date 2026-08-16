@@ -49,6 +49,10 @@ claude/        → ~/.claude/           (claude code config)
 
 ## theming
 
+**Authoring (new themes):** `theme-scaffold` + `theme-lint` — see
+[`themes/README.md`](themes/README.md). Apply path is still `theme-switcher.sh`
+only; scaffold never replaces the switcher.
+
 `theme-switcher.sh apply <name>` composes each theme in `themes/` onto the live
 config. it writes into the repo, because the stow symlinks mean the live config
 *is* the repo — so anything it writes is gitignored (see `.gitignore`) and does
@@ -56,8 +60,25 @@ not show up as churn:
 
 - **generated, untracked** — waybar `style.css`, `hyprlock.conf`,
   `hyprpaper.conf`, `theme-effects.conf`, mako `config`, `starship.toml`, nvim
-  `colorscheme.lua`. edits here are lost on the next switch. change
-  `themes/<name>/` or the shared structure in `theme-render.sh` instead.
+  `colorscheme.lua`, cava `config`, kitty `theme-font.conf`. edits here are
+  lost on the next switch. change `themes/<name>/` or the shared structure in
+  `theme-render.sh` / `theme-switcher.sh` instead.
+  Cava gradient = yellow → cyan → accent (`hue.accent` or blue). Optional mono
+  font via `"font": { "mono": "…" }` in `theme.json` (default Hack Nerd Font).
+- **client apps (outside stow, best-effort)** — rewritten from the same palette
+  on every apply:
+  - **Spotify** — `~/.config/spicetify/Themes/dotfiles/` (spicetify). One-time
+    after first Spotify launch: `spicetify backup apply`.
+  - **ncspot** — `[theme]` block in `~/.config/ncspot/config.toml` (other keys
+    preserved).
+  - **Discord** — Vencord QuickCSS or BetterDiscord `custom.css` when present;
+    otherwise `~/.config/discord-theme/theme.css`. One-time: install Vencord
+    (`yay -S vencord-installer-cli-bin && vencordinstallercli -install -branch stable`)
+    then re-apply the theme.
+  - **Firefox** — `chrome/userChrome.css` + `userContent.css` on the locked
+    default-release profile; enables
+    `toolkit.legacyUserProfileCustomizations.stylesheets` in `user.js`. Restart
+    Firefox after the first enable.
 - **tracked inputs** — everything under `themes/`, mako's `output.conf` and
   `*-categories.conf` fragments, the rofi `.rasi` palettes.
 - **indirection, not rewriting** — `kitty.conf` and `hyprland.conf` reference

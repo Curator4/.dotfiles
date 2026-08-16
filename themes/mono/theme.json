@@ -56,5 +56,11 @@
   "obsidian": {
     "cssTheme": "Minimal",
     "base": "obsidian"
+  },
+  "hue": {
+    "accent": "#C3C3C3"
+  },
+  "font": {
+    "mono": "GeistMono Nerd Font"
   }
 }

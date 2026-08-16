@@ -44,5 +44,8 @@
   "obsidian": {
     "cssTheme": "Obsidianite",
     "base": "obsidian"
+  },
+  "hue": {
+    "accent": "#10A37F"
   }
 }

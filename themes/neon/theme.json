@@ -56,5 +56,13 @@
   "obsidian": {
     "cssTheme": "Vauxhall",
     "base": "obsidian"
+  },
+  "hue": {
+    "accent": "#33B1F0",
+    "bri": 48,
+    "sat_scale": 0.95
+  },
+  "font": {
+    "mono": "JetBrainsMono Nerd Font"
   }
 }

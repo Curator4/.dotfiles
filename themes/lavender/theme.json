@@ -32,5 +32,11 @@
   "obsidian": {
     "cssTheme": "Royal Velvet",
     "base": "obsidian"
+  },
+  "hue": {
+    "accent": "#7B68EE"
+  },
+  "font": {
+    "mono": "Hack Nerd Font"
   }
 }

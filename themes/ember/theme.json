@@ -56,5 +56,11 @@
   "obsidian": {
     "cssTheme": "Obsidian gruvbox",
     "base": "obsidian"
+  },
+  "hue": {
+    "accent": "#D69A73"
+  },
+  "font": {
+    "mono": "MesloLGS Nerd Font"
   }
 }

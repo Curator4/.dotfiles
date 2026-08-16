@@ -57,5 +57,11 @@
   "obsidian": {
     "cssTheme": "Everforest",
     "base": "obsidian"
+  },
+  "hue": {
+    "accent": "#10A37F"
+  },
+  "font": {
+    "mono": "JetBrainsMono Nerd Font"
   }
 }

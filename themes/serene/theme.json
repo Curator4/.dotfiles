@@ -58,5 +58,11 @@
   "obsidian": {
     "cssTheme": "Catppuccin",
     "base": "moonstone"
+  },
+  "hue": {
+    "accent": "#8b9ad8"
+  },
+  "font": {
+    "mono": "CaskaydiaCove Nerd Font"
   }
 }
