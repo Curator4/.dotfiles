@@ -1,0 +1,142 @@
+#!/usr/bin/env bash
+# cache-reap — reclaim disk from caches that have no ceiling of their own.
+#
+# Every path this touches is named literally in the target list below. Nothing
+# is discovered, globbed, or walked. That is the safety property: adding a new
+# model directory, venv, or dataset next year cannot expose it to this script,
+# because the only way in is to be typed in here on purpose.
+#
+# Deliberately NOT targets:
+#   ~/.cache/huggingface/hub   model weights — re-pulling is an afternoon, not a cache miss
+#   ~/.local/share/voice-clone trained adapters and merges
+#   ~/.local/share/Steam       games
+#   ~/workspace/**/.venv       live service environments
+#   ~/.openclaw/agents         agent state
+#   ~/nas/**                   network mounts
+#
+#   cache-reap             clear everything
+#   cache-reap --dry-run   show what would be freed, touch nothing
+
+set -uo pipefail
+
+DRY=0
+case "${1:-}" in
+    "")           DRY=0 ;;
+    -n|--dry-run) DRY=1 ;;
+    -h|--help)    sed -n '2,20p' "$0" | sed 's/^# \?//'; exit 0 ;;
+    *)            printf 'cache-reap: unknown option %s\n' "$1" >&2; exit 2 ;;
+esac
+
+have()    { command -v "$1" >/dev/null 2>&1; }
+
+# du exits non-zero when it cannot descend into a subdirectory (root-owned
+# paths like /var/log/journal), but still prints a usable total. Under
+# `pipefail` that status would trip an `|| echo 0` fallback and emit a second
+# line, so read the value and ignore the exit code entirely.
+size_of() {
+    local n
+    [ -e "$1" ] || { printf 0; return; }
+    n=$(du -sb "$1" 2>/dev/null | cut -f1)
+    printf '%s' "${n:-0}"
+}
+human()   { numfmt --to=iec --suffix=B "${1:-0}" 2>/dev/null || printf '%sB' "${1:-0}"; }
+row()     { printf '  %-11s %9s   %s\n' "$1" "$2" "$3"; }
+
+TOTAL=0
+
+# reap <label> <path-to-measure> <command...>
+#
+# Reports the measured before/after delta rather than the directory's starting
+# size: some targets shrink instead of emptying (paccache keeps one version,
+# journalctl vacuums to a floor), and quoting the pre-size for those overstates
+# what was actually reclaimed.
+reap() {
+    local label="$1" path="$2"; shift 2
+    local before after freed err
+
+    before=$(size_of "$path")
+
+    if [ "$before" -lt 1048576 ]; then
+        row "$label" "-" "already clear"
+        return
+    fi
+
+    if [ "$DRY" -eq 1 ]; then
+        TOTAL=$(( TOTAL + before ))
+        row "$label" "$(human "$before")" "at most"
+        return
+    fi
+
+    if err=$("$@" 2>&1 >/dev/null); then
+        after=$(size_of "$path")
+        freed=$(( before > after ? before - after : 0 ))
+        TOTAL=$(( TOTAL + freed ))
+        if [ "$freed" -lt 1048576 ]; then
+            row "$label" "-" "nothing to reclaim"
+        else
+            row "$label" "$(human "$freed")" "cleared"
+        fi
+    else
+        row "$label" "-" "FAILED: $(printf '%s' "$err" | tail -1 | cut -c1-60)"
+    fi
+}
+
+df_pct()  { df --output=pcent / | tail -1 | tr -dc '0-9'; }
+df_avail(){ df -h --output=avail / | tail -1 | tr -d ' '; }
+
+BEFORE_PCT=$(df_pct)
+BEFORE_AVAIL=$(df_avail)
+
+if [ "$DRY" -eq 1 ]; then
+    printf '\ncache-reap (dry run) — root %s%% full, %s free\n\n' "$BEFORE_PCT" "$BEFORE_AVAIL"
+else
+    printf '\ncache-reap — root %s%% full, %s free\n\n' "$BEFORE_PCT" "$BEFORE_AVAIL"
+fi
+
+# --- user-owned caches, no privileges needed ------------------------------
+
+if have go; then
+    reap go-mod   "$(go env GOMODCACHE 2>/dev/null || echo /nonexistent)" go clean -modcache
+    reap go-build "$(go env GOCACHE    2>/dev/null || echo /nonexistent)" go clean -cache
+fi
+have uv   && reap uv   "$HOME/.cache/uv"   uv cache clean
+have npm  && reap npm  "$HOME/.npm/_cacache" npm cache clean --force
+# `yay -Sc` also runs `pacman -Sc`, so it prunes /var/cache/pacman/pkg as a side
+# effect. The pacman target below will correctly report nothing left to reclaim.
+have yay  && reap yay  "$HOME/.cache/yay"  yay -Sc --noconfirm
+
+reap goimports "$HOME/.cache/goimports"      rm -rf "$HOME/.cache/goimports"
+reap spotify   "$HOME/.cache/spotify"        rm -rf "$HOME/.cache/spotify"
+reap codex     "$HOME/.cache/codex-runtimes" rm -rf "$HOME/.cache/codex-runtimes"
+
+# --- needs root; attempted only if sudo is already unlocked ----------------
+# journald stores user journals under /var/log/journal alongside the system
+# ones, so there is no unprivileged half to split out here.
+
+NEEDS_ROOT=()
+
+if sudo -n true 2>/dev/null; then
+    have paccache && reap pacman "/var/cache/pacman/pkg" sudo -n paccache -rk1
+    reap journal-s "/var/log/journal" sudo -n journalctl --vacuum-size=200M
+else
+    pac=$(size_of /var/cache/pacman/pkg)
+    jrn=$(size_of /var/log/journal)
+    [ "${pac:-0}" -gt 1048576 ] && { row pacman    "$(human "$pac")" "needs sudo"; NEEDS_ROOT+=("sudo paccache -rk1"); }
+    [ "${jrn:-0}" -gt 1048576 ] && { row journal-s "$(human "$jrn")" "needs sudo"; NEEDS_ROOT+=("sudo journalctl --vacuum-size=200M"); }
+fi
+
+# --- report ---------------------------------------------------------------
+
+printf '\n'
+if [ "$DRY" -eq 1 ]; then
+    printf '  reclaimable: up to %s\n' "$(human "$TOTAL")"
+else
+    printf '  root now %s%% full, %s free (was %s%%, %s)\n' \
+        "$(df_pct)" "$(df_avail)" "$BEFORE_PCT" "$BEFORE_AVAIL"
+fi
+
+if [ "${#NEEDS_ROOT[@]}" -gt 0 ]; then
+    printf '\n  not attempted (no cached sudo credential):\n'
+    for c in "${NEEDS_ROOT[@]}"; do printf '    %s\n' "$c"; done
+fi
+printf '\n'

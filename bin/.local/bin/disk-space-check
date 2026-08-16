@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Warn via mako when the root filesystem is running low on space.
+# Threshold is overridable for testing: DISK_WARN_THRESHOLD=10 disk-space-check
+threshold=${DISK_WARN_THRESHOLD:-90}
+
+use=$(df --output=pcent / | tail -1 | tr -dc '0-9')
+if [ "$use" -ge "$threshold" ]; then
+    avail=$(df -h --output=avail / | tail -1 | tr -d ' ')
+    hint=""
+    command -v cache-reap >/dev/null 2>&1 && hint=$'\nrun <tt>cache-reap</tt> to clear rebuildable caches'
+    notify-send -u critical "Disk space low" "Root filesystem ${use}% full — ${avail} free${hint}"
+fi
