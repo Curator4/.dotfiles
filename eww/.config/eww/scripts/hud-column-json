@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# Per-column feed for the focus board: left|right → JSON array of rows for
+# eww's for-loop. Each row carries pre-painted Pango markup (project colour +
+# spinner frame) plus click metadata:
+#   item=true  + i     → left-click focus-done, right-click focus-remove
+#   header=true + project → right-click opens hud-focus-add under that project
+# Decorative rows (subs, notes, cont, gaps) have both flags false.
+#
+# Rides the same ~3s board.json cache as the TODAY strip; polls fast so the
+# braille spinner animates. `hud board` stamps 1-based item indices left-then-
+# right so a click always hits the row it was drawn on.
+zone="${1:-left}"
+cache="$HOME/.local/state/hud/board.json"
+hud=/home/curator/workspace/hud/hud
+
+if [ ! -f "$cache" ] || [ "$(( $(date +%s) - $(stat -c %Y "$cache" 2>/dev/null || echo 0) ))" -ge 3 ]; then
+  # Left and right poll in parallel every 150ms — flock so only one writes.
+  (
+    flock -n 9 || exit 0
+    "$hud" board >"$cache.tmp" 2>/dev/null && mv "$cache.tmp" "$cache"
+    find "$HOME/.local/state/hud/active" -type f -mtime +1 -delete 2>/dev/null
+  ) 9>"${cache}.lock"
+fi
+
+frames=(⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏)
+sp="${frames[$(( ($(date +%s%N) / 100000000) % 10 ))]}"
+
+jq -c --arg z "$zone" --arg sp "$sp" '
+  # One span carrying both attributes; no span at all when neither applies.
+  def paint($c; $dim; $s):
+    ((if $c == "" then "" else " foreground=\"" + $c + "\"" end)
+     + (if $dim then " alpha=\"55%\"" else "" end)) as $attrs
+    | if $attrs == "" then $s else "<span" + $attrs + ">" + $s + "</span>" end;
+  def dot:  if .working then $sp elif .done then "✓" else "○" end;
+  def live: if .working then $sp else "·" end;
+  def markup:
+    (.color // "") as $c |
+    if   .kind == "blank"      then paint(""; false; "<span size=\"50%\"> </span>")
+    elif .kind == "gap"        then paint(""; false; "<span size=\"10%\"> </span>")
+    elif .kind == "header"     then paint($c; false;        (.text|@html))
+    elif .kind == "cont"       then paint($c; .dim // false; (.text|@html))
+    elif .kind == "sub"        then paint($c; false; "    └ " + live + " " + (.text|@html))
+    elif .kind == "note"       then paint($c; true;  "    └ " + (.badge|@html) + " · " + (.text|@html))
+    elif .kind == "alsoactive" then paint($c; false; live + "  " + (.text|@html))
+    else paint($c; false; dot + "  " + (.text|@html)
+                          + (if .badge then "   · " + (.badge|@html) else "" end))
+    end;
+  [.[$z][]? | {
+    markup: markup,
+    item:   (.kind == "item" and (.i // 0) > 0),
+    header: (.kind == "header" and (.project // "") != ""),
+    i:      (.i // 0),
+    project:(.project // "")
+  }]
+' "$cache" 2>/dev/null || echo "[]"

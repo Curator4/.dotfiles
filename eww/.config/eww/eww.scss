@@ -1,4 +1,21 @@
 // eww uses GTK3 CSS — no @keyframes, no text-transform, no auto margins
+//
+// Palette tokens come from theme-render.sh → ~/.config/eww/theme-colors.scss
+// (rewritten on every theme switch). Defaults below match the old hardcoded
+// Tokyo-ish blue so a missing generated file still paints something usable.
+@import "theme-colors";
+
+$hud-bg: rgba(10, 10, 18, 0.92) !default;
+$hud-border: rgba(122, 162, 247, 0.15) !default;
+$hud-fg: #c0c8d8 !default;
+$hud-muted: #565e73 !default;
+$hud-footer-border: rgba(122, 162, 247, 0.1) !default;
+$hud-today-header: #e0af68 !default;
+$hud-today-item: #d8c8b8 !default;
+$hud-today-done: #6a7285 !default;
+$hud-caffeine: rgba(224, 175, 104, 0.78) !default;
+$hud-accent: #7aa2f7 !default;
+$hud-font: "Hack Nerd Font" !default;
 
 window {
   background-color: transparent;
@@ -44,14 +61,14 @@ window {
 .voice-status {
   color: #5a6378;
   font-size: 13px;
-  font-family: "Hack Nerd Font";
+  font-family: $hud-font;
   margin-top: 8px;
 }
 
 .voice-name {
   color: #7aa2f7;
   font-size: 15px;
-  font-family: "Hack Nerd Font";
+  font-family: $hud-font;
   font-weight: bold;
   margin-top: 4px;
 }
@@ -66,7 +83,7 @@ window {
 .vibe-name {
   color: #7aa2f7;
   font-size: 16px;
-  font-family: "Hack Nerd Font";
+  font-family: $hud-font;
   font-weight: bold;
   font-style: italic;
   margin-top: 6px;
@@ -87,7 +104,7 @@ window {
 .dash-label {
   color: #5a6378;
   font-size: 12px;
-  font-family: "Hack Nerd Font";
+  font-family: $hud-font;
   margin-right: 12px;
   min-width: 60px;
 }
@@ -95,7 +112,7 @@ window {
 .dash-value {
   color: #c0c8d8;
   font-size: 14px;
-  font-family: "Hack Nerd Font";
+  font-family: $hud-font;
   font-weight: bold;
 }
 
@@ -111,7 +128,7 @@ window {
 }
 
 .timer-time {
-  font-family: "Hack Nerd Font";
+  font-family: $hud-font;
   font-weight: bold;
   font-size: 56px;
   color: #c0c8d8;
@@ -119,7 +136,7 @@ window {
 }
 
 .timer-msg {
-  font-family: "Hack Nerd Font";
+  font-family: $hud-font;
   font-size: 24px;
   color: #c0c8d8;
   font-style: italic;
@@ -180,17 +197,18 @@ window {
 }
 
 // ── Household HUD — attention board ──────────────────────
+// Colours track the desktop theme via $hud-* tokens (theme-colors.scss).
 .hud-panel {
-  background-color: rgba(10, 10, 18, 0.92);
+  background-color: $hud-bg;
   border-radius: 12px;
-  border: 1px solid rgba(122, 162, 247, 0.15);
+  border: 1px solid $hud-border;
   padding: 16px 22px;
   margin: 5px;
 }
 
 .hud-body {
-  color: #c0c8d8;
-  font-family: "Hack Nerd Font";
+  color: $hud-fg;
+  font-family: $hud-font;
   font-size: 15px;
 }
 
@@ -202,51 +220,62 @@ window {
 // warm tint so it reads as a different surface from the project-coloured
 // focus zones; done items dim out but hold their slot until the day rolls.
 .hud-today {
-  border-bottom: 1px solid rgba(122, 162, 247, 0.15);
+  border-bottom: 1px solid $hud-border;
   padding-bottom: 10px;
   margin: 0 4px 2px 4px;
 }
 
 .today-header {
-  color: #e0af68;
-  font-family: "Hack Nerd Font";
+  color: $hud-today-header;
+  font-family: $hud-font;
   font-size: 12px;
   margin-bottom: 4px;
 }
 
 .today-item {
-  color: #d8c8b8;
-  font-family: "Hack Nerd Font";
+  color: $hud-today-item;
+  font-family: $hud-font;
   font-size: 15px;
 }
 
 .today-item.done {
-  color: #6a7285;
+  color: $hud-today-done;
 }
 
 // No per-zone colour. The columns are packed by height, so either can hold any
 // project: the zones stay on .hud-body's neutral and every line carries its own
 // tint from hud-board-render, which `hud board` resolves per project.
 
-// Posture footer — sit/stand time, away-from-desk subtracted. Bottom right,
-// smaller and dimmer than anything above it: this is instrumentation the
-// operator glances at, not work they've committed to, and it has to read that
-// way at a glance. Past the nudge threshold `hud posture render` wraps the line
-// in an amber span, which overrides this colour — that state change is the
-// entire ambient tier of the nudge ladder, so the resting style stays quiet
-// enough for the amber to register.
+// Footer instruments — checks left, caffeine + posture right. Smaller and
+// dimmer than anything above: instrumentation, not agenda. Past their own
+// thresholds, render commands wrap lines in amber/red markup that overrides
+// the resting colour — so resting styles stay quiet enough for that change
+// to register.
 .hud-footer {
-  border-top: 1px solid rgba(122, 162, 247, 0.1);
+  border-top: 1px solid $hud-footer-border;
   padding-top: 8px;
   margin: 2px 4px 0 4px;
 }
 
-// Both footer lines share the posture line's weight. They're the same tier of
-// signal — instrumentation under the board — and the checks line earns its
-// colour from `hud checks render`'s markup, not from here.
-.posture-line,
-.checks-line {
-  color: #565e73;
-  font-family: "Hack Nerd Font";
+.checks-line,
+.posture-line {
+  color: $hud-muted;
+  font-family: $hud-font;
+  font-size: 12px;
+}
+
+// Caffeine is deliberately warmer and a hair larger than posture so the two
+// right-side instruments don't read as one continuous number stream.
+.caffeine-line {
+  color: $hud-caffeine;
+  font-family: $hud-font;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+// Dim pipe between caffeine and posture — a spatial break, not another metric.
+.instrument-sep {
+  color: $hud-footer-border;
+  font-family: $hud-font;
   font-size: 12px;
 }

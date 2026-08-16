@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Footer line for the HUD panel: today's caffeine total, estimated active mg
+# (5h half-life), and quiet-after clock. Output is Pango markup — `hud caffeine
+# render` paints the line amber once the soft daily cap is crossed. Empty when
+# nothing is logged; the widget hides.
+#
+# Same shape as hud-posture-render: no cache, small log read, 2s poll is enough
+# that Super+Shift+X feels connected if the menu also pushes eww update.
+exec /home/curator/workspace/hud/hud caffeine render 2>/dev/null

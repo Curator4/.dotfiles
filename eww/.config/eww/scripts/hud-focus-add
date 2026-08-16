@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Panel header right-click → same add flow as Super+U, pre-seeded with the
+# clicked project's slug so the category picker is skipped.
+exec ~/.config/hypr/scripts/hud-focus-add.sh "$@"

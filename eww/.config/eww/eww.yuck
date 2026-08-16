@@ -145,9 +145,15 @@
 ; Project groups packed across two columns by height (`hud board` picks the
 ; break) — your FOCUS, with live Claude Code activity painted on as an animated
 ; spinner + drift badges. Every item lives under its project; reading order is
-; work, then live projects by recency, then declared-but-idle. Each zone is fed
-; by hud-board-render <zone>, polled fast so the spinner animates. (backlog
-; zone exists in `hud board` but is off the panel for now.)
+; work, then declared projects in focus.md order, then auto-revealed ones.
+; Each zone is a for-loop of rows from hud-column-json (polled fast so the
+; spinner animates). (backlog zone exists in `hud board` but is off the panel.)
+;
+; Focus clicks (same address scheme as TODAY — 1-based index left-then-right):
+;   left-click item  → focus-done   (archive + drop)
+;   right-click item → focus-remove (drop, no archive)
+;   right-click header → rofi free-text → focus-add under that project
+; eww has no modifier-click handlers, so right-click stands in for ctrl-click.
 ;
 ; TODAY strip: the council's day plan (itinerary zone), one clickable row per
 ; item — click flips it via `hud itinerary-toggle <n>` and drops the board cache
@@ -156,7 +162,8 @@
 ; that undo can live. The conversational surfaces keep the idempotent `done`.
 ;
 ; Footer row, below the columns and deliberately unlike a focus item — checks
-; left, posture right, both small and dim until they have a reason not to be.
+; left, caffeine + posture right, all small and dim until they have a reason
+; not to be.
 ;
 ; Checks: what's still due on the routine registry, named one item at a time
 ; (`hud checks render`). The full list stays behind Super+X, which is good at
@@ -165,22 +172,42 @@
 ; renders identically every morning is furniture by day three, which is how the
 ; pull-only menu failed. Click opens the same rofi ack menu the keybind does.
 ;
+; Caffeine: today's total mg, estimated active mg (5h half-life), quiet-after
+; clock. Sits next to posture as the other body instrument. `hud caffeine
+; render` paints amber past the soft daily cap. Click opens the same rofi
+; picker Super+Shift+X runs.
+;
 ; Posture: declared sit/stand time with away-from-desk subtracted (the AFK
 ; stream from ActivityWatch). Instrumentation, not agenda. `hud posture render`
 ; paints it amber past the nudge threshold. Click flips sit/stand — the same
 ; `hud posture toggle` Super+R runs, so the footer you're already reading when
 ; the nudge lands is somewhere you can answer it.
 ; ═════════════════════════════════════════════════════════
-(defpoll board_left    :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render left`)
-(defpoll board_right   :interval "150ms" :initial "…" `~/.config/eww/scripts/hud-board-render right`)
-(defpoll board_today   :interval "2s"    :initial "[]" `~/.config/eww/scripts/hud-today-json`)
-(defpoll board_posture :interval "2s"    :initial ""   `~/.config/eww/scripts/hud-posture-render`)
+(defpoll board_left     :interval "150ms" :initial "[]" `~/.config/eww/scripts/hud-column-json left`)
+(defpoll board_right    :interval "150ms" :initial "[]" `~/.config/eww/scripts/hud-column-json right`)
+(defpoll board_today    :interval "2s"    :initial "[]" `~/.config/eww/scripts/hud-today-json`)
+(defpoll board_caffeine :interval "2s"    :initial ""   `~/.config/eww/scripts/hud-caffeine-render`)
+(defpoll board_posture  :interval "2s"    :initial ""   `~/.config/eww/scripts/hud-posture-render`)
 ; Slow: this one shells out to python3, and a routine item's state moves in hours.
-(defpoll board_checks  :interval "30s"   :initial ""   `~/.config/eww/scripts/hud-checks-render`)
+(defpoll board_checks   :interval "30s"   :initial ""   `~/.config/eww/scripts/hud-checks-render`)
 
-(defwidget hud-zone [class body]
+; One column of the focus board: per-row eventboxes so items and headers can
+; take clicks. Markup is pre-painted (project colour + spinner) by the poll
+; script; non-action rows still sit in an eventbox so spacing matches, with a
+; no-op shell and the default cursor.
+(defwidget hud-zone [class rows]
   (box :class "hud-zone ${class}" :orientation "v" :space-evenly false :hexpand true :valign "start"
-    (label :class "hud-body" :markup body :halign "start" :wrap true)))
+    (for row in rows
+      (eventbox :cursor {row.item || row.header ? "pointer" : "default"}
+                :onclick {row.item ?
+                  "/home/curator/workspace/hud/hud focus-done ${row.i} >/dev/null 2>&1; rm -f ~/.local/state/hud/board.json &"
+                  : "true"}
+                :onrightclick {row.item ?
+                  "/home/curator/workspace/hud/hud focus-remove ${row.i} >/dev/null 2>&1; rm -f ~/.local/state/hud/board.json &"
+                  : row.header ?
+                  "~/.config/eww/scripts/hud-focus-add ${row.project} &"
+                  : "true"}
+        (label :class "hud-body" :markup {row.markup} :halign "start" :wrap false)))))
 
 (defwidget hud-today []
   (box :class "hud-today" :orientation "v" :space-evenly false
@@ -195,24 +222,32 @@
 
 (defwidget hud-footer []
   (box :class "hud-footer" :orientation "h" :space-evenly false
-       :visible {board_checks != "" || board_posture != ""}
+       :visible {board_checks != "" || board_caffeine != "" || board_posture != ""}
     (eventbox :cursor "pointer" :hexpand true :halign "start"
               :visible {board_checks != ""}
               :onclick "/home/curator/workspace/ai/household-oc/tools/checks/checks-menu.sh &"
       (label :class "checks-line" :markup board_checks :halign "start"))
-    (eventbox :cursor "pointer" :hexpand true :halign "end"
-              :visible {board_posture != ""}
-              :onclick "/home/curator/workspace/hud/hud posture toggle >/dev/null 2>&1 &"
-      (label :class "posture-line" :markup board_posture :halign "end"))))
+    (box :orientation "h" :space-evenly false :spacing 10
+         :hexpand true :halign "end"
+      (eventbox :cursor "pointer"
+                :visible {board_caffeine != ""}
+                :onclick "~/.config/hypr/scripts/caffeine-menu.sh &"
+        (label :class "caffeine-line" :markup board_caffeine :halign "end"))
+      (label :class "instrument-sep"
+             :visible {board_caffeine != "" && board_posture != ""}
+             :text "│")
+      (eventbox :cursor "pointer"
+                :visible {board_posture != ""}
+                :onclick "/home/curator/workspace/hud/hud posture toggle >/dev/null 2>&1 &"
+        (label :class "posture-line" :markup board_posture :halign "end")))))
 
 (defwidget hud-panel []
   (box :class "hud-panel" :orientation "v" :space-evenly false :spacing 10
     (hud-today)
     (box :orientation "h" :space-evenly true :spacing 40
-      (hud-zone :class "zone-left"  :body board_left)
-      (hud-zone :class "zone-right" :body board_right))
+      (hud-zone :class "zone-left"  :rows board_left)
+      (hud-zone :class "zone-right" :rows board_right))
     (hud-footer)))
-
 (defwindow hud
   :monitor "DP-4"
   :geometry (geometry :x "0px" :y "0px" :width "1440px" :anchor "top center")
