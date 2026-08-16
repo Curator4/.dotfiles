@@ -1,17 +1,41 @@
 #!/usr/bin/env bash
-# Step hyprsunset temperature warmer or cooler.
+# Step sunsetr temperature warmer or cooler (active period target).
+# Uses `sunsetr set current_temp±=` so Super+G works without knowing day/night.
+
+set -euo pipefail
 
 STEP=500
 MIN=2500
 MAX=6500
 
-current=$(hyprctl hyprsunset temperature)
+usage() {
+    echo "usage: sunset-step warmer|cooler" >&2
+    exit 1
+}
+
+[[ $# -eq 1 ]] || usage
+
+current=$(sunsetr status --json 2>/dev/null \
+    | jq -er '.current_temp') || {
+    echo "sunset-step: sunsetr not running or status unavailable" >&2
+    exit 1
+}
 
 case "$1" in
     warmer) new=$((current - STEP)); (( new < MIN )) && new=$MIN ;;
     cooler) new=$((current + STEP)); (( new > MAX )) && new=$MAX ;;
-    *) echo "usage: sunset-step warmer|cooler" >&2; exit 1 ;;
+    *) usage ;;
 esac
 
-hyprctl hyprsunset temperature "$new" >/dev/null
-notify-send -t 1000 -h "string:x-canonical-private-synchronous:sunset" "Sunset" "${new}K"
+if (( new == current )); then
+    notify-send -t 1000 \
+        -h "string:x-canonical-private-synchronous:sunset" \
+        "Sunset" "${current}K (limit)"
+    exit 0
+fi
+
+# Absolute set via current_temp alias → day_temp / night_temp / static_temp
+sunsetr set "current_temp=${new}" >/dev/null
+notify-send -t 1000 \
+    -h "string:x-canonical-private-synchronous:sunset" \
+    "Sunset" "${new}K"
