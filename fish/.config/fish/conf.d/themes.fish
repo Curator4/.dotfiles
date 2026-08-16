@@ -47,8 +47,11 @@ function _apply-kitty-theme -d "Reskin the active kitty window, its hyprland bor
             kitty @ --to "$KITTY_LISTEN_ON" set-colors --configured $kitty_conf 2>/dev/null
         end
 
+        # The config is Lua (hyprland.lua), so `hyprctl dispatch` evaluates its
+        # argument as Lua — the old `setprop "pid:N" prop value` form is a parse
+        # error that fails silently into the &>/dev/null below.
         if test -n "$KITTY_PID"; and test -n "$border"
-            hyprctl dispatch setprop "pid:$KITTY_PID" active_border_color "$border" &>/dev/null
+            hyprctl dispatch "hl.dsp.window.set_prop({ window = \"pid:$KITTY_PID\", prop = \"active_border_color\", value = \"$border\" })" &>/dev/null
         end
     end
 
@@ -81,3 +84,15 @@ function theme -d "Apply a full system theme"
     ~/.dotfiles/bin/.bin/theme-switcher.sh apply $argv[1]
 end
 complete -c theme -f -a "(command ls ~/.dotfiles/themes)"
+
+# Philips Hue — office group (see ~/.config/hue/config.json)
+function hue -d "Philips Hue: on/off/theme/color for office lights"
+    ~/.dotfiles/bin/.bin/hue $argv
+end
+function lights -d "Hue office lights on"
+    ~/.dotfiles/bin/.bin/hue on
+end
+function dark -d "Hue office lights off"
+    ~/.dotfiles/bin/.bin/hue off
+end
+complete -c hue -f -a "pair on off toggle status groups theme color bri config"

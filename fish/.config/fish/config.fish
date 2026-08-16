@@ -149,10 +149,13 @@ function _tui-run --description 'Run a TUI edge-to-edge, restoring kitty padding
         end
         rm -f $snapshot
         # unset reverts to the hyprland.conf defaults — the per-window tint a
-        # bare theme command may have applied is not recorded anywhere.
+        # bare theme command may have applied is not recorded anywhere. The Lua
+        # form is required since 0.55; the old `setprop` syntax is a parse error
+        # that fails silently into the &>/dev/null.
         if test -n "$KITTY_PID"
-            hyprctl dispatch setprop "pid:$KITTY_PID" active_border_color unset &>/dev/null
-            hyprctl dispatch setprop "pid:$KITTY_PID" inactive_border_color unset &>/dev/null
+            for prop in active_border_color inactive_border_color
+                hyprctl dispatch "hl.dsp.window.set_prop({ window = \"pid:$KITTY_PID\", prop = \"$prop\", value = \"unset\" })" &>/dev/null
+            end
         end
     end
 

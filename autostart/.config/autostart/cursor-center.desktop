@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=Cursor Center
-Exec=sh -c "sleep 1 && hyprctl dispatch movecursor 1920 540"
+Exec=sh -c "sleep 1 && hyprctl dispatch 'hl.dsp.cursor.move({ x = 1920, y = 540 })'"
 X-GNOME-Autostart-enabled=true
