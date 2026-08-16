@@ -10,8 +10,11 @@ mkchromecast-git
 mpvpaper
 pacseek
 python310
+spicetify-cli
 timg
+vencord-installer-cli-bin
 vial-appimage
 vibe-audio-visualizer-git
 yay-bin
 yay-bin-debug
+sunsetr-bin

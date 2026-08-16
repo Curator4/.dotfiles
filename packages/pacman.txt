@@ -130,3 +130,7 @@ ydotool
 yt-dlp
 zip
 zsh
+ttf-jetbrains-mono-nerd
+ttf-cascadia-code-nerd
+otf-geist-mono-nerd
+ttf-adwaitamono-nerd
