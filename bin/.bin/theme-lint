@@ -1,0 +1,419 @@
+#!/usr/bin/env python3
+"""Lint a theme's palette for WCAG contrast and basic completeness.
+
+Usage:
+  theme-lint                 # current theme (~/.config/current-theme or .current-theme)
+  theme-lint nord            # slug under ~/.dotfiles/themes
+  theme-lint /path/to/theme  # directory containing theme.json
+  theme-lint --all           # every desktop theme
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+
+DOTFILES = Path(os.environ.get("DOTFILES", Path.home() / ".dotfiles"))
+THEMES_DIR = Path(os.environ.get("THEME_THEMES_DIR", DOTFILES / "themes"))
+CURRENT_LINK = Path.home() / ".config" / "current-theme"
+CURRENT_FILE = Path.home() / ".config" / ".current-theme"
+
+# WCAG
+AA_NORMAL = 4.5
+AA_LARGE = 3.0
+AAA_NORMAL = 7.0
+
+
+@dataclass(frozen=True)
+class RGB:
+    r: int
+    g: int
+    b: int
+
+    def hex(self) -> str:
+        return f"#{self.r:02X}{self.g:02X}{self.b:02X}"
+
+    def luminance(self) -> float:
+        def channel(c: int) -> float:
+            x = c / 255.0
+            return x / 12.92 if x <= 0.03928 else ((x + 0.055) / 1.055) ** 2.4
+
+        return 0.2126 * channel(self.r) + 0.7152 * channel(self.g) + 0.0722 * channel(self.b)
+
+
+def parse_hex(value: str) -> RGB | None:
+    if not value or not isinstance(value, str):
+        return None
+    s = value.strip().lstrip("#")
+    if len(s) == 3:
+        s = "".join(ch * 2 for ch in s)
+    if not re.fullmatch(r"[0-9A-Fa-f]{6}", s):
+        return None
+    return RGB(int(s[0:2], 16), int(s[2:4], 16), int(s[4:6], 16))
+
+
+def contrast(a: RGB, b: RGB) -> float:
+    l1, l2 = a.luminance(), b.luminance()
+    lighter, darker = max(l1, l2), min(l1, l2)
+    return (lighter + 0.05) / (darker + 0.05)
+
+
+def grade(ratio: float) -> str:
+    if ratio >= AAA_NORMAL:
+        return "AAA"
+    if ratio >= AA_NORMAL:
+        return "AA"
+    if ratio >= AA_LARGE:
+        return "AA-large"
+    return "fail"
+
+
+@dataclass
+class Finding:
+    severity: str  # error | warn | ok | info
+    code: str
+    message: str
+
+
+def load_theme(path: Path) -> dict:
+    theme_json = path / "theme.json" if path.is_dir() else path
+    if not theme_json.is_file():
+        raise FileNotFoundError(f"no theme.json at {path}")
+    with theme_json.open(encoding="utf-8") as f:
+        data = json.load(f)
+    if not isinstance(data, dict):
+        raise ValueError("theme.json must be an object")
+    return data
+
+
+def resolve_theme_dir(spec: str | None) -> Path:
+    if spec is None:
+        if CURRENT_LINK.is_symlink() or CURRENT_LINK.is_dir():
+            return CURRENT_LINK.resolve()
+        if CURRENT_FILE.is_file():
+            slug = CURRENT_FILE.read_text(encoding="utf-8").strip()
+            return THEMES_DIR / slug
+        raise FileNotFoundError("no current theme; pass a slug or path")
+
+    p = Path(os.path.expanduser(spec))
+    if p.is_dir() and (p / "theme.json").is_file():
+        return p.resolve()
+    if p.is_file() and p.name == "theme.json":
+        return p.parent.resolve()
+
+    candidate = THEMES_DIR / spec
+    if (candidate / "theme.json").is_file():
+        return candidate.resolve()
+    raise FileNotFoundError(f"theme not found: {spec}")
+
+
+def list_desktop_themes() -> list[Path]:
+    out: list[Path] = []
+    if not THEMES_DIR.is_dir():
+        return out
+    for child in sorted(THEMES_DIR.iterdir()):
+        if not child.is_dir():
+            continue
+        tj = child / "theme.json"
+        if not tj.is_file():
+            continue
+        try:
+            data = json.loads(tj.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            out.append(child)
+            continue
+        if data.get("terminal_only") is True:
+            continue
+        out.append(child)
+    return out
+
+
+def expand_home(path: str) -> Path:
+    return Path(os.path.expanduser(path))
+
+
+def load_kitty_colors(theme_dir: Path) -> dict[str, RGB]:
+    """Map kitty.conf keys → RGB for themes that predate palette in theme.json."""
+    path = theme_dir / "kitty.conf"
+    if not path.is_file():
+        return {}
+    raw: dict[str, RGB] = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        parts = line.split()
+        if len(parts) < 2:
+            continue
+        key, val = parts[0], parts[1]
+        color = parse_hex(val)
+        if color:
+            raw[key] = color
+
+    # role aliases matching theme-render / theme-switcher
+    roles: dict[str, RGB] = {}
+    if "background" in raw:
+        roles["background"] = raw["background"]
+    if "foreground" in raw:
+        roles["foreground"] = raw["foreground"]
+    if "selection_background" in raw:
+        roles["selection_bg"] = raw["selection_background"]
+    if "selection_foreground" in raw:
+        roles["selection_fg"] = raw["selection_foreground"]
+    if "cursor" in raw:
+        roles["cursor"] = raw["cursor"]
+    mapping = {
+        "black": "color0",
+        "red": "color1",
+        "green": "color2",
+        "yellow": "color3",
+        "blue": "color4",
+        "magenta": "color5",
+        "cyan": "color6",
+        "white": "color7",
+        "bright_black": "color8",
+        "bright_red": "color9",
+        "bright_green": "color10",
+        "bright_yellow": "color11",
+        "bright_blue": "color12",
+        "bright_magenta": "color13",
+        "bright_cyan": "color14",
+        "bright_white": "color15",
+    }
+    for role, key in mapping.items():
+        if key in raw:
+            roles[role] = raw[key]
+    return roles
+
+
+def lint_theme(theme_dir: Path) -> list[Finding]:
+    findings: list[Finding] = []
+    try:
+        data = load_theme(theme_dir)
+    except (FileNotFoundError, ValueError, json.JSONDecodeError) as exc:
+        return [Finding("error", "load", str(exc))]
+
+    slug = data.get("slug") or theme_dir.name
+    if data.get("draft"):
+        findings.append(Finding("info", "draft", f"{slug} is marked draft:true"))
+
+    if data.get("terminal_only"):
+        findings.append(Finding("info", "terminal_only", f"{slug} is terminal-only"))
+
+    palette = data.get("palette") or {}
+    colors = palette.get("colors") or {}
+    kitty = load_kitty_colors(theme_dir)
+    if not palette and kitty:
+        findings.append(
+            Finding(
+                "info",
+                "palette.source",
+                "no palette in theme.json — using kitty.conf (legacy)",
+            )
+        )
+
+    def get(*keys: str) -> RGB | None:
+        for key in keys:
+            if key in palette:
+                c = parse_hex(str(palette[key]))
+                if c:
+                    return c
+            if key in colors:
+                c = parse_hex(str(colors[key]))
+                if c:
+                    return c
+            if key in kitty:
+                return kitty[key]
+        return None
+
+    bg = get("background")
+    fg = get("foreground")
+    sel_bg = get("selection_bg")
+    sel_fg = get("selection_fg") or fg
+    accent = None
+    hue = data.get("hue") or {}
+    if isinstance(hue, dict) and hue.get("accent"):
+        accent = parse_hex(str(hue["accent"]))
+    if accent is None:
+        accent = get("blue") or get("cyan") or get("cursor")
+
+    required = {
+        "background": bg,
+        "foreground": fg,
+        "black": get("black"),
+        "red": get("red"),
+        "green": get("green"),
+        "yellow": get("yellow"),
+        "blue": get("blue"),
+        "magenta": get("magenta"),
+        "cyan": get("cyan"),
+        "white": get("white"),
+        "bright_black": get("bright_black"),
+        "bright_white": get("bright_white"),
+    }
+    for role, color in required.items():
+        if color is None:
+            findings.append(Finding("error", "missing", f"missing palette color: {role}"))
+
+    if bg and fg:
+        ratio = contrast(fg, bg)
+        g = grade(ratio)
+        sev = "ok" if g in ("AA", "AAA") else ("warn" if g == "AA-large" else "error")
+        findings.append(
+            Finding(sev, "contrast.fg_bg", f"fg/bg {ratio:.2f}:1 ({g})  {fg.hex()} on {bg.hex()}")
+        )
+
+    if sel_bg and sel_fg:
+        ratio = contrast(sel_fg, sel_bg)
+        g = grade(ratio)
+        sev = "ok" if g in ("AA", "AAA", "AA-large") else "warn"
+        findings.append(
+            Finding(
+                sev,
+                "contrast.selection",
+                f"selection fg/bg {ratio:.2f}:1 ({g})  {sel_fg.hex()} on {sel_bg.hex()}",
+            )
+        )
+
+    if accent and bg:
+        ratio = contrast(accent, bg)
+        g = grade(ratio)
+        # accent often used large/UI; AA-large is acceptable, fail is warn not error
+        sev = "ok" if g in ("AA", "AAA", "AA-large") else "warn"
+        findings.append(
+            Finding(
+                sev,
+                "contrast.accent_bg",
+                f"accent/bg {ratio:.2f}:1 ({g})  {accent.hex()} on {bg.hex()}",
+            )
+        )
+
+    # ANSI pairs on background (body text rare, but readable UI chrome)
+    if bg:
+        for role in ("red", "green", "yellow", "blue", "magenta", "cyan", "white"):
+            c = required.get(role)
+            if not c:
+                continue
+            ratio = contrast(c, bg)
+            g = grade(ratio)
+            sev = "ok" if ratio >= AA_LARGE else "warn"
+            findings.append(
+                Finding(
+                    sev,
+                    f"contrast.{role}_bg",
+                    f"{role}/bg {ratio:.2f}:1 ({g})  {c.hex()} on {bg.hex()}",
+                )
+            )
+
+    # Completeness beyond palette
+    nvim = data.get("nvim") or {}
+    if not (isinstance(nvim, dict) and nvim.get("colorscheme")):
+        findings.append(Finding("warn", "nvim", "nvim.colorscheme not set"))
+
+    if not data.get("rofi_theme"):
+        findings.append(Finding("warn", "rofi", "rofi_theme not set"))
+
+    obs = data.get("obsidian") or {}
+    if not (isinstance(obs, dict) and obs.get("cssTheme")):
+        findings.append(Finding("warn", "obsidian", "obsidian.cssTheme not set"))
+
+    wallpapers = data.get("wallpapers") or {}
+    monitors = data.get("monitors") or {}
+    if not data.get("terminal_only"):
+        if not wallpapers:
+            findings.append(Finding("error", "wallpapers", "no wallpapers block"))
+        if not monitors:
+            findings.append(Finding("warn", "monitors", "no monitors map"))
+
+        missing_files = 0
+        for kind, items in wallpapers.items() if isinstance(wallpapers, dict) else []:
+            if not isinstance(items, list):
+                continue
+            for entry in items:
+                if not isinstance(entry, str):
+                    continue
+                if "PLACEHOLDER" in entry:
+                    findings.append(
+                        Finding("warn", "wallpaper.placeholder", f"placeholder wallpaper: {entry}")
+                    )
+                    continue
+                wp = expand_home(entry)
+                if not wp.is_file():
+                    missing_files += 1
+                    findings.append(
+                        Finding("warn", "wallpaper.missing", f"wallpaper not found: {entry}")
+                    )
+        if missing_files == 0 and wallpapers:
+            findings.append(Finding("ok", "wallpapers", "wallpaper paths resolve"))
+
+    # expected surface files for desktop themes
+    if not data.get("terminal_only"):
+        for fname in ("kitty.conf", "hyprland.lua", "mako.conf", "starship.toml"):
+            if not (theme_dir / fname).is_file():
+                findings.append(Finding("warn", "surface", f"missing {fname}"))
+
+    return findings
+
+
+def print_report(theme_dir: Path, findings: list[Finding], quiet: bool) -> int:
+    errors = sum(1 for f in findings if f.severity == "error")
+    warns = sum(1 for f in findings if f.severity == "warn")
+    slug = theme_dir.name
+
+    if not quiet:
+        print(f"{slug}  ({theme_dir})")
+        order = {"error": 0, "warn": 1, "info": 2, "ok": 3}
+        for f in sorted(findings, key=lambda x: (order.get(x.severity, 9), x.code)):
+            mark = {
+                "error": "✗",
+                "warn": "!",
+                "ok": "✓",
+                "info": "·",
+            }.get(f.severity, "·")
+            print(f"  {mark} [{f.severity}] {f.message}")
+        print(f"  → {errors} error(s), {warns} warning(s)")
+    else:
+        status = "FAIL" if errors else ("WARN" if warns else "OK")
+        print(f"{status:4}  {slug}  e={errors} w={warns}")
+
+    return 1 if errors else 0
+
+
+def main(argv: list[str] | None = None) -> int:
+    p = argparse.ArgumentParser(prog="theme-lint", description="Lint theme palette contrast")
+    p.add_argument("theme", nargs="?", help="slug, theme dir, or theme.json path")
+    p.add_argument("--all", action="store_true", help="lint every desktop theme")
+    p.add_argument("-q", "--quiet", action="store_true", help="one line per theme")
+    args = p.parse_args(argv)
+
+    try:
+        if args.all:
+            themes = list_desktop_themes()
+            if not themes:
+                print("no desktop themes found", file=sys.stderr)
+                return 1
+            rc = 0
+            for t in themes:
+                findings = lint_theme(t)
+                rc |= print_report(t, findings, quiet=args.quiet or True)
+                if not args.quiet:
+                    # still compact for --all unless user wants full; default quiet-ish
+                    pass
+            # re-print full for failures if not quiet? keep one-line for --all
+            return rc
+
+        theme_dir = resolve_theme_dir(args.theme)
+        findings = lint_theme(theme_dir)
+        return print_report(theme_dir, findings, quiet=args.quiet)
+    except FileNotFoundError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

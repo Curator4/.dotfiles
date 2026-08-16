@@ -1,0 +1,821 @@
+#!/usr/bin/env python3
+"""Draft a theme directory from a wallpaper or a Base16 scheme.
+
+Authoring helper only — does not replace theme-switcher.sh. Output is a
+starting point under ~/.dotfiles/themes/<slug>/ that you hand-tune before
+relying on it.
+
+Subcommands:
+  wallpaper <image> [--name SLUG] [--icon EMOJI] [--force]
+  base16 <name|file|url> [--name SLUG] [--icon EMOJI] [--force]
+"""
+
+from __future__ import annotations
+
+import argparse
+import colorsys
+import json
+import math
+import os
+import re
+import shutil
+import subprocess
+import sys
+import urllib.request
+from urllib.parse import urlparse
+from dataclasses import dataclass
+from pathlib import Path
+
+DOTFILES = Path(os.environ.get("DOTFILES", Path.home() / ".dotfiles"))
+THEMES_DIR = Path(os.environ.get("THEME_THEMES_DIR", DOTFILES / "themes"))
+DEFAULT_FONT = "Hack Nerd Font"
+DEFAULT_ROFI = "nord"
+DEFAULT_EFFECTS = "calm"
+
+# tinted-theming base16 YAML (raw github)
+BASE16_RAW = (
+    "https://raw.githubusercontent.com/tinted-theming/schemes/spec-0.11/"
+    "base16/{name}.yaml"
+)
+
+# Canonical ANSI hue anchors (degrees) for role assignment
+HUE_ANCHORS = {
+    "red": 0.0,
+    "yellow": 55.0,
+    "green": 120.0,
+    "cyan": 180.0,
+    "blue": 220.0,
+    "magenta": 300.0,
+}
+
+
+@dataclass(frozen=True)
+class RGB:
+    r: int
+    g: int
+    b: int
+
+    def hex(self) -> str:
+        return f"#{self.r:02X}{self.g:02X}{self.b:02X}"
+
+    def as_tuple(self) -> tuple[int, int, int]:
+        return (self.r, self.g, self.b)
+
+    def luminance(self) -> float:
+        # relative luminance (sRGB), WCAG
+        def channel(c: int) -> float:
+            x = c / 255.0
+            return x / 12.92 if x <= 0.03928 else ((x + 0.055) / 1.055) ** 2.4
+
+        return 0.2126 * channel(self.r) + 0.7152 * channel(self.g) + 0.0722 * channel(self.b)
+
+    def hsv(self) -> tuple[float, float, float]:
+        return colorsys.rgb_to_hsv(self.r / 255.0, self.g / 255.0, self.b / 255.0)
+
+    def hue_deg(self) -> float:
+        h, s, _ = self.hsv()
+        return h * 360.0 if s > 0.08 else -1.0
+
+    def lighten(self, amount: float) -> "RGB":
+        return _blend(self, RGB(255, 255, 255), amount)
+
+    def darken(self, amount: float) -> "RGB":
+        return _blend(self, RGB(0, 0, 0), amount)
+
+
+def _blend(a: RGB, b: RGB, t: float) -> RGB:
+    t = max(0.0, min(1.0, t))
+    return RGB(
+        int(round(a.r + (b.r - a.r) * t)),
+        int(round(a.g + (b.g - a.g) * t)),
+        int(round(a.b + (b.b - a.b) * t)),
+    )
+
+
+def parse_hex(value: str) -> RGB:
+    s = value.strip().lstrip("#")
+    if len(s) == 3:
+        s = "".join(ch * 2 for ch in s)
+    if len(s) != 6 or not re.fullmatch(r"[0-9A-Fa-f]{6}", s):
+        raise ValueError(f"invalid hex color: {value!r}")
+    return RGB(int(s[0:2], 16), int(s[2:4], 16), int(s[4:6], 16))
+
+
+def contrast_ratio(a: RGB, b: RGB) -> float:
+    l1, l2 = a.luminance(), b.luminance()
+    lighter, darker = max(l1, l2), min(l1, l2)
+    return (lighter + 0.05) / (darker + 0.05)
+
+
+def slugify(name: str) -> str:
+    s = name.strip().lower()
+    s = re.sub(r"[^a-z0-9]+", "-", s)
+    s = s.strip("-")
+    return s or "theme"
+
+
+def title_from_slug(slug: str) -> str:
+    return " ".join(part.capitalize() for part in slug.split("-") if part)
+
+
+def expand_path(path: str | Path) -> Path:
+    return Path(os.path.expanduser(str(path))).resolve()
+
+
+# --- wallpaper sampling ----------------------------------------------------
+
+
+def sample_pixels(image: Path, size: int = 96) -> list[RGB]:
+    if not image.is_file():
+        raise FileNotFoundError(f"image not found: {image}")
+    if shutil.which("magick") is None and shutil.which("convert") is None:
+        raise RuntimeError("ImageMagick required (magick/convert) for wallpaper sampling")
+
+    cmd = ["magick" if shutil.which("magick") else "convert", str(image),
+           "-resize", f"{size}x{size}!", "-depth", "8", "txt:-"]
+    try:
+        out = subprocess.check_output(cmd, stderr=subprocess.DEVNULL, text=True)
+    except subprocess.CalledProcessError as exc:
+        raise RuntimeError(f"ImageMagick failed on {image}") from exc
+
+    pixels: list[RGB] = []
+    for line in out.splitlines():
+        # 0,0: (52,94,173)  #345EAD  srgb(...)
+        m = re.search(r"#([0-9A-Fa-f]{6})", line)
+        if m:
+            pixels.append(parse_hex(m.group(1)))
+    if len(pixels) < 16:
+        raise RuntimeError(f"too few samples from {image} ({len(pixels)})")
+    return pixels
+
+
+def median_cut(pixels: list[RGB], max_colors: int = 12) -> list[RGB]:
+    """Simple median-cut quantizer → up to max_colors representative colors."""
+
+    def channel_range(box: list[RGB]) -> tuple[int, int]:
+        rs = [p.r for p in box]
+        gs = [p.g for p in box]
+        bs = [p.b for p in box]
+        ranges = (max(rs) - min(rs), max(gs) - min(gs), max(bs) - min(bs))
+        return max(range(3), key=lambda i: ranges[i]), ranges[0]  # axis, dummy
+
+    boxes: list[list[RGB]] = [list(pixels)]
+    while len(boxes) < max_colors:
+        # split the box with largest channel range
+        best_i, best_range = -1, -1
+        for i, box in enumerate(boxes):
+            if len(box) < 2:
+                continue
+            axis, _ = channel_range(box)
+            rs = [p.as_tuple()[axis] for p in box]
+            span = max(rs) - min(rs)
+            if span > best_range:
+                best_range, best_i = span, i
+        if best_i < 0 or best_range <= 0:
+            break
+        box = boxes.pop(best_i)
+        axis, _ = channel_range(box)
+        box.sort(key=lambda p: p.as_tuple()[axis])
+        mid = len(box) // 2
+        boxes.append(box[:mid])
+        boxes.append(box[mid:])
+
+    reps: list[RGB] = []
+    for box in boxes:
+        n = len(box)
+        r = sum(p.r for p in box) // n
+        g = sum(p.g for p in box) // n
+        b = sum(p.b for p in box) // n
+        reps.append(RGB(r, g, b))
+    # unique-ish
+    seen: set[str] = set()
+    unique: list[RGB] = []
+    for c in sorted(reps, key=lambda p: p.luminance()):
+        h = c.hex()
+        if h not in seen:
+            seen.add(h)
+            unique.append(c)
+    return unique
+
+
+def hue_distance(a: float, b: float) -> float:
+    d = abs(a - b) % 360.0
+    return min(d, 360.0 - d)
+
+
+def pick_nearest(colors: list[RGB], target_hue: float, used: set[str]) -> RGB | None:
+    best: RGB | None = None
+    best_score = 1e9
+    for c in colors:
+        if c.hex() in used:
+            continue
+        h, s, v = c.hsv()
+        if s < 0.10:  # skip near-gray for chromatic roles
+            continue
+        # prefer saturated, readable (not crushed) colors near the anchor hue
+        dist = hue_distance(h * 360.0, target_hue)
+        score = dist - s * 55.0 - v * 35.0
+        if score < best_score:
+            best_score = score
+            best = c
+    return best
+
+
+def from_hsv(h: float, s: float, v: float) -> RGB:
+    r, g, b = colorsys.hsv_to_rgb(h % 1.0, max(0.0, min(1.0, s)), max(0.0, min(1.0, v)))
+    return RGB(int(round(r * 255)), int(round(g * 255)), int(round(b * 255)))
+
+
+def vivid_on(bg: RGB, sample: RGB | None, target_hue: float, prefer_dark: bool) -> RGB:
+    """Build a readable ANSI color: image hue when available, floor on S/V for contrast."""
+    if sample is not None:
+        h, s, v = sample.hsv()
+        if s < 0.10:
+            h = target_hue / 360.0
+        # lift crushed wallpaper samples into a usable terminal swatch
+        if prefer_dark:
+            s = max(s, 0.42)
+            v = max(v, 0.62)
+            s = min(s, 0.78)
+            v = min(v, 0.88)
+        else:
+            s = max(s, 0.40)
+            v = min(v, 0.55)
+            v = max(v, 0.35)
+    else:
+        h = target_hue / 360.0
+        s, v = (0.50, 0.70) if prefer_dark else (0.48, 0.48)
+
+    color = from_hsv(h, s, v)
+    # guarantee AA-large against background (UI chrome / ANSI on bg)
+    min_ratio = 3.0
+    if contrast_ratio(color, bg) >= min_ratio:
+        return color
+    bg_dark = bg.luminance() < 0.5
+    for step in range(1, 30):
+        if bg_dark:
+            color = from_hsv(h, min(s, 0.7), min(0.95, v + step * 0.03))
+        else:
+            color = from_hsv(h, min(s, 0.7), max(0.15, v - step * 0.03))
+        if contrast_ratio(color, bg) >= min_ratio:
+            return color
+    return color
+
+
+def ensure_contrast(fg: RGB, bg: RGB, min_ratio: float = 4.5) -> tuple[RGB, RGB]:
+    """Nudge fg/bg until AA contrast, preferring to keep bg and move fg."""
+    if contrast_ratio(fg, bg) >= min_ratio:
+        return fg, bg
+    bg_dark = bg.luminance() < 0.5
+    for step in range(1, 25):
+        amount = step * 0.04
+        trial_fg = fg.lighten(amount) if bg_dark else fg.darken(amount)
+        if contrast_ratio(trial_fg, bg) >= min_ratio:
+            return trial_fg, bg
+    # last resort: pure white/black
+    return (RGB(236, 239, 244) if bg_dark else RGB(46, 52, 64)), bg
+
+
+def palette_from_colors(colors: list[RGB], prefer_dark: bool = True) -> dict[str, RGB]:
+    by_lum = sorted(colors, key=lambda c: c.luminance())
+    if prefer_dark:
+        # Surface bg: keep image hue, crush value/sat so ANSI colors can sit on it
+        seed = by_lum[0]
+        h, s, v = seed.hsv()
+        bg = from_hsv(h, min(s * 0.55, 0.28), min(v, 0.16) if v > 0.05 else 0.10)
+        fg_candidates = list(reversed(by_lum[-3:]))
+        fg = fg_candidates[0]
+        # lift near-gray dark fgs toward soft white tinted by image
+        fh, fs, fv = fg.hsv()
+        if fv < 0.55:
+            fg = from_hsv(fh if fs > 0.05 else h, min(fs, 0.12), max(fv, 0.78))
+        black = from_hsv(h, min(s, 0.22), 0.18)
+        bright_black = from_hsv(h, min(s, 0.18), 0.32)
+        white = by_lum[-2] if len(by_lum) > 1 else by_lum[-1]
+        bright_white = by_lum[-1]
+        selection = from_hsv(h, min(s, 0.25), 0.24)
+    else:
+        seed = by_lum[-1]
+        h, s, v = seed.hsv()
+        bg = from_hsv(h, min(s * 0.4, 0.12), max(v, 0.92))
+        fg = by_lum[0]
+        black = by_lum[0]
+        bright_black = by_lum[min(2, len(by_lum) - 1)]
+        white = by_lum[-2] if len(by_lum) > 1 else by_lum[-1]
+        bright_white = by_lum[-1]
+        selection = bg.darken(0.08)
+
+    fg, bg = ensure_contrast(fg, bg, 4.5)
+    # selection surface: lifted bg, still distinct
+    if prefer_dark:
+        if abs(selection.luminance() - bg.luminance()) < 0.03:
+            selection = bg.lighten(0.14)
+    else:
+        selection = bg.darken(0.08)
+
+    used: set[str] = {bg.hex(), fg.hex()}
+    roles: dict[str, RGB] = {
+        "background": bg,
+        "foreground": fg,
+        "selection_bg": selection,
+        "selection_fg": fg,
+        "black": black if black.hex() != bg.hex() else bg.lighten(0.08),
+        "bright_black": bright_black if bright_black.luminance() > bg.luminance() else bg.lighten(0.22),
+        "white": white,
+        "bright_white": bright_white if bright_white.hex() != fg.hex() else fg.lighten(0.08),
+    }
+
+    for name, anchor in HUE_ANCHORS.items():
+        sample = pick_nearest(colors, anchor, used)
+        color = vivid_on(bg, sample, anchor, prefer_dark)
+        if sample is not None:
+            used.add(sample.hex())
+        used.add(color.hex())
+        roles[name] = color
+        # bright variant: lighter/more open
+        h, s, v = color.hsv()
+        if prefer_dark:
+            bright = from_hsv(h, max(0.35, s * 0.9), min(0.95, v + 0.12))
+        else:
+            bright = from_hsv(h, max(0.35, s * 0.9), max(0.2, v - 0.08))
+        roles[f"bright_{name}"] = bright
+
+    # cursor / accent: prefer cyan then blue (readable brand-ish)
+    accent = roles["cyan"] if contrast_ratio(roles["cyan"], bg) >= contrast_ratio(roles["blue"], bg) else roles["blue"]
+    roles["cursor"] = accent
+    roles["cursor_text"] = bg
+    roles["accent"] = accent
+    return roles
+
+
+# --- base16 ----------------------------------------------------------------
+
+
+def load_base16(source: str) -> tuple[str, dict[str, RGB]]:
+    """Return (display_name, base00..base0F map) from name, path, or URL."""
+    text: str
+    display = source
+
+    path = Path(os.path.expanduser(source))
+    if path.is_file():
+        text = path.read_text(encoding="utf-8")
+        display = path.stem
+    elif source.startswith("http://") or source.startswith("https://"):
+        with urllib.request.urlopen(source, timeout=20) as resp:
+            text = resp.read().decode("utf-8")
+        display = Path(urlparse(source).path).stem
+    else:
+        name = source.removesuffix(".yaml").removesuffix(".yml")
+        url = BASE16_RAW.format(name=name)
+        try:
+            with urllib.request.urlopen(url, timeout=20) as resp:
+                text = resp.read().decode("utf-8")
+        except Exception as exc:
+            raise RuntimeError(
+                f"could not fetch base16 scheme {name!r} from tinted-theming "
+                f"({exc}). Pass a local YAML path or full URL instead."
+            ) from exc
+        display = name
+
+    # Minimal YAML scrape — schemes are simple key: "hex" maps
+    palette: dict[str, RGB] = {}
+    name_match = re.search(r'^name:\s*["\']?([^"\'\n]+)', text, re.M)
+    if name_match:
+        display = name_match.group(1).strip()
+
+    # Support both nested palette: and flat baseXX:
+    for m in re.finditer(
+        r'^(?:  )?(base0[0-9A-Fa-f]):\s*["\']?#?([0-9A-Fa-f]{6})["\']?',
+        text,
+        re.M,
+    ):
+        palette[m.group(1).lower()] = parse_hex(m.group(2))
+
+    if len(palette) < 16:
+        raise RuntimeError(f"base16 source missing colors (found {len(palette)}): {source}")
+
+    return display, palette
+
+
+def roles_from_base16(b16: dict[str, RGB]) -> dict[str, RGB]:
+    return {
+        "background": b16["base00"],
+        "black": b16["base01"],
+        "selection_bg": b16["base02"],
+        "bright_black": b16["base03"],
+        "foreground": b16["base05"],
+        "white": b16["base05"],
+        "bright_white": b16["base07"],
+        "red": b16["base08"],
+        "bright_red": b16["base08"].lighten(0.12),
+        "yellow": b16["base0a"],
+        "bright_yellow": b16["base0a"].lighten(0.1),
+        "green": b16["base0b"],
+        "bright_green": b16["base0b"].lighten(0.1),
+        "cyan": b16["base0c"],
+        "bright_cyan": b16["base0c"].lighten(0.1),
+        "blue": b16["base0d"],
+        "bright_blue": b16["base0d"].lighten(0.1),
+        "magenta": b16["base0e"],
+        "bright_magenta": b16["base0e"].lighten(0.1),
+        "cursor": b16["base0d"],
+        "cursor_text": b16["base00"],
+        "selection_fg": b16["base05"],
+        "accent": b16["base0d"],
+    }
+
+
+# --- file writers ----------------------------------------------------------
+
+
+def path_for_wallpaper(image: Path) -> str:
+    """Prefer ~/… form when under home."""
+    home = Path.home()
+    try:
+        rel = image.resolve().relative_to(home)
+        return f"~/{rel.as_posix()}"
+    except ValueError:
+        return str(image.resolve())
+
+
+def build_theme_json(
+    *,
+    name: str,
+    slug: str,
+    icon: str,
+    roles: dict[str, RGB],
+    wallpaper: str | None,
+    source_note: str,
+) -> dict:
+    static = [wallpaper] if wallpaper else ["~/pictures/wallpapers/static/PLACEHOLDER.png"]
+    vertical = [wallpaper] if wallpaper else ["~/pictures/wallpapers/vertical/PLACEHOLDER.png"]
+    # duplicate so monitor refs [0]/[1] always resolve
+    if len(static) == 1:
+        static = [static[0], static[0]]
+    if len(vertical) == 1:
+        vertical = [vertical[0], vertical[0]]
+
+    return {
+        "name": name,
+        "slug": slug,
+        "icon": icon,
+        "draft": True,
+        "source": source_note,
+        "effects": {"profile": DEFAULT_EFFECTS},
+        "nvim": {
+            "colorscheme": "",
+            "variant": "",
+            "background": "dark",
+        },
+        "palette": {
+            "background": roles["background"].hex(),
+            "foreground": roles["foreground"].hex(),
+            "cursor": roles["cursor"].hex(),
+            "cursor_text": roles["cursor_text"].hex(),
+            "selection_bg": roles["selection_bg"].hex(),
+            "selection_fg": roles["selection_fg"].hex(),
+            "colors": {
+                "black": roles["black"].hex(),
+                "red": roles["red"].hex(),
+                "green": roles["green"].hex(),
+                "yellow": roles["yellow"].hex(),
+                "blue": roles["blue"].hex(),
+                "magenta": roles["magenta"].hex(),
+                "cyan": roles["cyan"].hex(),
+                "white": roles["white"].hex(),
+                "bright_black": roles["bright_black"].hex(),
+                "bright_red": roles["bright_red"].hex(),
+                "bright_green": roles["bright_green"].hex(),
+                "bright_yellow": roles["bright_yellow"].hex(),
+                "bright_blue": roles["bright_blue"].hex(),
+                "bright_magenta": roles["bright_magenta"].hex(),
+                "bright_cyan": roles["bright_cyan"].hex(),
+                "bright_white": roles["bright_white"].hex(),
+            },
+        },
+        "wallpapers": {
+            "static": static,
+            "vertical": vertical,
+        },
+        "monitors": {
+            "DP-1": "vertical[0]",
+            "DP-2": "static[1]",
+            "DP-3": "static[0]",
+            "DP-4": "vertical[1]",
+        },
+        "rofi_theme": DEFAULT_ROFI,
+        "obsidian": {
+            "cssTheme": "",
+            "base": "obsidian",
+        },
+        "hue": {
+            "accent": roles["accent"].hex(),
+        },
+        "font": {
+            "mono": DEFAULT_FONT,
+        },
+    }
+
+
+def write_kitty(path: Path, name: str, roles: dict[str, RGB]) -> None:
+    c = roles
+    path.write_text(
+        f"""# {name} - Kitty Terminal Colors (draft via theme-scaffold)
+foreground              {c['foreground'].hex()}
+background              {c['background'].hex()}
+selection_foreground    {c['selection_fg'].hex()}
+selection_background    {c['selection_bg'].hex()}
+
+color0  {c['black'].hex()}
+color8  {c['bright_black'].hex()}
+color1  {c['red'].hex()}
+color9  {c['bright_red'].hex()}
+color2  {c['green'].hex()}
+color10 {c['bright_green'].hex()}
+color3  {c['yellow'].hex()}
+color11 {c['bright_yellow'].hex()}
+color4  {c['blue'].hex()}
+color12 {c['bright_blue'].hex()}
+color5  {c['magenta'].hex()}
+color13 {c['bright_magenta'].hex()}
+color6  {c['cyan'].hex()}
+color14 {c['bright_cyan'].hex()}
+color7  {c['white'].hex()}
+color15 {c['bright_white'].hex()}
+
+cursor                  {c['cursor'].hex()}
+cursor_text_color       {c['cursor_text'].hex()}
+url_color               {c['accent'].hex()}
+""",
+        encoding="utf-8",
+    )
+
+
+def write_hyprland_lua(path: Path, name: str, roles: dict[str, RGB]) -> None:
+    bg = roles["background"].hex().lstrip("#")
+    fg = roles["foreground"].hex().lstrip("#")
+    accent = roles["accent"].hex().lstrip("#")
+    red = roles["red"].hex().lstrip("#")
+    sel = roles["selection_bg"].hex().lstrip("#")
+    path.write_text(
+        f"""-- {name} - Hyprland Colors (draft via theme-scaffold)
+-- Palette consumed by ~/.config/hypr/theme.lua via the current-theme symlink.
+return {{
+    border_active = "rgba({accent}66)",
+    border_inactive = "rgba({sel}66)",
+    shadow = "rgba({bg}ee)",
+    bg = "rgb({bg})",
+    fg = "rgb({fg})",
+    accent = "rgb({accent})",
+    orange = "rgb({red})",
+    orange_light = "rgba({red}66)",
+}}
+""",
+        encoding="utf-8",
+    )
+
+
+def write_mako(path: Path, name: str, roles: dict[str, RGB]) -> None:
+    bg = roles["background"].hex()
+    fg = roles["foreground"].hex()
+    accent = roles["accent"].hex()
+    path.write_text(
+        f"""# Mako notification daemon config - {name} (draft via theme-scaffold)
+font={DEFAULT_FONT} 12
+background-color={bg}E6
+text-color={fg}
+border-color={accent}
+border-size=2
+border-radius=4
+padding=12
+margin=10
+width=350
+height=150
+anchor=top-right
+default-timeout=5000
+ignore-timeout=0
+icons=1
+max-icon-size=64
+icon-path=/usr/share/icons/Adwaita
+group-by=app-name
+max-visible=5
+""",
+        encoding="utf-8",
+    )
+
+
+def write_starship(path: Path, name: str, roles: dict[str, RGB]) -> None:
+    accent = roles["accent"].hex()
+    cyan = roles["cyan"].hex()
+    red = roles["red"].hex()
+    path.write_text(
+        f"""# {name} - starship (draft via theme-scaffold)
+add_newline = true
+command_timeout = 200
+format = "[$directory$git_branch$git_status]($style)$character"
+
+[character]
+error_symbol = "[✗](bold red)"
+success_symbol = "[❯](bold {accent})"
+
+[directory]
+truncation_length = 2
+truncation_symbol = "…/"
+style = "{accent}"
+repo_root_style = "bold {accent}"
+repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+format = "[$path]($style)[$read_only]($read_only_style) "
+read_only = " 󰌾"
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+symbol = " "
+style = "italic {cyan}"
+
+[git_status]
+format     = '[$all_status$ahead_behind]($style) '
+style      = "{red}"
+ahead      = "⇡${{count}}"
+diverged   = "⇕⇡${{ahead_count}}⇣${{behind_count}}"
+behind     = "⇣${{count}}"
+conflicted = "="
+up_to_date = ""
+untracked  = "?"
+modified   = "!"
+stashed    = "\\\\$"
+staged     = "+"
+renamed    = "»"
+deleted    = "✗"
+""",
+        encoding="utf-8",
+    )
+
+
+def write_readme(path: Path, slug: str, source_note: str) -> None:
+    path.write_text(
+        f"""# {slug} (draft)
+
+Scaffolded by `theme-scaffold` from: {source_note}
+
+## Next steps
+
+1. Tweak `theme.json` palette if roles look off
+2. Set real wallpapers (static + vertical) and monitor map
+3. Pick `nvim.colorscheme`, `rofi_theme`, and `obsidian.cssTheme`
+4. Optionally author a matching `*.rasi` under rofi
+5. `theme-lint {slug}`
+6. `theme-switcher.sh apply {slug}` when ready
+
+`draft: true` is informational — the switcher ignores it.
+""",
+        encoding="utf-8",
+    )
+
+
+def write_theme_dir(
+    *,
+    slug: str,
+    name: str,
+    icon: str,
+    roles: dict[str, RGB],
+    wallpaper: str | None,
+    source_note: str,
+    force: bool,
+) -> Path:
+    out = THEMES_DIR / slug
+    if out.exists() and not force:
+        raise FileExistsError(
+            f"theme already exists: {out} (pass --force to overwrite draft files)"
+        )
+    out.mkdir(parents=True, exist_ok=True)
+
+    theme = build_theme_json(
+        name=name,
+        slug=slug,
+        icon=icon,
+        roles=roles,
+        wallpaper=wallpaper,
+        source_note=source_note,
+    )
+    (out / "theme.json").write_text(json.dumps(theme, indent=2) + "\n", encoding="utf-8")
+    write_kitty(out / "kitty.conf", name, roles)
+    write_hyprland_lua(out / "hyprland.lua", name, roles)
+    write_mako(out / "mako.conf", name, roles)
+    write_starship(out / "starship.toml", name, roles)
+    write_readme(out / "DRAFT.md", slug, source_note)
+
+    # legacy placeholders some tools expect in the dir
+    (out / "waybar.css").write_text(
+        f"/* {name} — waybar is rendered on apply by theme-render.sh */\n",
+        encoding="utf-8",
+    )
+    (out / "hyprlock.conf").write_text(
+        f"# {name} — hyprlock is rendered on apply by theme-render.sh\n",
+        encoding="utf-8",
+    )
+    return out
+
+
+def print_summary(out: Path, roles: dict[str, RGB]) -> None:
+    ratio = contrast_ratio(roles["foreground"], roles["background"])
+    print(f"Draft theme written: {out}")
+    print(f"  bg={roles['background'].hex()}  fg={roles['foreground'].hex()}  "
+          f"accent={roles['accent'].hex()}  contrast={ratio:.2f}:1")
+    print("  files: theme.json kitty.conf hyprland.lua mako.conf starship.toml DRAFT.md")
+    print(f"  next: theme-lint {out.name} && edit wallpapers/nvim/rofi, then "
+          f"theme-switcher.sh apply {out.name}")
+
+
+# --- CLI -------------------------------------------------------------------
+
+
+def cmd_wallpaper(args: argparse.Namespace) -> int:
+    image = expand_path(args.image)
+    slug = slugify(args.name or image.stem)
+    name = args.display_name or title_from_slug(slug)
+    icon = args.icon or "🎨"
+
+    pixels = sample_pixels(image)
+    colors = median_cut(pixels, max_colors=12)
+    roles = palette_from_colors(colors, prefer_dark=not args.light)
+    wallpaper = path_for_wallpaper(image)
+
+    out = write_theme_dir(
+        slug=slug,
+        name=name,
+        icon=icon,
+        roles=roles,
+        wallpaper=wallpaper,
+        source_note=f"wallpaper:{wallpaper}",
+        force=args.force,
+    )
+    print_summary(out, roles)
+    return 0
+
+
+def cmd_base16(args: argparse.Namespace) -> int:
+    display, b16 = load_base16(args.scheme)
+    roles = roles_from_base16(b16)
+    # ensure AA on fg/bg (some schemes are decorative)
+    fg, bg = ensure_contrast(roles["foreground"], roles["background"], 4.5)
+    roles["foreground"] = fg
+    roles["background"] = bg
+
+    slug = slugify(args.name or display)
+    name = args.display_name or display
+    icon = args.icon or "📦"
+
+    out = write_theme_dir(
+        slug=slug,
+        name=name,
+        icon=icon,
+        roles=roles,
+        wallpaper=None,
+        source_note=f"base16:{args.scheme}",
+        force=args.force,
+    )
+    print_summary(out, roles)
+    print("  note: set real wallpapers in theme.json before apply (placeholders present)")
+    return 0
+
+
+def build_parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser(
+        prog="theme-scaffold",
+        description="Draft a theme from a wallpaper or Base16 scheme (authoring only).",
+    )
+    sub = p.add_subparsers(dest="cmd", required=True)
+
+    common = argparse.ArgumentParser(add_help=False)
+    common.add_argument("--name", help="theme slug (default: from source name)")
+    common.add_argument("--display-name", help="pretty name in theme.json")
+    common.add_argument("--icon", help="emoji icon for theme.json")
+    common.add_argument("--force", action="store_true", help="overwrite existing theme dir files")
+
+    w = sub.add_parser("wallpaper", parents=[common], help="extract palette from an image")
+    w.add_argument("image", help="path to wallpaper image")
+    w.add_argument("--light", action="store_true", help="prefer a light background")
+    w.set_defaults(func=cmd_wallpaper)
+
+    b = sub.add_parser("base16", parents=[common], help="import a Base16 scheme")
+    b.add_argument(
+        "scheme",
+        help="scheme name (tinted-theming), local YAML path, or URL",
+    )
+    b.set_defaults(func=cmd_base16)
+
+    return p
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = build_parser()
+    args = parser.parse_args(argv)
+    try:
+        return args.func(args)
+    except (FileExistsError, FileNotFoundError, RuntimeError, ValueError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
