@@ -25,9 +25,9 @@ hl.bind(mod .. " + M", exec(p.spotify))
 hl.bind(mod .. " + O", exec("obsidian"))
 hl.bind(mod .. " + C", hl.dsp.window.close())
 hl.bind(mod .. " + I", exec("kitty nvim +$ /home/curator/workspace/ai/household-oc/agents/tactical/data/itinerary.md"))
-hl.bind(mod .. " + X", exec("~/workspace/ai/household-oc/tools/checks/checks-menu.sh"))
+hl.bind(mod .. " + X", exec("~/.config/hypr/scripts/hud-checks.sh"))
 hl.bind(mod .. " + SHIFT + I", hl.dsp.layout("togglesplit"))
-hl.bind(mod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mod .. " + SHIFT + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mod .. " + Escape", hl.dsp.exit())
 hl.bind("F11", hl.dsp.window.fullscreen())
 
@@ -44,6 +44,7 @@ hl.bind(mod .. " + SHIFT + N", hl.dsp.layout("swapwithmaster"))
 -- Master ratio. Applies to the focused workspace only and is not persisted.
 hl.bind(mod .. " + minus", hl.dsp.layout("mfact -0.05"))
 hl.bind(mod .. " + equal", hl.dsp.layout("mfact +0.05"))
+hl.bind(mod .. " + SHIFT + T", hl.dsp.layout("orientationcycle left bottom"))
 hl.bind(mod .. " + SHIFT + O", hl.dsp.layout("orientationnext"))
 
 -- Cycle through windows in current workspace. Two dispatchers on one key: as a
@@ -77,18 +78,56 @@ hl.bind(mod .. " + P", exec("hyprlock"))
 --   U        = add item (category picker, incl. new category)
 --   Shift+U  = toggle the panel
 --   Alt+U    = SSH (moved off Shift+U)
+-- Super+X = checks card (routine ack). Super+Shift+X is caffeine.
+-- Super+Shift+B = backlog card (B is bluetooth; Shift+Y is hue).
 -- Hue lights on Super+Shift+Y.
 hl.bind(mod .. " + U", exec("~/.config/hypr/scripts/hud-focus-add.sh"))
 hl.bind(mod .. " + SHIFT + U", exec("eww open --toggle hud"))
 hl.bind(mod .. " + ALT + U", exec(p.ssh))
 hl.bind(mod .. " + Y", exec("~/.config/hypr/scripts/hud-capture.sh"))
 hl.bind(mod .. " + SHIFT + Y", exec("~/.bin/hue toggle"))
+hl.bind(mod .. " + SHIFT + B", exec("~/.config/hypr/scripts/hud-backlog.sh"))
+
+-- Backlog card is a modal: j/k move, g/G top/bottom, x clears, y yanks, Escape/q closes.
+-- reset is required — without it a failed close leaves every key trapped.
+local backlogNav = "~/.config/hypr/scripts/hud-backlog-nav.sh"
+hl.define_submap("backlog", function()
+    hl.bind("j", exec(backlogNav .. " down"), { repeating = true })
+    hl.bind("k", exec(backlogNav .. " up"), { repeating = true })
+    hl.bind("g", exec(backlogNav .. " first"))
+    hl.bind("SHIFT + G", exec(backlogNav .. " last"))
+    hl.bind("x", exec(backlogNav .. " x"))
+    hl.bind("Return", exec(backlogNav .. " x"))
+    hl.bind("y", exec(backlogNav .. " y"))
+    hl.bind("escape", exec("~/.config/hypr/scripts/hud-backlog.sh close"))
+    hl.bind("q", exec("~/.config/hypr/scripts/hud-backlog.sh close"))
+    hl.bind(mod .. " + SHIFT + B", exec("~/.config/hypr/scripts/hud-backlog.sh close"))
+end)
+
+-- Checks card is the same modal as backlog: j/k move, g/G top/bottom, x acks,
+-- y yanks, Escape/q closes. reset is required — without it a failed close
+-- leaves every key trapped.
+local checksNav = "~/.config/hypr/scripts/hud-checks-nav.sh"
+hl.define_submap("checks", function()
+    hl.bind("j", exec(checksNav .. " down"), { repeating = true })
+    hl.bind("k", exec(checksNav .. " up"), { repeating = true })
+    hl.bind("g", exec(checksNav .. " first"))
+    hl.bind("SHIFT + G", exec(checksNav .. " last"))
+    hl.bind("x", exec(checksNav .. " x"))
+    hl.bind("Return", exec(checksNav .. " x"))
+    hl.bind("y", exec(checksNav .. " y"))
+    hl.bind("escape", exec("~/.config/hypr/scripts/hud-checks.sh close"))
+    hl.bind("q", exec("~/.config/hypr/scripts/hud-checks.sh close"))
+    hl.bind(mod .. " + X", exec("~/.config/hypr/scripts/hud-checks.sh close"))
+end)
+
 -- Sit/stand toggle — declares the transition, HUD footer counts the block with
 -- away-from-desk time subtracted. Confirms with a short notification because the
 -- board is often closed when this is pressed.
 hl.bind(mod .. " + R", exec("posture"))
--- Caffeine dose picker (coffee mug / Monster). Super+X is checks; this is the
--- sibling event logger. Confirms with notify-send (active mg + quiet estimate).
+-- Caffeine dose picker (coffee mug / Monster). Super+X is the checks card;
+-- this is the sibling event logger. Confirms with notify-send (active mg +
+-- quiet estimate).
 hl.bind(mod .. " + SHIFT + X", exec("~/.config/hypr/scripts/caffeine-menu.sh"))
 hl.bind(mod .. " + period", exec("~/.config/hypr/scripts/emoji-picker.sh"))
 hl.bind(mod .. " + B", exec("~/.config/waybar/scripts/bluetooth-menu.sh"))
@@ -141,9 +180,11 @@ hl.bind(mod .. " + left", exec("playerctl -p ncspot,spotify,firefox previous"))
 hl.bind(mod .. " + right", exec("playerctl -p ncspot,spotify,firefox next"))
 hl.bind(mod .. " + space", exec("playerctl -p ncspot,spotify,firefox play-pause"))
 
--- TTS controls - no modifier needed, global hotkeys
+-- TTS / desk-ear — nav cluster, no modifier (mute-shaped toggles)
+-- Insert = shut her up, Home = pause her, Page_Down = talk / stop talking
 hl.bind("Insert", exec("python3 ~/workspace/ai/tts-daemon/tts_client.py kill"), LOCKED)
 hl.bind("Home", exec("python3 ~/workspace/ai/tts-daemon/tts_client.py pause"), LOCKED)
+hl.bind("Page_Down", exec("uv run --project /home/curator/workspace/ai/household-oc/tools/speak hark"), LOCKED)
 
 -- Quick emoji shortcuts (mod + CTRL + key) — clipboard+ydotool paste
 -- (plain wtype unicode is ignored by Electron/Chromium on Wayland)

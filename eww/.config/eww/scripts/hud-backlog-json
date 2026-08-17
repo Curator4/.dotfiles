@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Feed for the on-demand backlog card: JSON array of {item,header,i,text}.
+/home/curator/workspace/hud/hud backlog --json 2>/dev/null || echo "[]"

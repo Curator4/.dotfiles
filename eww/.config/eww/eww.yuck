@@ -170,7 +170,7 @@
 ; acking; the footer only owes the reminder that a list exists. It names the
 ; oldest item and counts the rest, and reddens as that item ages — a block that
 ; renders identically every morning is furniture by day three, which is how the
-; pull-only menu failed. Click opens the same rofi ack menu the keybind does.
+; pull-only menu failed. Click opens the same eww card Super+X does.
 ;
 ; Caffeine: today's total mg, estimated active mg (5h half-life), quiet-after
 ; clock. Sits next to posture as the other body instrument. `hud caffeine
@@ -225,7 +225,7 @@
        :visible {board_checks != "" || board_caffeine != "" || board_posture != ""}
     (eventbox :cursor "pointer" :hexpand true :halign "start"
               :visible {board_checks != ""}
-              :onclick "/home/curator/workspace/ai/household-oc/tools/checks/checks-menu.sh &"
+              :onclick "~/.config/hypr/scripts/hud-checks.sh &"
       (label :class "checks-line" :markup board_checks :halign "start"))
     (box :orientation "h" :space-evenly false :spacing 10
          :hexpand true :halign "end"
@@ -256,3 +256,102 @@
   :focusable false
   :namespace "hud"
   (hud-panel))
+
+; On-demand backlog card. Super+Shift+B / `backlog` toggles it and enters
+; a vim submap (j/k move, x clears, Escape closes). Click still works.
+; Rows are pushed via `eww update` so j/k is instant, not polled.
+(defvar backlog_rows "[]")
+
+(defwidget backlog-panel []
+  (box :class "backlog-panel" :orientation "v" :space-evenly false :spacing 8
+    (box :orientation "h" :space-evenly false
+      (label :class "backlog-kicker" :text "BACKLOG" :halign "start" :hexpand true)
+      (eventbox :cursor "pointer"
+                :onclick "~/.config/hypr/scripts/hud-backlog.sh close"
+        (label :class "backlog-close" :text "✕")))
+    (label :class "backlog-empty"
+           :visible {arraylength(backlog_rows) == 0}
+           :text "nothing open")
+    (scroll :vscroll true :hscroll false :vexpand true
+            :visible {arraylength(backlog_rows) > 0}
+      (box :class "backlog-list" :orientation "v" :space-evenly false :spacing 0
+        (for row in backlog_rows
+          (revealer :reveal {row.revealed}
+                    :transition "slideup"
+                    :duration "900ms"
+            (eventbox :class {row.klass}
+                      :cursor {row.item ? "pointer" : "default"}
+                      :onhover {row.item ?
+                        "~/.config/hypr/scripts/hud-backlog-nav.sh hover ${row.i}"
+                        : "true"}
+                      :onhoverlost {row.item ?
+                        "~/.config/hypr/scripts/hud-backlog-nav.sh unhover ${row.i}"
+                        : "true"}
+                      :onclick {row.item ?
+                        "~/.config/hypr/scripts/hud-backlog-nav.sh clear-at ${row.i} &"
+                        : "true"}
+              (label :class {row.header ? "backlog-section" : "backlog-item"}
+                     :halign "start"
+                     :text {row.header ? row.text : "${row.mark}  ${row.text}"}))))))
+    (label :class "backlog-hint"
+           :text "j/k move  ·  x clear  ·  y yank  ·  Esc closes"
+           :halign "start")))
+
+(defwindow backlog
+  :monitor "DP-3"
+  :geometry (geometry :x "0px" :y "0px" :width "880px" :height "980px" :anchor "center")
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  :namespace "backlog"
+  (backlog-panel))
+
+; On-demand checks card. Super+X / footer click toggles it and enters a vim
+; submap (j/k move, x acks, Escape closes). Same chrome as the backlog card
+; (shared .backlog-* classes) — one look, two lists.
+(defvar checks_rows "[]")
+
+(defwidget checks-panel []
+  (box :class "backlog-panel"
+       :orientation "v" :space-evenly false :spacing 8
+    (box :orientation "h" :space-evenly false
+      (label :class "backlog-kicker" :text "CHECKS" :halign "start" :hexpand true)
+      (eventbox :cursor "pointer"
+                :onclick "~/.config/hypr/scripts/hud-checks.sh close"
+        (label :class "backlog-close" :text "✕")))
+    (label :class "backlog-empty"
+           :visible {arraylength(checks_rows) == 0}
+           :text "nothing due today")
+    (scroll :vscroll true :hscroll false :vexpand true
+            :visible {arraylength(checks_rows) > 0}
+      (box :class "backlog-list" :orientation "v" :space-evenly false :spacing 0
+        (for row in checks_rows
+          (revealer :reveal {row.revealed}
+                    :transition "slideup"
+                    :duration "900ms"
+            (eventbox :class {row.klass}
+                      :cursor {row.item ? "pointer" : "default"}
+                      :onhover {row.item ?
+                        "~/.config/hypr/scripts/hud-checks-nav.sh hover ${row.i}"
+                        : "true"}
+                      :onhoverlost {row.item ?
+                        "~/.config/hypr/scripts/hud-checks-nav.sh unhover ${row.i}"
+                        : "true"}
+                      :onclick {row.item ?
+                        "~/.config/hypr/scripts/hud-checks-nav.sh clear-at ${row.i} &"
+                        : "true"}
+              (label :class {row.header ? "backlog-section" : "backlog-item"}
+                     :halign "start"
+                     :text {row.header ? row.text : "${row.mark}  ${row.text}"}))))))
+    (label :class "backlog-hint"
+           :text "j/k move  ·  x ack  ·  y yank  ·  Esc closes"
+           :halign "start")))
+
+(defwindow checks
+  :monitor "DP-3"
+  :geometry (geometry :x "0px" :y "0px" :width "720px" :height "520px" :anchor "center")
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  :namespace "checks"
+  (checks-panel))

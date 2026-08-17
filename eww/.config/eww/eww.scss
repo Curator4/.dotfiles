@@ -15,6 +15,7 @@ $hud-today-item: #d8c8b8 !default;
 $hud-today-done: #6a7285 !default;
 $hud-caffeine: rgba(224, 175, 104, 0.78) !default;
 $hud-accent: #7aa2f7 !default;
+$hud-hover: rgba(122, 162, 247, 0.12) !default;
 $hud-font: "Hack Nerd Font" !default;
 
 window {
@@ -278,4 +279,77 @@ window {
   color: $hud-footer-border;
   font-family: $hud-font;
   font-size: 12px;
+}
+
+// On-demand backlog card — HUD chrome, TODAY kicker, accent on sections.
+// Colours all come from $hud-* (theme-render.sh → theme-colors.scss).
+.backlog-panel {
+  background-color: $hud-bg;
+  border-radius: 12px;
+  border: 1px solid $hud-border;
+  padding: 22px 28px 16px 28px;
+  margin: 8px;
+}
+
+.backlog-kicker {
+  color: $hud-today-header;
+  font-family: $hud-font;
+  font-size: 14px;
+  letter-spacing: 3px;
+}
+
+.backlog-close {
+  color: $hud-muted;
+  font-family: $hud-font;
+  font-size: 14px;
+  padding: 0 4px;
+}
+
+.backlog-section-hit {
+  padding-top: 10px;
+}
+
+.backlog-section {
+  color: $hud-accent;
+  font-family: $hud-font;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.backlog-item-hit {
+  padding: 5px 8px;
+  border-radius: 6px;
+}
+
+.backlog-item-hit:hover,
+.backlog-item-hit.selected,
+.backlog-item-hit.checking {
+  background-color: $hud-hover;
+}
+
+.backlog-item-hit.checking .backlog-item {
+  color: $hud-today-header;
+  transition: color 240ms ease;
+}
+
+.backlog-item-hit.clearing {
+  opacity: 0;
+  transition: opacity 800ms ease;
+}
+
+.backlog-item {
+  color: $hud-today-item;
+  font-family: $hud-font;
+  font-size: 17px;
+}
+
+.backlog-empty,
+.backlog-hint {
+  color: $hud-muted;
+  font-family: $hud-font;
+  font-size: 12px;
+}
+
+.backlog-hint {
+  margin-top: 4px;
 }
