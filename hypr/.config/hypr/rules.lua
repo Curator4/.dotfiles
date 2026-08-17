@@ -170,12 +170,60 @@ hl.workspace_rule({ workspace = "2", monitor = "DP-2" })                 -- top 
 -- Portrait monitors: master on bottom, halved — near eye level on a tall screen.
 -- Slaves lay out side-by-side above the master, so these read well at two
 -- windows and get cramped past that.
+--
+-- Layout follows the monitor, not the workspace number. Numbered pins
+-- still seed 3/4/5/8 at creation; the m[] rules plus create/move hooks
+-- cover anything else that lands on DP-1/DP-4 (e.g. workspace 7).
+local portrait_monitors = { ["DP-1"] = true, ["DP-4"] = true }
+local portrait_layout   = { orientation = "bottom", mfact = 0.5 }
+local landscape_layout  = { orientation = "left",   mfact = 0.6 }
+
+local function layout_for(mon)
+    if mon and portrait_monitors[mon.name] then
+        return portrait_layout
+    end
+    return landscape_layout
+end
+
+local function seed_workspace_layout(ws, mon)
+    if not ws or ws.special then
+        return
+    end
+    mon = mon or ws.monitor
+    if not mon then
+        return
+    end
+    hl.workspace_rule({
+        workspace   = tostring(ws.id),
+        layout_opts = layout_for(mon),
+    })
+end
+
+for _, mon in ipairs({ "DP-1", "DP-4" }) do
+    hl.workspace_rule({
+        workspace   = "m[" .. mon .. "]",
+        layout_opts = portrait_layout,
+    })
+end
+
 for _, ws in ipairs({ { "3", "DP-1" }, { "4", "DP-4" }, { "5", "DP-1" }, { "8", "DP-4" } }) do
     hl.workspace_rule({
         workspace   = ws[1],
         monitor     = ws[2],
-        layout_opts = { orientation = "bottom", mfact = 0.5 },
+        layout_opts = portrait_layout,
     })
+end
+
+hl.on("workspace.created", function(ws)
+    seed_workspace_layout(ws)
+end)
+
+hl.on("workspace.move_to_monitor", function(ws, mon)
+    seed_workspace_layout(ws, mon)
+end)
+
+for _, ws in ipairs(hl.get_workspaces()) do
+    seed_workspace_layout(ws)
 end
 
 -- Spare workspace (bots moved into herdr 2026-07-22)
