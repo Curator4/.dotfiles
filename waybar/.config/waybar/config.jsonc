@@ -6,7 +6,7 @@
 
     "modules-left": ["hyprland/workspaces", "custom/theme"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/codexbar-claude", "custom/codexbar-codex", "custom/codexbar-grok", "custom/codexbar-openrouter", "custom/volume", "bluetooth", "custom/network", "custom/gpu", "custom/vram", "cpu", "memory", "disk"],
+    "modules-right": ["custom/codexbar-claude", "custom/codexbar-codex", "custom/codexbar-grok", "custom/codexbar-openrouter", "custom/volume", "bluetooth", "custom/network", "custom/gpu", "custom/vram", "cpu", "memory", "custom/disk"],
 
     "custom/codexbar-codex": {
         "exec": "CODEXBAR_PROVIDERS=codex CODEXBAR_BAR_PROVIDER=codex $HOME/.config/waybar/scripts/codexbar.sh | jq -c '.text |= (gsub(\"🤖 ?\";\"\"))'",
@@ -132,11 +132,13 @@
         "on-click": "kitty -e btop"
     },
 
-    "disk": {
+    // df semantics via disk.sh — the built-in module counts the ext4 root
+    // reserve as free, reading ~5% lower than df/aegis/disk-space-check.
+    "custom/disk": {
         "interval": 30,
-        "format": "DISK {percentage_used}%",
-        "path": "/",
-        "tooltip-format": "Disk Usage: {percentage_used}%\nUsed: {used} / {total}\nFree: {free}\nPath: {path}",
+        "return-type": "json",
+        "exec": "$HOME/.config/waybar/scripts/disk.sh",
+        "format": "DISK {}",
         "on-click": "kitty -e btop"
     },
 
