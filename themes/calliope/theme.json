@@ -55,7 +55,6 @@
     "DP-3": "static[1]",
     "DP-4": "vertical[1]"
   },
-  "rofi_theme": "frost",
   "obsidian": {
     "cssTheme": "Obsidianite",
     "base": "obsidian"

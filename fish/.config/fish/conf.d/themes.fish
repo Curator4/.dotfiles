@@ -74,16 +74,13 @@ function calliope     -d "Theme: cosmic blue";  _apply-kitty-theme calliope     
 function ember        -d "Theme: amber dusk";   _apply-kitty-theme ember        'rgba(D69A73ee)'; end
 function mono         -d "Theme: monochrome";   _apply-kitty-theme mono         'rgba(C3C3C3ee)'; end
 
-# Full SYSTEM theme switch (wallpapers + waybar + apps + vibe): `theme <name>`
-# (the bare names above only reskin the current terminal window)
+# Full SYSTEM theme switch (wallpapers + waybar + apps + vibe).
+# Bare `theme` opens the same rofi picker as the waybar click.
+# (the functions above only reskin the current terminal window)
 function theme -d "Apply a full system theme"
-    if test -z "$argv[1]"
-        echo "usage: theme <name>  —  "(command ls ~/.dotfiles/themes | string join ', ')
-        return 1
-    end
-    ~/.dotfiles/bin/.bin/theme-switcher.sh apply $argv[1]
+    command theme $argv
 end
-complete -c theme -f -a "(command ls ~/.dotfiles/themes)"
+complete -c theme -f -a "(path basename ~/.dotfiles/themes/*/)"
 
 # Philips Hue — office group (see ~/.config/hue/config.json)
 function hue -d "Philips Hue: on/off/theme/color for office lights"

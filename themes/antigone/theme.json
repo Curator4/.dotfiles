@@ -1,0 +1,69 @@
+{
+  "name": "Antigone",
+  "slug": "antigone",
+  "icon": "✦",
+  "draft": true,
+  "source": "literal swatch from ianyepan/tron-legacy-emacs-theme",
+  "effects": {
+    "profile": "cinematic"
+  },
+  "nvim": {
+    "colorscheme": "iceberg",
+    "variant": "",
+    "background": "dark"
+  },
+  "palette": {
+    "background": "#000000",
+    "foreground": "#B0CCDC",
+    "cursor": "#DEB45B",
+    "cursor_text": "#000000",
+    "selection_bg": "#5A7387",
+    "selection_fg": "#B0CCDC",
+    "colors": {
+      "black": "#000000",
+      "red": "#B62D66",
+      "green": "#4BB5BE",
+      "yellow": "#DEB45B",
+      "blue": "#387AAA",
+      "magenta": "#B62D66",
+      "cyan": "#4BB5BE",
+      "white": "#B0CCDC",
+      "bright_black": "#5A7387",
+      "bright_red": "#B62D66",
+      "bright_green": "#BBF0EF",
+      "bright_yellow": "#DEB45B",
+      "bright_blue": "#8FD4FF",
+      "bright_magenta": "#B62D66",
+      "bright_cyan": "#BBF0EF",
+      "bright_white": "#BBF0EF"
+    }
+  },
+  "wallpapers": {
+    "static": [
+      "~/pictures/wallpapers/static/coral-rim-girl.jpg",
+      "~/pictures/wallpapers/static/quiet-cat-gray.png"
+    ],
+    "vertical": [
+      "~/pictures/wallpapers/vertical/sunlit-wall-girl-vert.jpg",
+      "~/pictures/wallpapers/vertical/dore-angels-fall-mono.jpg"
+    ]
+  },
+  "monitors": {
+    "DP-1": "vertical[0]",
+    "DP-2": "static[1]",
+    "DP-3": "static[0]",
+    "DP-4": "vertical[1]"
+  },
+  "obsidian": {
+    "cssTheme": "Obsidian Nord",
+    "base": "obsidian"
+  },
+  "hue": {
+    "accent": "#387AAA",
+    "bri": 38,
+    "sat_scale": 1.15
+  },
+  "font": {
+    "mono": "JetBrainsMono Nerd Font"
+  }
+}

@@ -60,9 +60,10 @@ not show up as churn:
 
 - **generated, untracked** — waybar `style.css`, `hyprlock.conf`,
   `hyprpaper.conf`, `theme-effects.conf`, mako `config`, `starship.toml`, nvim
-  `colorscheme.lua`, cava `config`, kitty `theme-font.conf`. edits here are
-  lost on the next switch. change `themes/<name>/` or the shared structure in
-  `theme-render.sh` / `theme-switcher.sh` instead.
+  `colorscheme.lua`, cava `config`, kitty `theme-font.conf`, rofi
+  `current.rasi`. edits here are lost on the next switch. change
+  `themes/<name>/` or the shared structure in `theme-render.sh` /
+  `theme-switcher.sh` / `rofi/.../card.rasi` instead.
   Cava gradient = yellow → cyan → accent (`hue.accent` or blue). Optional mono
   font via `"font": { "mono": "…" }` in `theme.json` (default Hack Nerd Font).
 - **client apps (outside stow, best-effort)** — rewritten from the same palette
@@ -80,11 +81,11 @@ not show up as churn:
     `toolkit.legacyUserProfileCustomizations.stylesheets` in `user.js`. Restart
     Firefox after the first enable.
 - **tracked inputs** — everything under `themes/`, mako's `output.conf` and
-  `*-categories.conf` fragments, the rofi `.rasi` palettes.
+  `*-categories.conf` fragments, rofi's `card.rasi` layout.
 - **indirection, not rewriting** — `kitty.conf` and `hyprland.conf` reference
-  `~/.config/current-theme/`, and rofi's `config.rasi` references
-  `@theme "current"`. those are symlinks the switcher repoints; the tracked
-  files never change.
+  `~/.config/current-theme/` (symlink the switcher repoints). rofi's
+  `config.rasi` references `@theme "current"`; `current.rasi` is generated
+  by `theme-render.sh` from the palette onto the shared `card.rasi` layout.
 
 a fresh clone has none of the generated files until `setup-devenv.sh` runs
 `theme-switcher.sh apply` (or `theme-startup.sh` fires at login).

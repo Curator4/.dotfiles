@@ -1,0 +1,109 @@
+/* Shared rounded-card layout. Colors come from current.rasi (theme-render). */
+* {
+    background-color: transparent;
+    text-color:       @fg0;
+    margin:           0;
+    padding:          0;
+    spacing:          0;
+}
+
+window {
+    location:         center;
+    anchor:           center;
+    width:            460px;
+    border-radius:    16px;
+    border:           1px;
+    border-color:     @border;
+    background-color: @bg0;
+    padding:          12px;
+}
+
+mainbox {
+    spacing:          8px;
+    children:         [ inputbar, message, listview, mode-switcher ];
+}
+
+inputbar {
+    spacing:          8px;
+    padding:          8px 12px;
+    border:           1px;
+    border-radius:    10px;
+    border-color:     @border;
+    background-color: @bg1;
+    text-color:       @fg1;
+    children:         [ entry ];
+}
+
+prompt {
+    enabled:          false;
+}
+
+entry {
+    placeholder:        "Search";
+    placeholder-color:  @fg-muted;
+    text-color:         @fg1;
+    cursor:             text;
+}
+
+message {
+    padding:          8px 16px;
+    border-radius:    14px;
+    background-color: @bg1;
+}
+
+textbox {
+    text-color:       @fg0;
+}
+
+listview {
+    lines:            8;
+    columns:          1;
+    cycle:            true;
+    dynamic:          true;
+    scrollbar:        false;
+    fixed-height:     false;
+    spacing:          4px;
+}
+
+element {
+    padding:          7px 12px;
+    spacing:          10px;
+    border-radius:    8px;
+    background-color: transparent;
+    text-color:       @fg0;
+    cursor:           pointer;
+}
+
+element selected {
+    background-color: @accent-soft;
+    text-color:       @fg1;
+}
+
+element-icon {
+    size:             1.2em;
+    vertical-align:   0.5;
+    background-color: transparent;
+}
+
+element-text {
+    vertical-align:   0.5;
+    text-color:       inherit;
+    background-color: transparent;
+}
+
+mode-switcher {
+    spacing:          8px;
+}
+
+button {
+    padding:          6px 12px;
+    border-radius:    8px;
+    background-color: @bg1;
+    text-color:       @fg0;
+    cursor:           pointer;
+}
+
+button selected {
+    background-color: @accent-soft;
+    text-color:       @fg1;
+}

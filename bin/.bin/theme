@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Desktop theme picker. Bare `theme` is the same rofi menu as the waybar click.
+#
+#   theme                 open the selector
+#   theme list            list desktop themes
+#   theme current         show the active theme
+#   theme apply <slug>    apply a theme
+#   theme <slug>          apply a theme (shorthand)
+set -euo pipefail
+
+SWITCHER="$HOME/.dotfiles/bin/.bin/theme-switcher.sh"
+MENU="$HOME/.config/waybar/scripts/theme-menu.sh"
+
+if [ $# -eq 0 ]; then
+    exec "$MENU"
+fi
+
+case "$1" in
+    list|current|apply)
+        exec "$SWITCHER" "$@"
+        ;;
+    -h|--help|help)
+        cat <<'EOF'
+Desktop theme picker. Bare `theme` is the same rofi menu as the waybar click.
+
+  theme                 open the selector
+  theme list            list desktop themes
+  theme current         show the active theme
+  theme apply <slug>    apply a theme
+  theme <slug>          apply a theme (shorthand)
+EOF
+        ;;
+    *)
+        exec "$SWITCHER" apply "$1"
+        ;;
+esac

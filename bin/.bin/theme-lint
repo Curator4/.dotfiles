@@ -315,9 +315,6 @@ def lint_theme(theme_dir: Path) -> list[Finding]:
     if not (isinstance(nvim, dict) and nvim.get("colorscheme")):
         findings.append(Finding("warn", "nvim", "nvim.colorscheme not set"))
 
-    if not data.get("rofi_theme"):
-        findings.append(Finding("warn", "rofi", "rofi_theme not set"))
-
     obs = data.get("obsidian") or {}
     if not (isinstance(obs, dict) and obs.get("cssTheme")):
         findings.append(Finding("warn", "obsidian", "obsidian.cssTheme not set"))

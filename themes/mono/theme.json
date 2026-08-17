@@ -52,7 +52,6 @@
     "DP-3": "static[0]",
     "DP-4": "vertical[1]"
   },
-  "rofi_theme": "crimson-gray",
   "obsidian": {
     "cssTheme": "Minimal",
     "base": "obsidian"

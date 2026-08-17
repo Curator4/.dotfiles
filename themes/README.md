@@ -5,9 +5,10 @@ Curated desktop themes for `theme-switcher.sh`. Each subdirectory is one theme.
 **Apply (existing theme):**
 
 ```bash
-theme-switcher.sh list
-theme-switcher.sh current
-theme-switcher.sh apply nord
+theme                 # rofi picker (same as the waybar theme click)
+theme nord            # apply by slug
+theme list
+theme current
 ```
 
 Boot picks a random desktop theme once per boot via `theme-startup.sh` (autostart).
@@ -25,7 +26,7 @@ Scaffold writes under `themes/<slug>/` with `draft: true` and a `DRAFT.md` check
 ```bash
 theme-scaffold wallpaper ~/pictures/wallpapers/static/foo.png --name cool
 theme-lint cool
-# edit theme.json: wallpapers, nvim.colorscheme, rofi_theme, obsidian.cssTheme
+# edit theme.json: wallpapers, nvim.colorscheme, obsidian.cssTheme
 theme-switcher.sh apply cool
 ```
 
@@ -38,7 +39,7 @@ theme-scaffold base16 gruvbox-dark-medium --name gruv
 
 | File | Role |
 |------|------|
-| `theme.json` | Source of truth: palette, wallpapers, monitors, nvim, rofi, hue, font, effects |
+| `theme.json` | Source of truth: palette, wallpapers, monitors, nvim, hue, font, effects |
 | `kitty.conf` | Terminal colors (also linked via `~/.config/current-theme`) |
 | `hyprland.lua` | Borders/accent for Hyprland |
 | `mako.conf` / `starship.toml` | Copied on apply |
@@ -52,5 +53,5 @@ Older themes may omit `palette` in `theme.json` and rely on `kitty.conf` only �
 
 - User says “new theme”, “theme from wallpaper”, “base16 theme”, “check theme contrast”, or “theme authoring” → use `theme-scaffold` / `theme-lint`, not Aether, not a new skill.
 - Never replace `theme-switcher.sh` with an external theming app.
-- After scaffold: user usually still wants nvim/rofi/obsidian/wallpapers filled in before apply.
+- After scaffold: user usually still wants nvim/obsidian/wallpapers filled in before apply. Rofi is rendered from the palette.
 - Full apply surface list and gitignore rules: `~/.dotfiles/README.md` § theming.

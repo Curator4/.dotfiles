@@ -29,7 +29,6 @@ from pathlib import Path
 DOTFILES = Path(os.environ.get("DOTFILES", Path.home() / ".dotfiles"))
 THEMES_DIR = Path(os.environ.get("THEME_THEMES_DIR", DOTFILES / "themes"))
 DEFAULT_FONT = "Hack Nerd Font"
-DEFAULT_ROFI = "nord"
 DEFAULT_EFFECTS = "calm"
 
 # tinted-theming base16 YAML (raw github)
@@ -503,7 +502,6 @@ def build_theme_json(
             "DP-3": "static[0]",
             "DP-4": "vertical[1]",
         },
-        "rofi_theme": DEFAULT_ROFI,
         "obsidian": {
             "cssTheme": "",
             "base": "obsidian",
@@ -661,10 +659,9 @@ Scaffolded by `theme-scaffold` from: {source_note}
 
 1. Tweak `theme.json` palette if roles look off
 2. Set real wallpapers (static + vertical) and monitor map
-3. Pick `nvim.colorscheme`, `rofi_theme`, and `obsidian.cssTheme`
-4. Optionally author a matching `*.rasi` under rofi
-5. `theme-lint {slug}`
-6. `theme-switcher.sh apply {slug}` when ready
+3. Pick `nvim.colorscheme` and `obsidian.cssTheme`
+4. `theme-lint {slug}`
+5. `theme-switcher.sh apply {slug}` when ready
 
 `draft: true` is informational — the switcher ignores it.
 """,
@@ -722,7 +719,7 @@ def print_summary(out: Path, roles: dict[str, RGB]) -> None:
     print(f"  bg={roles['background'].hex()}  fg={roles['foreground'].hex()}  "
           f"accent={roles['accent'].hex()}  contrast={ratio:.2f}:1")
     print("  files: theme.json kitty.conf hyprland.lua mako.conf starship.toml DRAFT.md")
-    print(f"  next: theme-lint {out.name} && edit wallpapers/nvim/rofi, then "
+    print(f"  next: theme-lint {out.name} && edit wallpapers/nvim, then "
           f"theme-switcher.sh apply {out.name}")
 
 
