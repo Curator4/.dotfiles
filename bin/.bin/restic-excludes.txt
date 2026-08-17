@@ -13,6 +13,11 @@
 /home/curator/.dotfiles/claude/.claude/plugins/cache
 /home/curator/.dotfiles/claude/.claude/plugins/marketplaces
 
+# OpenClaw household runtime — agents/memory/state/tasks ARE backed up.
+# npm and extensions reinstall themselves (openclaw update / plugin re-add).
+/home/curator/.openclaw/npm
+/home/curator/.openclaw/extensions
+
 # Dependency / build dirs, anywhere.
 node_modules
 __pycache__

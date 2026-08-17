@@ -3,3 +3,4 @@
 /home/curator/.dotfiles
 /home/curator/.ssh
 /home/curator/.local/state/syncthing
+/home/curator/.openclaw
