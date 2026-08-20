@@ -127,7 +127,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "fable",
+  "model": "opus",
   "hooks": {
     "PreToolUse": [
       {
@@ -261,7 +261,6 @@
   },
   "enabledPlugins": {
     "atlassian@claude-plugins-official": false,
-    "claude-code-multisession@langmartai": true,
     "codex@openai-codex": true,
     "discord@claude-plugins-official": false,
     "explanatory-output-style@claude-plugins-official": true,
@@ -288,12 +287,6 @@
         "path": "/home/curator/.claude/marketplaces-local/household"
       }
     },
-    "langmartai": {
-      "source": {
-        "source": "github",
-        "repo": "langmartai/lm-assist"
-      }
-    },
     "openai-codex": {
       "source": {
         "source": "github",
@@ -307,7 +300,7 @@
       }
     }
   },
-  "effortLevel": "xhigh",
+  "effortLevel": "high",
   "autoCompactWindow": 1000000,
   "tui": "fullscreen",
   "autoDreamEnabled": true,
@@ -324,13 +317,13 @@
       "### Org-wide",
       "**Organization**: None configured",
       "**Cloud provider(s)**: None configured",
-      "**Repository visibility**: Not queryable here (no origin remote in this repo); assume private",
+      "**Repository visibility**: Private (github.com/Pro-Network-Consult, single-owner org, account Curator4); assume private everywhere",
       "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
       "**Secrets management**: None configured",
-      "**Default / protected branches**: Not queryable here (no origin remote in this repo)",
+      "**Default / protected branches**: `main` on all repos; merges land via PR (`gh pr merge`). Force-pushing, deleting, or committing directly to `main` needs explicit confirmation; pushing feature/`routine/*` branches and opening PRs is normal, expected work",
       "**CI/CD deploy targets**: None configured",
       "**Network posture**: None configured",
-      "**Source control**: The trusted repo only (no remotes configured) — no additional orgs configured",
+      "**Source control**: GitHub via `gh` CLI as Curator4; primary work repo /home/curator/workspace/pnc/alarm-receiver (origin github.com:Pro-Network-Consult/alarm-receiver), plus personal repos under ~/workspace and ~/.dotfiles — all trusted local clones with configured remotes",
       "**Trusted internal domains**: None configured",
       "**Trusted cloud buckets**: None configured",
       "**Key internal services**: None configured",
@@ -341,8 +334,8 @@
       "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
       "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
       "### User-specific",
-      "**Primary use of Claude Code**: personal/hobby use (multi-project home directory: dotfiles, personal AI agents/household tooling, various small repos) — no single trusted project repo detected here",
-      "**Trusted repo**: This directory (/home/curator) has no tracked files and no git remotes configured — there is no trusted repo/remote to scope commits or pushes to; treat any git operations here as needing explicit confirmation",
+      "**Primary use of Claude Code**: professional development on the alarm-receiver repo (~/workspace/pnc/alarm-receiver) plus personal AI/household tooling; an unattended routine fleet (systemd user timer, daily 05:12) legitimately runs git worktree/commit/push and gh PR/issue operations inside that repo's .worktrees/",
+      "**Trusted repo**: /home/curator/workspace/pnc/alarm-receiver with origin github.com:Pro-Network-Consult/alarm-receiver — commits and pushes scoped to it (and its .worktrees/) are routine, including from headless/unattended sessions; git operations elsewhere under /home/curator follow per-repo remotes",
       "**Org-specific CLIs**: None configured",
       "routine under curator/ prefix: not applicable — no org or namespace prefix evidenced"
     ]
