@@ -574,15 +574,30 @@ echo "$merged" | jq -c \
     # When the user has pinned a provider for the bar text, surface session
     # and weekly inline with their reset clocks ("97%2h • 64%6d").
     # Otherwise emit the global max%.
+    # Some providers price the same work differently by clock. Only z.ai does
+    # today: credit plans bill 1x during peak (Mon-Fri 06:00-10:00 UTC) and 0.5x
+    # otherwise, so identical work costs double inside that window. The provider
+    # plugin publishes the state as a "Quota rate" row — read it rather than
+    # recomputing the schedule here, so upstream stays the single source of truth
+    # and providers that gain the concept later light up for free.
+    def peak_active(entry):
+        if entry == null or entry.error then false
+        else
+            [ (entry.usage.details // [])[] | (.rows // [])[] ]
+            | map(select(.label == "Quota rate"))
+            | ((.[0].value // "") == "Peak")
+        end;
+
     def bar_text(entry):
         if entry == null or entry.error then "🤖 ⚠"
         else
             [bar_window(entry.usage.primary),
              bar_window(entry.usage.secondary)]
             | map(select(. != null))
-            | if length == 0 then "🤖 —"
-              elif length == 1 then "🤖 \(.[0])"
-              else "🤖 \(.[0]) • \(.[1])" end
+            | (if length == 0 then "🤖 —"
+               elif length == 1 then "🤖 \(.[0])"
+               else "🤖 \(.[0]) • \(.[1])" end)
+              + (if peak_active(entry) then " ⏱" else "" end)
         end;
 
     . as $all
@@ -602,11 +617,12 @@ echo "$merged" | jq -c \
                elif $all_errored then "🤖 ⚠"
                else "🤖 \($pct)%" end),
         tooltip: ($lines | join("\n")),
-        class: (if $all_errored then "stale"
-                elif $pct >= 90 then "critical"
-                elif $pct >= 70 then "warning"
-                elif $any_stale then "stale"
-                else "ok" end),
+        class: ([(if $all_errored then "stale"
+                  elif $pct >= 90 then "critical"
+                  elif $pct >= 70 then "warning"
+                  elif $any_stale then "stale"
+                  else "ok" end)]
+                + (if peak_active($pinned) then ["peak"] else [] end)),
         percentage: $pct
     }
 '

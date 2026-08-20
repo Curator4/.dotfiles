@@ -1046,6 +1046,7 @@ generate_codexbar_css() {
     [ -n "$c_xai" ] || c_xai=$(awk '$1 == "foreground" { print $2; exit }' "$THEME_DIR/kitty.conf")
     [ -n "$c_xai" ] || c_xai="#B4B4B4"
     local c_openrouter="#A78BFA"  # OpenRouter: violet (readable on dark and light)
+    local c_zai="#22D3EE"         # Z.ai / GLM: cyan (distinct from Google blue + OR violet)
 
     # Recolour a white source SVG to a brand colour, caching the result.
     # Also resolves currentColor: GTK renders these via CSS background-image,
@@ -1058,6 +1059,7 @@ generate_codexbar_css() {
     _cb_recolor ProviderIcon-codex.svg      codex.svg      "$c_openai"
     _cb_recolor ProviderIcon-gemini.svg     gemini.svg     "$c_google"
     _cb_recolor ProviderIcon-openrouter.svg openrouter.svg "$c_openrouter"
+    _cb_recolor ProviderIcon-zai.svg        zai.svg        "$c_zai"
 
     cat >> "$STYLE" << EOF
 
@@ -1065,7 +1067,7 @@ generate_codexbar_css() {
  * Anthropic=orange OpenAI=green Google=blue; xAI follows theme foreground. */
 #custom-codexbar-claude, #custom-codexbar-grok,
 #custom-codexbar-codex,  #custom-codexbar-gemini,
-#custom-codexbar-openrouter {
+#custom-codexbar-zai,    #custom-codexbar-openrouter {
     padding: 0 8px 0 24px;
     font-weight: bold;
     background-repeat: no-repeat;
@@ -1077,15 +1079,25 @@ generate_codexbar_css() {
 #custom-codexbar-grok   { color: $c_xai;       background-image: url("$OUT/grok.svg"); }
 #custom-codexbar-codex  { color: $c_openai;    background-image: url("$OUT/codex.svg"); }
 #custom-codexbar-gemini { color: $c_google;    background-image: url("$OUT/gemini.svg"); }
+#custom-codexbar-zai    { color: $c_zai;       background-image: url("$OUT/zai.svg"); }
 #custom-codexbar-openrouter { color: $c_openrouter; background-image: url("$OUT/openrouter.svg"); margin-right: 48px; }
 #custom-codexbar-claude.critical { background-color: alpha($c_anthropic, 0.20); }
 #custom-codexbar-grok.critical   { background-color: alpha($c_xai, 0.20); }
 #custom-codexbar-codex.critical  { background-color: alpha($c_openai, 0.20); }
 #custom-codexbar-gemini.critical { background-color: alpha($c_google, 0.20); }
+#custom-codexbar-zai.critical    { background-color: alpha($c_zai, 0.20); }
 #custom-codexbar-openrouter.critical { background-color: alpha($c_openrouter, 0.20); }
 #custom-codexbar-claude.stale, #custom-codexbar-grok.stale,
 #custom-codexbar-codex.stale,  #custom-codexbar-gemini.stale,
-#custom-codexbar-openrouter.stale { opacity: 0.45; }
+#custom-codexbar-zai.stale,    #custom-codexbar-openrouter.stale { opacity: 0.45; }
+
+/* Peak-rate window: z.ai credit plans bill 1x Mon-Fri 06:00-10:00 UTC and 0.5x
+ * otherwise, so the same work costs double inside it. Underline the module while
+ * the expensive window is open; the ⏱ marker in the text says the same thing. */
+#custom-codexbar-zai.peak {
+    background-color: alpha($c_zai, 0.14);
+    box-shadow: inset 0 -2px 0 0 $c_zai;
+}
 EOF
     echo "  ✓ Appended codexbar (brand-coloured) styling"
 }
