@@ -57,7 +57,8 @@
     "base": "obsidian"
   },
   "hue": {
-    "accent": "#C3C3C3"
+    "accent": "#C3C3C3",
+    "off": true
   },
   "font": {
     "mono": "GeistMono Nerd Font"

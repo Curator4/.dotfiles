@@ -415,13 +415,7 @@ cmd_theme() {
         fi
     fi
 
-    hex=$(theme_accent_hex "$slug") || return 1
-    if [ -z "$hex" ]; then
-        echo "hue: no accent color in theme" >&2
-        return 1
-    fi
-
-    # Per-theme overrides (e.g. calliope night-sky wants lower bri)
+    # Per-theme overrides (e.g. calliope night-sky wants lower bri; mono wants off)
     local theme_dir theme_json bri sat_scale
     if [ -n "$slug" ]; then
         theme_dir="$HOME/.dotfiles/themes/$slug"
@@ -431,6 +425,21 @@ cmd_theme() {
         theme_dir="$HOME/.config/current-theme"
     fi
     theme_json="$theme_dir/theme.json"
+
+    # "hue": { "off": true } — theme means darkness; turn the group off
+    if [ -f "$theme_json" ] && \
+        [ "$(jq -r '.hue.off // false' "$theme_json" 2>/dev/null)" = "true" ]; then
+        echo "hue: theme wants dark -> $(cfg group "$DEFAULT_GROUP") off"
+        group_action '{"on": false}' | jq -c .
+        return 0
+    fi
+
+    hex=$(theme_accent_hex "$slug") || return 1
+    if [ -z "$hex" ]; then
+        echo "hue: no accent color in theme" >&2
+        return 1
+    fi
+
     bri=$(cfg bri 72)
     sat_scale=$(cfg sat_scale 1.0)
     if [ -f "$theme_json" ]; then
