@@ -158,6 +158,7 @@ yay.create_autocmd("UpgradeSelect", {
       local known = read_maintainers()
       local deferred = read_deferrals()
       local still_deferred = {}  -- rebuilt each run; bases absent from it are pruned
+      local aged_out = {}        -- deferred bases seen pending this run with no live flag
       local state_dirty = false
 
       for _, pkg in ipairs(upgrades) do
@@ -189,7 +190,9 @@ yay.create_autocmd("UpgradeSelect", {
             state_dirty = true
           end
 
-          if #reasons > 0 then
+          if #reasons == 0 then
+            if deferred[base] then aged_out[base] = pkg end
+          else
             local prior = deferred[base]
             local since = prior and prior.since or now
             local escalated = prior and prior.escalated or false
@@ -199,6 +202,10 @@ yay.create_autocmd("UpgradeSelect", {
               -- Soak expired. Let it through and hand it to Aegis: a package we
               -- have been sitting on for two weeks needs a human-grade look, not
               -- another silent deselect.
+              yay.log.warn(string.format(
+                "aegis: quarantine expired for %s after %d days — letting %s -> %s through (escalated to Aegis)",
+                name, math.floor(held_for / 86400),
+                tostring(pkg.local_version), tostring(pkg.remote_version)))
               if not escalated then
                 spool({
                   {"event", "quarantine_expired"},
@@ -214,6 +221,13 @@ yay.create_autocmd("UpgradeSelect", {
               end
             else
               exclude[#exclude + 1] = name
+              -- Say it at the prompt, not just the spool: when every pending
+              -- upgrade is excluded yay never shows the re-tick menu, and a
+              -- silent hold reads as "there is nothing to do".
+              yay.log.warn(string.format(
+                "aegis: holding %s %s -> %s (%s, day %d/%d) — re-tick in the menu or `yay -S %s` to override",
+                name, tostring(pkg.local_version), tostring(pkg.remote_version),
+                table.concat(reasons, ","), math.floor(held_for / 86400), MAX_DEFER_DAYS, name))
               spool({
                 {"event", "upgrade_predeselected"},
                 {"name", name}, {"base", base},
@@ -233,6 +247,30 @@ yay.create_autocmd("UpgradeSelect", {
 
       -- Any base we did not flag this run has either been installed or aged out
       -- of the recent window; dropping it restarts its clock at zero next time.
+      -- The release must be as loud as the hold: without an event here the
+      -- spool's last word on a released package is still "predeselected", and
+      -- every replay of the trail (update-brief) keeps flagging it after the
+      -- hook has waved it through.
+      for base, v in pairs(deferred) do
+        if not still_deferred[base] then
+          local pkg = aged_out[base]
+          spool({
+            {"event", "released"},
+            {"name", pkg and pkg.name or base}, {"base", base},
+            {"cause", pkg and "aged_out" or "no_longer_pending"},
+            {"deferred_since", v.since},
+            {"deferred_days", math.floor((now - v.since) / 86400)},
+            {"local_version", pkg and pkg.local_version},
+            {"remote_version", pkg and pkg.remote_version},
+          })
+          if pkg then
+            yay.log.warn(string.format(
+              "aegis: released %s %s -> %s — flag lapsed after %d days held, installing unreviewed",
+              pkg.name, tostring(pkg.local_version), tostring(pkg.remote_version),
+              math.floor((now - v.since) / 86400)))
+          end
+        end
+      end
       write_deferrals(still_deferred)
       if state_dirty then write_maintainers(known) end
       return { exclude = exclude, skip_menu = false }
