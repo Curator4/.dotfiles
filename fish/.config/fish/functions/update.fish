@@ -236,6 +236,17 @@ function __update_codexbar --description 'Pull the latest CodexBar CLI release f
     tar xzf $tmp/$tarball -C $tmp
     install -m755 $tmp/CodexBarCLI $dir/CodexBarCLI
     install -m644 $tmp/VERSION $dir/VERSION
+
+    # Newer providers (zai, openrouter, xai, ...) are JS plugins shipped in a
+    # resource bundle the CLI loads from *next to the executable* — installing
+    # only the binary leaves them failing with "CodexBarCore resource bundle is
+    # missing". Built-in Swift providers (claude/codex/grok) keep working, so
+    # the breakage looks provider-specific rather than like a bad install.
+    if test -d $tmp/CodexBar_CodexBarCore.bundle
+        rm -rf $dir/CodexBar_CodexBarCore.bundle
+        cp -r $tmp/CodexBar_CodexBarCore.bundle $dir/
+    end
+
     rm -rf $tmp
     echo "codexbar now "(codexbar --version 2>/dev/null | string replace 'CodexBar ' '')
 end
