@@ -181,10 +181,10 @@ hl.bind(mod .. " + right", exec("playerctl -p ncspot,spotify,firefox next"))
 hl.bind(mod .. " + space", exec("playerctl -p ncspot,spotify,firefox play-pause"))
 
 -- TTS / desk-ear — nav cluster, no modifier (mute-shaped toggles)
--- Insert = shut her up, Home = pause her, Page_Down = talk / stop talking
-hl.bind("Insert", exec("python3 ~/workspace/ai/tts-daemon/tts_client.py kill"), LOCKED)
+-- Print = shut her up, Home = pause her, Insert = talk / stop talking
+hl.bind("Print", exec("python3 ~/workspace/ai/tts-daemon/tts_client.py kill"), LOCKED)
 hl.bind("Home", exec("python3 ~/workspace/ai/tts-daemon/tts_client.py pause"), LOCKED)
-hl.bind("Page_Down", exec("uv run --project /home/curator/workspace/ai/household-oc/tools/speak hark"), LOCKED)
+hl.bind("Insert", exec("uv run --project /home/curator/workspace/ai/household-oc/tools/speak hark"), LOCKED)
 
 -- Quick emoji shortcuts (mod + CTRL + key) — clipboard+ydotool paste
 -- (plain wtype unicode is ignored by Electron/Chromium on Wayland)
