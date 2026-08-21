@@ -1,9 +1,12 @@
 #!/bin/bash
+# Desktop theme picker. Waybar click and `theme` (no args) both land here.
+# Each row is "<icon>  <Name>" from theme.json; 🎲 Random is last so the
+# named-theme positions stay put as the set grows.
 
 THEMES_DIR="$HOME/.dotfiles/themes"
 SWITCHER="$HOME/.dotfiles/bin/.bin/theme-switcher.sh"
+RANDOM_LABEL="🎲  Random"
 
-# Build theme list with icons
 THEME_LIST=""
 declare -A THEME_MAP
 
@@ -11,34 +14,35 @@ for theme_dir in "$THEMES_DIR"/*; do
     [ -d "$theme_dir" ] || continue
 
     THEME_SLUG=$(basename "$theme_dir")
+    json="$theme_dir/theme.json"
+    [ -f "$json" ] || continue
 
-    if [ -f "$theme_dir/theme.json" ]; then
-        # Terminal-only themes (grok-night) have no desktop configs; theme-term.sh
-        # applies them to one window. Offering them here breaks Hyprland.
-        [ "$(jq -r '.terminal_only // false' "$theme_dir/theme.json")" = "true" ] && continue
+    # Terminal-only (grok-night) and drafts don't belong on a desktop apply.
+    [ "$(jq -r '.terminal_only // false' "$json")" = "true" ] && continue
+    [ "$(jq -r '.draft // false' "$json")" = "true" ] && continue
 
-        NAME=$(jq -r '.name' "$theme_dir/theme.json")
-        DISPLAY="$NAME"
+    NAME=$(jq -r '.name' "$json")
+    ICON=$(jq -r '.icon // "•"' "$json")
+    DISPLAY="$ICON  $NAME"
 
-        THEME_LIST+="$DISPLAY\n"
-        THEME_MAP["$NAME"]="$THEME_SLUG"
-    fi
+    THEME_LIST+="$DISPLAY\n"
+    THEME_MAP["$DISPLAY"]="$THEME_SLUG"
 done
 
-# Show rofi menu (remove trailing newline)
+THEME_LIST+="$RANDOM_LABEL"
+
 sleep 0.1
-THEME_LIST="${THEME_LIST%\\n}"
-SELECTED=$(printf '%b' "$THEME_LIST" | rofi -dmenu -i -p "Select Theme")
+# -l covers every desktop theme + Random; the global rasi caps at 8.
+SELECTED=$(printf '%b' "$THEME_LIST" | rofi -dmenu -i -p "Select Theme" -l 14) || exit 0
+[ -n "$SELECTED" ] || exit 0
 
-if [ -n "$SELECTED" ]; then
-    # Convert display name to slug
-    THEME_SLUG="${THEME_MAP[$SELECTED]}"
-
-    if [ -n "$THEME_SLUG" ]; then
-        # apply runs reload_services, which restarts waybar. Since this menu is a
-        # CHILD of waybar, a direct call would get killed mid-apply by that restart
-        # (before .current-theme is written). Detach into a transient user scope so
-        # the switcher survives the waybar restart and finishes.
-        systemd-run --user --quiet --collect "$SWITCHER" apply "$THEME_SLUG"
-    fi
+# apply restarts waybar. This script is often a child of waybar, so detach
+# into a transient user scope or the switcher dies mid-apply.
+if [ "$SELECTED" = "$RANDOM_LABEL" ]; then
+    systemd-run --user --quiet --collect "$HOME/.bin/theme" random
+    exit 0
 fi
+
+THEME_SLUG="${THEME_MAP[$SELECTED]}"
+[ -n "$THEME_SLUG" ] || exit 0
+systemd-run --user --quiet --collect "$SWITCHER" apply "$THEME_SLUG"

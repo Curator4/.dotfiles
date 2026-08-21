@@ -5,11 +5,41 @@
 #   theme list            list desktop themes
 #   theme current         show the active theme
 #   theme apply <slug>    apply a theme
+#   theme random          apply a random desktop theme (not the current one)
 #   theme <slug>          apply a theme (shorthand)
 set -euo pipefail
 
 SWITCHER="$HOME/.dotfiles/bin/.bin/theme-switcher.sh"
 MENU="$HOME/.config/waybar/scripts/theme-menu.sh"
+THEMES_DIR="$HOME/.dotfiles/themes"
+CURRENT_FILE="$HOME/.config/.current-theme"
+
+pick_random() {
+    local current="" theme json
+    local -a candidates=()
+    [ -f "$CURRENT_FILE" ] && current=$(cat "$CURRENT_FILE")
+
+    for theme in "$THEMES_DIR"/*; do
+        [ -d "$theme" ] || continue
+        json="$theme/theme.json"
+        [ -f "$json" ] || continue
+        jq -e '((.terminal_only // false) == false) and ((.draft // false) == false)' \
+            "$json" >/dev/null 2>&1 || continue
+        candidates+=("$(basename "$theme")")
+    done
+    [ "${#candidates[@]}" -gt 0 ] || return 1
+
+    if [ "${#candidates[@]}" -gt 1 ] && [ -n "$current" ]; then
+        local -a others=()
+        for theme in "${candidates[@]}"; do
+            [ "$theme" = "$current" ] && continue
+            others+=("$theme")
+        done
+        [ "${#others[@]}" -gt 0 ] && candidates=("${others[@]}")
+    fi
+
+    printf '%s\n' "${candidates[@]}" | shuf -n 1
+}
 
 if [ $# -eq 0 ]; then
     exec "$MENU"
@@ -19,6 +49,10 @@ case "$1" in
     list|current|apply)
         exec "$SWITCHER" "$@"
         ;;
+    random)
+        slug=$(pick_random) || exit 1
+        exec "$SWITCHER" apply "$slug"
+        ;;
     -h|--help|help)
         cat <<'EOF'
 Desktop theme picker. Bare `theme` is the same rofi menu as the waybar click.
@@ -27,6 +61,7 @@ Desktop theme picker. Bare `theme` is the same rofi menu as the waybar click.
   theme list            list desktop themes
   theme current         show the active theme
   theme apply <slug>    apply a theme
+  theme random          apply a random desktop theme (not the current one)
   theme <slug>          apply a theme (shorthand)
 EOF
         ;;
