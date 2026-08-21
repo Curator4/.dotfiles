@@ -68,6 +68,9 @@ not show up as churn:
   font via `"font": { "mono": "…" }` in `theme.json` (default Hack Nerd Font).
 - **client apps (outside stow, best-effort)** — rewritten from the same palette
   on every apply:
+  - **Codex CLI** — `~/.codex/themes/desktop.tmTheme`; select it once with
+    `tui.theme = "desktop"`. Existing Codex sessions need a restart after a
+    desktop theme change because syntax themes are loaded per process.
   - **Spotify** — `~/.config/spicetify/Themes/dotfiles/` (spicetify). One-time
     after first Spotify launch: `spicetify backup apply`.
   - **ncspot** — `[theme]` block in `~/.config/ncspot/config.toml` (other keys

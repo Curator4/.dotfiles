@@ -124,6 +124,7 @@ apply_theme() {
     apply_theme_font "$THEME_DIR"
 
     # 6.11. Client apps (best-effort; missing tools never fail apply)
+    generate_codex_theme "$THEME_DIR"
     generate_spicetify_theme "$THEME_DIR"
     generate_ncspot_theme "$THEME_DIR"
     generate_discord_theme "$THEME_DIR"
@@ -455,6 +456,151 @@ EOF
     fi
 
     echo "  ✓ Theme mono font → $font (kitty/waybar/mako/eww)"
+}
+
+# Codex CLI: render a deliberately restrained syntax theme from the active
+# desktop palette. Codex keeps its own truecolor syntax palette, so without
+# this adapter it falls back to a bundled theme that clashes with Kitty.
+generate_codex_theme() {
+    local theme_dir="$1"
+    local codex_home_dir="${CODEX_HOME:-$HOME/.codex}"
+    local codex_theme_dir="$codex_home_dir/themes"
+    local theme_out="$codex_theme_dir/desktop.tmTheme"
+    local tmp_theme
+    local bg fg accent muted red green selection
+
+    if ! command -v codex &>/dev/null && [ ! -d "$codex_home_dir" ]; then
+        echo "  ! Codex: not installed, skipped"
+        return
+    fi
+
+    bg=$(theme_palette_color "$theme_dir" background)
+    fg=$(theme_palette_color "$theme_dir" foreground)
+    accent=$(jq -r '.codex.accent // empty' "$theme_dir/theme.json" 2>/dev/null)
+    [ -n "$accent" ] || accent=$(theme_palette_color "$theme_dir" cyan)
+    [ -n "$accent" ] || accent=$(theme_palette_color "$theme_dir" accent)
+    muted=$(jq -r '.codex.muted // empty' "$theme_dir/theme.json" 2>/dev/null)
+    [ -n "$muted" ] || muted=$(theme_palette_color "$theme_dir" bright_black)
+    red=$(theme_palette_color "$theme_dir" red)
+    green=$(theme_palette_color "$theme_dir" green)
+    selection=$(theme_palette_color "$theme_dir" selection_bg)
+    [ -n "$muted" ] || muted="$fg"
+    [ -n "$red" ] || red="$fg"
+    [ -n "$green" ] || green="$accent"
+    [ -n "$selection" ] || selection="$bg"
+
+    if [ -z "$bg" ] || [ -z "$fg" ] || [ -z "$accent" ]; then
+        echo "  ! Codex: could not resolve palette, skipped"
+        return
+    fi
+
+    mkdir -p "$codex_theme_dir"
+    tmp_theme=$(mktemp "$codex_theme_dir/.desktop.tmTheme.XXXXXX") || {
+        echo "  ! Codex: could not create temporary theme"
+        return
+    }
+
+    cat > "$tmp_theme" << EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>name</key>
+  <string>Desktop</string>
+  <key>settings</key>
+  <array>
+    <dict>
+      <key>settings</key>
+      <dict>
+        <key>background</key>
+        <string>$bg</string>
+        <key>foreground</key>
+        <string>$fg</string>
+        <key>caret</key>
+        <string>$accent</string>
+        <key>lineHighlight</key>
+        <string>$selection</string>
+        <key>selection</key>
+        <string>$selection</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Muted</string>
+      <key>scope</key>
+      <string>comment, punctuation.definition.comment</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>$muted</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Accent</string>
+      <key>scope</key>
+      <string>entity.name.function, support.function, support.function.builtin, meta.function-call, markup.underline.link</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>$accent</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Neutral Syntax</string>
+      <key>scope</key>
+      <string>keyword, storage, string, constant, entity.name.type, support.type, support.class, variable, variable.parameter, keyword.operator, punctuation</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>$fg</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Error And Deleted</string>
+      <key>scope</key>
+      <string>invalid, markup.deleted, diff.deleted</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>$red</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Inserted</string>
+      <key>scope</key>
+      <string>markup.inserted, diff.inserted</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>$green</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Changed</string>
+      <key>scope</key>
+      <string>markup.changed, diff.changed</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>$accent</string>
+      </dict>
+    </dict>
+  </array>
+</dict>
+</plist>
+EOF
+
+    if mv "$tmp_theme" "$theme_out"; then
+        chmod 0644 "$theme_out"
+        echo "  ✓ Updated Codex CLI theme → desktop ($(basename "$theme_dir"))"
+    else
+        echo "  ! Codex: could not install $theme_out"
+    fi
 }
 
 # Spotify (Spicetify): rewrite Themes/dotfiles/color.ini from palette and apply.
@@ -1024,12 +1170,12 @@ EOF
 
 # Function to append BRAND-coloured codexbar (AI usage) styling to Waybar CSS.
 # Called right after the theme's waybar.css is copied over style.css. Provider
-# identity is shown by fixed brand colours so usage reads at a glance on any
-# theme: Anthropic=orange, OpenAI=green, Google=blue. The white source logos are
-# recoloured to match and cached under recolored/ (so they never wash out on a
-# light theme). xAI/Grok has no brand colour, so it follows the theme foreground
-# to stay legible on light AND dark themes. Critical usage adds a faint
-# brand-colour chip; stale data dims the module.
+# identity is shown by brand colours so usage reads at a glance on any theme:
+# Anthropic=orange, OpenAI=green (or the theme's Codex accent), Google=blue.
+# The white source logos are recoloured to match and cached under recolored/ (so
+# they never wash out on a light theme). xAI/Grok has no brand colour, so it
+# follows the theme foreground to stay legible on light AND dark themes. Critical
+# usage adds a faint brand-colour chip; stale data dims the module.
 generate_codexbar_css() {
     THEME_DIR="$1"
     local STYLE="$DOTFILES/waybar/.config/waybar/style.css"
@@ -1039,7 +1185,9 @@ generate_codexbar_css() {
     mkdir -p "$OUT"
 
     local c_anthropic="#D97757"   # Anthropic orange
-    local c_openai="#10A37F"      # OpenAI green
+    local c_openai
+    c_openai=$(jq -r '.codex.accent // empty' "$THEME_DIR/theme.json")
+    [ -n "$c_openai" ] || c_openai="#10A37F" # OpenAI green
     local c_google="#4285F4"      # Google blue
     local c_xai                   # xAI: follow theme foreground (monochrome brand)
     c_xai=$(jq -r '.palette.foreground // empty' "$THEME_DIR/theme.json")
@@ -1064,7 +1212,8 @@ generate_codexbar_css() {
     cat >> "$STYLE" << EOF
 
 /* codexbar-waybar — AI usage, brand-coloured (auto-generated by theme-switcher).
- * Anthropic=orange OpenAI=green Google=blue; xAI follows theme foreground. */
+ * Anthropic=orange OpenAI=green/theme Codex accent Google=blue;
+ * xAI follows theme foreground. */
 #custom-codexbar-claude, #custom-codexbar-grok,
 #custom-codexbar-codex,  #custom-codexbar-gemini,
 #custom-codexbar-zai,    #custom-codexbar-openrouter {
