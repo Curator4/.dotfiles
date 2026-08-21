@@ -19,7 +19,7 @@ hl.bind(mod .. " + slash", exec(p.fileManager))
 hl.bind(mod .. " + D", exec("discord"))
 hl.bind(mod .. " + SHIFT + D", exec("kitty herdr --session dynasty"))
 hl.bind(mod .. " + F", exec(p.browser))
-hl.bind(mod .. " + T", exec("~/.bin/themis-entry --new-term"))
+hl.bind(mod .. " + T", exec("~/.bin/theme"))
 hl.bind(mod .. " + N", exec("kitty nvim"))
 hl.bind(mod .. " + M", exec(p.spotify))
 hl.bind(mod .. " + O", exec("obsidian"))
@@ -88,12 +88,15 @@ hl.bind(mod .. " + Y", exec("~/.config/hypr/scripts/hud-capture.sh"))
 hl.bind(mod .. " + SHIFT + Y", exec("~/.bin/hue toggle"))
 hl.bind(mod .. " + SHIFT + B", exec("~/.config/hypr/scripts/hud-backlog.sh"))
 
--- Backlog card is a modal: j/k move, g/G top/bottom, x clears, y yanks, Escape/q closes.
--- reset is required — without it a failed close leaves every key trapped.
+-- Backlog card is a modal: j/k or arrows move, g/G top/bottom, x clears,
+-- y yanks, Escape/q closes. reset is required — without it a failed close
+-- leaves every key trapped.
 local backlogNav = "~/.config/hypr/scripts/hud-backlog-nav.sh"
 hl.define_submap("backlog", function()
     hl.bind("j", exec(backlogNav .. " down"), { repeating = true })
     hl.bind("k", exec(backlogNav .. " up"), { repeating = true })
+    hl.bind("down", exec(backlogNav .. " down"), { repeating = true })
+    hl.bind("up", exec(backlogNav .. " up"), { repeating = true })
     hl.bind("g", exec(backlogNav .. " first"))
     hl.bind("SHIFT + G", exec(backlogNav .. " last"))
     hl.bind("x", exec(backlogNav .. " x"))
@@ -111,6 +114,8 @@ local checksNav = "~/.config/hypr/scripts/hud-checks-nav.sh"
 hl.define_submap("checks", function()
     hl.bind("j", exec(checksNav .. " down"), { repeating = true })
     hl.bind("k", exec(checksNav .. " up"), { repeating = true })
+    hl.bind("down", exec(checksNav .. " down"), { repeating = true })
+    hl.bind("up", exec(checksNav .. " up"), { repeating = true })
     hl.bind("g", exec(checksNav .. " first"))
     hl.bind("SHIFT + G", exec(checksNav .. " last"))
     hl.bind("x", exec(checksNav .. " x"))
@@ -153,6 +158,9 @@ for i, theme in ipairs(themes) do
     hl.bind(mod .. " + " .. fkey, exec(themeTerm .. " " .. theme))
     hl.bind(mod .. " + ALT + " .. fkey, exec(themeApply .. " " .. theme))
 end
+
+-- Super+T = theme picker (Themis is retired). Super+Shift+M = random.
+hl.bind(mod .. " + SHIFT + M", exec("~/.bin/theme random"))
 
 -- Laptop multimedia keys for volume and LCD brightness.
 -- Volume snaps to multiples of 5 (see scripts/volume-snap.sh) so a volume that
@@ -200,6 +208,7 @@ local emoji = {
     { "3", "🔥" }, { "4", "👌" }, { "5", "✅" }, { "6", "🤨" },
     { "7", "💪" },
     { "semicolon", "æ" }, { "apostrophe", "ø" }, { "bracketleft", "å" },
+    { "8", "€" },
     { "slash", "🤷" },
 }
 
