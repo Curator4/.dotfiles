@@ -37,6 +37,14 @@ if status is-interactive
     alias rdp-receiver 'xfreerdp3 /u:Administrator /p:Station1 /v:10.200.0.60 /sec:tls /cert:ignore /dynamic-resolution'
     alias gtree 'git log --oneline --graph -20'
     alias t 'tree -L'
+    function codex --wraps codex --description 'Codex CLI; -c resumes the latest chat'
+        if test (count $argv) -eq 1; and test "$argv[1]" = -c
+            command codex resume --last
+            return $status
+        end
+
+        command codex $argv
+    end
     function __cc_slug; basename (pwd) | tr '[:upper:]' '[:lower:]' | tr -c 'a-z0-9-' '-' | string trim -c '-' | string sub -l 30; end
     function cc; set -q INTER_SESSION_NAME; or set -lx INTER_SESSION_NAME (__cc_slug); claude --allow-dangerously-skip-permissions --permission-mode auto $argv; end
     function ccd; set -lx INTER_SESSION_NAME discord-(__cc_slug); set -lx INTER_SESSION_LABEL "discord channel"; claude --allow-dangerously-skip-permissions --permission-mode auto --effort xhigh --settings ~/.claude/channels/discord/io_settings.json --channels plugin:discord@claude-plugins-official --append-system-prompt-file ~/.claude/channels/discord/io_bot.md $argv; end

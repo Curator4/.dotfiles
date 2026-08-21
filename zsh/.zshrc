@@ -34,6 +34,16 @@ paru() {
   command paru "$@" | sed 's/there is nothing to do/there is nothing we can do/g'
 }
 
+# Match the common `-c`/continue convention without shadowing Codex config overrides.
+codex() {
+  if [[ $# -eq 1 && $1 == "-c" ]]; then
+    command codex resume --last
+    return
+  fi
+
+  command codex "$@"
+}
+
 # functions
 cover () {
     local t=$(mktemp)
