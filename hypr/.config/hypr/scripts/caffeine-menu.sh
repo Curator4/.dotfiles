@@ -16,8 +16,12 @@ list=$("$HUD" caffeine menu)
 sel=$(rofi -dmenu -i -p 'caffeine' <<<"$list") || exit 0
 [ -z "$sel" ] && exit 0
 
-# First word is the command (coffee / monster / status / undo).
-cmd=$(awk '{print $1}' <<<"$sel")
+# First ASCII word is the command — leading emoji on drink rows is skipped.
+cmd=$(awk '{
+    for (i = 1; i <= NF; i++) {
+        if ($i ~ /^[A-Za-z]/) { print $i; exit }
+    }
+}' <<<"$sel")
 case "$cmd" in
     coffee|monster)
         "$HUD" caffeine "$cmd" --source rofi
