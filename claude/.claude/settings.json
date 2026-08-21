@@ -127,7 +127,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "opus",
+  "model": "fable",
   "hooks": {
     "PreToolUse": [
       {
@@ -272,7 +272,8 @@
     "superpowers@claude-plugins-official": true,
     "telegram@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": false,
-    "grok-cc@grok-plugin-claude-code": true
+    "grok-cc@grok-plugin-claude-code": true,
+    "discernment-nudge@anthropic-agent-skills": true
   },
   "extraKnownMarketplaces": {
     "anthropic-agent-skills": {
@@ -300,7 +301,7 @@
       }
     }
   },
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
   "autoCompactWindow": 1000000,
   "tui": "fullscreen",
   "autoDreamEnabled": true,

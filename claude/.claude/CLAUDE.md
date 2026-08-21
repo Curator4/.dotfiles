@@ -20,6 +20,7 @@ Frequently referenced projects — resolve these shorthands to their paths witho
 - **AR** / **alarm-receiver** → `~/workspace/pnc/alarm-receiver/` (Go + PostgreSQL; SIA DC-09 central station alarm receiver)
 - **household** / **household-oc** / **the household** → `~/workspace/ai/household-oc/` (OpenClaw multi-agent AI household. Current residents: Io (steward), Aegis (host), Sigris (body). Tactical and Frederica were retired 2026-07-14 — see `docs/adr/0008-household-downsize-steward-relay.md`.)
 - **theme authoring** / new theme from wallpaper or base16 / theme contrast lint → read `~/.dotfiles/themes/README.md` (`theme-scaffold`, `theme-lint`; apply stays `theme-switcher.sh`)
+- **NEO70** / **VIA** / keyboard remap / hidraw permissions → `~/.claude/projects/-home-curator/memory/reference_neo70_via.md`
 
 # Session history (recent Claude Code work)
 
