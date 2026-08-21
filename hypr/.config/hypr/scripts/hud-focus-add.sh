@@ -25,7 +25,8 @@ trim() {
 prompt() {
     local p="$1"
     local out
-    out=$(rofi -dmenu -i -p "$p" -l 0) || return 1
+    out=$(rofi -dmenu -i -p "$p" -l 0 \
+        -theme-str 'listview { enabled: false; } mode-switcher { enabled: false; }') || return 1
     out=$(trim "$out")
     [ -n "$out" ] || return 1
     printf '%s' "$out"
