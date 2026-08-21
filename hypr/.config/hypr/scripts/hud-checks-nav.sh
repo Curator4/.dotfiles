@@ -78,13 +78,13 @@ animate_clear() {
     eww update checks_rows="$checked" 2>/dev/null || true
     (
         trap 'rmdir "$LOCK" 2>/dev/null || true' EXIT
-        sleep 0.38
+        sleep 0.12
         sliding=$(printf '%s' "$checked" | jq -c --argjson i "$idx" '
             map(if .item and .i == $i then
                   . + {revealed: false, klass: "backlog-item-hit clearing"}
                 else . end)')
         eww update checks_rows="$sliding" 2>/dev/null || true
-        sleep 0.95
+        sleep 0.28
         "$HUD" checks-done "$idx" >/dev/null 2>&1 || true
         refresh
     ) &

@@ -247,6 +247,7 @@
     (box :orientation "h" :space-evenly true :spacing 40
       (hud-zone :class "zone-left"  :rows board_left)
       (hud-zone :class "zone-right" :rows board_right))
+    (box :class "hud-slack" :vexpand true :hexpand true)
     (hud-footer)))
 (defwindow hud
   :monitor "DP-4"
@@ -258,8 +259,11 @@
   (hud-panel))
 
 ; On-demand backlog card. Super+Shift+B / `backlog` toggles it and enters
-; a vim submap (j/k move, x clears, Escape closes). Click still works.
-; Rows are pushed via `eww update` so j/k is instant, not polled.
+; a vim submap (j/k or arrows move, x clears, Escape
+; closes). Click still works. Rows are pushed via `eww update` so j/k is
+; instant, not polled. Long lists arrive as a window around the cursor with
+; "↑/↓ N" marker rows — Go caps the payload to the monitor budget, so the
+; card sizes to its content and never needs to scroll.
 (defvar backlog_rows "[]")
 
 (defwidget backlog-panel []
@@ -272,34 +276,35 @@
     (label :class "backlog-empty"
            :visible {arraylength(backlog_rows) == 0}
            :text "nothing open")
-    (scroll :vscroll true :hscroll false :vexpand true
-            :visible {arraylength(backlog_rows) > 0}
-      (box :class "backlog-list" :orientation "v" :space-evenly false :spacing 0
-        (for row in backlog_rows
-          (revealer :reveal {row.revealed}
-                    :transition "slideup"
-                    :duration "900ms"
-            (eventbox :class {row.klass}
-                      :cursor {row.item ? "pointer" : "default"}
-                      :onhover {row.item ?
-                        "~/.config/hypr/scripts/hud-backlog-nav.sh hover ${row.i}"
-                        : "true"}
-                      :onhoverlost {row.item ?
-                        "~/.config/hypr/scripts/hud-backlog-nav.sh unhover ${row.i}"
-                        : "true"}
-                      :onclick {row.item ?
-                        "~/.config/hypr/scripts/hud-backlog-nav.sh clear-at ${row.i} &"
-                        : "true"}
-              (label :class {row.header ? "backlog-section" : "backlog-item"}
-                     :halign "start"
-                     :text {row.header ? row.text : "${row.mark}  ${row.text}"}))))))
+    (box :class "backlog-list" :orientation "v" :space-evenly false :spacing 0
+         :visible {arraylength(backlog_rows) > 0}
+      (for row in backlog_rows
+        (revealer :reveal {row.revealed}
+                  :transition "slideup"
+                  :duration "220ms"
+          (eventbox :class {row.klass}
+                    :cursor {row.item ? "pointer" : "default"}
+                    :onhover {row.item ?
+                      "~/.config/hypr/scripts/hud-backlog-nav.sh hover ${row.i}"
+                      : "true"}
+                    :onhoverlost {row.item ?
+                      "~/.config/hypr/scripts/hud-backlog-nav.sh unhover ${row.i}"
+                      : "true"}
+                    :onclick {row.item ?
+                      "~/.config/hypr/scripts/hud-backlog-nav.sh clear-at ${row.i} &"
+                      : "true"}
+            (label :class {row.lclass}
+                   :halign "start"
+                   :text {row.dtext})))))
     (label :class "backlog-hint"
-           :text "j/k move  ·  x clear  ·  y yank  ·  Esc closes"
+           :text "j/k·↑↓ move  ·  x clear  ·  y yank  ·  Esc closes"
            :halign "start")))
 
 (defwindow backlog
-  :monitor "DP-3"
-  :geometry (geometry :x "0px" :y "0px" :width "880px" :height "980px" :anchor "center")
+  ; monitor comes from `eww open --screen` in hud-backlog.sh (focused output).
+  ; no :height — the card is content-sized (budget-capped rows from the Go
+  ; side), so it can never show dead space at any row count
+  :geometry (geometry :x "0px" :y "0px" :width "880px" :anchor "center")
   :stacking "overlay"
   :exclusive false
   :focusable false
@@ -322,34 +327,34 @@
     (label :class "backlog-empty"
            :visible {arraylength(checks_rows) == 0}
            :text "nothing due today")
-    (scroll :vscroll true :hscroll false :vexpand true
-            :visible {arraylength(checks_rows) > 0}
-      (box :class "backlog-list" :orientation "v" :space-evenly false :spacing 0
-        (for row in checks_rows
-          (revealer :reveal {row.revealed}
-                    :transition "slideup"
-                    :duration "900ms"
-            (eventbox :class {row.klass}
-                      :cursor {row.item ? "pointer" : "default"}
-                      :onhover {row.item ?
-                        "~/.config/hypr/scripts/hud-checks-nav.sh hover ${row.i}"
-                        : "true"}
-                      :onhoverlost {row.item ?
-                        "~/.config/hypr/scripts/hud-checks-nav.sh unhover ${row.i}"
-                        : "true"}
-                      :onclick {row.item ?
-                        "~/.config/hypr/scripts/hud-checks-nav.sh clear-at ${row.i} &"
-                        : "true"}
-              (label :class {row.header ? "backlog-section" : "backlog-item"}
-                     :halign "start"
-                     :text {row.header ? row.text : "${row.mark}  ${row.text}"}))))))
+    (box :class "backlog-list" :orientation "v" :space-evenly false :spacing 0
+         :visible {arraylength(checks_rows) > 0}
+      (for row in checks_rows
+        (revealer :reveal {row.revealed}
+                  :transition "slideup"
+                  :duration "220ms"
+          (eventbox :class {row.klass}
+                    :cursor {row.item ? "pointer" : "default"}
+                    :onhover {row.item ?
+                      "~/.config/hypr/scripts/hud-checks-nav.sh hover ${row.i}"
+                      : "true"}
+                    :onhoverlost {row.item ?
+                      "~/.config/hypr/scripts/hud-checks-nav.sh unhover ${row.i}"
+                      : "true"}
+                    :onclick {row.item ?
+                      "~/.config/hypr/scripts/hud-checks-nav.sh clear-at ${row.i} &"
+                      : "true"}
+            (label :class {row.lclass}
+                   :halign "start"
+                   :text {row.dtext})))))
     (label :class "backlog-hint"
-           :text "j/k move  ·  x ack  ·  y yank  ·  Esc closes"
+           :text "j/k·↑↓ move  ·  x ack  ·  y yank  ·  Esc closes"
            :halign "start")))
 
 (defwindow checks
-  :monitor "DP-3"
-  :geometry (geometry :x "0px" :y "0px" :width "720px" :height "520px" :anchor "center")
+  ; monitor comes from `eww open --screen` in hud-checks.sh (focused output).
+  ; no :height — same content-sized pattern as backlog
+  :geometry (geometry :x "0px" :y "0px" :width "720px" :anchor "center")
   :stacking "overlay"
   :exclusive false
   :focusable false

@@ -205,6 +205,9 @@ window {
   border: 1px solid $hud-border;
   padding: 16px 22px;
   margin: 5px;
+  // Slack for a few live-session rows so opening an agent fills this
+  // instead of growing the exclusive zone. Past this, the bar still grows.
+  min-height: 380px;
 }
 
 .hud-body {
@@ -316,6 +319,13 @@ window {
   letter-spacing: 1px;
 }
 
+.backlog-more {
+  color: $hud-muted;
+  font-family: $hud-font;
+  font-size: 12px;
+  padding: 2px 8px;
+}
+
 .backlog-item-hit {
   padding: 5px 8px;
   border-radius: 6px;
@@ -329,12 +339,12 @@ window {
 
 .backlog-item-hit.checking .backlog-item {
   color: $hud-today-header;
-  transition: color 240ms ease;
+  transition: color 120ms ease;
 }
 
 .backlog-item-hit.clearing {
   opacity: 0;
-  transition: opacity 800ms ease;
+  transition: opacity 220ms ease;
 }
 
 .backlog-item {

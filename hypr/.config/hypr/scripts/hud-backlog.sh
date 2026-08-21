@@ -24,7 +24,9 @@ mon=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .name')
 [ -n "$mon" ] || mon=0
 rows=$("$HUD" backlog --json 2>/dev/null || echo "[]")
 eww open --screen "$mon" backlog
-# Update after realize. A pre-open update is dropped, and the first
-# post-realize update is what used to jump the row spacing on the first j/k.
+# Rows have to land after realize (a pre-open update is dropped). One
+# update fills the widget tree at the empty-window size; a second pass
+# is what makes gtk-layer-shell pick up the content height.
+eww update backlog_rows="$rows" >/dev/null
 eww update backlog_rows="$rows" >/dev/null
 hyprctl dispatch 'hl.dsp.submap("backlog")' >/dev/null
