@@ -7,7 +7,9 @@ configuration {
     font: "Hack Nerd Font 12";
     sorting-method: "fzf";
     matching: "fuzzy";
-    monitor: "DP-2";
+    /* -1 = currently focused monitor. Hardcoding DP-2 parked every picker
+       on the top display even when focus was on DP-3/DP-4. */
+    monitor: "-1";
     /* j/k move the list (fzf-style). They don't type — fuzzy still
        matches "ira" → jira. Ctrl+j stays accept (rofi default). */
     kb-row-up: "Up,Control+p,k";
