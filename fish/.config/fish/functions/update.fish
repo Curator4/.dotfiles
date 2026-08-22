@@ -1,4 +1,4 @@
-function update --description 'Pre-flight brief (CVEs, flagged AUR, upstream notes) + LLM triage, then the full sweep: repos+AUR(--devel), npm globals, flatpak, pipx, self-updaters'
+function update --description 'Pre-flight brief (CVEs, flagged AUR, upstream notes) + LLM triage, then the full sweep: repos+AUR(--devel), npm globals, flatpak, pipx, self-updaters, then a post-sweep LLM debrief'
     # Measured 2026-07-14 over 3 runs each on a 30-package payload: sonnet ~6.0s
     # (tight), opus ~7.5s (one 10.7s outlier). Near enough the same -- the wait is
     # CLI startup and model load, not the tier, so there is no speed argument for
@@ -133,14 +133,20 @@ end
 
 # Everything pacman cannot see, plus the post-update checks. Split out because
 # four separate paths through `update` reach it (brief missing, brief failed,
-# nothing pending, gate passed) and only the declined gate must skip it.
-function __update_extras --description 'npm globals, flatpak, pipx, self-updaters; gateway restart; reboot/dotfiles nudges'
-    # npm globals — pacman/yay are blind to these (openclaw, @openai/codex backend, gemini-cli, pi).
+# nothing pending, gate passed) and only the declined gate must skip it. The
+# debrief at the end inherits that exact contract: it fires whenever the sweep
+# ran, never when the operator said n.
+function __update_extras --description 'npm globals, flatpak, pipx, self-updaters; gateway restart; reboot/dotfiles nudges; LLM debrief'
+    # npm globals — pacman/yay are blind to these (openclaw, @openai/codex backend, pi).
     set -l oc_before (openclaw --version 2>/dev/null)
     set -l cx_before (codex --version 2>/dev/null)
     npm update -g
     set -l oc_after (openclaw --version 2>/dev/null)
     set -l cx_after (codex --version 2>/dev/null)
+
+    # pi itself moved with npm above; its extensions install to ~/.pi/agent/{npm,git}
+    # and never see a package manager. Pinned git @refs are skipped by design.
+    command -q pi; and pi update --extensions
 
     # Other managers outside yay.
     command -q flatpak; and flatpak update -y
@@ -159,17 +165,26 @@ function __update_extras --description 'npm globals, flatpak, pipx, self-updater
     # codexbar left pacman 2026-07-30: the AUR package froze at 0.42.1 while
     # upstream kept shipping weekly, so releases come straight from GitHub now.
     # It has no self-update subcommand — the function below is the whole updater.
+    # VERSION reads bracket the call so the debrief can report codexbar movement.
+    set -l cb_before (cat $HOME/.local/lib/codexbar/VERSION 2>/dev/null | string trim)
     __update_codexbar
+    set -l cb_after (cat $HOME/.local/lib/codexbar/VERSION 2>/dev/null | string trim)
 
     # `openclaw update` has a habit of silently dropping plugins out of the config
     # (npm 12 bug): they vanish from plugins.allow and flip to enabled:false, the
     # gateway restarts clean, and nothing tells you until the plugin's absence
     # bites days later. Check before the restart, so the warning isn't buried
-    # under systemctl output.
-    __update_check_openclaw_plugins
+    # under systemctl output. Captured rather than run blind, so the debrief
+    # knows whether it warned; the lines are re-echoed unchanged.
+    set -l plugin_warn (__update_check_openclaw_plugins)
+    for w in $plugin_warn
+        echo $w
+    end
 
     # Restart the household gateway only if its runtime changed (openclaw OR the codex backend).
+    set -l gateway_restart "not fired — substrate steady"
     if test "$oc_before" != "$oc_after"; or test "$cx_before" != "$cx_after"
+        set gateway_restart "fired — substrate changed"
         echo "Substrate changed (openclaw: $oc_before -> $oc_after | codex: $cx_before -> $cx_after) — restarting gateway + mirrors"
         systemctl --user restart openclaw-gateway.service household-mirror.service \
             discord-mirror.service activator.service
@@ -178,14 +193,110 @@ function __update_extras --description 'npm globals, flatpak, pipx, self-updater
     # --- non-destructive nudges ---
     set -l krun (uname -r)
     set -l kins (pacman -Q linux 2>/dev/null | string split ' ')[2]
+    set -l reboot_note "not needed"
     if test -n "$kins"; and test (string replace -a '.' '-' -- $krun) != (string replace -a '.' '-' -- $kins)
+        set reboot_note "pending — running $krun, installed $kins"
         echo "⚠ reboot pending: running $krun, installed $kins"
     end
 
     set -l df_dirty (git -C ~/.dotfiles status --porcelain 2>/dev/null)
+    set -l df_note clean
     if test -n "$df_dirty"
+        set df_note (count $df_dirty)" uncommitted entries"
         echo "✎ dotfiles uncommitted (run `git acp \"msg\"` when ready):"
         git -C ~/.dotfiles status --short
+    end
+
+    # ── the debrief ────────────────────────────────────────────────────────────
+    # Notes, not raw vars: the payload has to read as prose edges (absent /
+    # fresh / unchanged / a -> b), never as blank fields a model might invent
+    # around.
+    set -l oc_note (__update_ver_note "$oc_before" "$oc_after")
+    set -l cx_note (__update_ver_note "$cx_before" "$cx_after")
+    set -l cb_note (__update_ver_note "$cb_before" "$cb_after")
+    set -l plugins_note clean
+    test -n "$plugin_warn"; and set plugins_note "warned — plugins missing from config"
+
+    set -l facts "openclaw: $oc_note
+ codex backend: $cx_note
+ gateway restart: $gateway_restart
+ openclaw plugin check: $plugins_note
+ reboot: $reboot_note
+ dotfiles: $df_note
+ codexbar: $cb_note"
+
+    __update_summary "$facts"
+end
+
+# The close-out counterpart to the triage in `update`: what the sweep actually
+# did, at a glance instead of in scrollback. Same hermetic claude -p call as the
+# triage (opus, empty setting sources, strict MCP, no session, no tools,
+# timeout) and the same plain-text-only rule for the reply. One deliberate
+# difference in the failure mode: the triage prints an "(unavailable)"
+# fallback because its facts ARE the briefing, but this is garnish on a sweep
+# that already finished — if the model cannot answer, it vanishes without a
+# trace. Hence the tty-gated placeholder: piped, a "reading…" line could never
+# be repainted and would leak into captured output.
+function __update_summary --description 'LLM debrief after the sweep: substrate deltas, restart, reboot, dotfiles'
+    set -l facts $argv[1]
+    # opus for the same measured reason as the triage — see the note at the top.
+    set -l model opus
+    set -l persona "You are a terse Arch Linux maintainer briefing the owner of this box. You are blunt, you never pad, and you never assert a fact you were not given."
+    set -l prompt "Post-sweep debrief for a system update. These are the deterministic facts — versions of the npm-managed agent substrate before and after the sweep (openclaw, the codex backend), whether the household gateway restarted because its substrate changed, whether the openclaw plugin-config check warned, kernel reboot status, dotfiles cleanliness, and the codexbar CLI version:
+
+$facts
+
+The package-manager output has already scrolled past him; this is the one-glance version of where the box now stands. Lead with what moved and what it means for the running household agents, then anything that still needs him — a pending reboot, dropped plugins, uncommitted dotfiles. Version numbers speak for themselves; never invent deltas, causes or advisories the facts do not contain. If nothing moved and nothing needs him, say so in one line and stop.
+
+He already watched it run; he wants the close-out, not a re-read. Two or three sentences, hard maximum — one per line, each under about twenty words. Dense, not chatty; drop every word that is not load-bearing. Plain text only: no markdown, no asterisks, no backticks, no headers, no bullets, no preamble, no sign-off. The terminal renders none of it and it will show up as literal punctuation."
+
+    # Fail-open, silently. The sweep is done; nothing here may read as trouble.
+    command -q claude; or return 0
+
+    set -l tty 0
+    if isatty stdout
+        set tty 1
+    end
+    echo
+    if test $tty -eq 1
+        echo "  debrief   reading…"
+    end
+
+    set -l reply
+    set reply (timeout 60 claude -p "$prompt" --model $model \
+        --system-prompt "$persona You have no tools and no network: reason only from the payload." \
+        --setting-sources '' --strict-mcp-config --no-session-persistence \
+        --allowed-tools '' 2>/dev/null)
+    # The exit status travels with the substitution. A claude that errors (quota,
+    # auth, forced update) prints its grievance to stdout, and without this
+    # check that text would masquerade as the debrief.
+    set -l rc $status
+
+    # Paint the answer over the placeholder (tty only — piped, the cursor
+    # escapes would leak into the output).
+    if test $tty -eq 1
+        tput cuu1 2>/dev/null
+        tput el 2>/dev/null
+    end
+    if test $rc -ne 0; or test -z "$reply[1]"
+        if test $tty -eq 1
+            # eat the blank line too — the skip is meant to be invisible
+            tput cuu1 2>/dev/null
+            tput el 2>/dev/null
+        end
+        return 0
+    end
+
+    set -l first 1
+    for line in $reply
+        if test -n "$line"
+            if test $first -eq 1
+                echo "  debrief   $line"
+                set first 0
+            else
+                echo "            $line"
+            end
+        end
     end
 end
 
@@ -285,4 +396,22 @@ function __update_check_openclaw_plugins --description 'Warn when an openclaw up
     echo "  Fix in ~/.openclaw/openclaw.json: add the name to .plugins.allow AND set"
     echo "  .plugins.entries.<name>.enabled = true. The gateway restart below will not"
     echo "  repair this on its own."
+end
+
+# Prose edges for the debrief facts, because a blank field reads as an error to
+# a model told never to invent: blank after-capture means the binary is absent
+# (callers capture with stderr redirected), blank-before-with-after means this
+# sweep installed it fresh, equal non-empty means no movement.
+function __update_ver_note --description 'Render a before/after version pair for the debrief facts'
+    set -l before $argv[1]
+    set -l after $argv[2]
+    if test -z "$after"
+        echo absent
+    else if test -z "$before"
+        echo "freshly installed at $after"
+    else if test "$before" = "$after"
+        echo "$after (unchanged)"
+    else
+        echo "$before -> $after"
+    end
 end
