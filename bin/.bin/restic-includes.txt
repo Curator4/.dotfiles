@@ -3,4 +3,5 @@
 /home/curator/.dotfiles
 /home/curator/.ssh
 /home/curator/.local/state/syncthing
+/home/curator/.local/share/themis-memory
 /home/curator/.openclaw
