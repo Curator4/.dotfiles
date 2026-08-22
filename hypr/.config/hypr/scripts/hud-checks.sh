@@ -20,6 +20,10 @@ fi
 # One overlay at a time — the backlog card uses the same chrome and keys.
 ~/.config/hypr/scripts/hud-backlog.sh close
 
+# Fresh session: drop hover state from the last one (see hud-backlog.sh —
+# stale hover beats the cursor on y).
+rm -f "${XDG_STATE_HOME:-$HOME/.local/state}/hud/checks-hover"
+
 rows=$("$HUD" checks --json 2>/dev/null || echo "[]")
 if [ "$rows" = "[]" ]; then
     eww update board_checks="$("$HUD" checks render 2>/dev/null || true)" 2>/dev/null || true

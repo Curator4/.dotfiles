@@ -20,6 +20,11 @@ fi
 # One overlay at a time — the checks card uses the same chrome and keys.
 ~/.config/hypr/scripts/hud-checks.sh close
 
+# Fresh session: drop hover state from the last one. onhoverlost never fires
+# when the card is destroyed mid-hover, so a leftover file would beat the
+# cursor on y (yank) — the "always yanks item 8" bug.
+rm -f "${XDG_STATE_HOME:-$HOME/.local/state}/hud/backlog-hover"
+
 mon=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .name')
 [ -n "$mon" ] || mon=0
 rows=$("$HUD" backlog --json 2>/dev/null || echo "[]")
