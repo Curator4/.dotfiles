@@ -81,6 +81,26 @@ reap() {
     fi
 }
 
+# uv holds a shared cache lock for the lifetime of every `uv run` process.
+# Never wait indefinitely for the exclusive clean lock: skip known contention,
+# and bound the command to cover a reader arriving after the probe.
+reap_uv() {
+    local cache="$HOME/.cache/uv"
+
+    if [ "$DRY" -eq 0 ] && [ "$(size_of "$cache")" -ge 1048576 ]; then
+        if ! have flock || ! have timeout; then
+            row uv "-" "skipped: flock/timeout unavailable"
+            return
+        fi
+        if ! flock -xn "$cache/.lock" true; then
+            row uv "-" "skipped: cache in use"
+            return
+        fi
+    fi
+
+    reap uv "$cache" timeout --kill-after=5s 60s uv cache clean
+}
+
 df_pct()  { df --output=pcent / | tail -1 | tr -dc '0-9'; }
 df_avail(){ df -h --output=avail / | tail -1 | tr -d ' '; }
 
@@ -99,7 +119,7 @@ if have go; then
     reap go-mod   "$(go env GOMODCACHE 2>/dev/null || echo /nonexistent)" go clean -modcache
     reap go-build "$(go env GOCACHE    2>/dev/null || echo /nonexistent)" go clean -cache
 fi
-have uv   && reap uv   "$HOME/.cache/uv"   uv cache clean
+have uv   && reap_uv
 have npm  && reap npm  "$HOME/.npm/_cacache" npm cache clean --force
 # `yay -Sc` also runs `pacman -Sc`, so it prunes /var/cache/pacman/pkg as a side
 # effect. The pacman target below will correctly report nothing left to reclaim.
