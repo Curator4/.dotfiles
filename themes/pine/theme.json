@@ -22,24 +22,24 @@
       "black": "#111614",
       "red": "#FF6B5F",
       "green": "#34D399",
-      "yellow": "#D6B85A",
+      "yellow": "#D9AE58",
       "blue": "#10A37F",
-      "magenta": "#B58BD8",
+      "magenta": "#7E9658",
       "cyan": "#00B8B8",
       "white": "#C8D0CB",
-      "bright_black": "#7B8792",
+      "bright_black": "#718EAA",
       "bright_red": "#FF8B82",
       "bright_green": "#6EE7B7",
-      "bright_yellow": "#E8D487",
+      "bright_yellow": "#EAC97A",
       "bright_blue": "#14C79B",
-      "bright_magenta": "#D0ACEA",
+      "bright_magenta": "#A8BC7A",
       "bright_cyan": "#52D6D6",
       "bright_white": "#F0F3EF"
     }
   },
   "codex": {
-    "accent": "#D6B85A",
-    "muted": "#7B8792"
+    "accent": "#D9AE58",
+    "muted": "#718EAA"
   },
   "wallpapers": {
     "static": [
