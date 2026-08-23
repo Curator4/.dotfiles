@@ -53,7 +53,7 @@ When emitting a shell command that's likely to wrap in a normal terminal (roughl
 Before answering about a prior decision, durable preference, known person or project, recurring pattern, ongoing work, or recap, run:
 
 ```bash
-themis query \
+/home/curator/.local/bin/themis query \
   --cwd "$PWD" \
   --intent <decision|preference|subject|recap> \
   --text "<the user's question>" \
