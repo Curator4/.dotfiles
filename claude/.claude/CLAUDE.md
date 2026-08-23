@@ -48,6 +48,21 @@ The Bash tool executes under **zsh**, NOT the fish login shell the startup banne
 
 When emitting a shell command that's likely to wrap in a normal terminal (roughly >100 chars), break it across lines with explicit `\` continuations at natural argument boundaries. Claude Code currently inserts hard newlines at wrap points, which corrupts copy-paste; explicit continuations make the wrap intentional and the pasted command still runs.
 
+# Themis durable-memory retrieval
+
+Before answering about a prior decision, durable preference, known person or project, recurring pattern, ongoing work, or recap, run:
+
+```bash
+themis query \
+  --cwd "$PWD" \
+  --intent <decision|preference|subject|recap> \
+  --text "<the user's question>" \
+  --harness claude-code \
+  --json
+```
+
+Add `--include-household` only when household knowledge is relevant and the reported scope permits it. Answer from active returned claims, cite their `sources`, and treat `requires_live_lookup`, `review_required`, conflicts, expiry, or an unavailable result as constraints. Pending candidates and Markdown body prose are not approved knowledge.
+
 # Decision support — user is self-aware indecisive
 
 User explicitly flags themselves as indecisive and wants you to work around it. Practical implications:
