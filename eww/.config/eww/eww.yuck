@@ -144,7 +144,7 @@
 ; ── Household HUD — focus board (two columns) ────────────
 ; Project groups packed across two columns by height (`hud board` picks the
 ; break) — your FOCUS, with live Claude Code activity painted on as an animated
-; spinner + drift badges. Every item lives under its project; reading order is
+; spinner. Every item lives under its project; reading order is
 ; work, then declared projects in focus.md order, then auto-revealed ones.
 ; Each zone is a for-loop of rows from hud-column-json (polled fast so the
 ; spinner animates). (backlog zone exists in `hud board` but is off the panel.)
