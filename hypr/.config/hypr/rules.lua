@@ -325,3 +325,9 @@ hl.window_rule({
     match = { class = "^chrome-127\\.0\\.0\\.1__-Default$" },
     animation = "slide bottom",
 })
+
+hl.window_rule({
+    name  = "themis-inbox-park",
+    match = { class = "^chrome-127\\.0\\.0\\.1__-Default$" },
+    workspace = "special:themis silent",
+})

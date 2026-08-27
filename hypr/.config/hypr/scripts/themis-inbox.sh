@@ -1,20 +1,23 @@
 #!/usr/bin/env bash
-# Toggle the Themis curation inbox. Bound to Super+Shift+T and to the HUD
-# footer's "to curate" line. Pass `close` to only ever close it.
+# Toggle the Themis curation inbox. Bound to Super+Shift+T and the waybar
+# count; the panel's own Escape reaches here through themis-panel-watchd.
 #
-# The inbox is a local web page rather than an eww card on purpose: curating a
-# claim means editing prose and, since the agent control landed, holding a short
-# back-and-forth about it. eww has a single-line GTK entry and no scrollback, so
-# that conversation does not fit. eww carries the nudge instead — see
-# ~/.config/eww/scripts/themis-inbox-render.
-#
-# It opens chromeless, in its own Hyprland window, under a throwaway profile:
-# no tabs, no address bar, no extensions, and nothing shared with the browsing
-# session. The window class is fixed so rules.conf can float and size it.
+# The window is a scratchpad: one chromeless chromium app window that lives
+# forever, parked in special:themis (the themis-inbox-park rule sends every
+# map there, so even a cold launch is invisible). Showing slides it up from
+# below the panel monitor; hiding slides it down and re-parks it. The slide
+# is a plain window move, animated by the windowsMove leaf — position-based,
+# so it must happen where no other monitor's region lies underneath. DP-3 is
+# the bottom-center monitor and the layout's bottom edge, which makes it the
+# one monitor where the slide cannot bleed onto a neighbour (verified with
+# frame captures 2026-08-27; parking below DP-1 rendered on DP-3).
 #
 # The server is loopback-only and its CSRF token is per process, so a running
 # instance is reused rather than restarted — restarting would invalidate the
-# token in a window the operator still has open.
+# token in a page the parked window still holds.
+#
+# Args: (none) toggle · close = hide only · warm = ensure server + parked
+# window, never show (autostart) · kill = destroy window and browser process.
 set -uo pipefail
 
 THEMIS=${THEMIS:-/home/curator/.local/bin/themis}
@@ -23,73 +26,126 @@ PORT=${THEMIS_UI_PORT:-8765}
 URL="http://127.0.0.1:${PORT}/"
 STATE=${XDG_STATE_HOME:-$HOME/.local/state}/themis-ui
 CLASS=themis-inbox
+PANEL_W=900
+PANEL_H=530
+PARK_MARGIN=60
+PANEL_MONITOR=${THEMIS_PANEL_MONITOR:-DP-3}
 
 mkdir -p "$STATE"
 
-if ! curl -sf -o /dev/null --max-time 1 "$URL"; then
-    setsid "$THEMIS" ui --bind 127.0.0.1 --port "$PORT" \
-        >>"$STATE/server.log" 2>&1 &
-    for _ in $(seq 1 30); do
-        curl -sf -o /dev/null --max-time 1 "$URL" && break
-        sleep 0.2
-    done
-fi
-
-# Toggle, like the other HUD panels: a second press puts it away. Chromium
-# ignores --class on Wayland and names the window after the URL, so match the
-# exact title Themis sets — a loose "Themis" match once selected any window
-# whose title mentioned Themis, terminals included. The server stays up, so
-# reopening is instant.
-if [[ ${1:-} == close ]] ||
-   hyprctl clients -j 2>/dev/null | grep -q '"title": "Curation inbox · Themis"'; then
-    exec hyprctl dispatch \
-        "hl.dsp.window.close({ window = 'title:^Curation inbox · Themis$' })" >/dev/null 2>&1
-fi
-
-if [[ ! -x $BROWSER ]]; then
-    exec xdg-open "$URL" >/dev/null 2>&1
-fi
-
-setsid "$BROWSER" \
-    --app="$URL" \
-    --ozone-platform=wayland \
-    --class="$CLASS" \
-    --user-data-dir="$STATE/profile" \
-    --no-first-run \
-    --no-default-browser-check \
-    --disable-extensions \
-    >>"$STATE/browser.log" 2>&1 &
-
-# Floating, size and centring come from the windowrules in rules.conf, which
-# apply as the window maps — dispatching them afterwards made it appear tiled
-# for a beat, reflow every other window, then jump.
-#
-# This only corrects a window that came up tiled anyway, which happens when the
-# rules are not loaded: Hyprland reads this config's binds and rules once at
-# start-up, and `hyprctl reload` does not pick up new ones.
-for _ in $(seq 1 40); do
-    state=$(hyprctl clients -j 2>/dev/null |
-        python3 -c '
+panel_state() { # -> "address ws-name x y", empty when no window
+    hyprctl clients -j 2>/dev/null | python3 -c '
 import json, sys
 try:
     clients = json.load(sys.stdin)
 except (json.JSONDecodeError, ValueError):
     raise SystemExit(0)
-for client in clients:
-    if (client.get("title") or "") == "Curation inbox · Themis":
-        print(client["address"], client["floating"])
+for c in clients:
+    if c.get("class") == "chrome-127.0.0.1__-Default":
+        print(c["address"], c["workspace"]["name"], c["at"][0], c["at"][1])
         break
-' 2>/dev/null)
-    [[ -n $state ]] && break
-    sleep 0.25
-done
+' 2>/dev/null
+}
 
-read -r address floating <<<"${state:-}"
-[[ -n ${address:-} && ${floating:-True} == False ]] || exit 0
+monitor_geometry() { # -> "x y w h active-ws global-bottom" for the panel monitor
+    hyprctl monitors -j 2>/dev/null | python3 -c '
+import json, sys, os
+try:
+    mons = json.load(sys.stdin)
+except (json.JSONDecodeError, ValueError):
+    raise SystemExit(0)
+name = os.environ.get("PANEL_MONITOR", "DP-3")
+pick = next((m for m in mons if m["name"] == name), None) \
+    or next((m for m in mons if m.get("focused")), mons[0] if mons else None)
+if pick is None:
+    raise SystemExit(0)
+bottom = max(m["y"] + m["height"] for m in mons)
+print(pick["x"], pick["y"], pick["width"], pick["height"],
+      pick["activeWorkspace"]["id"], bottom)
+' 2>/dev/null
+}
 
-# Hyprland 0.56 dispatchers are Lua and take a table, not a string. Passing a
-# bare "address:0x..." string parses fine and reports ok, but silently acts on
-# the active window instead of the one named — so the window key matters.
-hyprctl dispatch "hl.dsp.window.float({ window = 'address:$address' })" >/dev/null 2>&1
-hyprctl dispatch "hl.dsp.window.resize({ x = 900, y = 530, window = 'address:$address' })" >/dev/null 2>&1
-hyprctl dispatch "hl.dsp.window.center({ window = 'address:$address' })" >/dev/null 2>&1
+dispatch() {
+    hyprctl eval "hl.dispatch($1)" >/dev/null 2>&1
+}
+
+ensure_server() {
+    if ! curl -sf -o /dev/null --max-time 1 "$URL"; then
+        setsid "$THEMIS" ui --bind 127.0.0.1 --port "$PORT" \
+            >>"$STATE/server.log" 2>&1 &
+        for _ in $(seq 1 30); do
+            curl -sf -o /dev/null --max-time 1 "$URL" && break
+            sleep 0.2
+        done
+    fi
+}
+
+ensure_window() { # sets ADDR/WS_NAME/AT_X; launches the parked window if needed
+    read -r ADDR WS_NAME AT_X _ <<<"$(panel_state)"
+    [[ -n ${ADDR:-} ]] && return 0
+    ensure_server
+    setsid "$BROWSER" \
+        --app="$URL" \
+        --ozone-platform=wayland \
+        --class="$CLASS" \
+        --user-data-dir="$STATE/profile" \
+        --no-first-run \
+        --no-default-browser-check \
+        --disable-extensions \
+        >>"$STATE/browser.log" 2>&1 &
+    for _ in $(seq 1 60); do
+        read -r ADDR WS_NAME AT_X _ <<<"$(panel_state)"
+        [[ -n ${ADDR:-} ]] && return 0
+        sleep 0.25
+    done
+    return 1
+}
+
+show_panel() {
+    read -r MON_X MON_Y MON_W MON_H MON_WS GLOBAL_BOTTOM <<<"$(PANEL_MONITOR=$PANEL_MONITOR monitor_geometry)"
+    [[ -n ${MON_X:-} ]] || exit 0
+    local x=$(( MON_X + (MON_W - PANEL_W) / 2 ))
+    local y=$(( MON_Y + (MON_H - PANEL_H) / 2 ))
+    local park_y=$(( GLOBAL_BOTTOM + PARK_MARGIN ))
+    dispatch "hl.dsp.window.move({ x = $x, y = $park_y, window = 'address:$ADDR' })"
+    dispatch "hl.dsp.window.move({ workspace = $MON_WS, silent = true, window = 'address:$ADDR' })"
+    dispatch "hl.dsp.window.move({ x = $x, y = $y, window = 'address:$ADDR' })"
+    dispatch "hl.dsp.focus({ window = 'address:$ADDR' })"
+}
+
+hide_panel() {
+    read -r _ _ _ _ _ GLOBAL_BOTTOM <<<"$(PANEL_MONITOR=$PANEL_MONITOR monitor_geometry)"
+    local park_y=$(( ${GLOBAL_BOTTOM:-2880} + PARK_MARGIN ))
+    dispatch "hl.dsp.window.move({ x = ${AT_X:-2270}, y = $park_y, window = 'address:$ADDR' })"
+    sleep 0.55
+    dispatch "hl.dsp.window.move({ workspace = 'special:themis', silent = true, window = 'address:$ADDR' })"
+}
+
+case "${1:-}" in
+kill)
+    read -r ADDR _ <<<"$(panel_state)"
+    [[ -n ${ADDR:-} ]] && dispatch "hl.dsp.window.close({ window = 'address:$ADDR' })"
+    pkill -f '^/usr/lib/chromium/chromium .*themis-ui/profile' 2>/dev/null
+    exit 0
+    ;;
+warm)
+    ensure_window || exit 1
+    # A freshly mapped window is already parked by the themis-inbox-park rule;
+    # one that was left visible by a crash gets put away.
+    [[ ${WS_NAME:-} == special:* ]] || hide_panel
+    exit 0
+    ;;
+close)
+    read -r ADDR WS_NAME AT_X _ <<<"$(panel_state)"
+    [[ -n ${ADDR:-} && ${WS_NAME:-} != special:* ]] && hide_panel
+    exit 0
+    ;;
+*)
+    ensure_window || exit 1
+    if [[ ${WS_NAME:-} == special:* ]]; then
+        show_panel
+    else
+        hide_panel
+    fi
+    ;;
+esac
