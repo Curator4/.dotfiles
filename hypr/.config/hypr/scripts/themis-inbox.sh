@@ -58,12 +58,15 @@ setsid "$BROWSER" \
     --disable-extensions \
     >>"$STATE/browser.log" 2>&1 &
 
-# Float, size and centre it here rather than through windowrule. rules.conf
-# tags anything matching "chrom(e|ium)" — this window included — and forces
-# tile = on, and a float rule placed after it does not win. Dispatching once
-# the window exists is the version that actually holds.
+# Floating, size and centring come from the windowrules in rules.conf, which
+# apply as the window maps — dispatching them afterwards made it appear tiled
+# for a beat, reflow every other window, then jump.
+#
+# This only corrects a window that came up tiled anyway, which happens when the
+# rules are not loaded: Hyprland reads this config's binds and rules once at
+# start-up, and `hyprctl reload` does not pick up new ones.
 for _ in $(seq 1 40); do
-    address=$(hyprctl clients -j 2>/dev/null |
+    state=$(hyprctl clients -j 2>/dev/null |
         python3 -c '
 import json, sys
 try:
@@ -72,14 +75,15 @@ except (json.JSONDecodeError, ValueError):
     raise SystemExit(0)
 for client in clients:
     if "Themis" in (client.get("title") or ""):
-        print(client["address"])
+        print(client["address"], client["floating"])
         break
 ' 2>/dev/null)
-    [[ -n $address ]] && break
+    [[ -n $state ]] && break
     sleep 0.25
 done
 
-[[ -n ${address:-} ]] || exit 0
+read -r address floating <<<"${state:-}"
+[[ -n ${address:-} && ${floating:-True} == False ]] || exit 0
 
 # Hyprland 0.56 dispatchers are Lua and take a table, not a string. Passing a
 # bare "address:0x..." string parses fine and reports ok, but silently acts on
