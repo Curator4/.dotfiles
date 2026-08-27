@@ -25,13 +25,12 @@ PORT=${THEMIS_UI_PORT:-8765}
 URL="http://127.0.0.1:${PORT}/"
 STATE=${XDG_STATE_HOME:-$HOME/.local/state}/themis-ui
 CLASS=themis-inbox
-# 1200-wide at 1.333 scale renders the signed-off 900-wide layout a third
-# larger — same proportions, bigger type. The window spans from the top
-# margin to a symmetric bottom margin; the page paints only the 530-CSS-px
-# card until the counsel drawer expands into the rest (the surface below is
-# transparent). 1344 = DP-3 height 1440 - 2x48 margins.
+# 1200x706 at 1.333 scale renders the signed-off 900x530 layout a third
+# larger — same proportions, bigger type. This is the compact size; opening
+# the counsel drawer grows the window to the bottom margin, driven by the
+# page's title suffix through themis-panel-watchd.
 PANEL_W=${THEMIS_PANEL_W:-1200}
-PANEL_H=${THEMIS_PANEL_H:-1344}
+PANEL_H=${THEMIS_PANEL_H:-706}
 PANEL_SCALE=${THEMIS_PANEL_SCALE:-1.3333}
 PANEL_MARGIN_TOP=${THEMIS_PANEL_MARGIN_TOP:-48}
 PANEL_MONITOR=${THEMIS_PANEL_MONITOR:-DP-3}

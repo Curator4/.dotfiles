@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
-"""Watch Hyprland events for the Themis panel's dismiss signal.
+"""Watch Hyprland events for the Themis panel's title signals.
 
-The curation page cannot reach the compositor, so pressing Escape with
-nothing open appends " · dismiss" to its title for a moment (app.js). This
-daemon watches the compositor's event socket for that marker and puts the
-panel away. The hide is performed natively rather than through
-themis-inbox.sh: the script's bash+python startup added ~500ms between
-Escape and the slide, and the event line already carries the window address.
-A lock keeps exactly one watcher alive, so autostart can re-run
-it harmlessly.
+The curation page cannot reach the compositor, so it states requests on its
+window title (app.js): a transient " · dismiss" suffix when Escape asks the
+panel away, and a persistent " · drawer" suffix while the counsel drawer
+wants the taller window. This daemon watches the event socket and acts
+natively (shelling into themis-inbox.sh added ~500ms of interpreter
+startups); the event line already carries the window address. A lock keeps
+exactly one watcher alive, so autostart can re-run it harmlessly.
 """
 
 import fcntl
@@ -20,8 +19,15 @@ import sys
 import time
 from pathlib import Path
 
-MARKER = "Curation inbox · Themis · dismiss"
+DISMISS_SUFFIX = " · dismiss"
+DRAWER_SUFFIX = " · drawer"
+TITLE_PREFIX = "Curation inbox"
 STATE = Path(os.environ.get("XDG_STATE_HOME", Path.home() / ".local/state")) / "themis-ui"
+PANEL_W = int(os.environ.get("THEMIS_PANEL_W", "1200"))
+PANEL_H = int(os.environ.get("THEMIS_PANEL_H", "706"))
+PANEL_EXPANDED_H = int(os.environ.get("THEMIS_PANEL_EXPANDED_H", "1344"))
+PANEL_MARGIN_TOP = int(os.environ.get("THEMIS_PANEL_MARGIN_TOP", "48"))
+PANEL_MONITOR = os.environ.get("THEMIS_PANEL_MONITOR", "DP-3")
 
 
 def hyprctl_json(*args: str):
@@ -38,6 +44,25 @@ def hide(address: str) -> None:
         subprocess.run(["hyprctl", "eval",
                         "hl.dispatch(hl.dsp.workspace.toggle_special('themis'))"],
                        capture_output=True, timeout=5)
+
+
+def reconcile_size(address: str, wanted: int) -> None:
+    clients = hyprctl_json("clients")
+    panel = next((c for c in clients if c.get("address") == address), None)
+    if panel is None or panel.get("size", [0, 0])[1] == wanted:
+        return
+    mons = hyprctl_json("monitors")
+    pick = next((m for m in mons if m["name"] == PANEL_MONITOR), None) \
+        or next((m for m in mons if m.get("focused")), mons[0])
+    x = pick["x"] + (pick["width"] - PANEL_W) // 2
+    y = pick["y"] + PANEL_MARGIN_TOP
+    # The compositor re-centers a float on resize; restate the top-dock in
+    # the same config tick.
+    window = f"window = 'address:{address}'"
+    subprocess.run(["hyprctl", "eval",
+                    f"hl.dispatch(hl.dsp.window.resize({{ x = {PANEL_W}, y = {wanted}, {window} }})); "
+                    f"hl.dispatch(hl.dsp.window.move({{ x = {x}, y = {y}, {window} }}))"],
+                   capture_output=True, timeout=5)
 
 
 def socket_path() -> Path:
@@ -72,9 +97,17 @@ def main() -> None:
                     while b"\n" in buffer:
                         line, buffer = buffer.split(b"\n", 1)
                         event = line.decode("utf-8", "replace")
-                        if event.startswith("windowtitlev2>>") and event.endswith(MARKER):
-                            address = event.split(">>", 1)[1].split(",", 1)[0]
+                        if not event.startswith("windowtitlev2>>"):
+                            continue
+                        payload = event.split(">>", 1)[1]
+                        address, _, title = payload.partition(",")
+                        if not title.startswith(TITLE_PREFIX):
+                            continue
+                        if title.endswith(DISMISS_SUFFIX):
                             hide(f"0x{address}")
+                        else:
+                            wanted = PANEL_EXPANDED_H if DRAWER_SUFFIX in title else PANEL_H
+                            reconcile_size(f"0x{address}", wanted)
         except OSError:
             pass
         time.sleep(2)  # compositor restarting; reconnect
