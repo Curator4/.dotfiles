@@ -48,9 +48,9 @@ else:
 
 tooltip = f"{len(pending)} to curate"
 if oldest >= 1:
-    tooltip = f"oldest {oldest}d — Super+Shift+T"
+    tooltip = f"oldest {oldest}d — Super+T"
 else:
-    tooltip += " — Super+Shift+T"
+    tooltip += " — Super+T"
 
 print(json.dumps({"text": str(len(pending)), "tooltip": tooltip, "class": cls}))
 ' 2>/dev/null

@@ -96,6 +96,7 @@ ensure_window() { # sets ADDR/WS_NAME/AT_X; launches the parked window if needed
         --class="$CLASS" \
         --user-data-dir="$STATE/profile" \
         --force-device-scale-factor="$PANEL_SCALE" \
+        --default-background-color=00000000 \
         --no-first-run \
         --no-default-browser-check \
         --disable-extensions \
