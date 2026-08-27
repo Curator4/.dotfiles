@@ -27,13 +27,14 @@ URL="http://127.0.0.1:${PORT}/"
 STATE=${XDG_STATE_HOME:-$HOME/.local/state}/themis-ui
 CLASS=themis-inbox
 # 1200x706 at 1.333 scale renders the signed-off 900x530 layout a third
-# larger — same proportions, bigger type. The panel rests at the monitor's
-# center, nudged left by PANEL_OFFSET_X (operator's placement, 2026-08-27).
+# larger — same proportions, bigger type. The panel rests near the bottom
+# edge it rises from, floated a small gap off it, nudged left of center
+# (operator's placement, 2026-08-27).
 PANEL_W=${THEMIS_PANEL_W:-1200}
 PANEL_H=${THEMIS_PANEL_H:-706}
 PANEL_SCALE=${THEMIS_PANEL_SCALE:-1.3333}
 PANEL_OFFSET_X=${THEMIS_PANEL_OFFSET_X:--340}
-PANEL_OFFSET_Y=${THEMIS_PANEL_OFFSET_Y:-0}
+PANEL_BOTTOM_GAP=${THEMIS_PANEL_BOTTOM_GAP:-24}
 PARK_MARGIN=60
 PANEL_MONITOR=${THEMIS_PANEL_MONITOR:-DP-3}
 
@@ -113,7 +114,7 @@ show_panel() {
     read -r MON_X MON_Y MON_W MON_H MON_WS GLOBAL_BOTTOM <<<"$(PANEL_MONITOR=$PANEL_MONITOR monitor_geometry)"
     [[ -n ${MON_X:-} ]] || exit 0
     local x=$(( MON_X + (MON_W - PANEL_W) / 2 + PANEL_OFFSET_X ))
-    local y=$(( MON_Y + (MON_H - PANEL_H) / 2 + PANEL_OFFSET_Y ))
+    local y=$(( MON_Y + MON_H - PANEL_H - PANEL_BOTTOM_GAP ))
     local park_y=$(( GLOBAL_BOTTOM + PARK_MARGIN ))
     dispatch "hl.dsp.window.resize({ x = $PANEL_W, y = $PANEL_H, window = 'address:$ADDR' })"
     dispatch "hl.dsp.window.move({ x = $x, y = $park_y, window = 'address:$ADDR' })"
