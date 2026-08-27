@@ -13,6 +13,7 @@
         "return-type": "json",
         "format": "◇ {}",
         "interval": 300,
+        "signal": 9,
         "on-click": "$HOME/.config/hypr/scripts/themis-inbox.sh",
         "tooltip": true
     },

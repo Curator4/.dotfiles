@@ -108,6 +108,11 @@ def main() -> None:
                         else:
                             wanted = PANEL_EXPANDED_H if DRAWER_SUFFIX in title else PANEL_H
                             reconcile_size(f"0x{address}", wanted)
+                            # A curation mutation reloads the page, which
+                            # resets the title — refresh the waybar count so
+                            # it never shows candidates that were just decided.
+                            subprocess.run(["pkill", "-RTMIN+9", "waybar"],
+                                           capture_output=True, timeout=5)
         except OSError:
             pass
         time.sleep(2)  # compositor restarting; reconnect
