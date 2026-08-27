@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Open the Themis curation inbox. Bound to Super+Shift+T and to the HUD
-# footer's "to curate" line.
+# Toggle the Themis curation inbox. Bound to Super+Shift+T and to the HUD
+# footer's "to curate" line. Pass `close` to only ever close it.
 #
 # The inbox is a local web page rather than an eww card on purpose: curating a
 # claim means editing prose and, since the agent control landed, holding a short
@@ -35,12 +35,13 @@ if ! curl -sf -o /dev/null --max-time 1 "$URL"; then
     done
 fi
 
-# Already showing? Focus it instead of stacking another window. Chromium ignores
-# --class on Wayland and names the window after the URL, so match the title
-# Themis itself sets.
-if hyprctl clients -j 2>/dev/null | grep -q '"title": "[^"]*Themis'; then
+# Toggle, like the other HUD panels: a second press puts it away. Chromium
+# ignores --class on Wayland and names the window after the URL, so match the
+# title Themis itself sets. The server stays up, so reopening is instant.
+if [[ ${1:-} == close ]] ||
+   hyprctl clients -j 2>/dev/null | grep -q '"title": "[^"]*Themis'; then
     exec hyprctl dispatch \
-        "hl.dsp.focus({ window = 'title:.*Themis.*' })" >/dev/null 2>&1
+        "hl.dsp.window.close({ window = 'title:.*Themis.*' })" >/dev/null 2>&1
 fi
 
 if [[ ! -x $BROWSER ]]; then
