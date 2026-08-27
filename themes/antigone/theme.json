@@ -2,7 +2,7 @@
   "name": "Antigone",
   "slug": "antigone",
   "icon": "✦",
-  "draft": true,
+  "draft": false,
   "source": "literal swatch from ianyepan/tron-legacy-emacs-theme",
   "effects": {
     "profile": "cinematic"

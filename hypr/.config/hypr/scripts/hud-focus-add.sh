@@ -25,6 +25,8 @@ trim() {
 prompt() {
     local p="$1"
     local out
+    # This is a text field, not a picker. The shared rofi keymap keeps bare
+    # j/k available to type and uses Ctrl+j/k only for picker row navigation.
     out=$(rofi -dmenu -i -p "$p" -l 0 \
         -theme-str 'listview { enabled: false; } mode-switcher { enabled: false; }') || return 1
     out=$(trim "$out")

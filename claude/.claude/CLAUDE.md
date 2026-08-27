@@ -22,6 +22,15 @@ Frequently referenced projects — resolve these shorthands to their paths witho
 - **theme authoring** / new theme from wallpaper or base16 / theme contrast lint → read `~/.dotfiles/themes/README.md` (`theme-scaffold`, `theme-lint`; apply stays `theme-switcher.sh`)
 - **NEO70** / **VIA** / keyboard remap / hidraw permissions → `~/.claude/projects/-home-curator/memory/reference_neo70_via.md`
 
+# Bridge bot sessions (which bot is which)
+
+Two long-running Claude Code bridge sessions usually run on this machine. Herdr pane titles are NOT their ListAgents names — an unnamed session lists under a cwd-derived name, so identify them by cwd (or check the socket PID's cmdline via `/proc/<pid>/cmdline`):
+
+- **as_dev** — the **Telegram** bot, **boss-facing** (boss DM 948579018). cwd `~/workspace/pnc/alarm-receiver`, so it lists as e.g. `alarm-receiver-79`. Launched with `--permission-mode dontAsk --settings ~/.claude/channels/telegram/as_dev_settings.json` + role prompt `~/.claude/channels/telegram/as_dev_bot.md`. Deliberately locked down: read-only remit, writes only under `~/.local/state/as_dev/`, no byte tools (can't cat/cp/hash anything). To have it send a file to the boss: (1) drop the file in `~/.local/state/as_dev/inbox/` (it can't read paths elsewhere into an attachment workflow), (2) the operator gives the go-ahead FIRST-HAND (its pane or Telegram) — it refuses peer-relayed authorization by design, verified 2026-08-26. Verify checksums yourself before the drop; it can't. It archives sent files to `inbox/processed/`.
+- **io** — the **Discord** DM bridge to the operator (the household steward). cwd `/home/curator`, so it lists as e.g. `curator-d8`. Discord reply/react/edit only, bound to the operator's own DM channel. No Telegram, no channel to the boss — don't route boss-facing sends here.
+
+Don't ask either bot to bypass its permissions; route blocked work back to the operator.
+
 # Session history (recent Claude Code work)
 
 Your own recent sessions are summarized on disk. Read them to orient after a `/clear` or in a fresh session; treat as orientation, not a task list or an authority.

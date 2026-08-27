@@ -127,7 +127,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "fable",
+  "model": "opus",
   "hooks": {
     "PreToolUse": [
       {
@@ -302,6 +302,11 @@
     }
   },
   "effortLevel": "xhigh",
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "xhigh"
+    }
+  },
   "autoCompactWindow": 1000000,
   "tui": "fullscreen",
   "autoDreamEnabled": true,

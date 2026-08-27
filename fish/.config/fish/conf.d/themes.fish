@@ -60,6 +60,7 @@ function _apply-kitty-theme -d "Reskin the active kitty window, its hyprland bor
     end
 end
 
+function antigone     -d "Theme: tron blue";    _apply-kitty-theme antigone     'rgba(387AAAee)'; end
 function aegis        -d "Theme: gruvbox warm"; _apply-kitty-theme aegis        'rgba(d79921ee)'; end
 function ashen        -d "Theme: velise red";   _apply-kitty-theme ashen        'rgba(8B2222ee)'; end
 function crimson-gray -d "Theme: iceberg";       _apply-kitty-theme crimson-gray 'rgba(84a0c6AA)'; end

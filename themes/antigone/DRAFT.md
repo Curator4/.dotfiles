@@ -1,4 +1,4 @@
-# antigone (draft)
+# Antigone
 
 Scaffolded by `theme-scaffold` from the nine-color swatch in
 ianyepan/tron-legacy-emacs-theme. Bright ANSI slots reuse swatch hexes —
@@ -13,7 +13,6 @@ nothing interpolated.
 - iceberg nvim, Obsidian Nord, cinematic effects (rofi is rendered from the palette)
 - walls: sunlit-wall-girl left, dore-angels-fall-mono right, quiet-cat top, coral-rim bottom
 
-## Still open
+## Known tradeoff
 
 1. iceberg is the closest installed nvim scheme, not a match
-2. `theme-switcher.sh apply antigone` if the live walls are stale

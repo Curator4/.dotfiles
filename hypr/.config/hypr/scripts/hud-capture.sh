@@ -16,8 +16,9 @@ model="claude-haiku-4-5-20251001"
 # below would be eaten mid-word.
 hyprctl dispatch 'hl.dsp.submap("reset")' >/dev/null 2>&1 || true
 
-# -l 0 is an input box, not a list. Hide listview/mode-switcher so the
-# card shrinks to the entry and stays visually centered.
+# -l 0 is an input box, not a list. The shared rofi keymap keeps bare j/k as
+# text and reserves Ctrl+j/k for moving a row when a picker has one. Hide
+# listview/mode-switcher so the card shrinks to the entry and stays centered.
 text=$(printf '' | rofi -dmenu -p 'capture +' -l 0 \
     -theme-str 'listview { enabled: false; } mode-switcher { enabled: false; }') || exit 0
 text=$(printf '%s' "$text" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
