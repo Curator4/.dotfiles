@@ -40,7 +40,7 @@ fi
 # Themis itself sets.
 if hyprctl clients -j 2>/dev/null | grep -q '"title": "[^"]*Themis'; then
     exec hyprctl dispatch \
-        "hl.dsp.window.focus({ window = 'title:.*Themis.*' })" >/dev/null 2>&1
+        "hl.dsp.focus({ window = 'title:.*Themis.*' })" >/dev/null 2>&1
 fi
 
 if [[ ! -x $BROWSER ]]; then
@@ -49,6 +49,7 @@ fi
 
 setsid "$BROWSER" \
     --app="$URL" \
+    --ozone-platform=wayland \
     --class="$CLASS" \
     --user-data-dir="$STATE/profile" \
     --no-first-run \
