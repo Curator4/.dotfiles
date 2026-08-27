@@ -7,8 +7,7 @@ daemon watches the compositor's event socket for that marker and puts the
 panel away. The hide is performed natively rather than through
 themis-inbox.sh: the script's bash+python startup added ~500ms between
 Escape and the slide, and the event line already carries the window address.
-The geometry mirrors show_panel/park_window in themis-inbox.sh — change one,
-change both. A lock keeps exactly one watcher alive, so autostart can re-run
+A lock keeps exactly one watcher alive, so autostart can re-run
 it harmlessly.
 """
 
@@ -23,10 +22,6 @@ from pathlib import Path
 
 MARKER = "Curation inbox · Themis · dismiss"
 STATE = Path(os.environ.get("XDG_STATE_HOME", Path.home() / ".local/state")) / "themis-ui"
-PANEL_CLASS = "chrome-127.0.0.1__-Default"
-PANEL_MARGIN_LEFT = int(os.environ.get("THEMIS_PANEL_MARGIN_LEFT", "48"))
-PANEL_MONITOR = os.environ.get("THEMIS_PANEL_MONITOR", "DP-3")
-PARK_MARGIN = 60
 
 
 def hyprctl_json(*args: str):
@@ -35,26 +30,14 @@ def hyprctl_json(*args: str):
 
 
 def hide(address: str) -> None:
-    clients = hyprctl_json("clients")
-    panel = next((c for c in clients if c.get("class") == PANEL_CLASS), None)
-    if panel is None or panel["workspace"]["name"].startswith("special:"):
-        return  # already parked (or gone): a stray toggle here would SHOW the overlay
+    # The window never leaves special:themis; hiding is closing the overlay
+    # (a global toggle: it closes wherever it is open, and only opens on the
+    # focused monitor when nothing is open - so never toggle blind).
     mons = hyprctl_json("monitors")
-    pick = next((m for m in mons if m["name"] == PANEL_MONITOR), None) \
-        or next((m for m in mons if m.get("focused")), mons[0])
-    x = pick["x"] + PANEL_MARGIN_LEFT
-    park_y = max(m["y"] + m["height"] for m in mons) + PARK_MARGIN
-    window = f"window = 'address:{address}'"
-    # No compositor down-slide here: by the time the (coalesced, ~½s late)
-    # title marker arrives, the page has already played its own exit slide
-    # and the window surface is transparent — park it straight away.
-    # One eval, one config tick: park, close the overlay the special-move
-    # opens, re-sink the clamped window (same trick as park_window).
-    subprocess.run(["hyprctl", "eval",
-                    f"hl.dispatch(hl.dsp.window.move({{ workspace = 'special:themis', {window} }})); "
-                    f"hl.dispatch(hl.dsp.workspace.toggle_special('themis')); "
-                    f"hl.dispatch(hl.dsp.window.move({{ x = {x}, y = {park_y}, {window} }}))"],
-                   capture_output=True, timeout=5)
+    if any(m.get("specialWorkspace", {}).get("name") == "special:themis" for m in mons):
+        subprocess.run(["hyprctl", "eval",
+                        "hl.dispatch(hl.dsp.workspace.toggle_special('themis'))"],
+                       capture_output=True, timeout=5)
 
 
 def socket_path() -> Path:
