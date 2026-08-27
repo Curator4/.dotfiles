@@ -5,6 +5,10 @@ function update --description 'Pre-flight brief (CVEs, flagged AUR, upstream not
     # the cheaper model here. Opus stays because it obeyed the one rule that
     # matters: sonnet buried an active AUR-compromise advisory under routine CVE
     # patching, and "the advisory leads" is the whole point of the briefing.
+    #
+    # This variable now governs the --deep path only. The shallow path carries the
+    # same measurement as `tier = "heavy"` on llm-route's update-triage row, and
+    # the ranking that reaches claude at all as `policy = "interactive"`.
     set -l model opus
 
     set -l tool $HOME/workspace/ai/household-oc/tools/update-brief/update-brief.py
@@ -67,6 +71,10 @@ function update --description 'Pre-flight brief (CVEs, flagged AUR, upstream not
     # quietly inherit the context of whatever directory you happened to be in.
     set -l facts (cat $brief | string collect)
     set -l persona "You are a terse Arch Linux maintainer briefing the owner of this box. You are blunt, you never pad, and you never assert a fact you were not given."
+    # Kept for --deep only, and deliberately duplicated: the shallow path reads these same
+    # instructions from llm-route's update-triage system prompt. That is the visible cost of a
+    # consumer straddling two lanes — --deep passes --allowed-tools WebSearch WebFetch, which
+    # the transform lane forbids and no lane that permits it exists yet. Edit both or neither.
     set -l prompt "Pre-flight triage for a system update. These are the deterministic facts — packages pending with version deltas, CVEs each upgrade closes, AUR packages the yay hook deselected, reboot implications, and any upstream release notes that matched what is pending:
 
 $facts
@@ -84,11 +92,20 @@ He is standing at a terminal prompt waiting to type Y. Four sentences, hard maxi
             --setting-sources '' --strict-mcp-config --no-session-persistence \
             --allowed-tools WebSearch WebFetch 2>/dev/null)
     else
+        # Routed, not spawned. The shallow path is a transform — no tools, no network — so it
+        # goes through llm-route, which owns the isolation flags this branch used to spell out
+        # and picks the provider from live quota instead of hardcoding one. The persona and
+        # the instructions above it live in that task's registered system prompt now.
+        #
+        # `tier = "heavy"` and `policy = "interactive"` in the task row are what carry the
+        # 2026-07-14 measurement at the top of this file: heavy keeps opus, and the
+        # interactive policy ranks claude first rather than last, where the automation order
+        # would have put it. Both halves are load-bearing; neither survives alone.
+        #
+        # 60s here against the task's own 55s total, so llm-route reports its own deadline
+        # rather than being killed mid-sentence with nothing to say about why.
         echo "  triage    reading…"
-        set reply (timeout 60 claude -p "$prompt" --model $model \
-            --system-prompt "$persona You have no tools and no network: reason only from the payload. If depth is missing for a package that looks consequential, say so in as few words as possible rather than guessing — the operator can re-run with --deep." \
-            --setting-sources '' --strict-mcp-config --no-session-persistence \
-            --allowed-tools '' 2>/dev/null)
+        set reply (printf '%s' "$facts" | timeout 60 llm-route run update-triage 2>/dev/null)
     end
 
     # Repaint the placeholder line with the actual answer (only when we own a
@@ -239,19 +256,12 @@ end
 # be repainted and would leak into captured output.
 function __update_summary --description 'LLM debrief after the sweep: substrate deltas, restart, reboot, dotfiles'
     set -l facts $argv[1]
-    # opus for the same measured reason as the triage — see the note at the top.
-    set -l model opus
-    set -l persona "You are a terse Arch Linux maintainer briefing the owner of this box. You are blunt, you never pad, and you never assert a fact you were not given."
-    set -l prompt "Post-sweep debrief for a system update. These are the deterministic facts — versions of the npm-managed agent substrate before and after the sweep (openclaw, the codex backend), whether the household gateway restarted because its substrate changed, whether the openclaw plugin-config check warned, kernel reboot status, dotfiles cleanliness, and the codexbar CLI version:
-
-$facts
-
-The package-manager output has already scrolled past him; this is the one-glance version of where the box now stands. Lead with what moved and what it means for the running household agents, then anything that still needs him — a pending reboot, dropped plugins, uncommitted dotfiles. Version numbers speak for themselves; never invent deltas, causes or advisories the facts do not contain. If nothing moved and nothing needs him, say so in one line and stop.
-
-He already watched it run; he wants the close-out, not a re-read. Two or three sentences, hard maximum — one per line, each under about twenty words. Dense, not chatty; drop every word that is not load-bearing. Plain text only: no markdown, no asterisks, no backticks, no headers, no bullets, no preamble, no sign-off. The terminal renders none of it and it will show up as literal punctuation."
+    # No model and no persona here any more: both are llm-route's update-debrief row, which
+    # carries the same measured `tier = "heavy"` as the triage and the same `interactive`
+    # policy. See the note at the top of this file for what was measured and why.
 
     # Fail-open, silently. The sweep is done; nothing here may read as trouble.
-    command -q claude; or return 0
+    command -q llm-route; or return 0
 
     set -l tty 0
     if isatty stdout
@@ -263,13 +273,12 @@ He already watched it run; he wants the close-out, not a re-read. Two or three s
     end
 
     set -l reply
-    set reply (timeout 60 claude -p "$prompt" --model $model \
-        --system-prompt "$persona You have no tools and no network: reason only from the payload." \
-        --setting-sources '' --strict-mcp-config --no-session-persistence \
-        --allowed-tools '' 2>/dev/null)
-    # The exit status travels with the substitution. A claude that errors (quota,
-    # auth, forced update) prints its grievance to stdout, and without this
-    # check that text would masquerade as the debrief.
+    set reply (printf '%s' "$facts" | timeout 60 llm-route run update-debrief 2>/dev/null)
+    # The exit status travels with the substitution, and it matters more now, not less.
+    # llm-route keeps stdout empty until a result passes validation, so the old failure mode
+    # — a CLI printing its grievance to stdout where it would masquerade as the debrief —
+    # cannot happen through this path. The check stays because the codes are the point: 69 is
+    # every provider dry, 70 is a broken adapter, and this garnish declines to guess which.
     set -l rc $status
 
     # Paint the answer over the placeholder (tty only — piped, the cursor
