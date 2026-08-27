@@ -277,6 +277,14 @@ window {
   font-weight: bold;
 }
 
+// The curation nudge sits with the right-side instruments but reads as muted
+// text until its own script paints it amber at 14 days and red at 30.
+.themis-line {
+  color: $hud-muted;
+  font-family: $hud-font;
+  font-size: 12px;
+}
+
 // Dim pipe between caffeine and posture — a spatial break, not another metric.
 .instrument-sep {
   color: $hud-footer-border;

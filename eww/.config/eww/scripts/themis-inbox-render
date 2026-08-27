@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# Footer line for the HUD panel: how many knowledge candidates are waiting in
+# the Themis curation inbox, and how old the oldest one is. Output is Pango
+# markup. Empty when nothing is pending; the widget hides.
+#
+# This is the active nudge the memory design asks for, and deliberately not a
+# scheduled one. Design §6 cut the weekly candidate report as "scheduled output
+# nobody reads" and refused a daily notice, but the same section wants one
+# concrete signal when the oldest pending candidate reaches 14 days, and lets
+# candidates expire at 30. A number that sits in the HUD and never interrupts
+# carries that signal without becoming a nag: the thresholds below are §6's own,
+# so the line simply gets warmer as knowledge approaches being lost by omission.
+#
+# Polled slowly on purpose: this shells out to python, and a candidate's age
+# moves in days.
+
+set -uo pipefail
+
+THEMIS=/home/curator/.local/bin/themis
+[[ -x $THEMIS ]] || exit 0
+
+"$THEMIS" inbox --json 2>/dev/null | python3 -c '
+import json, sys
+from datetime import datetime
+
+try:
+    items = json.load(sys.stdin)
+except (json.JSONDecodeError, ValueError):
+    raise SystemExit(0)
+
+pending = [item for item in items if item.get("state") == "pending"]
+if not pending:
+    raise SystemExit(0)
+
+now = datetime.now().astimezone()
+ages = []
+for item in pending:
+    try:
+        ages.append((now - datetime.fromisoformat(item["created_at"])).days)
+    except (KeyError, TypeError, ValueError):
+        continue
+oldest = max(ages) if ages else 0
+
+# §6: one concrete notice at 14 days, expiry at 30.
+if oldest >= 30:
+    colour = "#ff6b6b"
+elif oldest >= 14:
+    colour = "#ffd166"
+else:
+    colour = None
+
+label = f"{len(pending)} to curate"
+if oldest >= 1:
+    label += f" · oldest {oldest}d"
+label = f"◇ {label}"
+
+if colour:
+    print(f"<span foreground=\"{colour}\">{label}</span>")
+else:
+    print(label)
+' 2>/dev/null

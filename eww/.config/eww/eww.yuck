@@ -190,6 +190,9 @@
 (defpoll board_posture  :interval "2s"    :initial ""   `~/.config/eww/scripts/hud-posture-render`)
 ; Slow: this one shells out to python3, and a routine item's state moves in hours.
 (defpoll board_checks   :interval "30s"   :initial ""   `~/.config/eww/scripts/hud-checks-render`)
+; Slower still: shells out to python, and a knowledge candidate ages in days.
+; This is the memory design's active nudge — ambient, never interrupting.
+(defpoll board_themis   :interval "60s"   :initial ""   `~/.config/eww/scripts/themis-inbox-render`)
 
 ; One column of the focus board: per-row eventboxes so items and headers can
 ; take clicks. Markup is pre-painted (project colour + spinner) by the poll
@@ -222,13 +225,21 @@
 
 (defwidget hud-footer []
   (box :class "hud-footer" :orientation "h" :space-evenly false
-       :visible {board_checks != "" || board_caffeine != "" || board_posture != ""}
+       :visible {board_checks != "" || board_caffeine != "" || board_posture != ""
+                 || board_themis != ""}
     (eventbox :cursor "pointer" :hexpand true :halign "start"
               :visible {board_checks != ""}
               :onclick "~/.config/hypr/scripts/hud-checks.sh &"
       (label :class "checks-line" :markup board_checks :halign "start"))
     (box :orientation "h" :space-evenly false :spacing 10
          :hexpand true :halign "end"
+      (eventbox :cursor "pointer"
+                :visible {board_themis != ""}
+                :onclick "~/.config/hypr/scripts/themis-inbox.sh &"
+        (label :class "themis-line" :markup board_themis :halign "end"))
+      (label :class "instrument-sep"
+             :visible {board_themis != "" && (board_caffeine != "" || board_posture != "")}
+             :text "│")
       (eventbox :cursor "pointer"
                 :visible {board_caffeine != ""}
                 :onclick "~/.config/hypr/scripts/caffeine-menu.sh &"
