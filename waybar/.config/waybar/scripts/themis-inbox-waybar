@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# Waybar count for the Themis curation inbox: how many knowledge candidates
+# are waiting, and how old the oldest one is. Emits waybar JSON; empty stdout
+# when nothing is pending, so the module hides.
+#
+# This carries the ambient nudge the memory design asks for (design §6): one
+# concrete signal as the oldest pending candidate approaches 14 days, expiry
+# at 30, and nothing scheduled. The eww HUD footer line this replaces lived in
+# ~/.config/eww/scripts/themis-inbox-render until 2026-08-27.
+#
+# Polled slowly on purpose: this shells out to python, and a candidate's age
+# moves in days.
+
+set -uo pipefail
+
+THEMIS=/home/curator/.local/bin/themis
+[[ -x $THEMIS ]] || exit 0
+
+"$THEMIS" inbox --json 2>/dev/null | python3 -c '
+import json, sys
+from datetime import datetime
+
+try:
+    items = json.load(sys.stdin)
+except (json.JSONDecodeError, ValueError):
+    raise SystemExit(0)
+
+pending = [item for item in items if item.get("state") == "pending"]
+if not pending:
+    raise SystemExit(0)
+
+now = datetime.now().astimezone()
+ages = []
+for item in pending:
+    try:
+        ages.append((now - datetime.fromisoformat(item["created_at"])).days)
+    except (KeyError, TypeError, ValueError):
+        continue
+oldest = max(ages) if ages else 0
+
+# §6: one concrete notice at 14 days, expiry at 30.
+if oldest >= 30:
+    cls = "alert"
+elif oldest >= 14:
+    cls = "warm"
+else:
+    cls = ""
+
+tooltip = f"{len(pending)} to curate"
+if oldest >= 1:
+    tooltip = f"oldest {oldest}d — Super+Shift+T"
+else:
+    tooltip += " — Super+Shift+T"
+
+print(json.dumps({"text": str(len(pending)), "tooltip": tooltip, "class": cls}))
+' 2>/dev/null

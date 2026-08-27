@@ -89,5 +89,5 @@ read -r address floating <<<"${state:-}"
 # bare "address:0x..." string parses fine and reports ok, but silently acts on
 # the active window instead of the one named — so the window key matters.
 hyprctl dispatch "hl.dsp.window.float({ window = 'address:$address' })" >/dev/null 2>&1
-hyprctl dispatch "hl.dsp.window.resize({ x = 900, y = 1000, window = 'address:$address' })" >/dev/null 2>&1
+hyprctl dispatch "hl.dsp.window.resize({ x = 900, y = 530, window = 'address:$address' })" >/dev/null 2>&1
 hyprctl dispatch "hl.dsp.window.center({ window = 'address:$address' })" >/dev/null 2>&1

@@ -6,7 +6,16 @@
 
     "modules-left": ["hyprland/workspaces", "custom/theme"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/codexbar-claude", "custom/codexbar-codex", "custom/codexbar-grok", "custom/codexbar-zai", "custom/codexbar-openrouter", "custom/volume", "bluetooth", "custom/network", "custom/gpu", "custom/vram", "cpu", "memory", "custom/disk"],
+    "modules-right": ["custom/themis", "custom/codexbar-claude", "custom/codexbar-codex", "custom/codexbar-grok", "custom/codexbar-zai", "custom/codexbar-openrouter", "custom/volume", "bluetooth", "custom/network", "custom/gpu", "custom/vram", "cpu", "memory", "custom/disk"],
+
+    "custom/themis": {
+        "exec": "$HOME/.config/waybar/scripts/themis-inbox-waybar",
+        "return-type": "json",
+        "format": "◇ {}",
+        "interval": 300,
+        "on-click": "$HOME/.config/hypr/scripts/themis-inbox.sh",
+        "tooltip": true
+    },
 
     "custom/codexbar-codex": {
         "exec": "CODEXBAR_PROVIDERS=codex CODEXBAR_BAR_PROVIDER=codex $HOME/.config/waybar/scripts/codexbar.sh | jq -c '.text |= (gsub(\"🤖 ?\";\"\"))'",
