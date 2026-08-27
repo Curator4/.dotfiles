@@ -37,11 +37,13 @@ fi
 
 # Toggle, like the other HUD panels: a second press puts it away. Chromium
 # ignores --class on Wayland and names the window after the URL, so match the
-# title Themis itself sets. The server stays up, so reopening is instant.
+# exact title Themis sets — a loose "Themis" match once selected any window
+# whose title mentioned Themis, terminals included. The server stays up, so
+# reopening is instant.
 if [[ ${1:-} == close ]] ||
-   hyprctl clients -j 2>/dev/null | grep -q '"title": "[^"]*Themis'; then
+   hyprctl clients -j 2>/dev/null | grep -q '"title": "Curation inbox · Themis"'; then
     exec hyprctl dispatch \
-        "hl.dsp.window.close({ window = 'title:.*Themis.*' })" >/dev/null 2>&1
+        "hl.dsp.window.close({ window = 'title:^Curation inbox · Themis$' })" >/dev/null 2>&1
 fi
 
 if [[ ! -x $BROWSER ]]; then
@@ -74,7 +76,7 @@ try:
 except (json.JSONDecodeError, ValueError):
     raise SystemExit(0)
 for client in clients:
-    if "Themis" in (client.get("title") or ""):
+    if (client.get("title") or "") == "Curation inbox · Themis":
         print(client["address"], client["floating"])
         break
 ' 2>/dev/null)

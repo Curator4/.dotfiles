@@ -296,3 +296,32 @@ hl.window_rule({
 
     workspace = "5",
 })
+
+-- Themis curation inbox: a chromeless chromium app window, floated and sized
+-- like a panel. Chromium ignores --class on Wayland and derives its app-id
+-- from the URL and profile, so match that. The slide entrance is part of the
+-- bench-with-counsel design (spec 2026-08-27); the equivalent rules.conf
+-- entries are dead config since the Lua migration.
+hl.window_rule({
+    name  = "themis-inbox-float",
+    match = { class = "^chrome-127\\.0\\.0\\.1__-Default$" },
+    float = true,
+})
+
+hl.window_rule({
+    name  = "themis-inbox-size",
+    match = { class = "^chrome-127\\.0\\.0\\.1__-Default$" },
+    size = "900 530",
+})
+
+hl.window_rule({
+    name  = "themis-inbox-center",
+    match = { class = "^chrome-127\\.0\\.0\\.1__-Default$" },
+    center = true,
+})
+
+hl.window_rule({
+    name  = "themis-inbox-entrance",
+    match = { class = "^chrome-127\\.0\\.0\\.1__-Default$" },
+    animation = "slide bottom",
+})
