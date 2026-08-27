@@ -26,8 +26,13 @@ PORT=${THEMIS_UI_PORT:-8765}
 URL="http://127.0.0.1:${PORT}/"
 STATE=${XDG_STATE_HOME:-$HOME/.local/state}/themis-ui
 CLASS=themis-inbox
-PANEL_W=900
-PANEL_H=530
+# 1200x706 at 1.333 scale renders the signed-off 900x530 layout a third
+# larger — same proportions, bigger type. The panel rests docked to the
+# monitor's bottom edge: it rises from the edge and sits on it.
+PANEL_W=${THEMIS_PANEL_W:-1200}
+PANEL_H=${THEMIS_PANEL_H:-706}
+PANEL_SCALE=${THEMIS_PANEL_SCALE:-1.3333}
+PANEL_BOTTOM_GAP=${THEMIS_PANEL_BOTTOM_GAP:-0}
 PARK_MARGIN=60
 PANEL_MONITOR=${THEMIS_PANEL_MONITOR:-DP-3}
 
@@ -89,6 +94,7 @@ ensure_window() { # sets ADDR/WS_NAME/AT_X; launches the parked window if needed
         --ozone-platform=wayland \
         --class="$CLASS" \
         --user-data-dir="$STATE/profile" \
+        --force-device-scale-factor="$PANEL_SCALE" \
         --no-first-run \
         --no-default-browser-check \
         --disable-extensions \
@@ -105,10 +111,14 @@ show_panel() {
     read -r MON_X MON_Y MON_W MON_H MON_WS GLOBAL_BOTTOM <<<"$(PANEL_MONITOR=$PANEL_MONITOR monitor_geometry)"
     [[ -n ${MON_X:-} ]] || exit 0
     local x=$(( MON_X + (MON_W - PANEL_W) / 2 ))
-    local y=$(( MON_Y + (MON_H - PANEL_H) / 2 ))
+    local y=$(( MON_Y + MON_H - PANEL_H - PANEL_BOTTOM_GAP ))
     local park_y=$(( GLOBAL_BOTTOM + PARK_MARGIN ))
+    dispatch "hl.dsp.window.resize({ x = $PANEL_W, y = $PANEL_H, window = 'address:$ADDR' })"
     dispatch "hl.dsp.window.move({ x = $x, y = $park_y, window = 'address:$ADDR' })"
     dispatch "hl.dsp.window.move({ workspace = $MON_WS, silent = true, window = 'address:$ADDR' })"
+    # The workspace move clamps an out-of-bounds float onto the monitor with
+    # its own animation; let it resolve, then state the resting spot exactly.
+    sleep 0.05
     dispatch "hl.dsp.window.move({ x = $x, y = $y, window = 'address:$ADDR' })"
     dispatch "hl.dsp.focus({ window = 'address:$ADDR' })"
 }
