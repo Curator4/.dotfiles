@@ -25,12 +25,13 @@ PORT=${THEMIS_UI_PORT:-8765}
 URL="http://127.0.0.1:${PORT}/"
 STATE=${XDG_STATE_HOME:-$HOME/.local/state}/themis-ui
 CLASS=themis-inbox
-# 1200x706 at 1.333 scale renders the signed-off 900x530 layout a third
-# larger — same proportions, bigger type. The panel descends from the top
-# edge and rests top-center, a margin below it (operator's placement,
-# 2026-08-27).
+# 1200-wide at 1.333 scale renders the signed-off 900-wide layout a third
+# larger — same proportions, bigger type. The window spans from the top
+# margin to a symmetric bottom margin; the page paints only the 530-CSS-px
+# card until the counsel drawer expands into the rest (the surface below is
+# transparent). 1344 = DP-3 height 1440 - 2x48 margins.
 PANEL_W=${THEMIS_PANEL_W:-1200}
-PANEL_H=${THEMIS_PANEL_H:-706}
+PANEL_H=${THEMIS_PANEL_H:-1344}
 PANEL_SCALE=${THEMIS_PANEL_SCALE:-1.3333}
 PANEL_MARGIN_TOP=${THEMIS_PANEL_MARGIN_TOP:-48}
 PANEL_MONITOR=${THEMIS_PANEL_MONITOR:-DP-3}
@@ -65,7 +66,7 @@ for m in mons:
 ' 2>/dev/null
 }
 
-monitor_geometry() { # -> "x y w h" for the panel monitor
+monitor_geometry() { # -> "x y w h active-ws" for the panel monitor
     hyprctl monitors -j 2>/dev/null | python3 -c '
 import json, sys, os
 try:
@@ -77,7 +78,7 @@ pick = next((m for m in mons if m["name"] == name), None) \
     or next((m for m in mons if m.get("focused")), mons[0] if mons else None)
 if pick is None:
     raise SystemExit(0)
-print(pick["x"], pick["y"], pick["width"], pick["height"])
+print(pick["x"], pick["y"], pick["width"], pick["height"], pick["activeWorkspace"]["id"])
 ' 2>/dev/null
 }
 
@@ -116,13 +117,15 @@ ensure_window() { # sets ADDR; launches the hidden window if needed
 }
 
 show_panel() {
-    read -r MON_X MON_Y MON_W _ <<<"$(PANEL_MONITOR=$PANEL_MONITOR monitor_geometry)"
+    read -r MON_X MON_Y MON_W _ MON_WS <<<"$(PANEL_MONITOR=$PANEL_MONITOR monitor_geometry)"
     [[ -n ${MON_X:-} ]] || exit 0
     local x=$(( MON_X + (MON_W - PANEL_W) / 2 ))
     local y=$(( MON_Y + PANEL_MARGIN_TOP ))
-    # One eval, one config tick: aim the toggle at the panel monitor, state
-    # the position while still hidden, open the overlay, take the keyboard.
-    hyprctl eval "hl.dispatch(hl.dsp.focus({ monitor = '$PANEL_MONITOR' })); hl.dispatch(hl.dsp.window.move({ x = $x, y = $y, window = 'address:$ADDR' })); hl.dispatch(hl.dsp.workspace.toggle_special('themis')); hl.dispatch(hl.dsp.focus({ window = 'address:$ADDR' }))" >/dev/null 2>&1
+    # One eval, one config tick: aim the toggle at the panel monitor by
+    # focusing its active workspace (focus({monitor=...}) is silently
+    # ignored, learned the hard way), state the position while still hidden,
+    # open the overlay, take the keyboard.
+    hyprctl eval "hl.dispatch(hl.dsp.focus({ workspace = $MON_WS })); hl.dispatch(hl.dsp.window.move({ x = $x, y = $y, window = 'address:$ADDR' })); hl.dispatch(hl.dsp.workspace.toggle_special('themis')); hl.dispatch(hl.dsp.focus({ window = 'address:$ADDR' }))" >/dev/null 2>&1
 }
 
 hide_panel() {

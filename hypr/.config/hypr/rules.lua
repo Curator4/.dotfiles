@@ -311,7 +311,7 @@ hl.window_rule({
 hl.window_rule({
     name  = "themis-inbox-size",
     match = { class = "^chrome-127\\.0\\.0\\.1__-Default$" },
-    size = "1200 706",
+    size = "1200 1344",
 })
 
 hl.window_rule({
