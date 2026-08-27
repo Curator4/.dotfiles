@@ -128,24 +128,15 @@ show_panel() {
 
 park_window() {
     # Moving a window into a special workspace always activates the overlay —
-    # the lua move dispatcher has no honoured silent form (verified against
-    # the event socket, 2026-08-27) — so close the overlay it opens. The
-    # parked window sits below every monitor; the overlay shows nothing
-    # during its ~100ms of life.
-    dispatch "hl.dsp.window.move({ workspace = 'special:themis', window = 'address:$ADDR' })"
-    sleep 0.1
-    local open
-    open=$(hyprctl monitors -j 2>/dev/null | python3 -c '
-import json, sys
-try:
-    mons = json.load(sys.stdin)
-except (json.JSONDecodeError, ValueError):
-    raise SystemExit(0)
-for m in mons:
-    if m.get("specialWorkspace", {}).get("name") == "special:themis":
-        print("open"); break
-' 2>/dev/null)
-    [[ ${open:-} == open ]] && dispatch "hl.dsp.workspace.toggle_special('themis')"
+    # the lua move dispatcher has no honoured silent form, and the CLI is a
+    # lua shorthand with no legacy path (both verified 2026-08-27). Closing
+    # the overlay in a separate call left it alive for ~150ms and the clamp
+    # dragged the parked window into view — the flash the operator saw. One
+    # eval, three dispatches, one config tick: park, close the overlay it
+    # just opened, put the clamped window back below the layout.
+    read -r _ _ _ _ _ GB <<<"$(PANEL_MONITOR=$PANEL_MONITOR monitor_geometry)"
+    local park_y=$(( ${GB:-2880} + PARK_MARGIN ))
+    hyprctl eval "hl.dispatch(hl.dsp.window.move({ workspace = 'special:themis', window = 'address:$ADDR' })); hl.dispatch(hl.dsp.workspace.toggle_special('themis')); hl.dispatch(hl.dsp.window.move({ x = ${AT_X:-2270}, y = $park_y, window = 'address:$ADDR' }))" >/dev/null 2>&1
 }
 
 hide_panel() {
