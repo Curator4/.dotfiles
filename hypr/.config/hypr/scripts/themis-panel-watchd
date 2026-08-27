@@ -24,8 +24,7 @@ from pathlib import Path
 MARKER = "Curation inbox · Themis · dismiss"
 STATE = Path(os.environ.get("XDG_STATE_HOME", Path.home() / ".local/state")) / "themis-ui"
 PANEL_CLASS = "chrome-127.0.0.1__-Default"
-PANEL_W = int(os.environ.get("THEMIS_PANEL_W", "1200"))
-PANEL_OFFSET_X = int(os.environ.get("THEMIS_PANEL_OFFSET_X", "-340"))
+PANEL_MARGIN_LEFT = int(os.environ.get("THEMIS_PANEL_MARGIN_LEFT", "48"))
 PANEL_MONITOR = os.environ.get("THEMIS_PANEL_MONITOR", "DP-3")
 PARK_MARGIN = 60
 
@@ -43,7 +42,7 @@ def hide(address: str) -> None:
     mons = hyprctl_json("monitors")
     pick = next((m for m in mons if m["name"] == PANEL_MONITOR), None) \
         or next((m for m in mons if m.get("focused")), mons[0])
-    x = pick["x"] + (pick["width"] - PANEL_W) // 2 + PANEL_OFFSET_X
+    x = pick["x"] + PANEL_MARGIN_LEFT
     park_y = max(m["y"] + m["height"] for m in mons) + PARK_MARGIN
     window = f"window = 'address:{address}'"
     # No compositor down-slide here: by the time the (coalesced, ~½s late)
