@@ -27,12 +27,13 @@ URL="http://127.0.0.1:${PORT}/"
 STATE=${XDG_STATE_HOME:-$HOME/.local/state}/themis-ui
 CLASS=themis-inbox
 # 1200x706 at 1.333 scale renders the signed-off 900x530 layout a third
-# larger — same proportions, bigger type. The panel rests docked to the
-# monitor's bottom edge: it rises from the edge and sits on it.
+# larger — same proportions, bigger type. The panel rests at the monitor's
+# center, nudged left by PANEL_OFFSET_X (operator's placement, 2026-08-27).
 PANEL_W=${THEMIS_PANEL_W:-1200}
 PANEL_H=${THEMIS_PANEL_H:-706}
 PANEL_SCALE=${THEMIS_PANEL_SCALE:-1.3333}
-PANEL_BOTTOM_GAP=${THEMIS_PANEL_BOTTOM_GAP:-0}
+PANEL_OFFSET_X=${THEMIS_PANEL_OFFSET_X:--340}
+PANEL_OFFSET_Y=${THEMIS_PANEL_OFFSET_Y:-0}
 PARK_MARGIN=60
 PANEL_MONITOR=${THEMIS_PANEL_MONITOR:-DP-3}
 
@@ -110,12 +111,14 @@ ensure_window() { # sets ADDR/WS_NAME/AT_X; launches the parked window if needed
 show_panel() {
     read -r MON_X MON_Y MON_W MON_H MON_WS GLOBAL_BOTTOM <<<"$(PANEL_MONITOR=$PANEL_MONITOR monitor_geometry)"
     [[ -n ${MON_X:-} ]] || exit 0
-    local x=$(( MON_X + (MON_W - PANEL_W) / 2 ))
-    local y=$(( MON_Y + MON_H - PANEL_H - PANEL_BOTTOM_GAP ))
+    local x=$(( MON_X + (MON_W - PANEL_W) / 2 + PANEL_OFFSET_X ))
+    local y=$(( MON_Y + (MON_H - PANEL_H) / 2 + PANEL_OFFSET_Y ))
     local park_y=$(( GLOBAL_BOTTOM + PARK_MARGIN ))
     dispatch "hl.dsp.window.resize({ x = $PANEL_W, y = $PANEL_H, window = 'address:$ADDR' })"
     dispatch "hl.dsp.window.move({ x = $x, y = $park_y, window = 'address:$ADDR' })"
-    dispatch "hl.dsp.window.move({ workspace = $MON_WS, silent = true, window = 'address:$ADDR' })"
+    # The move to a regular workspace is never silent in the lua API, but the
+    # target is that monitor's active workspace, so no view changes.
+    dispatch "hl.dsp.window.move({ workspace = $MON_WS, window = 'address:$ADDR' })"
     # The workspace move clamps an out-of-bounds float onto the monitor with
     # its own animation; let it resolve, then state the resting spot exactly.
     sleep 0.05
@@ -123,12 +126,34 @@ show_panel() {
     dispatch "hl.dsp.focus({ window = 'address:$ADDR' })"
 }
 
+park_window() {
+    # Moving a window into a special workspace always activates the overlay —
+    # the lua move dispatcher has no honoured silent form (verified against
+    # the event socket, 2026-08-27) — so close the overlay it opens. The
+    # parked window sits below every monitor; the overlay shows nothing
+    # during its ~100ms of life.
+    dispatch "hl.dsp.window.move({ workspace = 'special:themis', window = 'address:$ADDR' })"
+    sleep 0.1
+    local open
+    open=$(hyprctl monitors -j 2>/dev/null | python3 -c '
+import json, sys
+try:
+    mons = json.load(sys.stdin)
+except (json.JSONDecodeError, ValueError):
+    raise SystemExit(0)
+for m in mons:
+    if m.get("specialWorkspace", {}).get("name") == "special:themis":
+        print("open"); break
+' 2>/dev/null)
+    [[ ${open:-} == open ]] && dispatch "hl.dsp.workspace.toggle_special('themis')"
+}
+
 hide_panel() {
     read -r _ _ _ _ _ GLOBAL_BOTTOM <<<"$(PANEL_MONITOR=$PANEL_MONITOR monitor_geometry)"
     local park_y=$(( ${GLOBAL_BOTTOM:-2880} + PARK_MARGIN ))
     dispatch "hl.dsp.window.move({ x = ${AT_X:-2270}, y = $park_y, window = 'address:$ADDR' })"
     sleep 0.55
-    dispatch "hl.dsp.window.move({ workspace = 'special:themis', silent = true, window = 'address:$ADDR' })"
+    park_window
 }
 
 case "${1:-}" in
