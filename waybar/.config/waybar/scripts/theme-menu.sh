@@ -32,8 +32,10 @@ done
 THEME_LIST+="$RANDOM_LABEL"
 
 sleep 0.1
-# -l covers every desktop theme + Random; the global rasi caps at 8.
-SELECTED=$(printf '%b' "$THEME_LIST" | rofi -dmenu -i -p "Select Theme" -l 14) || exit 0
+# THEME_LIST uses literal `\n` separators and the last row has no trailing
+# newline; `%b\n` turns those into records. A missing trailing newline used
+# to hide Random past a hard-coded row cap.
+SELECTED=$(printf '%b\n' "$THEME_LIST" | rofi-pick 'theme') || exit 0
 [ -n "$SELECTED" ] || exit 0
 
 # apply restarts waybar. This script is often a child of waybar, so detach

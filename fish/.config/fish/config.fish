@@ -37,12 +37,20 @@ if status is-interactive
     alias gtree 'git log --oneline --graph -20'
     alias t 'tree -L'
     function codex --wraps codex --description 'Codex CLI; -c resumes the latest chat'
+        set -l codex_args $argv
         if test (count $argv) -eq 1; and test "$argv[1]" = -c
-            command codex resume --last
+            set codex_args resume --last
+        end
+
+        if set -q HERDR_ENV
+            command codex $codex_args
             return $status
         end
 
-        command codex $argv
+        # Standalone Codex transfers transient notification ownership to
+        # agent-cue. Direct binary invocations and Herdr keep native ownership.
+        set -lx AGENT_CUE_OWNS_CODEX_MAKO 1
+        command codex -c 'tui.notifications=false' $codex_args
     end
     function __cc_slug; basename (pwd) | tr '[:upper:]' '[:lower:]' | tr -c 'a-z0-9-' '-' | string trim -c '-' | string sub -l 30; end
     function cc; set -q INTER_SESSION_NAME; or set -lx INTER_SESSION_NAME (__cc_slug); claude --allow-dangerously-skip-permissions --permission-mode auto $argv; end
@@ -86,8 +94,9 @@ set -x EDITOR nvim
 # blocks `gh auth refresh`). Tools needing a token: use `gh auth token` at call time.
 
 # gcloud
-if test -f ~/Downloads/google-cloud-sdk/path.fish.inc
-    source ~/Downloads/google-cloud-sdk/path.fish.inc
+set -l gcloud_init ~/Downloads/google-cloud-sdk/path.fish.inc
+if test -f $gcloud_init
+    source $gcloud_init
 end
 
 # Conda lazy-loaded via conf.d/conda-lazy.fish — do NOT run 'conda init fish',
@@ -138,6 +147,7 @@ function _tui-run --description 'Run a TUI edge-to-edge, restoring kitty padding
 
     set -l snapshot
     if test -n "$slug"
+        set -lx AGENT_CUE_THEME $slug
         set snapshot (mktemp)
         $kt get-colors $target >$snapshot 2>/dev/null; or true
         ~/.dotfiles/bin/.bin/theme-term.sh $slug 2>/dev/null; or true

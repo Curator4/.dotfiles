@@ -12,8 +12,7 @@ push_hud() {
     eww update board_caffeine="$("$HUD" caffeine render)" 2>/dev/null || :
 }
 
-list=$("$HUD" caffeine menu)
-sel=$(rofi -dmenu -i -p 'caffeine' <<<"$list") || exit 0
+sel=$("$HUD" caffeine menu | rofi-pick 'caffeine') || exit 0
 [ -z "$sel" ] && exit 0
 
 # First ASCII word is the command — leading emoji on drink rows is skipped.

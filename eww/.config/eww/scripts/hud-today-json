@@ -4,6 +4,9 @@
 # `hud itinerary-done <n>` expects, so click targets survive text clipping.
 # Rides the ~3s cache the hud-board-render pollers keep fresh.
 cache="$HOME/.local/state/hud/board.json"
+if [ "${1:-compact}" = "full" ]; then
+  cache="$HOME/.local/state/hud/board-full.json"
+fi
 jq -c '[.itinerary[]? | {text, done}] | to_entries
        | map({i: (.key + 1), text: .value.text, done: (.value.done == true)})' \
   "$cache" 2>/dev/null || echo "[]"

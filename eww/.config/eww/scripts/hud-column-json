@@ -10,16 +10,27 @@
 # braille spinner animates. `hud board` stamps 1-based item indices left-then-
 # right so a click always hits the row it was drawn on.
 zone="${1:-left}"
+mode="${2:-compact}"
 cache="$HOME/.local/state/hud/board.json"
+board_args=(--rows 9)
+if [ "$mode" = "full" ]; then
+  cache="$HOME/.local/state/hud/board-full.json"
+  board_args=()
+fi
 hud=/home/curator/workspace/hud/hud
 
 if [ ! -f "$cache" ] || [ "$(( $(date +%s) - $(stat -c %Y "$cache" 2>/dev/null || echo 0) ))" -ge 3 ]; then
   # Left and right poll in parallel every 150ms — flock so only one writes.
   (
     flock -n 9 || exit 0
-    "$hud" board >"$cache.tmp" 2>/dev/null && mv "$cache.tmp" "$cache"
+    "$hud" board "${board_args[@]}" >"$cache.tmp" 2>/dev/null && mv "$cache.tmp" "$cache"
     find "$HOME/.local/state/hud/active" -type f -mtime +1 -delete 2>/dev/null
   ) 9>"${cache}.lock"
+fi
+
+if [ "$zone" = "hidden" ]; then
+  jq -r '.hidden // 0' "$cache" 2>/dev/null || echo 0
+  exit 0
 fi
 
 frames=(⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏)
@@ -50,6 +61,7 @@ jq -c --arg z "$zone" --arg sp "$sp" '
     item:   (.kind == "item" and (.i // 0) > 0),
     header: (.kind == "header" and (.project // "") != ""),
     i:      (.i // 0),
-    project:(.project // "")
+    project:(.project // ""),
+    unseen: (.unseen // false)
   }]
 ' "$cache" 2>/dev/null || echo "[]"

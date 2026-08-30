@@ -16,11 +16,7 @@ model="claude-haiku-4-5-20251001"
 # below would be eaten mid-word.
 hyprctl dispatch 'hl.dsp.submap("reset")' >/dev/null 2>&1 || true
 
-# -l 0 is an input box, not a list. The shared rofi keymap keeps bare j/k as
-# text and reserves Ctrl+j/k for moving a row when a picker has one. Hide
-# listview/mode-switcher so the card shrinks to the entry and stays centered.
-text=$(printf '' | rofi -dmenu -p 'capture +' -l 0 \
-    -theme-str 'listview { enabled: false; } mode-switcher { enabled: false; }') || exit 0
+text=$(rofi-ask 'backlog' 'add something…') || exit 0
 text=$(printf '%s' "$text" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 [ -z "$text" ] && exit 0
 
@@ -31,13 +27,14 @@ mkdir -p "$llmdir" 2>/dev/null
 prompt="Route a captured note and tidy it into a short item.
 Destinations:
 - itinerary: a time-bound thing for TODAY (appointment, errand, \"watch the game 19:00\").
-- backlog: anything else to do later — task, bug, feature, errand. Pick its section:
+- backlog: anything else to do later — task, bug, feature, errand. Pick its section by the deliverable:
   time — deadline-driven; a hard date or explicit deadline wording.
-  admin — the operator's personal items: errands, money, subscriptions, learning, research, curation.
-  home — the machine and household: system, hardware, rice, keybinds, tooling, agents, anything that is code/config on this box.
+  errands — resolved away from the keyboard, or with money: orders, renewals, appointments, chasing humans, subscriptions.
+  learn — the deliverable is knowing: primers, courses, evals, comparisons, research, curation.
+  build — the deliverable is something made or changed on this machine: code, config, tooling, agents, hardware, wiring.
   inbox — genuinely unsure (rare).
-Torn between admin and home: touch code or config on this machine → home. When unsure between backlog and itinerary, choose backlog.
-Return ONLY minified JSON: {\"dest\":\"backlog|itinerary\",\"section\":\"time|admin|home|inbox\",\"text\":\"<tidied item>\"}.
+Torn between learn and build: ends in wiring it in → build; ends in understanding → learn. When unsure between backlog and itinerary, choose backlog.
+Return ONLY minified JSON: {\"dest\":\"backlog|itinerary\",\"section\":\"time|errands|learn|build|inbox\",\"text\":\"<tidied item>\"}.
 Note: $text"
 
 json=$(cd "$llmdir" && HUD_SUMMARIZING=1 "$claude" -p --model "$model" "$prompt" 2>/dev/null |
@@ -51,8 +48,8 @@ case "$tidied" in
 *'<tidied'* | *'<'*' item'*'>'*) ;;
 *) [ -n "$tidied" ] && text=$tidied ;;
 esac
-case "$dest" in backlog | itinerary) ;; *) dest=backlog ;; esac  # never focus
-case "$section" in time | admin | home) ;; *) section="" ;; esac # unknown → Captured
+case "$dest" in backlog | itinerary) ;; *) dest=backlog ;; esac             # never focus
+case "$section" in time | errands | learn | build) ;; *) section="" ;; esac # unknown → Captured
 
 args=(--dest "$dest")
 [ "$dest" = backlog ] && [ -n "$section" ] && args+=(--section "$section")

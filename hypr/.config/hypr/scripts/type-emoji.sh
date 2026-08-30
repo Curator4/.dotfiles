@@ -6,6 +6,7 @@
 # protocol that wtype uses (Hyprland #6647). Clipboard + synthetic paste works.
 #
 # Paste chord depends on the focused app:
+#   Rofi layer             → Ctrl+V to the keyboard-focused surface
 #   terminals (kitty, …) → Ctrl+Shift+V
 #   everything else      → Ctrl+V  (Electron/Discord/Chromium/GTK/Qt)
 #
@@ -64,6 +65,12 @@ paste_ydotool_ctrl_v()     { ydotool key 29:1 47:1 47:0 29:0; }
 paste_ydotool_ctrl_shift() { ydotool key 29:1 42:1 47:1 47:0 42:0 29:0; }
 paste_ydotool_shift_ins()  { ydotool key 42:1 110:1 110:0 42:0; }
 
+rofi_layer_active() {
+  command -v jq >/dev/null 2>&1 || return 1
+  hyprctl layers -j 2>/dev/null \
+    | jq -e 'any(.[]?.levels[][]?; .namespace == "rofi")' >/dev/null 2>&1
+}
+
 # hyprctl exits 0 on some Lua errors, so match the "ok" reply, not $?.
 paste_sendshortcut() {
   local mods=$1 key=$2
@@ -72,7 +79,20 @@ paste_sendshortcut() {
     2>&1) == ok* ]]
 }
 
+# Layer surfaces are not Hyprland windows. With no window selector,
+# send_shortcut follows the seat's keyboard focus and reaches Rofi itself.
+paste_focused_surface() {
+  local mods=$1 key=$2
+  [[ $(hyprctl dispatch \
+    "hl.dsp.send_shortcut({ mods = \"$mods\", key = \"$key\" })" \
+    2>&1) == ok* ]]
+}
+
 do_paste() {
+  if rofi_layer_active; then
+    paste_focused_surface "CTRL" "V" && return 0
+  fi
+
   if (( is_terminal )); then
     # kitty et al.
     paste_sendshortcut "CTRL SHIFT" "V" && return 0

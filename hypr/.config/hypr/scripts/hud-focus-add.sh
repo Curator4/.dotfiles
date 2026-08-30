@@ -23,12 +23,10 @@ trim() {
 }
 
 prompt() {
-    local p="$1"
+    local title="$1"
+    local placeholder="${2:-type something…}"
     local out
-    # This is a text field, not a picker. The shared rofi keymap keeps bare
-    # j/k available to type and uses Ctrl+j/k only for picker row navigation.
-    out=$(rofi -dmenu -i -p "$p" -l 0 \
-        -theme-str 'listview { enabled: false; } mode-switcher { enabled: false; }') || return 1
+    out=$(rofi-ask "$title" "$placeholder") || return 1
     out=$(trim "$out")
     [ -n "$out" ] || return 1
     printf '%s' "$out"
@@ -44,12 +42,14 @@ pick_project() {
     else
         list=$NEW_LABEL
     fi
+    # Filter shape on purpose: a typed name that isn't in the list is a
+    # new category. rofi-pick would reject it (-no-custom).
     sel=$(printf '%s\n' "$list" | rofi -dmenu -i -p 'focus · project') || return 1
     sel=$(trim "$sel")
     [ -n "$sel" ] || return 1
 
     if [ "$sel" = "$NEW_LABEL" ]; then
-        prompt 'focus · new category' || return 1
+        prompt 'focus · new category' 'name it…' || return 1
         return 0
     fi
     # Free-typed or picked existing — both land as the project slug. focus-add
@@ -64,7 +64,7 @@ fi
 project=$(trim "$project")
 [ -n "$project" ] || exit 0
 
-text=$(prompt "add · ${project}") || exit 0
+text=$(prompt "focus · ${project}" 'add an item…') || exit 0
 
 "$HUD" focus-add --project "$project" "$text"
 rm -f "$HOME/.local/state/hud/board.json"

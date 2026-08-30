@@ -222,6 +222,41 @@
             "async": true
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.local/bin/agent-cue-hook claude",
+            "timeout": 15,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.local/bin/agent-cue-hook claude request",
+            "timeout": 15,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.local/bin/agent-cue-hook claude request",
+            "timeout": 15,
+            "async": true
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
@@ -304,6 +339,9 @@
   "effortLevel": "xhigh",
   "modelSettings": {
     "claude-opus-5": {
+      "effortLevel": "xhigh"
+    },
+    "claude-fable-5": {
       "effortLevel": "xhigh"
     }
   },

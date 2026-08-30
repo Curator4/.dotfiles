@@ -36,6 +36,10 @@ function _apply-kitty-theme -d "Reskin the active kitty window, its hyprland bor
         return 1
     end
 
+    # Child agent hooks inherit this stable palette ID. Herdr keeps owning its
+    # own toasts; standalone agent-cue notifications use it for Mako styling.
+    set -gx AGENT_CUE_THEME $slug
+
     # Inside a herdr pane, KITTY_LISTEN_ON/KITTY_PID are stale values inherited
     # from whichever kitty was alive when the herdr *server* started, and
     # set-colors is window-wide regardless. Each pane owns its own VT, so OSC

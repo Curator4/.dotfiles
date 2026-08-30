@@ -117,23 +117,32 @@
   :initial '{"display":"0:00","msg":"","progress":0,"phase":"idle","color":"red"}'
   `~/.config/eww/scripts/timer-state`)
 
+; Outer .timer-shell padding (2px 5px) is the screen-edge gap — GTK eats
+; margin on a layer-shell root, so the gap has to live as padding on a wrapper.
 (defwidget timer-bar []
-  (box :class "timer-bar timer-c-${timer_state.color} timer-p-${timer_state.phase}"
-       :orientation "v"
-       :space-evenly false
-       :spacing 0
-    (centerbox :class "timer-row" :orientation "h"
-      (label :class "timer-time" :text {timer_state.display} :halign "start" :valign "center")
-      (box)
-      (label :class "timer-msg"  :text {timer_state.msg} :halign "end" :valign "center"
-             :visible {strlength(timer_state.msg) > 0}))
-    (progress :class "timer-progress"
-              :value {timer_state.progress}
-              :orientation "h")))
+  (box :class "timer-shell" :hexpand true
+    (box :class "timer-bar timer-c-${timer_state.color} timer-p-${timer_state.phase}"
+         :orientation "v"
+         :space-evenly false
+         :spacing 0
+         :hexpand true
+      (centerbox :class "timer-row" :orientation "h"
+        (label :class "timer-time" :text {timer_state.display} :halign "start" :valign "center")
+        (box)
+        (label :class "timer-msg"  :text {timer_state.msg} :halign "end" :valign "center"
+               :visible {strlength(timer_state.msg) > 0}))
+      (progress :class "timer-progress"
+                :value {timer_state.progress}
+                :orientation "h"))))
 
+; Exclusive 120px, stacks under hud-reserve (282px) — combined top exclusive
+; is 402px while open. ~/.config/eww/scripts/hud-place then remaps the HUD
+; paint window at y=-402 so it stays pinned to the monitor top. Keep 120 in
+; sync with TIMER_H in hud-place. Do not `eww reload` to show this window:
+; reload would reset HUD geometry to the idle -282 offset.
 (defwindow timer
   :monitor "DP-4"
-  :geometry (geometry :x "0px" :y "0px" :width "1440px" :height "140px" :anchor "top center")
+  :geometry (geometry :x "0px" :y "0px" :width "1440px" :height "120px" :anchor "top center")
   :stacking "fg"
   :exclusive true
   :focusable false
@@ -173,26 +182,27 @@
 ; pull-only menu failed. Click opens the same eww card Super+X does.
 ;
 ; Caffeine: today's total mg, estimated active mg (5h half-life), quiet-after
-; clock. Sits next to posture as the other body instrument. `hud caffeine
-; render` paints amber past the soft daily cap. Click opens the same rofi
-; picker Super+Shift+X runs.
+; clock. Sits next to posture as the other body instrument, muted like the
+; rest of the footer — the milligram count is the cap signal. Click opens the
+; same rofi picker Super+Shift+X runs.
 ;
 ; Posture: declared sit/stand time with away-from-desk subtracted (the AFK
-; stream from ActivityWatch). Instrumentation, not agenda. `hud posture render`
-; paints it amber past the nudge threshold. Click flips sit/stand — the same
-; `hud posture toggle` Super+R runs, so the footer you're already reading when
-; the nudge lands is somewhere you can answer it.
+; stream from ActivityWatch). Instrumentation, not agenda, same muted rest
+; as caffeine. Click flips sit/stand — the same `hud posture toggle` Super+R
+; runs, so the footer you're already reading when the nudge lands is somewhere
+; you can answer it.
 ; ═════════════════════════════════════════════════════════
 (defpoll board_left     :interval "150ms" :initial "[]" `~/.config/eww/scripts/hud-column-json left`)
 (defpoll board_right    :interval "150ms" :initial "[]" `~/.config/eww/scripts/hud-column-json right`)
+(defpoll board_hidden   :interval "1s"    :initial "0"  `~/.config/eww/scripts/hud-column-json hidden`)
+(defpoll board_full_left  :interval "150ms" :initial "[]" `~/.config/eww/scripts/hud-column-json left full`)
+(defpoll board_full_right :interval "150ms" :initial "[]" `~/.config/eww/scripts/hud-column-json right full`)
 (defpoll board_today    :interval "2s"    :initial "[]" `~/.config/eww/scripts/hud-today-json`)
+(defpoll board_full_today :interval "2s"  :initial "[]" `~/.config/eww/scripts/hud-today-json full`)
 (defpoll board_caffeine :interval "2s"    :initial ""   `~/.config/eww/scripts/hud-caffeine-render`)
 (defpoll board_posture  :interval "2s"    :initial ""   `~/.config/eww/scripts/hud-posture-render`)
 ; Slow: this one shells out to python3, and a routine item's state moves in hours.
 (defpoll board_checks   :interval "30s"   :initial ""   `~/.config/eww/scripts/hud-checks-render`)
-; Slower still: shells out to python, and a knowledge candidate ages in days.
-; This is the memory design's active nudge — ambient, never interrupting.
-(defpoll board_themis   :interval "60s"   :initial ""   `~/.config/eww/scripts/themis-inbox-render`)
 
 ; One column of the focus board: per-row eventboxes so items and headers can
 ; take clicks. Markup is pre-painted (project colour + spinner) by the poll
@@ -203,43 +213,35 @@
     (for row in rows
       (eventbox :cursor {row.item || row.header ? "pointer" : "default"}
                 :onclick {row.item ?
-                  "/home/curator/workspace/hud/hud focus-done ${row.i} >/dev/null 2>&1; rm -f ~/.local/state/hud/board.json &"
+                  "/home/curator/workspace/hud/hud focus-done ${row.i} >/dev/null 2>&1; rm -f ~/.local/state/hud/board.json ~/.local/state/hud/board-full.json &"
                   : "true"}
                 :onrightclick {row.item ?
-                  "/home/curator/workspace/hud/hud focus-remove ${row.i} >/dev/null 2>&1; rm -f ~/.local/state/hud/board.json &"
+                  "/home/curator/workspace/hud/hud focus-remove ${row.i} >/dev/null 2>&1; rm -f ~/.local/state/hud/board.json ~/.local/state/hud/board-full.json &"
                   : row.header ?
                   "~/.config/eww/scripts/hud-focus-add ${row.project} &"
                   : "true"}
-        (label :class "hud-body" :markup {row.markup} :halign "start" :wrap false)))))
+        (label :class {row.unseen ? "hud-body hud-cue" : "hud-body"} :markup {row.markup} :halign "start" :wrap false)))))
 
-(defwidget hud-today []
+(defwidget hud-today [rows]
   (box :class "hud-today" :orientation "v" :space-evenly false
-       :visible {arraylength(board_today) > 0}
+       :visible {arraylength(rows) > 0}
     (label :class "today-header" :text "TODAY" :halign "start")
-    (for it in board_today
+    (for it in rows
       (eventbox :cursor "pointer"
-                :onclick "/home/curator/workspace/hud/hud itinerary-toggle ${it.i} >/dev/null 2>&1; rm -f ~/.local/state/hud/board.json &"
+                :onclick "/home/curator/workspace/hud/hud itinerary-toggle ${it.i} >/dev/null 2>&1; rm -f ~/.local/state/hud/board.json ~/.local/state/hud/board-full.json &"
         (label :class {it.done ? "today-item done" : "today-item"}
                :halign "start"
                :text "${it.done ? "✓" : "○"}  ${it.text}")))))
 
 (defwidget hud-footer []
   (box :class "hud-footer" :orientation "h" :space-evenly false
-       :visible {board_checks != "" || board_caffeine != "" || board_posture != ""
-                 || board_themis != ""}
+       :visible {board_checks != "" || board_caffeine != "" || board_posture != ""}
     (eventbox :cursor "pointer" :hexpand true :halign "start"
               :visible {board_checks != ""}
               :onclick "~/.config/hypr/scripts/hud-checks.sh &"
       (label :class "checks-line" :markup board_checks :halign "start"))
     (box :orientation "h" :space-evenly false :spacing 10
          :hexpand true :halign "end"
-      (eventbox :cursor "pointer"
-                :visible {board_themis != ""}
-                :onclick "~/.config/hypr/scripts/themis-inbox.sh &"
-        (label :class "themis-line" :markup board_themis :halign "end"))
-      (label :class "instrument-sep"
-             :visible {board_themis != "" && (board_caffeine != "" || board_posture != "")}
-             :text "│")
       (eventbox :cursor "pointer"
                 :visible {board_caffeine != ""}
                 :onclick "~/.config/hypr/scripts/caffeine-menu.sh &"
@@ -252,22 +254,80 @@
                 :onclick "/home/curator/workspace/hud/hud posture toggle >/dev/null 2>&1 &"
         (label :class "posture-line" :markup board_posture :halign "end")))))
 
+(defwidget hud-more []
+  (eventbox :class "hud-more-hit"
+            :cursor "pointer"
+            :halign "center"
+            :visible {board_hidden > 0}
+            :onclick "eww open --toggle hud-expanded"
+    (label :class "hud-more"
+           :halign "center"
+           :markup "+${board_hidden} more · <span underline=\"single\">click to expand</span>")))
+
+; .hud-shell padding (not .hud-panel margin) is the 5px screen-edge gap —
+; GTK clips margin on the layer-shell root, which is why the top looked flush.
 (defwidget hud-panel []
-  (box :class "hud-panel" :orientation "v" :space-evenly false :spacing 10
-    (hud-today)
+  (box :class "hud-shell" :hexpand true
+    ; GtkOverlay sizes itself from its first child only. Paint the conditional
+    ; expansion affordance over the fixed panel instead of letting it grow the
+    ; HUD beyond hud-reserve's height.
+    (overlay
+      (box :class "hud-panel" :orientation "v" :space-evenly false :spacing 10
+        (hud-today :rows board_today)
+        (box :orientation "h" :space-evenly true :spacing 40
+          (hud-zone :class "zone-left"  :rows board_left)
+          (hud-zone :class "zone-right" :rows board_right))
+        (box :class "hud-slack" :vexpand true :hexpand true)
+        (hud-footer))
+      (box :orientation "v" :space-evenly false :halign "center" :valign "end"
+        (hud-more)
+        (box :height 48)))))
+
+(defwidget hud-expanded-panel []
+  (box :class "hud-expanded-panel" :orientation "v" :space-evenly false :spacing 12
+    (box :orientation "h" :space-evenly false
+      (label :class "hud-expanded-kicker" :text "ALL FOCUS" :halign "start" :hexpand true)
+      (eventbox :cursor "pointer" :onclick "eww close hud-expanded"
+        (label :class "hud-expanded-close" :text "✕")))
+    (hud-today :rows board_full_today)
     (box :orientation "h" :space-evenly true :spacing 40
-      (hud-zone :class "zone-left"  :rows board_left)
-      (hud-zone :class "zone-right" :rows board_right))
-    (box :class "hud-slack" :vexpand true :hexpand true)
-    (hud-footer)))
+      (hud-zone :class "zone-left"  :rows board_full_left)
+      (hud-zone :class "zone-right" :rows board_full_right))))
+
+; Stable compact viewport: Go budgets nine full-height rows per column;
+; decorative gap/blank rows spend only their rendered fraction. The panel's
+; minimum height fills this reservation without ever growing past it.
+; 282 = content + 2px shell padding on top and bottom.
+(defwindow hud-reserve
+  :monitor "DP-4"
+  :geometry (geometry :x "0px" :y "0px" :width "1440px" :height "282px" :anchor "top center")
+  :stacking "bottom"
+  :exclusive true
+  :focusable false
+  :namespace "hud-reserve"
+  (box))
+
 (defwindow hud
   :monitor "DP-4"
-  :geometry (geometry :x "0px" :y "0px" :width "1440px" :anchor "top center")
+  ; Layer surfaces anchor inside Hyprland's reserved work area. Offset by the
+  ; fixed reserve so the panel still paints from the monitor top. Idle :y is
+  ; -282 (hud-reserve height). While the timer is open, hud-place reopens this
+  ; window at -402. Keep 282 in sync with HUD_RESERVE in hud-place.
+  :geometry (geometry :x "0px" :y "-282px" :width "1440px" :anchor "top center")
   :stacking "fg"
-  :exclusive true
+  :exclusive false
   :focusable false
   :namespace "hud"
   (hud-panel))
+
+(defwindow hud-expanded
+  :monitor "DP-4"
+  :geometry (geometry :x "0px" :y "0px" :width "1420px" :anchor "center")
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  :namespace "hud-expanded"
+  (hud-expanded-panel))
 
 ; On-demand backlog card. Super+Shift+B / `backlog` toggles it and enters
 ; a vim submap (j/k or arrows move, x clears, Escape

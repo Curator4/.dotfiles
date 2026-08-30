@@ -12,44 +12,57 @@ local function exec(cmd)
     return hl.dsp.exec_cmd(cmd)
 end
 
-hl.bind(mod .. " + Q", exec(p.terminal))
-hl.bind(mod .. " + W", exec("rofi -show drun"))
-hl.bind(mod .. " + E", exec(p.fileManager))
-hl.bind(mod .. " + slash", exec(p.fileManager))
-hl.bind(mod .. " + D", exec("discord"))
-hl.bind(mod .. " + SHIFT + D", exec("kitty herdr --session dynasty"))
-hl.bind(mod .. " + F", exec(p.browser))
-hl.bind(mod .. " + T", exec("~/.bin/theme"))
-hl.bind(mod .. " + N", exec("kitty nvim"))
-hl.bind(mod .. " + M", exec(p.spotify))
-hl.bind(mod .. " + O", exec("obsidian"))
-hl.bind(mod .. " + C", hl.dsp.window.close())
-hl.bind(mod .. " + I", exec("kitty nvim +$ /home/curator/workspace/ai/household-oc/agents/tactical/data/itinerary.md"))
-hl.bind(mod .. " + X", exec("~/.config/hypr/scripts/hud-checks.sh"))
-hl.bind(mod .. " + SHIFT + I", hl.dsp.layout("togglesplit"))
-hl.bind(mod .. " + SHIFT + F", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mod .. " + Escape", hl.dsp.exit())
-hl.bind("F11", hl.dsp.window.fullscreen())
+-- Descriptions are not a second cheat sheet: Hyprland exposes them with
+-- `hyprctl binds -j`, which desktop-help renders directly.
+local function bind(keys, description, dispatcher, options)
+    local metadata = { description = description }
+    for key, value in pairs(options or {}) do
+        metadata[key] = value
+    end
+    return hl.bind(keys, dispatcher, metadata)
+end
+
+bind(mod .. " + Q", "[Apps] Terminal", exec(p.terminal))
+bind(mod .. " + W", "[Picker] Application launcher", exec("rofi -show drun"))
+bind(mod .. " + E", "[Apps] File manager", exec(p.fileManager))
+bind(mod .. " + slash", "[Help] Open desktop help", exec("~/.bin/desktop-help"))
+bind(mod .. " + D", "[Apps] Discord", exec("discord"))
+bind(mod .. " + SHIFT + D", "[Apps] Dynasty workspace", exec("kitty herdr --session dynasty"))
+bind(mod .. " + F", "[Apps] Browser", exec(p.browser))
+bind(mod .. " + T", "[Picker] Themis inbox", exec("~/.config/hypr/scripts/themis-inbox.sh"))
+bind(mod .. " + N", "[Apps] Neovim", exec("kitty nvim"))
+bind(mod .. " + M", "[Apps] Spotify", exec(p.spotify))
+bind(mod .. " + O", "[Apps] Obsidian", exec("obsidian"))
+bind(mod .. " + C", "[Window] Close focused window", hl.dsp.window.close())
+bind(mod .. " + I", "[Apps] Open itinerary", exec("kitty nvim +$ /home/curator/workspace/ai/household-oc/agents/tactical/data/itinerary.md"))
+bind(mod .. " + X", "[HUD] Open routine checks", exec("~/.config/hypr/scripts/hud-checks.sh"))
+bind(mod .. " + SHIFT + T", "[Picker] Theme picker", exec("~/.bin/theme"))
+bind(mod .. " + SHIFT + I", "[Layout] Toggle split direction", hl.dsp.layout("togglesplit"))
+bind(mod .. " + SHIFT + F", "[Window] Toggle floating", hl.dsp.window.float({ action = "toggle" }))
+bind(mod .. " + Escape", "[Desktop] Exit Hyprland", hl.dsp.exit())
+bind("F11", "[Window] Toggle fullscreen", hl.dsp.window.fullscreen())
 
 -- Move focus with vim keys
 local directions = { H = "left", L = "right", K = "up", J = "down" }
 for key, dir in pairs(directions) do
-    hl.bind(mod .. " + " .. key, hl.dsp.focus({ direction = dir }))
-    hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.swap({ direction = dir }))
+    bind(mod .. " + " .. key, "[Window] Focus " .. dir, hl.dsp.focus({ direction = dir }))
+    bind(mod .. " + SHIFT + " .. key, "[Window] Move window " .. dir, hl.dsp.window.swap({ direction = dir }))
 end
 
 -- Promote the focused window into the master slot.
-hl.bind(mod .. " + SHIFT + N", hl.dsp.layout("swapwithmaster"))
+bind(mod .. " + SHIFT + N", "[Layout] Promote window to master", hl.dsp.layout("swapwithmaster"))
 
 -- Master ratio. Applies to the focused workspace only and is not persisted.
-hl.bind(mod .. " + minus", hl.dsp.layout("mfact -0.05"))
-hl.bind(mod .. " + equal", hl.dsp.layout("mfact +0.05"))
-hl.bind(mod .. " + SHIFT + T", hl.dsp.layout("orientationcycle left bottom"))
-hl.bind(mod .. " + SHIFT + O", hl.dsp.layout("orientationnext"))
+bind(mod .. " + minus", "[Layout] Shrink master area", hl.dsp.layout("mfact -0.05"))
+bind(mod .. " + equal", "[Layout] Grow master area", hl.dsp.layout("mfact +0.05"))
+-- Transpose the master split (two-way; SHIFT+O's orientationnext cycles the
+-- full set). Keep off T and SHIFT+T — the Themis inbox and theme picker above.
+bind(mod .. " + SHIFT + P", "[Layout] Transpose master split", hl.dsp.layout("orientationcycle left bottom"))
+bind(mod .. " + SHIFT + O", "[Layout] Cycle master orientation", hl.dsp.layout("orientationnext"))
 
 -- Cycle through windows in current workspace. Two dispatchers on one key: as a
 -- single lua callback rather than two binds, so the order is explicit.
-hl.bind(mod .. " + TAB", function()
+bind(mod .. " + TAB", "[Window] Cycle windows", function()
     hl.dispatch(hl.dsp.window.cycle_next())
     hl.dispatch(hl.dsp.window.bring_to_top())
 end)
@@ -57,23 +70,23 @@ end)
 -- Switch workspaces with mod + [0-9], move the active window with mod + SHIFT + [0-9]
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
-    hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-    hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+    bind(mod .. " + " .. key, "[Workspace] Switch to workspace " .. i, hl.dsp.focus({ workspace = i }))
+    bind(mod .. " + SHIFT + " .. key, "[Workspace] Move window to workspace " .. i, hl.dsp.window.move({ workspace = i }))
 end
 
 -- Move/resize windows with mod + LMB/RMB and dragging
-hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+bind(mod .. " + mouse:272", "[Window] Drag window", hl.dsp.window.drag(), { mouse = true })
+bind(mod .. " + mouse:273", "[Window] Resize window", hl.dsp.window.resize(), { mouse = true })
 
 -- Screenshots
-hl.bind(mod .. " + S", exec("hyprshot -m region"))
-hl.bind(mod .. " + SHIFT + S", exec("hyprshot -m output"))
+bind(mod .. " + S", "[Capture] Screenshot a region", exec("hyprshot -m region"))
+bind(mod .. " + SHIFT + S", "[Capture] Screenshot the focused monitor", exec("hyprshot -m output"))
 
 -- Screen recording (toggle: first press = pick region + start, second press = stop)
-hl.bind(mod .. " + SHIFT + R", exec("~/.bin/record-region"))
+bind(mod .. " + SHIFT + R", "[Capture] Start or stop region recording", exec("~/.bin/record-region"))
 
 -- Utilities
-hl.bind(mod .. " + P", exec("hyprlock"))
+bind(mod .. " + P", "[Desktop] Lock screen", exec("hyprlock"))
 -- Super+Y = quick capture (backlog/itinerary). Super+U family is the focus board:
 --   U        = add item (category picker, incl. new category)
 --   Shift+U  = toggle the panel
@@ -81,30 +94,31 @@ hl.bind(mod .. " + P", exec("hyprlock"))
 -- Super+X = checks card (routine ack). Super+Shift+X is caffeine.
 -- Super+Shift+B = backlog card (B is bluetooth; Shift+Y is hue).
 -- Hue lights on Super+Shift+Y.
-hl.bind(mod .. " + U", exec("~/.config/hypr/scripts/hud-focus-add.sh"))
-hl.bind(mod .. " + SHIFT + U", exec("eww open --toggle hud"))
-hl.bind(mod .. " + ALT + U", exec(p.ssh))
-hl.bind(mod .. " + Y", exec("~/.config/hypr/scripts/hud-capture.sh"))
-hl.bind(mod .. " + SHIFT + Y", exec("~/.bin/hue toggle"))
-hl.bind(mod .. " + SHIFT + B", exec("~/.config/hypr/scripts/hud-backlog.sh"))
+bind(mod .. " + U", "[Picker] Add focus-board item", exec("~/.config/hypr/scripts/hud-focus-add.sh"))
+bind(mod .. " + SHIFT + U", "[HUD] Toggle focus board", exec("~/.config/eww/scripts/hud-toggle"))
+bind(mod .. " + ALT + U", "[Apps] SSH terminal", exec(p.ssh))
+bind(mod .. " + V", "[Fan] Toggle fan controls", exec("qs -c fan-rail ipc call fan toggle"))
+bind(mod .. " + Y", "[Picker] Quick capture", exec("~/.config/hypr/scripts/hud-capture.sh"))
+bind(mod .. " + SHIFT + Y", "[Desktop] Toggle office lights", exec("~/.bin/hue toggle"))
+bind(mod .. " + SHIFT + B", "[HUD] Open backlog", exec("~/.config/hypr/scripts/hud-backlog.sh"))
 
 -- Backlog card is a modal: j/k or arrows move, g/G top/bottom, x clears,
 -- y yanks, Escape/q closes. reset is required — without it a failed close
 -- leaves every key trapped.
 local backlogNav = "~/.config/hypr/scripts/hud-backlog-nav.sh"
 hl.define_submap("backlog", function()
-    hl.bind("j", exec(backlogNav .. " down"), { repeating = true })
-    hl.bind("k", exec(backlogNav .. " up"), { repeating = true })
-    hl.bind("down", exec(backlogNav .. " down"), { repeating = true })
-    hl.bind("up", exec(backlogNav .. " up"), { repeating = true })
-    hl.bind("g", exec(backlogNav .. " first"))
-    hl.bind("SHIFT + G", exec(backlogNav .. " last"))
-    hl.bind("x", exec(backlogNav .. " x"))
-    hl.bind("Return", exec(backlogNav .. " x"))
-    hl.bind("y", exec(backlogNav .. " y"))
-    hl.bind("escape", exec("~/.config/hypr/scripts/hud-backlog.sh close"))
-    hl.bind("q", exec("~/.config/hypr/scripts/hud-backlog.sh close"))
-    hl.bind(mod .. " + SHIFT + B", exec("~/.config/hypr/scripts/hud-backlog.sh close"))
+    bind("j", "[Modal] Backlog: move down", exec(backlogNav .. " down"), { repeating = true })
+    bind("k", "[Modal] Backlog: move up", exec(backlogNav .. " up"), { repeating = true })
+    bind("down", "[Modal] Backlog: move down", exec(backlogNav .. " down"), { repeating = true })
+    bind("up", "[Modal] Backlog: move up", exec(backlogNav .. " up"), { repeating = true })
+    bind("g", "[Modal] Backlog: jump to first", exec(backlogNav .. " first"))
+    bind("SHIFT + G", "[Modal] Backlog: jump to last", exec(backlogNav .. " last"))
+    bind("x", "[Modal] Backlog: complete item", exec(backlogNav .. " x"))
+    bind("Return", "[Modal] Backlog: complete item", exec(backlogNav .. " x"))
+    bind("y", "[Modal] Backlog: copy item", exec(backlogNav .. " y"))
+    bind("escape", "[Modal] Backlog: close", exec("~/.config/hypr/scripts/hud-backlog.sh close"))
+    bind("q", "[Modal] Backlog: close", exec("~/.config/hypr/scripts/hud-backlog.sh close"))
+    bind(mod .. " + SHIFT + B", "[Modal] Backlog: close", exec("~/.config/hypr/scripts/hud-backlog.sh close"))
 end)
 
 -- Checks card is the same modal as backlog: j/k move, g/G top/bottom, x acks,
@@ -112,34 +126,34 @@ end)
 -- leaves every key trapped.
 local checksNav = "~/.config/hypr/scripts/hud-checks-nav.sh"
 hl.define_submap("checks", function()
-    hl.bind("j", exec(checksNav .. " down"), { repeating = true })
-    hl.bind("k", exec(checksNav .. " up"), { repeating = true })
-    hl.bind("down", exec(checksNav .. " down"), { repeating = true })
-    hl.bind("up", exec(checksNav .. " up"), { repeating = true })
-    hl.bind("g", exec(checksNav .. " first"))
-    hl.bind("SHIFT + G", exec(checksNav .. " last"))
-    hl.bind("x", exec(checksNav .. " x"))
-    hl.bind("Return", exec(checksNav .. " x"))
-    hl.bind("y", exec(checksNav .. " y"))
-    hl.bind("escape", exec("~/.config/hypr/scripts/hud-checks.sh close"))
-    hl.bind("q", exec("~/.config/hypr/scripts/hud-checks.sh close"))
-    hl.bind(mod .. " + X", exec("~/.config/hypr/scripts/hud-checks.sh close"))
+    bind("j", "[Modal] Checks: move down", exec(checksNav .. " down"), { repeating = true })
+    bind("k", "[Modal] Checks: move up", exec(checksNav .. " up"), { repeating = true })
+    bind("down", "[Modal] Checks: move down", exec(checksNav .. " down"), { repeating = true })
+    bind("up", "[Modal] Checks: move up", exec(checksNav .. " up"), { repeating = true })
+    bind("g", "[Modal] Checks: jump to first", exec(checksNav .. " first"))
+    bind("SHIFT + G", "[Modal] Checks: jump to last", exec(checksNav .. " last"))
+    bind("x", "[Modal] Checks: acknowledge", exec(checksNav .. " x"))
+    bind("Return", "[Modal] Checks: acknowledge", exec(checksNav .. " x"))
+    bind("y", "[Modal] Checks: copy item", exec(checksNav .. " y"))
+    bind("escape", "[Modal] Checks: close", exec("~/.config/hypr/scripts/hud-checks.sh close"))
+    bind("q", "[Modal] Checks: close", exec("~/.config/hypr/scripts/hud-checks.sh close"))
+    bind(mod .. " + X", "[Modal] Checks: close", exec("~/.config/hypr/scripts/hud-checks.sh close"))
 end)
 
 -- Sit/stand toggle — declares the transition, HUD footer counts the block with
 -- away-from-desk time subtracted. Confirms with a short notification because the
 -- board is often closed when this is pressed.
-hl.bind(mod .. " + R", exec("posture"))
+bind(mod .. " + R", "[HUD] Toggle sit or stand posture", exec("posture"))
 -- Caffeine dose picker (coffee mug / Monster). Super+X is the checks card;
 -- this is the sibling event logger. Confirms with notify-send (active mg +
 -- quiet estimate).
-hl.bind(mod .. " + SHIFT + X", exec("~/.config/hypr/scripts/caffeine-menu.sh"))
-hl.bind(mod .. " + period", exec("~/.config/hypr/scripts/emoji-picker.sh"))
-hl.bind(mod .. " + B", exec("~/.config/waybar/scripts/bluetooth-menu.sh"))
+bind(mod .. " + SHIFT + X", "[Picker] Log caffeine", exec("~/.config/hypr/scripts/caffeine-menu.sh"))
+bind(mod .. " + period", "[Picker] Emoji picker", exec("~/.config/hypr/scripts/emoji-picker.sh"))
+bind(mod .. " + B", "[Picker] Bluetooth devices", exec("~/.config/waybar/scripts/bluetooth-menu.sh"))
 -- Display warmth (sunsetr) — steps active-period target via ~/.bin/sunset-step.
 -- Geo schedule lives in ~/.config/sunsetr/sunsetr.toml (systemctl --user sunsetr).
-hl.bind(mod .. " + G", exec("~/.bin/sunset-step warmer"))
-hl.bind(mod .. " + SHIFT + G", exec("~/.bin/sunset-step cooler"))
+bind(mod .. " + G", "[Desktop] Make display warmer", exec("~/.bin/sunset-step warmer"))
+bind(mod .. " + SHIFT + G", "[Desktop] Make display cooler", exec("~/.bin/sunset-step cooler"))
 
 -- Theme switching, F1..F12 in a fixed order.
 --   mod + Fn        — reskins the FOCUSED kitty window only
@@ -155,63 +169,64 @@ local themeApply = "systemd-run --user --quiet --collect ~/.dotfiles/bin/.bin/th
 
 for i, theme in ipairs(themes) do
     local fkey = "F" .. i
-    hl.bind(mod .. " + " .. fkey, exec(themeTerm .. " " .. theme))
-    hl.bind(mod .. " + ALT + " .. fkey, exec(themeApply .. " " .. theme))
+    bind(mod .. " + " .. fkey, "[Theme] Apply " .. theme .. " to terminal", exec(themeTerm .. " " .. theme))
+    bind(mod .. " + ALT + " .. fkey, "[Theme] Apply " .. theme .. " to desktop", exec(themeApply .. " " .. theme))
 end
 
--- Super+T = theme picker (Themis is retired). Super+Shift+M = random.
-hl.bind(mod .. " + SHIFT + M", exec("~/.bin/theme random"))
+-- Super+Shift+T = theme picker (Super+T is the Themis inbox). Super+Shift+M = random.
+bind(mod .. " + SHIFT + M", "[Theme] Apply a random desktop theme", exec("~/.bin/theme random"))
 
 -- Laptop multimedia keys for volume and LCD brightness.
 -- Volume snaps to multiples of 5 (see scripts/volume-snap.sh) so a volume that
 -- drifted off-grid (mixer UI, apps) re-aligns instead of staying at 47/52/….
 local volSnap = "~/.config/hypr/scripts/volume-snap.sh"
-hl.bind("XF86AudioRaiseVolume", exec(volSnap .. " up"), LOCKED_EL)
-hl.bind("XF86AudioLowerVolume", exec(volSnap .. " down"), LOCKED_EL)
-hl.bind("XF86AudioMute", exec("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), LOCKED_EL)
-hl.bind("XF86AudioMicMute", exec("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), LOCKED_EL)
-hl.bind("XF86MonBrightnessUp", exec("brightnessctl -e4 -n2 set 5%+"), LOCKED_EL)
-hl.bind("XF86MonBrightnessDown", exec("brightnessctl -e4 -n2 set 5%-"), LOCKED_EL)
+bind("XF86AudioRaiseVolume", "[Hardware] Raise volume", exec(volSnap .. " up"), LOCKED_EL)
+bind("XF86AudioLowerVolume", "[Hardware] Lower volume", exec(volSnap .. " down"), LOCKED_EL)
+bind("XF86AudioMute", "[Hardware] Toggle output mute", exec("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), LOCKED_EL)
+bind("XF86AudioMicMute", "[Hardware] Toggle microphone mute", exec("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), LOCKED_EL)
+bind("XF86MonBrightnessUp", "[Hardware] Raise brightness", exec("brightnessctl -e4 -n2 set 5%+"), LOCKED_EL)
+bind("XF86MonBrightnessDown", "[Hardware] Lower brightness", exec("brightnessctl -e4 -n2 set 5%-"), LOCKED_EL)
 
 -- Volume control with arrow keys
-hl.bind(mod .. " + up", exec(volSnap .. " up"), LOCKED_EL)
-hl.bind(mod .. " + down", exec(volSnap .. " down"), LOCKED_EL)
+bind(mod .. " + up", "[Hardware] Raise volume", exec(volSnap .. " up"), LOCKED_EL)
+bind(mod .. " + down", "[Hardware] Lower volume", exec(volSnap .. " down"), LOCKED_EL)
 
 -- Media controls with playerctl
-hl.bind("XF86AudioNext", exec("playerctl next"), LOCKED)
-hl.bind("XF86AudioPause", exec("playerctl play-pause"), LOCKED)
-hl.bind("XF86AudioPlay", exec("playerctl play-pause"), LOCKED)
-hl.bind("XF86AudioPrev", exec("playerctl previous"), LOCKED)
+bind("XF86AudioNext", "[Media] Next track", exec("playerctl next"), LOCKED)
+bind("XF86AudioPause", "[Media] Play or pause", exec("playerctl play-pause"), LOCKED)
+bind("XF86AudioPlay", "[Media] Play or pause", exec("playerctl play-pause"), LOCKED)
+bind("XF86AudioPrev", "[Media] Previous track", exec("playerctl previous"), LOCKED)
 
 -- Arrow keys + space for media control
-hl.bind(mod .. " + left", exec("playerctl -p ncspot,spotify,firefox previous"))
-hl.bind(mod .. " + right", exec("playerctl -p ncspot,spotify,firefox next"))
-hl.bind(mod .. " + space", exec("playerctl -p ncspot,spotify,firefox play-pause"))
+bind(mod .. " + left", "[Media] Previous track", exec("playerctl -p ncspot,spotify,firefox previous"))
+bind(mod .. " + right", "[Media] Next track", exec("playerctl -p ncspot,spotify,firefox next"))
+bind(mod .. " + space", "[Media] Play or pause", exec("playerctl -p ncspot,spotify,firefox play-pause"))
 
 -- TTS / desk-ear — nav cluster, no modifier (mute-shaped toggles)
 -- Print = shut her up, Home = pause her, Insert = talk / stop talking
-hl.bind("Print", exec("python3 ~/workspace/ai/tts-daemon/tts_client.py kill"), LOCKED)
-hl.bind("Home", exec("python3 ~/workspace/ai/tts-daemon/tts_client.py pause"), LOCKED)
-hl.bind("Insert", exec("uv run --project /home/curator/workspace/ai/household-oc/tools/speak hark"), LOCKED)
+bind("Print", "[TTS] Stop speech", exec("python3 ~/workspace/ai/tts-daemon/tts_client.py kill"), LOCKED)
+bind("Home", "[TTS] Pause or resume speech", exec("python3 ~/workspace/ai/tts-daemon/tts_client.py pause"), LOCKED)
+bind("Insert", "[TTS] Start or stop voice input", exec("uv run --project /home/curator/workspace/ai/household-oc/tools/speak hark"), LOCKED)
 
 -- Quick emoji shortcuts (mod + CTRL + key) — clipboard+ydotool paste
 -- (plain wtype unicode is ignored by Electron/Chromium on Wayland)
 local typeEmoji = "~/.config/hypr/scripts/type-emoji.sh"
 local emoji = {
-    { "J", "😂" }, { "R", "🤣" }, { "C", "☕" }, { "U", "🙃" },
-    { "T", "🤔" }, { "F", "🫡" }, { "P", "😔" }, { "H", "😌" },
-    { "E", "😎" }, { "D", "🫤" }, { "Y", "🥹" }, { "Q", "😳" },
-    { "S", "😭" }, { "W", "👋" }, { "M", "😓" }, { "X", "💀" },
-    { "A", "😠" }, { "L", "😈" }, { "Z", "🤡" }, { "B", "👍" },
-    { "I", "🫵" }, { "K", "👀" }, { "O", "😮" }, { "G", "😼" },
-    { "N", "😅" }, { "V", "🤮" }, { "1", "😤" }, { "2", "🤦" },
-    { "3", "🔥" }, { "4", "👌" }, { "5", "✅" }, { "6", "🤨" },
-    { "7", "💪" },
-    { "semicolon", "æ" }, { "apostrophe", "ø" }, { "bracketleft", "å" },
-    { "8", "€" },
-    { "slash", "🤷" },
+    { "J", "😂", "joy" }, { "R", "🤣", "rolling laugh" }, { "C", "☕", "coffee" },
+    { "U", "🙃", "upside down" }, { "T", "🤔", "thinking" }, { "F", "🫡", "salute" },
+    { "P", "😔", "pensive" }, { "H", "😌", "relieved" }, { "E", "😎", "sunglasses" },
+    { "D", "🫤", "unsure" }, { "Y", "🥹", "holding back tears" }, { "Q", "😳", "flushed" },
+    { "S", "😭", "crying" }, { "W", "👋", "wave" }, { "M", "😓", "sweat" },
+    { "X", "💀", "skull" }, { "A", "😠", "angry" }, { "L", "😈", "devil" },
+    { "Z", "🤡", "clown" }, { "B", "👍", "thumbs up" }, { "I", "🫵", "point" },
+    { "K", "👀", "eyes" }, { "O", "😮", "surprised" }, { "G", "😼", "smirking cat" },
+    { "N", "😅", "nervous laugh" }, { "V", "🤮", "vomit" }, { "1", "😤", "huffing" },
+    { "2", "🤦", "facepalm" }, { "3", "🔥", "fire" }, { "4", "👌", "okay" },
+    { "5", "✅", "checkmark" }, { "6", "🤨", "raised eyebrow" }, { "7", "💪", "flex" },
+    { "semicolon", "æ", "Danish ae" }, { "apostrophe", "ø", "Danish oe" },
+    { "bracketleft", "å", "Danish aa" }, { "8", "€", "euro" }, { "slash", "🤷", "shrug" },
 }
 
 for _, e in ipairs(emoji) do
-    hl.bind(mod .. " + CTRL + " .. e[1], exec(typeEmoji .. ' "' .. e[2] .. '"'))
+    bind(mod .. " + CTRL + " .. e[1], "[Emoji] " .. e[3] .. " " .. e[2], exec(typeEmoji .. ' "' .. e[2] .. '"'))
 end

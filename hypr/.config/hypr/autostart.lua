@@ -15,5 +15,14 @@ hl.on("hyprland.start", function()
 
     -- Household HUD — attention board panel on DP-4
     hl.exec_cmd("eww daemon")
-    hl.exec_cmd("sleep 2 && eww open hud")
+    hl.exec_cmd("sleep 2 && eww open-many hud-reserve hud")
+
+    -- Resident fan-control rail on DP-4; IPC only flips its visible state.
+    hl.exec_cmd("qs -n -d -c fan-rail")
+
+    -- Themis curation panel: pre-warm the scratchpad window (parked in
+    -- special:themis, invisible) so Super+T slides it in instantly,
+    -- and watch for the page's Escape dismiss signal.
+    hl.exec_cmd("~/.config/hypr/scripts/themis-inbox.sh warm")
+    hl.exec_cmd("~/.config/hypr/scripts/themis-panel-watchd")
 end)

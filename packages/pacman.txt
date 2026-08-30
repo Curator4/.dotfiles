@@ -81,6 +81,7 @@ python-pip
 python-pipx
 python-ruff
 qbittorrent
+quickshell
 ripgrep
 rofi
 rofimoji

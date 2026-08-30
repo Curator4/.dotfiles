@@ -46,19 +46,43 @@ theme_color() {
     case "$role" in
         background) jq_path='.palette.background'; kitty_key='background' ;;
         foreground) jq_path='.palette.foreground'; kitty_key='foreground' ;;
+        black) jq_path='.palette.colors.black'; kitty_key='color0' ;;
         red) jq_path='.palette.colors.red'; kitty_key='color1' ;;
         green) jq_path='.palette.colors.green'; kitty_key='color2' ;;
         yellow) jq_path='.palette.colors.yellow'; kitty_key='color3' ;;
         blue) jq_path='.palette.colors.blue'; kitty_key='color4' ;;
         magenta) jq_path='.palette.colors.magenta'; kitty_key='color5' ;;
         cyan) jq_path='.palette.colors.cyan'; kitty_key='color6' ;;
+        white) jq_path='.palette.colors.white'; kitty_key='color7' ;;
         bright_black) jq_path='.palette.colors.bright_black'; kitty_key='color8' ;;
+        bright_red) jq_path='.palette.colors.bright_red'; kitty_key='color9' ;;
+        bright_green) jq_path='.palette.colors.bright_green'; kitty_key='color10' ;;
+        bright_yellow) jq_path='.palette.colors.bright_yellow'; kitty_key='color11' ;;
+        bright_blue) jq_path='.palette.colors.bright_blue'; kitty_key='color12' ;;
+        bright_magenta) jq_path='.palette.colors.bright_magenta'; kitty_key='color13' ;;
+        bright_cyan) jq_path='.palette.colors.bright_cyan'; kitty_key='color14' ;;
+        bright_white) jq_path='.palette.colors.bright_white'; kitty_key='color15' ;;
         *) echo "Unknown color role: $role" >&2; return 1 ;;
     esac
 
     color=$(jq -r "$jq_path // empty" "$THEME_JSON")
     [ -n "$color" ] || color=$(kitty_color "$kitty_key")
     normalize_hex "$color"
+}
+
+# Like theme_color, but if the preferred role is missing, use the fallback role
+# so a kitty-only theme still yields a full 16-colour JSON for the HUD.
+theme_color_opt() {
+    local role="$1"
+    local fallback="$2"
+    local color=""
+
+    color=$(theme_color "$role" 2>/dev/null) || true
+    if [ -n "$color" ]; then
+        printf '%s\n' "$color"
+        return 0
+    fi
+    theme_color "$fallback"
 }
 
 theme_accent() {
@@ -189,12 +213,22 @@ esac
 
 background=$(theme_color background)
 foreground=$(theme_color foreground)
+black=$(theme_color_opt black background)
 red=$(theme_color red)
 green=$(theme_color green)
 yellow=$(theme_color yellow)
+blue=$(theme_color blue)
 magenta=$(theme_color magenta)
 cyan=$(theme_color cyan)
+white=$(theme_color_opt white foreground)
 bright_black=$(theme_color bright_black)
+bright_red=$(theme_color_opt bright_red red)
+bright_green=$(theme_color_opt bright_green green)
+bright_yellow=$(theme_color_opt bright_yellow yellow)
+bright_blue=$(theme_color_opt bright_blue blue)
+bright_magenta=$(theme_color_opt bright_magenta magenta)
+bright_cyan=$(theme_color_opt bright_cyan cyan)
+bright_white=$(theme_color_opt bright_white white)
 accent=$(theme_accent)
 
 background_bar=$(hex_to_rgba "$background" "$surface_opacity")
@@ -283,9 +317,13 @@ window#waybar {
 #custom-hud,
 #custom-gpu,
 #custom-vram,
-#cpu,
-#custom-theme {
+#cpu {
     color: $accent;
+}
+
+/* Theme name: cyan slot (bright orange on Jade; follows each theme). */
+#custom-theme {
+    color: $cyan;
 }
 
 #clock {
@@ -320,6 +358,23 @@ window#waybar {
 
 #disk {
     color: $yellow;
+}
+
+/* Themis curation inbox count. Warmth tracks the oldest pending candidate:
+   14 days = the memory design's one concrete notice, 30 = candidate expiry.
+   Sits in modules-left, floated halfway across the gap toward the clock. */
+#custom-themis {
+    padding: 0 10px;
+    margin-left: 400px;
+    color: $foreground;
+}
+
+#custom-themis.warm {
+    color: $yellow;
+}
+
+#custom-themis.alert {
+    color: $red;
 }
 
 tooltip {
@@ -357,13 +412,59 @@ cat > "$eww_tmp" <<EOF
 EOF
 atomic_render "$eww_colors" "$eww_tmp"
 
+# Same palette as the SCSS tokens, as JSON. The HUD binary paints Pango with
+# these (project headers, checks/caffeine/posture escalation) because eww CSS
+# cannot colour per-line markup. Lives next to theme-colors.scss, not in stow.
+eww_json="${XDG_CONFIG_HOME:-$HOME/.config}/eww/theme-colors.json"
+eww_json_tmp=$(mktemp "$(dirname "$eww_json")/.eww-theme-json.XXXXXX")
+jq -n \
+    --arg background "$background" \
+    --arg foreground "$foreground" \
+    --arg accent "$accent" \
+    --arg black "$black" \
+    --arg red "$red" \
+    --arg green "$green" \
+    --arg yellow "$yellow" \
+    --arg blue "$blue" \
+    --arg magenta "$magenta" \
+    --arg cyan "$cyan" \
+    --arg white "$white" \
+    --arg bright_black "$bright_black" \
+    --arg bright_red "$bright_red" \
+    --arg bright_green "$bright_green" \
+    --arg bright_yellow "$bright_yellow" \
+    --arg bright_blue "$bright_blue" \
+    --arg bright_magenta "$bright_magenta" \
+    --arg bright_cyan "$bright_cyan" \
+    --arg bright_white "$bright_white" \
+    '{
+        background: $background,
+        foreground: $foreground,
+        accent: $accent,
+        black: $black,
+        red: $red,
+        green: $green,
+        yellow: $yellow,
+        blue: $blue,
+        magenta: $magenta,
+        cyan: $cyan,
+        white: $white,
+        bright_black: $bright_black,
+        bright_red: $bright_red,
+        bright_green: $bright_green,
+        bright_yellow: $bright_yellow,
+        bright_blue: $bright_blue,
+        bright_magenta: $bright_magenta,
+        bright_cyan: $bright_cyan,
+        bright_white: $bright_white
+    }' > "$eww_json_tmp"
+atomic_render "$eww_json" "$eww_json_tmp"
+
 # Rofi: shared card.rasi + generated colors. current.rasi is gitignored.
 # ~/.config/rofi is the stow link into the repo, same pattern as eww colors.
 rofi_dir="${XDG_CONFIG_HOME:-$HOME/.config}/rofi"
-black=$(jq -r '.palette.colors.black // empty' "$THEME_JSON")
-if [ -n "$black" ] && black_hex=$(normalize_hex "$black") \
-        && [ "${black_hex#\#}" != "${background#\#}" ]; then
-    input_bg="$black_hex"
+if [ "${black#\#}" != "${background#\#}" ]; then
+    input_bg="$black"
 else
     # Light windows get a darker well, dark windows a lifted one.
     if [ "$((16#${background#\#} / 65536))" -gt 127 ]; then
@@ -386,11 +487,13 @@ cat > "$rofi_tmp" <<EOF
     fg1:         $foreground;
     fg-muted:    $bright_black;
     accent:      $accent;
+    title-accent: $cyan;
     accent-soft: $rofi_accent_soft;
     border:      $rofi_border;
     on-accent:   $background;
     urgent:      $red;
     font:        "$mono_font 13";
+    title-font:  "$mono_font 10";
 }
 @import "card.rasi"
 EOF
@@ -571,6 +674,8 @@ hl.animation({ leaf = "windowsOut", enabled = true, speed = 3,   bezier = "theme
 hl.animation({ leaf = "fade",       enabled = true, speed = 3,   bezier = "themeCurve" })
 hl.animation({ leaf = "layers",     enabled = true, speed = 4,   bezier = "themeCurve", style = "fade" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 4,   bezier = "themeCurve", style = "fade" })
+-- The Themis panel descends as a special-workspace overlay; vertical slide+fade.
+hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 6, bezier = "themeCurve", style = "slidefadevert top" })
 EOF
         ;;
     snappy)
