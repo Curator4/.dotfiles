@@ -11,7 +11,6 @@ ShellRoot {
     property bool pending: false
     property bool processStarted: false
     property int highlightedIndex: 0
-    property bool userNavigated: false
     property string activeControl: ""
     property string failedControl: ""
     property string commandError: ""
@@ -130,7 +129,6 @@ ShellRoot {
     }
 
     function setRailOpen(nextOpen): void {
-        userNavigated = false;
         if (nextOpen) {
             if (!railOpen)
                 statusFile.reload();
@@ -142,7 +140,6 @@ ShellRoot {
     }
 
     function moveHighlight(offset): void {
-        userNavigated = true;
         highlightedIndex = (highlightedIndex + offset + controlCount) % controlCount;
     }
 
@@ -241,7 +238,7 @@ ShellRoot {
 
     function modeTip(): string {
         const next = confirmedState.mode === "straight" ? "natural" : "straight";
-        return "Straight = steady stream, natural = ebbing breeze\nUse " + next + " airflow  ·  xiaomi-fan --json mode " + next;
+        return "Use " + next + " airflow  ·  xiaomi-fan --json mode " + next;
     }
 
     function swingTip(axis, enabled): string {
@@ -488,7 +485,6 @@ ShellRoot {
                         iconName: "power"
                         label: "Power"
                         highlighted: root.railOpen && root.highlightedIndex === 0
-                        keyboardHighlight: root.userNavigated
                         toolTipText: root.powerTip()
                         errorMessage: root.commandError
                         surfaceColor: root.paletteBlack
@@ -508,7 +504,6 @@ ShellRoot {
                         iconName: "level-1"
                         label: "Level 1"
                         highlighted: root.railOpen && root.highlightedIndex === 1
-                        keyboardHighlight: root.userNavigated
                         toolTipText: "Quiet  ·  xiaomi-fan --json level 1"
                         errorMessage: root.commandError
                         surfaceColor: root.paletteBlack
@@ -528,7 +523,6 @@ ShellRoot {
                         iconName: "level-2"
                         label: "Level 2"
                         highlighted: root.railOpen && root.highlightedIndex === 2
-                        keyboardHighlight: root.userNavigated
                         toolTipText: "Medium  ·  xiaomi-fan --json level 2"
                         errorMessage: root.commandError
                         surfaceColor: root.paletteBlack
@@ -548,7 +542,6 @@ ShellRoot {
                         iconName: "level-3"
                         label: "Level 3"
                         highlighted: root.railOpen && root.highlightedIndex === 3
-                        keyboardHighlight: root.userNavigated
                         toolTipText: "Fast  ·  xiaomi-fan --json level 3"
                         errorMessage: root.commandError
                         surfaceColor: root.paletteBlack
@@ -568,7 +561,6 @@ ShellRoot {
                         iconName: "level-4"
                         label: "Level 4"
                         highlighted: root.railOpen && root.highlightedIndex === 4
-                        keyboardHighlight: root.userNavigated
                         toolTipText: "Turbo  ·  xiaomi-fan --json level 4"
                         errorMessage: root.commandError
                         surfaceColor: root.paletteBlack
@@ -588,7 +580,6 @@ ShellRoot {
                         iconName: root.confirmedState.mode === "straight" ? "mode-straight" : "mode-natural"
                         label: "Airflow mode"
                         highlighted: root.railOpen && root.highlightedIndex === 5
-                        keyboardHighlight: root.userNavigated
                         toolTipText: root.modeTip()
                         errorMessage: root.commandError
                         surfaceColor: root.paletteBlack
@@ -608,7 +599,6 @@ ShellRoot {
                         iconName: "horizontal"
                         label: "Horizontal swing"
                         highlighted: root.railOpen && root.highlightedIndex === 6
-                        keyboardHighlight: root.userNavigated
                         toolTipText: root.swingTip("horizontal", root.confirmedState.horizontal_swing)
                         errorMessage: root.commandError
                         surfaceColor: root.paletteBlack
@@ -628,7 +618,6 @@ ShellRoot {
                         iconName: "vertical"
                         label: "Vertical swing"
                         highlighted: root.railOpen && root.highlightedIndex === 7
-                        keyboardHighlight: root.userNavigated
                         toolTipText: root.swingTip("vertical", root.confirmedState.vertical_swing)
                         errorMessage: root.commandError
                         surfaceColor: root.paletteBlack
