@@ -20,6 +20,7 @@
 set -uo pipefail
 
 THEMIS=${THEMIS:-/home/curator/.local/bin/themis}
+THEMIS_UI_CWD=${THEMIS_UI_CWD:-/home/curator/workspace/ai/themis}
 BROWSER=${THEMIS_UI_BROWSER:-/usr/bin/chromium}
 PORT=${THEMIS_UI_PORT:-8765}
 URL="http://127.0.0.1:${PORT}/"
@@ -83,7 +84,7 @@ print(pick["x"], pick["y"], pick["width"], pick["height"], pick["activeWorkspace
 
 ensure_server() {
     if ! curl -sf -o /dev/null --max-time 1 "$URL"; then
-        setsid "$THEMIS" ui --bind 127.0.0.1 --port "$PORT" \
+        setsid "$THEMIS" ui --cwd "$THEMIS_UI_CWD" --bind 127.0.0.1 --port "$PORT" \
             >>"$STATE/server.log" 2>&1 &
         for _ in $(seq 1 30); do
             curl -sf -o /dev/null --max-time 1 "$URL" && break
