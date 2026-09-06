@@ -146,8 +146,12 @@ function _tui-run --description 'Run a TUI edge-to-edge, restoring kitty padding
     $kt set-spacing $target padding=0 2>/dev/null; or true
 
     set -l snapshot
+    set -l prev_theme
     if test -n "$slug"
         set -lx AGENT_CUE_THEME $slug
+        if test -n "$KITTY_PID"; and test -f ~/.local/state/agent-cue/term-theme/$KITTY_PID
+            set prev_theme (string trim < ~/.local/state/agent-cue/term-theme/$KITTY_PID)
+        end
         set snapshot (mktemp)
         $kt get-colors $target >$snapshot 2>/dev/null; or true
         ~/.dotfiles/bin/.bin/theme-term.sh $slug 2>/dev/null; or true
@@ -172,6 +176,11 @@ function _tui-run --description 'Run a TUI edge-to-edge, restoring kitty padding
         if test -n "$KITTY_PID"
             for prop in active_border_color inactive_border_color
                 hyprctl dispatch "hl.dsp.window.set_prop({ window = \"pid:$KITTY_PID\", prop = \"$prop\", value = \"unset\" })" &>/dev/null
+            end
+            if test -n "$prev_theme"
+                ~/.dotfiles/bin/.bin/theme-term.sh --record $KITTY_PID $prev_theme
+            else
+                ~/.dotfiles/bin/.bin/theme-term.sh --forget $KITTY_PID
             end
         end
     end

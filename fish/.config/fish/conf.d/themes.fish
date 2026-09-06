@@ -36,9 +36,13 @@ function _apply-kitty-theme -d "Reskin the active kitty window, its hyprland bor
         return 1
     end
 
-    # Child agent hooks inherit this stable palette ID. Herdr keeps owning its
-    # own toasts; standalone agent-cue notifications use it for Mako styling.
+    # Child agent hooks inherit this stable palette ID. Super+F records the
+    # same slug against KITTY_PID so an already-running harness still matches.
+    # Skip under herdr: KITTY_PID is stale there, and herdr owns those toasts.
     set -gx AGENT_CUE_THEME $slug
+    if not set -q HERDR_ENV; and test -n "$KITTY_PID"
+        ~/.dotfiles/bin/.bin/theme-term.sh --record $KITTY_PID $slug
+    end
 
     # Inside a herdr pane, KITTY_LISTEN_ON/KITTY_PID are stale values inherited
     # from whichever kitty was alive when the herdr *server* started, and
