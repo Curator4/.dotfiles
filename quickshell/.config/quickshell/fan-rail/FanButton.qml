@@ -17,6 +17,7 @@ Item {
     property bool highlighted: false
     property bool pending: false
     property bool failed: false
+    property bool keyboardHighlight: false
 
     signal invoked
     signal hovered
@@ -270,7 +271,7 @@ Item {
 
     ToolTip {
         id: tip
-        visible: pointer.containsMouse
+        visible: pointer.containsMouse || (root.highlighted && root.keyboardHighlight)
         delay: 320
         timeout: 7000
         x: -implicitWidth - 14
