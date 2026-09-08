@@ -330,51 +330,69 @@
   (hud-expanded-panel))
 
 ; On-demand backlog card. Super+Shift+B / `backlog` toggles it and enters
-; a vim submap (j/k or arrows move, x clears, Escape
-; closes). Click still works. Rows are pushed via `eww update` so j/k is
+; a vim submap (j/k or arrows move, x clears, e edits, u undoes, Escape
+; closes). Clicking a row only moves the highlight there (deliberate x
+; clears — no accidental deletes). Rows are pushed via `eww update` so j/k is
 ; instant, not polled. Long lists arrive as a window around the cursor with
 ; "↑/↓ N" marker rows — Go caps the payload to the monitor budget, so the
 ; card sizes to its content and never needs to scroll.
+; Width is locked (geometry + .backlog-card min-width + hexpand rows). Without
+; that, gtk-layer-shell hugs the longest visible title and the card shrinks
+; as you page onto shorter items.
 (defvar backlog_rows "[]")
 
 (defwidget backlog-panel []
-  (box :class "backlog-panel" :orientation "v" :space-evenly false :spacing 8
-    (box :orientation "h" :space-evenly false
-      (label :class "backlog-kicker" :text "BACKLOG" :halign "start" :hexpand true)
-      (eventbox :cursor "pointer"
-                :onclick "~/.config/hypr/scripts/hud-backlog.sh close"
-        (label :class "backlog-close" :text "✕")))
-    (label :class "backlog-empty"
-           :visible {arraylength(backlog_rows) == 0}
-           :text "nothing open")
-    (box :class "backlog-list" :orientation "v" :space-evenly false :spacing 0
-         :visible {arraylength(backlog_rows) > 0}
-      (for row in backlog_rows
-        (revealer :reveal {row.revealed}
-                  :transition "slideup"
-                  :duration "220ms"
-          (eventbox :class {row.klass}
-                    :cursor {row.item ? "pointer" : "default"}
-                    :onhover {row.item ?
-                      "~/.config/hypr/scripts/hud-backlog-nav.sh hover ${row.i}"
-                      : "true"}
-                    :onhoverlost {row.item ?
-                      "~/.config/hypr/scripts/hud-backlog-nav.sh unhover ${row.i}"
-                      : "true"}
-                    :onclick {row.item ?
-                      "~/.config/hypr/scripts/hud-backlog-nav.sh clear-at ${row.i} &"
-                      : "true"}
-            (label :class {row.lclass}
-                   :halign "start"
-                   :text {row.dtext})))))
-    (label :class "backlog-hint"
-           :text "j/k·↑↓ move  ·  x clear  ·  y yank  ·  Esc closes"
-           :halign "start")))
+  ; Width lock lives on an unpadded shell. Padding on the same box as
+  ; min/max-width ate ~100px of the row and left a blank band after the
+  ; ellipsis. Wheel is Hyprland mouse_down/up in the submap — an eww
+  ; :onscroll here queued a full `eww update` per tick (~2s of catch-up).
+  (box :class "backlog-card" :hexpand true :width 880
+    (box :class "backlog-panel" :orientation "v" :space-evenly false :spacing 8 :hexpand true
+      (box :orientation "h" :space-evenly false :hexpand true
+        (label :class "backlog-kicker" :text "BACKLOG" :halign "start" :hexpand true)
+        (eventbox :cursor "pointer"
+                  :onclick "~/.config/hypr/scripts/hud-backlog.sh close"
+          (label :class "backlog-close" :text "✕")))
+      (label :class "backlog-empty"
+             :visible {arraylength(backlog_rows) == 0}
+             :text "nothing open")
+      (box :class "backlog-list" :orientation "v" :space-evenly false :spacing 0
+           :hexpand true
+           :visible {arraylength(backlog_rows) > 0}
+        (for row in backlog_rows
+          (revealer :reveal {row.revealed}
+                    :transition "slideup"
+                    :duration "220ms"
+                    :hexpand true
+            (eventbox :class {row.klass}
+                      :hexpand true
+                      :cursor {row.item ? "pointer" : "default"}
+                      :onhover {row.item ?
+                        "~/.config/hypr/scripts/hud-backlog-nav.sh hover ${row.i}"
+                        : "true"}
+                      :onhoverlost {row.item ?
+                        "~/.config/hypr/scripts/hud-backlog-nav.sh unhover ${row.i}"
+                        : "true"}
+                      :onclick {row.item ?
+                        "~/.config/hypr/scripts/hud-backlog-nav.sh select ${row.i} &"
+                        : "true"}
+              (label :class {row.lclass}
+                     :halign "start"
+                     :hexpand true
+                     :wrap false
+                     :show-truncated true
+                     :text {row.dtext})))))
+      (label :class "backlog-hint"
+             :text "j/k·↑↓·wheel or click move  ·  x clear  ·  e edit  ·  u undo  ·  y yank  ·  Esc closes"
+             :halign "start"
+             :hexpand true))))
 
 (defwindow backlog
   ; monitor comes from `eww open --screen` in hud-backlog.sh (focused output).
   ; no :height — the card is content-sized (budget-capped rows from the Go
-  ; side), so it can never show dead space at any row count
+  ; side), so it can never show dead space at any row count.
+  ; :width is the lock; gtk-layer-shell will still hug content unless the
+  ; child also has a min-width (see .backlog-card).
   :geometry (geometry :x "0px" :y "0px" :width "880px" :anchor "center")
   :stacking "overlay"
   :exclusive false
@@ -419,7 +437,7 @@
                    :halign "start"
                    :text {row.dtext})))))
     (label :class "backlog-hint"
-           :text "j/k·↑↓ move  ·  x ack  ·  y yank  ·  Esc closes"
+           :text "j/k·↑↓·wheel move  ·  x ack  ·  y yank  ·  Esc closes"
            :halign "start")))
 
 (defwindow checks

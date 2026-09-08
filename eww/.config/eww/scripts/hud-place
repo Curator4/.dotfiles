@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# Pin the HUD paint window to DP-4's top edge.
+#
+# Layer-shell windows anchor inside Hyprland's reserved work area. hud-reserve
+# claims HUD_RESERVE px exclusive at the top (content + 2px vertical shell
+# padding); the HUD paints over it with y = -HUD_RESERVE. The timer is a
+# second exclusive window (TIMER_H px) that stacks under that reserve, growing
+# the work area. If the HUD keeps the idle offset, it slides down into the timer.
+#
+# Usage:
+#   hud-place         reposition if the HUD is currently shown
+#   hud-place --open  show the HUD (used by hud-toggle / autostart)
+#
+# Keep HUD_RESERVE / TIMER_H in sync with eww.yuck (hud-reserve height, timer
+# window height). eww does not live-update defwindow :y — we close/reopen.
+
+set -euo pipefail
+
+HUD_RESERVE=282
+TIMER_H=120
+
+open_if_missing=0
+if [ "${1:-}" = "--open" ]; then
+  open_if_missing=1
+fi
+
+windows=$(eww active-windows 2>/dev/null || true)
+
+shown=0
+echo "$windows" | grep -qE '^(hud|hud-reserve):' && shown=1
+
+if [ "$shown" -eq 0 ] && [ "$open_if_missing" -eq 0 ]; then
+  exit 0
+fi
+
+off=-$HUD_RESERVE
+if echo "$windows" | grep -q '^timer:'; then
+  off=$((-(HUD_RESERVE + TIMER_H)))
+fi
+
+eww open hud-reserve >/dev/null 2>&1 || true
+eww close hud >/dev/null 2>&1 || true
+eww open hud --pos "0x${off}" --anchor "top center" >/dev/null

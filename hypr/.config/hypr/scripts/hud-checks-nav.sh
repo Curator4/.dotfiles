@@ -122,6 +122,7 @@ y | yank)
     [ -n "$idx" ] && [ "$idx" -gt 0 ] 2>/dev/null || exit 0
     text=$("$HUD" checks-cursor yank "$idx") || exit 1
     printf '%s\n' "$text" | wl-copy
+    printf '%s\n' "$text" | wl-copy --primary 2>/dev/null || true
     notify-send -t 2500 checks "copied $text" 2>/dev/null || true
     ;;
 *)

@@ -158,6 +158,8 @@ hl.define_submap("checks", function()
     bind("k", "[Modal] Checks: move up", exec(checksNav .. " up"), { repeating = true })
     bind("down", "[Modal] Checks: move down", exec(checksNav .. " down"), { repeating = true })
     bind("up", "[Modal] Checks: move up", exec(checksNav .. " up"), { repeating = true })
+    bind("mouse_down", "[Modal] Checks: scroll down", exec(checksNav .. " down"), { repeating = true })
+    bind("mouse_up", "[Modal] Checks: scroll up", exec(checksNav .. " up"), { repeating = true })
     bind("g", "[Modal] Checks: jump to first", exec(checksNav .. " first"))
     bind("SHIFT + G", "[Modal] Checks: jump to last", exec(checksNav .. " last"))
     bind("x", "[Modal] Checks: acknowledge", exec(checksNav .. " x"))
@@ -176,6 +178,12 @@ bind(mod .. " + R", "[HUD] Toggle sit or stand posture", exec("posture"))
 -- this is the sibling event logger. Confirms with notify-send (active mg +
 -- quiet estimate).
 bind(mod .. " + SHIFT + X", "[Picker] Log caffeine", exec("~/.config/hypr/scripts/caffeine-menu.sh"))
+-- Super+Caps: NEO70 Caps is QK_GESC (Esc on tap; grave when Super/Shift is
+-- held). Super+Caps therefore arrives as Super+grave, not Caps_Lock.
+-- Real Caps_Lock is layer 2 on that same key (hold the MO(2) "Alt" key).
+-- Super+period stays as the old bind.
+bind(mod .. " + grave", "[Picker] Emoji picker", exec("~/.config/hypr/scripts/emoji-picker.sh"))
+bind(mod .. " + Caps_Lock", "[Picker] Emoji picker", exec("~/.config/hypr/scripts/emoji-picker.sh"))
 bind(mod .. " + period", "[Picker] Emoji picker", exec("~/.config/hypr/scripts/emoji-picker.sh"))
 bind(mod .. " + B", "[Picker] Bluetooth devices", exec("~/.config/waybar/scripts/bluetooth-menu.sh"))
 -- Display warmth (sunsetr) — steps active-period target via ~/.bin/sunset-step.

@@ -339,6 +339,13 @@ window {
   margin: 8px;
 }
 
+// Unpadded shell. eww's CSS parser rejects max-width (that dropped the
+// whole stylesheet and unthemed the HUD). :width 880 on the widget plus
+// min-width holds the floor; GTK ellipsize on the labels holds the ceiling.
+.backlog-card {
+  min-width: 880px;
+}
+
 .backlog-kicker {
   color: $hud-today-header;
   font-family: $hud-font;

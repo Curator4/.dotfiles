@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 # Vim-nav for the backlog card. Called from the Hyprland `backlog` submap.
 #   up|down|first|last   move the cursor
+#   select <n>           move the cursor to a clicked line (highlight only)
 #   x|clear              checkmark, fade+slide, then remove
 #   clear-at <n>         same, for a clicked line
+#   e|edit               rewrite the selected (or hovered) item
+#   u|undo               put the last cleared item back
 set -uo pipefail
 
 HUD=${HUD:-/home/curator/workspace/hud/hud}
@@ -12,12 +15,25 @@ LOCK=$STATE/backlog-anim.lock
 HOVER=$STATE/backlog-hover
 
 refresh() {
-    local rows
+    local rows pending
     rows=$("$HUD" backlog --json 2>/dev/null || echo "[]")
     eww update backlog_rows="$rows" 2>/dev/null || true
     if [ "$rows" = "[]" ]; then
-        ~/.config/hypr/scripts/hud-backlog.sh close
+        pending=$("$HUD" backlog-undo --pending 2>/dev/null || echo 0)
+        if [ "${pending:-0}" -eq 0 ] 2>/dev/null; then
+            ~/.config/hypr/scripts/hud-backlog.sh close
+        fi
     fi
+}
+
+# The card's vim submap eats j/k/x/e globally. Drop it before any prompt,
+# then put it back if the card is still up (same dance as hud-capture.sh).
+rearm_backlog() {
+    local open
+    open=$(eww active-windows 2>/dev/null || true)
+    case "$open" in
+    backlog:*) hyprctl dispatch 'hl.dsp.submap("backlog")' >/dev/null ;;
+    esac
 }
 
 # Keep the dying row in the widget tree so the revealer can play, then
@@ -59,6 +75,12 @@ up | down | first | last)
     "$HUD" backlog-cursor "$1" >/dev/null
     refresh
     ;;
+select)
+    [ -n "${2:-}" ] || exit 1
+    [ -d "$LOCK" ] && exit 0
+    "$HUD" backlog-cursor set "$2" >/dev/null
+    refresh
+    ;;
 x | clear)
     idx=$("$HUD" backlog-cursor get 2>/dev/null || echo 0)
     [ "$idx" -gt 0 ] 2>/dev/null || exit 0
@@ -85,10 +107,44 @@ y | yank)
     [ -n "$idx" ] && [ "$idx" -gt 0 ] 2>/dev/null || exit 0
     text=$("$HUD" backlog-cursor yank "$idx") || exit 1
     printf '%s\n' "$text" | wl-copy
+    printf '%s\n' "$text" | wl-copy --primary 2>/dev/null || true
     notify-send -t 2500 backlog "copied item $idx" 2>/dev/null || true
     ;;
+e | edit)
+    [ -d "$LOCK" ] && exit 0
+    idx=""
+    [ -f "$HOVER" ] && idx=$(tr -cd '0-9' <"$HOVER")
+    [ -n "$idx" ] || idx=$("$HUD" backlog-cursor get 2>/dev/null || true)
+    [ -n "$idx" ] && [ "$idx" -gt 0 ] 2>/dev/null || exit 0
+    body=$("$HUD" backlog-cursor body "$idx") || exit 1
+    hyprctl dispatch 'hl.dsp.submap("reset")' >/dev/null 2>&1 || true
+    text=$(rofi-ask 'backlog' 'edit…' -filter "$body") || {
+        rearm_backlog
+        exit 0
+    }
+    text=$(printf '%s' "$text" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+    if [ -z "$text" ] || [ "$text" = "$body" ]; then
+        rearm_backlog
+        exit 0
+    fi
+    if ! "$HUD" backlog-edit "$idx" "$text" >/dev/null 2>&1; then
+        notify-send -t 2500 backlog "edit failed" 2>/dev/null || true
+        rearm_backlog
+        exit 1
+    fi
+    refresh
+    rearm_backlog
+    ;;
+u | undo)
+    [ -d "$LOCK" ] && exit 0
+    if ! "$HUD" backlog-undo >/dev/null 2>&1; then
+        notify-send -t 2000 backlog "nothing to undo" 2>/dev/null || true
+        exit 0
+    fi
+    refresh
+    ;;
 *)
-    echo "usage: hud-backlog-nav.sh <up|down|first|last|x|clear-at n|y>" >&2
+    echo "usage: hud-backlog-nav.sh <up|down|first|last|select n|x|clear-at n|y|e|u>" >&2
     exit 2
     ;;
 esac

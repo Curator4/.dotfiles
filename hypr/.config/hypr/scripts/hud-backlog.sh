@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Scan-and-check-off the household backlog. Bound to Super+Shift+B; also the
 # `backlog` fish command. Toggles the HUD-styled eww card and the vim submap
-# (j/k move, x clears, Escape closes).
+# (j/k move, x clears, e edits, u undoes, Escape closes).
 set -uo pipefail
 
 HUD=${HUD:-/home/curator/workspace/hud/hud}
