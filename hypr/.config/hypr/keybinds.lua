@@ -60,6 +60,25 @@ bind(mod .. " + equal", "[Layout] Grow master area", hl.dsp.layout("mfact +0.05"
 bind(mod .. " + SHIFT + P", "[Layout] Transpose master split", hl.dsp.layout("orientationcycle left bottom"))
 bind(mod .. " + SHIFT + O", "[Layout] Cycle master orientation", hl.dsp.layout("orientationnext"))
 
+-- Master/dwindle flip for the whole focused monitor. Layouts are per-workspace
+-- (0.54+), and workspaces are pinned to monitors in rules.lua, so re-ruling
+-- every workspace on the focused monitor at once is the per-monitor switch a
+-- global general:layout flip can't give. New workspaces still seed master via
+-- the rules.lua hooks — this only re-lays-out what already exists.
+-- Recipe: wiki "Cycle layout for current workspace", collapsed to two-way.
+bind(mod .. " + A", "[Layout] Toggle dwindle on this monitor", function()
+    local active = hl.get_active_workspace()
+    if not active or not active.monitor then
+        return
+    end
+    local target = (active.tiled_layout == "dwindle") and "master" or "dwindle"
+    for _, ws in ipairs(hl.get_workspaces()) do
+        if not ws.special and ws.monitor and ws.monitor.name == active.monitor.name then
+            hl.workspace_rule({ workspace = tostring(ws.id), layout = target })
+        end
+    end
+end)
+
 -- Cycle through windows in current workspace. Two dispatchers on one key: as a
 -- single lua callback rather than two binds, so the order is explicit.
 bind(mod .. " + TAB", "[Window] Cycle windows", function()
@@ -78,9 +97,11 @@ end
 bind(mod .. " + mouse:272", "[Window] Drag window", hl.dsp.window.drag(), { mouse = true })
 bind(mod .. " + mouse:273", "[Window] Resize window", hl.dsp.window.resize(), { mouse = true })
 
--- Screenshots
-bind(mod .. " + S", "[Capture] Screenshot a region", exec("hyprshot -m region"))
-bind(mod .. " + SHIFT + S", "[Capture] Screenshot the focused monitor", exec("hyprshot -m output"))
+-- Screenshots. submap_universal: the backlog/checks vim submaps would
+-- otherwise swallow Super+S / Super+Shift+S (and slurp never starts).
+local CAPTURE = { submap_universal = true }
+bind(mod .. " + S", "[Capture] Screenshot a region", exec("hyprshot -m region"), CAPTURE)
+bind(mod .. " + SHIFT + S", "[Capture] Screenshot the focused monitor", exec("hyprshot -m output"), CAPTURE)
 
 -- Screen recording (toggle: first press = pick region + start, second press = stop)
 bind(mod .. " + SHIFT + R", "[Capture] Start or stop region recording", exec("~/.bin/record-region"))
@@ -98,23 +119,30 @@ bind(mod .. " + U", "[Picker] Add focus-board item", exec("~/.config/hypr/script
 bind(mod .. " + SHIFT + U", "[HUD] Toggle focus board", exec("~/.config/eww/scripts/hud-toggle"))
 bind(mod .. " + ALT + U", "[Apps] SSH terminal", exec(p.ssh))
 bind(mod .. " + V", "[Fan] Toggle fan controls", exec("qs -c fan-rail ipc call fan toggle"))
-bind(mod .. " + Y", "[Picker] Quick capture", exec("~/.config/hypr/scripts/hud-capture.sh"))
+-- submap_universal: same reason as Super+S. The backlog/checks vim
+-- submaps swallow Super+Y otherwise, so hud-capture.sh never gets to
+-- drop the submap and the rofi entry can't receive paste/type.
+bind(mod .. " + Y", "[Picker] Quick capture", exec("~/.config/hypr/scripts/hud-capture.sh"), CAPTURE)
 bind(mod .. " + SHIFT + Y", "[Desktop] Toggle office lights", exec("~/.bin/hue toggle"))
 bind(mod .. " + SHIFT + B", "[HUD] Open backlog", exec("~/.config/hypr/scripts/hud-backlog.sh"))
 
 -- Backlog card is a modal: j/k or arrows move, g/G top/bottom, x clears,
--- y yanks, Escape/q closes. reset is required — without it a failed close
--- leaves every key trapped.
+-- e edits, u undoes, y yanks, Escape/q closes. reset is required — without
+-- it a failed close leaves every key trapped.
 local backlogNav = "~/.config/hypr/scripts/hud-backlog-nav.sh"
 hl.define_submap("backlog", function()
     bind("j", "[Modal] Backlog: move down", exec(backlogNav .. " down"), { repeating = true })
     bind("k", "[Modal] Backlog: move up", exec(backlogNav .. " up"), { repeating = true })
     bind("down", "[Modal] Backlog: move down", exec(backlogNav .. " down"), { repeating = true })
     bind("up", "[Modal] Backlog: move up", exec(backlogNav .. " up"), { repeating = true })
+    bind("mouse_down", "[Modal] Backlog: scroll down", exec(backlogNav .. " down"), { repeating = true })
+    bind("mouse_up", "[Modal] Backlog: scroll up", exec(backlogNav .. " up"), { repeating = true })
     bind("g", "[Modal] Backlog: jump to first", exec(backlogNav .. " first"))
     bind("SHIFT + G", "[Modal] Backlog: jump to last", exec(backlogNav .. " last"))
     bind("x", "[Modal] Backlog: complete item", exec(backlogNav .. " x"))
     bind("Return", "[Modal] Backlog: complete item", exec(backlogNav .. " x"))
+    bind("e", "[Modal] Backlog: edit item", exec(backlogNav .. " e"))
+    bind("u", "[Modal] Backlog: undo last clear", exec(backlogNav .. " u"))
     bind("y", "[Modal] Backlog: copy item", exec(backlogNav .. " y"))
     bind("escape", "[Modal] Backlog: close", exec("~/.config/hypr/scripts/hud-backlog.sh close"))
     bind("q", "[Modal] Backlog: close", exec("~/.config/hypr/scripts/hud-backlog.sh close"))
