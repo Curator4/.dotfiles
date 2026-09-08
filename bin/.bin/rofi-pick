@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Pick-only rofi. stdin: one option per line. stdout: the selected line.
+# No search box; j/k move (global rofi config otherwise types into the
+# entry, including a hidden one). Extra args after the prompt go to rofi.
+#
+#   hud caffeine menu | rofi-pick 'caffeine'
+set -euo pipefail
+
+prompt=${1:-}
+if [ $# -gt 0 ]; then
+    shift
+fi
+
+list=$(cat)
+[ -n "$list" ] || exit 1
+
+num_rows=$(( $(printf '%s\n' "$list" | wc -l) ))
+printf '%s\n' "$list" | rofi -dmenu -i -no-custom \
+    -p "$prompt" \
+    -mesg "● $prompt" \
+    -l "$num_rows" \
+    -theme "$HOME/.config/rofi/named-card.rasi" \
+    -kb-row-up 'Up,Control+p,Control+k,k' \
+    -kb-row-down 'Down,Control+n,Control+j,j' \
+    -theme-str "listview { lines: $num_rows; }" \
+    -theme-str 'inputbar { enabled: false; } mode-switcher { enabled: false; }' \
+    "$@"

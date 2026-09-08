@@ -1,0 +1,64 @@
+/* Named ask/pick cards. Palette comes from generated current.rasi. */
+@import "current.rasi"
+
+window {
+    width:            460px;
+    border:           0;
+    border-radius:    0;
+    background-color: transparent;
+    padding:          0;
+}
+
+mainbox {
+    spacing:          0;
+    background-color: transparent;
+    children:         [ message, inputbar, listview ];
+}
+
+/* A small identity marker above the card. The left border continues the
+   leading dot down to the card edge without relying on clipped overlays. */
+message {
+    margin:           0 0 0 29px;
+    padding:          0 0 7px 0;
+    border:           0 0 0 1px;
+    border-color:     @title-accent;
+    border-radius:    0;
+    background-color: transparent;
+}
+
+textbox {
+    font:             @title-font;
+    text-color:       @title-accent;
+    background-color: transparent;
+    vertical-align:   0.5;
+}
+
+/* In ask mode, inputbar becomes the outer card and entry remains the field. */
+inputbar {
+    padding:          12px;
+    border:           1px;
+    border-radius:    16px;
+    border-color:     @border;
+    background-color: @bg0;
+    children:         [ entry ];
+}
+
+entry {
+    padding:            8px 12px;
+    border:             1px;
+    border-radius:      10px;
+    border-color:       @border;
+    background-color:   @bg1;
+    placeholder-color:  @fg-muted;
+    text-color:         @fg1;
+    cursor:             text;
+}
+
+/* In pick mode, listview owns the same outer card chrome. */
+listview {
+    padding:          12px;
+    border:           1px;
+    border-radius:    16px;
+    border-color:     @border;
+    background-color: @bg0;
+}

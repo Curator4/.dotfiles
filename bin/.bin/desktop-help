@@ -1,0 +1,494 @@
+#!/usr/bin/env python3
+"""Curated, theme-aware desktop key and command cheat sheet."""
+
+from __future__ import annotations
+
+import html
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+from dataclasses import dataclass
+from pathlib import Path
+
+HOME = Path.home()
+CURRENT_THEME = HOME / ".config/rofi/current.rasi"
+GRID_THEME = HOME / ".config/rofi/help-grid.rasi"
+
+MODIFIERS = (
+    (64, "Super"),
+    (4, "Ctrl"),
+    (8, "Alt"),
+    (1, "Shift"),
+    (16, "Mod2"),
+    (32, "Mod3"),
+    (128, "Mod5"),
+)
+
+KEY_NAMES = {
+    "Caps_Lock": "Caps",
+    "grave": "Caps",
+    "down": "↓",
+    "equal": "=",
+    "escape": "Esc",
+    "left": "←",
+    "minus": "−",
+    "mouse:272": "Mouse1",
+    "mouse:273": "Mouse2",
+    "period": ".",
+    "Return": "Enter",
+    "right": "→",
+    "slash": "/",
+    "space": "Space",
+    "TAB": "Tab",
+    "up": "↑",
+}
+
+LABELS = {
+    "Open desktop help": "Help",
+    "Application launcher": "Apps",
+    "Themis inbox": "Themis inbox",
+    "Theme picker": "Themes",
+    "Bluetooth devices": "Bluetooth",
+    "Add focus-board item": "Add focus",
+    "Quick capture": "Capture",
+    "Log caffeine": "Caffeine",
+    "Toggle focus board": "Focus board",
+    "Open backlog": "Backlog",
+    "Open routine checks": "Checks",
+    "Toggle sit or stand posture": "Sit / stand",
+    "Close focused window": "Close",
+    "Toggle fullscreen": "Fullscreen",
+    "Toggle floating": "Floating",
+    "Cycle windows": "Cycle windows",
+    "Drag window": "Drag",
+    "Resize window": "Resize",
+    "Promote window to master": "Make master",
+    "Toggle split direction": "Flip split",
+    "Transpose master split": "Transpose split",
+    "Cycle master orientation": "Rotate layout",
+    "Screenshot a region": "Region screenshot",
+    "Screenshot the focused monitor": "Monitor screenshot",
+    "Start or stop region recording": "Record region",
+    "Start or stop voice input": "Voice input",
+    "Pause or resume speech": "Pause speech",
+    "Stop speech": "Stop speech",
+    "Lock screen": "Lock",
+    "Toggle office lights": "Office lights",
+    "Make display warmer": "Warmer display",
+    "Make display cooler": "Cooler display",
+    "Exit Hyprland": "Exit desktop",
+    "Apply a random desktop theme": "Random theme",
+}
+
+DESCRIPTION_PREFIX_RE = re.compile(r"^\[([^]]+)]\s*(.*)$")
+COLOR_RE = re.compile(r"^\s*([a-z0-9-]+):\s*(#[0-9A-Fa-f]{6,8});", re.MULTILINE)
+
+
+@dataclass(frozen=True)
+class HelpRow:
+    subject: str
+    category: str
+    description: str
+
+
+@dataclass(frozen=True)
+class Cell:
+    subject: str = ""
+    label: str = ""
+    role: str = "blank"
+
+    def plain(self) -> str:
+        if self.role == "category":
+            return self.subject
+        if self.role == "blank":
+            return ""
+        width = 12 if self.role == "note" else 22
+        return f"   {self.subject:<{width}}{self.label}".rstrip()
+
+    def markup(self, colors: dict[str, str]) -> str:
+        if self.role == "category":
+            return span(self.subject, colors["title-accent"], bold=True)
+        if self.role == "blank":
+            return " "
+        width = 12 if self.role == "note" else 22
+        subject = html.escape(f"   {self.subject:<{width}}")
+        return join_markup(
+            span(subject, colors["accent"], bold=True),
+            span(html.escape(self.label), colors["description"]),
+        )
+
+
+def span(text: str, color: str, *, bold: bool = False) -> str:
+    weight = ' weight="bold"' if bold else ""
+    return f'<span foreground="{color}"{weight}>{text}</span>'
+
+
+def join_markup(*parts: str) -> str:
+    return " ".join(part for part in parts if part)
+
+
+def ellipsize(text: str, limit: int) -> str:
+    return text if len(text) <= limit else text[: limit - 1].rstrip() + "…"
+
+
+def friendly_key(key: str) -> str:
+    if key in KEY_NAMES:
+        return KEY_NAMES[key]
+    if len(key) == 1:
+        return key.upper()
+    return key.title()
+
+
+def shortcut(bind: dict[str, object]) -> str:
+    mask = int(bind.get("modmask", 0))
+    parts = [name for bit, name in MODIFIERS if mask & bit]
+    parts.append(friendly_key(str(bind.get("key", "?"))))
+    rendered = "+".join(parts)
+    submap = str(bind.get("submap", ""))
+    return f"{submap.title()} › {rendered}" if submap else rendered
+
+
+def split_description(description: str) -> tuple[str, str]:
+    match = DESCRIPTION_PREFIX_RE.match(description)
+    return (match.group(1), match.group(2)) if match else ("Keybind", description)
+
+
+def hyprland_environment() -> dict[str, str]:
+    env = os.environ.copy()
+    runtime = Path(env.get("XDG_RUNTIME_DIR", f"/run/user/{os.getuid()}"))
+    env.setdefault("XDG_RUNTIME_DIR", str(runtime))
+    if "HYPRLAND_INSTANCE_SIGNATURE" not in env:
+        instance_root = runtime / "hypr"
+        if instance_root.is_dir():
+            instances = sorted(
+                (path for path in instance_root.iterdir() if path.is_dir()),
+                key=lambda path: path.stat().st_mtime,
+                reverse=True,
+            )
+            if instances:
+                env["HYPRLAND_INSTANCE_SIGNATURE"] = instances[0].name
+    return env
+
+
+def loaded_keybinds() -> list[HelpRow]:
+    binds = []
+    for attempt in range(3):
+        try:
+            result = subprocess.run(
+                ["hyprctl", "binds", "-j"],
+                check=True,
+                capture_output=True,
+                text=True,
+                env=hyprland_environment(),
+            )
+            binds = json.loads(result.stdout)
+            if binds:
+                break
+        except (FileNotFoundError, subprocess.CalledProcessError, json.JSONDecodeError):
+            pass
+        if attempt < 2:
+            time.sleep(0.03)
+    if not binds:
+        return []
+
+    rows = []
+    for bind in binds:
+        description = str(bind.get("description", "")).strip()
+        if not description:
+            continue
+        category, label = split_description(description)
+        rows.append(HelpRow(shortcut(bind), category, label))
+    return rows
+
+
+def index_by_description(rows: list[HelpRow]) -> dict[str, list[HelpRow]]:
+    index: dict[str, list[HelpRow]] = {}
+    for row in rows:
+        index.setdefault(row.description, []).append(row)
+    return index
+
+
+def section(column: list[Cell], name: str) -> None:
+    if column:
+        column.append(Cell())
+    column.append(Cell(name, role="category"))
+
+
+def add_key(
+    column: list[Cell],
+    index: dict[str, list[HelpRow]],
+    description: str,
+    label: str | None = None,
+) -> None:
+    rows = index.get(description, [])
+    if rows:
+        column.append(
+            Cell(
+                ellipsize(rows[0].subject, 22),
+                label or LABELS.get(description, description),
+                "key",
+            )
+        )
+
+
+def collapsed_subject(rows: list[HelpRow]) -> str:
+    parts = [row.subject.rsplit("+", 1) for row in rows]
+    if parts and all(len(part) == 2 and part[0] == parts[0][0] for part in parts):
+        return f"{parts[0][0]}+{'/'.join(part[1] for part in parts)}"
+    return " / ".join(row.subject for row in rows)
+
+
+def add_family(
+    column: list[Cell],
+    index: dict[str, list[HelpRow]],
+    descriptions: list[str],
+    label: str,
+    tail: str | None = None,
+) -> None:
+    rows = [
+        index[description][0] for description in descriptions if index.get(description)
+    ]
+    if len(rows) != len(descriptions):
+        return
+    subject = collapsed_subject(rows)
+    if tail is not None:
+        prefix = rows[0].subject.rsplit("+", 1)[0]
+        subject = f"{prefix}+{tail}"
+    column.append(Cell(ellipsize(subject, 22), label, "key"))
+
+
+def picker_column(index: dict[str, list[HelpRow]]) -> list[Cell]:
+    column: list[Cell] = []
+    section(column, "PICKERS")
+    for description in (
+        "Open desktop help",
+        "Application launcher",
+        "Themis inbox",
+        "Theme picker",
+        "Bluetooth devices",
+        "Add focus-board item",
+        "Quick capture",
+        "Log caffeine",
+    ):
+        add_key(column, index, description)
+    section(column, "HUD")
+    for description in (
+        "Toggle focus board",
+        "Open backlog",
+        "Open routine checks",
+        "Toggle sit or stand posture",
+    ):
+        add_key(column, index, description)
+    return column
+
+
+def window_column(index: dict[str, list[HelpRow]]) -> list[Cell]:
+    column: list[Cell] = []
+    section(column, "WINDOWS")
+    for description in (
+        "Close focused window",
+        "Toggle fullscreen",
+        "Toggle floating",
+        "Cycle windows",
+    ):
+        add_key(column, index, description)
+    for description in ("Drag window", "Resize window"):
+        add_key(column, index, description)
+    section(column, "LAYOUT")
+    add_key(column, index, "Promote window to master")
+    add_family(
+        column,
+        index,
+        ["Shrink master area", "Grow master area"],
+        "Master size",
+    )
+    for description in (
+        "Toggle split direction",
+        "Transpose master split",
+        "Cycle master orientation",
+    ):
+        add_key(column, index, description)
+    return column
+
+
+def desktop_column(index: dict[str, list[HelpRow]]) -> list[Cell]:
+    column: list[Cell] = []
+    section(column, "CAPTURE")
+    for description in (
+        "Screenshot a region",
+        "Screenshot the focused monitor",
+        "Start or stop region recording",
+    ):
+        add_key(column, index, description)
+    section(column, "VOICE")
+    for description in (
+        "Start or stop voice input",
+        "Pause or resume speech",
+        "Stop speech",
+    ):
+        add_key(column, index, description)
+    section(column, "DESKTOP")
+    for description in (
+        "Lock screen",
+        "Toggle office lights",
+        "Make display warmer",
+        "Make display cooler",
+        "Exit Hyprland",
+    ):
+        add_key(column, index, description)
+    return column
+
+
+def theme_number(row: HelpRow) -> int:
+    match = re.search(r"F(\d+)$", row.subject)
+    return int(match.group(1)) if match else 99
+
+
+def theme_cells(rows: list[HelpRow]) -> list[Cell]:
+    terminal = sorted(
+        (row for row in rows if row.description.endswith(" to terminal")),
+        key=theme_number,
+    )
+    desktop = sorted(
+        (row for row in rows if row.description.endswith(" to desktop")),
+        key=theme_number,
+    )
+    random = next(
+        (row for row in rows if row.description == "Apply a random desktop theme"),
+        None,
+    )
+    cells = []
+    if terminal:
+        prefix = terminal[0].subject.rsplit("+", 1)[0]
+        cells.append(Cell(f"{prefix}+F1…F12", "Terminal only", "key"))
+    if desktop:
+        prefix = desktop[0].subject.rsplit("+", 1)[0]
+        cells.append(Cell(f"{prefix}+F1…F12", "Whole desktop", "key"))
+    if random:
+        cells.append(Cell(random.subject, LABELS[random.description], "key"))
+    names = [
+        re.sub(r"^Apply (.+) to terminal$", r"\1", row.description) for row in terminal
+    ]
+    for start in range(0, len(names), 3):
+        end = min(start + 3, len(names))
+        cells.append(
+            Cell(
+                f"F{start + 1}–F{end}",
+                ellipsize(" · ".join(names[start:end]), 30),
+                "note",
+            )
+        )
+    return cells
+
+
+def theme_column(key_rows: list[HelpRow]) -> list[Cell]:
+    column: list[Cell] = []
+    section(column, "THEMES")
+    column.extend(theme_cells([row for row in key_rows if row.category == "Theme"]))
+    return column
+
+
+def palette() -> dict[str, str]:
+    colors = {
+        "accent": "#A7C080",
+        "title-accent": "#E8923A",
+        "fg0": "#C1C497",
+        "fg-muted": "#53685B",
+    }
+    if CURRENT_THEME.is_file():
+        for name, value in COLOR_RE.findall(CURRENT_THEME.read_text(encoding="utf-8")):
+            if name in colors:
+                colors[name] = value[:7]
+    muted = tuple(
+        int(colors["fg-muted"][offset : offset + 2], 16) for offset in (1, 3, 5)
+    )
+    foreground = tuple(
+        int(colors["fg0"][offset : offset + 2], 16) for offset in (1, 3, 5)
+    )
+    colors["description"] = "#" + "".join(
+        f"{round(low * 0.55 + high * 0.45):02X}"
+        for low, high in zip(muted, foreground, strict=True)
+    )
+    return colors
+
+
+def columns() -> list[list[Cell]]:
+    key_rows = loaded_keybinds()
+    index = index_by_description(key_rows)
+    return [
+        picker_column(index),
+        window_column(index),
+        desktop_column(index),
+        theme_column(key_rows),
+    ]
+
+
+def interleaved(grid: list[list[Cell]]) -> tuple[list[Cell], int]:
+    height = max(len(column) for column in grid)
+    cells = []
+    for row_index in range(height):
+        for column in grid:
+            cells.append(column[row_index] if row_index < len(column) else Cell())
+    return cells, height
+
+
+def show_rofi(cells: list[Cell], height: int) -> int:
+    colors = palette()
+    command = [
+        "rofi",
+        "-dmenu",
+        "-no-custom",
+        "-no-sort",
+        "-markup-rows",
+        "-monitor",
+        "DP-3",
+        "-l",
+        str(height),
+        "-theme",
+        str(GRID_THEME),
+        "-theme-str",
+        (
+            f"listview {{ lines: {height}; }} "
+            f"element-text {{ highlight: bold {colors['title-accent']}; }}"
+        ),
+    ]
+    result = subprocess.run(
+        command,
+        input="\n".join(cell.markup(colors) for cell in cells),
+        text=True,
+        stdout=subprocess.DEVNULL,
+        check=False,
+    )
+    return 0 if result.returncode in (0, 1) else result.returncode
+
+
+def main() -> int:
+    try:
+        grid = columns()
+    except ValueError as error:
+        print(error, file=sys.stderr)
+        return 2
+    cells, height = interleaved(grid)
+    if len(sys.argv) == 2 and sys.argv[1] == "--dump":
+        for row_index in range(height):
+            print(
+                " | ".join(
+                    column[row_index].plain() if row_index < len(column) else ""
+                    for column in grid
+                )
+            )
+        return 0
+    if len(sys.argv) != 1:
+        print("usage: desktop-help [--dump]", file=sys.stderr)
+        return 2
+    if not cells:
+        print("desktop-help: no help entries found", file=sys.stderr)
+        return 1
+    return show_rofi(cells, height)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

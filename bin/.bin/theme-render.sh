@@ -497,7 +497,7 @@ cat > "$rofi_tmp" <<EOF
     on-accent:   $background;
     urgent:      $red;
     font:        "$mono_font 13";
-    title-font:  "$mono_font 10";
+    title-font:  "$mono_font Bold 12";
 }
 @import "card.rasi"
 EOF

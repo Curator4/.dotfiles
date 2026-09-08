@@ -1,0 +1,82 @@
+/* Compact desktop cheat sheet. Colors come from the active generated theme. */
+@import "current.rasi"
+
+window {
+    location:         center;
+    anchor:           center;
+    width:            92%;
+    border:           0;
+    border-radius:    0;
+    background-color: transparent;
+    padding:          0;
+}
+
+mainbox {
+    spacing:          8px;
+    background-color: transparent;
+    children:         [ inputbar, listview ];
+}
+
+inputbar {
+    enabled:          true;
+    expand:           false;
+    width:            460px;
+    margin:           0 0 0 21px;
+    padding:          8px 12px;
+    spacing:          0;
+    border:           1px;
+    border-radius:    10px;
+    border-color:     @border;
+    background-color: @bg1;
+    children:         [ entry ];
+}
+
+entry {
+    placeholder:       "Search shortcuts";
+    placeholder-color: @fg-muted;
+    text-color:        @fg0;
+    cursor:            text;
+}
+
+prompt,
+mode-switcher,
+message {
+    enabled:          false;
+}
+
+listview {
+    columns:          4;
+    lines:            32;
+    flow:             horizontal;
+    fixed-columns:    true;
+    fixed-height:     true;
+    dynamic:          false;
+    cycle:            false;
+    scrollbar:        false;
+    spacing:          4px;
+    padding:          16px;
+    border:           1px;
+    border-radius:    16px;
+    border-color:     @border;
+    background-color: @bg0;
+}
+
+element {
+    padding:          3px 9px;
+    spacing:          0;
+    border-radius:    5px;
+    background-color: transparent;
+    text-color:       @fg0;
+}
+
+element selected {
+    background-color: transparent;
+    text-color:       @fg0;
+}
+
+element-text {
+    font:             "Hack Nerd Font 11";
+    vertical-align:   0.5;
+    text-color:       inherit;
+    background-color: transparent;
+}
