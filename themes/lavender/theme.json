@@ -7,7 +7,8 @@
   },
   "wallpapers": {
     "static": [
-      "~/pictures/wallpapers/static/purple-anime-portrait.png"
+      "~/pictures/wallpapers/static/purple-anime-portrait.png",
+      "~/pictures/wallpapers/static/lavender-fields.jpg"
     ],
     "vertical": [
       "~/pictures/wallpapers/vertical/mountain-purple.jpg",
@@ -22,6 +23,14 @@
     "DP-2": "live[0]",
     "DP-3": "static[0]",
     "DP-4": "vertical[1]"
+  },
+  "wallpaper_schedule": {
+    "DP-3": {
+      "morning": "static[1]",
+      "evening": "static[0]",
+      "morning_start": "07:00",
+      "evening_start": "19:00"
+    }
   },
   "nvim": {
     "colorscheme": "lavender",

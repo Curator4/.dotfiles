@@ -49,6 +49,21 @@ Older themes may omit `palette` in `theme.json` and rely on `kitty.conf` only �
 
 `terminal_only: true` themes (e.g. `grok-night`) are for `theme-term.sh`, not desktop apply.
 
+**Time-of-day wallpapers:** optional `wallpaper_schedule` overrides a monitor by clock time. Apply picks the current slot; `theme-wallpaper-schedule.timer` re-applies at 07:00 and 19:00 without a full theme switch. Keep those OnCalendar times in sync with `morning_start` / `evening_start`.
+
+```json
+"wallpaper_schedule": {
+  "DP-3": {
+    "morning": "static[1]",
+    "evening": "static[0]",
+    "morning_start": "07:00",
+    "evening_start": "19:00"
+  }
+}
+```
+
+`monitors.DP-3` stays the fallback (and the evening slot if `evening` is omitted). Morning is inclusive of `morning_start`, exclusive of `evening_start`.
+
 ## Agent notes
 
 - User says “new theme”, “theme from wallpaper”, “base16 theme”, “check theme contrast”, or “theme authoring” → use `theme-scaffold` / `theme-lint`, not Aether, not a new skill.

@@ -5,6 +5,7 @@
 #   theme list            list desktop themes
 #   theme current         show the active theme
 #   theme apply <slug>    apply a theme
+#   theme refresh-wallpapers
 #   theme random          apply a random desktop theme (not the current one)
 #   theme <slug>          apply a theme (shorthand)
 set -euo pipefail
@@ -46,7 +47,7 @@ if [ $# -eq 0 ]; then
 fi
 
 case "$1" in
-    list|current|apply)
+    list|current|apply|refresh-wallpapers)
         exec "$SWITCHER" "$@"
         ;;
     random)
@@ -61,6 +62,8 @@ Desktop theme picker. Bare `theme` is the same rofi menu as the waybar click.
   theme list            list desktop themes
   theme current         show the active theme
   theme apply <slug>    apply a theme
+  theme refresh-wallpapers
+                        re-apply wallpaper_schedule for the current theme
   theme random          apply a random desktop theme (not the current one)
   theme <slug>          apply a theme (shorthand)
 EOF

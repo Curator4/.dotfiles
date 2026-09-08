@@ -1,0 +1,8 @@
+[Unit]
+Description=Refresh scheduled morning/evening theme wallpapers
+After=graphical-session.target
+ConditionEnvironment=WAYLAND_DISPLAY
+
+[Service]
+Type=oneshot
+ExecStart=%h/.bin/theme-switcher.sh refresh-wallpapers

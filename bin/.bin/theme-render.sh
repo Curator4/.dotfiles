@@ -7,6 +7,10 @@ if [ "$#" -ne 4 ]; then
     exit 2
 fi
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=theme-wallpaper-lib.sh
+. "$SCRIPT_DIR/theme-wallpaper-lib.sh"
+
 THEME_DIR="$1"
 WAYBAR_OUTPUT="$2"
 HYPRLOCK_OUTPUT="$3"
@@ -149,7 +153,7 @@ lock_wallpaper() {
     local monitor="$1"
     local reference type index wallpaper
 
-    reference=$(jq -r --arg monitor "$monitor" '.monitors[$monitor] // empty' "$THEME_JSON")
+    reference=$(resolve_monitor_ref "$THEME_JSON" "$monitor")
     if [[ ! $reference =~ ^([a-z]+)\[([0-9]+)\]$ ]]; then
         echo "Invalid wallpaper reference '$reference' for $monitor" >&2
         return 1
