@@ -14,6 +14,11 @@
 #   ~/.openclaw/agents         agent state
 #   ~/nas/**                   network mounts
 #
+# Bounded exceptions to "nothing is discovered": keep-newest sweeps list the
+# version dirs of one named directory (newest kept, oddities invisible), and
+# docker prunes dangling images + build cache only — never tagged images or
+# containers (deliberately not `docker system prune`).
+#
 #   cache-reap             clear everything
 #   cache-reap --dry-run   show what would be freed, touch nothing
 
@@ -23,7 +28,7 @@ DRY=0
 case "${1:-}" in
     "")           DRY=0 ;;
     -n|--dry-run) DRY=1 ;;
-    -h|--help)    sed -n '2,20p' "$0" | sed 's/^# \?//'; exit 0 ;;
+    -h|--help)    sed -n '2,24p' "$0" | sed 's/^# \?//'; exit 0 ;;
     *)            printf 'cache-reap: unknown option %s\n' "$1" >&2; exit 2 ;;
 esac
 
@@ -101,6 +106,84 @@ reap_uv() {
     reap uv "$cache" timeout --kill-after=5s 60s uv cache clean
 }
 
+# The one deliberate walk: the base directory is typed in below, and only
+# children that look like versions ("0.153.4-...", "2.1.263") can be reaped
+# or kept. Anything else inside the directory is invisible to this sweep —
+# that keeps a stray "tmp" or "LOCKS" from being crowned newest and deleting
+# real releases. Every child is a full self-contained binary copy, so all but
+# the newest version is a redundant re-download.
+reap_keepnewest() {
+    local label="$1" base="$2"
+    local before after freed keep d n sum
+    local dirs=()
+
+    [ -d "$base" ] || { row "$label" "-" "not installed"; return; }
+
+    while IFS= read -r d; do
+        dirs+=("$d")
+    done < <(find "$base" -maxdepth 1 -mindepth 1 -type d -printf '%f\n' 2>/dev/null \
+                 | grep -E '^[0-9]+(\.[0-9]+)*' | sort -V)
+
+    n=${#dirs[@]}
+    [ "$n" -le 1 ] && { row "$label" "-" "single version"; return; }
+    keep=${dirs[n-1]}
+
+    if [ "$DRY" -eq 1 ]; then
+        sum=0
+        for d in "${dirs[@]:0:$((n-1))}"; do
+            sum=$(( sum + $(size_of "$base/$d") ))
+        done
+        TOTAL=$(( TOTAL + sum ))
+        row "$label" "$(human "$sum")" "at most (keep $keep)"
+        return
+    fi
+
+    before=$(size_of "$base")
+    for d in "${dirs[@]:0:$((n-1))}"; do
+        rm -rf -- "${base:?}/${d:?}"
+    done
+    after=$(size_of "$base")
+    freed=$(( before > after ? before - after : 0 ))
+    TOTAL=$(( TOTAL + freed ))
+    if [ "$freed" -lt 1048576 ]; then
+        row "$label" "-" "nothing to reclaim"
+    else
+        row "$label" "$(human "$freed")" "cleared (kept $keep)"
+    fi
+}
+
+# /var/lib/docker is root-only, so size_of cannot see it: measure through sudo
+# and otherwise follow reap()'s shape. Scope is rebuild residue only — dangling
+# images and build cache. Tagged images (demo kits are kept on purpose) and
+# containers, stopped or not, are out of scope. The dry-run figure quotes the
+# whole docker store and is therefore an overstatement of this sweep.
+reap_docker() {
+    local base=/var/lib/docker before after freed
+
+    have docker || { row docker "-" "not installed"; return; }
+    sudo -n docker info >/dev/null 2>&1 || { row docker "-" "daemon not running"; return; }
+
+    before=$(sudo -n du -sb "$base" 2>/dev/null | cut -f1); before=${before:-0}
+    [ "$before" -lt 1048576 ] && { row docker "-" "already clear"; return; }
+
+    if [ "$DRY" -eq 1 ]; then
+        TOTAL=$(( TOTAL + before ))
+        row docker "$(human "$before")" "at most"
+        return
+    fi
+
+    sudo -n docker image prune -f >/dev/null 2>&1
+    sudo -n docker builder prune -f >/dev/null 2>&1
+    after=$(sudo -n du -sb "$base" 2>/dev/null | cut -f1); after=${after:-0}
+    freed=$(( before > after ? before - after : 0 ))
+    TOTAL=$(( TOTAL + freed ))
+    if [ "$freed" -lt 1048576 ]; then
+        row docker "-" "nothing to reclaim"
+    else
+        row docker "$(human "$freed")" "cleared"
+    fi
+}
+
 df_pct()  { df --output=pcent / | tail -1 | tr -dc '0-9'; }
 df_avail(){ df -h --output=avail / | tail -1 | tr -d ' '; }
 
@@ -129,6 +212,23 @@ reap goimports "$HOME/.cache/goimports"      rm -rf "$HOME/.cache/goimports"
 reap spotify   "$HOME/.cache/spotify"        rm -rf "$HOME/.cache/spotify"
 reap codex     "$HOME/.cache/codex-runtimes" rm -rf "$HOME/.cache/codex-runtimes"
 
+# Browser engine caches — pure cache, rebuilt on next launch. The profiles
+# under ~/.config (sessions, logins) are not touched.
+reap browser-c  "$HOME/.cache/mozilla"           rm -rf "$HOME/.cache/mozilla"
+reap chromium   "$HOME/.cache/chromium"          rm -rf "$HOME/.cache/chromium"
+reap chromium-h "$HOME/.cache/chromium-headless" rm -rf "$HOME/.cache/chromium-headless"
+reap playwright "$HOME/.cache/ms-playwright"     rm -rf "$HOME/.cache/ms-playwright"
+
+# conda is often not on this shell's PATH; /opt/miniconda3 is where this
+# machine keeps it. `clean -a` sweeps package caches only, never envs.
+CONDA_BIN=$(command -v conda || true)
+[ -z "$CONDA_BIN" ] && [ -x /opt/miniconda3/bin/conda ] && CONDA_BIN=/opt/miniconda3/bin/conda
+[ -n "$CONDA_BIN" ] && reap conda "$HOME/.conda/pkgs" "$CONDA_BIN" clean -a -y
+
+# Versioned release dirs — redundant copies except the newest.
+reap_keepnewest codex-rel  "$HOME/.codex/packages/standalone/releases"
+reap_keepnewest claude-rel "$HOME/.local/share/claude/versions"
+
 # --- needs root; attempted only if sudo is already unlocked ----------------
 # journald stores user journals under /var/log/journal alongside the system
 # ones, so there is no unprivileged half to split out here.
@@ -138,11 +238,13 @@ NEEDS_ROOT=()
 if sudo -n true 2>/dev/null; then
     have paccache && reap pacman "/var/cache/pacman/pkg" sudo -n paccache -rk1
     reap journal-s "/var/log/journal" sudo -n journalctl --vacuum-size=200M
+    reap_docker
 else
     pac=$(size_of /var/cache/pacman/pkg)
     jrn=$(size_of /var/log/journal)
     [ "${pac:-0}" -gt 1048576 ] && { row pacman    "$(human "$pac")" "needs sudo"; NEEDS_ROOT+=("sudo paccache -rk1"); }
     [ "${jrn:-0}" -gt 1048576 ] && { row journal-s "$(human "$jrn")" "needs sudo"; NEEDS_ROOT+=("sudo journalctl --vacuum-size=200M"); }
+    have docker && NEEDS_ROOT+=("sudo docker image prune -f && sudo docker builder prune -f")
 fi
 
 # --- report ---------------------------------------------------------------
