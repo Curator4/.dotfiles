@@ -1,0 +1,13 @@
+[Unit]
+Description=CodexBar local usage server (Waybar backend)
+Documentation=https://github.com/steipete/CodexBar/blob/main/docs/cli.md
+
+[Service]
+ExecStart=%h/.local/bin/codexbar serve --port 47371 --refresh-interval 60
+# Transient provider failures are masked in-process by serve's own last-good
+# cache (up to 10 refresh intervals), so a quick restart is all we need.
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

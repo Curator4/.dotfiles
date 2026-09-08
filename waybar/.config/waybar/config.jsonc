@@ -19,10 +19,10 @@
     },
 
     "custom/codexbar-codex": {
-        "exec": "CODEXBAR_PROVIDERS=codex CODEXBAR_BAR_PROVIDER=codex $HOME/.config/waybar/scripts/codexbar.sh | jq -c '.text |= (gsub(\"🤖 ?\";\"\"))'",
+        "exec": "CODEXBAR_SERVE_URL=http://127.0.0.1:47371 CODEXBAR_PROVIDERS=codex CODEXBAR_BAR_PROVIDER=codex $HOME/.config/waybar/scripts/codexbar.sh | jq -c '.text |= (gsub(\"🤖 ?\";\"\"))'",
         "return-type": "json",
         "format": "{}",
-        "interval": 180,
+        "interval": 20,
         "signal": 8,
         "on-click": "$HOME/.config/waybar/scripts/codexbar-popup.py",
         "tooltip": true,
@@ -30,10 +30,10 @@
     },
 
     "custom/codexbar-claude": {
-        "exec": "CODEXBAR_PROVIDERS=claude CODEXBAR_BAR_PROVIDER=claude $HOME/.config/waybar/scripts/codexbar.sh | jq -c '.text |= (gsub(\"🤖 ?\";\"\"))'",
+        "exec": "CODEXBAR_SERVE_URL=http://127.0.0.1:47371 CODEXBAR_PROVIDERS=claude CODEXBAR_BAR_PROVIDER=claude $HOME/.config/waybar/scripts/codexbar.sh | jq -c '.text |= (gsub(\"🤖 ?\";\"\"))'",
         "return-type": "json",
         "format": "{}",
-        "interval": 180,
+        "interval": 20,
         "signal": 8,
         "on-click": "$HOME/.config/waybar/scripts/codexbar-popup.py",
         "tooltip": true,
@@ -51,10 +51,10 @@
     },
 
     "custom/codexbar-zai": {
-        "exec": "CODEXBAR_PROVIDERS=zai CODEXBAR_BAR_PROVIDER=zai $HOME/.config/waybar/scripts/codexbar.sh | jq -c '.text |= (gsub(\"🤖 ?\";\"\"))'",
+        "exec": "CODEXBAR_SERVE_URL=http://127.0.0.1:47371 CODEXBAR_PROVIDERS=zai CODEXBAR_BAR_PROVIDER=zai $HOME/.config/waybar/scripts/codexbar.sh | jq -c '.text |= (gsub(\"🤖 ?\";\"\"))'",
         "return-type": "json",
         "format": "{}",
-        "interval": 180,
+        "interval": 20,
         "signal": 8,
         "on-click": "$HOME/.config/waybar/scripts/codexbar-popup.py",
         "tooltip": true,
@@ -62,10 +62,10 @@
     },
 
     "custom/codexbar-grok": {
-        "exec": "CODEXBAR_PROVIDERS=grok CODEXBAR_BAR_PROVIDER=grok $HOME/.config/waybar/scripts/codexbar.sh | jq -c '.text |= (gsub(\"🤖 ?\";\"\"))'",
+        "exec": "CODEXBAR_SERVE_URL=http://127.0.0.1:47371 CODEXBAR_PROVIDERS=grok CODEXBAR_BAR_PROVIDER=grok $HOME/.config/waybar/scripts/codexbar.sh | jq -c '.text |= (gsub(\"🤖 ?\";\"\"))'",
         "return-type": "json",
         "format": "{}",
-        "interval": 180,
+        "interval": 20,
         "signal": 8,
         "on-click": "$HOME/.config/waybar/scripts/codexbar-popup.py",
         "tooltip": true,

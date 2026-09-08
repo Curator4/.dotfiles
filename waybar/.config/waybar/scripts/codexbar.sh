@@ -20,6 +20,12 @@ STATE_PATH="${XDG_CONFIG_HOME:-${HOME}/.config}/codexbar-waybar/state.json"
 CACHE_DIR="${XDG_CACHE_HOME:-${HOME}/.cache}/codexbar-waybar"
 mkdir -p "$CACHE_DIR"
 
+# Preferred data source: a local `codexbar serve` instance (see
+# codexbar-serve.service). It refreshes provider data in the background every
+# --refresh-interval and serves its in-memory cache instantly, so a waybar tick
+# never blocks on provider APIs. Empty (or unreachable) → direct CLI fetches.
+SERVE_URL="${CODEXBAR_SERVE_URL:-}"
+
 # Per-instance bar provider selection (written by the popup's Settings view).
 # `null` (or unset) means "show the highest used% across providers".
 BAR_PROVIDER=""
@@ -39,8 +45,8 @@ fi
 [[ -n "${CODEXBAR_BAR_PROVIDER:-}" ]] && BAR_PROVIDER="$CODEXBAR_BAR_PROVIDER"
 [[ -n "${CODEXBAR_RESET_TIME_FORMAT:-}" ]] && RESET_TIME_FORMAT="$CODEXBAR_RESET_TIME_FORMAT"
 case "$RESET_TIME_FORMAT" in
-    provider|local|utc) ;;
-    *) RESET_TIME_FORMAT="provider" ;;
+provider | local | utc) ;;
+*) RESET_TIME_FORMAT="provider" ;;
 esac
 
 # Read enabled providers from the codexbar CLI's config, fall back to a
@@ -49,7 +55,7 @@ esac
 # config.json for a specific waybar instance.
 if [[ -n "${CODEXBAR_PROVIDERS:-}" ]]; then
     # shellcheck disable=SC2206
-    PROVIDERS=( ${CODEXBAR_PROVIDERS} )
+    PROVIDERS=(${CODEXBAR_PROVIDERS})
 elif [[ -f "$CONFIG_PATH" ]] && command -v jq >/dev/null 2>&1; then
     readarray -t PROVIDERS < <(jq -r '[.providers[]? | select(.enabled == true) | .id] | .[]' "$CONFIG_PATH" 2>/dev/null)
     [[ ${#PROVIDERS[@]} -eq 0 ]] && PROVIDERS=(codex claude gemini)
@@ -79,7 +85,7 @@ setup_antigravity_ssl() {
     # shellcheck disable=SC2086
     for port in $ports; do
         local out
-        out=$(openssl s_client -showcerts -connect 127.0.0.1:"$port" < /dev/null 2>/dev/null)
+        out=$(openssl s_client -showcerts -connect 127.0.0.1:"$port" </dev/null 2>/dev/null)
         if [[ "$out" == *"-----BEGIN CERTIFICATE-----"* ]]; then
             cert=$(echo "$out" | openssl x509 -outform PEM 2>/dev/null)
             if [[ -n "$cert" ]]; then
@@ -95,7 +101,7 @@ setup_antigravity_ssl() {
     local scratch_dir="${CACHE_DIR}/scratch"
     mkdir -p "$scratch_dir"
     local cert_file="${scratch_dir}/localhost.crt"
-    echo "$cert" > "$cert_file"
+    echo "$cert" >"$cert_file"
 
     local sys_ca=""
     for path in /etc/ssl/certs/ca-certificates.crt /etc/pki/tls/certs/ca-bundle.crt /etc/ssl/ca-bundle.pem /var/lib/ca-certificates/ca-bundle.pem; do
@@ -107,9 +113,9 @@ setup_antigravity_ssl() {
 
     local bundle_file="${scratch_dir}/custom-ca-bundle.crt"
     if [[ -n "$sys_ca" ]]; then
-        cat "$sys_ca" "$cert_file" > "$bundle_file"
+        cat "$sys_ca" "$cert_file" >"$bundle_file"
     else
-        cat "$cert_file" > "$bundle_file"
+        cat "$cert_file" >"$bundle_file"
     fi
 
     ANTIGRAVITY_CUSTOM_CA_BUNDLE="$bundle_file"
@@ -172,6 +178,21 @@ fetch_one() {
 
 fetch_provider() {
     local p="$1"
+
+    # Serve path: localhost curl, answered from the in-memory cache in
+    # milliseconds. Any curl failure or non-array body falls through to a
+    # direct CLI fetch below, so the bar keeps working when serve is down.
+    if [[ -n "$SERVE_URL" ]] && command -v curl >/dev/null 2>&1; then
+        local served
+        served="$(curl -fsS --max-time "${CODEXBAR_SERVE_TIMEOUT:-5}" \
+            "$SERVE_URL/usage?provider=$p" 2>/dev/null || true)"
+        if [[ -n "$served" ]] &&
+            echo "$served" | jq -e 'type == "array"' >/dev/null 2>&1; then
+            echo "$served"
+            return
+        fi
+    fi
+
     local primary="${SOURCE_OVERRIDES[$p]:-}"
     local fallback="${FALLBACK_SOURCES[$p]:-}"
 
@@ -182,8 +203,8 @@ fetch_provider() {
     # error — network failures and rate limits land here. Auth misconfig
     # surfaces the same way; the fallback may still error, which is fine
     # because the cache layer will mask it.
-    if [[ -n "$fallback" ]] \
-        && echo "$body" | jq -e 'type == "array" and (.[0].error // null) != null' >/dev/null 2>&1; then
+    if [[ -n "$fallback" ]] &&
+        echo "$body" | jq -e 'type == "array" and (.[0].error // null) != null' >/dev/null 2>&1; then
         fallback_body="$(fetch_one "$p" "$fallback")"
         if echo "$fallback_body" | jq -e 'type == "array"' >/dev/null 2>&1; then
             body="$fallback_body"
@@ -198,20 +219,30 @@ STAGGER_SECS="${CODEXBAR_STAGGER:-0.5}"
 PROVIDER_TIMEOUT_SECS="${CODEXBAR_PROVIDER_TIMEOUT:-20}"
 LAST_GOOD="$CACHE_DIR/last.json"
 
+# Atomic cache write — several bar modules run this script concurrently and
+# all write the shared last.json; tmp+mv so a concurrent reader never sees a
+# truncated file.
+write_cache() {
+    local payload="$1"
+    [[ -z "$payload" ]] && return 0
+    local tmp="${LAST_GOOD}.tmp.$$"
+    printf '%s\n' "$payload" >"$tmp" && mv -f "$tmp" "$LAST_GOOD"
+}
+
 tmpdir="$(mktemp -d)"
 trap 'rm -rf "$tmpdir"' EXIT
 
 i=0
 for p in "${PROVIDERS[@]}"; do
-    (( i > 0 )) && sleep "$STAGGER_SECS"
-    fetch_provider "$p" > "$tmpdir/$p.json"
+    ((i > 0)) && sleep "$STAGGER_SECS"
+    fetch_provider "$p" >"$tmpdir/$p.json"
     i=$((i + 1))
 done
 
 append_merged_entry() {
     local entry="$1"
     [[ -z "$entry" ]] && return
-    if (( first )); then
+    if ((first)); then
         merged+="$entry"
         first=0
     else
@@ -237,7 +268,7 @@ for p in "${PROVIDERS[@]}"; do
     inner="$(echo "$body" | jq -c '.[]')"
     while IFS= read -r entry; do
         append_merged_entry "$entry"
-    done <<< "$inner"
+    done <<<"$inner"
 done
 merged+="]"
 
@@ -276,7 +307,7 @@ if [[ -n "$last_good_json" ]]; then
                 then $previous + {stale: true}
                 else $current
                 end)
-    ' <<< "$merged")"
+    ' <<<"$merged")"
 fi
 
 # Persist fresh successful provider snapshots without dropping older successful
@@ -289,11 +320,11 @@ if [[ "$merged" != "[]" ]] && echo "$merged" | jq -e 'any(.error | not)' >/dev/n
               | {key: cache_key, value: .}] | from_entries) as $ok_prev
             | ([.[]? | select(.error | not)
             | {key: cache_key, value: (del(.stale))}] | from_entries) as $ok_fresh
-            | ($ok_prev + $ok_fresh) | [.[]]
-        ' <<< "$merged")"
-        [[ -n "$merged_for_cache" ]] && echo "$merged_for_cache" > "$LAST_GOOD"
+            | ($ok_prev + $ok_fresh) | [.[]
+        ]' <<<"$merged")"
+        write_cache "$merged_for_cache"
     else
-        echo "$merged" | jq -c 'map(select(.error | not) | del(.stale))' > "$LAST_GOOD"
+        write_cache "$(echo "$merged" | jq -c 'map(select(.error | not) | del(.stale))')"
     fi
     last_good_json="$(jq -c 'select(type == "array")' "$LAST_GOOD" 2>/dev/null || true)"
 fi
@@ -324,7 +355,7 @@ if [[ -n "$last_good_json" ]]; then
            | map(($prev_by_provider[.] // []) | map(. + {stale: true}))
            | add // []) as $missing
         | $current + $provider_replacements + $missing
-    ' <<< "$merged")"
+    ' <<<"$merged")"
 fi
 
 if [[ "$merged" == "[]" ]]; then
@@ -600,9 +631,26 @@ echo "$merged" | jq -c \
               + (if peak_active(entry) then " ⏱" else "" end)
         end;
 
+    # "Fetched Ns ago" line for the tooltip, from the freshest usage.updatedAt
+    # the payload carries (serve stamps it; direct CLI fetches usually do too).
+    # With a pinned provider, age follows that provider, not the global max.
+    def age_line(entries):
+        [entries[]?.usage.updatedAt
+         | try (fromdateiso8601) catch null
+         | select(. != null)] as $stamps
+        | if ($stamps | length) == 0 then empty
+          else (($stamps | max) | (now - .)) as $age
+          | if $age < 0 then "fetched just now"
+            elif $age < 90 then "fetched \($age | floor)s ago"
+            elif $age < 5400 then "fetched \($age / 60 | floor)m ago"
+            else "fetched \($age / 3600 | floor)h ago"
+            end
+          end;
+
     . as $all
     | (if $bar_provider == "" then null
        else ($all | map(select(.provider == $bar_provider)) | .[0]) end) as $pinned
+    | (if $pinned != null then [$pinned] else $all end) as $age_scope
     # Local mod (curator): when a provider is pinned, drive the bar colour and
     # percentage from that provider alone, so an unrelated maxed meter (e.g. the
     # Grok credits window at 100%) does not paint the bar red. The tooltip below
@@ -616,7 +664,9 @@ echo "$merged" | jq -c \
         text: (if $pinned != null then bar_text($pinned)
                elif $all_errored then "🤖 ⚠"
                else "🤖 \($pct)%" end),
-        tooltip: ($lines | join("\n")),
+        tooltip: (([age_line($age_scope)]
+                  | map(select(. != "")))
+                  + ($lines | map(select(. != ""))) | join("\n")),
         class: ([(if $all_errored then "stale"
                   elif $pct >= 90 then "critical"
                   elif $pct >= 70 then "warning"
