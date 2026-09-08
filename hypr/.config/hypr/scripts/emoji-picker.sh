@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 # Emoji picker that inserts via type-emoji.sh (Electron-safe paste).
-# rofimoji's own typer/clipboard actions use wtype or Shift+Insert alone and
-# miss some terminals / Electron edge cases.
+# One row per emoji. Rofi prefix+tokenize matches word starts, so 'cat'
+# hits 🐱, not 'intoxicated' on woozy. See emoji_search.py.
 
 set -euo pipefail
 
-char=$(rofimoji --action print --clipboarder wl-copy 2>/dev/null || true)
-[[ -z "${char:-}" ]] && exit 0
+here=$(dirname -- "$(readlink -f -- "$0")")
+sel=$(python3 "$here/emoji_search.py" --rofi | rofi -dmenu -i \
+    -matching prefix -markup-rows -p 'emoji') || true
+[[ -z "${sel:-}" ]] && exit 0
 
-exec ~/.config/hypr/scripts/type-emoji.sh "$char"
+# --rofi rows are "<keywords>\t<char>" (display is the glyph + name).
+char=$(printf '%s' "$sel" | awk -F '\t' '{print $NF}')
+[[ -z "$char" ]] && exit 0
+exec "$here/type-emoji.sh" "$char"

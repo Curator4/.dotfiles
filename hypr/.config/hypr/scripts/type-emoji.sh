@@ -68,7 +68,7 @@ paste_ydotool_shift_ins()  { ydotool key 42:1 110:1 110:0 42:0; }
 rofi_layer_active() {
   command -v jq >/dev/null 2>&1 || return 1
   hyprctl layers -j 2>/dev/null \
-    | jq -e 'any(.[]?.levels[][]?; .namespace == "rofi")' >/dev/null 2>&1
+    | jq -e 'any(.[]?.levels[][]?; .namespace == "rofi" or .namespace == "hud-ask")' >/dev/null 2>&1
 }
 
 # hyprctl exits 0 on some Lua errors, so match the "ok" reply, not $?.
