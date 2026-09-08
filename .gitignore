@@ -26,8 +26,9 @@ node_modules/
 # Theme output — rewritten by theme-switcher.sh on every switch.
 #
 # These are build artifacts, not config: the sources are themes/<name>/ plus
-# the tracked fragments the switcher composes in (mako's output.conf and
-# *-categories.conf, the shared structure theme-render.sh renders from).
+# the tracked fragments the switcher composes in (mako's layout.conf,
+# output.conf and *-categories.conf, the shared structure theme-render.sh
+# renders from).
 # Tracking them meant every theme switch showed up as a dozen dirty files and
 # buried real edits in the noise. theme-startup.sh re-applies a theme at every
 # login, so they are always regenerated; a fresh machine gets them from the

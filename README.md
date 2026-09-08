@@ -63,7 +63,7 @@ not show up as churn:
   `colorscheme.lua`, cava `config`, kitty `theme-font.conf`, rofi
   `current.rasi`. edits here are lost on the next switch. change
   `themes/<name>/` or the shared structure in `theme-render.sh` /
-  `theme-switcher.sh` / `rofi/.../card.rasi` instead.
+  `theme-switcher.sh` / `mako/.../layout.conf` / `rofi/.../card.rasi` instead.
   Cava gradient = yellow → cyan → accent (`hue.accent` or blue). Optional mono
   font via `"font": { "mono": "…" }` in `theme.json` (default Hack Nerd Font).
 - **client apps (outside stow, best-effort)** — rewritten from the same palette
@@ -83,8 +83,8 @@ not show up as churn:
     default-release profile; enables
     `toolkit.legacyUserProfileCustomizations.stylesheets` in `user.js`. Restart
     Firefox after the first enable.
-- **tracked inputs** — everything under `themes/`, mako's `output.conf` and
-  `*-categories.conf` fragments, rofi's `card.rasi` layout.
+- **tracked inputs** — everything under `themes/`, mako's `layout.conf`,
+  `output.conf` and `*-categories.conf` fragments, rofi's `card.rasi` layout.
 - **indirection, not rewriting** — `kitty.conf` and `hyprland.conf` reference
   `~/.config/current-theme/` (symlink the switcher repoints). rofi's
   `config.rasi` references `@theme "current"`; `current.rasi` is generated

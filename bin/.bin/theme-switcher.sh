@@ -74,18 +74,23 @@ apply_theme() {
     # 3. Waybar was generated from the shared structure
     echo "  ✓ Rendered shared Waybar CSS"
 
-    # 4. Copy Mako config + append output pin + shared timer + household category rules
-    if [ -f "$THEME_DIR/mako.conf" ]; then
-        cp "$THEME_DIR/mako.conf" "$DOTFILES/mako/.config/mako/config"
-        # output.conf is global options — must precede the [category=...] snippets
+    # 4. Compose Mako: shared chrome, then output pin, then theme colors,
+    #    then category snippets. Global options must precede any [criteria]
+    #    section — layout + output first, theme colors next (they may open
+    #    [urgency=...]), categories last.
+    MAKO_CONF="$DOTFILES/mako/.config/mako/config"
+    MAKO_LAYOUT="$DOTFILES/mako/.config/mako/layout.conf"
+    if [ -f "$MAKO_LAYOUT" ] && [ -f "$THEME_DIR/mako.conf" ]; then
+        cat "$MAKO_LAYOUT" > "$MAKO_CONF"
         OUTPUT_PIN="$DOTFILES/mako/.config/mako/output.conf"
-        [ -f "$OUTPUT_PIN" ] && cat "$OUTPUT_PIN" >> "$DOTFILES/mako/.config/mako/config"
+        [ -f "$OUTPUT_PIN" ] && cat "$OUTPUT_PIN" >> "$MAKO_CONF"
+        cat "$THEME_DIR/mako.conf" >> "$MAKO_CONF"
         TIMER_CATS="$DOTFILES/mako/.config/mako/timer-categories.conf"
-        [ -f "$TIMER_CATS" ] && cat "$TIMER_CATS" >> "$DOTFILES/mako/.config/mako/config"
+        [ -f "$TIMER_CATS" ] && cat "$TIMER_CATS" >> "$MAKO_CONF"
         HOUSEHOLD_CATS="$DOTFILES/mako/.config/mako/household-categories.conf"
-        [ -f "$HOUSEHOLD_CATS" ] && cat "$HOUSEHOLD_CATS" >> "$DOTFILES/mako/.config/mako/config"
+        [ -f "$HOUSEHOLD_CATS" ] && cat "$HOUSEHOLD_CATS" >> "$MAKO_CONF"
         AGENT_CATS="$DOTFILES/mako/.config/mako/agent-categories.conf"
-        [ -f "$AGENT_CATS" ] && cat "$AGENT_CATS" >> "$DOTFILES/mako/.config/mako/config"
+        [ -f "$AGENT_CATS" ] && cat "$AGENT_CATS" >> "$MAKO_CONF"
         echo "  ✓ Updated Mako config"
     fi
 
@@ -443,8 +448,10 @@ EOF
 }
 
 # Optional mono font from theme.json (.font.mono). Default stays Hack Nerd Font.
-# Kitty: tiny include (gitignored). Waybar/mako/eww: post-process live configs
-# after theme-render / mako copy so switches never dirty per-theme source files.
+# Kitty: tiny include (gitignored). Waybar/eww: post-process live configs after
+# theme-render so switches never dirty per-theme source files.
+# Mako chrome (Adwaita Sans, Tight masthead) lives in layout.conf — do not
+# rewrite it to the terminal mono family.
 apply_theme_font() {
     THEME_DIR="$1"
     local font mono_default="Hack Nerd Font"
@@ -468,13 +475,7 @@ EOF
         sed -i -E "s|font-family: \"[^\"]*\";|font-family: \"${font}\";|g"             "$WAYBAR_STYLE"
     fi
 
-    # 3. Mako live config (copied from theme dir; preserve size suffix)
-    local MAKO_CONF="$DOTFILES/mako/.config/mako/config"
-    if [ -f "$MAKO_CONF" ]; then
-        sed -i -E "s|^font=.*[[:space:]]([0-9]+)$|font=${font} \1|" "$MAKO_CONF"
-    fi
-
-    # 4. eww theme-colors.scss — $hud-font consumed by eww.scss
+    # 3. eww theme-colors.scss — $hud-font consumed by eww.scss
     local EWW_COLORS="${XDG_CONFIG_HOME:-$HOME/.config}/eww/theme-colors.scss"
     if [ -f "$EWW_COLORS" ]; then
         # Drop any prior $hud-font line, then append the current one.
@@ -483,7 +484,7 @@ EOF
         printf '%s\n' "\$hud-font: \"${font}\";" >> "$EWW_COLORS"
     fi
 
-    echo "  ✓ Theme mono font → $font (kitty/waybar/mako/eww)"
+    echo "  ✓ Theme mono font → $font (kitty/waybar/eww)"
 }
 
 # Codex CLI: render a deliberately restrained syntax theme from the active

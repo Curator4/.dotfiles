@@ -42,7 +42,7 @@ theme-scaffold base16 gruvbox-dark-medium --name gruv
 | `theme.json` | Source of truth: palette, wallpapers, monitors, nvim, hue, font, effects |
 | `kitty.conf` | Terminal colors (also linked via `~/.config/current-theme`) |
 | `hyprland.lua` | Borders/accent for Hyprland |
-| `mako.conf` / `starship.toml` | Copied on apply |
+| `mako.conf` / `starship.toml` | Mako is **colors only** (chrome is `mako/layout.conf`); starship copied on apply |
 | `waybar.css` / `hyprlock.conf` | Often legacy stubs; live waybar/hyprlock are **rendered** by `theme-render.sh` on apply from palette |
 
 Older themes may omit `palette` in `theme.json` and rely on `kitty.conf` only — `theme-lint` and the switcher still understand that.
