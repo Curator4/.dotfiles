@@ -41,13 +41,21 @@ Your own recent sessions are summarized on disk. Read them to orient after a `/c
 
 # Manual coding nudge
 
-User is reducing AI dependence on fundamentals. When a small, bounded coding task comes up — a single function, narrow bug, small util — and the user could reasonably write it themselves, occasionally pause and offer it as a manual candidate ("good one to take yourself?"). Aim for roughly once per substantive session, not every time, not never. **Don't offer tests as manual candidates** — the user explicitly does not want to hand-write tests.
+User is *maintaining* fundamentals against decay, not learning them. The thing that has actually rotted is cold-start — starting from an empty file — not systems knowledge.
 
-If the user takes it: step back, append to `~/.claude/manual-coding-log.md` as `YYYY-MM-DD  repo  one-line task`, be available for review/questions but don't supervise.
+**The filter that matters: zero ambient context.** Never offer a task that requires reading existing code to start. If beginning it means knowing the repo's conventions, its imports, the types in scope, or what an agent already wrote next door, it is disqualified no matter how small the diff is. Size was the old criterion and it failed: the cost is context load, not line count. Evidence — the byte-level SIA parser stuck because it was written in a prototype with nothing to be consistent with; the same protocol work inside the mature repo did not.
 
-If the user waves through: proceed normally, never re-flag the same task.
+**A valid candidate is a spike, not a ticket.** Standalone dir under `~/workspace/spikes/YYYY-MM-DD-slug/`, spec living outside the code (a protocol, an algorithm contract, a library's API), runnable in one command, 60–120 min, nothing that ships. Good shapes: format/protocol parsers, a ring buffer, a rate limiter, a stdin→stdout CLI, a deliberately crude 100-line reimplementation of a library he leans on, a dummy project exercising a dependency he is about to integrate for real. That last shape is the highest value.
 
-Skip the offer entirely in urgent/production-pressure contexts. If the user signals annoyance ("stop nudging", "just do it"), drop the behavior for the rest of the session.
+**Derive the candidate at fire time; never ask him to maintain a list of them.** Source it from what he has actually been touching — focus board, recent repos, the session cache — and name the specific gap ("three weeks in the console and you have never hand-written the diffing — here is a standalone version"). A `## Wanted` section at the top of the log is optional garnish he may append to; never require it, empty is fine.
+
+**During a taken spike, answer questions but never write lines.** "How does this crate hand off frames?" is fine. "Sketch me the skeleton" is the move that kills the exercise, and it is the one he will reach for at minute three. Say this once when he takes it, then go quiet.
+
+Cadence: roughly once per substantive session, not every time, not never. **Never offer tests, and never offer bash/shell scripts** — both explicitly declined. Skip entirely under urgent or production pressure.
+
+If he takes it: step back, append to `~/.claude/manual-coding-log.md` as `YYYY-MM-DD  spike-slug  one-line task`, stay available, do not supervise, and **do not finish it for him** — a handed-back tail is not a taken spike, log it as such.
+
+If he waves through: proceed normally, never re-flag the same candidate. If he signals annoyance ("stop nudging", "just do it"), drop the behavior for the rest of the session.
 
 # Bash tool shell — it's zsh, not fish
 
@@ -130,3 +138,15 @@ Captures go in the session scratchpad, never the repo. `WAYLAND_DISPLAY` is set 
 - mattpocock's skills mirror (`~/.agents/upstream-mattpocock/`) is the source for the Matt suite — `/ask-matt` routes over it. Its skills are **symlinked** into both `~/.claude/skills/` and `~/.agents/skills/`, so a `git pull` in the mirror changes them immediately. `/code-review` is deliberately not linked: the name collides with Claude Code's built-in. `grilling` is **forked** into `~/.agents/skills/grilling` (2026-08-17, plain-text question template) — it no longer tracks upstream, and a `link-skills.sh` re-run would `rm -rf` the fork; restore from the `~/.agents` repo if that happens.
 - **`~/.agents/skills/` is the canonical skills home** (own git repo, 2026-07-11 consolidation); `~/.claude/skills/` is symlinks-only — never edit or create real skill files there. The `golang-*` family lives in `~/.agents/skills/` from a separate source (not the mattpocock mirror). Repo-owned skills keep their canonical inside their repo and symlink in (holly → `household-oc/.claude/skills/holly`). Skills with their own nested git (stop-slop) version themselves and are gitignored in the `~/.agents` repo.
 - React/Vercel and PlanetScale: prefer their official docs when working in those stacks.
+
+# ADR references carry a gloss
+
+First mention of an ADR or dated design doc: number + a few words, e.g. `ADR-0013 (event stream: ledger + side-band)`. Three to six words, never a sentence. Later mentions can go bare. Issue numbers are exempt.
+
+# Themis session capture
+
+When I explicitly ask to save a decision, preference, or lesson to shared
+knowledge, read `/home/curator/workspace/ai/themis/docs/session-capture.md` and
+use its on-demand capture workflow from the actual session working directory.
+Publish tentative candidates to the existing inbox; human promotion remains a
+separate decision. An ordinary session-summary cache is not a Themis capture.
