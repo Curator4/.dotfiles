@@ -1,0 +1,1219 @@
+<!doctype html>
+<!-- Three variants of a DP-4 Quickshell fan menu, switchable via ?variant=A. PROTOTYPE ONLY. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quickshell fan menu prototype</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #08090b;
+      --panel: rgba(8, 9, 11, 0.96);
+      --panel-soft: rgba(14, 17, 22, 0.94);
+      --fg: #b4bac2;
+      --muted: #596478;
+      --dim: #30394a;
+      --accent: #3e6fa8;
+      --accent-bright: #5b93d6;
+      --cyan: #5b8fc7;
+      --yellow: #8ca3cc;
+      --warning: #d99a5e;
+      --warning-bg: rgba(217, 154, 94, 0.11);
+      --border: rgba(62, 111, 168, 0.2);
+      --border-strong: rgba(91, 147, 214, 0.45);
+      --shadow: rgba(0, 0, 0, 0.72);
+      --hud-height: 11.02%;
+      font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 8%, rgba(62, 111, 168, 0.12), transparent 36%),
+        #030406;
+      color: var(--fg);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    .prototype-shell {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 10px 10px 70px;
+    }
+
+    .monitor {
+      position: relative;
+      container-type: inline-size;
+      height: min(calc(100vh - 86px), calc((100vw - 20px) * 16 / 9));
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 8% 27%, rgba(91, 143, 199, 0.18) 0 0.14%, transparent 0.19%),
+        radial-gradient(circle at 79% 36%, rgba(180, 186, 194, 0.15) 0 0.09%, transparent 0.14%),
+        radial-gradient(circle at 52% 13%, rgba(91, 147, 214, 0.15) 0 0.11%, transparent 0.16%),
+        radial-gradient(circle at 87% 75%, rgba(91, 143, 199, 0.12) 0 0.12%, transparent 0.17%),
+        linear-gradient(149deg, rgba(18, 29, 44, 0.42), transparent 19%),
+        #05070a;
+      border: 1px solid rgba(91, 147, 214, 0.26);
+      box-shadow: 0 26px 80px var(--shadow), inset 0 0 0 1px rgba(255, 255, 255, 0.018);
+    }
+
+    .monitor::after {
+      content: "DP-4  ·  1440 × 2560  ·  portrait";
+      position: absolute;
+      z-index: 5;
+      left: 1.6cqw;
+      bottom: 1.4cqw;
+      color: rgba(89, 100, 120, 0.52);
+      font-size: 0.82cqw;
+      letter-spacing: 0.08em;
+      pointer-events: none;
+    }
+
+    .desktop-hud {
+      position: absolute;
+      z-index: 3;
+      inset: 0 0 auto;
+      height: var(--hud-height);
+      padding: 1.1cqw 1.6cqw 0.8cqw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr auto;
+      column-gap: 4.8cqw;
+      color: rgba(91, 143, 199, 0.82);
+      background: rgba(8, 9, 11, 0.92);
+      border: 1px solid rgba(62, 111, 168, 0.18);
+      box-shadow: 0 0.7cqw 1.8cqw rgba(0, 0, 0, 0.45);
+      font-size: 1.04cqw;
+      line-height: 1.53;
+    }
+
+    .hud-column b {
+      display: block;
+      color: rgba(91, 147, 214, 0.9);
+      letter-spacing: 0.12em;
+      margin-bottom: 0.2cqw;
+    }
+
+    .hud-line {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hud-line::before {
+      content: "○";
+      margin-right: 0.75cqw;
+      color: rgba(140, 163, 204, 0.72);
+    }
+
+    .hud-footer {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 0.45cqw;
+      border-top: 1px solid rgba(62, 111, 168, 0.1);
+      color: rgba(60, 69, 88, 0.95);
+      font-size: 0.8cqw;
+    }
+
+    .terminal-context {
+      position: absolute;
+      inset: calc(var(--hud-height) + 0.7%) 0.35% 0.2%;
+      padding: 2.2cqw 2cqw;
+      border: 1px solid rgba(62, 111, 168, 0.18);
+      background: rgba(5, 7, 10, 0.9);
+      color: rgba(180, 186, 194, 0.39);
+      font-size: 1cqw;
+      line-height: 1.65;
+    }
+
+    .terminal-context .prompt {
+      color: rgba(91, 143, 199, 0.52);
+    }
+
+    .terminal-context .selection {
+      margin: 7cqw -1.2cqw 0;
+      padding: 1.5cqw 1.2cqw;
+      background: rgba(180, 186, 194, 0.08);
+      border-left: 0.25cqw solid rgba(91, 147, 214, 0.44);
+    }
+
+    .terminal-context .ghost-lines {
+      margin-top: 5cqw;
+      width: 72%;
+      height: 34cqw;
+      opacity: 0.25;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(180, 186, 194, 0.18) 0 0.11cqw,
+        transparent 0.11cqw 2.1cqw
+      );
+      mask-image: linear-gradient(to bottom, #000, transparent);
+    }
+
+    .prototype-badge {
+      position: absolute;
+      z-index: 15;
+      top: calc(var(--hud-height) + 1.2cqw);
+      left: 1.5cqw;
+      padding: 0.5cqw 0.8cqw;
+      color: var(--muted);
+      background: rgba(8, 9, 11, 0.82);
+      border: 1px solid var(--border);
+      font-size: 0.68cqw;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .variant {
+      display: none;
+      position: absolute;
+      z-index: 10;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    body[data-variant="A"] .variant-a,
+    body[data-variant="B"] .variant-b,
+    body[data-variant="C"] .variant-c {
+      display: block;
+    }
+
+    .variant button,
+    .variant input {
+      pointer-events: auto;
+    }
+
+    .eyebrow {
+      color: var(--yellow);
+      font-size: 0.8cqw;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .status-warning {
+      display: flex;
+      align-items: center;
+      gap: 0.8cqw;
+      padding: 0.85cqw 1cqw;
+      color: #d7ad83;
+      background: var(--warning-bg);
+      border: 1px solid rgba(217, 154, 94, 0.28);
+      font-size: 0.74cqw;
+      line-height: 1.35;
+    }
+
+    .warning-dot {
+      width: 0.72cqw;
+      height: 0.72cqw;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--warning);
+      box-shadow: 0 0 1.2cqw rgba(217, 154, 94, 0.54);
+    }
+
+    .state-readout {
+      color: rgba(89, 100, 120, 0.78);
+      font-size: 0.58cqw;
+      line-height: 1.55;
+      word-break: break-word;
+    }
+
+    /* Variant A — a complete instrument drawer. */
+    .drawer {
+      position: absolute;
+      top: var(--hud-height);
+      right: 0;
+      bottom: 0;
+      width: 35.5%;
+      padding: 2.1cqw 2cqw 1.5cqw;
+      display: flex;
+      flex-direction: column;
+      gap: 1.35cqw;
+      pointer-events: auto;
+      background:
+        linear-gradient(180deg, rgba(62, 111, 168, 0.08), transparent 18%),
+        var(--panel);
+      border-left: 1px solid var(--border-strong);
+      box-shadow: -2.4cqw 0 5.5cqw rgba(0, 0, 0, 0.72);
+    }
+
+    .drawer::before {
+      content: "";
+      position: absolute;
+      left: -0.26cqw;
+      top: 41%;
+      width: 0.26cqw;
+      height: 14%;
+      background: var(--accent-bright);
+      box-shadow: 0 0 1.2cqw rgba(91, 147, 214, 0.5);
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .drawer-title {
+      margin-top: 0.35cqw;
+      color: var(--fg);
+      font-size: 1.45cqw;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .escape-hint {
+      padding: 0.45cqw 0.65cqw;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      font-size: 0.64cqw;
+    }
+
+    .dial-wrap {
+      display: grid;
+      place-items: center;
+      padding: 0.55cqw 0 0.2cqw;
+    }
+
+    .speed-dial {
+      position: relative;
+      width: 22cqw;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, var(--panel) 0 57%, transparent 58%),
+        conic-gradient(from 218deg,
+          var(--accent-bright) 0 1.6%,
+          rgba(62, 111, 168, 0.16) 1.6% 64%,
+          transparent 64% 100%);
+      filter: drop-shadow(0 1.2cqw 2.1cqw rgba(0, 0, 0, 0.5));
+    }
+
+    .speed-dial::before {
+      content: "";
+      position: absolute;
+      inset: 1.35cqw;
+      border: 1px solid rgba(91, 147, 214, 0.22);
+      border-radius: 50%;
+    }
+
+    .speed-dial .value {
+      position: relative;
+      color: var(--fg);
+      font-size: 4.8cqw;
+      font-weight: 700;
+      letter-spacing: -0.09em;
+    }
+
+    .speed-dial .value::after {
+      content: "%";
+      margin-left: 0.25cqw;
+      color: var(--muted);
+      font-size: 1.05cqw;
+      letter-spacing: 0;
+    }
+
+    .speed-dial .label {
+      position: absolute;
+      bottom: 5.4cqw;
+      color: var(--muted);
+      font-size: 0.7cqw;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .power-row {
+      display: grid;
+      grid-template-columns: 1fr 2.4fr;
+      gap: 0.85cqw;
+    }
+
+    .power-button,
+    .control-button,
+    .segment button,
+    .level-button,
+    .swing-button,
+    .rail-button,
+    .wheel-action {
+      border: 1px solid var(--border);
+      background: rgba(62, 111, 168, 0.055);
+      cursor: pointer;
+      transition: 130ms ease;
+    }
+
+    .power-button:hover,
+    .control-button:hover,
+    .segment button:hover,
+    .level-button:hover,
+    .swing-button:hover,
+    .rail-button:hover,
+    .wheel-action:hover {
+      color: #e2e6ea;
+      border-color: var(--border-strong);
+      background: rgba(62, 111, 168, 0.14);
+    }
+
+    .power-button {
+      min-height: 4.2cqw;
+      color: var(--accent-bright);
+      font-size: 1.55cqw;
+    }
+
+    .power-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 1cqw;
+      border: 1px solid var(--border);
+      background: rgba(14, 17, 22, 0.58);
+    }
+
+    .power-copy strong {
+      color: var(--fg);
+      font-size: 1cqw;
+    }
+
+    .power-copy span {
+      margin-top: 0.25cqw;
+      color: var(--muted);
+      font-size: 0.67cqw;
+    }
+
+    .control-block {
+      padding-top: 0.2cqw;
+    }
+
+    .control-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.7cqw;
+      color: var(--muted);
+      font-size: 0.68cqw;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .control-label output {
+      color: var(--fg);
+      font-size: 0.86cqw;
+      letter-spacing: 0;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 0.4cqw;
+      appearance: none;
+      background: linear-gradient(90deg, var(--accent-bright) 0 1%, rgba(62, 111, 168, 0.18) 1% 100%);
+      outline: 0;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      width: 1.25cqw;
+      height: 1.25cqw;
+      appearance: none;
+      border-radius: 50%;
+      background: #b4bac2;
+      border: 0.25cqw solid var(--accent);
+      box-shadow: 0 0 0.8cqw rgba(91, 147, 214, 0.45);
+    }
+
+    .levels {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.55cqw;
+      margin-top: 1.1cqw;
+    }
+
+    .level-button {
+      min-height: 2.6cqw;
+      color: var(--muted);
+      font-size: 0.72cqw;
+    }
+
+    .level-button.is-active,
+    .segment button.is-active,
+    .swing-button.is-active,
+    .rail-button.is-active {
+      color: #e2e6ea;
+      border-color: rgba(91, 147, 214, 0.58);
+      background: rgba(62, 111, 168, 0.2);
+      box-shadow: inset 0 -0.15cqw 0 var(--accent-bright);
+    }
+
+    .segment {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55cqw;
+    }
+
+    .segment button {
+      min-height: 3.1cqw;
+      color: var(--muted);
+      font-size: 0.72cqw;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .swing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65cqw;
+    }
+
+    .swing-button {
+      min-height: 4.25cqw;
+      padding: 0.75cqw;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 0.75cqw;
+      color: var(--muted);
+      text-align: left;
+    }
+
+    .swing-icon {
+      color: var(--accent-bright);
+      font-size: 1.6cqw;
+    }
+
+    .swing-button strong {
+      display: block;
+      color: inherit;
+      font-size: 0.73cqw;
+    }
+
+    .swing-button small {
+      display: block;
+      margin-top: 0.25cqw;
+      color: var(--muted);
+      font-size: 0.58cqw;
+    }
+
+    .drawer-bottom {
+      margin-top: auto;
+      padding-top: 1cqw;
+      border-top: 1px solid rgba(62, 111, 168, 0.12);
+    }
+
+    /* Variant B — a literal half-wheel attached to the screen edge. */
+    .wheel-stage {
+      position: absolute;
+      top: var(--hud-height);
+      right: 0;
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+    }
+
+    .wheel-kicker {
+      position: absolute;
+      top: 4.2cqw;
+      right: 2.2cqw;
+      text-align: right;
+    }
+
+    .wheel-kicker strong {
+      display: block;
+      margin-top: 0.4cqw;
+      color: var(--fg);
+      font-size: 1.15cqw;
+    }
+
+    .wheel-warning {
+      position: absolute;
+      top: 7.8cqw;
+      right: 2.2cqw;
+      width: 22cqw;
+    }
+
+    .half-wheel {
+      position: absolute;
+      top: 43%;
+      right: -25cqw;
+      width: 50cqw;
+      aspect-ratio: 1;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, var(--panel) 0 35%, transparent 35.5%),
+        repeating-conic-gradient(from 150deg,
+          rgba(91, 147, 214, 0.16) 0 28deg,
+          rgba(8, 9, 11, 0.98) 28deg 31deg);
+      border: 1px solid var(--border-strong);
+      box-shadow: -3cqw 0 7cqw rgba(0, 0, 0, 0.72), inset 0 0 4cqw rgba(62, 111, 168, 0.16);
+      pointer-events: auto;
+    }
+
+    .half-wheel::before,
+    .half-wheel::after {
+      content: "";
+      position: absolute;
+      inset: 7.8cqw;
+      border: 1px solid rgba(91, 147, 214, 0.21);
+      border-radius: 50%;
+    }
+
+    .half-wheel::after {
+      inset: 17.4cqw;
+      background: rgba(8, 9, 11, 0.98);
+      border-color: var(--border-strong);
+      box-shadow: 0 0 2.2cqw rgba(91, 147, 214, 0.14);
+    }
+
+    .wheel-center {
+      position: absolute;
+      z-index: 3;
+      left: 16.2cqw;
+      top: 18.2cqw;
+      width: 9.3cqw;
+      text-align: center;
+    }
+
+    .wheel-center .speed {
+      color: var(--fg);
+      font-size: 3.6cqw;
+      font-weight: 700;
+      letter-spacing: -0.09em;
+    }
+
+    .wheel-center .speed::after {
+      content: "%";
+      color: var(--muted);
+      font-size: 0.8cqw;
+    }
+
+    .wheel-center small {
+      display: block;
+      margin-top: 0.25cqw;
+      color: var(--muted);
+      font-size: 0.66cqw;
+      letter-spacing: 0.12em;
+    }
+
+    .wheel-action {
+      position: absolute;
+      z-index: 4;
+      width: 8cqw;
+      min-height: 4.6cqw;
+      padding: 0.55cqw;
+      color: var(--muted);
+      background: rgba(8, 9, 11, 0.87);
+      border-color: rgba(91, 147, 214, 0.34);
+      font-size: 0.66cqw;
+      text-align: center;
+    }
+
+    .wheel-action b {
+      display: block;
+      margin-bottom: 0.18cqw;
+      color: var(--fg);
+      font-size: 1.25cqw;
+    }
+
+    .wheel-action.mode {
+      left: 8.8cqw;
+      top: 5.2cqw;
+    }
+
+    .wheel-action.faster {
+      left: 2.2cqw;
+      top: 13.3cqw;
+    }
+
+    .wheel-action.power {
+      left: -0.1cqw;
+      top: 22.7cqw;
+      min-height: 5.2cqw;
+      color: var(--accent-bright);
+      border-color: var(--border-strong);
+    }
+
+    .wheel-action.slower {
+      left: 2.2cqw;
+      top: 32.5cqw;
+    }
+
+    .wheel-action.swing {
+      left: 8.8cqw;
+      top: 40.4cqw;
+    }
+
+    .wheel-state {
+      position: absolute;
+      right: 2.2cqw;
+      bottom: 4.2cqw;
+      width: 24cqw;
+      padding: 1.2cqw;
+      text-align: right;
+      background: rgba(8, 9, 11, 0.78);
+      border-right: 0.2cqw solid var(--accent-bright);
+    }
+
+    .wheel-state strong {
+      display: block;
+      margin-bottom: 0.35cqw;
+      color: var(--fg);
+      font-size: 0.9cqw;
+    }
+
+    /* Variant C — a persistent edge rail with a local popover. */
+    .edge-rail {
+      position: absolute;
+      top: var(--hud-height);
+      right: 0;
+      bottom: 0;
+      width: 7.2%;
+      padding: 1.7cqw 0.75cqw;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75cqw;
+      pointer-events: auto;
+      background: var(--panel);
+      border-left: 1px solid var(--border-strong);
+      box-shadow: -1.8cqw 0 4cqw rgba(0, 0, 0, 0.62);
+    }
+
+    .rail-mark {
+      display: grid;
+      place-items: center;
+      height: 3.8cqw;
+      margin-bottom: 0.7cqw;
+      color: var(--accent-bright);
+      border-bottom: 1px solid var(--border);
+      font-size: 1.4cqw;
+    }
+
+    .rail-button {
+      position: relative;
+      min-height: 5.2cqw;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-size: 1.4cqw;
+    }
+
+    .rail-button small {
+      position: absolute;
+      bottom: 0.35cqw;
+      color: var(--muted);
+      font-size: 0.48cqw;
+      letter-spacing: 0.05em;
+    }
+
+    .rail-button.fault {
+      margin-top: auto;
+      min-height: 3.8cqw;
+      color: var(--warning);
+      border-color: rgba(217, 154, 94, 0.25);
+      background: var(--warning-bg);
+    }
+
+    .rail-popover {
+      position: absolute;
+      z-index: 2;
+      top: 35%;
+      right: 7.2%;
+      width: 26%;
+      padding: 1.7cqw;
+      pointer-events: auto;
+      background: var(--panel-soft);
+      border: 1px solid var(--border-strong);
+      box-shadow: -2.2cqw 1.6cqw 5cqw rgba(0, 0, 0, 0.68);
+    }
+
+    .rail-popover::after {
+      content: "";
+      position: absolute;
+      top: 4.6cqw;
+      right: -0.65cqw;
+      width: 1.2cqw;
+      height: 1.2cqw;
+      transform: rotate(45deg);
+      background: var(--panel-soft);
+      border-top: 1px solid var(--border-strong);
+      border-right: 1px solid var(--border-strong);
+    }
+
+    .rail-speed {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin: 1.3cqw 0 1.5cqw;
+    }
+
+    .rail-speed strong {
+      color: var(--fg);
+      font-size: 3.8cqw;
+      letter-spacing: -0.08em;
+    }
+
+    .rail-speed strong::after {
+      content: "%";
+      margin-left: 0.2cqw;
+      color: var(--muted);
+      font-size: 0.7cqw;
+    }
+
+    .rail-speed span {
+      padding-bottom: 0.45cqw;
+      color: var(--muted);
+      font-size: 0.68cqw;
+    }
+
+    .compact-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55cqw;
+      margin-top: 1.4cqw;
+    }
+
+    .control-button {
+      min-height: 3.2cqw;
+      color: var(--muted);
+      font-size: 0.64cqw;
+      text-transform: uppercase;
+    }
+
+    .rail-caption {
+      position: absolute;
+      right: 8.7%;
+      bottom: 4.2cqw;
+      width: 25%;
+      padding: 1cqw 1.2cqw;
+      color: var(--muted);
+      background: rgba(8, 9, 11, 0.76);
+      border-right: 0.2cqw solid var(--accent);
+      font-size: 0.65cqw;
+      line-height: 1.55;
+      text-align: right;
+    }
+
+    .prototype-switcher {
+      position: fixed;
+      z-index: 100;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      display: grid;
+      grid-template-columns: 46px minmax(220px, auto) 46px;
+      min-height: 46px;
+      overflow: hidden;
+      color: #e2e6ea;
+      background: rgba(8, 9, 11, 0.97);
+      border: 1px solid rgba(91, 147, 214, 0.52);
+      border-radius: 999px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.72);
+    }
+
+    .prototype-switcher button {
+      border: 0;
+      color: var(--accent-bright);
+      background: transparent;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .prototype-switcher button:hover {
+      background: rgba(62, 111, 168, 0.18);
+    }
+
+    .variant-label {
+      display: grid;
+      place-items: center;
+      padding: 0 18px;
+      border-right: 1px solid rgba(62, 111, 168, 0.18);
+      border-left: 1px solid rgba(62, 111, 168, 0.18);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 680px) {
+      .prototype-switcher {
+        grid-template-columns: 42px minmax(160px, auto) 42px;
+      }
+
+      .variant-label {
+        padding: 0 10px;
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+<body data-variant="A">
+  <main class="prototype-shell">
+    <div class="monitor" aria-label="Mockup of portrait monitor DP-4">
+      <div class="desktop-hud" aria-hidden="true">
+        <div class="hud-column">
+          <b>WORK</b>
+          <div class="hud-line">A3-F5 #432 — policy editor, apply + dual view</div>
+          <div class="hud-line">AR-247 — CMS forwarding deny rules</div>
+          <div class="hud-line">AR-228 — SIA parser security review</div>
+        </div>
+        <div class="hud-column">
+          <b>HOUSEHOLD</b>
+          <div class="hud-line">Fleet watcher — approve design</div>
+          <div class="hud-line">Voice — dogfood Knock + Hark</div>
+          <b style="margin-top:.35cqw">THEMIS</b>
+          <div class="hud-line">Curation follow-ups</div>
+        </div>
+        <div class="hud-footer">
+          <span>checks · creatine</span>
+          <span>fan off · L1 &nbsp;│&nbsp; ☕ 350mg &nbsp;│&nbsp; today ▲ 3h43</span>
+        </div>
+      </div>
+
+      <div class="terminal-context" aria-hidden="true">
+        <div><span class="prompt">›</span> OpenAI Codex &nbsp;·&nbsp; quickshell fan menu exploration</div>
+        <div class="selection">Build a fan menu in Quickshell. Summon it from the outer right edge of DP-4.</div>
+        <div class="ghost-lines"></div>
+      </div>
+
+      <div class="prototype-badge">read-only mockup · no fan commands</div>
+
+      <section class="variant variant-a" aria-label="Variant A, instrument drawer">
+        <aside class="drawer">
+          <header class="drawer-header">
+            <div>
+              <div class="eyebrow">Air circulation</div>
+              <div class="drawer-title">Desk fan</div>
+            </div>
+            <div class="escape-hint">ESC</div>
+          </header>
+
+          <div class="status-warning">
+            <span class="warning-dot"></span>
+            <span><strong>Supply power is low</strong><br>Fan reported fault 2 on the latest read.</span>
+          </div>
+
+          <div class="dial-wrap">
+            <div class="speed-dial" aria-label="Fan speed">
+              <div class="value" data-speed>1</div>
+              <div class="label">stepless speed</div>
+            </div>
+          </div>
+
+          <div class="power-row">
+            <button class="power-button" data-action="power" aria-label="Toggle power">◉</button>
+            <div class="power-copy">
+              <strong data-power-status>OFF</strong>
+              <span>Click or press Enter to toggle</span>
+            </div>
+          </div>
+
+          <div class="control-block">
+            <label class="control-label" for="drawer-speed">
+              <span>Speed</span><output><span data-speed>1</span> / 100</output>
+            </label>
+            <input id="drawer-speed" data-speed-input type="range" min="1" max="100" value="1">
+            <div class="levels" aria-label="Physical fan levels">
+              <button class="level-button is-active" data-set-level="1">L1</button>
+              <button class="level-button" data-set-level="2">L2</button>
+              <button class="level-button" data-set-level="3">L3</button>
+              <button class="level-button" data-set-level="4">L4</button>
+            </div>
+          </div>
+
+          <div class="control-block">
+            <div class="control-label"><span>Airflow</span><output data-mode-copy>Straight</output></div>
+            <div class="segment">
+              <button class="is-active" data-set-mode="straight">Straight</button>
+              <button data-set-mode="natural">Natural</button>
+            </div>
+          </div>
+
+          <div class="control-block">
+            <div class="control-label"><span>Oscillation</span><output>2 axes</output></div>
+            <div class="swing-grid">
+              <button class="swing-button is-active" data-toggle-swing="horizontal">
+                <span class="swing-icon">↔</span>
+                <span><strong>Horizontal</strong><small data-horizontal-copy>ON</small></span>
+              </button>
+              <button class="swing-button is-active" data-toggle-swing="vertical">
+                <span class="swing-icon">↕</span>
+                <span><strong>Vertical</strong><small data-vertical-copy>ON</small></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="drawer-bottom">
+            <div class="state-readout" data-state-readout></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="variant variant-b" aria-label="Variant B, half-wheel">
+        <div class="wheel-stage">
+          <div class="wheel-kicker">
+            <div class="eyebrow">Edge wheel</div>
+            <strong>One gesture, five directions</strong>
+          </div>
+          <div class="status-warning wheel-warning">
+            <span class="warning-dot"></span>
+            <span>Low supply power · latest read 18:13</span>
+          </div>
+
+          <div class="half-wheel">
+            <div class="wheel-center">
+              <div class="speed" data-speed>1</div>
+              <small data-power-status>OFF</small>
+            </div>
+            <button class="wheel-action mode" data-cycle-mode>
+              <b>≈</b><span data-mode-copy>Straight</span>
+            </button>
+            <button class="wheel-action faster" data-step-speed="10">
+              <b>＋</b>speed
+            </button>
+            <button class="wheel-action power" data-action="power">
+              <b>◉</b><span data-power-status>OFF</span>
+            </button>
+            <button class="wheel-action slower" data-step-speed="-10">
+              <b>−</b>speed
+            </button>
+            <button class="wheel-action swing" data-cycle-swing>
+              <b>↔↕</b>swing
+            </button>
+          </div>
+
+          <div class="wheel-state">
+            <strong>Release toward an action</strong>
+            <div class="state-readout" data-state-readout></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="variant variant-c" aria-label="Variant C, compact edge rail">
+        <aside class="edge-rail">
+          <div class="rail-mark">◌</div>
+          <button class="rail-button" data-action="power" title="Power">
+            ◉<small data-power-status>OFF</small>
+          </button>
+          <button class="rail-button is-active" title="Speed">
+            <span data-speed>1</span><small>SPEED</small>
+          </button>
+          <button class="rail-button is-active" data-cycle-mode title="Airflow mode">
+            ≈<small data-mode-copy>STRAIGHT</small>
+          </button>
+          <button class="rail-button is-active" data-toggle-swing="horizontal" title="Horizontal swing">
+            ↔<small data-horizontal-copy>ON</small>
+          </button>
+          <button class="rail-button is-active" data-toggle-swing="vertical" title="Vertical swing">
+            ↕<small data-vertical-copy>ON</small>
+          </button>
+          <button class="rail-button fault" title="Fan warning">!</button>
+        </aside>
+
+        <div class="rail-popover">
+          <div class="eyebrow">Speed</div>
+          <div class="rail-speed">
+            <strong data-speed>1</strong>
+            <span>level <b data-level-copy>1</b> · <b data-power-status>OFF</b></span>
+          </div>
+          <input data-speed-input type="range" min="1" max="100" value="1" aria-label="Fan speed">
+          <div class="levels">
+            <button class="level-button is-active" data-set-level="1">L1</button>
+            <button class="level-button" data-set-level="2">L2</button>
+            <button class="level-button" data-set-level="3">L3</button>
+            <button class="level-button" data-set-level="4">L4</button>
+          </div>
+          <div class="compact-actions">
+            <button class="control-button" data-cycle-mode>Mode</button>
+            <button class="control-button" data-cycle-swing>Swing</button>
+          </div>
+          <div class="status-warning" style="margin-top:1.3cqw">
+            <span class="warning-dot"></span>
+            <span>Supply power is low</span>
+          </div>
+        </div>
+
+        <div class="rail-caption">
+          The rail can stay as a 6px hot edge when closed, then reveal only the control currently selected.
+          <div class="state-readout" style="margin-top:.7cqw" data-state-readout></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <nav class="prototype-switcher" aria-label="Prototype variants">
+    <button id="previous-variant" aria-label="Previous variant">←</button>
+    <div class="variant-label" id="variant-label">A — Instrument drawer</div>
+    <button id="next-variant" aria-label="Next variant">→</button>
+  </nav>
+
+  <script>
+    const variants = [
+      { key: "A", name: "Instrument drawer" },
+      { key: "B", name: "Half-wheel" },
+      { key: "C", name: "Compact edge rail" },
+    ];
+
+    const state = {
+      power: false,
+      speed: 1,
+      level: 1,
+      mode: "straight",
+      horizontalSwing: true,
+      verticalSwing: true,
+      fault: 2,
+      updated: "18:13",
+    };
+
+    function currentVariantIndex() {
+      const requested = new URLSearchParams(window.location.search).get("variant")?.toUpperCase();
+      const index = variants.findIndex((variant) => variant.key === requested);
+      return index === -1 ? 0 : index;
+    }
+
+    function showVariant(index) {
+      const variant = variants[(index + variants.length) % variants.length];
+      document.body.dataset.variant = variant.key;
+      document.getElementById("variant-label").textContent = `${variant.key} — ${variant.name}`;
+      const url = new URL(window.location.href);
+      url.searchParams.set("variant", variant.key);
+      window.history.replaceState({}, "", url);
+    }
+
+    function updateState() {
+      document.querySelectorAll("[data-speed]").forEach((node) => {
+        node.textContent = state.speed;
+      });
+      document.querySelectorAll("[data-speed-input]").forEach((node) => {
+        node.value = state.speed;
+        node.style.background = `linear-gradient(90deg, var(--accent-bright) 0 ${state.speed}%, rgba(62, 111, 168, 0.18) ${state.speed}% 100%)`;
+      });
+      document.querySelectorAll("[data-power-status]").forEach((node) => {
+        node.textContent = state.power ? "ON" : "OFF";
+      });
+      document.querySelectorAll("[data-mode-copy]").forEach((node) => {
+        node.textContent = state.mode === "straight" ? "Straight" : "Natural";
+      });
+      document.querySelectorAll("[data-horizontal-copy]").forEach((node) => {
+        node.textContent = state.horizontalSwing ? "ON" : "OFF";
+      });
+      document.querySelectorAll("[data-vertical-copy]").forEach((node) => {
+        node.textContent = state.verticalSwing ? "ON" : "OFF";
+      });
+      document.querySelectorAll("[data-level-copy]").forEach((node) => {
+        node.textContent = state.level;
+      });
+      document.querySelectorAll("[data-set-level]").forEach((node) => {
+        node.classList.toggle("is-active", Number(node.dataset.setLevel) === state.level);
+      });
+      document.querySelectorAll("[data-set-mode]").forEach((node) => {
+        node.classList.toggle("is-active", node.dataset.setMode === state.mode);
+      });
+      document.querySelectorAll("[data-toggle-swing='horizontal']").forEach((node) => {
+        node.classList.toggle("is-active", state.horizontalSwing);
+      });
+      document.querySelectorAll("[data-toggle-swing='vertical']").forEach((node) => {
+        node.classList.toggle("is-active", state.verticalSwing);
+      });
+      document.querySelectorAll("[data-state-readout]").forEach((node) => {
+        node.textContent = `power=${state.power ? "on" : "off"} · speed=${state.speed} · level=${state.level} · mode=${state.mode} · h=${state.horizontalSwing ? "on" : "off"} · v=${state.verticalSwing ? "on" : "off"} · fault=${state.fault} · ${state.updated}`;
+      });
+    }
+
+    document.getElementById("previous-variant").addEventListener("click", () => {
+      showVariant(currentVariantIndex() - 1);
+    });
+    document.getElementById("next-variant").addEventListener("click", () => {
+      showVariant(currentVariantIndex() + 1);
+    });
+
+    document.querySelectorAll("[data-action='power']").forEach((node) => {
+      node.addEventListener("click", () => {
+        state.power = !state.power;
+        updateState();
+      });
+    });
+    document.querySelectorAll("[data-speed-input]").forEach((node) => {
+      node.addEventListener("input", (event) => {
+        state.speed = Number(event.currentTarget.value);
+        updateState();
+      });
+    });
+    document.querySelectorAll("[data-step-speed]").forEach((node) => {
+      node.addEventListener("click", () => {
+        state.speed = Math.max(1, Math.min(100, state.speed + Number(node.dataset.stepSpeed)));
+        updateState();
+      });
+    });
+    document.querySelectorAll("[data-set-level]").forEach((node) => {
+      node.addEventListener("click", () => {
+        state.level = Number(node.dataset.setLevel);
+        updateState();
+      });
+    });
+    document.querySelectorAll("[data-set-mode]").forEach((node) => {
+      node.addEventListener("click", () => {
+        state.mode = node.dataset.setMode;
+        updateState();
+      });
+    });
+    document.querySelectorAll("[data-cycle-mode]").forEach((node) => {
+      node.addEventListener("click", () => {
+        state.mode = state.mode === "straight" ? "natural" : "straight";
+        updateState();
+      });
+    });
+    document.querySelectorAll("[data-toggle-swing]").forEach((node) => {
+      node.addEventListener("click", () => {
+        if (node.dataset.toggleSwing === "horizontal") state.horizontalSwing = !state.horizontalSwing;
+        if (node.dataset.toggleSwing === "vertical") state.verticalSwing = !state.verticalSwing;
+        updateState();
+      });
+    });
+    document.querySelectorAll("[data-cycle-swing]").forEach((node) => {
+      node.addEventListener("click", () => {
+        if (state.horizontalSwing && state.verticalSwing) {
+          state.verticalSwing = false;
+        } else if (state.horizontalSwing) {
+          state.horizontalSwing = false;
+        } else {
+          state.horizontalSwing = true;
+          state.verticalSwing = true;
+        }
+        updateState();
+      });
+    });
+
+    window.addEventListener("keydown", (event) => {
+      const target = event.target;
+      if (target.matches("input, textarea, [contenteditable='true']")) return;
+      if (event.key === "ArrowLeft") showVariant(currentVariantIndex() - 1);
+      if (event.key === "ArrowRight") showVariant(currentVariantIndex() + 1);
+    });
+
+    showVariant(currentVariantIndex());
+    updateState();
+  </script>
+</body>
+</html>

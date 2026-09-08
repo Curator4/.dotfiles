@@ -1,0 +1,953 @@
+<!doctype html>
+<!-- Three vertical-button fan controls, switchable via ?variant=D. PROTOTYPE ONLY. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quickshell fan menu — discrete command round</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #08090b;
+      --panel: rgba(8, 9, 11, 0.97);
+      --panel-raised: #0e1116;
+      --fg: #b4bac2;
+      --bright: #e2e6ea;
+      --muted: #596478;
+      --dim: #30394a;
+      --accent: #3e6fa8;
+      --accent-bright: #5b93d6;
+      --yellow: #8ca3cc;
+      --warning: #d99a5e;
+      --border: rgba(62, 111, 168, 0.22);
+      --border-strong: rgba(91, 147, 214, 0.48);
+      --hud-height: 11.02%;
+      font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 7%, rgba(62, 111, 168, 0.13), transparent 36%),
+        #030406;
+      color: var(--fg);
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+    }
+
+    .prototype-shell {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 10px 10px 70px;
+    }
+
+    .monitor {
+      position: relative;
+      container-type: inline-size;
+      height: min(calc(100vh - 86px), calc((100vw - 20px) * 16 / 9));
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 8% 27%, rgba(91, 143, 199, 0.18) 0 0.14%, transparent 0.19%),
+        radial-gradient(circle at 79% 36%, rgba(180, 186, 194, 0.15) 0 0.09%, transparent 0.14%),
+        radial-gradient(circle at 52% 13%, rgba(91, 147, 214, 0.15) 0 0.11%, transparent 0.16%),
+        linear-gradient(149deg, rgba(18, 29, 44, 0.42), transparent 19%),
+        #05070a;
+      border: 1px solid rgba(91, 147, 214, 0.26);
+      box-shadow: 0 26px 80px rgba(0, 0, 0, 0.72);
+    }
+
+    .monitor::after {
+      content: "DP-4  ·  portrait  ·  prototype state only";
+      position: absolute;
+      z-index: 4;
+      left: 1.5cqw;
+      bottom: 1.3cqw;
+      color: rgba(89, 100, 120, 0.5);
+      font-size: 0.68cqw;
+      letter-spacing: 0.08em;
+    }
+
+    .desktop-hud {
+      position: absolute;
+      z-index: 3;
+      inset: 0 0 auto;
+      height: var(--hud-height);
+      padding: 1.05cqw 1.55cqw 0.75cqw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr auto;
+      column-gap: 4.8cqw;
+      color: rgba(91, 143, 199, 0.82);
+      background: rgba(8, 9, 11, 0.92);
+      border: 1px solid rgba(62, 111, 168, 0.18);
+      box-shadow: 0 0.7cqw 1.8cqw rgba(0, 0, 0, 0.45);
+      font-size: 1.02cqw;
+      line-height: 1.53;
+    }
+
+    .hud-column b {
+      display: block;
+      color: rgba(91, 147, 214, 0.9);
+      letter-spacing: 0.12em;
+      margin-bottom: 0.2cqw;
+    }
+
+    .hud-line {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hud-line::before {
+      content: "○";
+      margin-right: 0.72cqw;
+      color: rgba(140, 163, 204, 0.72);
+    }
+
+    .hud-footer {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 0.42cqw;
+      border-top: 1px solid rgba(62, 111, 168, 0.1);
+      color: rgba(60, 69, 88, 0.95);
+      font-size: 0.76cqw;
+    }
+
+    .terminal-context {
+      position: absolute;
+      inset: calc(var(--hud-height) + 0.7%) 0.35% 0.2%;
+      padding: 2.2cqw 2cqw;
+      border: 1px solid rgba(62, 111, 168, 0.18);
+      background: rgba(5, 7, 10, 0.9);
+      color: rgba(180, 186, 194, 0.36);
+      font-size: 1cqw;
+      line-height: 1.65;
+    }
+
+    .terminal-context .prompt {
+      color: rgba(91, 143, 199, 0.52);
+    }
+
+    .terminal-context .selection {
+      margin: 7cqw -1.2cqw 0;
+      padding: 1.5cqw 1.2cqw;
+      background: rgba(180, 186, 194, 0.08);
+      border-left: 0.25cqw solid rgba(91, 147, 214, 0.44);
+    }
+
+    .terminal-context .ghost-lines {
+      margin-top: 5cqw;
+      width: 72%;
+      height: 34cqw;
+      opacity: 0.25;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(180, 186, 194, 0.18) 0 0.11cqw,
+        transparent 0.11cqw 2.1cqw
+      );
+      mask-image: linear-gradient(to bottom, #000, transparent);
+    }
+
+    .prototype-badge {
+      position: absolute;
+      z-index: 15;
+      top: calc(var(--hud-height) + 1.2cqw);
+      left: 1.5cqw;
+      padding: 0.48cqw 0.78cqw;
+      color: var(--muted);
+      background: rgba(8, 9, 11, 0.82);
+      border: 1px solid var(--border);
+      font-size: 0.65cqw;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .variant {
+      display: none;
+      position: absolute;
+      z-index: 10;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    body[data-variant="D"] .variant-d,
+    body[data-variant="E"] .variant-e,
+    body[data-variant="F"] .variant-f {
+      display: block;
+    }
+
+    .eyebrow {
+      color: var(--yellow);
+      font-size: 0.7cqw;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .panel-title {
+      margin-top: 0.35cqw;
+      color: var(--bright);
+      font-size: 1.35cqw;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .status-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.7cqw;
+      padding: 0.8cqw 0;
+      color: var(--muted);
+      border-top: 1px solid rgba(62, 111, 168, 0.12);
+      border-bottom: 1px solid rgba(62, 111, 168, 0.12);
+      font-size: 0.65cqw;
+      line-height: 1.35;
+    }
+
+    .fault-quiet {
+      color: var(--warning);
+      white-space: nowrap;
+    }
+
+    .fault-quiet::before {
+      content: "";
+      display: inline-block;
+      width: 0.5cqw;
+      height: 0.5cqw;
+      margin-right: 0.45cqw;
+      border-radius: 50%;
+      background: var(--warning);
+      box-shadow: 0 0 0.75cqw rgba(217, 154, 94, 0.48);
+    }
+
+    .group-label {
+      margin: 1cqw 0 0.48cqw;
+      color: var(--muted);
+      font-size: 0.57cqw;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+
+    .command-button {
+      position: relative;
+      width: 100%;
+      min-height: 4.5cqw;
+      padding: 0.68cqw 1cqw;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      border: 1px solid var(--border);
+      color: var(--fg);
+      background: rgba(62, 111, 168, 0.045);
+      cursor: pointer;
+      text-align: left;
+      transition: 130ms ease;
+      pointer-events: auto;
+    }
+
+    .command-button:hover,
+    .command-button:focus-visible {
+      color: var(--bright);
+      border-color: var(--border-strong);
+      background: rgba(62, 111, 168, 0.14);
+      outline: none;
+      box-shadow: inset 0.16cqw 0 var(--accent-bright);
+    }
+
+    .command-button[aria-disabled="true"] {
+      opacity: 0.28;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .command-button.is-sending {
+      opacity: 1;
+      color: var(--bright);
+      border-color: var(--accent-bright);
+      background: rgba(62, 111, 168, 0.18);
+    }
+
+    .command-button.is-sending::after {
+      content: "";
+      position: absolute;
+      right: 1cqw;
+      top: 50%;
+      width: 0.8cqw;
+      height: 0.8cqw;
+      margin-top: -0.4cqw;
+      border: 0.12cqw solid rgba(180, 186, 194, 0.24);
+      border-top-color: var(--accent-bright);
+      border-radius: 50%;
+      animation: spin 760ms linear infinite;
+    }
+
+    .command-button strong {
+      color: inherit;
+      font-size: 0.84cqw;
+      font-weight: 600;
+      letter-spacing: 0.035em;
+      text-transform: uppercase;
+    }
+
+    .command-button code {
+      margin-top: 0.28cqw;
+      color: var(--muted);
+      font-size: 0.54cqw;
+    }
+
+    .receipt {
+      margin-top: auto;
+      padding: 0.85cqw 0 0;
+      color: var(--muted);
+      border-top: 1px solid rgba(62, 111, 168, 0.12);
+      font-size: 0.58cqw;
+      line-height: 1.55;
+    }
+
+    .receipt strong {
+      display: block;
+      color: var(--fg);
+      font-size: 0.65cqw;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .state-readout {
+      margin-top: 0.42cqw;
+      color: rgba(89, 100, 120, 0.72);
+      font-size: 0.52cqw;
+      line-height: 1.5;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* D — every useful action is a direct, full-width command button. */
+    .ladder-panel {
+      position: absolute;
+      top: var(--hud-height);
+      right: 0;
+      bottom: 0;
+      width: 22.5%;
+      padding: 1.8cqw 1.65cqw 1.35cqw;
+      display: flex;
+      flex-direction: column;
+      pointer-events: auto;
+      background:
+        linear-gradient(180deg, rgba(62, 111, 168, 0.07), transparent 16%),
+        var(--panel);
+      border-left: 1px solid var(--border-strong);
+      box-shadow: -2.4cqw 0 5.5cqw rgba(0, 0, 0, 0.72);
+    }
+
+    .ladder-panel::before {
+      content: "";
+      position: absolute;
+      left: -0.25cqw;
+      top: 44%;
+      width: 0.25cqw;
+      height: 12%;
+      background: var(--accent-bright);
+      box-shadow: 0 0 1.2cqw rgba(91, 147, 214, 0.5);
+    }
+
+    .ladder-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45cqw;
+    }
+
+    .ladder-stack .power-on {
+      border-color: rgba(91, 147, 214, 0.44);
+      background: rgba(62, 111, 168, 0.11);
+    }
+
+    .ladder-stack .power-off {
+      color: #8d96a4;
+    }
+
+    /* E — a small physical-remote treatment with only the core six commands. */
+    .remote-shell {
+      position: absolute;
+      top: 21%;
+      right: 1.2cqw;
+      width: 19.5%;
+      min-height: 62%;
+      padding: 1.35cqw 1.15cqw;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.85cqw;
+      pointer-events: auto;
+      background:
+        linear-gradient(180deg, rgba(91, 147, 214, 0.08), transparent 24%),
+        rgba(8, 9, 11, 0.97);
+      border: 1px solid var(--border-strong);
+      border-radius: 2.7cqw;
+      box-shadow: -2.6cqw 2.6cqw 6cqw rgba(0, 0, 0, 0.7), inset 0 0 2.5cqw rgba(62, 111, 168, 0.06);
+    }
+
+    .remote-grip {
+      width: 3.5cqw;
+      height: 0.28cqw;
+      margin: 0 auto 0.4cqw;
+      border-radius: 999px;
+      background: rgba(91, 147, 214, 0.34);
+    }
+
+    .remote-title {
+      text-align: center;
+    }
+
+    .remote-title strong {
+      display: block;
+      color: var(--bright);
+      font-size: 0.9cqw;
+    }
+
+    .remote-title span {
+      color: var(--muted);
+      font-size: 0.5cqw;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .remote-leds {
+      display: flex;
+      justify-content: center;
+      gap: 0.72cqw;
+      padding: 0.55cqw 0 0.2cqw;
+    }
+
+    .remote-leds i {
+      width: 0.48cqw;
+      height: 0.48cqw;
+      border-radius: 50%;
+      background: #273142;
+    }
+
+    .remote-leds i:first-child {
+      background: var(--accent-bright);
+      box-shadow: 0 0 0.8cqw rgba(91, 147, 214, 0.62);
+    }
+
+    .remote-command {
+      min-height: 6cqw;
+      padding: 0.6cqw;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--fg);
+      background: rgba(62, 111, 168, 0.055);
+      cursor: pointer;
+      pointer-events: auto;
+      text-align: center;
+      transition: 130ms ease;
+    }
+
+    .remote-command:hover,
+    .remote-command:focus-visible {
+      color: var(--bright);
+      border-color: var(--border-strong);
+      background: rgba(62, 111, 168, 0.16);
+      outline: none;
+      box-shadow: 0 0 1.3cqw rgba(91, 147, 214, 0.2);
+    }
+
+    .remote-command[aria-disabled="true"] {
+      opacity: 0.28;
+      pointer-events: none;
+    }
+
+    .remote-command.is-sending {
+      color: var(--bright);
+      border-color: var(--accent-bright);
+      background: rgba(62, 111, 168, 0.22);
+      animation: pulse 900ms ease-in-out infinite alternate;
+    }
+
+    .remote-command strong {
+      display: block;
+      font-size: 1.28cqw;
+      font-weight: 600;
+    }
+
+    .remote-command small {
+      display: block;
+      margin-top: 0.2cqw;
+      color: var(--muted);
+      font-size: 0.46cqw;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .remote-command.power {
+      color: var(--accent-bright);
+    }
+
+    .remote-command.off {
+      color: #858e9c;
+    }
+
+    .remote-receipt {
+      margin-top: 0.3cqw;
+      color: var(--muted);
+      font-size: 0.48cqw;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .remote-caption {
+      position: absolute;
+      right: 22.4%;
+      top: 42%;
+      width: 22%;
+      padding: 1.05cqw 1.2cqw;
+      color: var(--muted);
+      background: rgba(8, 9, 11, 0.78);
+      border-right: 0.2cqw solid var(--accent);
+      font-size: 0.62cqw;
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    @keyframes pulse {
+      to { box-shadow: 0 0 1.8cqw rgba(91, 147, 214, 0.42); }
+    }
+
+    /* F — full command set, one vertically expanded group at a time. */
+    .accordion-panel {
+      position: absolute;
+      top: var(--hud-height);
+      right: 0;
+      bottom: 0;
+      width: 22.5%;
+      padding: 1.8cqw 1.7cqw 1.35cqw;
+      display: flex;
+      flex-direction: column;
+      pointer-events: auto;
+      background: var(--panel);
+      border-left: 1px solid var(--border-strong);
+      box-shadow: -2.4cqw 0 5.5cqw rgba(0, 0, 0, 0.72);
+    }
+
+    .accordion-list {
+      margin-top: 1.2cqw;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55cqw;
+    }
+
+    .accordion-heading {
+      width: 100%;
+      min-height: 4.5cqw;
+      padding: 0.8cqw 1cqw;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      border: 1px solid var(--border);
+      color: var(--fg);
+      background: rgba(62, 111, 168, 0.04);
+      cursor: pointer;
+      pointer-events: auto;
+      text-align: left;
+    }
+
+    .accordion-heading:hover,
+    .accordion-heading.is-open {
+      color: var(--bright);
+      border-color: var(--border-strong);
+      background: rgba(62, 111, 168, 0.12);
+    }
+
+    .accordion-heading strong {
+      font-size: 0.78cqw;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .accordion-heading small {
+      margin-top: 0.28cqw;
+      color: var(--muted);
+      font-size: 0.54cqw;
+    }
+
+    .accordion-heading::after {
+      content: "+";
+      position: absolute;
+      right: 2.8cqw;
+      color: var(--muted);
+      font-size: 1.05cqw;
+    }
+
+    .accordion-heading.is-open::after {
+      content: "−";
+      color: var(--accent-bright);
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 0 0 0.3cqw 1.1cqw;
+      flex-direction: column;
+      gap: 0.42cqw;
+      border-left: 1px solid rgba(91, 147, 214, 0.3);
+    }
+
+    .accordion-content.is-open {
+      display: flex;
+    }
+
+    .accordion-content .command-button {
+      min-height: 4.5cqw;
+      background: rgba(14, 17, 22, 0.82);
+    }
+
+    .prototype-switcher {
+      position: fixed;
+      z-index: 100;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      display: grid;
+      grid-template-columns: 46px minmax(230px, auto) 46px;
+      min-height: 46px;
+      overflow: hidden;
+      color: var(--bright);
+      background: rgba(8, 9, 11, 0.97);
+      border: 1px solid rgba(91, 147, 214, 0.52);
+      border-radius: 999px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.72);
+    }
+
+    .prototype-switcher button {
+      border: 0;
+      color: var(--accent-bright);
+      background: transparent;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .prototype-switcher button:hover {
+      background: rgba(62, 111, 168, 0.18);
+    }
+
+    .variant-label {
+      display: grid;
+      place-items: center;
+      padding: 0 18px;
+      border-right: 1px solid rgba(62, 111, 168, 0.18);
+      border-left: 1px solid rgba(62, 111, 168, 0.18);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body data-variant="D">
+  <main class="prototype-shell">
+    <div class="monitor" aria-label="Mockup of portrait monitor DP-4">
+      <div class="desktop-hud" aria-hidden="true">
+        <div class="hud-column">
+          <b>WORK</b>
+          <div class="hud-line">A3-F5 #432 — policy editor, apply + dual view</div>
+          <div class="hud-line">AR-247 — CMS forwarding deny rules</div>
+          <div class="hud-line">AR-228 — SIA parser security review</div>
+        </div>
+        <div class="hud-column">
+          <b>HOUSEHOLD</b>
+          <div class="hud-line">Fleet watcher — approve design</div>
+          <div class="hud-line">Voice — dogfood Knock + Hark</div>
+          <b style="margin-top:.35cqw">THEMIS</b>
+          <div class="hud-line">Curation follow-ups</div>
+        </div>
+        <div class="hud-footer">
+          <span>checks · creatine</span>
+          <span>fan off · L1 &nbsp;│&nbsp; ☕ 350mg &nbsp;│&nbsp; today ▲ 3h43</span>
+        </div>
+      </div>
+
+      <div class="terminal-context" aria-hidden="true">
+        <div><span class="prompt">›</span> OpenAI Codex &nbsp;·&nbsp; discrete fan control round</div>
+        <div class="selection">One button equals one explicit fan command. No slider bursts, toggles, or scenes.</div>
+        <div class="ghost-lines"></div>
+      </div>
+
+      <div class="prototype-badge">simulated only · no relay traffic</div>
+
+      <section class="variant variant-d" aria-label="Variant D, command ladder">
+        <aside class="ladder-panel">
+          <header>
+            <div class="eyebrow">Direct commands</div>
+            <div class="panel-title">Desk fan</div>
+          </header>
+          <div class="status-line">
+            <span data-summary>READBACK · OFF · L1 · STRAIGHT</span>
+            <span class="fault-quiet">POWER LOW</span>
+          </div>
+
+          <div class="group-label">Power</div>
+          <div class="ladder-stack">
+            <button class="command-button power-on" data-command="on">
+              <strong>Turn Fan On</strong><code>xiaomi-fan on</code>
+            </button>
+            <button class="command-button power-off" data-command="off">
+              <strong>Turn Fan Off</strong><code>xiaomi-fan off</code>
+            </button>
+          </div>
+
+          <div class="group-label">Physical level</div>
+          <div class="ladder-stack">
+            <button class="command-button" data-command="level 1"><strong>Level 1 · Slow</strong><code>xiaomi-fan level 1</code></button>
+            <button class="command-button" data-command="level 2"><strong>Level 2 · Medium</strong><code>xiaomi-fan level 2</code></button>
+            <button class="command-button" data-command="level 3"><strong>Level 3 · Fast</strong><code>xiaomi-fan level 3</code></button>
+            <button class="command-button" data-command="level 4"><strong>Level 4 · Turbo</strong><code>xiaomi-fan level 4</code></button>
+          </div>
+
+          <div class="group-label">Airflow</div>
+          <div class="ladder-stack">
+            <button class="command-button" data-command="mode straight"><strong>Use Straight Airflow</strong><code>xiaomi-fan mode straight</code></button>
+            <button class="command-button" data-command="mode natural"><strong>Use Natural Airflow</strong><code>xiaomi-fan mode natural</code></button>
+          </div>
+
+          <div class="group-label">Oscillation</div>
+          <div class="ladder-stack">
+            <button class="command-button" data-command="swing horizontal on"><strong>Start Horizontal Swing</strong><code>xiaomi-fan swing horizontal on</code></button>
+            <button class="command-button" data-command="swing horizontal off"><strong>Stop Horizontal Swing</strong><code>xiaomi-fan swing horizontal off</code></button>
+            <button class="command-button" data-command="swing vertical on"><strong>Start Vertical Swing</strong><code>xiaomi-fan swing vertical on</code></button>
+            <button class="command-button" data-command="swing vertical off"><strong>Stop Vertical Swing</strong><code>xiaomi-fan swing vertical off</code></button>
+          </div>
+
+          <div class="receipt">
+            <strong data-receipt-title>Ready</strong>
+            <span data-receipt-copy>No command queued. Other actions lock while one command is running.</span>
+            <div class="state-readout" data-state-readout></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="variant variant-e" aria-label="Variant E, physical remote">
+        <div class="remote-caption">
+          The fan itself uses discrete physical controls. This version keeps only the six commands worth reaching for quickly.
+          <div class="state-readout" style="margin-top:.7cqw" data-state-readout></div>
+        </div>
+        <aside class="remote-shell">
+          <div class="remote-grip"></div>
+          <div class="remote-title">
+            <strong>FAN</strong>
+            <span>direct remote</span>
+          </div>
+          <div class="remote-leds" aria-label="Current level 1">
+            <i></i><i></i><i></i><i></i>
+          </div>
+          <button class="remote-command power" data-command="on"><span><strong>ON</strong><small>xiaomi-fan on</small></span></button>
+          <button class="remote-command" data-command="level 1"><span><strong>1</strong><small>slow</small></span></button>
+          <button class="remote-command" data-command="level 2"><span><strong>2</strong><small>medium</small></span></button>
+          <button class="remote-command" data-command="level 3"><span><strong>3</strong><small>fast</small></span></button>
+          <button class="remote-command" data-command="level 4"><span><strong>4</strong><small>turbo</small></span></button>
+          <button class="remote-command off" data-command="off"><span><strong>OFF</strong><small>xiaomi-fan off</small></span></button>
+          <div class="remote-receipt">
+            <span class="fault-quiet">POWER LOW</span><br>
+            <span data-receipt-copy>Ready for one command.</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="variant variant-f" aria-label="Variant F, accordion command deck">
+        <aside class="accordion-panel">
+          <header>
+            <div class="eyebrow">Command deck</div>
+            <div class="panel-title">Desk fan</div>
+          </header>
+          <div class="status-line">
+            <span data-summary>READBACK · OFF · L1 · STRAIGHT</span>
+            <span class="fault-quiet">POWER LOW</span>
+          </div>
+
+          <div class="accordion-list">
+            <button class="accordion-heading" data-open-group="power"><strong>Power</strong><small>Explicit on or off</small></button>
+            <div class="accordion-content" data-group="power">
+              <button class="command-button" data-command="on"><strong>Turn Fan On</strong><code>xiaomi-fan on</code></button>
+              <button class="command-button" data-command="off"><strong>Turn Fan Off</strong><code>xiaomi-fan off</code></button>
+            </div>
+
+            <button class="accordion-heading is-open" data-open-group="level"><strong>Level</strong><small>Four physical presets</small></button>
+            <div class="accordion-content is-open" data-group="level">
+              <button class="command-button" data-command="level 1"><strong>Level 1 · Slow</strong><code>xiaomi-fan level 1</code></button>
+              <button class="command-button" data-command="level 2"><strong>Level 2 · Medium</strong><code>xiaomi-fan level 2</code></button>
+              <button class="command-button" data-command="level 3"><strong>Level 3 · Fast</strong><code>xiaomi-fan level 3</code></button>
+              <button class="command-button" data-command="level 4"><strong>Level 4 · Turbo</strong><code>xiaomi-fan level 4</code></button>
+            </div>
+
+            <button class="accordion-heading" data-open-group="mode"><strong>Airflow</strong><small>Straight or natural</small></button>
+            <div class="accordion-content" data-group="mode">
+              <button class="command-button" data-command="mode straight"><strong>Use Straight Airflow</strong><code>xiaomi-fan mode straight</code></button>
+              <button class="command-button" data-command="mode natural"><strong>Use Natural Airflow</strong><code>xiaomi-fan mode natural</code></button>
+            </div>
+
+            <button class="accordion-heading" data-open-group="horizontal"><strong>Horizontal Swing</strong><small>Explicit on or off</small></button>
+            <div class="accordion-content" data-group="horizontal">
+              <button class="command-button" data-command="swing horizontal on"><strong>Start Horizontal Swing</strong><code>xiaomi-fan swing horizontal on</code></button>
+              <button class="command-button" data-command="swing horizontal off"><strong>Stop Horizontal Swing</strong><code>xiaomi-fan swing horizontal off</code></button>
+            </div>
+
+            <button class="accordion-heading" data-open-group="vertical"><strong>Vertical Swing</strong><small>Explicit on or off</small></button>
+            <div class="accordion-content" data-group="vertical">
+              <button class="command-button" data-command="swing vertical on"><strong>Start Vertical Swing</strong><code>xiaomi-fan swing vertical on</code></button>
+              <button class="command-button" data-command="swing vertical off"><strong>Stop Vertical Swing</strong><code>xiaomi-fan swing vertical off</code></button>
+            </div>
+          </div>
+
+          <div class="receipt">
+            <strong data-receipt-title>Ready</strong>
+            <span data-receipt-copy>Choose one group, then send one explicit command.</span>
+            <div class="state-readout" data-state-readout></div>
+          </div>
+        </aside>
+      </section>
+    </div>
+  </main>
+
+  <nav class="prototype-switcher" aria-label="Prototype variants">
+    <button id="previous-variant" aria-label="Previous variant">←</button>
+    <div class="variant-label" id="variant-label">D — Command ladder</div>
+    <button id="next-variant" aria-label="Next variant">→</button>
+  </nav>
+
+  <script>
+    const variants = [
+      { key: "D", name: "Command ladder" },
+      { key: "E", name: "Physical remote" },
+      { key: "F", name: "Accordion deck" },
+    ];
+
+    const state = {
+      power: false,
+      level: 1,
+      mode: "straight",
+      horizontalSwing: true,
+      verticalSwing: true,
+      fault: 2,
+      updated: "18:13",
+    };
+
+    let commandPending = false;
+
+    function currentVariantIndex() {
+      const requested = new URLSearchParams(window.location.search).get("variant")?.toUpperCase();
+      const index = variants.findIndex((variant) => variant.key === requested);
+      return index === -1 ? 0 : index;
+    }
+
+    function showVariant(index) {
+      const variant = variants[(index + variants.length) % variants.length];
+      document.body.dataset.variant = variant.key;
+      document.getElementById("variant-label").textContent = `${variant.key} — ${variant.name}`;
+      const url = new URL(window.location.href);
+      url.searchParams.set("variant", variant.key);
+      window.history.replaceState({}, "", url);
+    }
+
+    function summary() {
+      return `READBACK · ${state.power ? "ON" : "OFF"} · L${state.level} · ${state.mode.toUpperCase()}`;
+    }
+
+    function updateState() {
+      document.querySelectorAll("[data-summary]").forEach((node) => {
+        node.textContent = summary();
+      });
+      document.querySelectorAll("[data-state-readout]").forEach((node) => {
+        node.textContent = `cache: power=${state.power ? "on" : "off"} · level=${state.level} · mode=${state.mode} · h=${state.horizontalSwing ? "on" : "off"} · v=${state.verticalSwing ? "on" : "off"} · fault=${state.fault} · ${state.updated}`;
+      });
+    }
+
+    function applyConfirmedCommand(command) {
+      const parts = command.split(" ");
+      if (command === "on") state.power = true;
+      if (command === "off") state.power = false;
+      if (parts[0] === "level") state.level = Number(parts[1]);
+      if (parts[0] === "mode") state.mode = parts[1];
+      if (parts[0] === "swing" && parts[1] === "horizontal") state.horizontalSwing = parts[2] === "on";
+      if (parts[0] === "swing" && parts[1] === "vertical") state.verticalSwing = parts[2] === "on";
+    }
+
+    function setReceipt(title, copy) {
+      document.querySelectorAll("[data-receipt-title]").forEach((node) => node.textContent = title);
+      document.querySelectorAll("[data-receipt-copy]").forEach((node) => node.textContent = copy);
+    }
+
+    function setCommandLock(locked, activeButton = null) {
+      document.querySelectorAll("[data-command]").forEach((node) => {
+        node.setAttribute("aria-disabled", locked ? "true" : "false");
+        node.classList.toggle("is-sending", node === activeButton && locked);
+      });
+    }
+
+    function simulateCommand(button) {
+      if (commandPending) return;
+      commandPending = true;
+      const command = button.dataset.command;
+      setCommandLock(true, button);
+      setReceipt("Sending one command", `xiaomi-fan ${command} · other actions locked`);
+
+      window.setTimeout(() => {
+        applyConfirmedCommand(command);
+        commandPending = false;
+        setCommandLock(false);
+        setReceipt("Fresh readback", `xiaomi-fan ${command} · fan replied and cache refreshed`);
+        updateState();
+      }, 1050);
+    }
+
+    document.querySelectorAll("[data-command]").forEach((button) => {
+      button.addEventListener("click", () => simulateCommand(button));
+    });
+
+    document.querySelectorAll("[data-open-group]").forEach((heading) => {
+      heading.addEventListener("click", () => {
+        const group = heading.dataset.openGroup;
+        document.querySelectorAll("[data-open-group]").forEach((node) => {
+          node.classList.toggle("is-open", node === heading && !heading.classList.contains("is-open"));
+        });
+        document.querySelectorAll("[data-group]").forEach((node) => {
+          node.classList.toggle("is-open", node.dataset.group === group && !node.classList.contains("is-open"));
+        });
+      });
+    });
+
+    document.getElementById("previous-variant").addEventListener("click", () => {
+      showVariant(currentVariantIndex() - 1);
+    });
+    document.getElementById("next-variant").addEventListener("click", () => {
+      showVariant(currentVariantIndex() + 1);
+    });
+
+    window.addEventListener("keydown", (event) => {
+      const target = event.target;
+      if (target.matches("input, textarea, [contenteditable='true']")) return;
+      if (event.key === "ArrowLeft") showVariant(currentVariantIndex() - 1);
+      if (event.key === "ArrowRight") showVariant(currentVariantIndex() + 1);
+    });
+
+    showVariant(currentVariantIndex());
+    updateState();
+  </script>
+</body>
+</html>
