@@ -1,29 +1,30 @@
+/* Serene — waybar is rendered on apply by theme-render.sh */
 * {
-    font-family: "Hack Nerd Font";
+    font-family: "CaskaydiaCove Nerd Font";
     font-size: 14px;
 }
 window#waybar {
-    background-color: rgba(239, 241, 246, 0.9);
-    color: #4c4f6a;
+    background-color: rgba(255, 249, 240, 0.9);
+    color: #3F4A43;
 }
 #workspaces button {
     padding: 0 8px;
-    color: #4c4f6a;
+    color: #3F4A43;
 }
 #workspaces button.active {
-    color: #8b9ad8;
+    color: #4A7F3F;
 }
-#clock { padding: 0 12px; color: rgba(139, 154, 216, 0.7); }
-#custom-volume { padding: 0 10px; color: rgba(210, 15, 57, 0.7); }
-#bluetooth { padding: 0 10px; color: #8b9ad8; }
-#network { padding: 0 10px; color: #4c4f6a; }
-#custom-gpu { padding: 0 10px; color: #8b9ad8; }
-#cpu { padding: 0 10px; color: #8b9ad8; }
-#memory { padding: 0 10px; color: #8b9ad8; }
-#disk { padding: 0 10px; color: #8b9ad8; }
-#custom-theme { padding: 0 10px; color: #8b9ad8; }
+#clock { padding: 0 12px; color: rgba(74, 127, 63, 0.7); }
+#custom-volume { padding: 0 10px; color: rgba(184, 92, 69, 0.7); }
+#bluetooth { padding: 0 10px; color: #4A7F3F; }
+#network { padding: 0 10px; color: #3F4A43; }
+#custom-gpu { padding: 0 10px; color: #4A7F3F; }
+#cpu { padding: 0 10px; color: #4A7F3F; }
+#memory { padding: 0 10px; color: #4A7F3F; }
+#disk { padding: 0 10px; color: #4A7F3F; }
+#custom-theme { padding: 0 10px; color: #4A7F3F; }
 tooltip {
-    background: rgba(239, 241, 246, 0.95);
-    border: 1px solid #8b9ad8;
-    color: #4c4f6a;
+    background: rgba(255, 249, 240, 0.95);
+    border: 1px solid #4A7F3F;
+    color: #3F4A43;
 }

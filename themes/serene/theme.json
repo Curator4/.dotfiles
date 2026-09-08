@@ -6,34 +6,34 @@
     "profile": "calm"
   },
   "nvim": {
-    "colorscheme": "catppuccin-latte",
-    "variant": "latte",
+    "colorscheme": "everforest",
+    "variant": "hard",
     "background": "light"
   },
   "palette": {
-    "background": "#eff1f6",
-    "foreground": "#4c4f6a",
-    "cursor": "#dc8a79",
-    "cursor_text": "#eff1f6",
-    "selection_bg": "#bcc0cd",
-    "selection_fg": "#4c4f6a",
+    "background": "#FFF9F0",
+    "foreground": "#3F4A43",
+    "cursor": "#4A7F3F",
+    "cursor_text": "#FFF9F0",
+    "selection_bg": "#E8DFD0",
+    "selection_fg": "#3F4A43",
     "colors": {
-      "black": "#5c5f77",
-      "red": "#d20f39",
-      "green": "#40a02b",
-      "yellow": "#df8e1d",
-      "blue": "#1e66f5",
-      "magenta": "#ea76cb",
-      "cyan": "#179299",
-      "white": "#acb0be",
-      "bright_black": "#6c6f85",
-      "bright_red": "#d20f39",
-      "bright_green": "#40a02b",
-      "bright_yellow": "#df8e1d",
-      "bright_blue": "#1e66f5",
-      "bright_magenta": "#ea76cb",
-      "bright_cyan": "#179299",
-      "bright_white": "#bcc0cc"
+      "black": "#3F4A43",
+      "red": "#B85C45",
+      "green": "#4A7F3F",
+      "yellow": "#8F6E12",
+      "blue": "#3D6F68",
+      "magenta": "#8F6758",
+      "cyan": "#3D7A62",
+      "white": "#8A8274",
+      "bright_black": "#6B756C",
+      "bright_red": "#C46A52",
+      "bright_green": "#5D8C54",
+      "bright_yellow": "#A07A18",
+      "bright_blue": "#4A8078",
+      "bright_magenta": "#A07868",
+      "bright_cyan": "#4A8C72",
+      "bright_white": "#9A9284"
     }
   },
   "wallpapers": {
@@ -42,7 +42,7 @@
     ],
     "vertical": [
       "~/pictures/wallpapers/vertical/coffee-girl-vert.png",
-      "~/pictures/wallpapers/vertical/white-hair-girl-vert.jpg"
+      "~/pictures/wallpapers/vertical/green-jade-vert.jpg"
     ],
     "live": [
       "~/pictures/wallpapers/live/chill-girl_white_chill.mp4"
@@ -55,11 +55,11 @@
     "DP-4": "vertical[1]"
   },
   "obsidian": {
-    "cssTheme": "Catppuccin",
+    "cssTheme": "Everforest",
     "base": "moonstone"
   },
   "hue": {
-    "accent": "#8b9ad8"
+    "accent": "#4A7F3F"
   },
   "font": {
     "mono": "CaskaydiaCove Nerd Font"
