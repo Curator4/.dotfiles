@@ -38,12 +38,12 @@
   },
   "wallpapers": {
     "static": [
-      "~/pictures/wallpapers/static/magic-portal-party.jpg",
-      "~/pictures/wallpapers/static/pixel-alpine-village.png"
+      "~/pictures/wallpapers/static/ruins.jpg",
+      "~/pictures/wallpapers/static/starting-village.jpg"
     ],
     "vertical": [
       "~/pictures/wallpapers/vertical/witch-wheatfield-vert.png",
-      "~/pictures/wallpapers/vertical/sky-vertical.jpg"
+      "~/pictures/wallpapers/vertical/eris.jpg"
     ]
   },
   "monitors": {
