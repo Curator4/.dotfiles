@@ -116,7 +116,7 @@ bind(mod .. " + P", "[Desktop] Lock screen", exec("hyprlock"))
 -- Super+Shift+B = backlog card (B is bluetooth; Shift+Y is hue).
 -- Hue lights on Super+Shift+Y.
 bind(mod .. " + U", "[Picker] Add focus-board item", exec("~/.config/hypr/scripts/hud-focus-add.sh"))
-bind(mod .. " + SHIFT + U", "[HUD] Toggle focus board", exec("~/.config/eww/scripts/hud-toggle"))
+bind(mod .. " + SHIFT + U", "[Huddle] Toggle project board", exec("/home/curator/.local/bin/huddle-desktop"))
 bind(mod .. " + ALT + U", "[Apps] SSH terminal", exec(p.ssh))
 bind(mod .. " + V", "[Fan] Toggle fan controls", exec("qs -c fan-rail ipc call fan toggle"))
 -- submap_universal: same reason as Super+S. The backlog/checks vim

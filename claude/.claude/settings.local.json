@@ -62,5 +62,9 @@
   "enabledMcpjsonServers": [
     "weather"
   ],
+  "skillOverrides": {
+    "ask-matt": "off",
+    "autofix": "name-only"
+  },
   "outputStyle": "Socratic"
 }

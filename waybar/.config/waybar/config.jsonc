@@ -4,9 +4,18 @@
     "height": 26,
     "output": ["DP-2"],
 
-    "modules-left": ["hyprland/workspaces", "custom/theme", "custom/themis"],
+    "modules-left": ["hyprland/workspaces", "custom/theme", "custom/themis", "custom/huddle"],
     "modules-center": ["clock"],
     "modules-right": ["custom/codexbar-claude", "custom/codexbar-codex", "custom/codexbar-grok", "custom/codexbar-zai", "custom/codexbar-openrouter", "custom/volume", "bluetooth", "custom/network", "custom/gpu", "custom/vram", "cpu", "memory", "custom/disk"],
+
+    "custom/huddle": {
+        "exec": "/home/curator/.config/waybar/scripts/huddle-waybar",
+        "return-type": "json",
+        "format": "H {}",
+        "interval": 10,
+        "on-click": "/home/curator/.local/bin/huddle-desktop",
+        "tooltip": true
+    },
 
     "custom/themis": {
         "exec": "$HOME/.config/waybar/scripts/themis-inbox-waybar",

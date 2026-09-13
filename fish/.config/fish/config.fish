@@ -196,3 +196,7 @@ end
 function hunk --wraps hunk --description 'Launch hunk edge-to-edge'
     _tui-run '' hunk $argv
 end
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/home/curator/.local/bin" $PATH

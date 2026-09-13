@@ -15,7 +15,7 @@ hl.on("hyprland.start", function()
 
     -- Household HUD — attention board panel on DP-4
     hl.exec_cmd("eww daemon")
-    hl.exec_cmd("sleep 2 && eww open-many hud-reserve hud")
+    hl.exec_cmd("sleep 3 && /home/curator/.local/bin/huddle-desktop show")
 
     -- Resident fan-control rail on DP-4; IPC only flips its visible state.
     hl.exec_cmd("qs -n -d -c fan-rail")

@@ -42,7 +42,9 @@
     "base": "obsidian"
   },
   "hue": {
-    "accent": "#7B68EE"
+    "accent": "#5B21B6",
+    "bri": 18,
+    "sat_scale": 1.2
   },
   "font": {
     "mono": "Hack Nerd Font"

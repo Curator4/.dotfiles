@@ -15,3 +15,7 @@ require("input")
 require("keybinds")
 require("rules")
 require("autostart")
+
+-- BEGIN HUDDLE SEGMENT 4
+require("huddle")
+-- END HUDDLE SEGMENT 4

@@ -140,16 +140,6 @@
         ]
       },
       {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/pr-pipeline-reminder.sh",
-            "timeout": 5
-          }
-        ]
-      },
-      {
         "hooks": [
           {
             "type": "command",
@@ -187,7 +177,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/hooks/hud-session-start.sh",
+            "command": "/home/curator/.claude/hooks/huddle-marker-start.sh",
             "timeout": 5
           }
         ]
@@ -292,11 +282,13 @@
     "gopls-lsp@claude-plugins-official": false,
     "ralph-loop@claude-plugins-official": false,
     "skill-creator@claude-plugins-official": false,
-    "superpowers@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": false,
     "telegram@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": false,
     "grok-cc@grok-plugin-claude-code": true,
-    "discernment-nudge@anthropic-agent-skills": true
+    "discernment-nudge@anthropic-agent-skills": true,
+    "i-have-adhd@i-have-adhd": true,
+    "diagram-design@diagram-design": true
   },
   "extraKnownMarketplaces": {
     "anthropic-agent-skills": {
@@ -322,12 +314,24 @@
         "source": "github",
         "repo": "zachdunn/grok-plugin-claude-code"
       }
+    },
+    "i-have-adhd": {
+      "source": {
+        "source": "github",
+        "repo": "ayghri/i-have-adhd"
+      }
+    },
+    "diagram-design": {
+      "source": {
+        "source": "github",
+        "repo": "cathrynlavery/diagram-design"
+      }
     }
   },
   "effortLevel": "xhigh",
   "modelSettings": {
     "claude-opus-5": {
-      "effortLevel": "high"
+      "effortLevel": "xhigh"
     },
     "claude-fable-5": {
       "effortLevel": "xhigh"
@@ -349,6 +353,7 @@
   "verbose": false,
   "preferredNotifChannel": "notifications_disabled",
   "teammateMode": "auto",
+  "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
   "autoMode": {

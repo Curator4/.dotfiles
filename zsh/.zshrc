@@ -90,3 +90,7 @@ source "/home/curator/.openclaw/completions/openclaw.zsh"
 alias stfu='"$HOME"/workspace/ai/tts-daemon/.venv/bin/python "$HOME"/workspace/ai/tts-daemon/tts_client.py kill >/dev/null 2>&1'
 
 . "$HOME/.local/share/../bin/env"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/curator/.local/bin:$PATH"

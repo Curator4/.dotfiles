@@ -15,6 +15,8 @@ set -u
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 CODEXBAR="${CODEXBAR_BIN:-${HOME}/.local/bin/codexbar}"
+CSWAP="${CSWAP_BIN:-${HOME}/.local/bin/cswap}"
+CSWAP_MERGE="${SCRIPT_DIR}/cswap-merge.py"
 CONFIG_PATH="${HOME}/.codexbar/config.json"
 STATE_PATH="${XDG_CONFIG_HOME:-${HOME}/.config}/codexbar-waybar/state.json"
 CACHE_DIR="${XDG_CACHE_HOME:-${HOME}/.cache}/codexbar-waybar"
@@ -214,6 +216,23 @@ fetch_provider() {
     echo "$body"
 }
 
+# CodexBar /usage only sees the active Claude login. When cswap manages extra
+# seats, fold them into the Claude array so the bar tooltip and popup list both.
+merge_cswap_claude() {
+    local body="$1"
+    if [[ ! -x "$CSWAP_MERGE" ]] || ! command -v python3 >/dev/null 2>&1; then
+        printf '%s\n' "$body"
+        return
+    fi
+    local merged
+    merged="$(printf '%s\n' "$body" | CSWAP_BIN="$CSWAP" python3 "$CSWAP_MERGE" 2>/dev/null || true)"
+    if [[ -n "$merged" ]] && echo "$merged" | jq -e 'type == "array"' >/dev/null 2>&1; then
+        printf '%s\n' "$merged"
+    else
+        printf '%s\n' "$body"
+    fi
+}
+
 # Sequential fetch with a small stagger between providers (avoids 429s).
 STAGGER_SECS="${CODEXBAR_STAGGER:-0.5}"
 PROVIDER_TIMEOUT_SECS="${CODEXBAR_PROVIDER_TIMEOUT:-20}"
@@ -272,6 +291,13 @@ for p in "${PROVIDERS[@]}"; do
 done
 merged+="]"
 
+# Annotate the active Claude login and add the other cswap seats before the
+# cache is written. The popup reads last.json directly, so merging only the
+# final Waybar payload leaves it showing stale or unlabeled account tabs.
+if echo "$merged" | jq -e 'type == "array" and any(.provider == "claude")' >/dev/null 2>&1; then
+    merged="$(merge_cswap_claude "$merged")"
+fi
+
 last_good_json=""
 if [[ -f "$LAST_GOOD" ]]; then
     last_good_json="$(jq -c 'select(type == "array")' "$LAST_GOOD" 2>/dev/null || true)"
@@ -316,9 +342,15 @@ if [[ "$merged" != "[]" ]] && echo "$merged" | jq -e 'any(.error | not)' >/dev/n
     if [[ -n "$last_good_json" ]]; then
         merged_for_cache="$(jq -c --argjson prev "$last_good_json" '
             def cache_key: (.provider // "") + "\u0000" + (.account // "");
-            ([$prev[]? | select((.error | not) and (.stale != true))
+            . as $current
+            | ([$current[]? | {key: cache_key, value: true}] | from_entries) as $current_keys
+            | ([$current[]? | select(.error | not) | {key: .provider, value: true}] | from_entries) as $fresh_providers
+            | ([$prev[]? | select((.error | not) and (.stale != true))
+              | . as $old
+              | select((($fresh_providers[$old.provider] // false) | not)
+                       or ($current_keys[($old | cache_key)] // false))
               | {key: cache_key, value: .}] | from_entries) as $ok_prev
-            | ([.[]? | select(.error | not)
+            | ([$current[]? | select(.error | not)
             | {key: cache_key, value: (del(.stale))}] | from_entries) as $ok_fresh
             | ($ok_prev + $ok_fresh) | [.[]
         ]' <<<"$merged")"

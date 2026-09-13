@@ -48,6 +48,7 @@ gi.require_version("Gtk4LayerShell", "1.0")
 from gi.repository import GLib, Gtk, Gtk4LayerShell  # noqa: E402
 
 CODEXBAR = os.environ.get("CODEXBAR_BIN", str(Path.home() / ".local/bin/codexbar"))
+CSWAP = os.environ.get("CSWAP_BIN", str(Path.home() / ".local/bin" / "cswap"))
 CACHE = Path(os.environ.get("XDG_CACHE_HOME", str(Path.home() / ".cache"))) / "codexbar-waybar"
 LAST_GOOD = CACHE / "last.json"
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -768,14 +769,30 @@ def load_full_config() -> dict:
 
 
 def save_config(enabled: dict[str, bool]) -> None:
-    """Write only the providers we want enabled. The CLI fills in defaults for
-    any provider missing from the file, so we don't need to list disabled ones."""
+    """Flip provider enabled flags in the on-disk config without dropping
+    extra fields (claude-swap paths, API keys, token accounts)."""
     CONFIG_PATH.parent.mkdir(parents=True, exist_ok=True)
-    payload = {
-        "providers": [{"id": pid, "enabled": True} for pid, on in enabled.items() if on],
-        "version": 1,
-    }
-    CONFIG_PATH.write_text(json.dumps(payload, indent=2) + "\n")
+    on_disk: dict = {"version": 1, "providers": []}
+    if CONFIG_PATH.exists():
+        try:
+            loaded = json.loads(CONFIG_PATH.read_text())
+            if isinstance(loaded, dict):
+                on_disk = loaded
+        except json.JSONDecodeError:
+            pass
+    providers = [
+        p for p in (on_disk.get("providers") or [])
+        if isinstance(p, dict) and p.get("id")
+    ]
+    by_id = {p["id"]: p for p in providers}
+    for pid, on in enabled.items():
+        if pid in by_id:
+            by_id[pid]["enabled"] = bool(on)
+        elif on:
+            providers.append({"id": pid, "enabled": True})
+    on_disk["providers"] = providers
+    on_disk.setdefault("version", 1)
+    CONFIG_PATH.write_text(json.dumps(on_disk, indent=2) + "\n")
 
 
 def open_text_file(path: str) -> None:
@@ -1176,6 +1193,26 @@ class CodexBarPopup(Gtk.Application):
         self.active_pid = key
         self.render()
 
+    def _on_cswap_switch(self, number: int):
+        def worker():
+            try:
+                subprocess.run(
+                    [CSWAP, "switch", str(number)],
+                    check=False,
+                    capture_output=True,
+                    timeout=25,
+                )
+            except (FileNotFoundError, subprocess.TimeoutExpired, OSError):
+                pass
+            GLib.idle_add(self._after_cswap_switch)
+
+        Thread(target=worker, daemon=True).start()
+
+    def _after_cswap_switch(self) -> bool:
+        self.refresh(background=True)
+        subprocess.Popen(["pkill", "-RTMIN+8", "waybar"])
+        return False
+
     def _render_provider(self, entry: dict):
         pid = entry.get("provider", "?")
         usage = entry.get("usage") or {}
@@ -1213,6 +1250,21 @@ class CodexBarPopup(Gtk.Application):
             email_label.add_css_class("codexbar-subtitle")
             sub_row.append(email_label)
         self.body.append(sub_row)
+
+        cswap = entry.get("cswap")
+        if isinstance(cswap, dict) and cswap.get("number") is not None:
+            action = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+            if cswap.get("active"):
+                mark = Gtk.Label(label="Active Claude Code login", xalign=0.0)
+                mark.add_css_class("codexbar-plan")
+                action.append(mark)
+            else:
+                action.append(self._make_pill(
+                    "Use this account",
+                    ["codexbar-footer-btn"],
+                    lambda n=cswap["number"]: self._on_cswap_switch(n),
+                ))
+            self.body.append(action)
 
         if entry.get("error"):
             self.body.append(self._divider())

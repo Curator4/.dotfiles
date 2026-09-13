@@ -349,8 +349,41 @@ cmd_groups() {
     api GET /groups | jq -r 'to_entries[] | "\(.key)\t\(.value.name)\t\(.value.type)\tlights=\((.value.lights // []) | length)\ton=\(.value.state.any_on // .value.action.on // false)"'
 }
 
+xy_to_hex() {
+    # args: "[x,y]" -> #RRGGBB (chromaticity at full brightness). The bulbs store color as a CIE xy point;
+    # hue/sat in the API response are re-derived from it and are lossy.
+    local xy="${1:-}"
+    if [ -z "$xy" ] || [ "$xy" = "null" ]; then
+        echo "?"
+        return 0
+    fi
+    python3 - "$xy" <<'PY'
+import json, sys
+try:
+    x, y = json.loads(sys.argv[1])
+except Exception:
+    print("?")
+    raise SystemExit(0)
+if y == 0:
+    print("?")
+    raise SystemExit(0)
+# Chromaticity only, normalised to full Y — bri is reported separately, and
+# folding it in here just renders every dim colour as near-black.
+Y = 1.0
+X = (Y / y) * x
+Z = (Y / y) * (1 - x - y)
+r =  X * 1.656492 - Y * 0.354851 - Z * 0.255038
+g = -X * 0.707196 + Y * 1.655397 + Z * 0.036152
+b =  X * 0.051713 - Y * 0.121364 + Z * 1.011530
+def gamma(c):
+    c = max(0.0, min(1.0, c))
+    return 12.92 * c if c <= 0.0031308 else 1.055 * c ** (1 / 2.4) - 0.055
+print("#%02X%02X%02X" % tuple(int(round(gamma(c) * 255)) for c in (r, g, b)))
+PY
+}
+
 cmd_status() {
-    local gid groups name any_on bri hue sat
+    local gid groups name any_on bri hue sat xy
     gid=$(resolve_group_id) || return 1
     groups=$(api GET /groups)
     name=$(echo "$groups" | jq -r --arg id "$gid" '.[$id].name')
@@ -358,11 +391,15 @@ cmd_status() {
     bri=$(echo "$groups" | jq -r --arg id "$gid" '.[$id].action.bri // empty')
     hue=$(echo "$groups" | jq -r --arg id "$gid" '.[$id].action.hue // empty')
     sat=$(echo "$groups" | jq -r --arg id "$gid" '.[$id].action.sat // empty')
+    xy=$(echo "$groups" | jq -rc --arg id "$gid" '.[$id].action.xy // empty')
     echo "bridge:  $(cfg bridge)"
     echo "group:   $name (id $gid)"
     echo "on:      $any_on"
     echo "bri:     ${bri:-?}"
-    echo "hue/sat: ${hue:-?}/${sat:-?}"
+    echo "color:   $(xy_to_hex "$xy") (xy ${xy:-?}, hs ${hue:-?}/${sat:-?})"
+    echo "         bulbs report colormode=xy; hue/sat are derived, and bridge"
+    echo "         state lags a change by ~10-60s. Right after \`hue theme\` this"
+    echo "         still shows the PREVIOUS color — that is the bridge, not a bug."
     echo "sync:    theme_sync=$(cfg theme_sync true) only_if_on=$(cfg only_if_on false)"
 }
 

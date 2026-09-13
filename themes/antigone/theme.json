@@ -45,11 +45,12 @@
     ],
     "vertical": [
       "~/pictures/wallpapers/vertical/sunlit-wall-girl-vert.jpg",
-      "~/pictures/wallpapers/vertical/dore-angels-fall-mono.jpg"
+      "~/pictures/wallpapers/vertical/dore-angels-fall-mono.jpg",
+      "~/pictures/wallpapers/2026-sep/wallhaven-8gky3y.png"
     ]
   },
   "monitors": {
-    "DP-1": "vertical[0]",
+    "DP-1": "vertical[2]",
     "DP-2": "static[1]",
     "DP-3": "static[0]",
     "DP-4": "vertical[1]"
@@ -60,7 +61,7 @@
   },
   "hue": {
     "accent": "#387AAA",
-    "bri": 38,
+    "bri": 4,
     "sat_scale": 1.15
   },
   "font": {
