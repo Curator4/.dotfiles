@@ -13,7 +13,7 @@
         "return-type": "json",
         "format": "H {}",
         "interval": 10,
-        "on-click": "/home/curator/.local/bin/huddle-desktop",
+        "on-click": "/home/curator/.local/bin/huddle-desktop --layer-host --url http://127.0.0.1:8877/huddle-board --runtime-dir /home/curator/.local/state/huddle/runtime toggle",
         "tooltip": true
     },
 

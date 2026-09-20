@@ -15,7 +15,8 @@ hl.on("hyprland.start", function()
 
     -- Household HUD — attention board panel on DP-4
     hl.exec_cmd("eww daemon")
-    hl.exec_cmd("sleep 3 && /home/curator/.local/bin/huddle-desktop show")
+    hl.exec_cmd("systemctl --user start huddle.service")
+    hl.exec_cmd("sleep 3 && /home/curator/.local/bin/huddle-desktop --layer-host --url http://127.0.0.1:8877/huddle-board --runtime-dir /home/curator/.local/state/huddle/runtime warm")
 
     -- Resident fan-control rail on DP-4; IPC only flips its visible state.
     hl.exec_cmd("qs -n -d -c fan-rail")

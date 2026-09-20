@@ -108,15 +108,16 @@ bind(mod .. " + SHIFT + R", "[Capture] Start or stop region recording", exec("~/
 
 -- Utilities
 bind(mod .. " + P", "[Desktop] Lock screen", exec("hyprlock"))
--- Super+Y = quick capture (backlog/itinerary). Super+U family is the focus board:
---   U        = add item (category picker, incl. new category)
---   Shift+U  = toggle the panel
---   Alt+U    = SSH (moved off Shift+U)
+-- Super+Y = quick capture (backlog/itinerary). Super+U family is Huddle:
+--   U        = focus the active-monitor board
+--   Shift+U  = show/hide the active-monitor board
+--   settings  = 'g' inside the focused board (no global key)
+--   Alt+U    = SSH (unchanged)
 -- Super+X = checks card (routine ack). Super+Shift+X is caffeine.
 -- Super+Shift+B = backlog card (B is bluetooth; Shift+Y is hue).
 -- Hue lights on Super+Shift+Y.
-bind(mod .. " + U", "[Picker] Add focus-board item", exec("~/.config/hypr/scripts/hud-focus-add.sh"))
-bind(mod .. " + SHIFT + U", "[Huddle] Toggle project board", exec("/home/curator/.local/bin/huddle-desktop"))
+bind(mod .. " + U", "[Huddle] Focus the active-monitor board", exec("/home/curator/.local/bin/huddle-desktop --layer-host --url http://127.0.0.1:8877/huddle-board --runtime-dir /home/curator/.local/state/huddle/runtime focus"))
+bind(mod .. " + SHIFT + U", "[Huddle] Show/hide the active-monitor board", exec("/home/curator/.local/bin/huddle-desktop --layer-host --url http://127.0.0.1:8877/huddle-board --runtime-dir /home/curator/.local/state/huddle/runtime toggle"))
 bind(mod .. " + ALT + U", "[Apps] SSH terminal", exec(p.ssh))
 bind(mod .. " + V", "[Fan] Toggle fan controls", exec("qs -c fan-rail ipc call fan toggle"))
 -- submap_universal: same reason as Super+S. The backlog/checks vim
