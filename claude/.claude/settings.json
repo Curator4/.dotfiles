@@ -127,7 +127,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "opus",
+  "model": "fable",
   "hooks": {
     "PreToolUse": [
       {
@@ -337,7 +337,7 @@
       "effortLevel": "xhigh"
     },
     "claude-fable-5-1": {
-      "effortLevel": "medium"
+      "effortLevel": "xhigh"
     },
     "claude-sonnet-5": {
       "effortLevel": "high"

@@ -254,14 +254,15 @@ local emoji = {
     { "P", "😔", "pensive" }, { "H", "😌", "relieved" }, { "E", "😎", "sunglasses" },
     { "D", "🫤", "unsure" }, { "Y", "🥹", "holding back tears" }, { "Q", "😳", "flushed" },
     { "S", "😭", "crying" }, { "W", "👋", "wave" }, { "M", "😓", "sweat" },
-    { "X", "💀", "skull" }, { "A", "😠", "angry" }, { "L", "😈", "devil" },
+    { "X", "💀", "skull" }, { "A", "😇", "angel" }, { "L", "😈", "devil" },
     { "Z", "🤡", "clown" }, { "B", "👍", "thumbs up" }, { "I", "🫵", "point" },
     { "K", "👀", "eyes" }, { "O", "😮", "surprised" }, { "G", "😼", "smirking cat" },
     { "N", "😅", "nervous laugh" }, { "V", "🤮", "vomit" }, { "1", "😤", "huffing" },
     { "2", "🤦", "facepalm" }, { "3", "🔥", "fire" }, { "4", "👌", "okay" },
     { "5", "✅", "checkmark" }, { "6", "🤨", "raised eyebrow" }, { "7", "💪", "flex" },
     { "semicolon", "æ", "Danish ae" }, { "apostrophe", "ø", "Danish oe" },
-    { "bracketleft", "å", "Danish aa" }, { "8", "€", "euro" }, { "slash", "🤷", "shrug" },
+    { "bracketleft", "å", "Danish aa" }, { "8", "€", "euro" }, { "9", "😠", "angry" },
+    { "slash", "🤷", "shrug" },
 }
 
 for _, e in ipairs(emoji) do
