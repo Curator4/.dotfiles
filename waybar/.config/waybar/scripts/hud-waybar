@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+"""Read working counts from hud; failures stay unknown, never fresh zero."""
+from concurrent.futures import ThreadPoolExecutor
+import html
+import json
+from urllib.request import urlopen
+
+URL = "http://127.0.0.1:8877"
+
+
+def read(path):
+    with urlopen(URL + path, timeout=3) as response:
+        return json.load(response)
+
+
+def project(slug):
+    try:
+        tile = read("/api/projects/" + slug)
+        return slug, tile["working"]
+    except (OSError, ValueError, KeyError):
+        return slug, None
+
+
+def main():
+    try:
+        board = read("/api/board")
+        with ThreadPoolExecutor(max_workers=12) as pool:
+            counts = list(pool.map(project, board["projects"]))
+        total = sum(n for _, n in counts if n is not None)
+        failed = any(n is None for _, n in counts)
+        tooltip = "\n".join(f"{html.escape(slug)}: {'unavailable' if n is None else str(n) + ' working'}" for slug, n in counts)
+        output = {"text": ("≥" if failed else "") + str(total), "tooltip": tooltip,
+                  "class": "partial" if failed else "working" if total else "idle"}
+    except (OSError, ValueError, KeyError):
+        output = {"text": "?", "tooltip": "hud unavailable", "class": "unavailable"}
+    print(json.dumps(output))
+
+
+if __name__ == "__main__":
+    main()

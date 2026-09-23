@@ -107,14 +107,14 @@ bind(mod .. " + SHIFT + R", "[Capture] Start or stop region recording", exec("~/
 
 -- Utilities
 bind(mod .. " + P", "[Desktop] Lock screen", exec("hyprlock"))
--- Super+U family is Huddle:
+-- Super+U family is hud:
 --   U        = focus the active-monitor board
 --   Shift+U  = show/hide the active-monitor board
 --   settings  = 'g' inside the focused board (no global key)
 --   Alt+U    = SSH (unchanged)
 -- Hue lights on Super+Shift+Y.
-bind(mod .. " + U", "[Huddle] Focus the active-monitor board", exec("/home/curator/.local/bin/huddle-desktop --layer-host --url http://127.0.0.1:8877/huddle-board --runtime-dir /home/curator/.local/state/huddle/runtime focus"))
-bind(mod .. " + SHIFT + U", "[Huddle] Show/hide the active-monitor board", exec("/home/curator/.local/bin/huddle-desktop --layer-host --url http://127.0.0.1:8877/huddle-board --runtime-dir /home/curator/.local/state/huddle/runtime toggle"))
+bind(mod .. " + U", "[hud] Focus the active-monitor board", exec("/home/curator/.local/bin/hud-desktop --layer-host --url http://127.0.0.1:8877/hud-board --runtime-dir /home/curator/.local/state/hud/board/runtime focus"))
+bind(mod .. " + SHIFT + U", "[hud] Show/hide the active-monitor board", exec("/home/curator/.local/bin/hud-desktop --layer-host --url http://127.0.0.1:8877/hud-board --runtime-dir /home/curator/.local/state/hud/board/runtime toggle"))
 bind(mod .. " + ALT + U", "[Apps] SSH terminal", exec(p.ssh))
 bind(mod .. " + V", "[Fan] Toggle fan controls", exec("qs -c fan-rail ipc call fan toggle"))
 bind(mod .. " + SHIFT + Y", "[Desktop] Toggle office lights", exec("~/.bin/hue toggle"))

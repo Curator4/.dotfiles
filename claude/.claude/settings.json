@@ -190,7 +190,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/home/curator/.claude/hooks/huddle-marker-start.sh",
+            "command": "/home/curator/.claude/hooks/hud-marker-start.sh",
             "timeout": 5
           }
         ]

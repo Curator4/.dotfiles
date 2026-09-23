@@ -13,10 +13,10 @@ hl.on("hyprland.start", function()
     -- crash: re-run `herdr-bots`.
     hl.exec_cmd("herdr-bots")
 
-    -- Household HUD — attention board panel on DP-4
+    -- eww (timer bar, AI companion) and the hud board
     hl.exec_cmd("eww daemon")
-    hl.exec_cmd("systemctl --user start huddle.service")
-    hl.exec_cmd("sleep 3 && /home/curator/.local/bin/huddle-desktop --layer-host --url http://127.0.0.1:8877/huddle-board --runtime-dir /home/curator/.local/state/huddle/runtime warm")
+    hl.exec_cmd("systemctl --user start hud.service")
+    hl.exec_cmd("sleep 3 && /home/curator/.local/bin/hud-desktop --layer-host --url http://127.0.0.1:8877/hud-board --runtime-dir /home/curator/.local/state/hud/board/runtime warm")
 
     -- Resident fan-control rail on DP-4; IPC only flips its visible state.
     hl.exec_cmd("qs -n -d -c fan-rail")
