@@ -127,8 +127,21 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "fable",
+  "model": "opus",
   "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.local/bin/agent-cue-hook claude resolve",
+            "timeout": 15,
+            "async": true
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Skill",
@@ -341,6 +354,9 @@
     },
     "claude-sonnet-5": {
       "effortLevel": "high"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "xhigh"
     }
   },
   "autoCompactWindow": 1000000,
@@ -349,6 +365,9 @@
   "showThinkingSummaries": true,
   "skipDangerousModePermissionPrompt": true,
   "skipWorkflowUsageWarning": true,
+  "claudeMdExcludes": [
+    "**/household-oc*/agents/*/AGENTS.md"
+  ],
   "theme": "dark-ansi",
   "verbose": false,
   "preferredNotifChannel": "notifications_disabled",
