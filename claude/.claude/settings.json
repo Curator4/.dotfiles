@@ -268,15 +268,6 @@
             "async": true
           }
         ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/posture-nudge.sh",
-            "timeout": 5
-          }
-        ]
       }
     ]
   },

@@ -27,6 +27,5 @@ fi
 # Run from the tool dir so its claude -p transcript lands in a project dir the
 # HUD activity view filters out.
 ccp="$HOME/workspace/ai/household-oc/tools/cc-projection"
-setsid bash -c "cd '$ccp' && HUD_SUMMARIZING=1 python3 cc-projection.py --session '$sid' \
-  && /home/curator/workspace/hud/hud reconcile --session '$sid'" >/dev/null 2>&1 &
+setsid bash -c "cd '$ccp' && HUD_SUMMARIZING=1 python3 cc-projection.py --session '$sid'" >/dev/null 2>&1 &
 exit 0

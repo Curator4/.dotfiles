@@ -35,7 +35,6 @@ bind(mod .. " + M", "[Apps] Spotify", exec(p.spotify))
 bind(mod .. " + O", "[Apps] Obsidian", exec("obsidian"))
 bind(mod .. " + C", "[Window] Close focused window", hl.dsp.window.close())
 bind(mod .. " + I", "[Apps] Open itinerary", exec("kitty nvim +$ /home/curator/workspace/ai/household-oc/agents/tactical/data/itinerary.md"))
-bind(mod .. " + X", "[HUD] Open routine checks", exec("~/.config/hypr/scripts/hud-checks.sh"))
 bind(mod .. " + SHIFT + T", "[Picker] Theme picker", exec("~/.bin/theme"))
 bind(mod .. " + SHIFT + I", "[Layout] Toggle split direction", hl.dsp.layout("togglesplit"))
 bind(mod .. " + SHIFT + F", "[Window] Toggle floating", hl.dsp.window.float({ action = "toggle" }))
@@ -108,77 +107,18 @@ bind(mod .. " + SHIFT + R", "[Capture] Start or stop region recording", exec("~/
 
 -- Utilities
 bind(mod .. " + P", "[Desktop] Lock screen", exec("hyprlock"))
--- Super+Y = quick capture (backlog/itinerary). Super+U family is Huddle:
+-- Super+U family is Huddle:
 --   U        = focus the active-monitor board
 --   Shift+U  = show/hide the active-monitor board
 --   settings  = 'g' inside the focused board (no global key)
 --   Alt+U    = SSH (unchanged)
--- Super+X = checks card (routine ack). Super+Shift+X is caffeine.
--- Super+Shift+B = backlog card (B is bluetooth; Shift+Y is hue).
 -- Hue lights on Super+Shift+Y.
 bind(mod .. " + U", "[Huddle] Focus the active-monitor board", exec("/home/curator/.local/bin/huddle-desktop --layer-host --url http://127.0.0.1:8877/huddle-board --runtime-dir /home/curator/.local/state/huddle/runtime focus"))
 bind(mod .. " + SHIFT + U", "[Huddle] Show/hide the active-monitor board", exec("/home/curator/.local/bin/huddle-desktop --layer-host --url http://127.0.0.1:8877/huddle-board --runtime-dir /home/curator/.local/state/huddle/runtime toggle"))
 bind(mod .. " + ALT + U", "[Apps] SSH terminal", exec(p.ssh))
 bind(mod .. " + V", "[Fan] Toggle fan controls", exec("qs -c fan-rail ipc call fan toggle"))
--- submap_universal: same reason as Super+S. The backlog/checks vim
--- submaps swallow Super+Y otherwise, so hud-capture.sh never gets to
--- drop the submap and the rofi entry can't receive paste/type.
-bind(mod .. " + Y", "[Picker] Quick capture", exec("~/.config/hypr/scripts/hud-capture.sh"), CAPTURE)
 bind(mod .. " + SHIFT + Y", "[Desktop] Toggle office lights", exec("~/.bin/hue toggle"))
-bind(mod .. " + SHIFT + B", "[HUD] Open backlog", exec("~/.config/hypr/scripts/hud-backlog.sh"))
 
--- Backlog card is a modal: j/k or arrows move, g/G top/bottom, x clears,
--- e edits, u undoes, y yanks, Escape/q closes. reset is required — without
--- it a failed close leaves every key trapped.
-local backlogNav = "~/.config/hypr/scripts/hud-backlog-nav.sh"
-hl.define_submap("backlog", function()
-    bind("j", "[Modal] Backlog: move down", exec(backlogNav .. " down"), { repeating = true })
-    bind("k", "[Modal] Backlog: move up", exec(backlogNav .. " up"), { repeating = true })
-    bind("down", "[Modal] Backlog: move down", exec(backlogNav .. " down"), { repeating = true })
-    bind("up", "[Modal] Backlog: move up", exec(backlogNav .. " up"), { repeating = true })
-    bind("mouse_down", "[Modal] Backlog: scroll down", exec(backlogNav .. " down"), { repeating = true })
-    bind("mouse_up", "[Modal] Backlog: scroll up", exec(backlogNav .. " up"), { repeating = true })
-    bind("g", "[Modal] Backlog: jump to first", exec(backlogNav .. " first"))
-    bind("SHIFT + G", "[Modal] Backlog: jump to last", exec(backlogNav .. " last"))
-    bind("x", "[Modal] Backlog: complete item", exec(backlogNav .. " x"))
-    bind("Return", "[Modal] Backlog: complete item", exec(backlogNav .. " x"))
-    bind("e", "[Modal] Backlog: edit item", exec(backlogNav .. " e"))
-    bind("u", "[Modal] Backlog: undo last clear", exec(backlogNav .. " u"))
-    bind("y", "[Modal] Backlog: copy item", exec(backlogNav .. " y"))
-    bind("escape", "[Modal] Backlog: close", exec("~/.config/hypr/scripts/hud-backlog.sh close"))
-    bind("q", "[Modal] Backlog: close", exec("~/.config/hypr/scripts/hud-backlog.sh close"))
-    bind(mod .. " + SHIFT + B", "[Modal] Backlog: close", exec("~/.config/hypr/scripts/hud-backlog.sh close"))
-end)
-
--- Checks card is the same modal as backlog: j/k move, g/G top/bottom, x acks,
--- y yanks, Escape/q closes. reset is required — without it a failed close
--- leaves every key trapped.
-local checksNav = "~/.config/hypr/scripts/hud-checks-nav.sh"
-hl.define_submap("checks", function()
-    bind("j", "[Modal] Checks: move down", exec(checksNav .. " down"), { repeating = true })
-    bind("k", "[Modal] Checks: move up", exec(checksNav .. " up"), { repeating = true })
-    bind("down", "[Modal] Checks: move down", exec(checksNav .. " down"), { repeating = true })
-    bind("up", "[Modal] Checks: move up", exec(checksNav .. " up"), { repeating = true })
-    bind("mouse_down", "[Modal] Checks: scroll down", exec(checksNav .. " down"), { repeating = true })
-    bind("mouse_up", "[Modal] Checks: scroll up", exec(checksNav .. " up"), { repeating = true })
-    bind("g", "[Modal] Checks: jump to first", exec(checksNav .. " first"))
-    bind("SHIFT + G", "[Modal] Checks: jump to last", exec(checksNav .. " last"))
-    bind("x", "[Modal] Checks: acknowledge", exec(checksNav .. " x"))
-    bind("Return", "[Modal] Checks: acknowledge", exec(checksNav .. " x"))
-    bind("y", "[Modal] Checks: copy item", exec(checksNav .. " y"))
-    bind("escape", "[Modal] Checks: close", exec("~/.config/hypr/scripts/hud-checks.sh close"))
-    bind("q", "[Modal] Checks: close", exec("~/.config/hypr/scripts/hud-checks.sh close"))
-    bind(mod .. " + X", "[Modal] Checks: close", exec("~/.config/hypr/scripts/hud-checks.sh close"))
-end)
-
--- Sit/stand toggle — declares the transition, HUD footer counts the block with
--- away-from-desk time subtracted. Confirms with a short notification because the
--- board is often closed when this is pressed.
-bind(mod .. " + R", "[HUD] Toggle sit or stand posture", exec("posture"))
--- Caffeine dose picker (coffee mug / Monster). Super+X is the checks card;
--- this is the sibling event logger. Confirms with notify-send (active mg +
--- quiet estimate).
-bind(mod .. " + SHIFT + X", "[Picker] Log caffeine", exec("~/.config/hypr/scripts/caffeine-menu.sh"))
 -- Super+Caps: NEO70 Caps is QK_GESC (Esc on tap; grave when Super/Shift is
 -- held). Super+Caps therefore arrives as Super+grave, not Caps_Lock.
 -- Real Caps_Lock is layer 2 on that same key (hold the MO(2) "Alt" key).
