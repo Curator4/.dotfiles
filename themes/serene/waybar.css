@@ -4,27 +4,27 @@
     font-size: 14px;
 }
 window#waybar {
-    background-color: rgba(255, 249, 240, 0.9);
-    color: #3F4A43;
+    background-color: rgba(214, 207, 195, 0.9);
+    color: #363F39;
 }
 #workspaces button {
     padding: 0 8px;
-    color: #3F4A43;
+    color: #363F39;
 }
 #workspaces button.active {
-    color: #4A7F3F;
+    color: #3A6331;
 }
 #clock { padding: 0 12px; color: rgba(74, 127, 63, 0.7); }
 #custom-volume { padding: 0 10px; color: rgba(184, 92, 69, 0.7); }
-#bluetooth { padding: 0 10px; color: #4A7F3F; }
-#network { padding: 0 10px; color: #3F4A43; }
-#custom-gpu { padding: 0 10px; color: #4A7F3F; }
-#cpu { padding: 0 10px; color: #4A7F3F; }
-#memory { padding: 0 10px; color: #4A7F3F; }
-#disk { padding: 0 10px; color: #4A7F3F; }
-#custom-theme { padding: 0 10px; color: #4A7F3F; }
+#bluetooth { padding: 0 10px; color: #3A6331; }
+#network { padding: 0 10px; color: #363F39; }
+#custom-gpu { padding: 0 10px; color: #3A6331; }
+#cpu { padding: 0 10px; color: #3A6331; }
+#memory { padding: 0 10px; color: #3A6331; }
+#disk { padding: 0 10px; color: #3A6331; }
+#custom-theme { padding: 0 10px; color: #3A6331; }
 tooltip {
-    background: rgba(255, 249, 240, 0.95);
-    border: 1px solid #4A7F3F;
-    color: #3F4A43;
+    background: rgba(214, 207, 195, 0.95);
+    border: 1px solid #3A6331;
+    color: #363F39;
 }
