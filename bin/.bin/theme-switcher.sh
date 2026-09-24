@@ -828,7 +828,7 @@ EOF
 # also write ~/.config/discord-theme/theme.css so a later install can pick it up.
 generate_discord_theme() {
     THEME_DIR="$1"
-    local bg fg accent black bright_black selection_bg red
+    local bg fg accent black bright_black selection_bg red link_color
     bg=$(theme_palette_color "$THEME_DIR" background)
     fg=$(theme_palette_color "$THEME_DIR" foreground)
     accent=$(theme_palette_color "$THEME_DIR" accent)
@@ -836,6 +836,8 @@ generate_discord_theme() {
     bright_black=$(theme_palette_color "$THEME_DIR" bright_black)
     selection_bg=$(theme_palette_color "$THEME_DIR" selection_bg)
     red=$(theme_palette_color "$THEME_DIR" red)
+    link_color=$(jq -r '.discord.link_color // empty' "$THEME_DIR/theme.json" 2>/dev/null)
+    [ -n "$link_color" ] || link_color="$accent"
     [ -n "$black" ] || black="$bg"
     [ -n "$bright_black" ] || bright_black="$black"
     [ -n "$selection_bg" ] || selection_bg="$bright_black"
@@ -944,7 +946,7 @@ generate_discord_theme() {
     --header-secondary: color-mix(in srgb, $fg 70%, transparent) !important;
     --text-normal: $fg !important;
     --text-muted: color-mix(in srgb, $fg 55%, transparent) !important;
-    --text-link: $accent !important;
+    --text-link: $link_color !important;
     --channels-default: color-mix(in srgb, $fg 65%, transparent) !important;
     --interactive-normal: color-mix(in srgb, $fg 75%, transparent) !important;
     --interactive-hover: $fg !important;

@@ -47,6 +47,8 @@ theme-scaffold base16 gruvbox-dark-medium --name gruv
 
 Older themes may omit `palette` in `theme.json` and rely on `kitty.conf` only — `theme-lint` and the switcher still understand that.
 
+`discord.link_color` optionally sets readable Discord link text independently of the theme accent, for example `"discord": {"link_color": "#82AEE0"}`.
+
 `terminal_only: true` themes (e.g. `grok-night`) are for `theme-term.sh`, not desktop apply.
 
 **Time-of-day wallpapers:** optional `wallpaper_schedule` overrides a monitor by clock time. Apply picks the current slot; `theme-wallpaper-schedule.timer` re-applies at 07:00 and 19:00 without a full theme switch. Keep those OnCalendar times in sync with `morning_start` / `evening_start`.

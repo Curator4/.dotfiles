@@ -59,6 +59,9 @@
     "cssTheme": "Obsidianite",
     "base": "obsidian"
   },
+  "discord": {
+    "link_color": "#82AEE0"
+  },
   "hue": {
     "accent": "#0A1638",
     "bri": 38,
