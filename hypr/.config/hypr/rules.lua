@@ -337,3 +337,12 @@ hl.window_rule({
     match = { class = "^chrome-127\\.0\\.0\\.1__-Default$" },
     no_blur = true,
 })
+
+-- Waybar keeps the screen edge. Hyprland stacks exclusive zones on one edge
+-- in map order, so a Waybar restart (theme apply) with the hud board up put
+-- the bar under the board (hud #3). A higher order reserves space first.
+hl.layer_rule({
+    name  = "waybar-at-edge",
+    match = { namespace = "^waybar$" },
+    order = 1,
+})
