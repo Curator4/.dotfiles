@@ -303,6 +303,20 @@ if [[ -f "$LAST_GOOD" ]]; then
     last_good_json="$(jq -c 'select(type == "array")' "$LAST_GOOD" 2>/dev/null || true)"
 fi
 
+# Providers allowed to remain in the shared cache: everything enabled in
+# config, plus whatever this run was asked to fetch. A single waybar module
+# fetches one provider and must not evict the others, but a provider the user
+# turned off has to leave — the popup paints last.json directly, so a leftover
+# snapshot keeps showing up as a tab.
+keep_json="null"
+if [[ -f "$CONFIG_PATH" ]] && command -v jq >/dev/null 2>&1; then
+    enabled_ids="$(jq -c '[.providers[]? | select(.enabled == true) | .id]' "$CONFIG_PATH" 2>/dev/null || true)"
+    if [[ -n "$enabled_ids" ]]; then
+        requested_ids="$(printf '%s\n' "${PROVIDERS[@]}" | jq -R . | jq -sc 'unique')"
+        keep_json="$(jq -nc --argjson enabled "$enabled_ids" --argjson requested "$requested_ids" '$enabled + $requested | unique')"
+    fi
+fi
+
 # Codex occasionally returns a coherent-but-wrong quota snapshot. Keep the
 # last verified snapshot when either rate-limit window drops by 20+ points
 # without its reset moving; a real reset always changes that timestamp.
@@ -340,15 +354,17 @@ fi
 # entries for providers that failed this refresh.
 if [[ "$merged" != "[]" ]] && echo "$merged" | jq -e 'any(.error | not)' >/dev/null 2>&1; then
     if [[ -n "$last_good_json" ]]; then
-        merged_for_cache="$(jq -c --argjson prev "$last_good_json" '
+        merged_for_cache="$(jq -c --argjson prev "$last_good_json" --argjson keep "$keep_json" '
             def cache_key: (.provider // "") + "\u0000" + (.account // "");
             . as $current
             | ([$current[]? | {key: cache_key, value: true}] | from_entries) as $current_keys
             | ([$current[]? | select(.error | not) | {key: .provider, value: true}] | from_entries) as $fresh_providers
             | ([$prev[]? | select((.error | not) and (.stale != true))
               | . as $old
-              | select((($fresh_providers[$old.provider] // false) | not)
-                       or ($current_keys[($old | cache_key)] // false))
+              | select(
+                  ($keep == null or any($keep[]; . == $old.provider))
+                  and ((($fresh_providers[$old.provider] // false) | not)
+                       or ($current_keys[($old | cache_key)] // false)))
               | {key: cache_key, value: .}] | from_entries) as $ok_prev
             | ([$current[]? | select(.error | not)
             | {key: cache_key, value: (del(.stale))}] | from_entries) as $ok_fresh

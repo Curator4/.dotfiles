@@ -353,10 +353,49 @@ levelbar.codex-usage block.empty {
 """
 
 
+def enabled_provider_ids() -> set[str] | None:
+    """Provider ids currently turned on in the CodexBar config.
+
+    None means the config could not be read, so the caller shows the cache
+    as-is. An empty set means the config loaded and nothing is enabled.
+    """
+    if not CONFIG_PATH.exists():
+        return None
+    try:
+        cfg = json.loads(CONFIG_PATH.read_text())
+    except (OSError, json.JSONDecodeError):
+        return None
+    providers = cfg.get("providers") if isinstance(cfg, dict) else None
+    if not isinstance(providers, list):
+        return None
+    return {
+        p["id"]
+        for p in providers
+        if isinstance(p, dict) and p.get("enabled") and isinstance(p.get("id"), str)
+    }
+
+
+def visible_entries(data: list) -> list:
+    """Hide providers the user has turned off.
+
+    last.json keeps the last good snapshot for providers a single waybar tick
+    did not refresh. Without this filter a disabled provider stays as a tab.
+    """
+    if not isinstance(data, list):
+        return []
+    enabled = enabled_provider_ids()
+    if enabled is None:
+        return [e for e in data if isinstance(e, dict)]
+    return [
+        e for e in data
+        if isinstance(e, dict) and e.get("provider") in enabled
+    ]
+
+
 def load_cached() -> list:
     if LAST_GOOD.exists():
         try:
-            return json.loads(LAST_GOOD.read_text())
+            return visible_entries(json.loads(LAST_GOOD.read_text()))
         except json.JSONDecodeError:
             return []
     return []

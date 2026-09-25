@@ -16,8 +16,9 @@
 #
 # Bounded exceptions to "nothing is discovered": keep-newest sweeps list the
 # version dirs of one named directory (newest kept, oddities invisible), and
-# docker prunes dangling images + build cache only — never tagged images or
-# containers (deliberately not `docker system prune`).
+# docker prunes dangling images, build cache and anonymous volumes only — never
+# tagged images, named volumes or containers (deliberately not
+# `docker system prune`).
 #
 #   cache-reap             clear everything
 #   cache-reap --dry-run   show what would be freed, touch nothing
@@ -154,9 +155,13 @@ reap_keepnewest() {
 
 # /var/lib/docker is root-only, so size_of cannot see it: measure through sudo
 # and otherwise follow reap()'s shape. Scope is rebuild residue only — dangling
-# images and build cache. Tagged images (demo kits are kept on purpose) and
-# containers, stopped or not, are out of scope. The dry-run figure quotes the
-# whole docker store and is therefore an overstatement of this sweep.
+# images, build cache, and anonymous volumes no container references (the
+# databases a `compose down` without -v leaves behind). Since Docker 23,
+# `volume prune` skips named volumes unless given -a; keep it that way, since
+# named volumes (io_db-data, the landing checkout's pgdata) hold state. Tagged
+# images (demo kits are kept on purpose) and containers, stopped or not, are
+# out of scope. The dry-run figure quotes the whole docker store and is
+# therefore an overstatement of this sweep.
 reap_docker() {
     local base=/var/lib/docker before after freed
 
@@ -174,6 +179,7 @@ reap_docker() {
 
     sudo -n docker image prune -f >/dev/null 2>&1
     sudo -n docker builder prune -f >/dev/null 2>&1
+    sudo -n docker volume prune -f >/dev/null 2>&1
     after=$(sudo -n du -sb "$base" 2>/dev/null | cut -f1); after=${after:-0}
     freed=$(( before > after ? before - after : 0 ))
     TOTAL=$(( TOTAL + freed ))
