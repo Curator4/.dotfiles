@@ -4,18 +4,9 @@
     "height": 26,
     "output": ["DP-2"],
 
-    "modules-left": ["hyprland/workspaces", "custom/theme", "custom/themis", "custom/hud"],
+    "modules-left": ["hyprland/workspaces", "custom/theme", "custom/themis"],
     "modules-center": ["clock"],
     "modules-right": ["custom/codexbar-claude", "custom/codexbar-codex", "custom/codexbar-grok", "custom/codexbar-openrouter", "custom/volume", "bluetooth", "custom/network", "custom/gpu", "custom/vram", "cpu", "memory", "custom/disk"],
-
-    "custom/hud": {
-        "exec": "/home/curator/.config/waybar/scripts/hud-waybar",
-        "return-type": "json",
-        "format": "H {}",
-        "interval": 10,
-        "on-click": "/home/curator/.local/bin/hud-desktop --layer-host --url http://127.0.0.1:8877/hud-board --runtime-dir /home/curator/.local/state/hud/board/runtime toggle",
-        "tooltip": true
-    },
 
     "custom/themis": {
         "exec": "$HOME/.config/waybar/scripts/themis-inbox-waybar",

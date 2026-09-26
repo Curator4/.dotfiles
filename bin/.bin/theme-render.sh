@@ -284,7 +284,6 @@ window#waybar {
     color: $foreground;
 }
 
-#custom-hud,
 #workspaces button,
 #clock,
 #custom-volume,
@@ -318,7 +317,6 @@ window#waybar {
     color: $red;
 }
 
-#custom-hud,
 #custom-gpu,
 #custom-vram,
 #cpu {
@@ -463,6 +461,25 @@ jq -n \
         bright_white: $bright_white
     }' > "$eww_json_tmp"
 atomic_render "$eww_json" "$eww_json_tmp"
+
+# hud: the same resolved colours, for the board around its tiles
+# (Curator4/hud#12). hud reads the file and repaints within a few seconds; a
+# switch needs nothing else. ~/.config/hud is a plain directory, not a stow
+# link, so this never dirties the repo.
+hud_theme="${XDG_CONFIG_HOME:-$HOME/.config}/hud/theme.json"
+mkdir -p "$(dirname "$hud_theme")"
+hud_theme_tmp=$(mktemp "$(dirname "$hud_theme")/.hud-theme.XXXXXX")
+if [ "$((16#${background:1:2} * 299 + 16#${background:3:2} * 587 + 16#${background:5:2} * 114))" -gt 127500 ]; then
+    hud_scheme=light
+else
+    hud_scheme=dark
+fi
+jq --arg slug "$(basename "$THEME_DIR")" \
+    --arg name "$(jq -r '.name // empty' "$THEME_JSON")" \
+    --arg scheme "$hud_scheme" \
+    '{version: 1, slug: $slug, name: $name, scheme: $scheme, colors: .}' \
+    "$eww_json" > "$hud_theme_tmp"
+atomic_render "$hud_theme" "$hud_theme_tmp"
 
 # Rofi: shared card.rasi + generated colors. current.rasi is gitignored.
 # ~/.config/rofi is the stow link into the repo, same pattern as eww colors.
