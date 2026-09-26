@@ -35,6 +35,28 @@ return {
 		priority = 1000,
 	},
 
+	-- Night Owl (Navy/Teal) — abyss
+	{
+		"oxfist/night-owl.nvim",
+		priority = 1000,
+		config = function()
+			require("night-owl").setup({
+				transparent_background = true,
+			})
+		end,
+	},
+
+	-- Poimandres (Slate/Mint) — lagoon
+	{
+		"olivercederborg/poimandres.nvim",
+		priority = 1000,
+		config = function()
+			require("poimandres").setup({
+				disable_background = true,
+			})
+		end,
+	},
+
 	-- Nord (Blue/Azure alternative)
 	{
 		"shaunsingh/nord.nvim",

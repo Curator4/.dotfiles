@@ -13,6 +13,8 @@
 #   ~/workspace/**/.venv       live service environments
 #   ~/.openclaw/agents         agent state
 #   ~/nas/**                   network mounts
+#   $GOCACHE (go-build)        Go trims entries unused for 5 days by itself;
+#                              wiping it nightly only forced cold rebuilds
 #
 # Bounded exceptions to "nothing is discovered": keep-newest sweeps list the
 # version dirs of one named directory (newest kept, oddities invisible), and
@@ -153,8 +155,9 @@ reap_keepnewest() {
     fi
 }
 
-# /var/lib/docker is root-only, so size_of cannot see it: measure through sudo
-# and otherwise follow reap()'s shape. Scope is rebuild residue only — dangling
+# Docker's data root is root-only, so size_of cannot see it: measure through
+# sudo and otherwise follow reap()'s shape. Ask the daemon where the root is
+# (data-root can move it off /var/lib/docker) rather than assuming. Scope is rebuild residue only — dangling
 # images, build cache, and anonymous volumes no container references (the
 # databases a `compose down` without -v leaves behind). Since Docker 23,
 # `volume prune` skips named volumes unless given -a; keep it that way, since
@@ -163,10 +166,11 @@ reap_keepnewest() {
 # out of scope. The dry-run figure quotes the whole docker store and is
 # therefore an overstatement of this sweep.
 reap_docker() {
-    local base=/var/lib/docker before after freed
+    local base before after freed
 
     have docker || { row docker "-" "not installed"; return; }
-    sudo -n docker info >/dev/null 2>&1 || { row docker "-" "daemon not running"; return; }
+    base=$(sudo -n docker info --format '{{.DockerRootDir}}' 2>/dev/null) \
+        || { row docker "-" "daemon not running"; return; }
 
     before=$(sudo -n du -sb "$base" 2>/dev/null | cut -f1); before=${before:-0}
     [ "$before" -lt 1048576 ] && { row docker "-" "already clear"; return; }
@@ -190,23 +194,34 @@ reap_docker() {
     fi
 }
 
-df_pct()  { df --output=pcent / | tail -1 | tr -dc '0-9'; }
-df_avail(){ df -h --output=avail / | tail -1 | tr -d ' '; }
+# / plus the filesystem holding $HOME, once each: the caches below live under
+# $HOME (a separate /data partition on some boxes), pacman and the journal
+# under /. Same pair the night steward and disk-space-check watch.
+watched() {
+    printf '%s\n' /
+    [ "$(stat -c %d "$HOME")" = "$(stat -c %d /)" ] || printf '%s\n' "$HOME"
+}
+df_summary() {
+    local p out=""
+    while read -r p; do
+        out+=$(df -h --output=target,pcent,avail "$p" |
+            awk 'NR==2 {printf "%s %s full, %s free; ", ($1 == "/" ? "root" : $1), $2, $3}')
+    done < <(watched)
+    printf '%s' "${out%; }"
+}
 
-BEFORE_PCT=$(df_pct)
-BEFORE_AVAIL=$(df_avail)
+BEFORE=$(df_summary)
 
 if [ "$DRY" -eq 1 ]; then
-    printf '\ncache-reap (dry run) — root %s%% full, %s free\n\n' "$BEFORE_PCT" "$BEFORE_AVAIL"
+    printf '\ncache-reap (dry run) — %s\n\n' "$BEFORE"
 else
-    printf '\ncache-reap — root %s%% full, %s free\n\n' "$BEFORE_PCT" "$BEFORE_AVAIL"
+    printf '\ncache-reap — %s\n\n' "$BEFORE"
 fi
 
 # --- user-owned caches, no privileges needed ------------------------------
 
 if have go; then
-    reap go-mod   "$(go env GOMODCACHE 2>/dev/null || echo /nonexistent)" go clean -modcache
-    reap go-build "$(go env GOCACHE    2>/dev/null || echo /nonexistent)" go clean -cache
+    reap go-mod "$(go env GOMODCACHE 2>/dev/null || echo /nonexistent)" go clean -modcache
 fi
 have uv   && reap_uv
 have npm  && reap npm  "$HOME/.npm/_cacache" npm cache clean --force
@@ -259,8 +274,7 @@ printf '\n'
 if [ "$DRY" -eq 1 ]; then
     printf '  reclaimable: up to %s\n' "$(human "$TOTAL")"
 else
-    printf '  root now %s%% full, %s free (was %s%%, %s)\n' \
-        "$(df_pct)" "$(df_avail)" "$BEFORE_PCT" "$BEFORE_AVAIL"
+    printf '  now: %s\n  was: %s\n' "$(df_summary)" "$BEFORE"
 fi
 
 if [ "${#NEEDS_ROOT[@]}" -gt 0 ]; then

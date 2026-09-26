@@ -125,7 +125,14 @@
       "Bash(timer:*)",
       "Bash(email-tool act:*)"
     ],
-    "defaultMode": "auto"
+    "defaultMode": "auto",
+    "ask": [
+      "Bash(/home/curator/.claude/channels/telegram/approve-send:*)",
+      "Bash(/home/curator/.local/bin/approve-send:*)",
+      "Bash(approve-send:*)",
+      "Bash(~/.claude/channels/telegram/approve-send:*)",
+      "Bash(~/.local/bin/approve-send:*)"
+    ]
   },
   "model": "opus",
   "hooks": {
