@@ -150,6 +150,22 @@ for i, theme in ipairs(themes) do
     bind(mod .. " + ALT + " .. fkey, "[Theme] Apply " .. theme .. " to desktop", exec(themeApply .. " " .. theme))
 end
 
+-- Second terminal row on mod + Fn + A.. (home row). The NEO70 has no F-row, so
+-- its Fn layer sends F13..F23 there (EEPROM remap, ~/Downloads/neo70-fn-row.py).
+-- Bind xkb's names for those keys, not "F13": xkb calls them XF86Tools etc.
+-- (`code:NNN` parses to an empty key in Lua binds.)
+-- No desktop twin: the NEO70 sends no Alt (left Alt is a layer, right is Compose).
+local homeRowKeys = {
+    "XF86Tools", "XF86Launch5", "XF86Launch6", "XF86Launch7", "XF86Launch8", "XF86Launch9",
+    "F19", "XF86AudioMicMute", "XF86TouchpadToggle", "XF86TouchpadOn", "XF86TouchpadOff",
+}
+local moreThemes = {
+    "abyss", "antigone", "frost", "glass", "grok-night", "jade", "lagoon",
+}
+for i, theme in ipairs(moreThemes) do
+    bind(mod .. " + " .. homeRowKeys[i], "[Theme] Apply " .. theme .. " to terminal", exec(themeTerm .. " " .. theme))
+end
+
 -- Super+Shift+T = theme picker (Super+T is the Themis inbox). Super+Shift+M = random.
 bind(mod .. " + SHIFT + M", "[Theme] Apply a random desktop theme", exec("~/.bin/theme random"))
 

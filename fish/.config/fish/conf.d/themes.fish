@@ -69,11 +69,15 @@ function _apply-kitty-theme -d "Reskin the active kitty window, its hyprland bor
 end
 
 function antigone     -d "Theme: tron blue";    _apply-kitty-theme antigone     'rgba(387AAAee)'; end
+function abyss        -d "Theme: deep teal";   _apply-kitty-theme abyss        'rgba(4FC8CCee)'; end
 function aegis        -d "Theme: gruvbox warm"; _apply-kitty-theme aegis        'rgba(d79921ee)'; end
 function ashen        -d "Theme: velise red";   _apply-kitty-theme ashen        'rgba(8B2222ee)'; end
 function crimson-gray -d "Theme: iceberg";       _apply-kitty-theme crimson-gray 'rgba(84a0c6AA)'; end
 function cyber        -d "Theme: mustang blue"; _apply-kitty-theme cyber        'rgba(3D6390AA)'; end
+function frost        -d "Theme: cool blue";   _apply-kitty-theme frost        'rgba(13809Aee)'; end
+function glass        -d "Theme: ice blue";    _apply-kitty-theme glass        'rgba(91D5EFee)'; end
 function jade         -d "Theme: green";        _apply-kitty-theme jade         'rgba(2DD5B7ee)'; end
+function lagoon       -d "Theme: seafoam";     _apply-kitty-theme lagoon       'rgba(5CD6C6ee)'; end
 function pine         -d "Theme: OpenAI green"; _apply-kitty-theme pine         'rgba(10A37Fee)'; end
 function lavender     -d "Theme: purple";       _apply-kitty-theme lavender     'rgba(7B68EEee)'; end
 function neon         -d "Theme: pink/cyan";    _apply-kitty-theme neon         'rgba(00f0ffee)'; end

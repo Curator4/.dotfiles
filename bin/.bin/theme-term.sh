@@ -1,6 +1,7 @@
 #!/bin/bash
 # Reskin the FOCUSED kitty window to a theme's terminal colors (per-window,
-# same effect as typing the bare theme name in fish). Bound to Super+F1..F12.
+# same effect as typing the bare theme name in fish). Bound to Super+F1..F12
+# and Super+F13.. (keybinds.lua).
 # Usage:
 #   theme-term.sh <slug>
 #   theme-term.sh --record <pid> <slug>
