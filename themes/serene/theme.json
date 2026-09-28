@@ -50,8 +50,8 @@
   },
   "monitors": {
     "DP-1": "vertical[0]",
-    "DP-2": "static[0]",
-    "DP-3": "live[0]",
+    "DP-2": "live[0]",
+    "DP-3": "static[0]",
     "DP-4": "vertical[1]"
   },
   "obsidian": {
