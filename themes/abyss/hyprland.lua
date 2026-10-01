@@ -1,0 +1,12 @@
+-- Abyss - Hyprland Colors
+-- Palette consumed by ~/.config/hypr/theme.lua via the current-theme symlink.
+return {
+    border_active = "rgba(4FC8CC66)",
+    border_inactive = "rgba(0E2A3366)",
+    shadow = "rgba(05090Cee)",
+    bg = "rgb(05090C)",
+    fg = "rgb(A7C2CB)",
+    accent = "rgb(4FC8CC)",
+    orange = "rgb(D7786C)",
+    orange_light = "rgba(D7786C66)",
+}

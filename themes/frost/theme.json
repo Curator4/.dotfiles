@@ -1,0 +1,67 @@
+{
+  "name": "Frost",
+  "slug": "frost",
+  "icon": "❄️",
+  "source": "hud tile colours (accent #91D5EF on #101E2B); picked via the teal theme picker 2026-09-25",
+  "effects": {
+    "profile": "calm"
+  },
+  "nvim": {
+    "colorscheme": "iceberg",
+    "variant": "",
+    "background": "light"
+  },
+  "palette": {
+    "background": "#E3EDF1",
+    "foreground": "#1D3342",
+    "cursor": "#13809A",
+    "cursor_text": "#E3EDF1",
+    "selection_bg": "#BFDDE8",
+    "selection_fg": "#10222E",
+    "colors": {
+      "black": "#1D3342",
+      "red": "#A8403A",
+      "green": "#1F6E55",
+      "yellow": "#80570F",
+      "blue": "#265C94",
+      "magenta": "#65479F",
+      "cyan": "#0F6F86",
+      "white": "#5F7886",
+      "bright_black": "#4F6878",
+      "bright_red": "#B24A43",
+      "bright_green": "#26785D",
+      "bright_yellow": "#8A5E12",
+      "bright_blue": "#2D66A2",
+      "bright_magenta": "#6E50AA",
+      "bright_cyan": "#137890",
+      "bright_white": "#4A6270"
+    }
+  },
+  "wallpapers": {
+    "vertical": [
+      "~/pictures/wallpapers/vertical/wallhaven-po3gqm.png",
+      "~/pictures/wallpapers/vertical/wallhaven-mpm6q9.png"
+    ],
+    "static": [
+      "~/pictures/wallpapers/static/wallhaven-8ogod1.jpg",
+      "~/pictures/wallpapers/static/green-jade.jpg"
+    ]
+  },
+  "monitors": {
+    "DP-1": "vertical[0]",
+    "DP-2": "static[0]",
+    "DP-3": "static[1]",
+    "DP-4": "vertical[1]"
+  },
+  "obsidian": {
+    "cssTheme": "Minimal",
+    "base": "moonstone"
+  },
+  "hue": {
+    "accent": "#2A6F8F",
+    "bri": 45
+  },
+  "font": {
+    "mono": "JetBrainsMono Nerd Font"
+  }
+}

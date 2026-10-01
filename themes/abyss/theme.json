@@ -1,0 +1,68 @@
+{
+  "name": "Abyss",
+  "slug": "abyss",
+  "icon": "🪼",
+  "source": "hud tile colours (accent #91D5EF on #101E2B); picked via the teal theme picker 2026-09-25",
+  "effects": {
+    "profile": "cinematic"
+  },
+  "nvim": {
+    "colorscheme": "night-owl",
+    "variant": "",
+    "background": "dark"
+  },
+  "palette": {
+    "background": "#05090C",
+    "foreground": "#A7C2CB",
+    "cursor": "#4FC8CC",
+    "cursor_text": "#05090C",
+    "selection_bg": "#0E2A33",
+    "selection_fg": "#DCEBEF",
+    "colors": {
+      "black": "#0D161B",
+      "red": "#D7786C",
+      "green": "#62C4A0",
+      "yellow": "#E3A558",
+      "blue": "#4C92C6",
+      "magenta": "#9A8AD8",
+      "cyan": "#4FC8CC",
+      "white": "#A7C2CB",
+      "bright_black": "#34505C",
+      "bright_red": "#E69A8F",
+      "bright_green": "#86D6B8",
+      "bright_yellow": "#F0C07E",
+      "bright_blue": "#74B0DC",
+      "bright_magenta": "#B7AAE6",
+      "bright_cyan": "#7FDCDF",
+      "bright_white": "#DCEBEF"
+    }
+  },
+  "wallpapers": {
+    "vertical": [
+      "~/pictures/wallpapers/vertical/earth-orbit-sunrise.png",
+      "~/pictures/wallpapers/vertical/wallhaven-o35yv7.jpg"
+    ],
+    "static": [
+      "~/pictures/wallpapers/static/wallhaven-zyj8gw.jpg",
+      "~/pictures/wallpapers/static/wallhaven-l3mx32.jpg"
+    ]
+  },
+  "monitors": {
+    "DP-1": "vertical[0]",
+    "DP-2": "static[0]",
+    "DP-3": "static[1]",
+    "DP-4": "vertical[1]"
+  },
+  "obsidian": {
+    "cssTheme": "Obsidianite",
+    "base": "obsidian"
+  },
+  "hue": {
+    "accent": "#4FC8CC",
+    "bri": 35,
+    "sat_scale": 1.15
+  },
+  "font": {
+    "mono": "JetBrainsMono Nerd Font"
+  }
+}

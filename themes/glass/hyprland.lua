@@ -1,0 +1,12 @@
+-- Glass - Hyprland Colors
+-- Palette consumed by ~/.config/hypr/theme.lua via the current-theme symlink.
+return {
+    border_active = "rgba(91D5EF66)",
+    border_inactive = "rgba(1B354966)",
+    shadow = "rgba(0B1621ee)",
+    bg = "rgb(0B1621)",
+    fg = "rgb(C6D9E4)",
+    accent = "rgb(91D5EF)",
+    orange = "rgb(E0868A)",
+    orange_light = "rgba(E0868A66)",
+}

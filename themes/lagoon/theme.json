@@ -1,0 +1,67 @@
+{
+  "name": "Lagoon",
+  "slug": "lagoon",
+  "icon": "🌊",
+  "source": "hud tile colours (accent #91D5EF on #101E2B); picked via the teal theme picker 2026-09-25",
+  "effects": {
+    "profile": "snappy"
+  },
+  "nvim": {
+    "colorscheme": "poimandres",
+    "variant": "",
+    "background": "dark"
+  },
+  "palette": {
+    "background": "#071A1D",
+    "foreground": "#BAD8D6",
+    "cursor": "#5CD6C6",
+    "cursor_text": "#071A1D",
+    "selection_bg": "#0F3A3E",
+    "selection_fg": "#E3F4F2",
+    "colors": {
+      "black": "#0E2629",
+      "red": "#E3897D",
+      "green": "#8AD39A",
+      "yellow": "#E2C07A",
+      "blue": "#5DA6D1",
+      "magenta": "#AE9DDB",
+      "cyan": "#5CD6C6",
+      "white": "#BAD8D6",
+      "bright_black": "#3B5E62",
+      "bright_red": "#F0A79C",
+      "bright_green": "#A9E3B6",
+      "bright_yellow": "#EFD59E",
+      "bright_blue": "#85C1E6",
+      "bright_magenta": "#C6B8EA",
+      "bright_cyan": "#8AE4D6",
+      "bright_white": "#E3F4F2"
+    }
+  },
+  "wallpapers": {
+    "vertical": [
+      "~/pictures/wallpapers/vertical/lagoon-tide.png",
+      "~/pictures/wallpapers/vertical/lagoon-panes.png"
+    ],
+    "static": [
+      "~/pictures/wallpapers/static/moonlit-teal-mountains.png",
+      "~/pictures/wallpapers/static/green-jade.jpg"
+    ]
+  },
+  "monitors": {
+    "DP-1": "vertical[0]",
+    "DP-2": "static[0]",
+    "DP-3": "static[1]",
+    "DP-4": "vertical[1]"
+  },
+  "obsidian": {
+    "cssTheme": "Cybertron",
+    "base": "obsidian"
+  },
+  "hue": {
+    "accent": "#5CD6C6",
+    "bri": 40
+  },
+  "font": {
+    "mono": "JetBrainsMono Nerd Font"
+  }
+}

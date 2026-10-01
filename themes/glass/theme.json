@@ -1,0 +1,67 @@
+{
+  "name": "Glass",
+  "slug": "glass",
+  "icon": "💠",
+  "source": "hud tile colours (accent #91D5EF on #101E2B); picked via the teal theme picker 2026-09-25",
+  "effects": {
+    "profile": "calm"
+  },
+  "nvim": {
+    "colorscheme": "iceberg",
+    "variant": "",
+    "background": "dark"
+  },
+  "palette": {
+    "background": "#0B1621",
+    "foreground": "#C6D9E4",
+    "cursor": "#91D5EF",
+    "cursor_text": "#0B1621",
+    "selection_bg": "#1B3549",
+    "selection_fg": "#E7F2F7",
+    "colors": {
+      "black": "#132332",
+      "red": "#E0868A",
+      "green": "#7CCFB6",
+      "yellow": "#E3C58C",
+      "blue": "#6EA6DA",
+      "magenta": "#B79BE6",
+      "cyan": "#91D5EF",
+      "white": "#C6D9E4",
+      "bright_black": "#46627A",
+      "bright_red": "#EDA3A5",
+      "bright_green": "#9FE0CC",
+      "bright_yellow": "#F0D9A8",
+      "bright_blue": "#93BFEA",
+      "bright_magenta": "#CDB6F2",
+      "bright_cyan": "#B6E5F6",
+      "bright_white": "#E7F2F7"
+    }
+  },
+  "wallpapers": {
+    "vertical": [
+      "~/pictures/wallpapers/vertical/mountain-azure.jpg",
+      "~/pictures/wallpapers/vertical/wallhaven-8gky3y.png"
+    ],
+    "static": [
+      "~/pictures/wallpapers/static/late-night-desk.png",
+      "~/pictures/wallpapers/static/wallhaven-l3mx32.jpg"
+    ]
+  },
+  "monitors": {
+    "DP-1": "vertical[0]",
+    "DP-2": "static[0]",
+    "DP-3": "static[1]",
+    "DP-4": "vertical[1]"
+  },
+  "obsidian": {
+    "cssTheme": "Cybertron",
+    "base": "obsidian"
+  },
+  "hue": {
+    "accent": "#91D5EF",
+    "bri": 45
+  },
+  "font": {
+    "mono": "JetBrainsMono Nerd Font"
+  }
+}

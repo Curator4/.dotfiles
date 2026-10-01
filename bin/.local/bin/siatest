@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# siatest — launch the SIA Alarm Test Tool (Electron panel simulator).
+#
+# Detaches by default so the terminal stays free; the Electron console goes to
+# the log file below. Pass -f to keep it in the foreground with live output
+# (useful when the renderer is throwing and you want the stack trace).
+set -euo pipefail
+
+APP_DIR=~/workspace/pnc/sia-receiver-prototype/test-tool
+LOG=~/.local/state/siatest.log
+
+[ -d "$APP_DIR/node_modules" ] || { echo "siatest: no node_modules in $APP_DIR — run 'npm install' there first" >&2; exit 1; }
+
+if pgrep -f "electron .*test-tool" >/dev/null 2>&1; then
+  echo "siatest: already running (the account roster lives in localStorage, so two copies will fight over it)" >&2
+  exit 1
+fi
+
+cd "$APP_DIR"
+
+if [ "${1-}" = "-f" ]; then
+  exec npm start
+fi
+
+mkdir -p "$(dirname "$LOG")"
+nohup npm start >"$LOG" 2>&1 &
+echo "siatest: started (pid $!) — log: $LOG"
