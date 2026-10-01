@@ -155,6 +155,25 @@ hl.window_rule({
     opacity = "1 1",
 })
 
+-- Proton, Wine, and gamescope. The default opacity rule otherwise
+-- leaves a fullscreen game slightly see-through.
+hl.window_rule({
+    name  = "games-opaque",
+    match = { class = [[^(steam_app_.*|gamescope|wine|Wine|.*\.exe)$]] },
+
+    opacity = "1 1",
+})
+
+-- Open on the bottom-center monitor, tiled so the game fills that
+-- workspace instead of floating.
+hl.window_rule({
+    name  = "games-on-screen",
+    match = { class = [[^(steam_app_.*|gamescope|wine|Wine|.*\.exe)$]] },
+
+    monitor = "DP-3",
+    tile = true,
+})
+
 -- Fullscreen screensaver
 hl.window_rule({
     name  = "screensaver-fullscreen",

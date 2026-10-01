@@ -5,21 +5,21 @@ local p = require("programs")
 local mod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- bindel (locked + repeat) and bindl (locked) become option tables.
-local LOCKED    = { locked = true }
+local LOCKED = { locked = true }
 local LOCKED_EL = { locked = true, repeating = true }
 
 local function exec(cmd)
-    return hl.dsp.exec_cmd(cmd)
+	return hl.dsp.exec_cmd(cmd)
 end
 
 -- Descriptions are not a second cheat sheet: Hyprland exposes them with
 -- `hyprctl binds -j`, which desktop-help renders directly.
 local function bind(keys, description, dispatcher, options)
-    local metadata = { description = description }
-    for key, value in pairs(options or {}) do
-        metadata[key] = value
-    end
-    return hl.bind(keys, dispatcher, metadata)
+	local metadata = { description = description }
+	for key, value in pairs(options or {}) do
+		metadata[key] = value
+	end
+	return hl.bind(keys, dispatcher, metadata)
 end
 
 bind(mod .. " + Q", "[Apps] Terminal", exec(p.terminal))
@@ -34,7 +34,11 @@ bind(mod .. " + N", "[Apps] Neovim", exec("kitty nvim"))
 bind(mod .. " + M", "[Apps] Spotify", exec(p.spotify))
 bind(mod .. " + O", "[Apps] Obsidian", exec("obsidian"))
 bind(mod .. " + C", "[Window] Close focused window", hl.dsp.window.close())
-bind(mod .. " + I", "[Apps] Open itinerary", exec("kitty nvim +$ /home/curator/workspace/ai/household-oc/agents/tactical/data/itinerary.md"))
+bind(
+	mod .. " + I",
+	"[Apps] Open itinerary",
+	exec("kitty nvim +$ /home/curator/workspace/ai/household-oc/agents/tactical/data/itinerary.md")
+)
 bind(mod .. " + SHIFT + T", "[Picker] Theme picker", exec("~/.bin/theme"))
 bind(mod .. " + SHIFT + I", "[Layout] Toggle split direction", hl.dsp.layout("togglesplit"))
 bind(mod .. " + SHIFT + F", "[Window] Toggle floating", hl.dsp.window.float({ action = "toggle" }))
@@ -44,8 +48,8 @@ bind("F11", "[Window] Toggle fullscreen", hl.dsp.window.fullscreen())
 -- Move focus with vim keys
 local directions = { H = "left", L = "right", K = "up", J = "down" }
 for key, dir in pairs(directions) do
-    bind(mod .. " + " .. key, "[Window] Focus " .. dir, hl.dsp.focus({ direction = dir }))
-    bind(mod .. " + SHIFT + " .. key, "[Window] Move window " .. dir, hl.dsp.window.swap({ direction = dir }))
+	bind(mod .. " + " .. key, "[Window] Focus " .. dir, hl.dsp.focus({ direction = dir }))
+	bind(mod .. " + SHIFT + " .. key, "[Window] Move window " .. dir, hl.dsp.window.move({ direction = dir }))
 end
 
 -- Promote the focused window into the master slot.
@@ -66,30 +70,34 @@ bind(mod .. " + SHIFT + O", "[Layout] Cycle master orientation", hl.dsp.layout("
 -- the rules.lua hooks — this only re-lays-out what already exists.
 -- Recipe: wiki "Cycle layout for current workspace", collapsed to two-way.
 bind(mod .. " + A", "[Layout] Toggle dwindle on this monitor", function()
-    local active = hl.get_active_workspace()
-    if not active or not active.monitor then
-        return
-    end
-    local target = (active.tiled_layout == "dwindle") and "master" or "dwindle"
-    for _, ws in ipairs(hl.get_workspaces()) do
-        if not ws.special and ws.monitor and ws.monitor.name == active.monitor.name then
-            hl.workspace_rule({ workspace = tostring(ws.id), layout = target })
-        end
-    end
+	local active = hl.get_active_workspace()
+	if not active or not active.monitor then
+		return
+	end
+	local target = (active.tiled_layout == "dwindle") and "master" or "dwindle"
+	for _, ws in ipairs(hl.get_workspaces()) do
+		if not ws.special and ws.monitor and ws.monitor.name == active.monitor.name then
+			hl.workspace_rule({ workspace = tostring(ws.id), layout = target })
+		end
+	end
 end)
 
 -- Cycle through windows in current workspace. Two dispatchers on one key: as a
 -- single lua callback rather than two binds, so the order is explicit.
 bind(mod .. " + TAB", "[Window] Cycle windows", function()
-    hl.dispatch(hl.dsp.window.cycle_next())
-    hl.dispatch(hl.dsp.window.bring_to_top())
+	hl.dispatch(hl.dsp.window.cycle_next())
+	hl.dispatch(hl.dsp.window.bring_to_top())
 end)
 
 -- Switch workspaces with mod + [0-9], move the active window with mod + SHIFT + [0-9]
 for i = 1, 10 do
-    local key = i % 10 -- 10 maps to key 0
-    bind(mod .. " + " .. key, "[Workspace] Switch to workspace " .. i, hl.dsp.focus({ workspace = i }))
-    bind(mod .. " + SHIFT + " .. key, "[Workspace] Move window to workspace " .. i, hl.dsp.window.move({ workspace = i }))
+	local key = i % 10 -- 10 maps to key 0
+	bind(mod .. " + " .. key, "[Workspace] Switch to workspace " .. i, hl.dsp.focus({ workspace = i }))
+	bind(
+		mod .. " + SHIFT + " .. key,
+		"[Workspace] Move window to workspace " .. i,
+		hl.dsp.window.move({ workspace = i })
+	)
 end
 
 -- Move/resize windows with mod + LMB/RMB and dragging
@@ -113,8 +121,20 @@ bind(mod .. " + P", "[Desktop] Lock screen", exec("hyprlock"))
 --   settings  = 'g' inside the focused board (no global key)
 --   Alt+U    = SSH (unchanged)
 -- Hue lights on Super+Shift+Y.
-bind(mod .. " + U", "[hud] Focus the active-monitor board", exec("/home/curator/.local/bin/hud-desktop --layer-host --url http://127.0.0.1:8877/hud-board --runtime-dir /home/curator/.local/state/hud/board/runtime focus"))
-bind(mod .. " + SHIFT + U", "[hud] Show/hide the active-monitor board", exec("/home/curator/.local/bin/hud-desktop --layer-host --url http://127.0.0.1:8877/hud-board --runtime-dir /home/curator/.local/state/hud/board/runtime toggle"))
+bind(
+	mod .. " + U",
+	"[hud] Focus the active-monitor board",
+	exec(
+		"/home/curator/.local/bin/hud-desktop --layer-host --url http://127.0.0.1:8877/hud-board --runtime-dir /home/curator/.local/state/hud/board/runtime focus"
+	)
+)
+bind(
+	mod .. " + SHIFT + U",
+	"[hud] Show/hide the active-monitor board",
+	exec(
+		"/home/curator/.local/bin/hud-desktop --layer-host --url http://127.0.0.1:8877/hud-board --runtime-dir /home/curator/.local/state/hud/board/runtime toggle"
+	)
+)
 bind(mod .. " + ALT + U", "[Apps] SSH terminal", exec(p.ssh))
 bind(mod .. " + V", "[Fan] Toggle fan controls", exec("qs -c fan-rail ipc call fan toggle"))
 bind(mod .. " + SHIFT + Y", "[Desktop] Toggle office lights", exec("~/.bin/hue toggle"))
@@ -138,16 +158,26 @@ bind(mod .. " + SHIFT + G", "[Desktop] Make display cooler", exec("~/.bin/sunset
 -- apply restarts waybar, so detach into a transient scope: a bind spawned from
 -- waybar's own tree would be killed mid-apply, before .current-theme is written.
 local themes = {
-    "aegis", "ashen", "calliope", "crimson-gray", "cyber", "ember",
-    "pine", "lavender", "mono", "neon", "nord", "serene",
+	"aegis",
+	"ashen",
+	"calliope",
+	"crimson-gray",
+	"cyber",
+	"ember",
+	"pine",
+	"lavender",
+	"mono",
+	"neon",
+	"nord",
+	"serene",
 }
-local themeTerm  = "~/.dotfiles/bin/.bin/theme-term.sh"
+local themeTerm = "~/.dotfiles/bin/.bin/theme-term.sh"
 local themeApply = "systemd-run --user --quiet --collect ~/.dotfiles/bin/.bin/theme-switcher.sh apply"
 
 for i, theme in ipairs(themes) do
-    local fkey = "F" .. i
-    bind(mod .. " + " .. fkey, "[Theme] Apply " .. theme .. " to terminal", exec(themeTerm .. " " .. theme))
-    bind(mod .. " + ALT + " .. fkey, "[Theme] Apply " .. theme .. " to desktop", exec(themeApply .. " " .. theme))
+	local fkey = "F" .. i
+	bind(mod .. " + " .. fkey, "[Theme] Apply " .. theme .. " to terminal", exec(themeTerm .. " " .. theme))
+	bind(mod .. " + ALT + " .. fkey, "[Theme] Apply " .. theme .. " to desktop", exec(themeApply .. " " .. theme))
 end
 
 -- Second terminal row on mod + Fn + A.. (home row). The NEO70 has no F-row, so
@@ -156,14 +186,29 @@ end
 -- (`code:NNN` parses to an empty key in Lua binds.)
 -- No desktop twin: the NEO70 sends no Alt (left Alt is a layer, right is Compose).
 local homeRowKeys = {
-    "XF86Tools", "XF86Launch5", "XF86Launch6", "XF86Launch7", "XF86Launch8", "XF86Launch9",
-    "F19", "XF86AudioMicMute", "XF86TouchpadToggle", "XF86TouchpadOn", "XF86TouchpadOff",
+	"XF86Tools",
+	"XF86Launch5",
+	"XF86Launch6",
+	"XF86Launch7",
+	"XF86Launch8",
+	"XF86Launch9",
+	"F19",
+	"XF86AudioMicMute",
+	"XF86TouchpadToggle",
+	"XF86TouchpadOn",
+	"XF86TouchpadOff",
 }
 local moreThemes = {
-    "abyss", "antigone", "frost", "glass", "grok-night", "jade", "lagoon",
+	"abyss",
+	"antigone",
+	"frost",
+	"glass",
+	"grok-night",
+	"jade",
+	"lagoon",
 }
 for i, theme in ipairs(moreThemes) do
-    bind(mod .. " + " .. homeRowKeys[i], "[Theme] Apply " .. theme .. " to terminal", exec(themeTerm .. " " .. theme))
+	bind(mod .. " + " .. homeRowKeys[i], "[Theme] Apply " .. theme .. " to terminal", exec(themeTerm .. " " .. theme))
 end
 
 -- Super+Shift+T = theme picker (Super+T is the Themis inbox). Super+Shift+M = random.
@@ -176,7 +221,12 @@ local volSnap = "~/.config/hypr/scripts/volume-snap.sh"
 bind("XF86AudioRaiseVolume", "[Hardware] Raise volume", exec(volSnap .. " up"), LOCKED_EL)
 bind("XF86AudioLowerVolume", "[Hardware] Lower volume", exec(volSnap .. " down"), LOCKED_EL)
 bind("XF86AudioMute", "[Hardware] Toggle output mute", exec("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), LOCKED_EL)
-bind("XF86AudioMicMute", "[Hardware] Toggle microphone mute", exec("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), LOCKED_EL)
+bind(
+	"XF86AudioMicMute",
+	"[Hardware] Toggle microphone mute",
+	exec("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
+	LOCKED_EL
+)
 bind("XF86MonBrightnessUp", "[Hardware] Raise brightness", exec("brightnessctl -e4 -n2 set 5%+"), LOCKED_EL)
 bind("XF86MonBrightnessDown", "[Hardware] Lower brightness", exec("brightnessctl -e4 -n2 set 5%-"), LOCKED_EL)
 
@@ -199,28 +249,58 @@ bind(mod .. " + space", "[Media] Play or pause", exec("playerctl -p ncspot,spoti
 -- Print = shut her up, Home = pause her, Insert = talk / stop talking
 bind("Print", "[TTS] Stop speech", exec("python3 ~/workspace/ai/tts-daemon/tts_client.py kill"), LOCKED)
 bind("Home", "[TTS] Pause or resume speech", exec("python3 ~/workspace/ai/tts-daemon/tts_client.py pause"), LOCKED)
-bind("Insert", "[TTS] Start or stop voice input", exec("uv run --project /home/curator/workspace/ai/household-oc/tools/speak hark"), LOCKED)
+bind(
+	"Insert",
+	"[TTS] Start or stop voice input",
+	exec("uv run --project /home/curator/workspace/ai/household-oc/tools/speak hark"),
+	LOCKED
+)
 
 -- Quick emoji shortcuts (mod + CTRL + key) — clipboard+ydotool paste
 -- (plain wtype unicode is ignored by Electron/Chromium on Wayland)
 local typeEmoji = "~/.config/hypr/scripts/type-emoji.sh"
 local emoji = {
-    { "J", "😂", "joy" }, { "R", "🤣", "rolling laugh" }, { "C", "☕", "coffee" },
-    { "U", "🙃", "upside down" }, { "T", "🤔", "thinking" }, { "F", "🫡", "salute" },
-    { "P", "😔", "pensive" }, { "H", "😌", "relieved" }, { "E", "😎", "sunglasses" },
-    { "D", "🫤", "unsure" }, { "Y", "🥹", "holding back tears" }, { "Q", "😳", "flushed" },
-    { "S", "😭", "crying" }, { "W", "👋", "wave" }, { "M", "😓", "sweat" },
-    { "X", "💀", "skull" }, { "A", "😇", "angel" }, { "L", "😈", "devil" },
-    { "Z", "🤡", "clown" }, { "B", "👍", "thumbs up" }, { "I", "🫵", "point" },
-    { "K", "👀", "eyes" }, { "O", "😮", "surprised" }, { "G", "😼", "smirking cat" },
-    { "N", "😅", "nervous laugh" }, { "V", "🤮", "vomit" }, { "1", "😤", "huffing" },
-    { "2", "🤦", "facepalm" }, { "3", "🔥", "fire" }, { "4", "👌", "okay" },
-    { "5", "✅", "checkmark" }, { "6", "🤨", "raised eyebrow" }, { "7", "💪", "flex" },
-    { "semicolon", "æ", "Danish ae" }, { "apostrophe", "ø", "Danish oe" },
-    { "bracketleft", "å", "Danish aa" }, { "8", "€", "euro" }, { "9", "😠", "angry" },
-    { "slash", "🤷", "shrug" },
+	{ "J", "😂", "joy" },
+	{ "R", "🤣", "rolling laugh" },
+	{ "C", "☕", "coffee" },
+	{ "U", "🙃", "upside down" },
+	{ "T", "🤔", "thinking" },
+	{ "F", "🫡", "salute" },
+	{ "P", "😔", "pensive" },
+	{ "H", "😌", "relieved" },
+	{ "E", "😎", "sunglasses" },
+	{ "D", "🫤", "unsure" },
+	{ "Y", "🥹", "holding back tears" },
+	{ "Q", "😳", "flushed" },
+	{ "S", "😭", "crying" },
+	{ "W", "👋", "wave" },
+	{ "M", "😓", "sweat" },
+	{ "X", "💀", "skull" },
+	{ "A", "😇", "angel" },
+	{ "L", "😈", "devil" },
+	{ "Z", "🤡", "clown" },
+	{ "B", "👍", "thumbs up" },
+	{ "I", "🫵", "point" },
+	{ "K", "👀", "eyes" },
+	{ "O", "😮", "surprised" },
+	{ "G", "😼", "smirking cat" },
+	{ "N", "😅", "nervous laugh" },
+	{ "V", "🤮", "vomit" },
+	{ "1", "😤", "huffing" },
+	{ "2", "🤦", "facepalm" },
+	{ "3", "🔥", "fire" },
+	{ "4", "👌", "okay" },
+	{ "5", "✅", "checkmark" },
+	{ "6", "🤨", "raised eyebrow" },
+	{ "7", "💪", "flex" },
+	{ "semicolon", "æ", "Danish ae" },
+	{ "apostrophe", "ø", "Danish oe" },
+	{ "bracketleft", "å", "Danish aa" },
+	{ "8", "€", "euro" },
+	{ "9", "😠", "angry" },
+	{ "slash", "🤷", "shrug" },
 }
 
 for _, e in ipairs(emoji) do
-    bind(mod .. " + CTRL + " .. e[1], "[Emoji] " .. e[3] .. " " .. e[2], exec(typeEmoji .. ' "' .. e[2] .. '"'))
+	bind(mod .. " + CTRL + " .. e[1], "[Emoji] " .. e[3] .. " " .. e[2], exec(typeEmoji .. ' "' .. e[2] .. '"'))
 end
