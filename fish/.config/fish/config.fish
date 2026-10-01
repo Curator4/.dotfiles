@@ -18,6 +18,7 @@ if status is-interactive
     alias cdw 'cd ~/workspace/'
     alias cdp 'cd ~/workspace/pnc/'
     alias cdpa 'cd ~/workspace/pnc/alarm-receiver/'
+    alias cdpp 'cd ~/workspace/pnc/alarm-platform/'
     alias cdd 'cd ~/.dotfiles'
     alias cdh 'cd ~/workspace/ai/household-oc/'
     alias cda 'cd ~/workspace/ai/'
