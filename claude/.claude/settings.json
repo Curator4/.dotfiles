@@ -67,6 +67,10 @@
       "Bash(tee:*)",
       "Bash(diff:*)",
       "Bash(patch:*)",
+      "Bash(wt:*)",
+      "Bash(herdr:*)",
+      "Bash(hud:*)",
+      "Bash(xdg-open:*)",
       "Bash(scp:*)",
       "Bash(rsync:*)",
       "Bash(kill:*)",
@@ -125,6 +129,9 @@
       "Bash(timer:*)",
       "Bash(email-tool act:*)"
     ],
+    "deny": [
+      "Artifact"
+    ],
     "ask": [
       "Bash(/home/curator/.claude/channels/telegram/approve-send:*)",
       "Bash(/home/curator/.local/bin/approve-send:*)",
@@ -134,7 +141,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "opus",
+  "model": "fable",
   "hooks": {
     "PostToolUse": [
       {
@@ -229,6 +236,15 @@
             "type": "command",
             "command": "~/.claude/hooks/tts-finalize.sh",
             "timeout": 5
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/hud-focus-stop.sh",
+            "timeout": 10
           }
         ]
       },
