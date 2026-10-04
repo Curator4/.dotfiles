@@ -3,8 +3,9 @@
 # and PostToolUse. When a session on a board tile has been working a while
 # and its project's Focus hasn't changed since that stretch of work began, it
 # adds one line to the agent's next step pointing at the checklist rule in
-# the hud-publish skill. Once per stretch, never at session start, quiet
-# whenever Focus moves, and silent on any failure.
+# the hud-publish skill, and at naming the items hud signs for it (#118).
+# Once per stretch, never at session start, quiet whenever Focus moves, and
+# silent on any failure.
 #
 # A stretch begins at a prompt, or at the first step after a long quiet
 # spell. Its state is one line per session in $HUD_REMINDER_DIR:
@@ -100,6 +101,6 @@ fi
 save "$start" "$now" "$project" "$was" 1
 here=$(stamp)
 [ "$here" = "$project $was" ] || exit 0
-line="hud: you have been working a while and $project's Focus has not changed since you started. If this task has more than one step, add one item for the outcome and two to six steps under it now, and tick each step as you finish it (hud-publish skill, Focus). Reuse an accurate item, keep other agents' items, and add nothing for a one-step task."
+line="hud: you have been working a while and $project's Focus has not changed since you started. If this task has more than one step, add one item for the outcome and two to six steps under it now, and tick each step as you finish it (hud-publish skill, Focus). hud signs them for your session; name your work with --source, or later with rename --source. Reuse an accurate item, keep other agents' items, and add nothing for a one-step task."
 jq -nc --arg line "$line" '{hookSpecificOutput: {hookEventName: "PostToolUse", additionalContext: $line}}' 2>/dev/null
 exit 0

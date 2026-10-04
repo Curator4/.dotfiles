@@ -333,7 +333,8 @@
     "grok-cc@grok-plugin-claude-code": true,
     "discernment-nudge@anthropic-agent-skills": true,
     "i-have-adhd@i-have-adhd": true,
-    "diagram-design@diagram-design": true
+    "diagram-design@diagram-design": true,
+    "cc-plugin-you-should-know@builtin": true
   },
   "extraKnownMarketplaces": {
     "anthropic-agent-skills": {
