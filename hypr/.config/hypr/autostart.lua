@@ -26,4 +26,9 @@ hl.on("hyprland.start", function()
     -- and watch for the page's Escape dismiss signal.
     hl.exec_cmd("~/.config/hypr/scripts/themis-inbox.sh warm")
     hl.exec_cmd("~/.config/hypr/scripts/themis-panel-watchd")
+
+    -- XWayland primary = DP-3. With none set, Wine/Proton pick DP-1 (portrait,
+    -- at X 0,0) as the game screen and confine the cursor there, eating clicks
+    -- in fullscreen games on DP-3. Retries until XWayland is up.
+    hl.exec_cmd("sh -c 'export DISPLAY=${DISPLAY:-:0}; for i in $(seq 30); do xrandr --output DP-3 --primary 2>/dev/null; xrandr --listmonitors 2>/dev/null | grep -q \"[*]DP-3\" && exit 0; sleep 1; done'")
 end)
