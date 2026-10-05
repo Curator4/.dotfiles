@@ -42,7 +42,8 @@ bind(
 bind(mod .. " + SHIFT + T", "[Picker] Theme picker", exec("~/.bin/theme"))
 bind(mod .. " + SHIFT + I", "[Layout] Toggle split direction", hl.dsp.layout("togglesplit"))
 bind(mod .. " + SHIFT + F", "[Window] Toggle floating", hl.dsp.window.float({ action = "toggle" }))
-bind(mod .. " + Escape", "[Desktop] Exit Hyprland", hl.dsp.exit())
+-- Exit ends the session; three modifiers so it can't be hit by accident.
+bind(mod .. " + CTRL + SHIFT + Escape", "[Desktop] Exit Hyprland", hl.dsp.exit())
 bind("F11", "[Window] Toggle fullscreen", hl.dsp.window.fullscreen())
 
 -- Move focus with vim keys
