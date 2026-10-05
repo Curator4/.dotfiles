@@ -1,6 +1,7 @@
 /home/curator/obsidian-vault
 /home/curator/workspace
 /home/curator/.dotfiles
+/home/curator/.agents
 /home/curator/.ssh
 /home/curator/.local/state/syncthing
 /home/curator/.local/share/themis-memory
