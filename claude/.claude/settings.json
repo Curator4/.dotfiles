@@ -141,7 +141,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "opus",
+  "model": "fable",
   "hooks": {
     "PostToolUse": [
       {
@@ -404,6 +404,7 @@
   "theme": "dark-ansi",
   "verbose": false,
   "preferredNotifChannel": "notifications_disabled",
+  "switchModelsOnFlag": false,
   "teammateMode": "auto",
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
