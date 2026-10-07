@@ -1,0 +1,72 @@
+{
+  "name": "Silver",
+  "slug": "silver",
+  "icon": "\u25c8",
+  "source": "Mainframe HUD identity: ~/.config/hud/projects/mainframe.json",
+  "effects": {
+    "profile": "quiet"
+  },
+  "nvim": {
+    "colorscheme": "lackluster",
+    "variant": "",
+    "background": "dark"
+  },
+  "palette": {
+    "background": "#202429",
+    "foreground": "#D7DFE5",
+    "cursor": "#F0F3F5",
+    "cursor_text": "#202429",
+    "selection_bg": "#D7DFE5",
+    "selection_fg": "#202429",
+    "colors": {
+      "black": "#171B20",
+      "red": "#D19A9D",
+      "green": "#A7BEA9",
+      "yellow": "#C7B995",
+      "blue": "#A7BBD0",
+      "magenta": "#B8ABC7",
+      "cyan": "#A8C1C7",
+      "white": "#D7DFE5",
+      "bright_black": "#8795A2",
+      "bright_red": "#D7A6A9",
+      "bright_green": "#B0C4B2",
+      "bright_yellow": "#CDC0A0",
+      "bright_blue": "#B0C2D5",
+      "bright_magenta": "#BFB3CD",
+      "bright_cyan": "#B1C7CD",
+      "bright_white": "#F0F3F5"
+    },
+    "border": "#D7DFE5"
+  },
+  "wallpapers": {
+    "static": [
+      "~/.dotfiles/themes/silver/wallpaper.webp"
+    ],
+    "vertical": [
+      "~/.dotfiles/themes/silver/wallpaper.webp"
+    ]
+  },
+  "monitors": {
+    "DP-1": "vertical[0]",
+    "DP-2": "static[0]",
+    "DP-3": "static[0]",
+    "DP-4": "vertical[0]"
+  },
+  "obsidian": {
+    "cssTheme": "Minimal",
+    "base": "obsidian"
+  },
+  "hue": {
+    "accent": "#D7DFE5"
+  },
+  "font": {
+    "mono": "GeistMono Nerd Font"
+  },
+  "discord": {
+    "link_color": "#A7BBD0"
+  },
+  "codex": {
+    "accent": "#D7DFE5",
+    "muted": "#9FAEBB"
+  }
+}
