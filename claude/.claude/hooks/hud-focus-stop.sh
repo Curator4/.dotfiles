@@ -11,11 +11,10 @@
 # At most once per session (marker file <session>.stopped). Fail-open: any
 # error, missing tool, or unreadable state exits 0 and never wedges a session.
 #
-# NOT WIRED BY DEFAULT. To enable, add to Stop:
-#   ~/.claude/settings.json  hooks.Stop: {"type":"command","command":"~/.claude/hooks/hud-focus-stop.sh","timeout":10}
-#   ~/.codex/hooks.json      hooks.Stop: {"type":"command","command":"/home/curator/.claude/hooks/hud-focus-stop.sh","timeout":10}
-# Claude Code treats exit 2 + stderr as "block and show the model this text".
-# Verify Codex's Stop-hook exit semantics once before relying on it there.
+# Wired in ~/.claude/settings.json hooks.Stop (timeout 10) since 2026-10-01; the
+# softer hud-focus-reminder hook was retired 2026-10-07, this gate is the one
+# enforcement. Claude Code treats exit 2 + stderr as "block and show the model
+# this text". Codex wiring (~/.codex/hooks.json) is optional and unverified.
 [ -n "${HUD_SUMMARIZING:-}" ] && exit 0
 [ -n "${HUD_BG:-}" ] && exit 0
 case "${INTER_SESSION_LABEL:-}" in *" channel") exit 0 ;; esac
