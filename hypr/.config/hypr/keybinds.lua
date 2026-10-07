@@ -207,6 +207,7 @@ local moreThemes = {
 	"grok-night",
 	"jade",
 	"lagoon",
+	"silver",
 }
 for i, theme in ipairs(moreThemes) do
 	bind(mod .. " + " .. homeRowKeys[i], "[Theme] Apply " .. theme .. " to terminal", exec(themeTerm .. " " .. theme))

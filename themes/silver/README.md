@@ -8,6 +8,8 @@ HUD artwork.
 - `theme silver` applies the desktop theme.
 - `silver` in Fish recolours the current terminal or Herdr pane.
 - `theme-term.sh silver` recolours the focused Kitty window.
+- **Super + Fn + K** on the NEO70 recolours the focused Kitty window
+  (Super + F20, named `XF86AudioMicMute` by xkb).
 
 `palette.yaml` is the initial Base16 scaffold. `theme.json` and the surface
 files contain the final silver accent, cursor and selection adjustments.
