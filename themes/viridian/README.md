@@ -7,6 +7,8 @@ stay muted but distinct. The wallpaper is the original Logis HUD artwork.
 - `theme viridian` applies the desktop theme.
 - `viridian` in Fish recolours the current terminal or Herdr pane.
 - `theme-term.sh viridian` recolours the focused Kitty window.
+- **Super + Fn + L** on the NEO70 recolours the focused Kitty window
+  (Super + F21, named `XF86TouchpadToggle` by xkb).
 
 Neovim uses Nord with its existing transparent background; Obsidian uses
 Minimal. Desktop surfaces use the quiet effects profile, matching Silver.
