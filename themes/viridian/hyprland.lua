@@ -1,4 +1,4 @@
--- Petrol - Hyprland Colors
+-- Viridian - Hyprland Colors
 -- Palette consumed by ~/.config/hypr/theme.lua via the current-theme symlink.
 return {
     border_active = "rgba(9BBEB566)",

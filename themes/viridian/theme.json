@@ -1,6 +1,6 @@
 {
-  "name": "Petrol",
-  "slug": "petrol",
+  "name": "Viridian",
+  "slug": "viridian",
   "icon": "\u25c8",
   "source": "Logis HUD identity: ~/.config/hud/projects/logis.json",
   "effects": {
@@ -40,10 +40,10 @@
   },
   "wallpapers": {
     "static": [
-      "~/.dotfiles/themes/petrol/wallpaper.webp"
+      "~/.dotfiles/themes/viridian/wallpaper.webp"
     ],
     "vertical": [
-      "~/.dotfiles/themes/petrol/wallpaper.webp"
+      "~/.dotfiles/themes/viridian/wallpaper.webp"
     ]
   },
   "monitors": {
