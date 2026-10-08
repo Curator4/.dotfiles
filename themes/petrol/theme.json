@@ -1,0 +1,72 @@
+{
+  "name": "Petrol",
+  "slug": "petrol",
+  "icon": "\u25c8",
+  "source": "Logis HUD identity: ~/.config/hud/projects/logis.json",
+  "effects": {
+    "profile": "quiet"
+  },
+  "nvim": {
+    "colorscheme": "nord",
+    "variant": "",
+    "background": "dark"
+  },
+  "palette": {
+    "background": "#10252A",
+    "foreground": "#E1ECE8",
+    "cursor": "#F0F6F3",
+    "cursor_text": "#10252A",
+    "selection_bg": "#9BBEB5",
+    "selection_fg": "#10252A",
+    "colors": {
+      "black": "#0B1B20",
+      "red": "#CE9C9D",
+      "green": "#9BBEB5",
+      "yellow": "#C5BA98",
+      "blue": "#91AFBB",
+      "magenta": "#B4ABC5",
+      "cyan": "#A3C5C8",
+      "white": "#E1ECE8",
+      "bright_black": "#819C9F",
+      "bright_red": "#D4A8A9",
+      "bright_green": "#A5C4BC",
+      "bright_yellow": "#CBC1A2",
+      "bright_blue": "#9CB7C2",
+      "bright_magenta": "#BCB3CB",
+      "bright_cyan": "#ACCBCE",
+      "bright_white": "#F0F6F3"
+    },
+    "border": "#9BBEB5"
+  },
+  "wallpapers": {
+    "static": [
+      "~/.dotfiles/themes/petrol/wallpaper.webp"
+    ],
+    "vertical": [
+      "~/.dotfiles/themes/petrol/wallpaper.webp"
+    ]
+  },
+  "monitors": {
+    "DP-1": "vertical[0]",
+    "DP-2": "static[0]",
+    "DP-3": "static[0]",
+    "DP-4": "vertical[0]"
+  },
+  "obsidian": {
+    "cssTheme": "Minimal",
+    "base": "obsidian"
+  },
+  "hue": {
+    "accent": "#9BBEB5"
+  },
+  "font": {
+    "mono": "GeistMono Nerd Font"
+  },
+  "discord": {
+    "link_color": "#91AFBB"
+  },
+  "codex": {
+    "accent": "#9BBEB5",
+    "muted": "#91AFBB"
+  }
+}
