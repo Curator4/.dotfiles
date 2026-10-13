@@ -6,6 +6,8 @@ Usage:
   theme-lint nord            # slug under ~/.dotfiles/themes
   theme-lint /path/to/theme  # directory containing theme.json
   theme-lint --all           # every desktop theme
+
+hue.accent is a Philips Hue lamp color and is not contrast-checked as text.
 """
 
 from __future__ import annotations
@@ -191,6 +193,21 @@ def load_kitty_colors(theme_dir: Path) -> dict[str, RGB]:
     return roles
 
 
+def load_hypr_accent(theme_dir: Path) -> RGB | None:
+    """UI accent from hyprland.lua. theme-render paints this, not hue.accent."""
+    path = theme_dir / "hyprland.lua"
+    if not path.is_file():
+        return None
+    match = re.search(
+        r'^\s*accent\s*=\s*"rgb\(([0-9A-Fa-f]{6})\)"',
+        path.read_text(encoding="utf-8"),
+        re.M,
+    )
+    if not match:
+        return None
+    return parse_hex(match.group(1))
+
+
 def lint_theme(theme_dir: Path) -> list[Finding]:
     findings: list[Finding] = []
     try:
@@ -235,12 +252,23 @@ def lint_theme(theme_dir: Path) -> list[Finding]:
     fg = get("foreground")
     sel_bg = get("selection_bg")
     sel_fg = get("selection_fg") or fg
-    accent = None
-    hue = data.get("hue") or {}
-    if isinstance(hue, dict) and hue.get("accent"):
-        accent = parse_hex(str(hue["accent"]))
+    # hue.accent is a lamp color, not text. Score the UI accent theme-render
+    # paints, then the same blue / cyan / cursor fallback as before.
+    accent = load_hypr_accent(theme_dir)
     if accent is None:
         accent = get("blue") or get("cyan") or get("cursor")
+    hue = data.get("hue") or {}
+    lamp = None
+    if isinstance(hue, dict) and hue.get("accent"):
+        lamp = parse_hex(str(hue["accent"]))
+    if lamp and (accent is None or lamp.hex() != accent.hex()):
+        findings.append(
+            Finding(
+                "info",
+                "hue.lamp",
+                f"hue accent {lamp.hex()} is a lamp color, not scored as text",
+            )
+        )
 
     required = {
         "background": bg,
